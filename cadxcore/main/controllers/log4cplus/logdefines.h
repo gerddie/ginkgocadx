@@ -24,8 +24,14 @@ namespace GNC {
 
 				LogEvent() {}
 
-				LogEvent(const std::string& lg, const std::string& ll, const std::string& ts, const std::string& m, const std::string& fm, const std::string& th)
-					: logger(lg), level(ll), timestamp(ts), msg(m), formattedmsg(fm), thread(th)
+				LogEvent(const std::string& lg, const std::string& ll,
+					 const std::string& ts, const std::string& m, const std::string& fm, const std::string& th)
+					: logger(lg),
+					level(ll),
+					timestamp(ts),
+					msg(m),
+					thread(th), 
+					formattedmsg(fm)
 				{					
 				}
 
@@ -47,12 +53,16 @@ namespace GNC {
 
 				~LogEvent(){}
 
-				std::string thread;
 				std::string logger;
 				std::string level;
 				std::string timestamp;
 				std::string msg;
+				std::string thread;
 				std::string formattedmsg;
+
+
+				
+		
 			};
 
 

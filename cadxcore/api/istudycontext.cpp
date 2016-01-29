@@ -567,7 +567,7 @@ void GNC::GCS::IStudyContext::CreateUnsignedCharMap(vtkSmartPointer<vtkImageData
 
 		double spacing[3] = {1.0f,1.0f,1.0f};
 		double origin[3] = {0.0f,0.0f,0.0f};
-		int dimensions[3] = {0.0f,0.0f,0.0f};
+		int dimensions[3] = {0,0,0};
 		GetSpacing(indice,spacing[0],spacing[1],spacing[2]);
 		GetOrigin(indice,origin[0],origin[1],origin[2]);
 		GetDimensionsImage(indice,dimensions[0],dimensions[1], dimensions[2]);
@@ -607,7 +607,7 @@ void GNC::GCS::IStudyContext::CreateCharMap(vtkSmartPointer<vtkImageData>& pMapa
 
 		double spacing[3] = {1.0f,1.0f,1.0f};
 		double origin[3] = {0.0f,0.0f,0.0f};
-		int dimensions[3] = {0.0f,0.0f,0.0f};
+		int dimensions[3] = {0,0,0};
 		GetSpacing(indice,spacing[0],spacing[1],spacing[2]);
 		GetOrigin(indice,origin[0],origin[1],origin[2]);
 		GetDimensionsImage(indice,dimensions[0],dimensions[1], dimensions[2]);

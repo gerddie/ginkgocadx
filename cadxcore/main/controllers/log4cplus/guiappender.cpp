@@ -30,6 +30,20 @@
 using namespace dcmtk::log4cplus::helpers;
 using namespace dcmtk; 
 
+class MutexScopedLock {
+public: 
+	MutexScopedLock(dcmtk::log4cplus::thread::Mutex& mutex):
+		m_mutex(mutex)	{
+		m_mutex.lock(); 
+	}
+	
+	~MutexScopedLock(){
+		m_mutex.unlock(); 
+	}
+private: 
+	dcmtk::log4cplus::thread::Mutex& m_mutex; 
+}; 
+
 gnkLog4cplus::GUIAppender* gnkLog4cplus::GUIAppender::m_pInstancia = NULL;
 
 
@@ -49,20 +63,34 @@ void gnkLog4cplus::GUIAppender::FreeInstance() {
 }
 
 gnkLog4cplus::GUIAppender::GUIAppender(bool logToStdErr_, bool immediateFlush_) :
-	logToStdErr(logToStdErr_), immediateFlush(immediateFlush_), llmCache(log4cplus::getLogLevelManager()), m_pLogger(NULL)
-
+	logToStdErr(logToStdErr_),
+	immediateFlush(immediateFlush_), 
+	m_pLogger(NULL), 
+	llmCache(log4cplus::getLogLevelManager())
 {
 	Init();
 	
 }
 
 gnkLog4cplus::GUIAppender::GUIAppender(const log4cplus::helpers::Properties properties) :
-	Appender(properties), logToStdErr(false), immediateFlush(false), llmCache(log4cplus::getLogLevelManager()), m_Logs(), m_pLogger(NULL)
+	Appender(properties),
+	logToStdErr(false),
+	immediateFlush(false),
+	m_pLogger(NULL), 
+	m_Logs(),
+	llmCache(log4cplus::getLogLevelManager())
+
+
 {
 	Init();
 }
 
-gnkLog4cplus::GUIAppender::GUIAppender(const GUIAppender& o) : llmCache(o.llmCache), immediateFlush(o.immediateFlush), logToStdErr(o.logToStdErr), m_Logs(o.m_Logs), m_pLogger(o.m_pLogger)
+gnkLog4cplus::GUIAppender::GUIAppender(const GUIAppender& o) :
+	logToStdErr(o.logToStdErr),
+	immediateFlush(o.immediateFlush),
+	m_pLogger(o.m_pLogger), 
+	m_Logs(o.m_Logs),
+	llmCache(o.llmCache)
 {
 	Init();
 }
@@ -82,6 +110,7 @@ gnkLog4cplus::GUIAppender::~GUIAppender()
 
 void gnkLog4cplus::GUIAppender::close()
 {
+	MutexScopedLock lock( m_mutex ); 
         closed = true;
 	m_pLogger = NULL;
 	m_Logs.clear();
@@ -89,6 +118,7 @@ void gnkLog4cplus::GUIAppender::close()
 
 void gnkLog4cplus::GUIAppender::clear()
 {
+	MutexScopedLock lock( m_mutex ); 
         m_Logs.clear();
 }
 
@@ -97,14 +127,13 @@ void gnkLog4cplus::GUIAppender::Attach(GNC::GCS::Logging::ILogger* pLogger)
 	if (this->closed) {
 		return;
 	}
-        //	DCMTK_LOG4CPLUS_BEGIN_SYNCHRONIZE_ON_MUTEX( getLogLog().mutex )
+	MutexScopedLock lock( m_mutex ); 
 	m_pLogger = pLogger;
 	if (pLogger != NULL) {
 		for (ListaLogs::const_iterator it = m_Logs.begin(); it != m_Logs.end(); ++it) {
 			pLogger->Append(*it);
 		}
 	}
-        //	DCMTK_LOG4CPLUS_END_SYNCHRONIZE_ON_MUTEX;
 }
 
 void gnkLog4cplus::GUIAppender::append(const log4cplus::spi::InternalLoggingEvent& e)
@@ -113,7 +142,7 @@ void gnkLog4cplus::GUIAppender::append(const log4cplus::spi::InternalLoggingEven
 		return;
 	}
 	
-	DCMTK_LOG4CPLUS_BEGIN_SYNCHRONIZE_ON_MUTEX( getLogLog().mutex )
+	MutexScopedLock lock( m_mutex ); 
 	log4cplus::tostringstream formattedLog;
 	layout->formatAndAppend(formattedLog, e);
 	
@@ -137,6 +166,5 @@ void gnkLog4cplus::GUIAppender::append(const log4cplus::spi::InternalLoggingEven
 	if (m_Logs.size() > MAX_LOG_BUFFER_SIZE) {
 		m_Logs.pop_front();
 	}
-	
-        DCMTK_LOG4CPLUS_END_SYNCHRONIZE_ON_MUTEX;
+
 }

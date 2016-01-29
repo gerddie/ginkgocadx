@@ -69,6 +69,7 @@ namespace gnkLog4cplus {
 		
 		
 		static GUIAppender* m_pInstancia;
-		
+
+		dcmtk::log4cplus::thread::Mutex m_mutex;
     };
 }

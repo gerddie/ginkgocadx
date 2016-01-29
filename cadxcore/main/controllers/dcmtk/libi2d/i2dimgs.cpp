@@ -66,8 +66,7 @@
 *  @param outputTS - [out] The proposed transfex syntax of the dataset
 *  @return EC_Normal, if successful, error otherwise
 */
-OFCondition I2DImgSource::readAndInsertSpecificTags( DcmDataset* dset,
-																	 E_TransferSyntax& outputTS)
+OFCondition I2DImgSource::readAndInsertSpecificTags( DcmDataset* dset, E_TransferSyntax& outputTS)
 {
 	Uint16 samplesPerPixel, rows, cols, bitsAlloc, bitsStored, highBit, pixelRepr, planConf;
 	Uint16 pixAspectH = 1;
