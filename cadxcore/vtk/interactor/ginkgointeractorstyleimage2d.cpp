@@ -35,7 +35,6 @@ PURPOSE.  See the above copyright notices for more information.
 #include <vtkRenderWindow.h>
 #include <wx/timer.h>
 
-vtkCxxRevisionMacro(GinkgoInteractorStyleImage2D, "$Revision: 752 $");
 vtkStandardNewMacro(GinkgoInteractorStyleImage2D);
 
 #include <vtkCamera.h>

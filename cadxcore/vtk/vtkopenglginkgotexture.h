@@ -41,7 +41,7 @@ class vtkGinkgoOpenGLTexture : public vtkOpenGLTexture, public GNC::GCS::ILockab
 {
 public:
 	static vtkGinkgoOpenGLTexture *New();
-	vtkTypeRevisionMacro(vtkGinkgoOpenGLTexture,vtkOpenGLTexture);
+	vtkTypeMacro(vtkGinkgoOpenGLTexture,vtkOpenGLTexture);
 	virtual void PrintSelf(ostream& os, vtkIndent indent);
 
 	// Description:

@@ -162,7 +162,7 @@ void GNC::GCS::IStudyContext::SetActiveIndex(int indice)
 
 	if (indice >= 0 && !Files.empty()) { // Propagate last to each other, so there is no more slices to layout them
 		size_t numFiles = Files.size();
-		if (indice >= numFiles) {
+		if (static_cast<size_t>(indice) >= numFiles) {
 			newIdx = numFiles - 1;
 		}
 		TStudyFile& fichero = *Files[newIdx];

@@ -61,7 +61,7 @@ class EXTAPI vtkLookupTableManager: public vtkObject
   //ETX
 
   static vtkLookupTableManager* New();
-  vtkTypeRevisionMacro (vtkLookupTableManager, vtkObject);
+  vtkTypeMacro (vtkLookupTableManager, vtkObject);
 
   static vtkLookupTable* GetBartenLookupTable (void);
 

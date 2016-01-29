@@ -37,7 +37,7 @@ class EXTAPI GinkgoInteractorStyleImage2D : public vtkInteractorStyleImage
 {
  public:
   static GinkgoInteractorStyleImage2D *New();
-  vtkTypeRevisionMacro (GinkgoInteractorStyleImage2D, vtkInteractorStyleImage);
+  vtkTypeMacro (GinkgoInteractorStyleImage2D, vtkInteractorStyleImage);
   
   virtual void OnMouseMove();
   virtual void OnLeftButtonDown();

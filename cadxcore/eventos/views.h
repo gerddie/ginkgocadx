@@ -41,7 +41,7 @@ namespace GNC {
 				{
 				}
 
-				const EventViewType GetType() {
+				EventViewType GetType() {
 					return m_type;
 				}
 

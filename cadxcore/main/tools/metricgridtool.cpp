@@ -305,7 +305,7 @@ bool GNC::MetricGridTool::IsVisible()
 void GNC::MetricGridTool::ToggleGrid()
 {
 	double spacing[3] = {1.0,1.0,1.0};
-	int dimensions[3] = {0.0,0.0,0.0};
+	int dimensions[3] = {0,0,0};
 	WidgetsContract->GetViewerActivo()->GetSpacing(spacing);
 	WidgetsContract->GetViewerActivo()->GetDimensions(dimensions);
 

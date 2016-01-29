@@ -59,7 +59,6 @@ PURPOSE.  See the above copyright notice for more information.
 #include <main/controllers/controladorpermisos.h>
 
 #ifndef VTK_IMPLEMENT_MESA_CXX
-vtkCxxRevisionMacro(vtkGinkgoOpenGLTexture, "$Revision: 1.81 $");
 vtkStandardNewMacro(vtkGinkgoOpenGLTexture);
 #endif
 

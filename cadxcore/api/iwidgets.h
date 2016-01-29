@@ -82,7 +82,7 @@ namespace GNC {
 				m_Iluminado = false;
 			}
 
-			inline Nodo(const Nodo& otro)
+			inline Nodo(const Nodo& otro):Vector(otro)
 			{
 
 				*this = otro;

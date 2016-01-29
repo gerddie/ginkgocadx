@@ -245,7 +245,7 @@ IMPLEMENT_DYNAMIC_CLASS(wxVTKRenderWindowInteractor, wxWindow)
 	EVT_SIZE        (wxVTKRenderWindowInteractor::OnSize)
 	END_EVENT_TABLE()
 
-	vtkCxxRevisionMacro(wxVTKRenderWindowInteractor, "$Revision: 1276 $")
+//vtkCxxMacro(wxVTKRenderWindowInteractor, "$Revision: 1276 $")
 	vtkInstantiatorNewMacro(wxVTKRenderWindowInteractor)
 
 #if defined(__WXGTK__) && defined(wxUSE_GLCANVAS)

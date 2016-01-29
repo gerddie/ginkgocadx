@@ -79,7 +79,7 @@ namespace GNC {
 
 			wxBitmap* GetBitmap();
 
-			const int GetId() const;
+			int GetId() const;
 
 			T_HangingProtocolSupportLevel GetHangingSupportLevel() const;
 

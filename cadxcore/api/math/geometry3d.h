@@ -280,27 +280,27 @@ namespace GNC {
 			//-- Constantes
 			//----------------------------------------------
 
-			static inline const TComp InfinitoDeComponentes() {
+			static inline TComp InfinitoDeComponentes() {
 				return std::numeric_limits<TComp>::infinity();
 			}
 
-			static inline const TReal InfinitoDeReales() {
+			static inline TReal InfinitoDeReales() {
 				return std::numeric_limits<TReal>::infinity();
 			}
 
-			static inline const TComp NaNDeComponentes() {
+			static inline TComp NaNDeComponentes() {
 				return std::numeric_limits<TComp>::quiet_NaN();
 			}
 
-			static inline const TReal NaNDeReales() {
+			static inline TReal NaNDeReales() {
 				return std::numeric_limits<TReal>::quiet_NaN();
 			}
 
-			static inline const TComp EpsilonDeComponentes() {
+			static inline TComp EpsilonDeComponentes() {
 				return std::numeric_limits<TComp>::epsilon();
 			}
 
-			static inline const TReal EpsilonDeReales() {
+			static inline TReal EpsilonDeReales() {
 				return std::numeric_limits<TReal>::epsilon();
 			}
 

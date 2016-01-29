@@ -50,7 +50,7 @@ void GNC::GCS::Widgets::WCameraRotation::OnMouseEvents(GNC::GCS::Events::EventoR
 	if (!m_pManager) {
 		return;
 	}
-	if (m_MouseDown && evento.ButtonUp(m_ButtonMask) || evento.Leaving()) {
+	if ( (m_MouseDown && evento.ButtonUp(m_ButtonMask)) || evento.Leaving()) {
 		m_MouseDown = false;
 		if (m_Estado != WBS_Creando) {
 			m_Estado = WBS_Ninguno;

@@ -22,7 +22,6 @@ PURPOSE.  See the above copyright notices for more information.
 #include "vtkLookupTableManager.h"
 #include <vtkObjectFactory.h>
 
-vtkCxxRevisionMacro(vtkLookupTableManager, "$Revision: 842 $");
 vtkStandardNewMacro(vtkLookupTableManager);
 #include "lut/BlackBody.h"
 #include "lut/Cardiac.h"

@@ -49,8 +49,8 @@ GNC::GCS::ITool::ITool(const ITool::UID& uid, const ITool::TToolFamily& uidFamil
 		Icon(icon),
 		m_pParent(NULL),
 		OwnerModule(NULL),
-		Enabled(true),
-		KeyCode(0)
+		KeyCode(0),
+                Enabled(true)
 {
 }
 

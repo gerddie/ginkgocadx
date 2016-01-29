@@ -48,7 +48,7 @@ wxBitmap* GNC::GCS::ModoControlador::GetBitmap(){
 	return bitmap;
 }
 
-const int GNC::GCS::ModoControlador::GetId() const{
+int GNC::GCS::ModoControlador::GetId() const{
 	return id;
 }
 
