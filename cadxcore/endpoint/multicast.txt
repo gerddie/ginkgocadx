@@ -1,0 +1,76 @@
+224.0.0.0 - 239.0.0.0 is our LAN!
+
+pinging it pings all the hosts
+while pinging 255.255.255.255 pings only BSD (Win32 no response to bcast ping)
+
+Does this mean my Linksys BEFSR81 supports multicast? I think so.
+It supports multicast pass-through also.
+But how can I join a group? I suppose I have to join before I can actually
+receive. This is very inefficient if the kernel has to drop mcast packets
+not intended for it, the router should only forward to group members. But
+does it? Not sure.
+
+Multicast is neat, use it.
+
+---
+
+228.246.191.191 -> reserved-multicast-range-NOT-delegated.example.com
+
+But why I can ping 232.0.0.0 - 232.255.255.255, though RFC 3171 says its
+RESERVED? Heck, why can I ping the WHOLE MULTICAST range?
+224.0.0.0 - 239.0.0.0
+
+nmap reveals they're not running TCP. Makes sense...its not multicastable.
+UDP is.
+
+Warning: forward host lookup failed for reserved-multicast-range-NOT-delegated.example.com: Unknown host
+reserved-multicast-range-NOT-delegated.example.com [228.246.191.191] 80 (http) : Address family not supported by protocol family
+ sent 0, rcvd 0
+
+Interesting. "Address family not supported by protocol family"
+
+nmap says all UDP and TCP are filtered. But ICMP isn't!
+
+However, a protocol scan (-sO) shows that icmp,tcp,and udp (1,6,17) are 
+supported. None other of the 256 possible IP protocols are. Good.
+
+All hosts appear identical.
+
+
+> ping 228.246.191.191
+PING 228.246.191.191 (228.246.191.191): 56 data bytes
+64 bytes from 228.246.191.191: icmp_seq=0 ttl=150 time=0.741 ms
+64 bytes from 228.246.191.191: icmp_seq=1 ttl=150 time=0.696 ms
+
+
+OrgName:    Internet Assigned Numbers Authority
+OrgID:      IANA
+Address:    4676 Admiralty Way, Suite 330
+City:       Marina del Rey
+StateProv:  CA
+PostalCode: 90292-6695
+Country:    US
+
+NetRange:   224.0.0.0 - 239.255.255.255
+CIDR:       224.0.0.0/4
+NetName:    MCAST-NET
+NetHandle:  NET-224-0-0-0-1
+Parent:
+NetType:    IANA Special Use
+NameServer: FLAG.EP.NET
+NameServer: STRUL.STUPI.SE
+NameServer: NS.ISI.EDU
+NameServer: NIC.NEAR.NET
+Comment:    This block is reserved for special purposes.
+Comment:    Please see RFC 3171 for additional information.
+Comment:
+RegDate:    1991-05-22
+Updated:    2002-09-16
+
+OrgTechHandle: IANA-ARIN
+OrgTechName:   Internet Corporation for Assigned Names and Number
+OrgTechPhone:  +1-310-823-9358
+OrgTechEmail:  res-ip@iana.org
+
+# ARIN WHOIS database, last updated 2003-04-26 20:10
+# Enter ? for additional hints on searching ARIN's WHOIS database.

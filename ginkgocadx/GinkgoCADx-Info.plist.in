@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>CFBundleDevelopmentRegion</key>
+		<string>English</string>
+		<key>CFBundleDocumentTypes</key>
+		<array>
+			<dict>
+				<key>CFBundleTypeExtensions</key>
+				<array>
+					<string>dcm</string>
+				</array>
+				<key>CFBundleTypeIconFile</key>
+				<string>dcmdoc.icns</string>
+				<key>CFBundleTypeMIMETypes</key>
+				<array>
+					<string>application/dicom</string>
+				</array>
+				<key>CFBundleTypeName</key>
+				<string>DICOM</string>
+				<key>CFBundleTypeOSTypes</key>
+				<array>
+					<string>DCM</string>
+				</array>
+				<key>CFBundleTypeRole</key>
+				<string>Editor</string>
+				<key>LSTypeIsPackage</key>
+				<true/>
+				<key>NSPersistentStoreTypeKey</key>
+				<string>Binary</string>
+			</dict>
+		</array>
+		<key>CFBundleExecutable</key>
+		<string>${MACOSX_BUNDLE_BUNDLE_NAME}</string>
+		<key>CFBundleIconFile</key>
+		<string>ginkgocadx.icns</string>
+		<key>CFBundleIdentifier</key>
+		<string>${MACOSX_BUNDLE_GUI_IDENTIFIER}</string>
+		<key>CFBundleInfoDictionaryVersion</key>
+		<string>6.0</string>
+		<key>CFBundlePackageType</key>
+		<string>APPL</string>
+		<key>CFBundleSignature</key>
+		<string>????</string>
+		<key>CFBundleVersion</key>
+		<string>${MACOSX_BUNDLE_VERSION}</string>
+		<key>LSMultipleInstancesProhibited</key>
+		<true/>
+		<key>NSHumanReadableCopyright</key>
+		<string>MetaEmotion S.L.</string>
+	</dict>
+</plist>

@@ -1,0 +1,22 @@
+This is a open source Ginkgo CADx Framework build. MetaEmotion S.L does not provide support so eximes from all responsabilities derived from its usage.
+ 
+WARANTY DISCLAIMER
+------------------
+ 
+The software, procedures, information and data made available by MetaEmotion S.L. under current conditions are provided "AS IS", without warranties of any kind except for contracted services, in which cases the specific contract conditions will be applied.
+	
+MetaEmotion S.L. expressly disclaims any representations and warranties, including without limitation, the implied warranties of merchantability and fitness for a particular purpose.	
+	
+MetaEmotion S.L. shall have no liability for:
+	
+* Any loss or injury caused, in whole or in part, by its actions, omissions, or negligence, or for contingencies beyond its control, in procuring, compiling, or delivering the Information or
+   
+* Any errors, omissions, or inaccuracies in the Information regardless of how caused, or delays or interruptions in delivery of the Information; or
+    
+* Any decision made or action taken or not taken in reliance upon the Information furnished hereunder.
+	
+Under no circumstances shall the authors be liable for direct, indirect, special, incidental, consequential damages or misdiagnosis resulting from the use, misuse, or inability to use the software, even if the authors have been advised of the possibility of such damages.
+		
+The user assumes the entire risk of using this program as well as conditions above.
+	
+Ginkgo CADx is licensed under the LGPL v3 license. You can find the legal terms of the license at http://www.gnu.org/copyleft/lgpl.html or in LGPL3.txt file provided with this software

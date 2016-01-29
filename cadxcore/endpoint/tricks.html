@@ -1,0 +1,82 @@
+<html>
+<head>
+<title>Cool Things You Can do With Endpoint</title>
+</head>
+<body>
+<h1>Endpoint: Tips and Tricks</h1>
+
+<h2>Send/Receive Normal TCP/UDP Traffic</h2>
+<p>This is easy:
+<pre>
+// Choose one of these. It'll return once a connection is established.
+Endpoint ep(TCP | CLIENT, "example.com:80");       // Active open
+Endpoint ep(TCP | SERVER, ":80");                  // Passive open
+Endpoint ep(UDP | CLIENT, "example.com:41170");    // Send
+Endpoint ep(UDP | SERVER, ":41170");               // Receive
+
+if (!ep)   // If couldn't open socket
+   std::cout << "failed: " << std::endl; 
+
+// Print out the local and remote address
+std::cout << "New socket: " << ep << std::endl;
+
+// Find out who we're connected to (note that this is shown above also)
+std::cout << "Connected to: " << string(ep.m_remote) << std::endl;
+
+// Write some data
+ep.Write("hi");
+</pre>
+
+<h2>Use IPv6</h2>
+<p>If your host supports it, IPv6 will be automatically enabled. DNS names
+will resolve to 128-bit IPv6 addresses. To <i>specifically</i> use IPv6:
+<pre>
+EndpointAddrlist::g_default_family = AF_INET6;
+</pre>
+<p>Now all DNS names will resolve to IPv6 addresses. (See also: RES_USE_INET6)
+
+<p>To connect to an IPv6 host without DNS, simply write the address. Use 
+square brackets around the IPv6 address if you're also specifying a port.
+For example, to connect to a local web server you're running on IPv6:
+<pre>
+Endpoint ep(TCP | CLIENT, "[::1]:80");
+
+</pre>
+
+<p>If you have IPv6 support but don't want it to get in the way, use:
+<pre>
+EndpointAddrlist::g_default_family = AF_INET;
+</pre>
+
+<h2>Use Raw Sockets</h2>
+<p>Endpoint now supports raw sockets with IPv4 (IPv6 doesn't have raw sockets;
+you have to use datalink access for that, which Endpoint doesn't currently
+support). If you want to write your own IP header, use RAW.
+
+<p>A number of transport-layer protocols that sit on top of IPv4 are available
+to Endpoint. To write IGMP packets, for example, use RAW_ICMP. This will make
+the IP header for you, but you have to write the IGMP header.
+
+<p>RAW_UDP and RAW_ICMP automatically create the UDP or ICMP header for you.
+See the next topic for using ICMP.
+
+
+<h2>Send ICMP Messages</h2>
+<p>Simply create a RAW_ICMP | CLIENT socket with your destined address,
+specifying a port number of <i>type</i>,<i>code</i>. For example, to send a
+"host unreachable" ICMP message to 10.3.2.1:
+
+<pre>
+Endpoint ep(RAW_ICMP | CLIENT, "10.3.2.1:3,1");
+
+ep.Write("...");
+</pre>
+
+<p>To send a "ping" (ICMP echo request), replace "3,1" with "8,0". See the
+official <a href="http://www.iana.org/assignments/icmp-parameters">IANA ICMP 
+parameters</a> for more information.
+
+<p>ICMP can be used as a covert channel. See 
+<a href="http://www.phrack.org/phrack/49/P49-06">Project Loki: ICMP
+Tunnelling</a> in Phrack 49, by Alhambra and daemon9 for an article about this
+steganographic process.

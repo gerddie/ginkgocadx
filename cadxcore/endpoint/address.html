@@ -1,0 +1,358 @@
+<html>
+<head>
+<title>EndpointAddress Class</title>
+</head>
+<body>
+<h1>Table of Contents</h1>
+<ul>
+<li><a href="#1.">1. Network Addressing</a>
+<li><a href="#2.">2. EndpointAddrlist class</a>
+<ul>
+<li><a href="#2.1.">2.1. Constructors</a>
+</ul>
+<li><a href="#3.">3. EndpointAddress</a>
+<ul>
+<li><a href="#3.1.">3.1. Constructor</a>
+</ul>
+<li><a href="#4.">4. File Locations</a>
+<li><a href="#5.">5. Errors from <tt>getaddrinfo</tt></a>
+<ul>
+<li><a href="#5.1.">5.1. Resolution Errors</a>
+<li><a href="#5.2.">5.2. Usage Errors</a>
+</ul>
+</ul>
+
+<a name="1."><h1>1. Network Addressing</h1></a>
+<p>Addressing a socket is not a trivial topic. A port number, transport layer
+protocol, and possibly more than one IPv4 or IPv6 or DNS address must be 
+given. The DNS has to be resolved, addresses have to be chosen, port numbers
+must be resolved, and so on.
+
+<p>Fortunately, nearly everything needed to represent an Internet address
+can be encapsulated into a regular ordinary <tt>string</tt>, which can be
+entered by the user. All thats needed is this string to create an
+<tt>EndpointAddrlist</tt> object, although other information may be supplied
+(in particular, the transport layer protocol -- UDP or TCP -- must be passed
+outside of the string, for security reasons). EndpointAddrlist attempts to
+take care of everything regarding addresses, including things which many
+applications would otherwise ignore (such as multiple addresses per name).
+
+<p><tt>Endpoint</tt> accepts EndpointAddrlist as remote and local addresses,
+in which case all the addresses shall be tried. EndpointAddress encapsulates
+just one.
+
+<a name="2."><h1>2. EndpointAddrlist Class</h1></a>
+<p>EndpointAddrlist encapsulates an array of <tt>addrinfo</tt>s obtained
+through the protocol-independent <tt>getaddrinfo</tt>. Although the class
+name is singular, it is possible for multiple addresses to be listed within.
+Your application can choose to ignore all but one, but its recommended to
+try to connect to alternative addresses if the first one doesn't work,
+instead of giving up.
+
+<a name="2.1."><h2>2.1. Constructors</h2></a>
+<p>The following arguments are accepted, in order:
+
+<h3>string hostname</h3>
+<p>A hostname. This is passed to <tt>getnameinfo</tt> which either resolves
+the DNS name or uses <tt>inet_pton</tt> to convert from presentation form
+to numeric form. Note that <tt>inet_pton</tt> only supports dotted-decimal
+IPv4 or hex-string IPv6 addresss, and <b>not</b> the following alternative 
+IPv4 address formats (which <tt>inet_aton</tt> and therefore ping support):
+<ul>
+<li><b>Implied octets</b>: 127.1 = 127.0.0.1, 127.1.2 = 127.1.0.2
+<li><b>Hexadecimal octets</b>: 0x7f.0.0.0 = 127.0.0.1
+<li><b>Octal octets</b>: 0377.0377.0377.0377 = 255.255.255.255
+<li><b>Binary octets?</b>
+<li><b>Dotless addresses</b>: 2130706433 = 127.0.0.1,
+0x7f000001 = 127.0.0.1, 017700000001 = 127.0.0.1
+</ul>
+<p>Regular dotted-decimal strings such as "127.0.0.1" (IPv4) and hex string
+"::1" (IPv6) are allowed. DNS names may resolve to either IPv4 or
+IPv6 addresses, depending on if A or AAAA resource records exist.
+If your host doesn't support both IPv4 and IPv6, either one can be disabled
+by setting the default address family later on.
+
+<p>The hostname can also contain a service port, in URL-style. That is,
+a hostname followed by a colon and then a port, rather than a period. Netstat
+represents port 139 of 10.0.0.2 as "10.0.0.2.139", but this is not acceptable.
+"10.0.0.2:139" is supported by this class, and has the advantage of being
+aesthetically pleasing and easy to parse. With one exception.
+
+<p>IPv6 addresses contain embedded colons. However, they always contain
+more than one colon. "::1" is interpreted as an IPv6 address with no port,
+while "127.0.0.1:1" is interpreted as port 1 on 127.0.0.1. So how can port
+names be specified with IPv6 addresses? Several purposals have been made, but
+the best by far (and the one which this class understands) is to enclose
+the IPv6 address in brackets, like so: [::1]:80 = port 80 of ::1. IPv6-enabled
+web browsers understand this. The parser is loose about what is accepted:
+[::1]80, ::1]:80 and even ::1]80 will be interpreted identically, but you 
+shouldn't rely on this. For orthogonality (the [] notation has roots in
+email systems), an IPv4 address is acceptable in brackets:
+[127.0.0.1]:80 works as expected. Brackets also turn on AI_NUMERICHOST, which
+prevents DNS resolving -- [example.com]:80 won't work, but example.com:80 will.
+<i>Brackets enclose literals, they are optional with IPv4 but required with
+IPv6</i>.
+
+<p>If a port is given, it replaces the <tt>service</tt> variable, described
+below. This is to allow users to override default port numbers in case of an
+emergency. It should not be viewed as a security concern.
+
+<h3>string service = ""</h3>
+<p>The service name resolves to a port number through <tt>services</tt>.
+This means you can specify human-readable service names such as 
+"http" for port 80 TCP. Numeric strings are also allowed, such as "80";
+this is passed to <tt>getaddrinfo</tt> and handled there.
+
+<p><tt>getaddrinfo</tt> handles this input, but before it gets to it, this
+class interprets port numbers with commas in them. The port number is 16-bits,
+and both octets can be specified as two 0-255 integers, separated by a 
+common; for example, "1,2" is 0x0102. This is most useful for raw ICMP sockets;
+they understand the first octet as the type code and the second as the code
+code (this is specific to the Endpoint library). Other bases besides decimal
+are not supported.
+
+<p>This argument can often be omitted if you know for sure <tt>hostname</tt> 
+will
+contain a port number, but specifying it is most useful for allowing a 
+default port if none is specified in <tt>hostname</tt>.
+
+<h3>int type = 0</h3>
+<p>A bitmask of the following:
+<ul>
+<li><b>TCP</b> - Transport Control Protocol
+<li><b>UDP</b> - User Datagram Protocol
+<li><b>RAW_<i>xxx</i></b> - Raw socket with transport-layer protocol <i>xxx</i>
+</ul>
+And:
+<ul>
+<li><b>CLIENT (0)</b> - Actively connects to another host
+<li><b>SERVER (1)</b> - Passively waits for another host to connect
+</ul>
+<li>
+<p>The default is TCP | CLIENT, which seems to be the most common.
+
+<p>To use IPv4 raw sockets on Unix, you need root access. You also need to give
+the transport-layer protocol; these are derived from IPPROTO_, see protocols.h.
+For example, to send raw ICMP packets, use RAW_ICMP, to send raw UDP, RAW_UDP.
+Endpoint will make the IP header for you unless you choose RAW_RAW, in which
+case you can do it yourself. The idea is that you RAW_xxx makes the raw IP as
+well as xxx header for you, although this is only implemented with RAW_UDP
+presently.
+
+
+<h3>int family = EndpointAddrlist::g_default_family</h3>
+<p>Specifies the address as well as protocol family. Allowed values are:
+<ul>
+<li><b>AF_UNSPEC</b>: "unspecified", host is dual-stack and supports both
+IPv4 and IPv6 (either is acceptable)
+<li><b>AF_INET</b>: Only want IPv4 addresses
+<li><b>AF_INET6</b>: Only want IPv6 addresses
+</ul>
+<p>EndpointAddrlist::g_default_family can be set on a global (or at least
+program-wide) scale, to reflect which protocol families the host supports.
+An IPv4-only host would set this to AF_INET, an IPv6-only host AF_INET6,
+a dual-stack IPv4 and IPv6 host would use AF_UNSPEC.
+
+<h3>EndpointAddress GetAddress()</h3>
+<p>Returns the current address. Unless GetAddressNext() is called, this is the
+first address. See GetAddressNext(), which is preferred for most applications.
+However, GetAddress() has its uses; sometimes there is no reason to try
+multiple names, for example if there is no DNS name.
+
+<h3>EndpointAddress GetAddressNext()</h3>
+<p>Return the current address, and move to the next one (post-increment).
+This should be done instead of just trying to use the first address. The
+proper protocol is to try each address, until one succeeds.
+
+<a name="3."><h1>3. EndpointAddress</h1></a>
+<p>Encapsulates a single address. This is a subclass of the <tt>addrinfo</tt>
+structure, whose declaration is reproduced below:
+<pre>
+struct addrinfo {
+        int     ai_flags;       /* AI_PASSIVE, AI_CANONNAME, AI_NUMERICHOST */
+        int     ai_family;      /* PF_xxx */
+        int     ai_socktype;    /* SOCK_xxx */
+        int     ai_protocol;    /* 0 or IPPROTO_xxx for IPv4 and IPv6 */
+        size_t  ai_addrlen;     /* length of ai_addr */
+        char    *ai_canonname;  /* canonical name for hostname */
+        struct  sockaddr *ai_addr;      /* binary address */
+        struct  addrinfo *ai_next;      /* next structure in linked list */
+};
+</pre>
+<p>There is also an m_bool boolean value, which is true if the fields above
+are valid.</p>
+
+<a name="3.1."><h2>3.1. Constructor</h2></a>
+<p>EndpointAddrlist(addrinfo*) is the only constructor. If the pointer is
+non-null, each field is copied shallowly and m_bool is true. If null, 
+m_bool is false.
+
+<h2>operator string()</h2>
+<p>Stringifies the address by returning IP() + ":" + Port(). The reason why 
+IP() is
+returned rather than its DNS name is threefold: not all hosts have DNS
+names, DNS names may have more than one host, and forward/reverse DNS may
+not match. If IP() contains a colon, it is put in square brackets as is
+customary with IPv6.
+
+<h2>string IP()</h2>
+<p>Returns a human-readable form of the address. operator string() calls
+this. The IP address will be returned, as either a dotted-decimal or
+hex string.
+
+<p>This function internally calls <tt>inet_ntop</tt> (numeric to
+presentation) with the proper flags and passing the proper structures,
+depending on if the address is IPv4 or IPv6. Manually, this is tedious.
+WinSock does not provide <tt>inet_ntop</tt> so a implementation copied
+from BIND is provided.
+
+<h2>string DNS()</h2>
+<p>Returns the canonical DNS name in ai_cannonname, or an empty string 
+if there is none.
+
+<h2>string Name()</h2>
+<p>Returns DNS() if not empty, else IP().
+
+<h2>string Port()</h2>
+<p>Returns the port number.
+
+<h2>operator bool()</h2>
+<p>Returns m_bool, which is false if there is no address.
+
+<a name="4."><h1>4. File Locations</h1></a>
+<p><tt>services</tt> and <tt>hosts</tt> are used during service
+and name resolution (name resolution additionally uses DNS). Both these
+files can be by default found in the following locations:
+<ul>
+<li><b>Unix:</b> /etc
+<li><b>Windows NT, 2000, XP:</b> C:\windows\system32\drivers\etc, C:\winnt\system32\drivers\etc
+<li><b>Windows 95, 98, Me:</b> C:\windows
+</ul>
+
+<a name="5."><h1>5. Errors From <tt>getaddrinfo()</tt></h1></a>
+<p>A non-zero return value from <tt>getaddrinfo</tt> is one of the following,
+organized in order of likelihood, from greatest to least. The Posix 1g and
+Win32 constants as well as BSD and Win32 <tt>gai_strerror</tt> results are
+included as well.
+
+<a name="5.1."><h2>5.1. Resolution Errors</h2></a>
+<p>If an error occurs, <tt>m_bool</tt> is set to false,
+<tt>m_error_code</tt> is set to <tt>EP_ERROR_GETADDRINFO</tt>, and
+<tt>m_error_str</tt> is set to a description of the problem.
+
+<p>Unless literals are given, the hostname and service name need to be
+resolved. Errors can happen in this process.
+
+
+<h3>EAI_AGAIN = WSATRY_AGAIN</h3>
+<ul>
+<li><b>BSD:</b> "Temporary failure in name resolution."
+</ul>
+<p>There was a temporary DNS failure and you should try again.
+
+<h3>EAI_FAIL = WSANO_RECOVERY</h3>
+<ul>
+<li><b>BSD:</b> "Non-recoverable failure in name resolution."
+</ul>
+<p>A real bad error.	
+
+<h3>EAI_NODATA = WSANO_DATA / EAI_NONAME</h3>
+<ul>
+<li><b>BSD:</b> "No address associated with <i>hostname</i>."
+</ul>
+<p>This was removed from RFC, its equivalence or lack thereof to
+EAI_NONAME is unknown. The latest version of Windows defines EAI_NODATA
+to EAI_NONAME.	
+
+<h3>EAI_NONAME = WSAHOST_NOT_FOUND</h3>
+<ul>
+<li><b>BSD:</b> "<i>hostname</i> or <i>service</i> not provided, or not known."
+<li><b>Win32:</b> "No such host is known."
+</ul>
+<p>Not provided or no address associated with hostname.
+
+<h3>EAI_SERVICE = WSATYPE_NOT_FOUND</h3>
+<ul>
+<li><b>BSD:</b> "<i>service</i> not supported for ai_socktype."
+<li><b>Win32:</b> "The specified class was not found."
+</ul>
+<p>The symbolic service name could not be resolved, the entry in
+<tt>services</tt> is missing. The reference to "ai_socktype" means
+that if you try to connect to the "domain" service with TCP, and 
+the <tt>services</tt> file only has an entry for TCP, you'll also get this 
+error (although most systems now define both TCP and UDP for all services).
+This error never happens with numeric port numbers, so if
+you're concerned about portability, use them. Win32's <tt>services</tt>
+is quite small and doesn't cover all the esoteric service names, although
+it has its uses with custom servers (if you use a symbolic service name
+in your server and the user wants to change the port, all he has to do is 
+change the definition in <tt>services</tt> -- however, your install
+program must add a line to the file.).
+
+<a name="5.2."><h2>5.2. Usage Errors</h2></a>
+<p>These errors are mostly the fault of the programmer; either you (the class
+user) or me (the class programmer). Errors that "should not happen" should
+not happen under class design, even if invalid parameters are passed to the class.
+
+
+<h3>EAI_FAMILY = WSAEAFNOSUPPORT</h3>
+<ul>
+<li><b>BSD:</b> "<i>ai_family</i> not supported."
+<li><b>Win32:</b> "An address incompatible with the requested protocol was used."
+</ul>
+<p>hints.ai_family is invalid. The address family is specified as the last
+argument, and can be either AF_UNSPEC (IPv4 and/or) IPv6, AF_INET (IPv4),
+or AF_INET6 (IPv4). If the parameter is not given,  
+EndpointAddress::g_default_family is used. Either the default family 
+(which defaults to AF_UNSPEC) or the passed family is invalid.
+
+
+<h3>EAI_BADFLAGS = WSAEINVAL</h3>
+<ul>
+<li><b>BSD:</b> "Invalid value for <i>ai_flags</i>."
+<li><b>Win32:</b> never generated?
+</ul>
+<p>Valid values are AI_PASSIVE, AI_CANONNAME, and AI_NUMERICHOST.
+EndpointAddress only sets AI_PASSIVE (for servers) and AI_NUMERICHOST
+(for bracketed literals) so this should never happen.
+
+<h3>EAI_MEMORY = WSA_NOT_ENOUGH_MEMORY</h3>
+<ul>
+<li>BSD: "Memory allocation failure."
+</ul>
+
+
+<h3>EAI_ADDRFAMILY</h3>
+<ul>
+<li><b>BSD:</b> "Address family for <i>hostname</i> not supported."
+<li><b>Win32:</b> N/A
+</ul>
+<p>Presumably this means an address family other than AF_UNSPEC was
+given, and no address of that type is associated with the hostname.
+Does not exist on Win32.</p>
+
+
+<h3>EAI_SOCKTYPE = WSAESOCKNOSUPPORT</h3>
+<ul>
+<li><b>BSD:</b> "<i>ai_socktype</i> not supported."
+<li><b>Win32:</b> "The support for the specified socket type does not exist in this address family."
+</ul>
+<p>hints.ai_socktype is invalid. EndpointAddrlist sets this field to
+either SOCK_DGRAM for UDP or SOCK_STREAM for TCP so this should never happen.
+
+<h3>EAI_SYSTEM</h3>
+<ul>
+<li><b>BSD:</b> "System error returned in <i>errno</i>."
+<li><b>Win32:</b> N/A
+</ul>
+<p>This error code code is rarely used, but it means the errno variable
+will contain additional error information. Does not exist on Win32 (and most Unixes).
+</ul>
+
+</pre>
+
+</body>
+</html>
+
+
+

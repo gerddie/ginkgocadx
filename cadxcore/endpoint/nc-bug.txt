@@ -1,0 +1,14 @@
+#!/bin/sh
+# Discovered 2003-05-09 Jeff Connelly
+
+# Bug in netcat with IPv6 support.
+# Scenerio: listen on IPv6, connect with IPv4
+# The protocol stack stack passes the IPv4 connection to the IPv6
+# server, but netcat can't do a forward host lookup on 0.0.0.0. This
+# full DNS lookup is not optional. netcat barfs and no data is received.
+
+nc -l6p 8000 &
+echo "xxx" | nc localhost 8000
+
+# 0.0.0.0: forward host lookup failed: Unknown host
+

@@ -1,0 +1,2892 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source\main">
+      <UniqueIdentifier>{a854893a-4dbf-4400-bf4c-356d16ad4ad2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\main\tools">
+      <UniqueIdentifier>{b63155a5-07d9-402d-8dbc-950757d20579}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\main\tools\autoregister">
+      <UniqueIdentifier>{c0c19a35-a0e9-4963-8b0b-589504c743d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\main\controllers">
+      <UniqueIdentifier>{7dcbbb7f-ca41-439d-a086-a170e8c1b7a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\main\controllers\dcmtk">
+      <UniqueIdentifier>{64c0b81a-d383-4651-a33b-9494fb9e8b1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\main\controllers\dcmtk\ofstd">
+      <UniqueIdentifier>{1b3976b2-921f-4cb0-b93b-98ba3eded70c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\main\controllers\dcmtk\libi2d">
+      <UniqueIdentifier>{511e6ed7-7ab7-4065-bde0-38c600c78b96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\main\controllers\dcmtk\tls">
+      <UniqueIdentifier>{e4f1ebb3-6a87-4190-989f-3c9b9bd227a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\main\controllers\dcmtk\tls\win-only">
+      <UniqueIdentifier>{959e8a3f-825c-44a0-9c07-cc87b571b7cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\main\controllers\dcmtk\threads">
+      <UniqueIdentifier>{3ba1e6f3-d06f-4a51-a1cc-7d8d3f7d3b95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\main\controllers\streaming">
+      <UniqueIdentifier>{278f1489-fbd6-4d20-8bf1-b9438dd1af97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\main\controllers\log4cplus">
+      <UniqueIdentifier>{0a61e932-2aa4-4acc-aaa3-e28ad99af80e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\main\managers">
+      <UniqueIdentifier>{f181896d-da32-46e6-b79f-c827bf1ecb46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\main\gui">
+      <UniqueIdentifier>{addca24c-bf02-4601-9384-0ec459c0301e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\main\gui\acquisition">
+      <UniqueIdentifier>{f7353684-a79a-4a3d-9be0-051bb0d33d08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\main\gui\configuration">
+      <UniqueIdentifier>{7032241d-3a78-4fa6-9ca2-b90326771817}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\main\gui\export">
+      <UniqueIdentifier>{b4356683-325e-4276-8fd7-2e6adf11e12b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\main\gui\hl7controlwindow">
+      <UniqueIdentifier>{bdf3266e-4d05-455c-89be-b5bb1fcb1fe7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\main\gui\import">
+      <UniqueIdentifier>{779c7f6d-302b-43ca-97ac-e078cde2f0b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\main\gui\license">
+      <UniqueIdentifier>{dbdbe85d-75f1-4ec0-a941-d18c62e1aced}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\main\gui\logcontrolwindow">
+      <UniqueIdentifier>{5df37032-999a-4f3f-8069-5bafdd6a23a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\main\gui\login">
+      <UniqueIdentifier>{bbea7a6d-5bce-48c9-82b0-781a7c8ccfad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\main\gui\mainwindow">
+      <UniqueIdentifier>{7702b215-0bf4-4c57-bdf9-7cd9ea32cc76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\main\gui\open">
+      <UniqueIdentifier>{c5941943-de41-4851-9954-868d10099439}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\main\gui\paneltags">
+      <UniqueIdentifier>{ccc98461-2216-488c-b4bd-9b0a0e66a689}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\main\gui\progress">
+      <UniqueIdentifier>{0839eb8b-6e0e-41be-9667-cc84c35cfab1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\main\gui\countdownmessage">
+      <UniqueIdentifier>{22e8a8e7-e4ed-4ff3-a88d-6177129a8e9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\main\gui\startup">
+      <UniqueIdentifier>{ca51f83f-4841-45d7-8ba8-2f373b8df0e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\main\gui\dicomdirexport">
+      <UniqueIdentifier>{04cd5b23-ae49-4464-bd78-f3a5e22c0d00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\main\gui\history3">
+      <UniqueIdentifier>{64e95719-8e8c-4d63-9e7c-cdab9d741f34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\main\gui\anonymize">
+      <UniqueIdentifier>{d2bbca1d-69d3-4453-93eb-f15a9a847510}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\main\gui\selectpacsserver">
+      <UniqueIdentifier>{20ff658a-ff6a-41c2-918b-599a5f69599d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\main\gui\previewpanel">
+      <UniqueIdentifier>{3186125a-16fd-4f43-bd93-75ac21484291}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\main\gui\toolsystem">
+      <UniqueIdentifier>{e498516c-7b4b-413e-a3b9-5d3634f5c5cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\main\gui\dicomdirmigration">
+      <UniqueIdentifier>{7f76ddec-b129-4ebe-8fbe-8318d2fe503a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\main\toolsystem">
+      <UniqueIdentifier>{3193e75e-ed58-42d1-9202-d90e7d0dcc62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\main\utils">
+      <UniqueIdentifier>{5a9e34e6-fc50-4e1a-bbc7-f75f0bf2ac82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\vtk">
+      <UniqueIdentifier>{60984d7e-4fa9-4c99-886e-da6598266f4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\vtk\command">
+      <UniqueIdentifier>{e2dc7248-a287-4f21-bbdd-fd87345ac7e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\vtk\interactor">
+      <UniqueIdentifier>{bb3ebeac-f301-4a4e-9db0-2237d696731b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\vtk\widgets">
+      <UniqueIdentifier>{570c18ba-9cd7-425f-a14c-f70471ba2f50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\VTKInria3D">
+      <UniqueIdentifier>{4f9d677e-8bf8-42d9-9511-f86960c60335}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\VTKInria3D\vtkVISUManagement">
+      <UniqueIdentifier>{180f2c79-be11-4c92-8d7b-40e1dec30212}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\VTKInria3D\vtkVISUManagement\lut">
+      <UniqueIdentifier>{6940c42f-07c6-4087-b129-1b6f159ca1bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\VTKInria3D\wxVTK">
+      <UniqueIdentifier>{81dccf54-a50d-483f-b60d-0dbfe0dec869}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\export">
+      <UniqueIdentifier>{16942c7a-c56f-496d-81a6-0c1d88c3e33a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\export\tools">
+      <UniqueIdentifier>{9d9afa69-0ec2-4302-9985-48426fdd26f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\export\contracts">
+      <UniqueIdentifier>{bc3fd17c-31ef-4565-894c-652fc23da12f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\api">
+      <UniqueIdentifier>{e895d40d-aa5e-46f3-99b7-c7a0afa58732}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\api\observers">
+      <UniqueIdentifier>{c31dd657-6718-4a15-bdde-0e5bb27ece85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\api\math">
+      <UniqueIdentifier>{992c3092-0562-4768-b9ed-2500a5e38684}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\api\internationalization">
+      <UniqueIdentifier>{4dde5311-0825-4e0b-bc18-2d9f028f7b9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\api\controllers">
+      <UniqueIdentifier>{d982eee8-ef5d-40fc-b93f-22c8c3586c1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\api\controllers\proxies">
+      <UniqueIdentifier>{fa580f95-9eef-42d7-97b6-0e433278ba7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\api\dicom">
+      <UniqueIdentifier>{d9ba4994-b4b4-48f7-83cb-421b2a71f40a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\api\threads">
+      <UniqueIdentifier>{1b984b9f-568a-4a99-9e71-10fa72a6341e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\api\integration">
+      <UniqueIdentifier>{ad7f38bb-d0ee-4a91-afcb-42d52602b838}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\api\helpers">
+      <UniqueIdentifier>{2366c516-0004-4ba4-8a63-6305a6e2a5ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\api\instantiations">
+      <UniqueIdentifier>{e8365fb9-ff6e-4056-afe1-8e05e44e51c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\api\utils">
+      <UniqueIdentifier>{8d104745-659c-4e7b-bcb7-e99ccbc4cfd9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\api\toolsystem">
+      <UniqueIdentifier>{76754bbb-2c1a-48ce-b42f-3bb90bca73c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\wx">
+      <UniqueIdentifier>{59615882-401c-4a8a-89bf-1fda74deb548}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\wx\propiedades">
+      <UniqueIdentifier>{4d41e7bb-0cf3-4484-a4da-ea69d2e97872}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\wx\wxsqlite3">
+      <UniqueIdentifier>{2bd370c5-711d-4492-9355-5e2cad3f0655}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\wx\ginkgostyle">
+      <UniqueIdentifier>{393f4e29-abbf-45b8-9bd3-d2f3d6300a4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\wx\thumbnailctrl">
+      <UniqueIdentifier>{5293f338-c9b1-444d-9b4c-4c09ff83355c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\wx\wizardginkgo">
+      <UniqueIdentifier>{01cf9be1-468b-4547-a213-bb5f1bcd3970}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\wx\maskedtextctrl">
+      <UniqueIdentifier>{1d9cf754-4fe6-4e90-afeb-0e680e10c10b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\wx\gnkinforme">
+      <UniqueIdentifier>{7bed82c7-6dae-46db-b4c4-bf72b06d7732}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\sqlite">
+      <UniqueIdentifier>{5a4c33b0-bc45-4294-9216-c7bfd6672b4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\commands">
+      <UniqueIdentifier>{50172d9f-3f36-4cf4-a021-201ed76c9393}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\eventos">
+      <UniqueIdentifier>{ff9bc47d-3cb0-488a-8cbe-51c1069f9b4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\endpoint">
+      <UniqueIdentifier>{99029d94-0910-482c-89fe-0e55a5795287}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\widgets">
+      <UniqueIdentifier>{1e01a7e9-2058-41d3-a443-4bbf251210e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\widgets\gui">
+      <UniqueIdentifier>{f8e06817-ec48-4754-8f16-218d0277ae90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\widgets\observers">
+      <UniqueIdentifier>{0716224a-1f97-4c67-93b9-daa972132244}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\prvext">
+      <UniqueIdentifier>{24b2e9ba-1d35-4c75-b410-8056c98ddc27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\itk">
+      <UniqueIdentifier>{f059a651-6327-435b-ade6-b6e3ac1566b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\ginkgopro">
+      <UniqueIdentifier>{8f6dd983-a9b1-4bfd-a090-9316a9c044fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{84058894-9cd6-40e8-8ca6-06a17620a82e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\main\gui\ginkgocloud">
+      <UniqueIdentifier>{ba079f7f-f296-48ce-ac71-30020bd58f0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\jsoncpp">
+      <UniqueIdentifier>{fb888b2a-c4a1-4f89-8472-b8dbbcc9a059}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\jsoncpp\json">
+      <UniqueIdentifier>{4a4119bd-dcf4-44fc-b8e1-57b0546c0f29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\main\gui\pacsupload">
+      <UniqueIdentifier>{c7885166-9571-4ea4-b065-ebc8245b951b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="singleinstance.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="main\entorno.h">
+      <Filter>Source\main</Filter>
+    </ClInclude>
+    <ClInclude Include="main\license.h">
+      <Filter>Source\main</Filter>
+    </ClInclude>
+    <ClInclude Include="main\tools\angletool.h">
+      <Filter>Source\main\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="main\tools\anonymizetool.h">
+      <Filter>Source\main\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="main\tools\colormaptool.h">
+      <Filter>Source\main\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="main\tools\cornerannotationstool.h">
+      <Filter>Source\main\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="main\tools\detachwindowtool.h">
+      <Filter>Source\main\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="main\tools\dicomizetool.h">
+      <Filter>Source\main\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="main\tools\enabled_tools.h">
+      <Filter>Source\main\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="main\tools\exportdicomdirtool.h">
+      <Filter>Source\main\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="main\tools\historytools.h">
+      <Filter>Source\main\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="main\tools\imageexporttool.h">
+      <Filter>Source\main\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="main\tools\markertool.h">
+      <Filter>Source\main\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="main\tools\metricgridtool.h">
+      <Filter>Source\main\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="main\tools\notetool.h">
+      <Filter>Source\main\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="main\tools\openfiletool.h">
+      <Filter>Source\main\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="main\tools\openfoldertool.h">
+      <Filter>Source\main\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="main\tools\openremovabletool.h">
+      <Filter>Source\main\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="main\tools\pixelsbluringtool.h">
+      <Filter>Source\main\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="main\tools\pointertool.h">
+      <Filter>Source\main\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="main\tools\resettool.h">
+      <Filter>Source\main\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="main\tools\rotateandfliptool.h">
+      <Filter>Source\main\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="main\tools\ruletool.h">
+      <Filter>Source\main\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="main\tools\sendpacstool.h">
+      <Filter>Source\main\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="main\tools\showhistorytool.h">
+      <Filter>Source\main\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="main\tools\showtagshistorytool.h">
+      <Filter>Source\main\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="main\tools\showtagstool.h">
+      <Filter>Source\main\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="main\tools\toolpan.h">
+      <Filter>Source\main\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="main\tools\toolslider.h">
+      <Filter>Source\main\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="main\tools\toolwindowlevel.h">
+      <Filter>Source\main\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="main\tools\toolzoom.h">
+      <Filter>Source\main\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="main\tools\trackballtool.h">
+      <Filter>Source\main\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="main\tools\undotool.h">
+      <Filter>Source\main\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="main\tools\videotool.h">
+      <Filter>Source\main\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="main\tools\windowlayouttool.h">
+      <Filter>Source\main\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="main\tools\coretools.h">
+      <Filter>Source\main\tools\autoregister</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\anonymizationcontroller.h">
+      <Filter>Source\main\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\configurationcontroller.h">
+      <Filter>Source\main\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\controladoracciones.h">
+      <Filter>Source\main\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\controladorautenticacion.h">
+      <Filter>Source\main\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\controladorbbddhl7.h">
+      <Filter>Source\main\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\controladorcarga.h">
+      <Filter>Source\main\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\controladorenviohl7.h">
+      <Filter>Source\main\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\controladoreventos.h">
+      <Filter>Source\main\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\controladorextensiones.h">
+      <Filter>Source\main\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\controladorhl7.h">
+      <Filter>Source\main\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\controladorinternacionalizacion.h">
+      <Filter>Source\main\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\controladorlog.h">
+      <Filter>Source\main\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\controladorpermisos.h">
+      <Filter>Source\main\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\controladorvistas.h">
+      <Filter>Source\main\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\dicommanager.h">
+      <Filter>Source\main\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\hangingprotocolcontroller.h">
+      <Filter>Source\main\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\historycontroller.h">
+      <Filter>Source\main\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\historytoolscontroller.h">
+      <Filter>Source\main\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\inactivitycontroller.h">
+      <Filter>Source\main\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\integrationcontroller.h">
+      <Filter>Source\main\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\pacscontroller.h">
+      <Filter>Source\main\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\parserxmlenglish.h">
+      <Filter>Source\main\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\parserxmlspanish.h">
+      <Filter>Source\main\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\permisoscore.h">
+      <Filter>Source\main\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\thumbnailcontroller.h">
+      <Filter>Source\main\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\dcmtk\dicomassociation.h">
+      <Filter>Source\main\controllers\dcmtk</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\dcmtk\dicomcustomassociation.h">
+      <Filter>Source\main\controllers\dcmtk</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\dcmtk\dicomechoassociation.h">
+      <Filter>Source\main\controllers\dcmtk</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\dcmtk\dicomfindassociation.h">
+      <Filter>Source\main\controllers\dcmtk</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\dcmtk\dicomgetassociation.h">
+      <Filter>Source\main\controllers\dcmtk</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\dcmtk\dicomimg2dcm.h">
+      <Filter>Source\main\controllers\dcmtk</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\dcmtk\dicommoveassociation.h">
+      <Filter>Source\main\controllers\dcmtk</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\dcmtk\dicomnetclient.h">
+      <Filter>Source\main\controllers\dcmtk</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\dcmtk\dicomnetwork.h">
+      <Filter>Source\main\controllers\dcmtk</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\dcmtk\dicomprintassociation.h">
+      <Filter>Source\main\controllers\dcmtk</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\dcmtk\dicomservers.h">
+      <Filter>Source\main\controllers\dcmtk</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\dcmtk\dicomservice.h">
+      <Filter>Source\main\controllers\dcmtk</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\dcmtk\dicomstoreassociation.h">
+      <Filter>Source\main\controllers\dcmtk</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\dcmtk\ginkgouid.h">
+      <Filter>Source\main\controllers\dcmtk</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\dcmtk\helpercompresion.h">
+      <Filter>Source\main\controllers\dcmtk</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\dcmtk\helpers.h">
+      <Filter>Source\main\controllers\dcmtk</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\dcmtk\istorecallback.h">
+      <Filter>Source\main\controllers\dcmtk</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\dcmtk\ofstd\offile.h">
+      <Filter>Source\main\controllers\dcmtk\ofstd</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\dcmtk\libi2d\d2dcommon.h">
+      <Filter>Source\main\controllers\dcmtk\libi2d</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\dcmtk\libi2d\d2dsource.h">
+      <Filter>Source\main\controllers\dcmtk\libi2d</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\dcmtk\libi2d\document2dcm.h">
+      <Filter>Source\main\controllers\dcmtk\libi2d</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\dcmtk\libi2d\foooutpl.h">
+      <Filter>Source\main\controllers\dcmtk\libi2d</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\dcmtk\libi2d\i2dimgs.h">
+      <Filter>Source\main\controllers\dcmtk\libi2d</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\dcmtk\libi2d\i2djpgs.h">
+      <Filter>Source\main\controllers\dcmtk\libi2d</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\dcmtk\libi2d\i2dles.h">
+      <Filter>Source\main\controllers\dcmtk\libi2d</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\dcmtk\libi2d\i2doutpl.h">
+      <Filter>Source\main\controllers\dcmtk\libi2d</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\dcmtk\libi2d\i2dplnsc.h">
+      <Filter>Source\main\controllers\dcmtk\libi2d</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\dcmtk\libi2d\i2dplsc.h">
+      <Filter>Source\main\controllers\dcmtk\libi2d</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\dcmtk\libi2d\i2dplvlp.h">
+      <Filter>Source\main\controllers\dcmtk\libi2d</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\dcmtk\libi2d\pdf2dsource.h">
+      <Filter>Source\main\controllers\dcmtk\libi2d</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\dcmtk\tls\gtlslayer.h">
+      <Filter>Source\main\controllers\dcmtk\tls</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\dcmtk\tls\tls.h">
+      <Filter>Source\main\controllers\dcmtk\tls</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\streaming\streamingloader.h">
+      <Filter>Source\main\controllers\streaming</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\log4cplus\guiappender.h">
+      <Filter>Source\main\controllers\log4cplus</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\log4cplus\logdefines.h">
+      <Filter>Source\main\controllers\log4cplus</Filter>
+    </ClInclude>
+    <ClInclude Include="main\managers\widgetsmanager.h">
+      <Filter>Source\main\managers</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\droptargetmainwindow.h">
+      <Filter>Source\main\gui</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\wxprevisualizaciondicom.h">
+      <Filter>Source\main\gui</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\acquisition\dialogoadquisicion.h">
+      <Filter>Source\main\gui\acquisition</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\acquisition\dialogoadquisicionbase.h">
+      <Filter>Source\main\gui\acquisition</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\configuration\dialogoconfiguracion.h">
+      <Filter>Source\main\gui\configuration</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\configuration\panelconfiguracionestacion.h">
+      <Filter>Source\main\gui\configuration</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\configuration\panelconfiguracionextensiones.h">
+      <Filter>Source\main\gui\configuration</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\configuration\panelconfiguraciongeneral.h">
+      <Filter>Source\main\gui\configuration</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\configuration\panelconfiguracionhce.h">
+      <Filter>Source\main\gui\configuration</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\configuration\panelconfiguracionpacs.h">
+      <Filter>Source\main\gui\configuration</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\configuration\panelconfiguracionpermisos.h">
+      <Filter>Source\main\gui\configuration</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\configuration\panelconfiguracionseguridad.h">
+      <Filter>Source\main\gui\configuration</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\configuration\panelconfiguracionubicaciones.h">
+      <Filter>Source\main\gui\configuration</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\configuration\panelconfigurationanonymization.h">
+      <Filter>Source\main\gui\configuration</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\configuration\panelesconfiguracionginkgobase.h">
+      <Filter>Source\main\gui\configuration</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\export\datospersistentesexportacion.h">
+      <Filter>Source\main\gui\export</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\export\parametrosprincipales.h">
+      <Filter>Source\main\gui\export</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\export\pasosexportacionbase.h">
+      <Filter>Source\main\gui\export</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\export\wxwizardexportacionginkgo.h">
+      <Filter>Source\main\gui\export</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\hl7controlwindow\ventanacontrolhl7.h">
+      <Filter>Source\main\gui\hl7controlwindow</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\hl7controlwindow\ventanacontrolhl7base.h">
+      <Filter>Source\main\gui\hl7controlwindow</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\import\generaldata.h">
+      <Filter>Source\main\gui\import</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\import\importationdata.h">
+      <Filter>Source\main\gui\import</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\import\pasoperfilimportacion.h">
+      <Filter>Source\main\gui\import</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\import\pasosimportacionbase.h">
+      <Filter>Source\main\gui\import</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\import\selectimagesimportation.h">
+      <Filter>Source\main\gui\import</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\import\wxwizardimportacionginkgo.h">
+      <Filter>Source\main\gui\import</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\license\aboutdialog.h">
+      <Filter>Source\main\gui\license</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\license\aboutdialogbase.h">
+      <Filter>Source\main\gui\license</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\license\acceptlicensedialog.h">
+      <Filter>Source\main\gui\license</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\license\acceptlicensedialogbase.h">
+      <Filter>Source\main\gui\license</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\license\dialogolicenciasopensource.h">
+      <Filter>Source\main\gui\license</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\logcontrolwindow\ventanacontrollogs.h">
+      <Filter>Source\main\gui\logcontrolwindow</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\logcontrolwindow\ventanacontrollogsbase.h">
+      <Filter>Source\main\gui\logcontrolwindow</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\login\dialogologin.h">
+      <Filter>Source\main\gui\login</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\mainwindow\detacheddialog.h">
+      <Filter>Source\main\gui\mainwindow</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\mainwindow\ventanaprincipal.h">
+      <Filter>Source\main\gui\mainwindow</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\mainwindow\ventanaprincipalbase.h">
+      <Filter>Source\main\gui\mainwindow</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\open\abrir.h">
+      <Filter>Source\main\gui\open</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\open\opendialogs.h">
+      <Filter>Source\main\gui\open</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\open\opendialogsbase.h">
+      <Filter>Source\main\gui\open</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\paneltags\paneltags.h">
+      <Filter>Source\main\gui\paneltags</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\paneltags\paneltagsbase.h">
+      <Filter>Source\main\gui\paneltags</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\progress\paneltarea.h">
+      <Filter>Source\main\gui\progress</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\progress\progresobase.h">
+      <Filter>Source\main\gui\progress</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\progress\statusbarprogreso.h">
+      <Filter>Source\main\gui\progress</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\countdownmessage\countdownmessage.h">
+      <Filter>Source\main\gui\countdownmessage</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\countdownmessage\countdownmessagebase.h">
+      <Filter>Source\main\gui\countdownmessage</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\countdownmessage\inactivitycountdownmessage.h">
+      <Filter>Source\main\gui\countdownmessage</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\startup\startupform.h">
+      <Filter>Source\main\gui\startup</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\startup\startupformbase.h">
+      <Filter>Source\main\gui\startup</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\startup\startupview.h">
+      <Filter>Source\main\gui\startup</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\dicomdirexport\dicomdirexportbase.h">
+      <Filter>Source\main\gui\dicomdirexport</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\dicomdirexport\exportdicomdir.h">
+      <Filter>Source\main\gui\dicomdirexport</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\history3\confirmdeletedialog.h">
+      <Filter>Source\main\gui\history3</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\history3\historypanel3.h">
+      <Filter>Source\main\gui\history3</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\history3\historypanel3base.h">
+      <Filter>Source\main\gui\history3</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\history3\historytoolmenu.h">
+      <Filter>Source\main\gui\history3</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\history3\openwithdialog.h">
+      <Filter>Source\main\gui\history3</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\history3\wxhistoryimagethumbnail.h">
+      <Filter>Source\main\gui\history3</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\anonymize\anonymizedialog.h">
+      <Filter>Source\main\gui\anonymize</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\anonymize\anonymizepanelbase.h">
+      <Filter>Source\main\gui\anonymize</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\selectpacsserver\selectpacsserver.h">
+      <Filter>Source\main\gui\selectpacsserver</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\selectpacsserver\selectpacsserverbase.h">
+      <Filter>Source\main\gui\selectpacsserver</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\previewpanel\firstlevelpanel.h">
+      <Filter>Source\main\gui\previewpanel</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\previewpanel\ipreviewpanel.h">
+      <Filter>Source\main\gui\previewpanel</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\previewpanel\leafpanel.h">
+      <Filter>Source\main\gui\previewpanel</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\previewpanel\previewpanel.h">
+      <Filter>Source\main\gui\previewpanel</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\previewpanel\previewpanelbase.h">
+      <Filter>Source\main\gui\previewpanel</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\previewpanel\previewpanelmodel.h">
+      <Filter>Source\main\gui\previewpanel</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\toolsystem\wxmenuitemtool.h">
+      <Filter>Source\main\gui\toolsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\dicomdirmigration\dicomdirmigration.h">
+      <Filter>Source\main\gui\dicomdirmigration</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\dicomdirmigration\dicomdirmigrationbase.h">
+      <Filter>Source\main\gui\dicomdirmigration</Filter>
+    </ClInclude>
+    <ClInclude Include="main\toolsystem\toolcontroller.h">
+      <Filter>Source\main\toolsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="main\toolsystem\toolsregistry.h">
+      <Filter>Source\main\toolsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="main\utils\ginkgomatrix4x4.h">
+      <Filter>Source\main\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="vtk\vtkginkgoimageviewer.h">
+      <Filter>Source\vtk</Filter>
+    </ClInclude>
+    <ClInclude Include="vtk\vtkopenglginkgotexture.h">
+      <Filter>Source\vtk</Filter>
+    </ClInclude>
+    <ClInclude Include="vtk\vtkSmartVolumeMapper.h">
+      <Filter>Source\vtk</Filter>
+    </ClInclude>
+    <ClInclude Include="vtk\command\ginkgoimagecommand.h">
+      <Filter>Source\vtk\command</Filter>
+    </ClInclude>
+    <ClInclude Include="vtk\interactor\ginkgointeractorstyleimage2d.h">
+      <Filter>Source\vtk\interactor</Filter>
+    </ClInclude>
+    <ClInclude Include="vtk\widgets\widgetsactor.h">
+      <Filter>Source\vtk\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="VTKInria3D\vtkINRIA3DConfigure.h">
+      <Filter>Source\VTKInria3D</Filter>
+    </ClInclude>
+    <ClInclude Include="VTKInria3D\vtkVISUManagement\vtkLookupTableManager.h">
+      <Filter>Source\VTKInria3D\vtkVISUManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="VTKInria3D\vtkVISUManagement\lut\Asymmetry.h">
+      <Filter>Source\VTKInria3D\vtkVISUManagement\lut</Filter>
+    </ClInclude>
+    <ClInclude Include="VTKInria3D\vtkVISUManagement\lut\BlackBody.h">
+      <Filter>Source\VTKInria3D\vtkVISUManagement\lut</Filter>
+    </ClInclude>
+    <ClInclude Include="VTKInria3D\vtkVISUManagement\lut\Cardiac.h">
+      <Filter>Source\VTKInria3D\vtkVISUManagement\lut</Filter>
+    </ClInclude>
+    <ClInclude Include="VTKInria3D\vtkVISUManagement\lut\Flow.h">
+      <Filter>Source\VTKInria3D\vtkVISUManagement\lut</Filter>
+    </ClInclude>
+    <ClInclude Include="VTKInria3D\vtkVISUManagement\lut\GEColor.h">
+      <Filter>Source\VTKInria3D\vtkVISUManagement\lut</Filter>
+    </ClInclude>
+    <ClInclude Include="VTKInria3D\vtkVISUManagement\lut\GrayRainbow.h">
+      <Filter>Source\VTKInria3D\vtkVISUManagement\lut</Filter>
+    </ClInclude>
+    <ClInclude Include="VTKInria3D\vtkVISUManagement\lut\HotGreen.h">
+      <Filter>Source\VTKInria3D\vtkVISUManagement\lut</Filter>
+    </ClInclude>
+    <ClInclude Include="VTKInria3D\vtkVISUManagement\lut\HotIron.h">
+      <Filter>Source\VTKInria3D\vtkVISUManagement\lut</Filter>
+    </ClInclude>
+    <ClInclude Include="VTKInria3D\vtkVISUManagement\lut\HotMetal.h">
+      <Filter>Source\VTKInria3D\vtkVISUManagement\lut</Filter>
+    </ClInclude>
+    <ClInclude Include="VTKInria3D\vtkVISUManagement\lut\LONI.h">
+      <Filter>Source\VTKInria3D\vtkVISUManagement\lut</Filter>
+    </ClInclude>
+    <ClInclude Include="VTKInria3D\vtkVISUManagement\lut\LONI2.h">
+      <Filter>Source\VTKInria3D\vtkVISUManagement\lut</Filter>
+    </ClInclude>
+    <ClInclude Include="VTKInria3D\vtkVISUManagement\lut\Spectrum.h">
+      <Filter>Source\VTKInria3D\vtkVISUManagement\lut</Filter>
+    </ClInclude>
+    <ClInclude Include="VTKInria3D\vtkVISUManagement\lut\Stern.h">
+      <Filter>Source\VTKInria3D\vtkVISUManagement\lut</Filter>
+    </ClInclude>
+    <ClInclude Include="VTKInria3D\vtkVISUManagement\lut\VRBones.h">
+      <Filter>Source\VTKInria3D\vtkVISUManagement\lut</Filter>
+    </ClInclude>
+    <ClInclude Include="VTKInria3D\vtkVISUManagement\lut\VRMusclesBones.h">
+      <Filter>Source\VTKInria3D\vtkVISUManagement\lut</Filter>
+    </ClInclude>
+    <ClInclude Include="VTKInria3D\vtkVISUManagement\lut\VRRedVessels.h">
+      <Filter>Source\VTKInria3D\vtkVISUManagement\lut</Filter>
+    </ClInclude>
+    <ClInclude Include="VTKInria3D\wxVTK\wxVTKRenderWindowInteractor.h">
+      <Filter>Source\VTKInria3D\wxVTK</Filter>
+    </ClInclude>
+    <ClInclude Include="export\tagsprivadoscomunes.h">
+      <Filter>Source\export</Filter>
+    </ClInclude>
+    <ClInclude Include="export\tools\iangletool.h">
+      <Filter>Source\export\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="export\tools\icolormaptool.h">
+      <Filter>Source\export\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="export\tools\icornerannotationstool.h">
+      <Filter>Source\export\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="export\tools\idetachwindowtool.h">
+      <Filter>Source\export\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="export\tools\iherramientascore.h">
+      <Filter>Source\export\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="export\tools\iimageprinttool.h">
+      <Filter>Source\export\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="export\tools\imarkertool.h">
+      <Filter>Source\export\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="export\tools\imetricgridtool.h">
+      <Filter>Source\export\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="export\tools\inotetool.h">
+      <Filter>Source\export\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="export\tools\ipixelsbluringtool.h">
+      <Filter>Source\export\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="export\tools\ipointertool.h">
+      <Filter>Source\export\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="export\tools\iresettool.h">
+      <Filter>Source\export\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="export\tools\irotateandfliptool.h">
+      <Filter>Source\export\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="export\tools\iruletool.h">
+      <Filter>Source\export\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="export\tools\ishowhistorytool.h">
+      <Filter>Source\export\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="export\tools\ishowtagstool.h">
+      <Filter>Source\export\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="export\tools\itoolpan.h">
+      <Filter>Source\export\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="export\tools\itoolslider.h">
+      <Filter>Source\export\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="export\tools\itoolwindowlevel.h">
+      <Filter>Source\export\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="export\tools\itoolzoom.h">
+      <Filter>Source\export\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="export\tools\itrackballtool.h">
+      <Filter>Source\export\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="export\tools\iundotool.h">
+      <Filter>Source\export\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="export\tools\ivideotool.h">
+      <Filter>Source\export\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="export\tools\iwindowlayouttool.h">
+      <Filter>Source\export\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="export\contracts\irulecontract.h">
+      <Filter>Source\export\contracts</Filter>
+    </ClInclude>
+    <ClInclude Include="export\contracts\irulecontractable.h">
+      <Filter>Source\export\contracts</Filter>
+    </ClInclude>
+    <ClInclude Include="export\contracts\islidercontract.h">
+      <Filter>Source\export\contracts</Filter>
+    </ClInclude>
+    <ClInclude Include="export\contracts\islidercontractable.h">
+      <Filter>Source\export\contracts</Filter>
+    </ClInclude>
+    <ClInclude Include="export\contracts\iviewcontract.h">
+      <Filter>Source\export\contracts</Filter>
+    </ClInclude>
+    <ClInclude Include="export\contracts\iviewcontractable.h">
+      <Filter>Source\export\contracts</Filter>
+    </ClInclude>
+    <ClInclude Include="export\contracts\iwidgetscontract.h">
+      <Filter>Source\export\contracts</Filter>
+    </ClInclude>
+    <ClInclude Include="export\contracts\iwidgetscontractable.h">
+      <Filter>Source\export\contracts</Filter>
+    </ClInclude>
+    <ClInclude Include="export\contracts\iwindowlayoutcontract.h">
+      <Filter>Source\export\contracts</Filter>
+    </ClInclude>
+    <ClInclude Include="export\contracts\iwindowlayoutcontractable.h">
+      <Filter>Source\export\contracts</Filter>
+    </ClInclude>
+    <ClInclude Include="export\contracts\iwindowlevelcontract.h">
+      <Filter>Source\export\contracts</Filter>
+    </ClInclude>
+    <ClInclude Include="export\contracts\iwindowlevelcontractable.h">
+      <Filter>Source\export\contracts</Filter>
+    </ClInclude>
+    <ClInclude Include="api\api.h">
+      <Filter>Source\api</Filter>
+    </ClInclude>
+    <ClInclude Include="api\autoptr.h">
+      <Filter>Source\api</Filter>
+    </ClInclude>
+    <ClInclude Include="api\globals.h">
+      <Filter>Source\api</Filter>
+    </ClInclude>
+    <ClInclude Include="api\ibutton.h">
+      <Filter>Source\api</Filter>
+    </ClInclude>
+    <ClInclude Include="api\icacheimagenes.h">
+      <Filter>Source\api</Filter>
+    </ClInclude>
+    <ClInclude Include="api\icommand.h">
+      <Filter>Source\api</Filter>
+    </ClInclude>
+    <ClInclude Include="api\iconfiguracion.h">
+      <Filter>Source\api</Filter>
+    </ClInclude>
+    <ClInclude Include="api\icontexto.h">
+      <Filter>Source\api</Filter>
+    </ClInclude>
+    <ClInclude Include="api\icontract.h">
+      <Filter>Source\api</Filter>
+    </ClInclude>
+    <ClInclude Include="api\ientorno.h">
+      <Filter>Source\api</Filter>
+    </ClInclude>
+    <ClInclude Include="api\ievento.h">
+      <Filter>Source\api</Filter>
+    </ClInclude>
+    <ClInclude Include="api\iexception.h">
+      <Filter>Source\api</Filter>
+    </ClInclude>
+    <ClInclude Include="api\ihistorytool.h">
+      <Filter>Source\api</Filter>
+    </ClInclude>
+    <ClInclude Include="api\ihl7parser.h">
+      <Filter>Source\api</Filter>
+    </ClInclude>
+    <ClInclude Include="api\ilock.h">
+      <Filter>Source\api</Filter>
+    </ClInclude>
+    <ClInclude Include="api\imgproxy.h">
+      <Filter>Source\api</Filter>
+    </ClInclude>
+    <ClInclude Include="api\imodelohl7.h">
+      <Filter>Source\api</Filter>
+    </ClInclude>
+    <ClInclude Include="api\imodelointegracion.h">
+      <Filter>Source\api</Filter>
+    </ClInclude>
+    <ClInclude Include="api\imodulo.h">
+      <Filter>Source\api</Filter>
+    </ClInclude>
+    <ClInclude Include="api\init.h">
+      <Filter>Source\api</Filter>
+    </ClInclude>
+    <ClInclude Include="api\initwx.h">
+      <Filter>Source\api</Filter>
+    </ClInclude>
+    <ClInclude Include="api\internal.h">
+      <Filter>Source\api</Filter>
+    </ClInclude>
+    <ClInclude Include="api\ioverlay.h">
+      <Filter>Source\api</Filter>
+    </ClInclude>
+    <ClInclude Include="api\iproxynotificadorprogreso.h">
+      <Filter>Source\api</Filter>
+    </ClInclude>
+    <ClInclude Include="api\istudycontext.h">
+      <Filter>Source\api</Filter>
+    </ClInclude>
+    <ClInclude Include="api\iventanaprogreso.h">
+      <Filter>Source\api</Filter>
+    </ClInclude>
+    <ClInclude Include="api\ivista.h">
+      <Filter>Source\api</Filter>
+    </ClInclude>
+    <ClInclude Include="api\iwaitqueue.h">
+      <Filter>Source\api</Filter>
+    </ClInclude>
+    <ClInclude Include="api\iwidgets.h">
+      <Filter>Source\api</Filter>
+    </ClInclude>
+    <ClInclude Include="api\iwidgetsmanager.h">
+      <Filter>Source\api</Filter>
+    </ClInclude>
+    <ClInclude Include="api\iwidgetsproperties.h">
+      <Filter>Source\api</Filter>
+    </ClInclude>
+    <ClInclude Include="api\iwidgetsrenderer.h">
+      <Filter>Source\api</Filter>
+    </ClInclude>
+    <ClInclude Include="api\iwizard.h">
+      <Filter>Source\api</Filter>
+    </ClInclude>
+    <ClInclude Include="api\ubication.h">
+      <Filter>Source\api</Filter>
+    </ClInclude>
+    <ClInclude Include="api\westilo.h">
+      <Filter>Source\api</Filter>
+    </ClInclude>
+    <ClInclude Include="api\widgetserializable.h">
+      <Filter>Source\api</Filter>
+    </ClInclude>
+    <ClInclude Include="api\observers\ieventsobserver.h">
+      <Filter>Source\api\observers</Filter>
+    </ClInclude>
+    <ClInclude Include="api\observers\iextensionsobserver.h">
+      <Filter>Source\api\observers</Filter>
+    </ClInclude>
+    <ClInclude Include="api\observers\iviewsobserver.h">
+      <Filter>Source\api\observers</Filter>
+    </ClInclude>
+    <ClInclude Include="api\observers\iwidgetsobserver.h">
+      <Filter>Source\api\observers</Filter>
+    </ClInclude>
+    <ClInclude Include="api\math\geometry.h">
+      <Filter>Source\api\math</Filter>
+    </ClInclude>
+    <ClInclude Include="api\math\geometry3d.h">
+      <Filter>Source\api\math</Filter>
+    </ClInclude>
+    <ClInclude Include="api\math\geometry_defs.h">
+      <Filter>Source\api\math</Filter>
+    </ClInclude>
+    <ClInclude Include="api\internationalization\internationalization.h">
+      <Filter>Source\api\internationalization</Filter>
+    </ClInclude>
+    <ClInclude Include="api\controllers\iconfigurationcontroller.h">
+      <Filter>Source\api\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="api\controllers\icontroladoracciones.h">
+      <Filter>Source\api\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="api\controllers\icontroladorautenticacion.h">
+      <Filter>Source\api\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="api\controllers\icontroladorcarga.h">
+      <Filter>Source\api\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="api\controllers\icontroladorextensiones.h">
+      <Filter>Source\api\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="api\controllers\icontroladorinternacionalizacion.h">
+      <Filter>Source\api\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="api\controllers\icontroladorlog.h">
+      <Filter>Source\api\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="api\controllers\icontroladorpermisos.h">
+      <Filter>Source\api\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="api\controllers\icontroladorvistas.h">
+      <Filter>Source\api\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="api\controllers\ieventscontroller.h">
+      <Filter>Source\api\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="api\controllers\ihistorycontroller.h">
+      <Filter>Source\api\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="api\controllers\imodulecontroller.h">
+      <Filter>Source\api\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="api\controllers\ipacscontroller.h">
+      <Filter>Source\api\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="api\controllers\iprogresscontroller.h">
+      <Filter>Source\api\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="api\controllers\proxies\ipipelineproperties.h">
+      <Filter>Source\api\controllers\proxies</Filter>
+    </ClInclude>
+    <ClInclude Include="api\dicom\dcmdictionary.h">
+      <Filter>Source\api\dicom</Filter>
+    </ClInclude>
+    <ClInclude Include="api\dicom\dcmuiddictionary.h">
+      <Filter>Source\api\dicom</Filter>
+    </ClInclude>
+    <ClInclude Include="api\dicom\dicomdataset.h">
+      <Filter>Source\api\dicom</Filter>
+    </ClInclude>
+    <ClInclude Include="api\dicom\idicom.h">
+      <Filter>Source\api\dicom</Filter>
+    </ClInclude>
+    <ClInclude Include="api\dicom\idicomconformance.h">
+      <Filter>Source\api\dicom</Filter>
+    </ClInclude>
+    <ClInclude Include="api\dicom\idicomizador.h">
+      <Filter>Source\api\dicom</Filter>
+    </ClInclude>
+    <ClInclude Include="api\dicom\idicommanager.h">
+      <Filter>Source\api\dicom</Filter>
+    </ClInclude>
+    <ClInclude Include="api\dicom\imodelodicom.h">
+      <Filter>Source\api\dicom</Filter>
+    </ClInclude>
+    <ClInclude Include="api\threads\thread.h">
+      <Filter>Source\api\threads</Filter>
+    </ClInclude>
+    <ClInclude Include="api\integration\dict.h">
+      <Filter>Source\api\integration</Filter>
+    </ClInclude>
+    <ClInclude Include="api\integration\template.h">
+      <Filter>Source\api\integration</Filter>
+    </ClInclude>
+    <ClInclude Include="api\helpers\aetwildcards.h">
+      <Filter>Source\api\helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="api\helpers\dcmdictionary.h">
+      <Filter>Source\api\helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="api\helpers\dcmuiddictionary.h">
+      <Filter>Source\api\helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="api\helpers\helpertexto.h">
+      <Filter>Source\api\helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="api\instantiations\instantiations.h">
+      <Filter>Source\api\instantiations</Filter>
+    </ClInclude>
+    <ClInclude Include="api\utils\iginkgomatrix4x4.h">
+      <Filter>Source\api\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="api\toolsystem\itool.h">
+      <Filter>Source\api\toolsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="api\toolsystem\itoolcontroller.h">
+      <Filter>Source\api\toolsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="api\toolsystem\itoolsregistry.h">
+      <Filter>Source\api\toolsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="api\toolsystem\iwidgettool.h">
+      <Filter>Source\api\toolsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="wx\propiedades\wxpropiedades.h">
+      <Filter>Source\wx\propiedades</Filter>
+    </ClInclude>
+    <ClInclude Include="wx\propiedades\wxpropiedadesbase.h">
+      <Filter>Source\wx\propiedades</Filter>
+    </ClInclude>
+    <ClInclude Include="wx\wxsqlite3\wxsqlite3.h">
+      <Filter>Source\wx\wxsqlite3</Filter>
+    </ClInclude>
+    <ClInclude Include="wx\wxsqlite3\wxsqlite3def.h">
+      <Filter>Source\wx\wxsqlite3</Filter>
+    </ClInclude>
+    <ClInclude Include="wx\wxsqlite3\wxsqlite3dyn.h">
+      <Filter>Source\wx\wxsqlite3</Filter>
+    </ClInclude>
+    <ClInclude Include="wx\wxsqlite3\wxsqlite3opt.h">
+      <Filter>Source\wx\wxsqlite3</Filter>
+    </ClInclude>
+    <ClInclude Include="wx\ginkgostyle\ginkgostyle.h">
+      <Filter>Source\wx\ginkgostyle</Filter>
+    </ClInclude>
+    <ClInclude Include="wx\thumbnailctrl\thumbnailctrl.h">
+      <Filter>Source\wx\thumbnailctrl</Filter>
+    </ClInclude>
+    <ClInclude Include="wx\thumbnailctrl\thumbnailwidget.h">
+      <Filter>Source\wx\thumbnailctrl</Filter>
+    </ClInclude>
+    <ClInclude Include="wx\wizardginkgo\wxwizardginkgobase.h">
+      <Filter>Source\wx\wizardginkgo</Filter>
+    </ClInclude>
+    <ClInclude Include="wx\wizardginkgo\wxwizardginkgobasewx.h">
+      <Filter>Source\wx\wizardginkgo</Filter>
+    </ClInclude>
+    <ClInclude Include="wx\maskedtextctrl\maskedtextctrl.h">
+      <Filter>Source\wx\maskedtextctrl</Filter>
+    </ClInclude>
+    <ClInclude Include="wx\gnkinforme\gnkinformebase.h">
+      <Filter>Source\wx\gnkinforme</Filter>
+    </ClInclude>
+    <ClInclude Include="wx\gnkinforme\gnkinformebasewx.h">
+      <Filter>Source\wx\gnkinforme</Filter>
+    </ClInclude>
+    <ClInclude Include="sqlite\ginkgosqlite.h">
+      <Filter>Source\sqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="sqlite\hl7sqlite.h">
+      <Filter>Source\sqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="sqlite\seguridad.h">
+      <Filter>Source\sqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="sqlite\sqlite3.h">
+      <Filter>Source\sqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="sqlite\sqlite3ext.h">
+      <Filter>Source\sqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="commands\comandoactualizaciones.h">
+      <Filter>Source\commands</Filter>
+    </ClInclude>
+    <ClInclude Include="commands\comandocalibrado.h">
+      <Filter>Source\commands</Filter>
+    </ClInclude>
+    <ClInclude Include="commands\comandocarga.h">
+      <Filter>Source\commands</Filter>
+    </ClInclude>
+    <ClInclude Include="commands\comandodestruirvista.h">
+      <Filter>Source\commands</Filter>
+    </ClInclude>
+    <ClInclude Include="commands\comandoexportacion.h">
+      <Filter>Source\commands</Filter>
+    </ClInclude>
+    <ClInclude Include="commands\comandoincluirhistorial.h">
+      <Filter>Source\commands</Filter>
+    </ClInclude>
+    <ClInclude Include="commands\comandopacs.h">
+      <Filter>Source\commands</Filter>
+    </ClInclude>
+    <ClInclude Include="commands\commandsynchronizewithgui.h">
+      <Filter>Source\commands</Filter>
+    </ClInclude>
+    <ClInclude Include="commands\dbmigrationcommand.h">
+      <Filter>Source\commands</Filter>
+    </ClInclude>
+    <ClInclude Include="commands\dialogopathssobreescribirbase.h">
+      <Filter>Source\commands</Filter>
+    </ClInclude>
+    <ClInclude Include="commands\dicomizationcompletebase.h">
+      <Filter>Source\commands</Filter>
+    </ClInclude>
+    <ClInclude Include="commands\dicomizecommand.h">
+      <Filter>Source\commands</Filter>
+    </ClInclude>
+    <ClInclude Include="commands\exporttodicomdircommand.h">
+      <Filter>Source\commands</Filter>
+    </ClInclude>
+    <ClInclude Include="commands\incomingdicomassociationcommand.h">
+      <Filter>Source\commands</Filter>
+    </ClInclude>
+    <ClInclude Include="commands\inotificadorcalibrado.h">
+      <Filter>Source\commands</Filter>
+    </ClInclude>
+    <ClInclude Include="commands\openremovableunit.h">
+      <Filter>Source\commands</Filter>
+    </ClInclude>
+    <ClInclude Include="commands\sendhl7command.h">
+      <Filter>Source\commands</Filter>
+    </ClInclude>
+    <ClInclude Include="commands\sendpacscommand.h">
+      <Filter>Source\commands</Filter>
+    </ClInclude>
+    <ClInclude Include="commands\thumbnailscommand.h">
+      <Filter>Source\commands</Filter>
+    </ClInclude>
+    <ClInclude Include="eventos\eventosginkgo.h">
+      <Filter>Source\eventos</Filter>
+    </ClInclude>
+    <ClInclude Include="eventos\hidesplashwindow.h">
+      <Filter>Source\eventos</Filter>
+    </ClInclude>
+    <ClInclude Include="eventos\integration.h">
+      <Filter>Source\eventos</Filter>
+    </ClInclude>
+    <ClInclude Include="eventos\mensajes.h">
+      <Filter>Source\eventos</Filter>
+    </ClInclude>
+    <ClInclude Include="eventos\modificacionfichero.h">
+      <Filter>Source\eventos</Filter>
+    </ClInclude>
+    <ClInclude Include="eventos\modificacionimagen.h">
+      <Filter>Source\eventos</Filter>
+    </ClInclude>
+    <ClInclude Include="eventos\modificacionwidget.h">
+      <Filter>Source\eventos</Filter>
+    </ClInclude>
+    <ClInclude Include="eventos\progresocomando.h">
+      <Filter>Source\eventos</Filter>
+    </ClInclude>
+    <ClInclude Include="eventos\render.h">
+      <Filter>Source\eventos</Filter>
+    </ClInclude>
+    <ClInclude Include="eventos\toolevents.h">
+      <Filter>Source\eventos</Filter>
+    </ClInclude>
+    <ClInclude Include="eventos\updateavailable.h">
+      <Filter>Source\eventos</Filter>
+    </ClInclude>
+    <ClInclude Include="eventos\views.h">
+      <Filter>Source\eventos</Filter>
+    </ClInclude>
+    <ClInclude Include="endpoint\endpoint.h">
+      <Filter>Source\endpoint</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\openglhelper.h">
+      <Filter>Source\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\wangulo.h">
+      <Filter>Source\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\wanotacionesquina.h">
+      <Filter>Source\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\wanotacionposicion.h">
+      <Filter>Source\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\wchromacomplejo.h">
+      <Filter>Source\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\welevacion.h">
+      <Filter>Source\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\welipse.h">
+      <Filter>Source\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\wflecha.h">
+      <Filter>Source\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\wlupa.h">
+      <Filter>Source\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\wmarcadoarea.h">
+      <Filter>Source\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\wnota.h">
+      <Filter>Source\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\wpan.h">
+      <Filter>Source\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\wpunto.h">
+      <Filter>Source\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\wrectangulo.h">
+      <Filter>Source\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\wrejilla.h">
+      <Filter>Source\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\wrule.h">
+      <Filter>Source\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\wseleccion.h">
+      <Filter>Source\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\wslider.h">
+      <Filter>Source\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\wtrackball.h">
+      <Filter>Source\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\wtrapezoide.h">
+      <Filter>Source\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\wwindowlevel.h">
+      <Filter>Source\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\wzoom.h">
+      <Filter>Source\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\gui\calibracion.h">
+      <Filter>Source\widgets\gui</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\gui\calibracionbase.h">
+      <Filter>Source\widgets\gui</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\gui\selecciontexto.h">
+      <Filter>Source\widgets\gui</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\gui\selecciontextobase.h">
+      <Filter>Source\widgets\gui</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\observers\iobservadorchroma.h">
+      <Filter>Source\widgets\observers</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\observers\iobservadorchromacomplejo.h">
+      <Filter>Source\widgets\observers</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\observers\iobservadormarcadoarea.h">
+      <Filter>Source\widgets\observers</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\observers\iobservadorwindowlevel.h">
+      <Filter>Source\widgets\observers</Filter>
+    </ClInclude>
+    <ClInclude Include="prvext\prvext.h">
+      <Filter>Source\prvext</Filter>
+    </ClInclude>
+    <ClInclude Include="itk\itkImageToVTKImageFilter.h">
+      <Filter>Source\itk</Filter>
+    </ClInclude>
+    <ClInclude Include="itk\itkRGBImageToVTKImageFilter.h">
+      <Filter>Source\itk</Filter>
+    </ClInclude>
+    <ClInclude Include="itk\itkVTKImageToImageFilter.h">
+      <Filter>Source\itk</Filter>
+    </ClInclude>
+    <ClInclude Include="ginkgopro\ginkgo_pro_defines.h">
+      <Filter>Source\ginkgopro</Filter>
+    </ClInclude>
+    <ClInclude Include="ginkgopro\ico_logo_background.h">
+      <Filter>Source\ginkgopro</Filter>
+    </ClInclude>
+    <ClInclude Include="ginkgopro\ico_logo_splash.h">
+      <Filter>Source\ginkgopro</Filter>
+    </ClInclude>
+    <ClInclude Include="ginkgopro\icons.h">
+      <Filter>Source\ginkgopro</Filter>
+    </ClInclude>
+    <ClInclude Include="resources\ginkgoresourcesmanager.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\configuration\hangingprotocolconfigurationpanel.h">
+      <Filter>Source\main\gui\configuration</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\windowattributescontroller.h">
+      <Filter>Source\main\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="commands\pacsdownloadcommand.h">
+      <Filter>Source\commands</Filter>
+    </ClInclude>
+    <ClInclude Include="commands\linkhistorycommand.h">
+      <Filter>Source\commands</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\history3\synchronizedialog.h">
+      <Filter>Source\main\gui\history3</Filter>
+    </ClInclude>
+    <ClInclude Include="commands\synchronizationcommand.h">
+      <Filter>Source\commands</Filter>
+    </ClInclude>
+    <ClInclude Include="api\controllers\icommandcontroller.h">
+      <Filter>Source\api\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\commandcontroller.h">
+      <Filter>Source\main\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="export\tools\isecondarycapturetool.h">
+      <Filter>Source\export\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="main\tools\secondarycapturetool.h">
+      <Filter>Source\main\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="commands\secondarycapturedicomizecommand.h">
+      <Filter>Source\commands</Filter>
+    </ClInclude>
+    <ClInclude Include="eventos\scgenerated.h">
+      <Filter>Source\eventos</Filter>
+    </ClInclude>
+    <ClInclude Include="export\tools\ipacsuploadtool.h">
+      <Filter>Source\export\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="main\tools\pacsuploadtool.h">
+      <Filter>Source\main\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="export\tools\istartdicomizationtool.h">
+      <Filter>Source\export</Filter>
+    </ClInclude>
+    <ClInclude Include="main\tools\startdicomizationtool.h">
+      <Filter>Source\main\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="main\tools\addfiletohistorytool.h">
+      <Filter>Source\main\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="export\tools\iaddfiletohistorytool.h">
+      <Filter>Source\export\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\anonymize\anonymizepanel.h">
+      <Filter>Source\main\gui\anonymize</Filter>
+    </ClInclude>
+    <ClInclude Include="api\cloud.h">
+      <Filter>Source\api</Filter>
+    </ClInclude>
+    <ClInclude Include="main\tools\openginkgocloudlinktool.h">
+      <Filter>Source\main\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\ginkgocloud\downloadcloudbase.h">
+      <Filter>Source\main\gui\ginkgocloud</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\ginkgocloud\openginkgoclouddialog.h">
+      <Filter>Source\main\gui\ginkgocloud</Filter>
+    </ClInclude>
+    <ClInclude Include="commands\cloudcommand.h">
+      <Filter>Source\commands</Filter>
+    </ClInclude>
+    <ClInclude Include="jsoncpp\json_batchallocator.h">
+      <Filter>Source\jsoncpp</Filter>
+    </ClInclude>
+    <ClInclude Include="jsoncpp\json\autolink.h">
+      <Filter>Source\jsoncpp\json</Filter>
+    </ClInclude>
+    <ClInclude Include="jsoncpp\json\config.h">
+      <Filter>Source\jsoncpp\json</Filter>
+    </ClInclude>
+    <ClInclude Include="jsoncpp\json\features.h">
+      <Filter>Source\jsoncpp\json</Filter>
+    </ClInclude>
+    <ClInclude Include="jsoncpp\json\forwards.h">
+      <Filter>Source\jsoncpp\json</Filter>
+    </ClInclude>
+    <ClInclude Include="jsoncpp\json\json.h">
+      <Filter>Source\jsoncpp\json</Filter>
+    </ClInclude>
+    <ClInclude Include="jsoncpp\json\reader.h">
+      <Filter>Source\jsoncpp\json</Filter>
+    </ClInclude>
+    <ClInclude Include="jsoncpp\json\value.h">
+      <Filter>Source\jsoncpp\json</Filter>
+    </ClInclude>
+    <ClInclude Include="jsoncpp\json\writer.h">
+      <Filter>Source\jsoncpp\json</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\ginkgocloud\ginkgocloudsearchdialog.h">
+      <Filter>Source\main\gui\ginkgocloud</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\ginkgocloud\filelinkdialog.h">
+      <Filter>Source\main\gui\ginkgocloud</Filter>
+    </ClInclude>
+    <ClInclude Include="commands\pdfextractercommand.h">
+      <Filter>Source\commands</Filter>
+    </ClInclude>
+    <ClInclude Include="export\tools\icopyimagetoclipboardtool.h">
+      <Filter>Source\export\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="main\tools\copyimagetoclipboardtool.h">
+      <Filter>Source\main\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\wstaticrule.h">
+      <Filter>Source\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\acquisition\downloadagaindialog.h">
+      <Filter>Source\main\gui\acquisition</Filter>
+    </ClInclude>
+    <ClInclude Include="api\dicom\icustomassociation.h">
+      <Filter>Source\api\dicom</Filter>
+    </ClInclude>
+    <ClInclude Include="commands\autocleaningcommand.h">
+      <Filter>Source\commands</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\autocleaningcontroller.h">
+      <Filter>Source\main\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\configuration\localdatabaseconfigurationpanel.h">
+      <Filter>Source\main\gui\configuration</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\striptexthelper.h">
+      <Filter>Source\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="export\contracts\ipixelsbluringcontract.h">
+      <Filter>Source\export\contracts</Filter>
+    </ClInclude>
+    <ClInclude Include="export\contracts\ipixelsbluringcontractable.h">
+      <Filter>Source\export\contracts</Filter>
+    </ClInclude>
+    <ClInclude Include="export\tools\iqueryretrievetool.h">
+      <Filter>Source\export\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="main\tools\searchginkgocloudhistorytool.h">
+      <Filter>Source\main\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="main\tools\queryretrievehistorytool.h">
+      <Filter>Source\main\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="main\tools\queryretrievetool.h">
+      <Filter>Source\main\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="export\tools\icamerarotationtool.h">
+      <Filter>Source\export\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="main\tools\camerarotationtool.h">
+      <Filter>Source\main\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\wcamerarotation.h">
+      <Filter>Source\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="export\tools\ibrightnesscontrasttool.h">
+      <Filter>Source\export\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="main\tools\brightnesscontrasttool.h">
+      <Filter>Source\main\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\wbrightnesscontrast.h">
+      <Filter>Source\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="VTKInria3D\vtkVISUManagement\lut\PERFUSION.h">
+      <Filter>Source\VTKInria3D\vtkVISUManagement\lut</Filter>
+    </ClInclude>
+    <ClInclude Include="api\iannotator.h">
+      <Filter>Source\api</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\modalitysettingscontroller.h">
+      <Filter>Source\main\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\configuration\defaultmodalitysettingsconfigurationpanel.h">
+      <Filter>Source\main\gui\configuration</Filter>
+    </ClInclude>
+    <ClInclude Include="commands\acquirefromurlcommand.h">
+      <Filter>Source\commands</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\anonusagestats.h">
+      <Filter>Source\main\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="api\controllers\anonusagestatsids.h">
+      <Filter>Source\api\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="wx\wxginkgotoolbar.h">
+      <Filter>Source\wx</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\history3\historytablemodel.h">
+      <Filter>Source\main\gui\history3</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\toolsystem\ginkgotoolsystembar.h">
+      <Filter>Source\main\gui\toolsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\acquisition\acquisitiontablemodel.h">
+      <Filter>Source\main\gui\acquisition</Filter>
+    </ClInclude>
+    <ClInclude Include="export\tools\isimpleprinttool.h">
+      <Filter>Source\export\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="main\tools\simpleprinttool.h">
+      <Filter>Source\main\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\open\dicomdirtablemodel.h">
+      <Filter>Source\main\gui\open</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\configuration\smartretrieveconfigurationpanel.h">
+      <Filter>Source\main\gui\configuration</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\smartretrievecontroller.h">
+      <Filter>Source\main\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="main\controllers\storedqueriescontroller.h">
+      <Filter>Source\main\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\pacsupload\pacsuploaddialog.h">
+      <Filter>Source\main\gui\pacsupload</Filter>
+    </ClInclude>
+    <ClInclude Include="main\gui\pacsupload\pacsuploaddialogbase.h">
+      <Filter>Source\main\gui\pacsupload</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\wfreeform.h">
+      <Filter>Source\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\wpolygon.h">
+      <Filter>Source\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="widgets\wtextbox.h">
+      <Filter>Source\widgets</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="main\entorno.cpp">
+      <Filter>Source\main</Filter>
+    </ClCompile>
+    <ClCompile Include="main\tools\angletool.cpp">
+      <Filter>Source\main\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="main\tools\anonymizetool.cpp">
+      <Filter>Source\main\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="main\tools\colormaptool.cpp">
+      <Filter>Source\main\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="main\tools\cornerannotationstool.cpp">
+      <Filter>Source\main\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="main\tools\detachwindowtool.cpp">
+      <Filter>Source\main\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="main\tools\dicomizetool.cpp">
+      <Filter>Source\main\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="main\tools\exportdicomdirtool.cpp">
+      <Filter>Source\main\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="main\tools\imageexporttool.cpp">
+      <Filter>Source\main\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="main\tools\markertool.cpp">
+      <Filter>Source\main\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="main\tools\metricgridtool.cpp">
+      <Filter>Source\main\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="main\tools\notetool.cpp">
+      <Filter>Source\main\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="main\tools\openfiletool.cpp">
+      <Filter>Source\main\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="main\tools\openfoldertool.cpp">
+      <Filter>Source\main\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="main\tools\openremovabletool.cpp">
+      <Filter>Source\main\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="main\tools\pixelsbluringtool.cpp">
+      <Filter>Source\main\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="main\tools\pointertool.cpp">
+      <Filter>Source\main\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="main\tools\resettool.cpp">
+      <Filter>Source\main\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="main\tools\rotateandfliptool.cpp">
+      <Filter>Source\main\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="main\tools\ruletool.cpp">
+      <Filter>Source\main\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="main\tools\sendpacstool.cpp">
+      <Filter>Source\main\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="main\tools\showhistorytool.cpp">
+      <Filter>Source\main\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="main\tools\showtagshistorytool.cpp">
+      <Filter>Source\main\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="main\tools\showtagstool.cpp">
+      <Filter>Source\main\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="main\tools\toolpan.cpp">
+      <Filter>Source\main\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="main\tools\toolslider.cpp">
+      <Filter>Source\main\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="main\tools\toolwindowlevel.cpp">
+      <Filter>Source\main\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="main\tools\toolzoom.cpp">
+      <Filter>Source\main\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="main\tools\trackballtool.cpp">
+      <Filter>Source\main\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="main\tools\undotool.cpp">
+      <Filter>Source\main\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="main\tools\videotool.cpp">
+      <Filter>Source\main\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="main\tools\windowlayouttool.cpp">
+      <Filter>Source\main\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="main\tools\coretools.cpp">
+      <Filter>Source\main\tools\autoregister</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\anonymizationcontroller.cpp">
+      <Filter>Source\main\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\configurationcontroller.cpp">
+      <Filter>Source\main\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\controladoracciones.cpp">
+      <Filter>Source\main\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\controladorautenticacion.cpp">
+      <Filter>Source\main\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\controladorbbddhl7.cpp">
+      <Filter>Source\main\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\controladorcarga.cpp">
+      <Filter>Source\main\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\controladorenviohl7.cpp">
+      <Filter>Source\main\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\controladoreventos.cpp">
+      <Filter>Source\main\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\controladorextensiones.cpp">
+      <Filter>Source\main\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\controladorhl7.cpp">
+      <Filter>Source\main\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\controladorinternacionalizacion.cpp">
+      <Filter>Source\main\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\controladorlog.cpp">
+      <Filter>Source\main\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\controladorpermisos.cpp">
+      <Filter>Source\main\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\controladorvistas.cpp">
+      <Filter>Source\main\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\dicommanager.cpp">
+      <Filter>Source\main\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\hangingprotocolcontroller.cpp">
+      <Filter>Source\main\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\historycontroller.cpp">
+      <Filter>Source\main\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\historytoolscontroller.cpp">
+      <Filter>Source\main\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\inactivitycontroller.cpp">
+      <Filter>Source\main\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\integrationcontroller.cpp">
+      <Filter>Source\main\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\pacscontroller.cpp">
+      <Filter>Source\main\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\parserxmlenglish.cpp">
+      <Filter>Source\main\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\parserxmlspanish.cpp">
+      <Filter>Source\main\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\thumbnailcontroller.cpp">
+      <Filter>Source\main\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\dcmtk\dicomassociation.cpp">
+      <Filter>Source\main\controllers\dcmtk</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\dcmtk\dicomcustomassociation.cpp">
+      <Filter>Source\main\controllers\dcmtk</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\dcmtk\dicomechoassociation.cpp">
+      <Filter>Source\main\controllers\dcmtk</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\dcmtk\dicomfindassociation.cpp">
+      <Filter>Source\main\controllers\dcmtk</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\dcmtk\dicomgetassociation.cpp">
+      <Filter>Source\main\controllers\dcmtk</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\dcmtk\dicomimg2dcm.cpp">
+      <Filter>Source\main\controllers\dcmtk</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\dcmtk\dicommoveassociation.cpp">
+      <Filter>Source\main\controllers\dcmtk</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\dcmtk\dicomnetwork.cpp">
+      <Filter>Source\main\controllers\dcmtk</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\dcmtk\dicomprintassociation.cpp">
+      <Filter>Source\main\controllers\dcmtk</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\dcmtk\dicomservers.cpp">
+      <Filter>Source\main\controllers\dcmtk</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\dcmtk\dicomservice.cpp">
+      <Filter>Source\main\controllers\dcmtk</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\dcmtk\dicomstoreassociation.cpp">
+      <Filter>Source\main\controllers\dcmtk</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\dcmtk\ginkgouid.cpp">
+      <Filter>Source\main\controllers\dcmtk</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\dcmtk\helpercompresion.cpp">
+      <Filter>Source\main\controllers\dcmtk</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\dcmtk\helpers.cpp">
+      <Filter>Source\main\controllers\dcmtk</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\dcmtk\libi2d\d2dcommon.cpp">
+      <Filter>Source\main\controllers\dcmtk\libi2d</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\dcmtk\libi2d\document2dcm.cpp">
+      <Filter>Source\main\controllers\dcmtk\libi2d</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\dcmtk\libi2d\i2dimgs.cpp">
+      <Filter>Source\main\controllers\dcmtk\libi2d</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\dcmtk\libi2d\i2djpgs.cpp">
+      <Filter>Source\main\controllers\dcmtk\libi2d</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\dcmtk\libi2d\i2dles.cpp">
+      <Filter>Source\main\controllers\dcmtk\libi2d</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\dcmtk\libi2d\i2dplnsc.cpp">
+      <Filter>Source\main\controllers\dcmtk\libi2d</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\dcmtk\libi2d\i2dplsc.cpp">
+      <Filter>Source\main\controllers\dcmtk\libi2d</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\dcmtk\libi2d\i2dplvlp.cpp">
+      <Filter>Source\main\controllers\dcmtk\libi2d</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\dcmtk\libi2d\pdf2dsource.cpp">
+      <Filter>Source\main\controllers\dcmtk\libi2d</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\dcmtk\tls\gtlslayer.cc">
+      <Filter>Source\main\controllers\dcmtk\tls</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\dcmtk\tls\win-only\tlslayer.cc">
+      <Filter>Source\main\controllers\dcmtk\tls\win-only</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\dcmtk\tls\win-only\tlsscu.cc">
+      <Filter>Source\main\controllers\dcmtk\tls\win-only</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\dcmtk\tls\win-only\tlstrans.cc">
+      <Filter>Source\main\controllers\dcmtk\tls\win-only</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\streaming\streamingloader.cpp">
+      <Filter>Source\main\controllers\streaming</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\log4cplus\guiappender.cpp">
+      <Filter>Source\main\controllers\log4cplus</Filter>
+    </ClCompile>
+    <ClCompile Include="main\managers\widgetsmanager.cpp">
+      <Filter>Source\main\managers</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\droptargetmainwindow.cpp">
+      <Filter>Source\main\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\wxprevisualizaciondicom.cpp">
+      <Filter>Source\main\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\acquisition\dialogoadquisicion.cpp">
+      <Filter>Source\main\gui\acquisition</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\acquisition\dialogoadquisicionbase.cpp">
+      <Filter>Source\main\gui\acquisition</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\configuration\dialogoconfiguracion.cpp">
+      <Filter>Source\main\gui\configuration</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\configuration\panelconfiguracionestacion.cpp">
+      <Filter>Source\main\gui\configuration</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\configuration\panelconfiguracionextensiones.cpp">
+      <Filter>Source\main\gui\configuration</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\configuration\panelconfiguraciongeneral.cpp">
+      <Filter>Source\main\gui\configuration</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\configuration\panelconfiguracionhce.cpp">
+      <Filter>Source\main\gui\configuration</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\configuration\panelconfiguracionpacs.cpp">
+      <Filter>Source\main\gui\configuration</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\configuration\panelconfiguracionpermisos.cpp">
+      <Filter>Source\main\gui\configuration</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\configuration\panelconfiguracionseguridad.cpp">
+      <Filter>Source\main\gui\configuration</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\configuration\panelconfiguracionubicaciones.cpp">
+      <Filter>Source\main\gui\configuration</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\configuration\panelconfigurationanonymization.cpp">
+      <Filter>Source\main\gui\configuration</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\configuration\panelesconfiguracionginkgobase.cpp">
+      <Filter>Source\main\gui\configuration</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\export\parametrosprincipales.cpp">
+      <Filter>Source\main\gui\export</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\export\pasosexportacionbase.cpp">
+      <Filter>Source\main\gui\export</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\export\wxwizardexportacionginkgo.cpp">
+      <Filter>Source\main\gui\export</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\hl7controlwindow\ventanacontrolhl7.cpp">
+      <Filter>Source\main\gui\hl7controlwindow</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\hl7controlwindow\ventanacontrolhl7base.cpp">
+      <Filter>Source\main\gui\hl7controlwindow</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\import\generaldata.cpp">
+      <Filter>Source\main\gui\import</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\import\pasoperfilimportacion.cpp">
+      <Filter>Source\main\gui\import</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\import\pasosimportacionbase.cpp">
+      <Filter>Source\main\gui\import</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\import\selectimagesimportation.cpp">
+      <Filter>Source\main\gui\import</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\import\wxwizardimportacionginkgo.cpp">
+      <Filter>Source\main\gui\import</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\license\aboutdialog.cpp">
+      <Filter>Source\main\gui\license</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\license\aboutdialogbase.cpp">
+      <Filter>Source\main\gui\license</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\license\acceptlicensedialog.cpp">
+      <Filter>Source\main\gui\license</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\license\acceptlicensedialogbase.cpp">
+      <Filter>Source\main\gui\license</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\license\dialogolicenciasopensource.cpp">
+      <Filter>Source\main\gui\license</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\logcontrolwindow\ventanacontrollogs.cpp">
+      <Filter>Source\main\gui\logcontrolwindow</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\logcontrolwindow\ventanacontrollogsbase.cpp">
+      <Filter>Source\main\gui\logcontrolwindow</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\login\dialogologin.cpp">
+      <Filter>Source\main\gui\login</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\mainwindow\detacheddialog.cpp">
+      <Filter>Source\main\gui\mainwindow</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\mainwindow\ventanaprincipal.cpp">
+      <Filter>Source\main\gui\mainwindow</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\mainwindow\ventanaprincipalbase.cpp">
+      <Filter>Source\main\gui\mainwindow</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\open\abrir.cpp">
+      <Filter>Source\main\gui\open</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\open\opendialogs.cpp">
+      <Filter>Source\main\gui\open</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\open\opendialogsbase.cpp">
+      <Filter>Source\main\gui\open</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\paneltags\paneltags.cpp">
+      <Filter>Source\main\gui\paneltags</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\paneltags\paneltagsbase.cpp">
+      <Filter>Source\main\gui\paneltags</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\progress\paneltarea.cpp">
+      <Filter>Source\main\gui\progress</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\progress\progresobase.cpp">
+      <Filter>Source\main\gui\progress</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\progress\statusbarprogreso.cpp">
+      <Filter>Source\main\gui\progress</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\countdownmessage\countdownmessage.cpp">
+      <Filter>Source\main\gui\countdownmessage</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\countdownmessage\countdownmessagebase.cpp">
+      <Filter>Source\main\gui\countdownmessage</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\countdownmessage\inactivitycountdownmessage.cpp">
+      <Filter>Source\main\gui\countdownmessage</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\startup\startupform.cpp">
+      <Filter>Source\main\gui\startup</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\startup\startupformbase.cpp">
+      <Filter>Source\main\gui\startup</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\startup\startupview.cpp">
+      <Filter>Source\main\gui\startup</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\dicomdirexport\dicomdirexportbase.cpp">
+      <Filter>Source\main\gui\dicomdirexport</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\dicomdirexport\exportdicomdir.cpp">
+      <Filter>Source\main\gui\dicomdirexport</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\history3\historypanel3.cpp">
+      <Filter>Source\main\gui\history3</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\history3\historypanel3base.cpp">
+      <Filter>Source\main\gui\history3</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\history3\historytoolmenu.cpp">
+      <Filter>Source\main\gui\history3</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\history3\wxhistoryimagethumbnail.cpp">
+      <Filter>Source\main\gui\history3</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\anonymize\anonymizedialog.cpp">
+      <Filter>Source\main\gui\anonymize</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\anonymize\anonymizepanelbase.cpp">
+      <Filter>Source\main\gui\anonymize</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\selectpacsserver\selectpacsserver.cpp">
+      <Filter>Source\main\gui\selectpacsserver</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\selectpacsserver\selectpacsserverbase.cpp">
+      <Filter>Source\main\gui\selectpacsserver</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\previewpanel\firstlevelpanel.cpp">
+      <Filter>Source\main\gui\previewpanel</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\previewpanel\leafpanel.cpp">
+      <Filter>Source\main\gui\previewpanel</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\previewpanel\previewpanel.cpp">
+      <Filter>Source\main\gui\previewpanel</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\previewpanel\previewpanelbase.cpp">
+      <Filter>Source\main\gui\previewpanel</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\toolsystem\wxmenuitemtool.cpp">
+      <Filter>Source\main\gui\toolsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\dicomdirmigration\dicomdirmigration.cpp">
+      <Filter>Source\main\gui\dicomdirmigration</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\dicomdirmigration\dicomdirmigrationbase.cpp">
+      <Filter>Source\main\gui\dicomdirmigration</Filter>
+    </ClCompile>
+    <ClCompile Include="main\toolsystem\toolcontroller.cpp">
+      <Filter>Source\main\toolsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="main\toolsystem\toolsregistry.cpp">
+      <Filter>Source\main\toolsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="main\utils\ginkgomatrix4x4.cpp">
+      <Filter>Source\main\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="vtk\vtkginkgoimageviewer.cpp">
+      <Filter>Source\vtk</Filter>
+    </ClCompile>
+    <ClCompile Include="vtk\vtkopenglginkgotexture.cpp">
+      <Filter>Source\vtk</Filter>
+    </ClCompile>
+    <ClCompile Include="vtk\vtkSmartVolumeMapper.cxx">
+      <Filter>Source\vtk</Filter>
+    </ClCompile>
+    <ClCompile Include="vtk\command\ginkgoimagecommand.cpp">
+      <Filter>Source\vtk\command</Filter>
+    </ClCompile>
+    <ClCompile Include="vtk\interactor\ginkgointeractorstyleimage2d.cpp">
+      <Filter>Source\vtk\interactor</Filter>
+    </ClCompile>
+    <ClCompile Include="vtk\widgets\widgetsactor.cpp">
+      <Filter>Source\vtk\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="VTKInria3D\vtkVISUManagement\vtkLookupTableManager.cpp">
+      <Filter>Source\VTKInria3D\vtkVISUManagement</Filter>
+    </ClCompile>
+    <ClCompile Include="VTKInria3D\wxVTK\wxVTKRenderWindowInteractor.cpp">
+      <Filter>Source\VTKInria3D\wxVTK</Filter>
+    </ClCompile>
+    <ClCompile Include="export\tools\iangletool.cpp">
+      <Filter>Source\export\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="export\tools\icolormaptool.cpp">
+      <Filter>Source\export\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="export\tools\icornerannotationstool.cpp">
+      <Filter>Source\export\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="export\tools\idetachwindowtool.cpp">
+      <Filter>Source\export\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="export\tools\iimageexporttool.cpp">
+      <Filter>Source\export\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="export\tools\imarkertool.cpp">
+      <Filter>Source\export\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="export\tools\imetricgridtool.cpp">
+      <Filter>Source\export\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="export\tools\inotetool.cpp">
+      <Filter>Source\export\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="export\tools\ipixelsbluringtool.cpp">
+      <Filter>Source\export\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="export\tools\ipointertool.cpp">
+      <Filter>Source\export\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="export\tools\iresettool.cpp">
+      <Filter>Source\export\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="export\tools\irotateandfliptool.cpp">
+      <Filter>Source\export\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="export\tools\iruletool.cpp">
+      <Filter>Source\export\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="export\tools\ishowhistorytool.cpp">
+      <Filter>Source\export\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="export\tools\ishowtagstool.cpp">
+      <Filter>Source\export\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="export\tools\itoolpan.cpp">
+      <Filter>Source\export\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="export\tools\itoolslider.cpp">
+      <Filter>Source\export\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="export\tools\itoolwindowlevel.cpp">
+      <Filter>Source\export\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="export\tools\itoolzoom.cpp">
+      <Filter>Source\export\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="export\tools\itrackballtool.cpp">
+      <Filter>Source\export\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="export\tools\iundotool.cpp">
+      <Filter>Source\export\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="export\tools\ivideotool.cpp">
+      <Filter>Source\export\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="export\tools\iwindowlayouttool.cpp">
+      <Filter>Source\export\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="export\contracts\irulecontract.cpp">
+      <Filter>Source\export\contracts</Filter>
+    </ClCompile>
+    <ClCompile Include="export\contracts\irulecontractable.cpp">
+      <Filter>Source\export\contracts</Filter>
+    </ClCompile>
+    <ClCompile Include="export\contracts\islidercontract.cpp">
+      <Filter>Source\export\contracts</Filter>
+    </ClCompile>
+    <ClCompile Include="export\contracts\islidercontractable.cpp">
+      <Filter>Source\export\contracts</Filter>
+    </ClCompile>
+    <ClCompile Include="export\contracts\iviewcontract.cpp">
+      <Filter>Source\export\contracts</Filter>
+    </ClCompile>
+    <ClCompile Include="export\contracts\iviewcontractable.cpp">
+      <Filter>Source\export\contracts</Filter>
+    </ClCompile>
+    <ClCompile Include="export\contracts\iwidgetscontract.cpp">
+      <Filter>Source\export\contracts</Filter>
+    </ClCompile>
+    <ClCompile Include="export\contracts\iwidgetscontractable.cpp">
+      <Filter>Source\export\contracts</Filter>
+    </ClCompile>
+    <ClCompile Include="export\contracts\iwindowlayoutcontract.cpp">
+      <Filter>Source\export\contracts</Filter>
+    </ClCompile>
+    <ClCompile Include="export\contracts\iwindowlayoutcontractable.cpp">
+      <Filter>Source\export\contracts</Filter>
+    </ClCompile>
+    <ClCompile Include="export\contracts\iwindowlevelcontract.cpp">
+      <Filter>Source\export\contracts</Filter>
+    </ClCompile>
+    <ClCompile Include="export\contracts\iwindowlevelcontractable.cpp">
+      <Filter>Source\export\contracts</Filter>
+    </ClCompile>
+    <ClCompile Include="api\autoptr.cpp">
+      <Filter>Source\api</Filter>
+    </ClCompile>
+    <ClCompile Include="api\ibutton.cpp">
+      <Filter>Source\api</Filter>
+    </ClCompile>
+    <ClCompile Include="api\icommand.cpp">
+      <Filter>Source\api</Filter>
+    </ClCompile>
+    <ClCompile Include="api\icontexto.cpp">
+      <Filter>Source\api</Filter>
+    </ClCompile>
+    <ClCompile Include="api\icontract.cpp">
+      <Filter>Source\api</Filter>
+    </ClCompile>
+    <ClCompile Include="api\ientorno.cpp">
+      <Filter>Source\api</Filter>
+    </ClCompile>
+    <ClCompile Include="api\ievento.cpp">
+      <Filter>Source\api</Filter>
+    </ClCompile>
+    <ClCompile Include="api\iexception.cpp">
+      <Filter>Source\api</Filter>
+    </ClCompile>
+    <ClCompile Include="api\ihistorytool.cpp">
+      <Filter>Source\api</Filter>
+    </ClCompile>
+    <ClCompile Include="api\ihl7parser.cpp">
+      <Filter>Source\api</Filter>
+    </ClCompile>
+    <ClCompile Include="api\ilock.cpp">
+      <Filter>Source\api</Filter>
+    </ClCompile>
+    <ClCompile Include="api\imodelohl7.cpp">
+      <Filter>Source\api</Filter>
+    </ClCompile>
+    <ClCompile Include="api\imodelointegracion.cpp">
+      <Filter>Source\api</Filter>
+    </ClCompile>
+    <ClCompile Include="api\init.cpp">
+      <Filter>Source\api</Filter>
+    </ClCompile>
+    <ClCompile Include="api\initwx.cpp">
+      <Filter>Source\api</Filter>
+    </ClCompile>
+    <ClCompile Include="api\istudycontext.cpp">
+      <Filter>Source\api</Filter>
+    </ClCompile>
+    <ClCompile Include="api\ivista.cpp">
+      <Filter>Source\api</Filter>
+    </ClCompile>
+    <ClCompile Include="api\iwaitqueue.cpp">
+      <Filter>Source\api</Filter>
+    </ClCompile>
+    <ClCompile Include="api\iwidgets.cpp">
+      <Filter>Source\api</Filter>
+    </ClCompile>
+    <ClCompile Include="api\iwidgetsmanager.cpp">
+      <Filter>Source\api</Filter>
+    </ClCompile>
+    <ClCompile Include="api\iwidgetsrenderer.cpp">
+      <Filter>Source\api</Filter>
+    </ClCompile>
+    <ClCompile Include="api\iwizard.cpp">
+      <Filter>Source\api</Filter>
+    </ClCompile>
+    <ClCompile Include="api\ubication.cpp">
+      <Filter>Source\api</Filter>
+    </ClCompile>
+    <ClCompile Include="api\widgetserializable.cpp">
+      <Filter>Source\api</Filter>
+    </ClCompile>
+    <ClCompile Include="api\observers\ieventsobserver.cpp">
+      <Filter>Source\api\observers</Filter>
+    </ClCompile>
+    <ClCompile Include="api\observers\iextensionsobserver.cpp">
+      <Filter>Source\api\observers</Filter>
+    </ClCompile>
+    <ClCompile Include="api\internationalization\internationalization.cpp">
+      <Filter>Source\api\internationalization</Filter>
+    </ClCompile>
+    <ClCompile Include="api\controllers\iconfigurationcontroller.cpp">
+      <Filter>Source\api\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="api\controllers\icontroladoracciones.cpp">
+      <Filter>Source\api\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="api\controllers\icontroladorlog.cpp">
+      <Filter>Source\api\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="api\controllers\icontroladorpermisos.cpp">
+      <Filter>Source\api\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="api\controllers\icontroladorvistas.cpp">
+      <Filter>Source\api\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="api\controllers\ieventscontroller.cpp">
+      <Filter>Source\api\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="api\controllers\ihistorycontroller.cpp">
+      <Filter>Source\api\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="api\controllers\imodulecontroller.cpp">
+      <Filter>Source\api\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="api\controllers\ipacscontroller.cpp">
+      <Filter>Source\api\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="api\controllers\iprogresscontroller.cpp">
+      <Filter>Source\api\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="api\dicom\dicomdataset.cpp">
+      <Filter>Source\api\dicom</Filter>
+    </ClCompile>
+    <ClCompile Include="api\dicom\idicomconformance.cpp">
+      <Filter>Source\api\dicom</Filter>
+    </ClCompile>
+    <ClCompile Include="api\threads\thread.cpp">
+      <Filter>Source\api\threads</Filter>
+    </ClCompile>
+    <ClCompile Include="api\helpers\aetwildcards.cpp">
+      <Filter>Source\api\helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="api\helpers\helpertexto.cpp">
+      <Filter>Source\api\helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="api\utils\iginkgomatrix4x4.cpp">
+      <Filter>Source\api\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="api\toolsystem\itool.cpp">
+      <Filter>Source\api\toolsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="api\toolsystem\itoolcontroller.cpp">
+      <Filter>Source\api\toolsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="api\toolsystem\itoolsregistry.cpp">
+      <Filter>Source\api\toolsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="api\toolsystem\iwidgettool.cpp">
+      <Filter>Source\api\toolsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="wx\propiedades\wxpropiedades.cpp">
+      <Filter>Source\wx\propiedades</Filter>
+    </ClCompile>
+    <ClCompile Include="wx\propiedades\wxpropiedadesbase.cpp">
+      <Filter>Source\wx\propiedades</Filter>
+    </ClCompile>
+    <ClCompile Include="wx\wxsqlite3\wxsqlite3.cpp">
+      <Filter>Source\wx\wxsqlite3</Filter>
+    </ClCompile>
+    <ClCompile Include="wx\ginkgostyle\ginkgostyle.cpp">
+      <Filter>Source\wx\ginkgostyle</Filter>
+    </ClCompile>
+    <ClCompile Include="wx\thumbnailctrl\thumbnailctrl.cpp">
+      <Filter>Source\wx\thumbnailctrl</Filter>
+    </ClCompile>
+    <ClCompile Include="wx\thumbnailctrl\thumbnailwidget.cpp">
+      <Filter>Source\wx\thumbnailctrl</Filter>
+    </ClCompile>
+    <ClCompile Include="wx\wizardginkgo\wxwizardginkgobase.cpp">
+      <Filter>Source\wx\wizardginkgo</Filter>
+    </ClCompile>
+    <ClCompile Include="wx\wizardginkgo\wxwizardginkgobasewx.cpp">
+      <Filter>Source\wx\wizardginkgo</Filter>
+    </ClCompile>
+    <ClCompile Include="wx\maskedtextctrl\maskedtextctrl.cpp">
+      <Filter>Source\wx\maskedtextctrl</Filter>
+    </ClCompile>
+    <ClCompile Include="wx\gnkinforme\gnkinformebase.cpp">
+      <Filter>Source\wx\gnkinforme</Filter>
+    </ClCompile>
+    <ClCompile Include="wx\gnkinforme\gnkinformebasewx.cpp">
+      <Filter>Source\wx\gnkinforme</Filter>
+    </ClCompile>
+    <ClCompile Include="sqlite\sqlite3.c">
+      <Filter>Source\sqlite</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\comandoactualizaciones.cpp">
+      <Filter>Source\commands</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\comandocalibrado.cpp">
+      <Filter>Source\commands</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\comandocarga.cpp">
+      <Filter>Source\commands</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\comandodestruirvista.cpp">
+      <Filter>Source\commands</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\comandoexportacion.cpp">
+      <Filter>Source\commands</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\comandoincluirhistorial.cpp">
+      <Filter>Source\commands</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\comandopacs.cpp">
+      <Filter>Source\commands</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\commandsynchronizewithgui.cpp">
+      <Filter>Source\commands</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\dbmigrationcommand.cpp">
+      <Filter>Source\commands</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\dialogopathssobreescribirbase.cpp">
+      <Filter>Source\commands</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\dicomizationcompletebase.cpp">
+      <Filter>Source\commands</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\dicomizecommand.cpp">
+      <Filter>Source\commands</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\exporttodicomdircommand.cpp">
+      <Filter>Source\commands</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\incomingdicomassociationcommand.cpp">
+      <Filter>Source\commands</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\openremovableunit.cpp">
+      <Filter>Source\commands</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\sendhl7command.cpp">
+      <Filter>Source\commands</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\sendpacscommand.cpp">
+      <Filter>Source\commands</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\thumbnailscommand.cpp">
+      <Filter>Source\commands</Filter>
+    </ClCompile>
+    <ClCompile Include="endpoint\address.cpp">
+      <Filter>Source\endpoint</Filter>
+    </ClCompile>
+    <ClCompile Include="endpoint\endpoint.cpp">
+      <Filter>Source\endpoint</Filter>
+    </ClCompile>
+    <ClCompile Include="endpoint\inet_ntop.c">
+      <Filter>Source\endpoint</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\openglhelper.cpp">
+      <Filter>Source\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\wangulo.cpp">
+      <Filter>Source\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\wanotacionesquina.cpp">
+      <Filter>Source\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\wanotacionposicion.cpp">
+      <Filter>Source\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\wchromacomplejo.cpp">
+      <Filter>Source\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\welevacion.cpp">
+      <Filter>Source\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\welipse.cpp">
+      <Filter>Source\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\wflecha.cpp">
+      <Filter>Source\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\wlupa.cpp">
+      <Filter>Source\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\wmarcadoarea.cpp">
+      <Filter>Source\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\wnota.cpp">
+      <Filter>Source\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\wpan.cpp">
+      <Filter>Source\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\wpunto.cpp">
+      <Filter>Source\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\wrectangulo.cpp">
+      <Filter>Source\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\wrejilla.cpp">
+      <Filter>Source\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\wrule.cpp">
+      <Filter>Source\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\wseleccion.cpp">
+      <Filter>Source\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\wslider.cpp">
+      <Filter>Source\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\wtrackball.cpp">
+      <Filter>Source\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\wtrapezoide.cpp">
+      <Filter>Source\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\wwindowlevel.cpp">
+      <Filter>Source\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\wzoom.cpp">
+      <Filter>Source\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\gui\calibracion.cpp">
+      <Filter>Source\widgets\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\gui\calibracionbase.cpp">
+      <Filter>Source\widgets\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\gui\selecciontexto.cpp">
+      <Filter>Source\widgets\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\gui\selecciontextobase.cpp">
+      <Filter>Source\widgets\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="resources\ginkgoresourcesmanager.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\configuration\hangingprotocolconfigurationpanel.cpp">
+      <Filter>Source\main\gui\configuration</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\windowattributescontroller.cpp">
+      <Filter>Source\main\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\pacsdownloadcommand.cpp">
+      <Filter>Source\commands</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\linkhistorycommand.cpp">
+      <Filter>Source\commands</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\history3\synchronizedialog.cpp">
+      <Filter>Source\main\gui\history3</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\synchronizationcommand.cpp">
+      <Filter>Source\commands</Filter>
+    </ClCompile>
+    <ClCompile Include="api\controllers\icommandcontroller.cpp">
+      <Filter>Source\api\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\commandcontroller.cpp">
+      <Filter>Source\main\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="export\tools\isecondarycapturetool.cpp">
+      <Filter>Source\export\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="main\tools\secondarycapturetool.cpp">
+      <Filter>Source\main\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\secondarycapturedicomizecommand.cpp">
+      <Filter>Source\commands</Filter>
+    </ClCompile>
+    <ClCompile Include="export\tools\ipacsuploadtool.cpp">
+      <Filter>Source\export\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="main\tools\pacsuploadtool.cpp">
+      <Filter>Source\main\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="export\tools\istartdicomizationtool.cpp">
+      <Filter>Source\export</Filter>
+    </ClCompile>
+    <ClCompile Include="main\tools\startdicomizationtool.cpp">
+      <Filter>Source\main\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="main\tools\addfiletohistorytool.cpp">
+      <Filter>Source\main\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="export\tools\iaddfiletohistorytool.cpp">
+      <Filter>Source\export\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="main\tools\openginkgocloudlinktool.cpp">
+      <Filter>Source\main\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\ginkgocloud\downloadcloudbase.cpp">
+      <Filter>Source\main\gui\ginkgocloud</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\ginkgocloud\openginkgoclouddialog.cpp">
+      <Filter>Source\main\gui\ginkgocloud</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\cloudcommand.cpp">
+      <Filter>Source\commands</Filter>
+    </ClCompile>
+    <ClCompile Include="jsoncpp\json_reader.cpp">
+      <Filter>Source\jsoncpp</Filter>
+    </ClCompile>
+    <ClCompile Include="jsoncpp\json_value.cpp">
+      <Filter>Source\jsoncpp</Filter>
+    </ClCompile>
+    <ClCompile Include="jsoncpp\json_writer.cpp">
+      <Filter>Source\jsoncpp</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\ginkgocloud\ginkgocloudsearchdialog.cpp">
+      <Filter>Source\main\gui\ginkgocloud</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\ginkgocloud\filelinkdialog.cpp">
+      <Filter>Source\main\gui\ginkgocloud</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\pdfextractercommand.cpp">
+      <Filter>Source\commands</Filter>
+    </ClCompile>
+    <ClCompile Include="export\tools\icopyimagetoclipboardtool.cpp">
+      <Filter>Source\export\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="main\tools\copyimagetoclipboardtool.cpp">
+      <Filter>Source\main\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\anonymize\anonymizepanel.cpp">
+      <Filter>Source\main\gui\anonymize</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\wstaticrule.cpp">
+      <Filter>Source\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\acquisition\downloadagaindialog.cpp">
+      <Filter>Source\main\gui\acquisition</Filter>
+    </ClCompile>
+    <ClCompile Include="api\dicom\icustomassociation.cpp">
+      <Filter>Source\api\dicom</Filter>
+    </ClCompile>
+    <ClCompile Include="api\controllers\icontroladorcarga.cpp">
+      <Filter>Source\api\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="api\controllers\proxies\ipipelineproperties.cpp">
+      <Filter>Source\api\controllers\proxies</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\autocleaningcommand.cpp">
+      <Filter>Source\commands</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\configuration\localdatabaseconfigurationpanel.cpp">
+      <Filter>Source\main\gui\configuration</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\striptexthelper.cpp">
+      <Filter>Source\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="export\contracts\ipixelsbluringcontract.cpp">
+      <Filter>Source\export\contracts</Filter>
+    </ClCompile>
+    <ClCompile Include="export\contracts\ipixelsbluringcontractable.cpp">
+      <Filter>Source\export\contracts</Filter>
+    </ClCompile>
+    <ClCompile Include="export\tools\iqueryretrievetool.cpp">
+      <Filter>Source\export\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="main\tools\searchginkgocloudhistorytool.cpp">
+      <Filter>Source\main\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="main\tools\queryretrievehistorytool.cpp">
+      <Filter>Source\main\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="main\tools\queryretrievetool.cpp">
+      <Filter>Source\main\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="export\tools\icamerarotationtool.cpp">
+      <Filter>Source\export\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="main\tools\camerarotationtool.cpp">
+      <Filter>Source\main\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\wcamerarotation.cpp">
+      <Filter>Source\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="export\tools\ibrightnesscontrasttool.cpp">
+      <Filter>Source\export\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="main\tools\brightnesscontrasttool.cpp">
+      <Filter>Source\main\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\wbrightnesscontrast.cpp">
+      <Filter>Source\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\anonymize\anonymizepanel.cpp">
+      <Filter>Source\main\gui\anonymize</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\autocleaningcontroller.cpp">
+      <Filter>Source\main\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="api\iannotator.cpp">
+      <Filter>Source\api</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\modalitysettingscontroller.cpp">
+      <Filter>Source\main\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\configuration\defaultmodalitysettingsconfigurationpanel.cpp">
+      <Filter>Source\main\gui\configuration</Filter>
+    </ClCompile>
+    <ClCompile Include="api\dicom\idicom.cpp">
+      <Filter>Source\api\dicom</Filter>
+    </ClCompile>
+    <ClCompile Include="commands\acquirefromurlcommand.cpp">
+      <Filter>Source\commands</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\anonusagestats.cpp">
+      <Filter>Source\main\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\history3\historytablemodel.cpp">
+      <Filter>Source\main\gui\history3</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\history3\historytablemodel.cpp">
+      <Filter>Source\main\gui\history3</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\toolsystem\ginkgotoolsystembar.cpp">
+      <Filter>Source\main\gui\toolsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\acquisition\acquisitiontablemodel.cpp">
+      <Filter>Source\main\gui\acquisition</Filter>
+    </ClCompile>
+    <ClCompile Include="wx\wxginkgotoolbar.cpp">
+      <Filter>Source\wx</Filter>
+    </ClCompile>
+    <ClCompile Include="export\tools\isimpleprinttool.cpp">
+      <Filter>Source\export\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="main\tools\simpleprinttool.cpp">
+      <Filter>Source\main\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\open\dicomdirtablemodel.cpp">
+      <Filter>Source\main\gui\open</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\configuration\smartretrieveconfigurationpanel.cpp">
+      <Filter>Source\main\gui\configuration</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\smartretrievecontroller.cpp">
+      <Filter>Source\main\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="main\controllers\storedqueriescontroller.cpp">
+      <Filter>Source\main\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\pacsupload\pacsuploaddialog.cpp">
+      <Filter>Source\main\gui\pacsupload</Filter>
+    </ClCompile>
+    <ClCompile Include="main\gui\pacsupload\pacsuploaddialogbase.cpp">
+      <Filter>Source\main\gui\pacsupload</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\wfreeform.cpp">
+      <Filter>Source\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\wpolygon.cpp">
+      <Filter>Source\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="widgets\wtextbox.cpp">
+      <Filter>Source\widgets</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="resources\conformance.xml">
+      <Filter>Resources</Filter>
+    </CustomBuild>
+    <CustomBuild Include="resources\test_card.dcm">
+      <Filter>Resources</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="jsoncpp\json_internalarray.inl">
+      <Filter>Source\jsoncpp</Filter>
+    </None>
+    <None Include="jsoncpp\json_internalmap.inl">
+      <Filter>Source\jsoncpp</Filter>
+    </None>
+    <None Include="jsoncpp\json_valueiterator.inl">
+      <Filter>Source\jsoncpp</Filter>
+    </None>
+    <None Include="..\lib_derma\lib_derma_pasi\libderma_pasi.vcproj" />
+  </ItemGroup>
+</Project>

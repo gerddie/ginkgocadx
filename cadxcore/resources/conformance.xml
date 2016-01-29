@@ -1,0 +1,1082 @@
+<?xml version="1.0"?>
+<dicom-conformance>
+
+	<transfer-syntaxes>
+		<transfer-syntax ref-id="LittleEndianImplicitTransferSyntax" uid="1.2.840.10008.1.2" />
+		<transfer-syntax ref-id="LittleEndianExplicitTransferSyntax" uid="1.2.840.10008.1.2.1" />
+		<transfer-syntax ref-id="BigEndianExplicitTransferSyntax" uid="1.2.840.10008.1.2.2" />
+		<transfer-syntax ref-id="DeflatedExplicitVRLittleEndianTransferSyntax" uid="1.2.840.10008.1.2.1.99" />
+		
+		<transfer-syntax ref-id="JPEGProcess1TransferSyntax" uid="1.2.840.10008.1.2.4.50" />
+		<transfer-syntax ref-id="JPEGProcess2_4TransferSyntax" uid="1.2.840.10008.1.2.4.51" />
+		<transfer-syntax ref-id="JPEGProcess14TransferSyntax" uid="1.2.840.10008.1.2.4.57" />
+		<transfer-syntax ref-id="JPEGProcess14SV1TransferSyntax" uid="1.2.840.10008.1.2.4.70" />
+		<transfer-syntax ref-id="JPEGLSLosslessTransferSyntax" uid="1.2.840.10008.1.2.4.80" />
+		<transfer-syntax ref-id="JPEGLSLossyTransferSyntax" uid="1.2.840.10008.1.2.4.81" />
+		<transfer-syntax ref-id="JPEG2000LosslessOnlyTransferSyntax" uid="1.2.840.10008.1.2.4.90" />
+		<transfer-syntax ref-id="JPEG2000TransferSyntax" uid="1.2.840.10008.1.2.4.91" />
+		<transfer-syntax ref-id="JPEG2000Part2MulticomponentImageCompressionLosslessOnlyTransferSyntax" uid="1.2.840.10008.1.2.4.92" />
+		<transfer-syntax ref-id="JPEG2000Part2MulticomponentImageCompressionTransferSyntax" uid="1.2.840.10008.1.2.4.93" />
+		<transfer-syntax ref-id="RLELosslessTransferSyntax" uid="1.2.840.10008.1.2.5" />
+		
+		<transfer-syntax ref-id="MPEG2MainProfileAtMainLevelTransferSyntax" uid="1.2.840.10008.1.2.4.100" />
+		<transfer-syntax ref-id="MPEG2MainProfileAtHighLevelTransferSyntax" uid="1.2.840.10008.1.2.4.101" />
+		<transfer-syntax ref-id="MPEG4HighProfileLevel4_1TransferSyntax" uid="1.2.840.10008.1.2.4.102" />
+		<transfer-syntax ref-id="MPEG4BDcompatibleHighProfileLevel4_1TransferSyntax" uid="1.2.840.10008.1.2.4.103" />
+	</transfer-syntaxes>
+
+  <storage-sop-classes>
+  
+	<sop-class ref-id="HardcopyGrayscaleImageStorage" uid="1.2.840.10008.5.1.1.29">
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess2_4TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14SV1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLosslessTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLossyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000LosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionLosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionTransferSyntax" />
+		<allowed-transfer-syntax ref="RLELosslessTransferSyntax" />
+	</sop-class>
+
+	<sop-class ref-id="HardcopyColorImageStorage" uid="1.2.840.10008.5.1.1.30">
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess2_4TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14SV1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLosslessTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLossyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000LosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionLosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionTransferSyntax" />
+		<allowed-transfer-syntax ref="RLELosslessTransferSyntax" />
+	</sop-class>
+
+	<sop-class ref-id="ComputedRadiographyImageStorage" uid="1.2.840.10008.5.1.4.1.1.1">
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess2_4TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14SV1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLosslessTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLossyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000LosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionLosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionTransferSyntax" />
+		<allowed-transfer-syntax ref="RLELosslessTransferSyntax" />
+	</sop-class>
+
+	<sop-class ref-id="DigitalXRayImageStorageForPresentation" uid="1.2.840.10008.5.1.4.1.1.1.1">
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+	</sop-class>
+
+	<sop-class ref-id="DigitalXRayImageStorageForProcessing" uid="1.2.840.10008.5.1.4.1.1.1.1.1">
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess2_4TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14SV1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLosslessTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLossyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000LosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionLosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionTransferSyntax" />
+		<allowed-transfer-syntax ref="RLELosslessTransferSyntax" />
+	</sop-class>
+
+	<sop-class ref-id="DigitalMammographyXRayImageStorageForPresentation" uid="1.2.840.10008.5.1.4.1.1.1.2">
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess2_4TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14SV1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLosslessTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLossyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000LosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionLosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionTransferSyntax" />
+		<allowed-transfer-syntax ref="RLELosslessTransferSyntax" />
+	</sop-class>
+
+	<sop-class ref-id="DigitalMammographyXRayImageStorageForProcessing" uid="1.2.840.10008.5.1.4.1.1.1.2.1">
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess2_4TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14SV1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLosslessTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLossyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000LosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionLosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionTransferSyntax" />
+		<allowed-transfer-syntax ref="RLELosslessTransferSyntax" />
+	</sop-class>
+
+	<sop-class ref-id="DigitalIntraOralXRayImageStorageForPresentation" uid="1.2.840.10008.5.1.4.1.1.1.3">
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess2_4TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14SV1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLosslessTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLossyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000LosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionLosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionTransferSyntax" />
+		<allowed-transfer-syntax ref="RLELosslessTransferSyntax" />
+	</sop-class>
+
+	<sop-class ref-id="DigitalIntraOralXRayImageStorageForProcessing" uid="1.2.840.10008.5.1.4.1.1.1.3.1">
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess2_4TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14SV1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLosslessTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLossyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000LosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionLosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionTransferSyntax" />
+		<allowed-transfer-syntax ref="RLELosslessTransferSyntax" />
+	</sop-class>
+	
+	
+
+	<sop-class ref-id="CTImageStorage" uid="1.2.840.10008.5.1.4.1.1.2" >
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess2_4TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14SV1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLosslessTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLossyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000LosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionLosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionTransferSyntax" />
+		<allowed-transfer-syntax ref="RLELosslessTransferSyntax" />
+	</sop-class>
+
+	<sop-class ref-id="EnhancedCTImageStorage" uid="1.2.840.10008.5.1.4.1.1.2.1" >
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess2_4TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14SV1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLosslessTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLossyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000LosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionLosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionTransferSyntax" />
+		<allowed-transfer-syntax ref="RLELosslessTransferSyntax" />
+	</sop-class>
+
+	<sop-class ref-id="UltrasoundMultiframeImageStorage" uid="1.2.840.10008.5.1.4.1.1.3.1">
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess2_4TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14SV1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLosslessTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLossyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000LosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionLosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionTransferSyntax" />
+		<allowed-transfer-syntax ref="RLELosslessTransferSyntax" />
+	</sop-class>
+
+  <sop-class ref-id="RetiredUltrasoundMultiframeImageStorage" uid="1.2.840.10008.5.1.4.1.1.3">
+    <allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+    <allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+    <allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+    <allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+    <allowed-transfer-syntax ref="JPEGProcess1TransferSyntax" />
+    <allowed-transfer-syntax ref="JPEGProcess2_4TransferSyntax" />
+    <allowed-transfer-syntax ref="JPEGProcess14TransferSyntax" />
+    <allowed-transfer-syntax ref="JPEGProcess14SV1TransferSyntax" />
+    <allowed-transfer-syntax ref="JPEGLSLosslessTransferSyntax" />
+    <allowed-transfer-syntax ref="JPEGLSLossyTransferSyntax" />
+    <allowed-transfer-syntax ref="JPEG2000LosslessOnlyTransferSyntax" />
+    <allowed-transfer-syntax ref="JPEG2000TransferSyntax" />
+    <allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionLosslessOnlyTransferSyntax" />
+    <allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionTransferSyntax" />
+    <allowed-transfer-syntax ref="RLELosslessTransferSyntax" />
+  </sop-class>
+
+	<sop-class ref-id="MRImageStorage" uid="1.2.840.10008.5.1.4.1.1.4">
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess2_4TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14SV1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLosslessTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLossyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000LosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionLosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionTransferSyntax" />
+		<allowed-transfer-syntax ref="RLELosslessTransferSyntax" />
+	</sop-class>
+
+	<sop-class ref-id="EnhancedMRImageStorage" uid="1.2.840.10008.5.1.4.1.1.4.1">
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess2_4TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14SV1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLosslessTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLossyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000LosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionLosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionTransferSyntax" />
+		<allowed-transfer-syntax ref="RLELosslessTransferSyntax" />
+	</sop-class>
+
+	<sop-class ref-id="MRSpectroscopyStorage" uid="1.2.840.10008.5.1.4.1.1.4.2">
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess2_4TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14SV1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLosslessTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLossyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000LosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionLosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionTransferSyntax" />
+		<allowed-transfer-syntax ref="RLELosslessTransferSyntax" />
+	</sop-class>
+
+	<sop-class ref-id="EnhancedMRColorImageStorage" uid="1.2.840.10008.5.1.4.1.1.4.3">
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess2_4TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14SV1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLosslessTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLossyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000LosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionLosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionTransferSyntax" />
+		<allowed-transfer-syntax ref="RLELosslessTransferSyntax" />
+	</sop-class>
+
+	<sop-class ref-id="UltrasoundImageStorage" uid="1.2.840.10008.5.1.4.1.1.6.1">
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess2_4TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14SV1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLosslessTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLossyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000LosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionLosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionTransferSyntax" />
+		<allowed-transfer-syntax ref="RLELosslessTransferSyntax" />
+	</sop-class>
+
+	<sop-class ref-id="EnhancedUSVolumeStorage" uid="1.2.840.10008.5.1.4.1.1.6.2">
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess2_4TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14SV1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLosslessTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLossyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000LosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionLosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionTransferSyntax" />
+		<allowed-transfer-syntax ref="RLELosslessTransferSyntax" />
+	</sop-class>
+
+	<sop-class ref-id="SecondaryCaptureImageStorage" uid="1.2.840.10008.5.1.4.1.1.7">
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess2_4TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14SV1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLosslessTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLossyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000LosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionLosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionTransferSyntax" />
+		<allowed-transfer-syntax ref="RLELosslessTransferSyntax" />
+	</sop-class>
+	
+	<sop-class ref-id="MultiframeSingleBitSecondaryCaptureImageStorage" uid="1.2.840.10008.5.1.4.1.1.7.1">
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess2_4TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14SV1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLosslessTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLossyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000LosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionLosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionTransferSyntax" />
+		<allowed-transfer-syntax ref="RLELosslessTransferSyntax" />
+	</sop-class>
+
+	<sop-class ref-id="MultiframeGrayscaleByteSecondaryCaptureImageStorage" uid="1.2.840.10008.5.1.4.1.1.7.2">
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess2_4TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14SV1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLosslessTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLossyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000LosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionLosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionTransferSyntax" />
+		<allowed-transfer-syntax ref="RLELosslessTransferSyntax" />
+	</sop-class>
+
+	<sop-class ref-id="MultiframeGrayscaleWordSecondaryCaptureImageStorage" uid="1.2.840.10008.5.1.4.1.1.7.3">
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess2_4TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14SV1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLosslessTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLossyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000LosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionLosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionTransferSyntax" />
+		<allowed-transfer-syntax ref="RLELosslessTransferSyntax" />
+	</sop-class>
+
+	<sop-class ref-id="MultiframeTrueColorSecondaryCaptureImageStorage" uid="1.2.840.10008.5.1.4.1.1.7.4">
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess2_4TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14SV1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLosslessTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLossyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000LosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionLosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionTransferSyntax" />
+		<allowed-transfer-syntax ref="RLELosslessTransferSyntax" />
+	</sop-class>
+
+	<sop-class ref-id="XRayRadiofluoroscopicImageStorage" uid="1.2.840.10008.5.1.4.1.1.12.2">
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess2_4TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14SV1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLosslessTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLossyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000LosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionLosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionTransferSyntax" />
+		<allowed-transfer-syntax ref="RLELosslessTransferSyntax" />
+	</sop-class>
+	
+	<sop-class ref-id="XRayAngiographicImageStorage" uid="1.2.840.10008.5.1.4.1.1.12.1">
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess2_4TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14SV1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLosslessTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLossyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000LosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionLosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionTransferSyntax" />
+		<allowed-transfer-syntax ref="RLELosslessTransferSyntax" />
+	</sop-class>
+	
+	<sop-class ref-id="EnhancedXAImageStorage" uid="1.2.840.10008.5.1.4.1.1.12.1.1">
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess2_4TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14SV1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLosslessTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLossyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000LosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionLosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionTransferSyntax" />
+		<allowed-transfer-syntax ref="RLELosslessTransferSyntax" />
+	</sop-class>
+	
+	<sop-class ref-id="EnhancedXRFImageStorage" uid="1.2.840.10008.5.1.4.1.1.12.2.1">
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess2_4TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14SV1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLosslessTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLossyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000LosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionLosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionTransferSyntax" />
+		<allowed-transfer-syntax ref="RLELosslessTransferSyntax" />
+	</sop-class>
+	
+	<sop-class ref-id="XRay3DAngiographicImageStorage" uid="1.2.840.10008.5.1.4.1.1.13.1.1">
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess2_4TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14SV1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLosslessTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLossyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000LosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionLosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionTransferSyntax" />
+		<allowed-transfer-syntax ref="RLELosslessTransferSyntax" />
+	</sop-class>
+	
+	<sop-class ref-id="NuclearMedicineImageStorage" uid="1.2.840.10008.5.1.4.1.1.20">
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess2_4TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14SV1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLosslessTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLossyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000LosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionLosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionTransferSyntax" />
+		<allowed-transfer-syntax ref="RLELosslessTransferSyntax" />
+	</sop-class>
+
+	<sop-class ref-id="RawDataStorage" uid="1.2.840.10008.5.1.4.1.1.66">
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+	</sop-class>
+
+	<sop-class ref-id="VLEndoscopicImageStorage" uid="1.2.840.10008.5.1.4.1.1.77.1.1" >
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess2_4TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14SV1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLosslessTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLossyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000LosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionLosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionTransferSyntax" />
+		<allowed-transfer-syntax ref="RLELosslessTransferSyntax" />
+	</sop-class>
+    
+	<sop-class ref-id="VideoEndoscopicImageStorage" uid="1.2.840.10008.5.1.4.1.1.77.1.1.1" >
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+		<allowed-transfer-syntax ref="MPEG2MainProfileAtMainLevelTransferSyntax" />
+		<allowed-transfer-syntax ref="MPEG2MainProfileAtHighLevelTransferSyntax"/>
+		<allowed-transfer-syntax ref="MPEG4HighProfileLevel4_1TransferSyntax" />
+		<allowed-transfer-syntax ref="MPEG4BDcompatibleHighProfileLevel4_1TransferSyntax" />
+	</sop-class>
+    
+	<sop-class ref-id="VLMicroscopicImageStorage" uid="1.2.840.10008.5.1.4.1.1.77.1.2">
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess2_4TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14SV1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLosslessTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLossyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000LosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionLosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionTransferSyntax" />
+		<allowed-transfer-syntax ref="RLELosslessTransferSyntax" />
+	</sop-class>
+
+	<sop-class ref-id="VideoMicroscopicImageStorage" uid="1.2.840.10008.5.1.4.1.1.77.1.2.1" >
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+		<allowed-transfer-syntax ref="MPEG2MainProfileAtMainLevelTransferSyntax" />
+		<allowed-transfer-syntax ref="MPEG2MainProfileAtHighLevelTransferSyntax"/>
+		<allowed-transfer-syntax ref="MPEG4HighProfileLevel4_1TransferSyntax" />
+		<allowed-transfer-syntax ref="MPEG4BDcompatibleHighProfileLevel4_1TransferSyntax" />
+	</sop-class>
+    
+	<sop-class ref-id="VLSlideCoordinatesMicroscopicImageStorage" uid="1.2.840.10008.5.1.4.1.1.77.1.3">
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess2_4TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14SV1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLosslessTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLossyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000LosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionLosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionTransferSyntax" />
+		<allowed-transfer-syntax ref="RLELosslessTransferSyntax" />
+	</sop-class>
+	
+	<sop-class ref-id="VLPhotographicImageStorage" uid="1.2.840.10008.5.1.4.1.1.77.1.4" >
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess2_4TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14SV1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLosslessTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLossyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000LosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionLosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionTransferSyntax" />
+		<allowed-transfer-syntax ref="RLELosslessTransferSyntax" />
+	</sop-class>
+
+	<sop-class ref-id="VideoPhotographicImageStorage" uid="1.2.840.10008.5.1.4.1.1.77.1.4.1" >
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+		<allowed-transfer-syntax ref="MPEG2MainProfileAtMainLevelTransferSyntax" />
+		<allowed-transfer-syntax ref="MPEG2MainProfileAtHighLevelTransferSyntax"/>
+		<allowed-transfer-syntax ref="MPEG4HighProfileLevel4_1TransferSyntax" />
+		<allowed-transfer-syntax ref="MPEG4BDcompatibleHighProfileLevel4_1TransferSyntax" />
+	</sop-class>
+    
+	<sop-class ref-id="PositronEmissionTomographyImageStorage" uid="1.2.840.10008.5.1.4.1.1.128">
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess2_4TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14SV1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLosslessTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLossyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000LosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionLosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionTransferSyntax" />
+		<allowed-transfer-syntax ref="RLELosslessTransferSyntax" />
+	</sop-class>
+	
+	<sop-class ref-id="RTImageStorage" uid="1.2.840.10008.5.1.4.1.1.481.1">
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+	</sop-class>
+
+	<sop-class ref-id="GrayscaleSoftcopyPresentationStateStorage" uid="1.2.840.10008.5.1.4.1.1.11.1">
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+	</sop-class>
+
+	<sop-class ref-id="BasicTextSRStorage" uid="1.2.840.10008.5.1.4.1.1.88.11">
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+	</sop-class>
+
+	<sop-class ref-id="EnhancedSRStorage" uid="1.2.840.10008.5.1.4.1.1.88.22">
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+	</sop-class>
+
+	<sop-class ref-id="ComprehensiveSRStorage" uid="1.2.840.10008.5.1.4.1.1.88.33">
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+	</sop-class>
+	
+	<sop-class ref-id="MammographyCADSRStorage" uid="1.2.840.10008.5.1.4.1.1.88.50">
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+	</sop-class>
+	
+	<sop-class ref-id="KeyObjectSelectionDocumentStorage" uid="1.2.840.10008.5.1.4.1.1.88.59">
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+	</sop-class>
+	
+	<sop-class ref-id="SecondaryCaptureImageStorage" uid="1.2.840.10008.5.1.4.1.1.7" >
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess2_4TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGProcess14SV1TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLosslessTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEGLSLossyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000LosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000TransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionLosslessOnlyTransferSyntax" />
+		<allowed-transfer-syntax ref="JPEG2000Part2MulticomponentImageCompressionTransferSyntax" />
+		<allowed-transfer-syntax ref="RLELosslessTransferSyntax" />
+	</sop-class>
+	
+	<sop-class ref-id="ArterialPulseWaveformStorage" uid="1.2.840.10008.5.1.4.1.1.9.5.1" >
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+	</sop-class>
+	
+	<sop-class ref-id="RespiratoryWaveformStorage" uid="1.2.840.10008.5.1.4.1.1.9.6.1" >
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+	</sop-class>
+	
+	<sop-class ref-id="HemodynamicWaveformStorage" uid="1.2.840.10008.5.1.4.1.1.9.2.1" >
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+	</sop-class>
+
+	<sop-class ref-id="TwelveLeadECGWaveformStorage" uid="1.2.840.10008.5.1.4.1.1.9.1.1" >
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+	</sop-class>
+
+	<sop-class ref-id="GeneralECGWaveformStorage" uid="1.2.840.10008.5.1.4.1.1.9.1.2" >
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+	</sop-class>
+
+	<sop-class ref-id="AmbulatoryECGWaveformStorage" uid="1.2.840.10008.5.1.4.1.1.9.1.3" >
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+	</sop-class>
+
+	<sop-class ref-id="CardiacElectrophysiologyWaveformStorage" uid="1.2.840.10008.5.1.4.1.1.9.3.1" >
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+	</sop-class>
+	
+	<sop-class ref-id="EncapsulatedPDFStorage" uid="1.2.840.10008.5.1.4.1.1.104.1" >
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+	</sop-class>
+	
+	<sop-class ref-id="StandaloneCurveStorage" uid="1.2.840.10008.5.1.4.1.1.9" >
+		<allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+		<allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+	</sop-class>
+	</storage-sop-classes>
+
+  <scu-sop-classes>
+    
+    <sop-class ref-id="VerificationSOPClass" uid="1.2.840.10008.1.1">
+      <allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+      <allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+      <allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+      <allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+    </sop-class>
+
+    <sop-class ref-id="FINDPatientRootQueryRetrieveInformationModel" uid="1.2.840.10008.5.1.4.1.2.1.1">
+      <allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+      <allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+      <allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+      <allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+    </sop-class>
+
+    <sop-class ref-id="FINDStudyRootQueryRetrieveInformationModel" uid="1.2.840.10008.5.1.4.1.2.2.1">
+      <allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+      <allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+      <allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+      <allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+    </sop-class>
+
+    <sop-class ref-id="MOVEPatientRootQueryRetrieveInformationModel" uid="1.2.840.10008.5.1.4.1.2.1.2">
+      <allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+      <allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+      <allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+      <allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+    </sop-class>
+
+    <sop-class ref-id="MOVEStudyRootQueryRetrieveInformationModel" uid="1.2.840.10008.5.1.4.1.2.2.2">
+      <allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+      <allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+      <allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+      <allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+    </sop-class>
+
+    <sop-class ref-id="GETPatientRootQueryRetrieveInformationModel" uid="1.2.840.10008.5.1.4.1.2.1.3">
+      <allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+      <allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+      <allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+      <allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+    </sop-class>
+
+    <sop-class ref-id="GETStudyRootQueryRetrieveInformationModel" uid="1.2.840.10008.5.1.4.1.2.2.3">
+      <allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+      <allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+      <allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+      <allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+    </sop-class>
+
+    <include-storage-sop-classes />
+
+  </scu-sop-classes>
+
+  <scp-sop-classes>
+    
+    <sop-class ref-id="VerificationSOPClass" uid="1.2.840.10008.1.1">
+      <allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+      <allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+      <allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+      <allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+    </sop-class>
+
+    <sop-class ref-id="GETStudyRootQueryRetrieveInformationModel" uid="1.2.840.10008.5.1.4.1.2.2.3">
+      <allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+      <allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+      <allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+      <allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+    </sop-class>
+
+    <sop-class ref-id="MOVEPatientRootQueryRetrieveInformationModel" uid="1.2.840.10008.5.1.4.1.2.1.2">
+      <allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+      <allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+      <allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+      <allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+    </sop-class>
+
+    <sop-class ref-id="MOVEStudyRootQueryRetrieveInformationModel" uid="1.2.840.10008.5.1.4.1.2.2.2">
+      <allowed-transfer-syntax ref="LittleEndianImplicitTransferSyntax" />
+      <allowed-transfer-syntax ref="LittleEndianExplicitTransferSyntax" />
+      <allowed-transfer-syntax ref="BigEndianExplicitTransferSyntax" />
+      <allowed-transfer-syntax ref="DeflatedExplicitVRLittleEndianTransferSyntax" />
+    </sop-class>
+
+    <include-storage-sop-classes />
+    
+  </scp-sop-classes>
+	
+	<!-- Modality-TransferSyntax Map: Used for fast C-GET -->
+		
+	<modalities-map>
+	
+		<modality ref-id="ECG" descr="Electrocardiogram" >
+			<allowed-sop-class ref="HemodynamicWaveformStorage" />
+			<allowed-sop-class ref="TwelveLeadECGWaveformStorage" />
+			<allowed-sop-class ref="GeneralECGWaveformStorage" />
+			<allowed-sop-class ref="AmbulatoryECGWaveformStorage" />
+			<allowed-sop-class ref="CardiacElectrophysiologyWaveformStorage" />
+		</modality>	
+		
+		<modality ref-id="CR" descr="Computed Radiography" >
+			<allowed-sop-class ref="ComputedRadiographyImageStorage" />
+		</modality>
+		
+		<modality ref-id="CT" descr="Computed Tomography" >
+			<allowed-sop-class ref="CTImageStorage" />
+			<allowed-sop-class ref="SecondaryCaptureImageStorage" />
+			<allowed-sop-class ref="EnhancedCTImageStorage" />	
+			<allowed-sop-class ref="DigitalIntraOralXRayImageStorageForProcessing" />
+			<allowed-sop-class ref="DigitalIntraOralXRayImageStorageForPresentation" />
+		</modality>
+		
+		<modality ref-id="ES" descr ="Endoscopy" >
+			<allowed-sop-class ref="VLEndoscopicImageStorage" />
+			<allowed-sop-class ref="VideoEndoscopicImageStorage" />
+			<allowed-sop-class ref="VLPhotographicImageStorage" />
+			<allowed-sop-class ref="VideoPhotographicImageStorage" />
+			<allowed-sop-class ref="SecondaryCaptureImageStorage" />
+		</modality>
+		
+		<modality ref-id="XC" descr ="eXternal Camera" >
+			<allowed-sop-class ref="VLEndoscopicImageStorage" />
+			<allowed-sop-class ref="VideoEndoscopicImageStorage" />
+			<allowed-sop-class ref="VideoMicroscopicImageStorage" />
+			<allowed-sop-class ref="VLPhotographicImageStorage" />
+			<allowed-sop-class ref="VideoPhotographicImageStorage" />
+			<allowed-sop-class ref="SecondaryCaptureImageStorage" />
+		</modality>
+		
+		<modality ref-id="DM" descr="Digital Microscopy" >
+			<allowed-sop-class ref="VLMicroscopicImageStorage" />
+			<allowed-sop-class ref="VideoMicroscopicImageStorage" />
+			<allowed-sop-class ref="VLSlideCoordinatesMicroscopicImageStorage" />
+		</modality>
+		
+		<modality ref-id="DX" descr="Digital radiography" >
+			<allowed-sop-class ref="DigitalXRayImageStorageForPresentation" />
+			<allowed-sop-class ref="DigitalXRayImageStorageForProcessing" />
+			<allowed-sop-class ref="DigitalIntraOralXRayImageStorageForPresentation" />
+			<allowed-sop-class ref="DigitalIntraOralXRayImageStorageForProcessing" />
+      <allowed-sop-class ref="ComputedRadiographyImageStorage" />
+			<allowed-sop-class ref="XRayRadiofluoroscopicImageStorage" />
+		</modality>
+			
+		<modality ref-id="ES" descr="Endoscopy" >
+			<allowed-sop-class ref="VLEndoscopicImageStorage" />
+			<allowed-sop-class ref="VideoEndoscopicImageStorage" />
+		</modality>
+		
+		<modality ref-id="HC" descr="Hard Copy" >
+			<allowed-sop-class ref="HardcopyGrayscaleImageStorage" />
+			<allowed-sop-class ref="HardcopyColorImageStorage" />
+		</modality>
+		
+		<modality ref-id="HD" descr="Hemodynamics" >
+			<allowed-sop-class ref="HemodynamicWaveformStorage" />
+			<allowed-sop-class ref="ArterialPulseWaveformStorage" />
+			<allowed-sop-class ref="RespiratoryWaveformStorage" />
+			<allowed-sop-class ref="TwelveLeadECGWaveformStorage" />
+			<allowed-sop-class ref="GeneralECGWaveformStorage" />
+			<allowed-sop-class ref="AmbulatoryECGWaveformStorage" />
+			<allowed-sop-class ref="CardiacElectrophysiologyWaveformStorage" />
+		</modality>
+		
+		<modality ref-id="MG" descr="Mammography" >
+			<allowed-sop-class ref="SecondaryCaptureImageStorage" />
+			<allowed-sop-class ref="DigitalMammographyXRayImageStorageForPresentation" />
+			<allowed-sop-class ref="DigitalMammographyXRayImageStorageForProcessing" />
+		</modality>
+			
+		<modality ref-id="MR" descr="Magnetic Resonance" >
+			<allowed-sop-class ref="MRImageStorage" />
+			<allowed-sop-class ref="EnhancedMRImageStorage" />
+			<allowed-sop-class ref="MRSpectroscopyStorage" />
+			<allowed-sop-class ref="EnhancedMRColorImageStorage" />
+		</modality>
+		
+		<modality ref-id="NM" descr="Nuclear Medicine" >
+			<allowed-sop-class ref="NuclearMedicineImageStorage" />
+			<allowed-sop-class ref="SecondaryCaptureImageStorage" />
+			<allowed-sop-class ref="StandaloneCurveStorage" />
+		</modality>
+		
+		<modality ref-id="OT" descr="Other" >
+      <allowed-sop-class ref="SecondaryCaptureImageStorage" />
+			<allowed-sop-class ref="VLPhotographicImageStorage" />
+			<allowed-sop-class ref="VideoPhotographicImageStorage" />			
+			<allowed-sop-class ref="RawDataStorage" />
+		</modality>
+
+    <modality ref-id="DOC" descr="Document" >
+      <allowed-sop-class ref="SecondaryCaptureImageStorage" />
+      <allowed-sop-class ref="EncapsulatedPDFStorage" />
+      <allowed-sop-class ref="RawDataStorage" />
+    </modality>
+		
+		<modality ref-id="PET" descr="Positron Emission Tomography" >
+			<allowed-sop-class ref="PositronEmissionTomographyImageStorage" />
+		</modality>
+		
+		<modality ref-id="PT" descr="Positron Emission Tomography" >
+			<allowed-sop-class ref="PositronEmissionTomographyImageStorage" />
+		</modality>
+		
+		<modality ref-id="RF" descr="Radio Fluoroscopy" >
+			<allowed-sop-class ref="XRayRadiofluoroscopicImageStorage" />
+			<allowed-sop-class ref="DigitalIntraOralXRayImageStorageForProcessing" />
+			<allowed-sop-class ref="DigitalIntraOralXRayImageStorageForPresentation" />
+		</modality>
+	
+		<modality ref-id="RT" descr="Radiotherapy Image" >
+			<allowed-sop-class ref="RTImageStorage" />			
+		</modality>
+		
+		<modality ref-id="SR" descr="Structured Report" >
+			<allowed-sop-class ref="BasicTextSRStorage" />
+			<allowed-sop-class ref="EnhancedSRStorage" />
+			<allowed-sop-class ref="MammographyCADSRStorage" />
+			<allowed-sop-class ref="ComprehensiveSRStorage" />
+			<allowed-sop-class ref="KeyObjectSelectionDocumentStorage" />
+		</modality>
+		
+		<modality ref-id="SC" descr="Secondary Capture" >
+			<allowed-sop-class ref="SecondaryCaptureImageStorage" />
+			<allowed-sop-class ref="EncapsulatedPDFStorage" />
+			<allowed-sop-class ref="MultiframeSingleBitSecondaryCaptureImageStorage" />
+			<allowed-sop-class ref="MultiframeGrayscaleByteSecondaryCaptureImageStorage" />
+			<allowed-sop-class ref="MultiframeGrayscaleWordSecondaryCaptureImageStorage" />
+			<allowed-sop-class ref="MultiframeTrueColorSecondaryCaptureImageStorage" />
+		</modality>
+
+		
+		<modality ref-id="US" descr="Ultrasound" >
+			<allowed-sop-class ref="SecondaryCaptureImageStorage" />
+			<allowed-sop-class ref="UltrasoundImageStorage" />
+			<allowed-sop-class ref="UltrasoundMultiframeImageStorage" />
+			<allowed-sop-class ref="MultiframeSingleBitSecondaryCaptureImageStorage" />
+			<allowed-sop-class ref="MultiframeGrayscaleByteSecondaryCaptureImageStorage" />
+			<allowed-sop-class ref="MultiframeGrayscaleWordSecondaryCaptureImageStorage" />
+			<allowed-sop-class ref="MultiframeTrueColorSecondaryCaptureImageStorage" />
+      <allowed-sop-class ref="RetiredUltrasoundMultiframeImageStorage" />
+		</modality>
+		
+		<modality ref-id="XA" descr="X-Ray Angiography" >
+			<allowed-sop-class ref="SecondaryCaptureImageStorage" />
+			<allowed-sop-class ref="XRayAngiographicImageStorage" />
+			<allowed-sop-class ref="EnhancedXAImageStorage" />
+			<allowed-sop-class ref="XRayRadiofluoroscopicImageStorage" />
+			<allowed-sop-class ref="EnhancedXRFImageStorage" />
+			<allowed-sop-class ref="XRay3DAngiographicImageStorage" />
+			<allowed-sop-class ref="XRayRadiofluoroscopicImageStorage" />
+		</modality>
+		
+		<modality ref-id="XC" descr="eXternal Capture" >			
+			<allowed-sop-class ref="VLPhotographicImageStorage" />
+			<allowed-sop-class ref="VideoPhotographicImageStorage" />
+			<allowed-sop-class ref="VLEndoscopicImageStorage" />
+			<allowed-sop-class ref="VLMicroscopicImageStorage" />
+			<allowed-sop-class ref="VideoMicroscopicImageStorage" />
+			<!-- <allowed-sop-class ref="VLSlideCoordinatesMicroscopicImageStorage" /> -->
+		</modality>
+		
+		<modality ref-id="OCT" descr="Opthalmologic Computerized Tomography" >			
+			<allowed-sop-class ref="VLPhotographicImageStorage" />
+		</modality>
+	
+	</modalities-map>
+	
+</dicom-conformance>

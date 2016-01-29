@@ -1,0 +1,703 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="DebugDynamicPro|Win32">
+      <Configuration>DebugDynamicPro</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DebugDynamicPro|x64">
+      <Configuration>DebugDynamicPro</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DebugMonoliticOS|Win32">
+      <Configuration>DebugMonoliticOS</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DebugMonoliticOS|x64">
+      <Configuration>DebugMonoliticOS</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DebugMonoliticPro|Win32">
+      <Configuration>DebugMonoliticPro</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DebugMonoliticPro|x64">
+      <Configuration>DebugMonoliticPro</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseDynamicPro|Win32">
+      <Configuration>ReleaseDynamicPro</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseDynamicPro|x64">
+      <Configuration>ReleaseDynamicPro</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseMonoliticOpenSource|Win32">
+      <Configuration>ReleaseMonoliticOpenSource</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseMonoliticOpenSource|x64">
+      <Configuration>ReleaseMonoliticOpenSource</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseMonoliticPro|Win32">
+      <Configuration>ReleaseMonoliticPro</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseMonoliticPro|x64">
+      <Configuration>ReleaseMonoliticPro</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{489A2BBD-64A0-4E2F-B700-B18B71680593}</ProjectGuid>
+    <RootNamespace>dermatologia</RootNamespace>
+    <Keyword>ManagedCProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseMonoliticPro|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <CLRSupport>false</CLRSupport>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseMonoliticPro|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v90</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <CLRSupport>false</CLRSupport>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugMonoliticPro|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <CLRSupport>false</CLRSupport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugMonoliticOS|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <CLRSupport>false</CLRSupport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugMonoliticPro|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v90</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <CLRSupport>false</CLRSupport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugMonoliticOS|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v90</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <CLRSupport>false</CLRSupport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseMonoliticOpenSource|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <CLRSupport>false</CLRSupport>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseMonoliticOpenSource|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v90</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <CLRSupport>false</CLRSupport>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDynamicPro|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <CLRSupport>false</CLRSupport>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDynamicPro|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <CLRSupport>false</CLRSupport>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugDynamicPro|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <CLRSupport>false</CLRSupport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugDynamicPro|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <CLRSupport>false</CLRSupport>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseMonoliticPro|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseMonoliticPro|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugMonoliticPro|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugMonoliticOS|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugMonoliticPro|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugMonoliticOS|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseMonoliticOpenSource|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseMonoliticOpenSource|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDynamicPro|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDynamicPro|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugDynamicPro|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugDynamicPro|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>11.0.50727.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugDynamicPro|x64'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugDynamicPro|Win32'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDynamicPro|x64'">
+    <EnableManagedIncrementalBuild>true</EnableManagedIncrementalBuild>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDynamicPro|Win32'">
+    <EnableManagedIncrementalBuild>true</EnableManagedIncrementalBuild>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseMonoliticOpenSource|x64'">
+    <EnableManagedIncrementalBuild>true</EnableManagedIncrementalBuild>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseMonoliticOpenSource|Win32'">
+    <EnableManagedIncrementalBuild>true</EnableManagedIncrementalBuild>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugMonoliticPro|x64'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugMonoliticOS|x64'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugMonoliticPro|Win32'">
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugMonoliticOS|Win32'">
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseMonoliticPro|x64'">
+    <EnableManagedIncrementalBuild>true</EnableManagedIncrementalBuild>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseMonoliticPro|Win32'">
+    <EnableManagedIncrementalBuild>true</EnableManagedIncrementalBuild>
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugDynamicPro|x64'">
+    <CustomBuildStep>
+      <Command>cd $(OutDir)
+cd ..
+rundll32 Plugins\$(TargetFileName),BuildDescriptor Plugins $(TargetName)
+</Command>
+      <Inputs>$(OutDir)$(TargetFileName).dll;%(Inputs)</Inputs>
+      <Outputs>$(OutDir)$(TargetFileName).inf;%(Outputs)</Outputs>
+    </CustomBuildStep>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\cadxcore\VTKInria3D;..\cadxcore\VTKInria3D\wxVTK;..\cadxcore\wx\VTK;..\cadxcore\vtk;..\cadxcore\itk;..\cadxcore;..\visualizator;.\;..\..\lib\Windows-x64\WX-2.8.11\mswu;..\..\lib\Windows-x64\WX-2.8.11\include;..\..\lib\Windows-x64\VTK-5.10.0\include;..\..\lib\Windows-x64\ITK-3.20.0\include;..\..\lib\Windows-x64\ITK-3.20.0\include\Algorithms;..\..\lib\Windows-x64\ITK-3.20.0\include\BasicFilters;..\..\lib\Windows-x64\ITK-3.20.0\include\Common;..\..\lib\Windows-x64\ITK-3.20.0\include\IO;..\..\lib\Windows-x64\ITK-3.20.0\include\Utilities\DICOMParser;..\..\lib\Windows-x64\ITK-3.20.0\include\Utilities;..\..\lib\Windows-x64\ITK-3.20.0\include\Utilities\vxl\v3p\netlib;..\..\lib\Windows-x64\ITK-3.20.0\include\Utilities\vxl\vcl;..\..\lib\Windows-x64\ITK-3.20.0\include\Utilities\vxl\core;..\..\lib\Windows-x64\ITK-3.20.0\include\gdcm\src;..\..\lib\Windows-x64\cairo\include\cairo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;__WXMSW__;__WXDEBUG__;_WINDOWS;NOPCH;USING_MODULES;_CFE_;_GINKGO_DEBUG;CAIRO_WIN32_STATIC_BUILD;WXUSINGDLL;USE_PATCHED_LIBS;GINKGO_PRO;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>visustdafx.h</PrecompiledHeaderFile>
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ForcedIncludeFiles>visustdafx.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
+    <Link>
+      <AdditionalDependencies>wxbase28ud_net.lib;wxmsw28ud_aui.lib;wxmsw28ud_media.lib;wxmsw28ud_qa.lib;wxmsw28ud_richtext.lib;wxmsw28ud_xrc.lib;wxmsw28ud_adv.lib;wxmsw28ud_html.lib;wxbase28ud_xml.lib;wxmsw28ud_core.lib;wxbase28ud.lib;wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexud.lib;wxexpatd.lib;vtkCommon.lib;vtkRendering.lib;vtkexpat.lib;vtkFiltering.lib;vtkfreetype.lib;vtkftgl.lib;vtkGenericFiltering.lib;vtkGraphics.lib;vtkHybrid.lib;vtkImaging.lib;vtkIO.lib;vtkjpeg.lib;vtklibxml2.lib;vtkmetaio.lib;vtkNetCDF.lib;vtkpng.lib;vtktiff.lib;vtksys.lib;vtkzlib.lib;vtkVolumeRendering.lib;kernel32.lib;user32.lib;gdi32.lib;Msimg32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comctl32.lib;comdlg32.lib;advapi32.lib;snmpapi.lib;ws2_32.lib;rpcrt4.lib;winmm.lib;wsock32.lib;netapi32.lib;opengl32.lib;cairowin32.lib;crypt32.lib;ITKAlgorithms.lib;ITKBasicFilters.lib;ITKCommon.lib;ITKDicomParser.lib;ITKExpat.lib;ITKFEM.lib;ITKGDCM.lib;ITKIO.lib;ITKJPEG8.lib;ITKJPEG12.lib;ITKJPEG16.lib;ITKMetaIO.lib;ITKNiftiIO.lib;ITKNrrdIO.lib;ITKNumerics.lib;ITKOpenJPEG.lib;ITKPNG.lib;ITKSpatialObject.lib;ITKStatistics.lib;ITKSys.lib;ITKTIFF.lib;ITKV3P_Netlib.lib;ITKVCL.lib;ITKVNL.lib;ITKVNL_Algo.lib;ITKVNL_Inst.lib;ITKZlib.lib;ITKZNZ.lib;Iphlpapi.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\lib\Windows-x86\cairowin32\cairowin32\Debug\;..\..\lib\Windows-x86\WX-2.8.11\lib;..\..\lib\Windows-x86\VTK-5.10.0\lib\debug;..\..\lib\Windows-x86\ITK-3.20.0\lib\debug;Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AssemblyDebug>true</AssemblyDebug>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugDynamicPro|Win32'">
+    <CustomBuildStep>
+      <Command>cd $(OutDir)
+cd ..
+rundll32 Plugins\$(TargetFileName),BuildDescriptor Plugins $(TargetName)
+</Command>
+      <Inputs>$(OutDir)$(TargetFileName).dll;%(Inputs)</Inputs>
+      <Outputs>$(OutDir)$(TargetFileName).inf;%(Outputs)</Outputs>
+    </CustomBuildStep>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\cadxcore\VTKInria3D;..\cadxcore\VTKInria3D\vtkVISUManagement;..\cadxcore\VTKInria3D\wxVTK;..\cadxcore\wx\VTK;..\cadxcore\vtk;..\cadxcore\itk;..\cadxcore;.\;..\..\lib\Windows-x86\WX-2.8.11\mswu;..\..\lib\Windows-x86\WX-2.8.11\include;..\..\lib\Windows-x86\ITK-3.20.0\include;..\..\lib\Windows-x86\ITK-3.20.0\include\Algorithms;..\..\lib\Windows-x86\ITK-3.20.0\include\BasicFilters;..\..\lib\Windows-x86\ITK-3.20.0\include\Common;..\..\lib\Windows-x86\ITK-3.20.0\include\IO;..\..\lib\Windows-x86\ITK-3.20.0\include\Utilities\DICOMParser;..\..\lib\Windows-x86\ITK-3.20.0\include\Utilities;..\..\lib\Windows-x86\ITK-3.20.0\include\Utilities\vxl\v3p\netlib;..\..\lib\Windows-x86\ITK-3.20.0\include\Utilities\vxl\vcl;..\..\lib\Windows-x86\ITK-3.20.0\include\Utilities\vxl\core;..\..\lib\Windows-x86\VTK-5.10.0\include;..\..\lib\Windows-x86\openssl-1.0.0d\include;..\..\lib\Windows-x86\cairo\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;__WXMSW__;__WXDEBUG__;_WINDOWS;NOPCH;USING_MODULES;_CFE_;_GINKGO_DEBUG;CAIRO_WIN32_STATIC_BUILD;WXUSINGDLL;USE_PATCHED_LIBS;GINKGO_PRO;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>visustdafx.h</PrecompiledHeaderFile>
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ForcedIncludeFiles>visustdafx.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
+    <Link>
+      <AdditionalDependencies>wxbase28ud_net.lib;wxmsw28ud_aui.lib;wxmsw28ud_media.lib;wxmsw28ud_qa.lib;wxmsw28ud_richtext.lib;wxmsw28ud_xrc.lib;wxmsw28ud_adv.lib;wxmsw28ud_html.lib;wxbase28ud_xml.lib;wxmsw28ud_core.lib;wxbase28ud.lib;wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexud.lib;wxexpatd.lib;vtkCommon.lib;vtkRendering.lib;vtkexpat.lib;vtkFiltering.lib;vtkfreetype.lib;vtkftgl.lib;vtkGenericFiltering.lib;vtkGraphics.lib;vtkHybrid.lib;vtkImaging.lib;vtkIO.lib;vtkjpeg.lib;vtklibxml2.lib;vtkmetaio.lib;vtkNetCDF.lib;vtkpng.lib;vtktiff.lib;vtksys.lib;vtkzlib.lib;vtkVolumeRendering.lib;kernel32.lib;user32.lib;gdi32.lib;Msimg32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comctl32.lib;comdlg32.lib;advapi32.lib;snmpapi.lib;ws2_32.lib;rpcrt4.lib;winmm.lib;wsock32.lib;netapi32.lib;opengl32.lib;cairowin32.lib;crypt32.lib;ITKAlgorithms.lib;ITKBasicFilters.lib;ITKCommon.lib;ITKDicomParser.lib;ITKExpat.lib;ITKFEM.lib;ITKGDCM.lib;ITKIO.lib;ITKJPEG8.lib;ITKJPEG12.lib;ITKJPEG16.lib;ITKMetaIO.lib;ITKNiftiIO.lib;ITKNrrdIO.lib;ITKNumerics.lib;ITKOpenJPEG.lib;ITKPNG.lib;ITKSpatialObject.lib;ITKStatistics.lib;ITKSys.lib;ITKTIFF.lib;ITKV3P_Netlib.lib;ITKVCL.lib;ITKVNL.lib;ITKVNL_Algo.lib;ITKVNL_Inst.lib;ITKZlib.lib;ITKZNZ.lib;Iphlpapi.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\lib\Windows-x86\cairowin32\cairowin32\Debug\;..\..\lib\Windows-x86\WX-2.8.11\lib;..\..\lib\Windows-x86\VTK-5.10.0\lib\debug;..\..\lib\Windows-x86\ITK-3.20.0\lib\debug;Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AssemblyDebug>true</AssemblyDebug>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDynamicPro|x64'">
+    <CustomBuildStep>
+      <Command>cd $(OutDir)
+cd ..
+rundll32 Plugins\$(TargetFileName),BuildDescriptor Plugins $(TargetName)
+</Command>
+      <Inputs>$(OutDir)$(TargetFileName).dll;%(Inputs)</Inputs>
+      <Outputs>$(OutDir)$(TargetFileName).inf;%(Outputs)</Outputs>
+    </CustomBuildStep>
+    <ClCompile>
+      <Optimization>Full</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>..\cadxcore\VTKInria3D;..\cadxcore\VTKInria3D\wxVTK;..\cadxcore\wx\VTK;..\cadxcore\vtk;..\cadxcore\itk;..\cadxcore;..\visualizator;.\;..\..\lib\Windows-x64\WX-2.8.11\mswu;..\..\lib\Windows-x64\WX-2.8.11\include;..\..\lib\Windows-x64\VTK-5.10.0\include;..\..\lib\Windows-x64\ITK-3.20.0\include;..\..\lib\Windows-x64\ITK-3.20.0\include\Algorithms;..\..\lib\Windows-x64\ITK-3.20.0\include\BasicFilters;..\..\lib\Windows-x64\ITK-3.20.0\include\Common;..\..\lib\Windows-x64\ITK-3.20.0\include\IO;..\..\lib\Windows-x64\ITK-3.20.0\include\Utilities\DICOMParser;..\..\lib\Windows-x64\ITK-3.20.0\include\Utilities;..\..\lib\Windows-x64\ITK-3.20.0\include\Utilities\vxl\v3p\netlib;..\..\lib\Windows-x64\ITK-3.20.0\include\Utilities\vxl\vcl;..\..\lib\Windows-x64\ITK-3.20.0\include\Utilities\vxl\core;..\..\lib\Windows-x64\ITK-3.20.0\include\gdcm\src;..\..\lib\Windows-x64\cairo\include\cairo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;__WXMSW__;_WINDOWS;NOPCH;USING_MODULES;_CFE_;CAIRO_WIN32_STATIC_BUILD;WXUSINGDLL;USE_PATCHED_LIBS;GINKGO_PRO;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>false</StringPooling>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <FloatingPointModel>Precise</FloatingPointModel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>visustdafx.h</PrecompiledHeaderFile>
+      <BrowseInformation>
+      </BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ForcedIncludeFiles>visustdafx.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
+    <Link>
+      <AdditionalDependencies>wxbase28u_net.lib;wxmsw28u_aui.lib;wxmsw28u_media.lib;wxmsw28u_qa.lib;wxmsw28u_richtext.lib;wxmsw28u_xrc.lib;wxmsw28u_adv.lib;wxmsw28u_html.lib;wxbase28u_xml.lib;wxmsw28u_core.lib;wxbase28u.lib;wxtiff.lib;wxjpeg.lib;wxpng.lib;wxzlib.lib;wxregexu.lib;wxexpat.lib;vtkCommon.lib;vtkRendering.lib;vtkexpat.lib;vtkFiltering.lib;vtkfreetype.lib;vtkftgl.lib;vtkGenericFiltering.lib;vtkGraphics.lib;vtkHybrid.lib;vtkImaging.lib;vtkIO.lib;vtkjpeg.lib;vtklibxml2.lib;vtkmetaio.lib;vtkNetCDF.lib;vtkpng.lib;vtktiff.lib;vtksys.lib;vtkzlib.lib;vtkVolumeRendering.lib;kernel32.lib;user32.lib;gdi32.lib;Msimg32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comctl32.lib;comdlg32.lib;advapi32.lib;snmpapi.lib;ws2_32.lib;rpcrt4.lib;winmm.lib;wsock32.lib;netapi32.lib;opengl32.lib;cairowin32.lib;crypt32.lib;ITKAlgorithms.lib;ITKBasicFilters.lib;ITKCommon.lib;ITKDicomParser.lib;ITKExpat.lib;ITKFEM.lib;ITKGDCM.lib;ITKIO.lib;ITKJPEG8.lib;ITKJPEG12.lib;ITKJPEG16.lib;ITKMetaIO.lib;ITKNiftiIO.lib;ITKNrrdIO.lib;ITKNumerics.lib;ITKOpenJPEG.lib;ITKPNG.lib;ITKSpatialObject.lib;ITKStatistics.lib;ITKSys.lib;ITKTIFF.lib;ITKV3P_Netlib.lib;ITKVCL.lib;ITKVNL.lib;ITKVNL_Algo.lib;ITKVNL_Inst.lib;ITKZlib.lib;ITKZNZ.lib;Iphlpapi.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\lib\Windows-x86\cairowin32\cairowin32\Release;..\..\lib\Windows-x86\WX-2.8.11\lib;..\..\lib\Windows-x86\VTK-5.10.0\lib\release;..\..\lib\Windows-x86\ITK-3.20.0\lib\release;Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>
+      </OptimizeReferences>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDynamicPro|Win32'">
+    <CustomBuildStep>
+      <Command>cd $(OutDir)
+cd ..
+rundll32 Plugins\$(TargetFileName),BuildDescriptor Plugins $(TargetName)
+</Command>
+      <Inputs>$(OutDir)$(TargetFileName).dll;%(Inputs)</Inputs>
+      <Outputs>$(OutDir)$(TargetFileName).inf;%(Outputs)</Outputs>
+    </CustomBuildStep>
+    <ClCompile>
+      <Optimization>Full</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>..\cadxcore\VTKInria3D;..\cadxcore\VTKInria3D\vtkVISUManagement;..\cadxcore\VTKInria3D\wxVTK;..\cadxcore\wx\VTK;..\cadxcore\vtk;..\cadxcore\itk;..\cadxcore;.\;..\..\lib\Windows-x86\WX-2.8.11\mswu;..\..\lib\Windows-x86\WX-2.8.11\include;..\..\lib\Windows-x86\ITK-3.20.0\include;..\..\lib\Windows-x86\ITK-3.20.0\include\Algorithms;..\..\lib\Windows-x86\ITK-3.20.0\include\BasicFilters;..\..\lib\Windows-x86\ITK-3.20.0\include\Common;..\..\lib\Windows-x86\ITK-3.20.0\include\IO;..\..\lib\Windows-x86\ITK-3.20.0\include\Utilities\DICOMParser;..\..\lib\Windows-x86\ITK-3.20.0\include\Utilities;..\..\lib\Windows-x86\ITK-3.20.0\include\Utilities\vxl\v3p\netlib;..\..\lib\Windows-x86\ITK-3.20.0\include\Utilities\vxl\vcl;..\..\lib\Windows-x86\ITK-3.20.0\include\Utilities\vxl\core;..\..\lib\Windows-x86\VTK-5.10.0\include;..\..\lib\Windows-x86\openssl-1.0.0d\include;..\..\lib\Windows-x86\cairo\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;__WXMSW__;_WINDOWS;NOPCH;USING_MODULES;_CFE_;CAIRO_WIN32_STATIC_BUILD;WXUSINGDLL;USE_PATCHED_LIBS;GINKGO_PRO;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>false</StringPooling>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <FloatingPointModel>Precise</FloatingPointModel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>visustdafx.h</PrecompiledHeaderFile>
+      <BrowseInformation>
+      </BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ForcedIncludeFiles>visustdafx.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
+    <Link>
+      <AdditionalDependencies>wxbase28u_net.lib;wxmsw28u_aui.lib;wxmsw28u_media.lib;wxmsw28u_qa.lib;wxmsw28u_richtext.lib;wxmsw28u_xrc.lib;wxmsw28u_adv.lib;wxmsw28u_html.lib;wxbase28u_xml.lib;wxmsw28u_core.lib;wxbase28u.lib;wxtiff.lib;wxjpeg.lib;wxpng.lib;wxzlib.lib;wxregexu.lib;wxexpat.lib;vtkCommon.lib;vtkRendering.lib;vtkexpat.lib;vtkFiltering.lib;vtkfreetype.lib;vtkftgl.lib;vtkGenericFiltering.lib;vtkGraphics.lib;vtkHybrid.lib;vtkImaging.lib;vtkIO.lib;vtkjpeg.lib;vtklibxml2.lib;vtkmetaio.lib;vtkNetCDF.lib;vtkpng.lib;vtktiff.lib;vtksys.lib;vtkzlib.lib;vtkVolumeRendering.lib;kernel32.lib;user32.lib;gdi32.lib;Msimg32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comctl32.lib;comdlg32.lib;advapi32.lib;snmpapi.lib;ws2_32.lib;rpcrt4.lib;winmm.lib;wsock32.lib;netapi32.lib;opengl32.lib;cairowin32.lib;crypt32.lib;ITKAlgorithms.lib;ITKBasicFilters.lib;ITKCommon.lib;ITKDicomParser.lib;ITKExpat.lib;ITKFEM.lib;ITKGDCM.lib;ITKIO.lib;ITKJPEG8.lib;ITKJPEG12.lib;ITKJPEG16.lib;ITKMetaIO.lib;ITKNiftiIO.lib;ITKNrrdIO.lib;ITKNumerics.lib;ITKOpenJPEG.lib;ITKPNG.lib;ITKSpatialObject.lib;ITKStatistics.lib;ITKSys.lib;ITKTIFF.lib;ITKV3P_Netlib.lib;ITKVCL.lib;ITKVNL.lib;ITKVNL_Algo.lib;ITKVNL_Inst.lib;ITKZlib.lib;ITKZNZ.lib;Iphlpapi.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\lib\Windows-x86\cairowin32\cairowin32\Release;..\..\lib\Windows-x86\WX-2.8.11\lib;..\..\lib\Windows-x86\VTK-5.10.0\lib\release;..\..\lib\Windows-x86\ITK-3.20.0\lib\release;Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>
+      </OptimizeReferences>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseMonoliticOpenSource|x64'">
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <ClCompile>
+      <Optimization>Full</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>..\cadxcore\VTKInria3D;..\cadxcore\VTKInria3D\wxVTK;..\cadxcore\wx\VTK;..\cadxcore\vtk;..\cadxcore\itk;..\cadxcore;..\visualizator;.\;..\..\lib\Windows-x64\WX-2.8.11\mswu;..\..\lib\Windows-x64\WX-2.8.11\include;..\..\lib\Windows-x64\VTK-5.10.0\include;..\..\lib\Windows-x64\ITK-3.20.0\include;..\..\lib\Windows-x64\ITK-3.20.0\include\Algorithms;..\..\lib\Windows-x64\ITK-3.20.0\include\BasicFilters;..\..\lib\Windows-x64\ITK-3.20.0\include\Common;..\..\lib\Windows-x64\ITK-3.20.0\include\IO;..\..\lib\Windows-x64\ITK-3.20.0\include\Utilities\DICOMParser;..\..\lib\Windows-x64\ITK-3.20.0\include\Utilities;..\..\lib\Windows-x64\ITK-3.20.0\include\Utilities\vxl\v3p\netlib;..\..\lib\Windows-x64\ITK-3.20.0\include\Utilities\vxl\vcl;..\..\lib\Windows-x64\ITK-3.20.0\include\Utilities\vxl\core;..\..\lib\Windows-x64\ITK-3.20.0\include\gdcm\src;..\..\lib\Windows-x64\cairo\include\cairo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;__WXMSW__;_WINDOWS;NOPCH;USING_MODULES;_CFE_;CAIRO_WIN32_STATIC_BUILD;WXUSINGDLL;USE_PATCHED_LIBS;MONOLITIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <FloatingPointModel>Precise</FloatingPointModel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>visustdafx.h</PrecompiledHeaderFile>
+      <BrowseInformation>
+      </BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ForcedIncludeFiles>visustdafx.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseMonoliticOpenSource|Win32'">
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <ClCompile>
+      <Optimization>Full</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>..\cadxcore\VTKInria3D;..\cadxcore\VTKInria3D\vtkVISUManagement;..\cadxcore\VTKInria3D\wxVTK;..\cadxcore\wx\VTK;..\cadxcore\vtk;..\cadxcore\itk;..\cadxcore;.\;..\..\lib\Windows-x86\WX-3.0.1\mswu;..\..\lib\Windows-x86\WX-3.0.1\include;..\..\lib\Windows-x86\ITK-3.20.0\include;..\..\lib\Windows-x86\ITK-3.20.0\include\Algorithms;..\..\lib\Windows-x86\ITK-3.20.0\include\BasicFilters;..\..\lib\Windows-x86\ITK-3.20.0\include\Common;..\..\lib\Windows-x86\ITK-3.20.0\include\IO;..\..\lib\Windows-x86\ITK-3.20.0\include\Utilities\DICOMParser;..\..\lib\Windows-x86\ITK-3.20.0\include\Utilities;..\..\lib\Windows-x86\ITK-3.20.0\include\Utilities\vxl\v3p\netlib;..\..\lib\Windows-x86\ITK-3.20.0\include\Utilities\vxl\vcl;..\..\lib\Windows-x86\ITK-3.20.0\include\Utilities\vxl\core;..\..\lib\Windows-x86\VTK-5.10.0\include;..\..\lib\Windows-x86\openssl-1.0.0d\include;..\..\lib\Windows-x86\cairo\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;__WXMSW__;_WINDOWS;NOPCH;USING_MODULES;_CFE_;CAIRO_WIN32_STATIC_BUILD;USE_PATCHED_LIBS;MONOLITIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <FloatingPointModel>Precise</FloatingPointModel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>visustdafx.h</PrecompiledHeaderFile>
+      <BrowseInformation>
+      </BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ForcedIncludeFiles>visustdafx.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugMonoliticPro|x64'">
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\cadxcore\VTKInria3D;..\cadxcore\VTKInria3D\wxVTK;..\cadxcore\wx\VTK;..\cadxcore\vtk;..\cadxcore\itk;..\cadxcore;..\visualizator;.\;..\..\lib\Windows-x64\WX-3.0.1\mswud;..\..\lib\Windows-x64\WX-3.0.1\include;..\..\lib\Windows-x64\VTK-5.10.0\include;..\..\lib\Windows-x64\ITK-3.20.0\include;..\..\lib\Windows-x64\ITK-3.20.0\include\Algorithms;..\..\lib\Windows-x64\ITK-3.20.0\include\BasicFilters;..\..\lib\Windows-x64\ITK-3.20.0\include\Common;..\..\lib\Windows-x64\ITK-3.20.0\include\IO;..\..\lib\Windows-x64\ITK-3.20.0\include\Utilities\DICOMParser;..\..\lib\Windows-x64\ITK-3.20.0\include\Utilities;..\..\lib\Windows-x64\ITK-3.20.0\include\Utilities\vxl\v3p\netlib;..\..\lib\Windows-x64\ITK-3.20.0\include\Utilities\vxl\vcl;..\..\lib\Windows-x64\ITK-3.20.0\include\Utilities\vxl\core;..\..\lib\Windows-x64\ITK-3.20.0\include\gdcm\src;..\..\lib\Windows-x64\cairo\include\cairo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;__WXMSW__;__WXDEBUG__;_WINDOWS;NOPCH;USING_MODULES;_CFE_;_GINKGO_DEBUG;CAIRO_WIN32_STATIC_BUILD;USE_PATCHED_LIBS;GINKGO_PRO;MONOLITIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>visustdafx.h</PrecompiledHeaderFile>
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ForcedIncludeFiles>visustdafx.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
+      <MinimalRebuild>true</MinimalRebuild>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+    </ClCompile>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugMonoliticOS|x64'">
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\cadxcore\VTKInria3D;..\cadxcore\VTKInria3D\wxVTK;..\cadxcore\wx\VTK;..\cadxcore\vtk;..\cadxcore\itk;..\cadxcore;..\visualizator;.\;..\..\lib\Windows-x64\WX-3.0.0\mswud;..\..\lib\Windows-x64\WX-3.0.0\include;..\..\lib\Windows-x64\VTK-5.10.0\include;..\..\lib\Windows-x64\ITK-3.20.0\include;..\..\lib\Windows-x64\ITK-3.20.0\include\Algorithms;..\..\lib\Windows-x64\ITK-3.20.0\include\BasicFilters;..\..\lib\Windows-x64\ITK-3.20.0\include\Common;..\..\lib\Windows-x64\ITK-3.20.0\include\IO;..\..\lib\Windows-x64\ITK-3.20.0\include\Utilities\DICOMParser;..\..\lib\Windows-x64\ITK-3.20.0\include\Utilities;..\..\lib\Windows-x64\ITK-3.20.0\include\Utilities\vxl\v3p\netlib;..\..\lib\Windows-x64\ITK-3.20.0\include\Utilities\vxl\vcl;..\..\lib\Windows-x64\ITK-3.20.0\include\Utilities\vxl\core;..\..\lib\Windows-x64\ITK-3.20.0\include\gdcm\src;..\..\lib\Windows-x64\cairo\include\cairo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;__WXMSW__;__WXDEBUG__;_WINDOWS;NOPCH;USING_MODULES;_CFE_;_GINKGO_DEBUG;CAIRO_WIN32_STATIC_BUILD;USE_PATCHED_LIBS;GINKGO_PRO;MONOLITIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>visustdafx.h</PrecompiledHeaderFile>
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ForcedIncludeFiles>visustdafx.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
+      <MinimalRebuild>true</MinimalRebuild>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+    </ClCompile>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugMonoliticPro|Win32'">
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\cadxcore\VTKInria3D;..\cadxcore\VTKInria3D\vtkVISUManagement;..\cadxcore\VTKInria3D\wxVTK;..\cadxcore\wx\VTK;..\cadxcore\vtk;..\cadxcore\itk;..\cadxcore;.\;..\..\lib\Windows-x86\WX-3.0.1\mswud;..\..\lib\Windows-x86\WX-3.0.1\include;..\..\lib\Windows-x86\ITK-3.20.0\include;..\..\lib\Windows-x86\ITK-3.20.0\include\Algorithms;..\..\lib\Windows-x86\ITK-3.20.0\include\BasicFilters;..\..\lib\Windows-x86\ITK-3.20.0\include\Common;..\..\lib\Windows-x86\ITK-3.20.0\include\IO;..\..\lib\Windows-x86\ITK-3.20.0\include\Utilities\DICOMParser;..\..\lib\Windows-x86\ITK-3.20.0\include\Utilities;..\..\lib\Windows-x86\ITK-3.20.0\include\Utilities\vxl\v3p\netlib;..\..\lib\Windows-x86\ITK-3.20.0\include\Utilities\vxl\vcl;..\..\lib\Windows-x86\ITK-3.20.0\include\Utilities\vxl\core;..\..\lib\Windows-x86\VTK-5.10.0\include;..\..\lib\Windows-x86\openssl-1.0.0d\include;..\..\lib\Windows-x86\cairo\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;__WXMSW__;__WXDEBUG__;_WINDOWS;NOPCH;USING_MODULES;_CFE_;_GINKGO_DEBUG;CAIRO_WIN32_STATIC_BUILD;USE_PATCHED_LIBS;GINKGO_PRO;MONOLITIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>visustdafx.h</PrecompiledHeaderFile>
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ForcedIncludeFiles>visustdafx.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugMonoliticOS|Win32'">
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\cadxcore\VTKInria3D;..\cadxcore\VTKInria3D\vtkVISUManagement;..\cadxcore\VTKInria3D\wxVTK;..\cadxcore\wx\VTK;..\cadxcore\vtk;..\cadxcore\itk;..\cadxcore;.\;..\..\lib\Windows-x86\WX-3.0.1\mswud;..\..\lib\Windows-x86\WX-3.0.1\include;..\..\lib\Windows-x86\ITK-3.20.0\include;..\..\lib\Windows-x86\ITK-3.20.0\include\Algorithms;..\..\lib\Windows-x86\ITK-3.20.0\include\BasicFilters;..\..\lib\Windows-x86\ITK-3.20.0\include\Common;..\..\lib\Windows-x86\ITK-3.20.0\include\IO;..\..\lib\Windows-x86\ITK-3.20.0\include\Utilities\DICOMParser;..\..\lib\Windows-x86\ITK-3.20.0\include\Utilities;..\..\lib\Windows-x86\ITK-3.20.0\include\Utilities\vxl\v3p\netlib;..\..\lib\Windows-x86\ITK-3.20.0\include\Utilities\vxl\vcl;..\..\lib\Windows-x86\ITK-3.20.0\include\Utilities\vxl\core;..\..\lib\Windows-x86\VTK-5.10.0\include;..\..\lib\Windows-x86\openssl-1.0.0d\include;..\..\lib\Windows-x86\cairo\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;__WXMSW__;__WXDEBUG__;_WINDOWS;NOPCH;USING_MODULES;_CFE_;_GINKGO_DEBUG;CAIRO_WIN32_STATIC_BUILD;USE_PATCHED_LIBS;MONOLITIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>visustdafx.h</PrecompiledHeaderFile>
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ForcedIncludeFiles>visustdafx.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseMonoliticPro|x64'">
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <ClCompile>
+      <Optimization>Full</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>..\cadxcore\VTKInria3D;..\cadxcore\VTKInria3D\wxVTK;..\cadxcore\wx\VTK;..\cadxcore\vtk;..\cadxcore\itk;..\cadxcore;..\visualizator;.\;..\..\lib\Windows-x64\WX-3.0.1\mswu;..\..\lib\Windows-x64\WX-3.0.1\include;..\..\lib\Windows-x64\VTK-5.10.0\include;..\..\lib\Windows-x64\ITK-3.20.0\include;..\..\lib\Windows-x64\ITK-3.20.0\include\Algorithms;..\..\lib\Windows-x64\ITK-3.20.0\include\BasicFilters;..\..\lib\Windows-x64\ITK-3.20.0\include\Common;..\..\lib\Windows-x64\ITK-3.20.0\include\IO;..\..\lib\Windows-x64\ITK-3.20.0\include\Utilities\DICOMParser;..\..\lib\Windows-x64\ITK-3.20.0\include\Utilities;..\..\lib\Windows-x64\ITK-3.20.0\include\Utilities\vxl\v3p\netlib;..\..\lib\Windows-x64\ITK-3.20.0\include\Utilities\vxl\vcl;..\..\lib\Windows-x64\ITK-3.20.0\include\Utilities\vxl\core;..\..\lib\Windows-x64\ITK-3.20.0\include\gdcm\src;..\..\lib\Windows-x64\cairo\include\cairo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;__WXMSW__;_WINDOWS;NOPCH;USING_MODULES;_CFE_;CAIRO_WIN32_STATIC_BUILD;USE_PATCHED_LIBS;GINKGO_PRO;MONOLITIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>false</StringPooling>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <FloatingPointModel>Precise</FloatingPointModel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>visustdafx.h</PrecompiledHeaderFile>
+      <BrowseInformation>
+      </BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ForcedIncludeFiles>visustdafx.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseMonoliticPro|Win32'">
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <ClCompile>
+      <Optimization>Full</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>..\cadxcore\VTKInria3D;..\cadxcore\VTKInria3D\vtkVISUManagement;..\cadxcore\VTKInria3D\wxVTK;..\cadxcore\wx\VTK;..\cadxcore\vtk;..\cadxcore\itk;..\cadxcore;.\;..\..\lib\Windows-x86\WX-3.0.1\mswu;..\..\lib\Windows-x86\WX-3.0.1\include;..\..\lib\Windows-x86\ITK-3.20.0\include;..\..\lib\Windows-x86\ITK-3.20.0\include\Algorithms;..\..\lib\Windows-x86\ITK-3.20.0\include\BasicFilters;..\..\lib\Windows-x86\ITK-3.20.0\include\Common;..\..\lib\Windows-x86\ITK-3.20.0\include\IO;..\..\lib\Windows-x86\ITK-3.20.0\include\Utilities\DICOMParser;..\..\lib\Windows-x86\ITK-3.20.0\include\Utilities;..\..\lib\Windows-x86\ITK-3.20.0\include\Utilities\vxl\v3p\netlib;..\..\lib\Windows-x86\ITK-3.20.0\include\Utilities\vxl\vcl;..\..\lib\Windows-x86\ITK-3.20.0\include\Utilities\vxl\core;..\..\lib\Windows-x86\VTK-5.10.0\include;..\..\lib\Windows-x86\openssl-1.0.0d\include;..\..\lib\Windows-x86\cairo\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;__WXMSW__;_WINDOWS;NOPCH;USING_MODULES;_CFE_;CAIRO_WIN32_STATIC_BUILD;USE_PATCHED_LIBS;GINKGO_PRO;MONOLITIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>false</StringPooling>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <FloatingPointModel>Precise</FloatingPointModel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>visustdafx.h</PrecompiledHeaderFile>
+      <BrowseInformation>
+      </BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ForcedIncludeFiles>visustdafx.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="resources\visualizatorresourcesmanager.cpp" />
+    <ClCompile Include="visualizator.cpp" />
+    <ClCompile Include="visualizator\export\tools\iecgruletool.cpp" />
+    <ClCompile Include="visualizator\tools\ecgruletool.cpp" />
+    <ClCompile Include="visualizator\widgets\wecgrule.cpp" />
+    <ClCompile Include="visustdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugMonoliticPro|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugMonoliticOS|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugMonoliticPro|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugMonoliticOS|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseDynamicPro|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseDynamicPro|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseMonoliticOpenSource|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseMonoliticOpenSource|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseMonoliticPro|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseMonoliticPro|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="visualizator\controllers\visualizatorcontroller.cpp" />
+    <ClCompile Include="visualizator\dialogos\contenedorherramientas.cpp" />
+    <ClCompile Include="visualizator\dialogos\panelesherramientasaprimariabase.cpp" />
+    <ClCompile Include="visualizator\dialogos\importacion\selectimagesimportationvisualizator.cpp" />
+    <ClCompile Include="visualizator\vistas\vista2d.cpp" />
+    <ClCompile Include="visualizator\vistas\waveformview.cpp" />
+    <ClCompile Include="visualizator\wxvtk\gvistacompleja.cpp" />
+    <ClCompile Include="visualizator\wxvtk\gvistasimple.cpp" />
+    <ClCompile Include="visualizator\wxvtk\gwaveformview.cpp" />
+    <ClCompile Include="visualizator\wxvtk\previewpanelvisualizator.cpp" />
+    <ClCompile Include="visualizator\wxvtk\visualizatorviews.cpp" />
+    <ClCompile Include="visualizator\estudios\ecgstudy.cpp" />
+    <ClCompile Include="visualizator\estudios\globalmeasurement.cpp" />
+    <ClCompile Include="visualizator\estudios\globalmeasurements.cpp" />
+    <ClCompile Include="visualizator\estudios\visualizatorstudy.cpp" />
+    <ClCompile Include="visualizator\export\contracts\ioverlayscontract.cpp" />
+    <ClCompile Include="visualizator\export\contracts\ioverlayscontractable.cpp" />
+    <ClCompile Include="visualizator\export\tools\ioverlaystool.cpp" />
+    <ClCompile Include="visualizator\tools\overlaystool.cpp" />
+    <ClCompile Include="visualizator\widgets\wecg.cpp" />
+    <ClCompile Include="visualizator_test\visualizatortest.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resources\visualizatorresourcesmanager.h" />
+    <ClInclude Include="visualizator.h" />
+    <ClInclude Include="visualizator\export\tools\iecgruletool.h" />
+    <ClInclude Include="visualizator\tools\ecgruletool.h" />
+    <ClInclude Include="visualizator\widgets\wecgrule.h" />
+    <ClInclude Include="visustdafx.h" />
+    <ClInclude Include="visualizator\license.h" />
+    <ClInclude Include="visualizator\controllers\visualizatorcontroller.h" />
+    <ClInclude Include="visualizator\dialogos\contenedorherramientas.h" />
+    <ClInclude Include="visualizator\dialogos\panelesherramientasaprimariabase.h" />
+    <ClInclude Include="visualizator\dialogos\importacion\selectimagesimportationvisualizator.h" />
+    <ClInclude Include="visualizator\vistas\vista2d.h" />
+    <ClInclude Include="visualizator\vistas\waveformview.h" />
+    <ClInclude Include="visualizator\wxvtk\gvistacompleja.h" />
+    <ClInclude Include="visualizator\wxvtk\gvistasimple.h" />
+    <ClInclude Include="visualizator\wxvtk\gwaveformview.h" />
+    <ClInclude Include="visualizator\wxvtk\previewpanelvisualizator.h" />
+    <ClInclude Include="visualizator\wxvtk\visualizatorviews.h" />
+    <ClInclude Include="visualizator\eventos\changeposition.h" />
+    <ClInclude Include="visualizator\eventos\overlays.h" />
+    <ClInclude Include="visualizator\eventos\sincronizacion.h" />
+    <ClInclude Include="visualizator\eventos\visualizatorevents.h" />
+    <ClInclude Include="visualizator\eventos\zoom.h" />
+    <ClInclude Include="visualizator\estudios\ecgstudy.h" />
+    <ClInclude Include="visualizator\estudios\globalmeasurement.h" />
+    <ClInclude Include="visualizator\estudios\globalmeasurements.h" />
+    <ClInclude Include="visualizator\estudios\overlay.h" />
+    <ClInclude Include="visualizator\estudios\visualizatorstudy.h" />
+    <ClInclude Include="visualizator\export\contracts\ioverlayscontract.h" />
+    <ClInclude Include="visualizator\export\contracts\ioverlayscontractable.h" />
+    <ClInclude Include="visualizator\export\tools\ioverlaystool.h" />
+    <ClInclude Include="visualizator\tools\overlaystool.h" />
+    <ClInclude Include="visualizator\widgets\wecg.h" />
+    <ClInclude Include="visualizator_test\visualizatortest.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\cadxcore\cadxcore.vcxproj">
+      <Project>{51617602-e33c-4a52-941e-3e3302de4447}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,15 @@
+#====================================================
+# license: LGPL v3
+#====================================================
+
+[Desktop Entry]
+Type=Application
+Name=Ginkgo CADx
+GenericName=DICOM Viewer
+Comment=Medical Image (DICOM) Viewer
+Icon=ginkgocadx
+TryExec=ginkgocadx
+Exec=/usr/bin/ginkgocadx %F
+Terminal=false
+Categories=Graphics;MedicalSoftware;Science;
+MimeType=application/dicom;

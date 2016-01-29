@@ -1,0 +1,408 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ginkgocadx\n"
+"Report-Msgid-Bugs-To: ginkgo@metaemotion.com\n"
+"POT-Creation-Date: 2014-06-11 15:54+0100\n"
+"PO-Revision-Date: 2014-06-11 15:54+0100\n"
+"Last-Translator: Carlos Barrales Ruiz <carlos.barrales@metaemotion.com>\n"
+"Language-Team: French <fr@li.org>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.5\n"
+"X-Launchpad-Export-Date: 2012-04-24 11:40+0000\n"
+"X-Poedit-Basepath: ../../\n"
+"X-Poedit-KeywordsList: _;_Std\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: resources/visualizatorresourcesmanager.cpp:37
+msgid "Unable to load PNG bitmap resource"
+msgstr "Impossible de charger la ressource bitmap PNG"
+
+#: visualizator.cpp:62
+msgid "Ginkgo CADx visualizator is Open Source"
+msgstr "Ginkgo CADx visualizator est Open Source"
+
+#: visualizator.cpp:62
+msgid "Info"
+msgstr "Info"
+
+#: visualizator/controllers/visualizatorcontroller.cpp:102
+#: visualizator/controllers/visualizatorcontroller.cpp:103
+#: visualizator/controllers/visualizatorcontroller.cpp:104
+msgid "Ginkgo CADx viewer"
+msgstr "Visualisateur Ginkgo CADx"
+
+#: visualizator/controllers/visualizatorcontroller.cpp:102
+msgid "Simple importation of images"
+msgstr "Import d'image simple"
+
+#: visualizator/controllers/visualizatorcontroller.cpp:103
+msgid "Medical viewer"
+msgstr "Visualisateur médical"
+
+#: visualizator/controllers/visualizatorcontroller.cpp:104
+#: visualizator/controllers/visualizatorcontroller.cpp:199
+#: visualizator/controllers/visualizatorcontroller.cpp:332
+msgid "Waveform viewer"
+msgstr "Visualisateur de courbe"
+
+#: visualizator/controllers/visualizatorcontroller.cpp:107
+msgid "Default importer"
+msgstr "Importeur par défaut"
+
+#: visualizator/controllers/visualizatorcontroller.cpp:110
+msgid "Ginkgo CADx Image Report"
+msgstr "Rapport d'image Ginkgo CADx"
+
+#: visualizator/controllers/visualizatorcontroller.cpp:189
+#: visualizator/controllers/visualizatorcontroller.cpp:298
+msgid "Medical Image Viewer"
+msgstr "Visualisateur d'image médical"
+
+#: visualizator/controllers/visualizatorcontroller.cpp:318
+#: visualizator/controllers/visualizatorcontroller.cpp:326
+#: visualizator/controllers/visualizatorcontroller.cpp:354
+#: visualizator/controllers/visualizatorcontroller.cpp:362
+msgid "Error opening study"
+msgstr "Erreur à l'ouverture du travail"
+
+#: visualizator/dialogos/importacion/selectimagesimportationvisualizator.cpp:86
+msgid "Performing tasks of integration ..."
+msgstr "Effectuer les tâches d'intégration ..."
+
+#: visualizator/dialogos/panelesherramientasaprimariabase.cpp:47
+msgid "There are no overlays on this image"
+msgstr "Il n'y a pas de superpositions sur cette image"
+
+#: visualizator/estudios/ecgstudy.cpp:380
+msgid "We are working to support "
+msgstr "Nous travaillons au support"
+
+#: visualizator/estudios/ecgstudy.cpp:454
+msgid "Vent rate:      "
+msgstr ""
+
+#: visualizator/estudios/ecgstudy.cpp:456
+msgid " BPM"
+msgstr " BPM"
+
+#: visualizator/estudios/ecgstudy.cpp:458
+msgid "PR int:      "
+msgstr ""
+
+#: visualizator/estudios/ecgstudy.cpp:460
+#: visualizator/estudios/ecgstudy.cpp:464
+#: visualizator/estudios/ecgstudy.cpp:468
+msgid " ms"
+msgstr " ms"
+
+#: visualizator/estudios/ecgstudy.cpp:462
+msgid "QRS dur:      "
+msgstr ""
+
+#: visualizator/estudios/ecgstudy.cpp:466
+msgid "QT\\QTc:      "
+msgstr ""
+
+#: visualizator/estudios/ecgstudy.cpp:470
+msgid "P-R-T axes: "
+msgstr "Axes P-R-T : "
+
+#: visualizator/estudios/ecgstudy.cpp:489
+msgid "Measurements not found"
+msgstr "Mesures introuvables"
+
+#: visualizator/estudios/ecgstudy.cpp:589
+msgid "ECG format not supported"
+msgstr "Format ECG non supporté"
+
+#: visualizator/estudios/ecgstudy.cpp:716
+msgid "RR Interval"
+msgstr "Intervalle RR"
+
+#: visualizator/estudios/ecgstudy.cpp:716
+msgid "PP Interval"
+msgstr "Intervalle PP"
+
+#: visualizator/estudios/ecgstudy.cpp:716
+msgid "QTc Interval"
+msgstr "Intervalle QTc"
+
+#: visualizator/estudios/ecgstudy.cpp:716
+msgid "Vent Rate"
+msgstr ""
+
+#: visualizator/export/tools/iecgruletool.cpp:19
+#, fuzzy
+msgid "Rule \tCtrl+R"
+msgstr "Règle \tCtrl+R"
+
+#: visualizator/export/tools/ioverlaystool.cpp:22
+msgid "Overlay layers"
+msgstr "cCuches de superposition"
+
+#: visualizator/tools/reconstructiontool.cpp:188
+msgid "3D/4D Reconstruction"
+msgstr "Reconstruction 3D/4D"
+
+#: visualizator/tools/reconstructiontool.cpp:207
+msgid "3D MPR"
+msgstr ""
+
+#: visualizator/tools/reconstructiontool.cpp:213
+msgid "MIP 3D"
+msgstr ""
+
+#: visualizator/tools/reconstructiontool.cpp:219
+msgid "3D volume rendering"
+msgstr "Rendu volume 3D"
+
+#: visualizator/tools/reconstructiontool.cpp:225
+msgid "3D surface rendering"
+msgstr "Rendu surface 3D"
+
+#: visualizator/tools/reconstructiontool.cpp:232
+msgid "3D endoscopy"
+msgstr "Endoscopie 3D"
+
+#: visualizator/vistas/vista2d.cpp:117
+#: visualizator/vistas/waveformview.cpp:105
+#: visualizator/wxvtk/gvistacompleja.cpp:808
+msgid "Error: System out of memory. Close some studies to free memory."
+msgstr ""
+"Erreur : Mémoire insuffisante. Fermez des études pour libérer de la mémoire."
+
+#: visualizator/widgets/wecgrule.cpp:595
+#, fuzzy
+msgid "Length"
+msgstr "Longueur"
+
+#: visualizator/widgets/wecgrule.cpp:600
+#, fuzzy
+msgid "Points (I)"
+msgstr "Points (I)"
+
+#: visualizator/widgets/wecgrule.cpp:607
+#, fuzzy
+msgid "Points (M)"
+msgstr "Points (M)"
+
+#: visualizator/wxvtk/gvistacompleja.cpp:203
+msgid ""
+"It has exhausted the system's video memory and has not been able to assign "
+"the grid configuration. Close some studies to free memory."
+msgstr ""
+"La mémoire vidéo du système est épuisée et la configuration de la grille n'a "
+"pu être allouée. Fermez certaines travaux pour libérer de la mémoire."
+
+#: visualizator/wxvtk/gvistacompleja.cpp:203
+msgid "Error configuring the grid"
+msgstr "Erreur de configuration de la grille"
+
+#: visualizator/wxvtk/gvistacompleja.cpp:396
+#: visualizator/wxvtk/gvistacompleja.cpp:403
+msgid "Slice: "
+msgstr "Tranche :"
+
+#: visualizator/wxvtk/gvistacompleja.cpp:551
+msgid "Display Options"
+msgstr "Options d'affichage"
+
+#: visualizator/wxvtk/gvistacompleja.cpp:569
+msgid "Synchronize/Des synchronize"
+msgstr "Synchroniser/Désynchroniser"
+
+#: visualizator/wxvtk/gvistacompleja.cpp:797
+msgid ""
+"Error: You have exhausted the system's video memory and has not been able to "
+"load the image. Close some studies to free memory."
+msgstr ""
+"Erreur : Vous avez épuisé la mémoire vidéo du système et il n'est pas "
+"capable de charger l'image. Fermer des études pour libérer de la mémoire."
+
+#: visualizator/wxvtk/gvistacompleja.cpp:799
+#: visualizator/wxvtk/gvistacompleja.cpp:810
+#: visualizator/wxvtk/gvistacompleja.cpp:817
+msgid "Destroy View"
+msgstr "Détruire la vue"
+
+#: visualizator/wxvtk/gvistacompleja.cpp:815
+msgid "Error: Internal error."
+msgstr "Erreur : erreur interne."
+
+#: visualizator/wxvtk/gvistasimple.cpp:420
+msgid "Area      : "
+msgstr "Aire     : "
+
+#: visualizator/wxvtk/gvistasimple.cpp:423
+msgid "undetermined"
+msgstr "indétérminé"
+
+#: visualizator/wxvtk/gvistasimple.cpp:445
+msgid "Perimeter : "
+msgstr "Périmètre :"
+
+#: visualizator/wxvtk/gvistasimple.cpp:480
+#: visualizator/wxvtk/gvistasimple.cpp:513
+#: visualizator/wxvtk/gvistasimple.cpp:600
+msgid "Position   : "
+msgstr "Position :"
+
+#: visualizator/wxvtk/gvistasimple.cpp:481
+msgid "RGB ("
+msgstr "RVB ("
+
+#: visualizator/wxvtk/gvistasimple.cpp:528
+#: visualizator/wxvtk/gvistasimple.cpp:601
+msgid "Rating   : "
+msgstr "Estimation :"
+
+#: visualizator/wxvtk/gvistasimple.cpp:534
+msgid "[DNorm ="
+msgstr ""
+
+#: visualizator/wxvtk/gvistasimple.cpp:552
+msgid "Centroid Pos:"
+msgstr ""
+
+#: visualizator/wxvtk/gvistasimple.cpp:553
+msgid "Area:"
+msgstr "Aire :"
+
+#: visualizator/wxvtk/gvistasimple.cpp:577
+msgid "Perimeter:"
+msgstr "Périmètre :"
+
+#: visualizator/wxvtk/gvistasimple.cpp:595
+msgid "Rating: mean ="
+msgstr ""
+
+#: visualizator/wxvtk/gvistasimple.cpp:595
+msgid ", dev ="
+msgstr ""
+
+#: visualizator/wxvtk/gwaveformview.cpp:179
+msgid "Show/Hide metadata"
+msgstr "Montrer/cacher metadata"
+
+#: visualizator/wxvtk/gwaveformview.cpp:254
+msgid "Error loading study with ecg view"
+msgstr "Erreur au chargement de l'étude avec la vue ECG"
+
+#: visualizator/wxvtk/gwaveformview.cpp:254
+msgid "Error"
+msgstr "Erreur"
+
+#: visualizator/wxvtk/previewpanelvisualizator.cpp:129
+msgid "Uploading to the PACS ..."
+msgstr "Envoi au PACS ..."
+
+#: visualizator/wxvtk/previewpanelvisualizator.cpp:152
+msgid "Upload series to PACS..."
+msgstr "Envoi de séries au PACS..."
+
+#: visualizator/wxvtk/previewpanelvisualizator.cpp:204
+#, c-format
+msgid "%d series"
+msgstr "%d séries"
+
+#: visualizator/wxvtk/visualizatorviews.cpp:193
+msgid "Select the view you want to synchronize with the current"
+msgstr "Sélectionner la vue que vous voulez synchroniser avec l'actuelle"
+
+#: visualizator/wxvtk/visualizatorviews.cpp:221
+msgid "Accept"
+msgstr "Accepter"
+
+#: visualizator/wxvtk/visualizatorviews.cpp:224
+msgid "Cancel"
+msgstr "Annuler"
+
+#: visualizator/wxvtk/visualizatorviews.cpp:294
+msgid "Metadata"
+msgstr "Metadata"
+
+#: visualizator/estudios/ecgstudy.h:108
+msgid "Unknown"
+msgstr "Inconnu"
+
+#: visualizator/license.h:17
+msgid "Visualizator extension"
+msgstr "Extension du visualisateur"
+
+#: visualizator/wxvtk/visualizatorviews.h:120
+msgid "Synchronize..."
+msgstr "Synchronisation..."
+
+#~ msgid "Unable to load PNG image resource"
+#~ msgstr "Impossible de charger la ressource image PNG"
+
+#~ msgid "Unable to load GIF animation resource"
+#~ msgstr "Impossible de charger l'animation GIF"
+
+#~ msgid "Play"
+#~ msgstr "Lancer"
+
+#~ msgid "Speed"
+#~ msgstr "Vitesse"
+
+#~ msgid "Loop"
+#~ msgstr "Boucle"
+
+#~ msgid "Repeat on end"
+#~ msgstr "Répéter jusqu'à la fin"
+
+#~ msgid "Start playback"
+#~ msgstr "Lancer l'aninmation"
+
+#~ msgid "Stop"
+#~ msgstr "Stop"
+
+#~ msgid "End playback"
+#~ msgstr "Fin de l'animation"
+
+#~ msgid "Patient: "
+#~ msgstr "Patient :"
+
+#~ msgid "Patient Id: "
+#~ msgstr "Id Patient :"
+
+#~ msgid "Sexo"
+#~ msgstr "Sexe"
+
+#~ msgid "Modality: "
+#~ msgstr "Modalité :"
+
+#~ msgid "Comment:"
+#~ msgstr "Commentaire :"
+
+#~ msgid "Image:"
+#~ msgstr "Image :"
+
+#~ msgid "Right"
+#~ msgstr "Droite"
+
+#~ msgid "Left"
+#~ msgstr "Gauche"
+
+#~ msgid "Voxel:"
+#~ msgstr "Voxel :"
+
+#~ msgid "Image without metric information"
+#~ msgstr "Image sans information métrique"
+
+#~ msgid "Slice thickness:"
+#~ msgstr "Epaisseur de tranche"
+
+#~ msgid "Made with %s"
+#~ msgstr "Fait avec %s"
+
+#~ msgid "Position:"
+#~ msgstr "Position :"
+
+#~ msgid "Value:"
+#~ msgstr "Valeur :"

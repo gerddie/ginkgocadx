@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{bac80409-bc29-4ab1-a02f-e187838b32f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source\visualizator">
+      <UniqueIdentifier>{952c64a7-98f8-4c07-bf42-a80d6fe50d75}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\visualizator\controllers">
+      <UniqueIdentifier>{3a82d602-bafe-4339-bf01-aeabfde36677}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\visualizator\dialogos">
+      <UniqueIdentifier>{2278410e-191d-4e7c-856e-752652c0620d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\visualizator\dialogos\importacion">
+      <UniqueIdentifier>{fe50e9dd-be36-427d-937d-0abb241741bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\visualizator\vistas">
+      <UniqueIdentifier>{9381e327-01ec-4a51-b6ab-62876ed6d893}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\visualizator\wxvtk">
+      <UniqueIdentifier>{8b2c9b8d-08d3-4d21-a89a-521dc9618461}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\visualizator\eventos">
+      <UniqueIdentifier>{9b1d6666-3a5b-4d58-9e17-dca9a6b4a802}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\visualizator\estudios">
+      <UniqueIdentifier>{0b7d459d-7b35-4d59-8fb6-5002eb3cb7f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\visualizator\export">
+      <UniqueIdentifier>{7b7a771d-a8a0-4df8-9e7a-0e0a59ad32d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\visualizator\export\contracts">
+      <UniqueIdentifier>{332fb7aa-11d7-4179-b410-ff9bed7e6ff9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\visualizator\export\tools">
+      <UniqueIdentifier>{dedf701a-a032-49e3-a82c-fa74cc12c405}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\visualizator\tools">
+      <UniqueIdentifier>{f7babfc5-eccf-40fd-af62-ab2700c8dfea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\visualizator\widgets">
+      <UniqueIdentifier>{eec2a698-1eb0-4e93-bfc1-5270dd30ea9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\visualizator\commands">
+      <UniqueIdentifier>{7cea56a3-30e0-466c-9151-c71639720286}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\visualizator_test">
+      <UniqueIdentifier>{4978ca13-cd69-40d2-a71f-b9c63be8efba}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="resources\visualizatorresourcesmanager.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="visualizator.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="visustdafx.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="visualizator\controllers\visualizatorcontroller.cpp">
+      <Filter>Source\visualizator\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="visualizator\dialogos\contenedorherramientas.cpp">
+      <Filter>Source\visualizator\dialogos</Filter>
+    </ClCompile>
+    <ClCompile Include="visualizator\dialogos\panelesherramientasaprimariabase.cpp">
+      <Filter>Source\visualizator\dialogos</Filter>
+    </ClCompile>
+    <ClCompile Include="visualizator\dialogos\importacion\selectimagesimportationvisualizator.cpp">
+      <Filter>Source\visualizator\dialogos\importacion</Filter>
+    </ClCompile>
+    <ClCompile Include="visualizator\vistas\vista2d.cpp">
+      <Filter>Source\visualizator\vistas</Filter>
+    </ClCompile>
+    <ClCompile Include="visualizator\vistas\waveformview.cpp">
+      <Filter>Source\visualizator\vistas</Filter>
+    </ClCompile>
+    <ClCompile Include="visualizator\wxvtk\gvistacompleja.cpp">
+      <Filter>Source\visualizator\wxvtk</Filter>
+    </ClCompile>
+    <ClCompile Include="visualizator\wxvtk\gvistasimple.cpp">
+      <Filter>Source\visualizator\wxvtk</Filter>
+    </ClCompile>
+    <ClCompile Include="visualizator\wxvtk\gwaveformview.cpp">
+      <Filter>Source\visualizator\wxvtk</Filter>
+    </ClCompile>
+    <ClCompile Include="visualizator\wxvtk\previewpanelvisualizator.cpp">
+      <Filter>Source\visualizator\wxvtk</Filter>
+    </ClCompile>
+    <ClCompile Include="visualizator\wxvtk\visualizatorviews.cpp">
+      <Filter>Source\visualizator\wxvtk</Filter>
+    </ClCompile>
+    <ClCompile Include="visualizator\estudios\ecgstudy.cpp">
+      <Filter>Source\visualizator\estudios</Filter>
+    </ClCompile>
+    <ClCompile Include="visualizator\estudios\globalmeasurement.cpp">
+      <Filter>Source\visualizator\estudios</Filter>
+    </ClCompile>
+    <ClCompile Include="visualizator\estudios\globalmeasurements.cpp">
+      <Filter>Source\visualizator\estudios</Filter>
+    </ClCompile>
+    <ClCompile Include="visualizator\estudios\visualizatorstudy.cpp">
+      <Filter>Source\visualizator\estudios</Filter>
+    </ClCompile>
+    <ClCompile Include="visualizator\export\contracts\ioverlayscontract.cpp">
+      <Filter>Source\visualizator\export\contracts</Filter>
+    </ClCompile>
+    <ClCompile Include="visualizator\export\contracts\ioverlayscontractable.cpp">
+      <Filter>Source\visualizator\export\contracts</Filter>
+    </ClCompile>
+    <ClCompile Include="visualizator\export\tools\ioverlaystool.cpp">
+      <Filter>Source\visualizator\export\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="visualizator\tools\overlaystool.cpp">
+      <Filter>Source\visualizator\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="visualizator\widgets\wecg.cpp">
+      <Filter>Source\visualizator\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="visualizator_test\visualizatortest.cpp">
+      <Filter>Source\visualizator_test</Filter>
+    </ClCompile>
+    <ClCompile Include="visualizator\widgets\wecgrule.cpp">
+      <Filter>Source\visualizator\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="visualizator\export\tools\iecgruletool.cpp">
+      <Filter>Source\visualizator\export\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="visualizator\tools\ecgruletool.cpp">
+      <Filter>Source\visualizator\tools</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resources\visualizatorresourcesmanager.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="visualizator.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="visustdafx.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="visualizator\license.h">
+      <Filter>Source\visualizator</Filter>
+    </ClInclude>
+    <ClInclude Include="visualizator\controllers\visualizatorcontroller.h">
+      <Filter>Source\visualizator\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="visualizator\dialogos\contenedorherramientas.h">
+      <Filter>Source\visualizator\dialogos</Filter>
+    </ClInclude>
+    <ClInclude Include="visualizator\dialogos\panelesherramientasaprimariabase.h">
+      <Filter>Source\visualizator\dialogos</Filter>
+    </ClInclude>
+    <ClInclude Include="visualizator\dialogos\importacion\selectimagesimportationvisualizator.h">
+      <Filter>Source\visualizator\dialogos\importacion</Filter>
+    </ClInclude>
+    <ClInclude Include="visualizator\vistas\vista2d.h">
+      <Filter>Source\visualizator\vistas</Filter>
+    </ClInclude>
+    <ClInclude Include="visualizator\vistas\waveformview.h">
+      <Filter>Source\visualizator\vistas</Filter>
+    </ClInclude>
+    <ClInclude Include="visualizator\wxvtk\gvistacompleja.h">
+      <Filter>Source\visualizator\wxvtk</Filter>
+    </ClInclude>
+    <ClInclude Include="visualizator\wxvtk\gvistasimple.h">
+      <Filter>Source\visualizator\wxvtk</Filter>
+    </ClInclude>
+    <ClInclude Include="visualizator\wxvtk\gwaveformview.h">
+      <Filter>Source\visualizator\wxvtk</Filter>
+    </ClInclude>
+    <ClInclude Include="visualizator\wxvtk\previewpanelvisualizator.h">
+      <Filter>Source\visualizator\wxvtk</Filter>
+    </ClInclude>
+    <ClInclude Include="visualizator\wxvtk\visualizatorviews.h">
+      <Filter>Source\visualizator\wxvtk</Filter>
+    </ClInclude>
+    <ClInclude Include="visualizator\eventos\changeposition.h">
+      <Filter>Source\visualizator\eventos</Filter>
+    </ClInclude>
+    <ClInclude Include="visualizator\eventos\overlays.h">
+      <Filter>Source\visualizator\eventos</Filter>
+    </ClInclude>
+    <ClInclude Include="visualizator\eventos\sincronizacion.h">
+      <Filter>Source\visualizator\eventos</Filter>
+    </ClInclude>
+    <ClInclude Include="visualizator\eventos\visualizatorevents.h">
+      <Filter>Source\visualizator\eventos</Filter>
+    </ClInclude>
+    <ClInclude Include="visualizator\eventos\zoom.h">
+      <Filter>Source\visualizator\eventos</Filter>
+    </ClInclude>
+    <ClInclude Include="visualizator\estudios\ecgstudy.h">
+      <Filter>Source\visualizator\estudios</Filter>
+    </ClInclude>
+    <ClInclude Include="visualizator\estudios\globalmeasurement.h">
+      <Filter>Source\visualizator\estudios</Filter>
+    </ClInclude>
+    <ClInclude Include="visualizator\estudios\globalmeasurements.h">
+      <Filter>Source\visualizator\estudios</Filter>
+    </ClInclude>
+    <ClInclude Include="visualizator\estudios\overlay.h">
+      <Filter>Source\visualizator\estudios</Filter>
+    </ClInclude>
+    <ClInclude Include="visualizator\estudios\visualizatorstudy.h">
+      <Filter>Source\visualizator\estudios</Filter>
+    </ClInclude>
+    <ClInclude Include="visualizator\export\contracts\ioverlayscontract.h">
+      <Filter>Source\visualizator\export\contracts</Filter>
+    </ClInclude>
+    <ClInclude Include="visualizator\export\contracts\ioverlayscontractable.h">
+      <Filter>Source\visualizator\export\contracts</Filter>
+    </ClInclude>
+    <ClInclude Include="visualizator\export\tools\ioverlaystool.h">
+      <Filter>Source\visualizator\export\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="visualizator\tools\overlaystool.h">
+      <Filter>Source\visualizator\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="visualizator\widgets\wecg.h">
+      <Filter>Source\visualizator\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="visualizator_test\visualizatortest.h">
+      <Filter>Source\visualizator_test</Filter>
+    </ClInclude>
+    <ClInclude Include="visualizator\widgets\wecgrule.h">
+      <Filter>Source\visualizator\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="visualizator\export\tools\iecgruletool.h">
+      <Filter>Source\visualizator\export\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="visualizator\tools\ecgruletool.h">
+      <Filter>Source\visualizator\tools</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

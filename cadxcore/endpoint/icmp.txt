@@ -1,0 +1,86 @@
+ICMP For Data Transfer
+
+"Project Loki: ICMP Tunneling". Alhambra, daemon9.
+http://www.phrack.org/phrack/49/P49-06
+
+RFC 792
+
+http://www.iana.org/assignments/icmp-parameters
+
+type/code meaning
+
+0 echo reply
+1 ???
+2 ???
+3 destination unreachable
+3/0 net unreachable
+3/1 host unreachable
+3/2 protocol unreachable
+3/3 port unreachable
+3/4 fragmentation needed and DF set
+3/5 source route failed
+3/6 destination network unknown
+3/7 destination host unknown
+3/8 source host isolated
+3/9 communication with destination network administratively prohibited
+3/10 communication with destination host administratively prohibited
+3/11 destination network unreachable for type of service
+3/12 destination host unreachable for type of service
+3/13 communication administratively prohibited RFC1812
+2/14 host precedence violation RFC1812
+3/15 precedence cutoff in effect RFC1812
+4 source quench
+5 redirect
+5/0 redirect datagrams for the network
+5/1 redirect datagrams for the host
+5/2 redirect datagrams for the Type of Service and network
+5/3 redirect datagrams for the Type of Service and host
+6 alternate host address
+7 ???
+8 echo request
+9 router advertisement
+9/0 normal router advertisement
+9/16 does not route common traffic
+10 router soliciation
+11 time exceeded
+11/0 time to live exceeded in transit
+11/1 fragment reassembly time exceeded
+12 parameter problem message
+12/0 pointer indicates error
+12/1 missing a required option
+12/2 bad length
+13 timestamp
+14 timestamp reply
+15 information request
+16 information reply
+17 address mask request
+18 address mask reply
+19 reserved for security
+20-29 reserved for robustness experiment
+30 traceroute
+31 datagram conversion error
+33 IPv6 Where-Are-You
+34 IPv6 I-Am-Here
+35 Mobile Registration Request
+36 Mobile Registration Reply
+37 domain name request
+38 domain name reply
+39 SKIP
+40 Photurius
+40/1 bad SPI
+40/2 authentication failed
+40/2 decompression failed
+40/3 decryption failed
+40/4 need authentication
+40/5 need authorization
+41-255 Reserved
+
+request reply
+8       0        echo
+13      14       timestamp
+15      16       information
+17      18       address mask
+33      34       IPv6 Where-Are-You/I-Am-Here
+35      36       Mobile Registration
+37      38       domain name
+

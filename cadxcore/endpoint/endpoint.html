@@ -1,0 +1,271 @@
+<html>
+<head>
+<title>Endpoint</title>
+</head>
+<body>
+<h1>Endpoint C++ Socket Library</h1>
+<p>Endpoint is a C++ class which uses Berkeley sockets to communicate with
+hosts via the Internet, through IPv4 or IPv6, using TCP or UDP or raw IP,
+on Win32 or Unix operating systems. Originally written for developing
+peer-to-peer applications, the simple philosophy behind Endpoint
+is of <i>choice</i> and <i>portability</i> and <i>consistency</i>:
+
+<ul>
+<li><b>Protocol-family independence</b> - IPv4 or IPv6, transparently
+<li><b>Socket-type independence</b> - UDP or TCP, client or server created similarly
+<li><b>Platform-indepedence</b> - works on Win32 and Unix
+</ul>
+
+<p>Additionally, <b>data is data</b>. It shouldn't matter how it gets there,
+via IPv4 or IPv6, on a Win32 or Unix platform. The addressing and connection
+establishment is the tough part, which this class hierarchy tries to address.
+New protocol family-independent calls are used, nullifying the need to port
+to IPv6 once IPv6 becomes more widely used.
+
+<p>Also, Endpoint is to be optimized for typical cases, while still
+retaining desired functionality. Byte counters are an example of this,
+as is multiple addresses per host. In the future, perhaps multicasting will
+be transparently available.
+
+<p><b>For more information, read below or refer to
+<a href="tricks.html">Tips and Tricks</a> or the
+<a href="address.html">EndpointAddress documentation</a>. To download,
+go to <a href="http://sourceforge.net/project/showfiles.php?group_id=115933&package_id=125829">file releases</a>.</b>
+
+<p>
+
+<h2>Platforms</h2>
+<p>Endpoint has been compiled and tested successfully on the following
+operating systems:
+<ul>
+<li>FreeBSD 5.1-CURRENT, G++ 3.3.1
+<li>FreeBSD 4.8-STABLE, G++ 2.95.4
+<li>Microsoft Windows XP, VC++ 6.0 - raw sockets tested
+<li>Microsoft Windows 2000, VC++ 6.0
+<li>Microsoft Windows Me, VC++ 6.0
+</ul>
+<p>Portability is a major goal. Testers welcome.
+
+<h2>Feature List</h2>
+<p>Currently:
+<ul>
+<li>UDP, TCP, IPv4 raw sockets
+<li>Active or passive open (CLIENT or server)
+<li>Protocol independence
+<li>IPv4 or IPv6 with automatic getaddrinfo() DNS resolution
+<li>Automatic creation IPv4 header for raw sockets unless RAW_RAW given
+<li>Automatic creation of UDP header for RAW_UDP sockets, with proper ports
+<li>Automatic creation of ICMP header, "code,type" dest port specification
+<li>Optional <tt>Endpoint::g_raw_sockfd</tt>, set this to a raw socket
+    descriptor and all raw sockets will use it. Allows Endpoint to be ran
+    without root priviledges. Can also be passed through <tt>RAWSOCKFD</tt>
+    environment variable if <tt>setup_raw()</tt> is called first.
+<li>Socket options, SetOptOn, uses setsockopt
+<li>Error handling
+</ul>
+
+<p>Not implemented (yet):
+<ul>
+<li>A pluggable mechanism for registering creation of new layer-4 raw protocols
+    so for example, create_igmp() creates raw IGMP packet headers. Extensive
+    as possible. (Currently only UDP and ICMP create headers for you).
+    Perhaps 
+<a href="http://www.packetfactory.net/Projects/Libnet/">Libnet</a> would be
+better for this purpose.
+<li>A shorter method of creating RAW sockets. Endpoint ep(RAW);
+<li>Easily usable I/O: ep << "foo"; ep >> input. Stream compatible.
+<li>Optional everything - optional service names
+<li>IP options - rarely used, but would be nice to have (long fat pipe)
+<li>readfrom/sendto - with null sockaddr by default?
+<li>readv, writev, recvmsg, sendmsg - perhaps
+<li>IPv6 raw sockets - no such thing
+<li>Datalink access - could use libpcap but not socket interface portably
+<li>Out-of-band data/urgent data for TCP - rarely used
+<li>Application-layer protocols - belong in other classes, but todo
+<li>Non-blocking I/O - not very efficient, existed in earlier versions but
+    was taken out
+<li>Signal-driven I/O - blah
+<li>select and poll - hows this fit in?
+<li>Unix Domain Sockets - although useful, not completely portable (Win32)
+<li>Routing Sockets - no datalink access yet so can't be done, belongs in app
+<li>Broadcast
+<li>Multicast - I like it, should perhaps be implemented, but not much support
+<li>threading - belongs in client app
+<li>XTI - never
+</ul>
+
+<h1>Endpoint Class</h1>
+This class implements a "socket", a single endpoint connected to another
+endpoint. Member variables m_remote and m_local represent these; they are 
+of type EndpointAddrinfo.
+
+<h2>Constructors</h2>
+<ul>
+<li>Endpoint::Endpoint(int type, EndpointAddrlist addr)
+<li>Endpoint::Endpoint(int type, string hostname, string service = "")
+<li>Endpoint::Endpoint(int type, EndpointAddrlist remote, EndpointAddrlist local)
+<li>Endpoint::Endpoint(int type, string remotehost, string remoteservice,
+    string localhost, string localservice)
+</ul>
+<p>The one-address constructors interpret the address as local if <tt>type</tt>
+specifies a server, remote if client -- and then calls the two-address constructor.
+The string parameters just create <tt>EndpointAddrlist</tt>s and pass them to the
+others. Each constructor is implemented as a <tt>Create</tt> method, the real
+constructor simply calls this. Notice how address lists as opposed to a single
+address are passed: if the first one fails, the others are tried; m_local and
+m_remote are set to the connected <tt>EndpointAddress</tt>es.
+
+<h3>int type</h3>
+<p>Specifies protocol and client/server, see address.html.
+
+<h3>string hostname</h3>
+<p>See address.html. For clients, this is the remote
+address, for servers, this is the local address.
+
+<h3>string service</h3>
+<p>Default service, see above.
+
+<h2>operator string()</h2>
+<p>Returns the socket pair as a string, for example:
+"127.0.0.1:8000 <--> 127.0.0.1:3402". The local address
+is shown first followed by the foreign address. Invalid addresses are shown as 
+"(invalid)".
+
+<h2>operator bool()</h2>
+<p>Returns true if is connected (m_bool member variable). More useful with
+TCP sockets than UDP sockets. connect() rarely fails with UDP sockets; you'll
+usually be notified of a UDP port being closed when you try to write to it. If
+you want to make sure, write a 0-byte packet and abort if it fails. Endpoint
+doesn't do this for you because that might interfere with the data.
+
+<h2>bool Write(string)</h2>
+<p>Writes all data in string, looping if necessary. Calls send(). If any
+of the send() calls returns -1, returns false. This means the remote host
+closed the connection, and if you try to send more you'll cause a SIGPIPE
+on Unix.
+
+<h2>std::string Stats()</h2>
+<p>Return a string of various statistics of the socket usage.
+You can also call the socket-wide <tt>GetBytesRecv()</tt>,
+<tt>GetBytesSent()</tt>, or application-wide
+<tt>GetAllBytesRecv()</tt> and
+<tt>GetAllBytesSent()</tt> calls individually.
+
+<h2>int m_error_code; std::string m_error_str</h2>
+<p>Error codes and error strings. Check these if !ep (m_bool=false). 
+Defined values for
+<tt>m_error_code</tt> are EP_ERROR_NONE, EP_ERROR_SOCKET, EP_ERROR_BIND,
+EP_ERROR_ACCEPT, EP_ERROR_SETSOCKOPT, EP_ERROR_CONNECT, EP_ERROR_ADDRESS,
+and the EndpointAddrlist error EP_ERROR_GETADDRINFO. Each code corresponds to
+the system call where an error occured.
+<tt>m_error_str</tt> is a descriptive, human readable string of the error,
+suitable for printing. If Endpoint attempts to create an EndpointAddrlist and
+fails, the error will propagate into these variables.
+
+<h2>static int set_raw_sockfd(int fd)</h2>
+<p>Set the socket descriptor <tt>g_raw_sockfd</tt> used for raw sockets, to fd.
+Useful for, on Unix, separating the <tt>socket()</tt> call (which usually has
+to run as root) with the rest of the application code.
+
+<h2>static void Initialize()</h2>
+<p>Initialize the socket library. Necessary on Win32; this function is called
+upon the first instanciation of an Endpoint object. On other platforms,
+nothing happens.
+
+<h1>References</h1>
+<p>Endpoint isn't the only C++ class to utilize TCP/IP sockets, nor does
+it claim to be the best. Below are other C++ classes whose purpose is the
+same as or similar to that of Endpoint's, so one can learn from them.
+
+
+<dl>
+<dt>Microsoft Foundation Classes' <i>CSocket</i></dt>
+<dd>See <a href="http://tangentsoft.net/wskfaq/articles/csocket.html">CSocket Considered Harmful</a>, problems with being asynchronous and synchronous<p></dd>
+
+<dt><a href="http://nmstl.sourceforge.net/doc/apiuc/classSocket.html">NMSTL's <i>Socket</i></a>
+<dd>Part of the "Networking, Messaging, Servers, and Threading Library",
+seems to be just a thin wrapper.<p></dd>
+
+<dt><a href="http://www.ddj.com/documents/s=7157/ddj0206a/0206a.htm">Jason 
+But's <i>SocketCC</i></a></dt>
+<dd>IPv4, IPv6, UDP, TCP, <i>SocketException</i>, <i>IPAddress</i>, several
+classes for TCP and UDP. No Win32 support, targetted at Linux.<p></dd>
+</dl>
+
+<dt><a href="http://www.cs.wustl.edu/~schmidt/cs544/socket2.html">ACE Sockets</a>
+<dd>Not much information<p></dd>
+
+<dt><a href="http://www.drclue.net/F1.cgi/HTML/SOCKETS/SOCKETS.html">Dr. Clue's <i>Socket</i></a></dt>
+<dd>Looks comprehensive, but no Win32 support.<p></dd>
+
+<dt><a href="http://www.adp-gmbh.ch/win/misc/sockets.html">Rene Nyffenegger's <i>Socket</i> for Win32</a></dt>
+<dd>SocketServer, SocketSelect, UDP. Win32 (WinSock2) only<p></dd>
+
+<dt><a href="http://members.aon.at/hstraub/linux/socket++/">Socket++</a></dt>
+<dd>"Socket++ is a family of C++ classes that gives the same interface as the iostream classes for input and output for communication between processes.", has Internet socks as well as Unix domain, implements Echo and SMTP example "protocol" classes, no IPv6. RedHat, Debian, FreeBSD, WinSock(?). Wrappers provided for pipe(), socketpair(), popen() and fork(). GPL'd. "Socket++ is a iostream like C++ class library for UNIX and INET domains of sockets and protocols.".<p></dd>
+
+<dt><a href="http://libsocket.sourceforge.net/">libsocketcpp</a></dt>
+<dd>"Libsocketcpp provides a easy-to-use C++ class. With this class, TCP and UDP functionality can be added to any program quickly and easily." XXX<p></dd>
+
+<dt><a href="http://www.rfc1149.net/devel/adasockets">AdaSockets</a></dt> - non-C++ (Ada)
+<dd>"AdaSockets allows Ada programmers to use sockets from within their programs with an easy-to-use Ada-friendly interface." XXX<p></dd>
+
+<dt><a href="http://www.ruby-lang.org/raa/list.rhtml?name=tcpsocketpipe">Ruby/TCPSocketPipe</a> - non-C++ (Ruby)</dt>
+<dd>"A Ruby library to create I/O pipes for TCP socket tunneling" XXX<p></dd>
+
+<dt><a href="http://tangentsoft.net/endpoint/">The Endpoint Library</a></dt>
+<dd>An MFC, WinSock 1.1 socket library from 1997. Not to be confused with
+the Endpoint C++ Socket Library.
+</dl>
+
+
+<li><i>Unix Network Programming</i> - <b>a must</b>
+<li><a href="http://www.ecst.csuchico.edu/~beej/guide/net/html/">Beej's Guide to Network Programming</a> - an excellent tutorial, good overview
+<li><a href="http://world.std.com/~jimf/papers/sockets/sockets.html">BSD Sockets: A Quick And Dirty Primer</a>
+</ul>
+
+<h1>Frequently Asked Questions</h1>
+<h2>On Win32, where is the inet_ntop function?</h2>
+<p>WinSock is missing this function. The implementation from BIND is
+included in <tt>inet_ntop.c</tt>. You can link to <tt>inet_ntop_ipv4.c</tt>
+if you only want IPv4 and want to save a little space, but in general
+<tt>inet_ntop.c</tt> is preferred. Add this file to your project if you
+get an <tt>error LNK2001: unresolved external symbol _inet_ntop</tt>.</p>
+
+<h2>On Win32, I get an error saying <tt>getaddrinfo</tt> or <tt>addrinfo</tt>
+is not found, what can I do?</h2>
+<p>You need to download the <i>core</i> "Microsoft Platform SDK" which includes
+this function. Ask Google for where to download this. Copy the files from "include"
+to your Microsoft Visual Studio "include" directory, overwriting them. The compile should now work.
+
+<h2>On Win32, I get tons of link errors, how do I fix it?</h2>
+<p>You need to link with <tt>ws2_32.lib</tt>, and the object files of
+<tt>endpoint.cpp</tt>, <tt>address.cpp</tt>, and <tt>inet_ntop.c</tt>. Also
+link to <tt>ws2_32.lib</tt> under Project -> Settings -> Link -> General
+-> Object/library modules.
+
+<h2>On Win32, should I include support for "Windows Sockets" in the MFC
+  AppWizard?</h2>
+<p>Unfortunately, no, as the afxsock.h header will conflict with Endpoint.
+If you created a project with WOSA support, you can fix it by removing 
+#include &lt;afxsock.h> from stdafx.h and replacing AfxSocketInit() with
+Endpoint::Initialize(). Also, you may have to change the precompiled header
+option (Project -> Settings -> C++ -> Category=Precompiled Headers) from
+"Use precompiled header file (.pch" to "Automatic use of precompiled
+headers" through stdafx.h. Endpoint doesn't include stdafx.h.
+
+<h2>On Win32, I get <tt>fatal error C1189: #error :  WINDOWS.H already 
+included.  MFC apps must not #include &lt;windows.h&gt;</tt>.</h2>
+<p>Include endpoint.h in stdafx.h, <i>after</i> the normal afx includes.
+
+<h2>Are raw sockets supported on Win32?</h2>
+<p>Yes, provided your version supports it (Windows XP or Windows 2000). You
+may be able to create raw sockets as normal users.
+
+<h1>About the Author</h1>
+<p><a href="http://sourceforge.net/users/jeffconnelly">Jeff Connelly</a>. Comments, questions, and criticism welcome.</p>
+
+<p>Happy hacking!
+</body>
+</html>
+

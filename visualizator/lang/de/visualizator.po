@@ -1,0 +1,874 @@
+# German translation for ginkgocadx
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the ginkgocadx package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ginkgocadx\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-06-11 15:54+0100\n"
+"PO-Revision-Date: 2014-06-11 15:54+0100\n"
+"Last-Translator: Carlos Barrales Ruiz <carlos.barrales@metaemotion.com>\n"
+"Language-Team: German <de@li.org>\n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.5\n"
+"X-Launchpad-Export-Date: 2012-04-24 11:40+0000\n"
+"X-Poedit-Basepath: ../../\n"
+"X-Poedit-KeywordsList: _;_Std\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: resources/visualizatorresourcesmanager.cpp:37
+msgid "Unable to load PNG bitmap resource"
+msgstr "PNG-Bitmap-Ressource konnte nicht geladen werden"
+
+#: visualizator.cpp:62
+msgid "Ginkgo CADx visualizator is Open Source"
+msgstr "Ginkgo CADx Visualisator ist Open Source"
+
+#: visualizator.cpp:62
+msgid "Info"
+msgstr "Information"
+
+#: visualizator/controllers/visualizatorcontroller.cpp:102
+#: visualizator/controllers/visualizatorcontroller.cpp:103
+#: visualizator/controllers/visualizatorcontroller.cpp:104
+msgid "Ginkgo CADx viewer"
+msgstr "Betrachter \"Ginkgo CADx\""
+
+#: visualizator/controllers/visualizatorcontroller.cpp:102
+msgid "Simple importation of images"
+msgstr "Einfaches Importieren von Bildern"
+
+#: visualizator/controllers/visualizatorcontroller.cpp:103
+msgid "Medical viewer"
+msgstr "Medizinischer Betrachter"
+
+#: visualizator/controllers/visualizatorcontroller.cpp:104
+#: visualizator/controllers/visualizatorcontroller.cpp:199
+#: visualizator/controllers/visualizatorcontroller.cpp:332
+msgid "Waveform viewer"
+msgstr "Wellenformbetrachter"
+
+#: visualizator/controllers/visualizatorcontroller.cpp:107
+msgid "Default importer"
+msgstr "Vorgabe-Importprogramm"
+
+#: visualizator/controllers/visualizatorcontroller.cpp:110
+msgid "Ginkgo CADx Image Report"
+msgstr "Ginkgo CADx – Visueller Bericht"
+
+#: visualizator/controllers/visualizatorcontroller.cpp:189
+#: visualizator/controllers/visualizatorcontroller.cpp:298
+msgid "Medical Image Viewer"
+msgstr "Betrachter für medizinische Bilder"
+
+#: visualizator/controllers/visualizatorcontroller.cpp:318
+#: visualizator/controllers/visualizatorcontroller.cpp:326
+#: visualizator/controllers/visualizatorcontroller.cpp:354
+#: visualizator/controllers/visualizatorcontroller.cpp:362
+msgid "Error opening study"
+msgstr "Fehler beim Öffnen der Studie"
+
+#: visualizator/dialogos/importacion/selectimagesimportationvisualizator.cpp:86
+msgid "Performing tasks of integration ..."
+msgstr "Integriere ..."
+
+#: visualizator/dialogos/panelesherramientasaprimariabase.cpp:47
+msgid "There are no overlays on this image"
+msgstr "Es gibt für dieses Bild keine Overlays"
+
+#: visualizator/estudios/ecgstudy.cpp:380
+msgid "We are working to support "
+msgstr "Wir arbeiten an Unterstützung von "
+
+#: visualizator/estudios/ecgstudy.cpp:454
+msgid "Vent rate:      "
+msgstr "Atemfrequenz:      "
+
+#: visualizator/estudios/ecgstudy.cpp:456
+msgid " BPM"
+msgstr " Hf"
+
+#: visualizator/estudios/ecgstudy.cpp:458
+msgid "PR int:      "
+msgstr "PR int:      "
+
+#: visualizator/estudios/ecgstudy.cpp:460
+#: visualizator/estudios/ecgstudy.cpp:464
+#: visualizator/estudios/ecgstudy.cpp:468
+msgid " ms"
+msgstr " ms"
+
+#: visualizator/estudios/ecgstudy.cpp:462
+msgid "QRS dur:      "
+msgstr "QRS-Länge:      "
+
+#: visualizator/estudios/ecgstudy.cpp:466
+msgid "QT\\QTc:      "
+msgstr "QT/QTc:      "
+
+#: visualizator/estudios/ecgstudy.cpp:470
+msgid "P-R-T axes: "
+msgstr "P-R-T-Achsen: "
+
+#: visualizator/estudios/ecgstudy.cpp:489
+msgid "Measurements not found"
+msgstr "Meßwerte nicht gefunden"
+
+#: visualizator/estudios/ecgstudy.cpp:589
+msgid "ECG format not supported"
+msgstr "EKG-Format nicht unterstützt"
+
+#: visualizator/estudios/ecgstudy.cpp:716
+msgid "RR Interval"
+msgstr "RR-Intervall"
+
+#: visualizator/estudios/ecgstudy.cpp:716
+msgid "PP Interval"
+msgstr "PP-Intervall"
+
+#: visualizator/estudios/ecgstudy.cpp:716
+msgid "QTc Interval"
+msgstr "QTc-Intervall"
+
+#: visualizator/estudios/ecgstudy.cpp:716
+msgid "Vent Rate"
+msgstr "Atemfrequenz"
+
+#: visualizator/export/tools/iecgruletool.cpp:19
+#, fuzzy
+msgid "Rule \tCtrl+R"
+msgstr "P-R-T-Achsen: "
+
+#: visualizator/export/tools/ioverlaystool.cpp:22
+msgid "Overlay layers"
+msgstr "Ebenen"
+
+#: visualizator/tools/reconstructiontool.cpp:188
+msgid "3D/4D Reconstruction"
+msgstr "3D/4D-Rekonstruktion"
+
+#: visualizator/tools/reconstructiontool.cpp:207
+msgid "3D MPR"
+msgstr "3D-MPR"
+
+#: visualizator/tools/reconstructiontool.cpp:213
+msgid "MIP 3D"
+msgstr "MIP 3D"
+
+#: visualizator/tools/reconstructiontool.cpp:219
+msgid "3D volume rendering"
+msgstr "3D-Volumendarstellung"
+
+#: visualizator/tools/reconstructiontool.cpp:225
+msgid "3D surface rendering"
+msgstr "3D-Oberflächendarstellung"
+
+#: visualizator/tools/reconstructiontool.cpp:232
+msgid "3D endoscopy"
+msgstr "3D-Endoskopie"
+
+#: visualizator/vistas/vista2d.cpp:117
+#: visualizator/vistas/waveformview.cpp:105
+#: visualizator/wxvtk/gvistacompleja.cpp:808
+msgid "Error: System out of memory. Close some studies to free memory."
+msgstr ""
+"Fehler: Speicher voll. Schließen Sie einige Studien, um Speicher freizugeben."
+
+#: visualizator/widgets/wecgrule.cpp:595
+msgid "Length"
+msgstr ""
+
+#: visualizator/widgets/wecgrule.cpp:600
+msgid "Points (I)"
+msgstr ""
+
+#: visualizator/widgets/wecgrule.cpp:607
+msgid "Points (M)"
+msgstr ""
+
+#: visualizator/wxvtk/gvistacompleja.cpp:203
+msgid ""
+"It has exhausted the system's video memory and has not been able to assign "
+"the grid configuration. Close some studies to free memory."
+msgstr ""
+"Der Videospeicher des Systems ist ausgeschöpft und das Raster konnte nicht "
+"konfiguriert werden. Schließen Sie einige Studien, um Speicher freizugeben."
+
+#: visualizator/wxvtk/gvistacompleja.cpp:203
+msgid "Error configuring the grid"
+msgstr "Fehler beim Erstellen des Rasters"
+
+#: visualizator/wxvtk/gvistacompleja.cpp:396
+#: visualizator/wxvtk/gvistacompleja.cpp:403
+msgid "Slice: "
+msgstr "Slice: "
+
+#: visualizator/wxvtk/gvistacompleja.cpp:551
+msgid "Display Options"
+msgstr "Anzeigeoptionen"
+
+#: visualizator/wxvtk/gvistacompleja.cpp:569
+msgid "Synchronize/Des synchronize"
+msgstr "Synchronisieren/Desynchronisieren"
+
+#: visualizator/wxvtk/gvistacompleja.cpp:797
+msgid ""
+"Error: You have exhausted the system's video memory and has not been able to "
+"load the image. Close some studies to free memory."
+msgstr ""
+"Fehler: Videospeicher voll. Kann Bild nicht laden. Schließen Sie einige "
+"Studien, um Speicher freizugeben."
+
+#: visualizator/wxvtk/gvistacompleja.cpp:799
+#: visualizator/wxvtk/gvistacompleja.cpp:810
+#: visualizator/wxvtk/gvistacompleja.cpp:817
+msgid "Destroy View"
+msgstr "Anzeige schließen"
+
+#: visualizator/wxvtk/gvistacompleja.cpp:815
+msgid "Error: Internal error."
+msgstr "Fehler: Internes Problem."
+
+#: visualizator/wxvtk/gvistasimple.cpp:420
+msgid "Area      : "
+msgstr "Fläche : "
+
+#: visualizator/wxvtk/gvistasimple.cpp:423
+msgid "undetermined"
+msgstr "unbestimmt"
+
+#: visualizator/wxvtk/gvistasimple.cpp:445
+msgid "Perimeter : "
+msgstr "Perimeter : "
+
+#: visualizator/wxvtk/gvistasimple.cpp:480
+#: visualizator/wxvtk/gvistasimple.cpp:513
+#: visualizator/wxvtk/gvistasimple.cpp:600
+msgid "Position   : "
+msgstr "Position : "
+
+#: visualizator/wxvtk/gvistasimple.cpp:481
+msgid "RGB ("
+msgstr "RGB ("
+
+#: visualizator/wxvtk/gvistasimple.cpp:528
+#: visualizator/wxvtk/gvistasimple.cpp:601
+msgid "Rating   : "
+msgstr "Bewertung : "
+
+#: visualizator/wxvtk/gvistasimple.cpp:534
+msgid "[DNorm ="
+msgstr "[DNorm ="
+
+#: visualizator/wxvtk/gvistasimple.cpp:552
+msgid "Centroid Pos:"
+msgstr "Centroid-Position:"
+
+#: visualizator/wxvtk/gvistasimple.cpp:553
+msgid "Area:"
+msgstr "Fläche:"
+
+#: visualizator/wxvtk/gvistasimple.cpp:577
+msgid "Perimeter:"
+msgstr "Perimeter:"
+
+#: visualizator/wxvtk/gvistasimple.cpp:595
+msgid "Rating: mean ="
+msgstr "Bewertung: Mean ="
+
+#: visualizator/wxvtk/gvistasimple.cpp:595
+msgid ", dev ="
+msgstr ", dev ="
+
+#: visualizator/wxvtk/gwaveformview.cpp:179
+msgid "Show/Hide metadata"
+msgstr "Metadaten zeigen/verbergen"
+
+#: visualizator/wxvtk/gwaveformview.cpp:254
+msgid "Error loading study with ecg view"
+msgstr "Fehler beim Laden der Studie im EKG-Betrachter"
+
+#: visualizator/wxvtk/gwaveformview.cpp:254
+msgid "Error"
+msgstr "Fehler"
+
+#: visualizator/wxvtk/previewpanelvisualizator.cpp:129
+msgid "Uploading to the PACS ..."
+msgstr "Es wird zum PACS hochgeladen …"
+
+#: visualizator/wxvtk/previewpanelvisualizator.cpp:152
+msgid "Upload series to PACS..."
+msgstr "Serie wird zum PACS hochgeladen …"
+
+#: visualizator/wxvtk/previewpanelvisualizator.cpp:204
+#, c-format
+msgid "%d series"
+msgstr "%d-Serie"
+
+#: visualizator/wxvtk/visualizatorviews.cpp:193
+msgid "Select the view you want to synchronize with the current"
+msgstr ""
+"Wählen Sie das Fenster, welches mit dem aktuellen synchronisiert werden soll."
+
+#: visualizator/wxvtk/visualizatorviews.cpp:221
+msgid "Accept"
+msgstr "Übernehmen"
+
+#: visualizator/wxvtk/visualizatorviews.cpp:224
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: visualizator/wxvtk/visualizatorviews.cpp:294
+msgid "Metadata"
+msgstr "Metadaten"
+
+#: visualizator/estudios/ecgstudy.h:108
+msgid "Unknown"
+msgstr "Unbekannt"
+
+#: visualizator/license.h:17
+msgid "Visualizator extension"
+msgstr "Visualisator-Erweiterung"
+
+#: visualizator/wxvtk/visualizatorviews.h:120
+msgid "Synchronize..."
+msgstr "Es wird abgeglichen …"
+
+#~ msgid "Play"
+#~ msgstr "Wiedergabe"
+
+#~ msgid "Speed"
+#~ msgstr "Geschwindigkeit"
+
+#~ msgid "Loop"
+#~ msgstr "Endlosschleife"
+
+#~ msgid "Repeat on end"
+#~ msgstr "Nach dem Ende wiederholen"
+
+#~ msgid "Start playback"
+#~ msgstr "Wiedergabe starten"
+
+#~ msgid "Stop"
+#~ msgstr "Anhalten"
+
+#~ msgid "End playback"
+#~ msgstr "Abspielen beenden"
+
+#~ msgid "Patient: "
+#~ msgstr "Patient: "
+
+#~ msgid "Patient Id: "
+#~ msgstr "Patienten-ID: "
+
+#~ msgid "Modality: "
+#~ msgstr "Modalität: "
+
+#~ msgid "Image:"
+#~ msgstr "Bild:"
+
+#~ msgid "Right"
+#~ msgstr "Rechts"
+
+#~ msgid "Voxel:"
+#~ msgstr "Voxel:"
+
+#~ msgid "Image without metric information"
+#~ msgstr "Bild ohne Maßstab"
+
+#~ msgid "Made with %s"
+#~ msgstr "Erstellt mit %s"
+
+#~ msgid "Position:"
+#~ msgstr "Position:"
+
+#~ msgid "Value:"
+#~ msgstr "Wert:"
+
+#~ msgid "Study"
+#~ msgstr "Studie"
+
+#~ msgid "DICOM Tags"
+#~ msgstr "DICOM-Markierungen"
+
+#~ msgid "Surface settings"
+#~ msgstr "Oberflächeneinstellungen"
+
+#~ msgid "Quality"
+#~ msgstr "Qualität"
+
+#~ msgid "Smooth"
+#~ msgstr "Glätten"
+
+#~ msgid "Resolution"
+#~ msgstr "Auflösung"
+
+#~ msgid "Volume visualization resolution (25-100%)"
+#~ msgstr "Auflösung der Volumendarstellung (25-100%)"
+
+#~ msgid "Surfaces"
+#~ msgstr "Oberflächen"
+
+#~ msgid "Volume visualization"
+#~ msgstr "Volumendarstellung"
+
+#~ msgid "Window/Level"
+#~ msgstr "Fenster/Niveau"
+
+#~ msgid "Radiolucency Window/Level"
+#~ msgstr "Radioluzenzfenster/-niveau"
+
+#~ msgid "Radiolucency Level"
+#~ msgstr "Radioluzenzniveau"
+
+#~ msgid "/"
+#~ msgstr "/"
+
+#~ msgid "Radiolucency Window"
+#~ msgstr "Radioluzenzfenster"
+
+#~ msgid "Blend Mode"
+#~ msgstr "Mischmodus"
+
+#~ msgid "MIP"
+#~ msgstr "MIP"
+
+#~ msgid "Composite Ramp"
+#~ msgstr "Kompositverlauf"
+
+#~ msgid "Composite Ramp Shaded"
+#~ msgstr "Abgestufter Kompositverlauf"
+
+#~ msgid "RGB Composite"
+#~ msgstr "RGB-Komposit"
+
+#~ msgid "CT Skin"
+#~ msgstr "CT Haut"
+
+#~ msgid "CT Muscle"
+#~ msgstr "CT Muskulatur"
+
+#~ msgid "CT Bone"
+#~ msgstr "CT Knochen"
+
+#~ msgid "Apply"
+#~ msgstr "Anwenden"
+
+#~ msgid "Apply reconstuction"
+#~ msgstr "Rekonstruktion anwenden"
+
+#~ msgid "DataSet 0000/0000"
+#~ msgstr "DataSet 0000/0000"
+
+#~ msgid "Pre-Smooth"
+#~ msgstr "Vorglättung"
+
+#~ msgid "Enable/Disable Smoothing the high resolution input volume data."
+#~ msgstr "Glätten der hochaufgelösten Volumenausgangsdaten ein-/ausschalten."
+
+#~ msgid "Post-Smooth"
+#~ msgstr "Nachglättung"
+
+#~ msgid "Enable/Disable Smoothing the low resolution resampled volume data."
+#~ msgstr ""
+#~ "Glätten der niedrig aufgelösten, berechneten Volumendaten ein-/"
+#~ "ausschalten."
+
+#~ msgid "Sets the resampling resolution"
+#~ msgstr "Resampling-Auflösung festlegen"
+
+#~ msgid "Resampled resolution: 32x32x32, 64x64x64, 128x128x128, 256x256x256"
+#~ msgstr "Resampling-Auflösung: 32x32x32, 64x64x64, 128x128x128, 256x256x256"
+
+#~ msgid "First surface"
+#~ msgstr "Erste Oberfläche"
+
+#~ msgid "Value"
+#~ msgstr "Wert"
+
+#~ msgid "IsoSurface pixel value"
+#~ msgstr "Pixelwert der Iso-Oberfläche"
+
+#~ msgid "CT - Bone"
+#~ msgstr "CT - Knochen"
+
+#~ msgid "CT - Muscle"
+#~ msgstr "CT - Muskulatur"
+
+#~ msgid "CT - Skin"
+#~ msgstr "CT - Haut"
+
+#~ msgid "CT Pressets"
+#~ msgstr "CT Vorgaben"
+
+#~ msgid "Color"
+#~ msgstr "Farbe"
+
+#~ msgid "Rendering color"
+#~ msgstr "Darstellungsfarbe"
+
+#~ msgid "Second surface"
+#~ msgstr "Zweite Oberfläche"
+
+#~ msgid "Enable"
+#~ msgstr "Aktivieren"
+
+#~ msgid "Enable/Disable second surface"
+#~ msgstr "Zweite Oberfläche ein-/ausschalten"
+
+#~ msgid "Color / alpha"
+#~ msgstr "Farbe / Alpha"
+
+#~ msgid "Surface rendering color and transparency"
+#~ msgstr "Farbe und Transparenz der Oberflächendarstellung"
+
+#~ msgid "Transparency level"
+#~ msgstr "Transparenzniveau"
+
+#~ msgid "Apply reconstruction"
+#~ msgstr "Rekonstruktion anwenden"
+
+#~ msgid "Cursor"
+#~ msgstr "Zeiger"
+
+#~ msgid "Reset Camera"
+#~ msgstr "Kamera zurücksetzen"
+
+#~ msgid "Stereo view"
+#~ msgstr "Stereoansicht"
+
+#~ msgid "Demo mode"
+#~ msgstr "Demo-Modus"
+
+#~ msgid "Save Frame"
+#~ msgstr "Einzelbild speichern"
+
+#~ msgid "Save current frame to new serie"
+#~ msgstr "Aktuelles Einzelbild als neue Serie speichern"
+
+#~ msgid "Hide"
+#~ msgstr "Verbergen"
+
+#~ msgid "3D Surface"
+#~ msgstr "3D-Oberfläche"
+
+#~ msgid "Pixel value of first surface doesn't have a valid value"
+#~ msgstr "Pixelwert der ersten Oberfläche ist ungültig"
+
+#~ msgid "Warning"
+#~ msgstr "Achtung"
+
+#~ msgid "Pixel value of second surface doesn't have a valid value"
+#~ msgstr "Pixelwert der zweiten Oberfläche ist ungültig"
+
+#~ msgid "Reset"
+#~ msgstr "Zurücksetzen"
+
+#~ msgid "Radiolucency Window does not have a valid value"
+#~ msgstr "Ungültiger Wert für Radioluzenzfenster"
+
+#~ msgid "Radiolucency Level does not have a valid value"
+#~ msgstr "Ungültiger Wert für Radioluzenzniveau"
+
+#~ msgid "Generating VOIs...."
+#~ msgstr "VOIs werden erstellt …"
+
+#~ msgid " VOIs detected."
+#~ msgstr " VOI ermittelt."
+
+#~ msgid "Computing VOIs...."
+#~ msgstr "VOIs werden berechnet …"
+
+#~ msgid "Done"
+#~ msgstr "Fertiggestellt"
+
+#~ msgid "Aborted"
+#~ msgstr "Abgebrochen"
+
+#~ msgid "Saving frame..."
+#~ msgstr "Einzelbild wird gespeichert …"
+
+#~ msgid "Saving done"
+#~ msgstr "Speichern abgeschlossen"
+
+#~ msgid "Saving failed"
+#~ msgstr "Speichern gescheitert"
+
+#~ msgid "Updating..."
+#~ msgstr "Es wird aktualisiert …"
+
+#~ msgid "Reconstruction internal error"
+#~ msgstr "Interner Rekonstruktionsfehler"
+
+#~ msgid "Update done"
+#~ msgstr "Aktualisierung abgeschlossen"
+
+#~ msgid "3D Volume Reconstruction"
+#~ msgstr "3D-Rekonstruktion"
+
+#~ msgid "3D MIP Reconstruction"
+#~ msgstr "3D-Rekonstruktion"
+
+#~ msgid "3D Surface Reconstruction"
+#~ msgstr "3D-Rekonstruktion"
+
+#~ msgid "Endoscopy"
+#~ msgstr "Endoskopie"
+
+#~ msgid "3D reconstruction"
+#~ msgstr "3D-Rekonstruktion"
+
+#~ msgid "3D orthogonal multi-planar reconstruction (MPR)"
+#~ msgstr "Orthogonale 3D-Multi-Ebenen-Rekonstruktion (MPR)"
+
+#~ msgid "3D maximun intensity projection (MIP)"
+#~ msgstr "3D-MIP (Maximum-Intensity-Projektion)"
+
+#~ msgid "Save changes with medical viewer"
+#~ msgstr "Speichere Änderungen des medizinischen Betrachters"
+
+#~ msgid "%m/%d/%Y"
+#~ msgstr "%d.%m.%Y"
+
+#~ msgid "Select a diagnosis"
+#~ msgstr "Diagnose wählen"
+
+#~ msgid "Select diagnosis"
+#~ msgstr "Diagnose wählen"
+
+#~ msgid "Select diagnosis file"
+#~ msgstr "Diagnosendatei wählen"
+
+#~ msgid "Physician"
+#~ msgstr "Arzt"
+
+#~ msgid "Time"
+#~ msgstr "Zeit"
+
+#~ msgid "Date"
+#~ msgstr "Datum"
+
+#~ msgid "Description"
+#~ msgstr "Beschreibung"
+
+#~ msgid "UID"
+#~ msgstr "UID"
+
+#~ msgid "Create new diagnosis"
+#~ msgstr "Erzeuge neue Diagnose"
+
+#~ msgid "Color Map"
+#~ msgstr "Farbkarte"
+
+#~ msgid "Invert color map"
+#~ msgstr "Farbkarte umkehren"
+
+#~ msgid ""
+#~ "Errors have occurred while trying to save the files in the series\n"
+#~ "verify that the disk is not full and that has write permissions"
+#~ msgstr ""
+#~ "Fehler sind beim Speicher der Dateien als Serie aufgetreten.\n"
+#~ "Stellen Sie sicher, daß die Festplatte nicht voll und beschreibbar ist."
+
+#~ msgid "Layout Setup"
+#~ msgstr "Einstellung zur Anordnung"
+
+#~ msgid "Disencage view"
+#~ msgstr "Anzeige freistellen"
+
+#~ msgid "Rotate 90"
+#~ msgstr "90° drehen"
+
+#~ msgid " Counter-ClockWise"
+#~ msgstr " gegen den Uhrzeigersinn"
+
+#~ msgid " ClockWise"
+#~ msgstr " im Uhrzeigersinn"
+
+#~ msgid "Flip Vertical"
+#~ msgstr "Vertikal spiegeln"
+
+#~ msgid "Flip Horizontal"
+#~ msgstr "Horizontal spiegeln"
+
+#~ msgid "Disengage Vista"
+#~ msgstr "Darstellung entkoppeln"
+
+#~ msgid "Fit View"
+#~ msgstr "Darsteller angleichen"
+
+#~ msgid "Reconstruction mode not implemented:\n"
+#~ msgstr "Nicht implementierter Rekonstruktionsmodus:\n"
+
+#~ msgid "Reconstruction mode not supported:\n"
+#~ msgstr "Nicht unterstützter Rekonstruktionsmodus:\n"
+
+#~ msgid "Show/Hide corner annotations"
+#~ msgstr "Ecknotizen zeigen/verbergen"
+
+#~ msgid ""
+#~ "\n"
+#~ "* Concatenation of patient name and surnames can't be higher than 61."
+#~ msgstr ""
+#~ "\n"
+#~ "* Familien- und Vornamen dürfen zusammen nicht mehr als 61 Zeichen "
+#~ "enthalten."
+
+#~ msgid ""
+#~ "\n"
+#~ "* The format of the height in centimeters is not correct. "
+#~ msgstr ""
+#~ "\n"
+#~ "* Format der Größenangabe in cm unzulässig. "
+
+#~ msgid ""
+#~ "\n"
+#~ "* The format of the weight is not correct. Valid range is between 0 and "
+#~ "400 Kg."
+#~ msgstr ""
+#~ "\n"
+#~ "* Format der Gewichtsangabe ungültig. Zulässiger Bereich 0 bis 400kg."
+
+#~ msgid ""
+#~ "\n"
+#~ "* The patient ID is required."
+#~ msgstr ""
+#~ "\n"
+#~ "* Die Patienten-ID ist erforderlich."
+
+#~ msgid ""
+#~ "\n"
+#~ "* The patient's birth date is after the date of study"
+#~ msgstr ""
+#~ "\n"
+#~ "* Der Patient wurde nach Erstellung der Studie geboren"
+
+#~ msgid ""
+#~ "\n"
+#~ "Would you like to retry?"
+#~ msgstr ""
+#~ "\n"
+#~ "Erneut versuchen ?"
+
+#~ msgid "(ID or medical history number)"
+#~ msgstr "(ID oder Aktennummer)"
+
+#~ msgid "3D Volume"
+#~ msgstr "3D-Volumen"
+
+#~ msgid "Birthday"
+#~ msgstr "Geburtstag"
+
+#~ msgid ""
+#~ "Can not upload to the PACS:\n"
+#~ "Internal Error"
+#~ msgstr ""
+#~ "Kann nicht ins PACS laden:\n"
+#~ "Interner Fehler"
+
+#~ msgid "DICOM Files (*.dcm) | *.dcm"
+#~ msgstr "DICOM-Dateien (*.dcm) | *.dcm"
+
+#~ msgid "DICOM Files (*.dcm)|*.dcm"
+#~ msgstr "DICOM-Dateien (*.dcm)|*.dcm"
+
+#~ msgid "Demographic data"
+#~ msgstr "Personenstammdaten"
+
+#~ msgid "Error validating fields"
+#~ msgstr "Fehler beim Überprüfen der Felder"
+
+#~ msgid "Female"
+#~ msgstr "Weiblich"
+
+#~ msgid "Identificator *"
+#~ msgstr "Identifikator *"
+
+#~ msgid "Importing..."
+#~ msgstr "Import läuft..."
+
+#~ msgid "Include in existing series"
+#~ msgstr "Zu existierender Studie hinzufügen"
+
+#~ msgid "Kg"
+#~ msgstr "kg"
+
+#~ msgid "Layers Overlays"
+#~ msgstr "Schichten-Overlays"
+
+#~ msgid "Male"
+#~ msgstr "Männlich"
+
+#~ msgid "Name"
+#~ msgstr "Name"
+
+#~ msgid "Overview data of DICOM files"
+#~ msgstr "Übersichtsdaten der DICOM-Dateien"
+
+#~ msgid "Patient"
+#~ msgstr "Patient"
+
+#~ msgid "Series reference"
+#~ msgstr "Serienreferenz"
+
+#~ msgid "Sex"
+#~ msgstr "Geschlecht"
+
+#~ msgid "Step 1 of 3: Importing images"
+#~ msgstr "Schritt 1/3: Bilder importieren"
+
+#~ msgid "Step 2 of 3: Copying images"
+#~ msgstr "Schritt 2/3: Bilder kopieren"
+
+#~ msgid "Step 3 of 3: Uploading Images"
+#~ msgstr "Schritt 3/3: Bilder hochladen"
+
+#~ msgid "Study Details"
+#~ msgstr "Studiendetails"
+
+#~ msgid "Surname 1"
+#~ msgstr "Vorname 1"
+
+#~ msgid "Surname 2"
+#~ msgstr "Vorname 2"
+
+#~ msgid "The following errors have occurred when validating fields"
+#~ msgstr "Die folgenden Fehler traten bei der Feldprüfung auf"
+
+#~ msgid "Weight"
+#~ msgstr "Gewicht"
+
+#~ msgid "cm"
+#~ msgstr "cm"
+
+#~ msgid "Comment:"
+#~ msgstr "Kommentar:"
+
+#~ msgid "Error extracting pdf, Ginkgo CADx is unable to load this format"
+#~ msgstr ""
+#~ "Fehler beim Extrahieren des PDFs, Ginkgo CADx kann dieses Format nicht "
+#~ "laden"
+
+#~ msgid "Left"
+#~ msgstr "Links"
+
+#~ msgid "PDF files extracted successfully..."
+#~ msgstr "PDF-Dateien wurden erfolgreich extrahiert …"
+
+#~ msgid "There isn't any pdf reader registered in the system"
+#~ msgstr "Im System ist kein PDF-Betrachter festgelegt"
+
+#~ msgid "Uploading..."
+#~ msgstr "Es wird hochgeladen …"
+
+#~ msgid "Visualization blend type"
+#~ msgstr "Visualisierungs-Übergangstyp"
+
+#~ msgid "Visualization blending mode"
+#~ msgstr "Visualisierungs-Übergangsmodus"

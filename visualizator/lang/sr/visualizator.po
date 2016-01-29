@@ -1,0 +1,600 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ginkgocadx\n"
+"Report-Msgid-Bugs-To: ginkgo@metaemotion.com\n"
+"POT-Creation-Date: 2014-06-11 15:55+0100\n"
+"PO-Revision-Date: 2014-06-11 15:55+0100\n"
+"Last-Translator: Carlos Barrales Ruiz <carlos.barrales@metaemotion.com>\n"
+"Language-Team: Serbian <sr@li.org>\n"
+"Language: sr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.5\n"
+"X-Launchpad-Export-Date: 2012-04-24 11:40+0000\n"
+"X-Poedit-Basepath: ../../\n"
+"X-Poedit-KeywordsList: _;_Std\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: resources/visualizatorresourcesmanager.cpp:37
+msgid "Unable to load PNG bitmap resource"
+msgstr ""
+
+#: visualizator.cpp:62
+msgid "Ginkgo CADx visualizator is Open Source"
+msgstr "Приказивач Гинкго КАДикс-а је отвореног кода"
+
+#: visualizator.cpp:62
+msgid "Info"
+msgstr "Подаци"
+
+#: visualizator/controllers/visualizatorcontroller.cpp:102
+#: visualizator/controllers/visualizatorcontroller.cpp:103
+#: visualizator/controllers/visualizatorcontroller.cpp:104
+msgid "Ginkgo CADx viewer"
+msgstr "Прегледник Гинкго КАДикс-а"
+
+#: visualizator/controllers/visualizatorcontroller.cpp:102
+msgid "Simple importation of images"
+msgstr "Једноставан увоз слика"
+
+#: visualizator/controllers/visualizatorcontroller.cpp:103
+msgid "Medical viewer"
+msgstr "Медицински прегледник"
+
+#: visualizator/controllers/visualizatorcontroller.cpp:104
+#: visualizator/controllers/visualizatorcontroller.cpp:199
+#: visualizator/controllers/visualizatorcontroller.cpp:332
+msgid "Waveform viewer"
+msgstr "Прегледник таласног облика"
+
+#: visualizator/controllers/visualizatorcontroller.cpp:107
+msgid "Default importer"
+msgstr "Основни увозник"
+
+#: visualizator/controllers/visualizatorcontroller.cpp:110
+msgid "Ginkgo CADx Image Report"
+msgstr "Извештај о слици Гинкго КАДикс-са"
+
+#: visualizator/controllers/visualizatorcontroller.cpp:189
+#: visualizator/controllers/visualizatorcontroller.cpp:298
+msgid "Medical Image Viewer"
+msgstr "Прегледник медицинских слика"
+
+#: visualizator/controllers/visualizatorcontroller.cpp:318
+#: visualizator/controllers/visualizatorcontroller.cpp:326
+#: visualizator/controllers/visualizatorcontroller.cpp:354
+#: visualizator/controllers/visualizatorcontroller.cpp:362
+msgid "Error opening study"
+msgstr "Грешка отварања студије"
+
+#: visualizator/dialogos/importacion/selectimagesimportationvisualizator.cpp:86
+msgid "Performing tasks of integration ..."
+msgstr "Обављам задатке обједињавања ..."
+
+#: visualizator/dialogos/panelesherramientasaprimariabase.cpp:47
+msgid "There are no overlays on this image"
+msgstr "Нема преклапања на овој слици"
+
+#: visualizator/estudios/ecgstudy.cpp:380
+msgid "We are working to support "
+msgstr "Радимо на подршци "
+
+#: visualizator/estudios/ecgstudy.cpp:454
+msgid "Vent rate:      "
+msgstr ""
+
+#: visualizator/estudios/ecgstudy.cpp:456
+msgid " BPM"
+msgstr " БПМ"
+
+#: visualizator/estudios/ecgstudy.cpp:458
+msgid "PR int:      "
+msgstr ""
+
+#: visualizator/estudios/ecgstudy.cpp:460
+#: visualizator/estudios/ecgstudy.cpp:464
+#: visualizator/estudios/ecgstudy.cpp:468
+msgid " ms"
+msgstr " ms"
+
+#: visualizator/estudios/ecgstudy.cpp:462
+msgid "QRS dur:      "
+msgstr ""
+
+#: visualizator/estudios/ecgstudy.cpp:466
+msgid "QT\\QTc:      "
+msgstr "КуТ\\КуТц:      "
+
+#: visualizator/estudios/ecgstudy.cpp:470
+msgid "P-R-T axes: "
+msgstr "П-Р-Т осе: "
+
+#: visualizator/estudios/ecgstudy.cpp:489
+msgid "Measurements not found"
+msgstr "Нисам пронашао мерења"
+
+#: visualizator/estudios/ecgstudy.cpp:589
+msgid "ECG format not supported"
+msgstr "ЕЦГ запис није подржан"
+
+#: visualizator/estudios/ecgstudy.cpp:716
+msgid "RR Interval"
+msgstr "РР период"
+
+#: visualizator/estudios/ecgstudy.cpp:716
+msgid "PP Interval"
+msgstr "ПП период"
+
+#: visualizator/estudios/ecgstudy.cpp:716
+msgid "QTc Interval"
+msgstr "КуТц период"
+
+#: visualizator/estudios/ecgstudy.cpp:716
+msgid "Vent Rate"
+msgstr ""
+
+#: visualizator/export/tools/iecgruletool.cpp:19
+#, fuzzy
+msgid "Rule \tCtrl+R"
+msgstr "П-Р-Т осе: "
+
+#: visualizator/export/tools/ioverlaystool.cpp:22
+msgid "Overlay layers"
+msgstr "Слојеви прекривања"
+
+#: visualizator/tools/reconstructiontool.cpp:188
+msgid "3D/4D Reconstruction"
+msgstr "3Д/4Д обнова"
+
+#: visualizator/tools/reconstructiontool.cpp:207
+msgid "3D MPR"
+msgstr "3Д МПР"
+
+#: visualizator/tools/reconstructiontool.cpp:213
+msgid "MIP 3D"
+msgstr "МИП 3Д"
+
+#: visualizator/tools/reconstructiontool.cpp:219
+msgid "3D volume rendering"
+msgstr "Исцртавање 3Д запремине"
+
+#: visualizator/tools/reconstructiontool.cpp:225
+msgid "3D surface rendering"
+msgstr "Исцртавање 3Д површине"
+
+#: visualizator/tools/reconstructiontool.cpp:232
+msgid "3D endoscopy"
+msgstr "3Д ендоскопија"
+
+#: visualizator/vistas/vista2d.cpp:117
+#: visualizator/vistas/waveformview.cpp:105
+#: visualizator/wxvtk/gvistacompleja.cpp:808
+msgid "Error: System out of memory. Close some studies to free memory."
+msgstr ""
+"Грешка: Систем је остао без меморије. Затворите неке студије да ослободите "
+"меморију."
+
+#: visualizator/widgets/wecgrule.cpp:595
+#, fuzzy
+msgid "Length"
+msgstr ""
+"\n"
+"— Највећа дужина АЕТ-а је 16 знакова"
+
+#: visualizator/widgets/wecgrule.cpp:600
+msgid "Points (I)"
+msgstr ""
+
+#: visualizator/widgets/wecgrule.cpp:607
+msgid "Points (M)"
+msgstr ""
+
+#: visualizator/wxvtk/gvistacompleja.cpp:203
+msgid ""
+"It has exhausted the system's video memory and has not been able to assign "
+"the grid configuration. Close some studies to free memory."
+msgstr ""
+"Потрошена је видео меморија система и због тога није могуће доделити "
+"подешавање мреже. Затворите неке студије да ослободите меморију."
+
+#: visualizator/wxvtk/gvistacompleja.cpp:203
+msgid "Error configuring the grid"
+msgstr "Грешка подешавања мреже"
+
+#: visualizator/wxvtk/gvistacompleja.cpp:396
+#: visualizator/wxvtk/gvistacompleja.cpp:403
+msgid "Slice: "
+msgstr "Парче: "
+
+#: visualizator/wxvtk/gvistacompleja.cpp:551
+msgid "Display Options"
+msgstr "Могућности приказа"
+
+#: visualizator/wxvtk/gvistacompleja.cpp:569
+msgid "Synchronize/Des synchronize"
+msgstr "Усклади/Врати усклађивање"
+
+#: visualizator/wxvtk/gvistacompleja.cpp:797
+msgid ""
+"Error: You have exhausted the system's video memory and has not been able to "
+"load the image. Close some studies to free memory."
+msgstr ""
+"Грешка: Потрошили сте видео меморију система и због тога није могуће учитати "
+"слику. Затворите неке студије да ослободите меморију."
+
+#: visualizator/wxvtk/gvistacompleja.cpp:799
+#: visualizator/wxvtk/gvistacompleja.cpp:810
+#: visualizator/wxvtk/gvistacompleja.cpp:817
+msgid "Destroy View"
+msgstr "Уништи преглед"
+
+#: visualizator/wxvtk/gvistacompleja.cpp:815
+msgid "Error: Internal error."
+msgstr "Грешка: Унутрашња грешка."
+
+#: visualizator/wxvtk/gvistasimple.cpp:420
+msgid "Area      : "
+msgstr "Област      : "
+
+#: visualizator/wxvtk/gvistasimple.cpp:423
+msgid "undetermined"
+msgstr "неодређено"
+
+#: visualizator/wxvtk/gvistasimple.cpp:445
+msgid "Perimeter : "
+msgstr "Обим : "
+
+#: visualizator/wxvtk/gvistasimple.cpp:480
+#: visualizator/wxvtk/gvistasimple.cpp:513
+#: visualizator/wxvtk/gvistasimple.cpp:600
+msgid "Position   : "
+msgstr "Положај   : "
+
+#: visualizator/wxvtk/gvistasimple.cpp:481
+msgid "RGB ("
+msgstr "РГБ ("
+
+#: visualizator/wxvtk/gvistasimple.cpp:528
+#: visualizator/wxvtk/gvistasimple.cpp:601
+msgid "Rating   : "
+msgstr "Оцена   : "
+
+#: visualizator/wxvtk/gvistasimple.cpp:534
+msgid "[DNorm ="
+msgstr ""
+
+#: visualizator/wxvtk/gvistasimple.cpp:552
+msgid "Centroid Pos:"
+msgstr "Положај тежишнице:"
+
+#: visualizator/wxvtk/gvistasimple.cpp:553
+msgid "Area:"
+msgstr "Област:"
+
+#: visualizator/wxvtk/gvistasimple.cpp:577
+msgid "Perimeter:"
+msgstr "Обим:"
+
+#: visualizator/wxvtk/gvistasimple.cpp:595
+msgid "Rating: mean ="
+msgstr "Оцена: значи ="
+
+#: visualizator/wxvtk/gvistasimple.cpp:595
+msgid ", dev ="
+msgstr ", dev ="
+
+#: visualizator/wxvtk/gwaveformview.cpp:179
+msgid "Show/Hide metadata"
+msgstr "Прикажи/сакриј мета податке"
+
+#: visualizator/wxvtk/gwaveformview.cpp:254
+msgid "Error loading study with ecg view"
+msgstr ""
+
+#: visualizator/wxvtk/gwaveformview.cpp:254
+msgid "Error"
+msgstr "Грeшкa"
+
+#: visualizator/wxvtk/previewpanelvisualizator.cpp:129
+#, fuzzy
+msgid "Uploading to the PACS ..."
+msgstr ""
+"\n"
+"— ИБ овог ПАЦС-а је у употреби"
+
+#: visualizator/wxvtk/previewpanelvisualizator.cpp:152
+#, fuzzy
+msgid "Upload series to PACS..."
+msgstr ""
+"\n"
+"— ИБ овог ПАЦС-а је у употреби"
+
+#: visualizator/wxvtk/previewpanelvisualizator.cpp:204
+#, fuzzy, c-format
+msgid "%d series"
+msgstr " (слика — %d)"
+
+#: visualizator/wxvtk/visualizatorviews.cpp:193
+msgid "Select the view you want to synchronize with the current"
+msgstr "Изаберите преглед који желите да ускладите са текућим"
+
+#: visualizator/wxvtk/visualizatorviews.cpp:221
+msgid "Accept"
+msgstr "Прихвати"
+
+#: visualizator/wxvtk/visualizatorviews.cpp:224
+msgid "Cancel"
+msgstr "Откажи"
+
+#: visualizator/wxvtk/visualizatorviews.cpp:294
+msgid "Metadata"
+msgstr "Метаподаци"
+
+#: visualizator/estudios/ecgstudy.h:108
+#, fuzzy
+msgid "Unknown"
+msgstr "<непознат ИБ>"
+
+#: visualizator/license.h:17
+msgid "Visualizator extension"
+msgstr ""
+
+#: visualizator/wxvtk/visualizatorviews.h:120
+#, fuzzy
+msgid "Synchronize..."
+msgstr "Усклади/Врати усклађивање"
+
+#~ msgid "Play"
+#~ msgstr "Пусти"
+
+#~ msgid "Speed"
+#~ msgstr "Брзина"
+
+#~ msgid "Loop"
+#~ msgstr "Упетљај"
+
+#~ msgid "Repeat on end"
+#~ msgstr "Понови на крају"
+
+#~ msgid "Start playback"
+#~ msgstr "Започни пуштање"
+
+#~ msgid "Stop"
+#~ msgstr "Заустави"
+
+#~ msgid "End playback"
+#~ msgstr "Заврши пуштање"
+
+#~ msgid " VOIs detected."
+#~ msgstr " ВОИс је откривен."
+
+#~ msgid "/"
+#~ msgstr "/"
+
+#~ msgid "3D Surface"
+#~ msgstr "3Д површина"
+
+#~ msgid "Aborted"
+#~ msgstr "Прекинуто"
+
+#~ msgid "Apply"
+#~ msgstr "Примени"
+
+#~ msgid "Apply reconstruction"
+#~ msgstr "Примени обнову"
+
+#~ msgid "Apply reconstuction"
+#~ msgstr "Примени обнову"
+
+#~ msgid "Blend Mode"
+#~ msgstr "Режим стапања"
+
+#~ msgid "CT - Bone"
+#~ msgstr "ЦТ — Кост"
+
+#~ msgid "CT - Muscle"
+#~ msgstr "ЦТ — Мишић"
+
+#~ msgid "CT - Skin"
+#~ msgstr "ЦТ — Кожа"
+
+#~ msgid "CT Bone"
+#~ msgstr "ЦТ кост"
+
+#~ msgid "CT Muscle"
+#~ msgstr "ЦТ мишић"
+
+#~ msgid "CT Pressets"
+#~ msgstr "ЦТ претподешавања"
+
+#~ msgid "CT Skin"
+#~ msgstr "ЦТ кожа"
+
+#~ msgid "Color"
+#~ msgstr "Боја"
+
+#~ msgid "Color / alpha"
+#~ msgstr "Боја / алфа"
+
+#~ msgid "Comment:"
+#~ msgstr "Напомена:"
+
+#~ msgid "Computing VOIs...."
+#~ msgstr "Израчунавам ВОИс..."
+
+#~ msgid "Cursor"
+#~ msgstr "Курсор"
+
+#~ msgid "DICOM Tags"
+#~ msgstr "ДИЦОМ ознаке"
+
+#~ msgid "DataSet 0000/0000"
+#~ msgstr "Подешавање података 0000/0000"
+
+#~ msgid "Demo mode"
+#~ msgstr "Пробни режим"
+
+#~ msgid "Done"
+#~ msgstr "Урађено"
+
+#~ msgid "Enable"
+#~ msgstr "Укључи"
+
+#~ msgid "Enable/Disable Smoothing the high resolution input volume data."
+#~ msgstr ""
+#~ "Укључите/Искључите умекшавање података улазног волумена високе резолуције."
+
+#~ msgid "Enable/Disable Smoothing the low resolution resampled volume data."
+#~ msgstr ""
+#~ "Укључите/Искључите умекшавање података улазног волумена ниске резолуције."
+
+#~ msgid "Enable/Disable second surface"
+#~ msgstr "Укључи/искључи други површину"
+
+#~ msgid "Error extracting pdf, Ginkgo CADx is unable to load this format"
+#~ msgstr "Грешка извлачења пдф-а, Гинкго КАДикс не може да учита овај запис"
+
+#~ msgid "First surface"
+#~ msgstr "Прва површина"
+
+#~ msgid "Generating VOIs...."
+#~ msgstr "Стварам ВОИс...."
+
+#~ msgid "Hide"
+#~ msgstr "Сакриј"
+
+#~ msgid "Image without metric information"
+#~ msgstr "Слика без метричких података"
+
+#~ msgid "Image:"
+#~ msgstr "Слика:"
+
+#~ msgid "IsoSurface pixel value"
+#~ msgstr "Вредност тачкице исо површине"
+
+#~ msgid "Left"
+#~ msgstr "Лево"
+
+#~ msgid "MIP"
+#~ msgstr "МИП"
+
+#~ msgid "Made with %s"
+#~ msgstr "Направљено програмом „%s“"
+
+#~ msgid "Modality: "
+#~ msgstr "Начин: "
+
+#~ msgid "PDF files extracted successfully..."
+#~ msgstr "ПДФ датотека је успешно распакована..."
+
+#~ msgid "Patient Id: "
+#~ msgstr "ИБ пацијента: "
+
+#~ msgid "Patient: "
+#~ msgstr "Пацијент: "
+
+#~ msgid "Pixel value of first surface doesn't have a valid value"
+#~ msgstr "Вредност тачкица прве површине нема исправну вредност"
+
+#~ msgid "Pixel value of second surface doesn't have a valid value"
+#~ msgstr "Вредност тачкица друге површине нема исправну вредност"
+
+#~ msgid "Position:"
+#~ msgstr "Положај:"
+
+#~ msgid "Post-Smooth"
+#~ msgstr "Пост-умекшавање"
+
+#~ msgid "Pre-Smooth"
+#~ msgstr "Пре-умекшавање"
+
+#~ msgid "Quality"
+#~ msgstr "Квалитет"
+
+#~ msgid "Reconstruction internal error"
+#~ msgstr "Унутрашња грешка обнављања"
+
+#~ msgid "Rendering color"
+#~ msgstr "Боја исцртавања"
+
+#~ msgid "Resampled resolution: 32x32x32, 64x64x64, 128x128x128, 256x256x256"
+#~ msgstr ""
+#~ "Поново узоркована резолуција: 32x32x32, 64x64x64, 128x128x128, 256x256x256"
+
+#~ msgid "Reset"
+#~ msgstr "Врати"
+
+#~ msgid "Reset Camera"
+#~ msgstr "Врати фото-апарат"
+
+#~ msgid "Resolution"
+#~ msgstr "Резолуција"
+
+#~ msgid "Right"
+#~ msgstr "Десно"
+
+#~ msgid "Save Frame"
+#~ msgstr "Сачувај кадар"
+
+#~ msgid "Save current frame to new serie"
+#~ msgstr "Сачувајте текући кадар у нову серију"
+
+#~ msgid "Saving done"
+#~ msgstr "Чување је обављено"
+
+#~ msgid "Saving failed"
+#~ msgstr "Чување није успело"
+
+#~ msgid "Saving frame..."
+#~ msgstr "Чувам кадар..."
+
+#~ msgid "Second surface"
+#~ msgstr "Друга површина"
+
+#~ msgid "Sets the resampling resolution"
+#~ msgstr "Подесите резолуцију поновног узорковања"
+
+#~ msgid "Smooth"
+#~ msgstr "Глатко"
+
+#~ msgid "Stereo view"
+#~ msgstr "Стерео преглед"
+
+#~ msgid "Surface rendering color and transparency"
+#~ msgstr "Боја и провидност исцртавања површине"
+
+#~ msgid "Surface settings"
+#~ msgstr "Подешавања површине"
+
+#~ msgid "Surfaces"
+#~ msgstr "Површине"
+
+#~ msgid "There isn't any pdf reader registered in the system"
+#~ msgstr "На систему не постоји ни један пдф читач"
+
+#~ msgid "Transparency level"
+#~ msgstr "Ниво провидности"
+
+#~ msgid "Update done"
+#~ msgstr "Доградња је обављена"
+
+#~ msgid "Updating..."
+#~ msgstr "Дограђујем..."
+
+#~ msgid "Uploading..."
+#~ msgstr "Отпремам..."
+
+#~ msgid "Value"
+#~ msgstr "Вредност"
+
+#~ msgid "Value:"
+#~ msgstr "Вредност:"
+
+#~ msgid "Warning"
+#~ msgstr "Упозорење"
+
+#~ msgid "Window/Level"
+#~ msgstr "Прозор/Ниво"

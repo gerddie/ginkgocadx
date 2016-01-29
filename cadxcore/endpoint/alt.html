@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>Other C++ Socket Classes</title>
+</head>
+<body>
+<h1>References</h1>
+
+<dl>
+<dt>Microsoft Foundation Classes' <i>CSocket</i></dt>
+<dd>See <a href="http://tangentsoft.net/wskfaq/articles/csocket.html">CSocket Considered Harmful</a>, problems with being asynchronous and synchronous<p></dd>
+
+
+<dt><a href="http://www.gnu.org/software/commonc++/">GNU Common C++</a></dt>
+<dd>"GNU Common C++ offers support and portable classes for threading and sockets for both UNIX (Posix systems with "pthread" support) and the Windows "Win32" API. "</dd>
+
+<dt><a href="http://nmstl.sourceforge.net/doc/apiuc/classSocket.html">NMSTL's <i>Socket</i></a>
+<dd>Part of the "Networking, Messaging, Servers, and Threading Library",
+seems to be just a thin wrapper.<p></dd>
+
+<dt><a href="http://www.ddj.com/documents/s=7157/ddj0206a/0206a.htm">Jason 
+But's <i>SocketCC</i></a></dt>
+<dd>IPv4, IPv6, UDP, TCP, <i>SocketException</i>, <i>IPAddress</i>, several
+classes for TCP and UDP. No Win32 support, targetted at Linux.<p></dd>
+</dl>
+
+<dt><a href="http://www.cs.wustl.edu/~schmidt/cs544/socket2.html">ACE Sockets</a>
+<dd>Not much information<p></dd>
+
+<dt><a href="http://www.drclue.net/F1.cgi/HTML/SOCKETS/SOCKETS.html">Dr. Clue's <i>Socket</i></a></dt>
+<dd>Looks comprehensive, but no Win32 support.<p></dd>
+
+<dt><a href="http://www.adp-gmbh.ch/win/misc/sockets.html">Rene Nyffenegger's <i>Socket</i> for Win32</a></dt>
+<dd>SocketServer, SocketSelect, UDP. Win32 (WinSock2) only<p></dd>
+
+<dt><a href="http://members.aon.at/hstraub/linux/socket++/">Socket++</a></dt>
+<dd>"Socket++ is a family of C++ classes that gives the same interface as the iostream classes for input and output for communication between processes.", has Internet socks as well as Unix domain, implements Echo and SMTP example "protocol" classes, no IPv6. RedHat, Debian, FreeBSD, WinSock(?). Wrappers provided for pipe(), socketpair(), popen() and fork(). GPL'd. "Socket++ is a iostream like C++ class library for UNIX and INET domains of sockets and protocols.".<p></dd>
+
+<dt><a href="http://libsocket.sourceforge.net/">libsocketcpp</a></dt>
+<dd>"Libsocketcpp provides a easy-to-use C++ class. With this class, TCP and UDP functionality can be added to any program quickly and easily." XXX<p></dd>
+
+<dt><a href="http://www.rfc1149.net/devel/adasockets">AdaSockets</a></dt> - non-C++ (Ada)
+<dd>"AdaSockets allows Ada programmers to use sockets from within their programs with an easy-to-use Ada-friendly interface." XXX<p></dd>
+
+<dt><a href="http://www.ruby-lang.org/raa/list.rhtml?name=tcpsocketpipe">Ruby/TCPSocketPipe</a> - non-C++ (Ruby)</dt>
+<dd>"A Ruby library to create I/O pipes for TCP socket tunneling" XXX<p></dd>
+</dl>
+
+<dt><a href="http://www.gnetlibrary.org/">GNetLibrary</a><dd>
+GNet is a C library, but its object-oriented.</dd>
+
+<li><i>Unix Network Programming</i> - <b>a must</b>, also comes with a nice
+C networking library of wrappers for system calls
+<li><a href="http://www.ecst.csuchico.edu/~beej/guide/net/html/">Beej's Guide to Network Programming</a> - an excellent tutorial, good overview
+<li><a href="http://world.std.com/~jimf/papers/sockets/sockets.html">BSD Sockets: A Quick And Dirty Primer</a>
+</ul>
