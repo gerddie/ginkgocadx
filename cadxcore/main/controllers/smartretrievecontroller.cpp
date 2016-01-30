@@ -198,9 +198,10 @@ void GNC::GCS::SmartRetrieveController::FreeInstance()
 }
 
 
-GNC::GCS::SmartRetrieveController::SmartRetrieveController(): 
-	pThread(NULL),
-	tidService(-1)
+GNC::GCS::SmartRetrieveController::SmartRetrieveController():
+        tidService(-1), 
+	pThread(NULL)
+
 {
 }
 

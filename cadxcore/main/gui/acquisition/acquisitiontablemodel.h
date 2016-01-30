@@ -45,7 +45,7 @@ namespace GNC {
 		{
 		public:
 			AcquisitionNode(AcquisitionNode* parent, const GNC::GCS::Ptr<GIL::DICOM::DicomDataset> pInfo);
-			~AcquisitionNode();
+			virtual ~AcquisitionNode();
 
 			bool IsSeriesNode();
 			bool IsStudyNode();

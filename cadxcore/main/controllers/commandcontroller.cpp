@@ -453,7 +453,7 @@ void GNC::CommandController::ProcessSync(GNC::GCS::IComando* cmd, bool autodelet
 	}
 }
 
-void GNC::CommandController::ProcessAsync(const std::string& str, GNC::GCS::IComando* cmd, void * owner)
+void GNC::CommandController::ProcessAsync(const std::string& /*str*/, GNC::GCS::IComando* cmd, void * owner)
 {
 	cmd->SetOwner(owner);
 	cmd->SetNotificadorProgreso(NULL);

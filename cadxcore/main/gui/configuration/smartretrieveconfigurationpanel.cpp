@@ -115,7 +115,7 @@ namespace GNC {
 			GNC::GCS::SmartRetrieveController::Instance()->enable(m_pCheckEnable->GetValue());
 			//todo set status of queries...
 			GNC::GCS::StoredQueryController::TStoredQueriesList queries = GNC::GCS::StoredQueryController::Instance()->getStoredQueries();
-			for (int i = 0; i < m_pModel->GetCount(); ++i) {
+			for (unsigned  i = 0; i < m_pModel->GetCount(); ++i) {
 				wxVariant value;
 				m_pModel->GetValueByRow(value, i, POD_COL_ACTIVE_IDX);
 				bool active = value.GetBool();

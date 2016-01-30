@@ -69,11 +69,11 @@ void FooSignalHandler(int sig)
 #include <pthread.h>
 #include <sys/signal.h>
 
-void GNC::GCS::Threading::SetThreadName( long threadID, const std::string& threadName)
+void GNC::GCS::Threading::SetThreadName( long /*threadID*/, const std::string& /*threadName*/)
 {
 }
 
-void FooSignalHandler(int sig)
+void FooSignalHandler(int /*sig*/)
 {
 	GTRACE("SIGUSR1 recibido");
 }

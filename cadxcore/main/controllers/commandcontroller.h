@@ -80,7 +80,7 @@ namespace GNC {
 
 		GNC::GCS::WaitQueue    m_Dependencias;
 
-		// Esta variable controla si el hilo debe enviar el mensaje de finalizacion o no
+		// this varable should be an atomic or guarded by a mutex
 		bool                   m_Abortar;
 		
 		bool                   m_Shutdown;
@@ -115,7 +115,7 @@ namespace GNC {
 		static CommandController *Instance();
 		static void FreeInstance();
 
-		~CommandController();
+		virtual ~CommandController();
 		virtual void ProcessSync(GNC::GCS::IComando* cmd, bool autodelete, bool update = true, GNC::INotificadorProgreso* pNotifier = NULL);
 		virtual void ProcessAsync(const std::string& str, GNC::GCS::IComando* cmd, void* owner);
 		virtual void AbortarComando(GNC::GCS::IComando* pComando, bool sincrono = true);

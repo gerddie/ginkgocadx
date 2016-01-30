@@ -41,7 +41,7 @@ namespace GNC {
 			HistoryNode(const GNC::GCS::IHistoryController::StudyModel& study);
 			HistoryNode(const GNC::GCS::IHistoryController::SeriesModel& series, HistoryNode* parent);
 			HistoryNode();
-			~HistoryNode();
+			virtual ~HistoryNode();
 
 			bool IsStudyModel() const;
 			bool IsSeriesModel() const;

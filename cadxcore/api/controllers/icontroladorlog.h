@@ -101,7 +101,7 @@ namespace GNC {
 		protected:
 			//--- Constructores
 			IControladorLog();
-			~IControladorLog();
+			virtual ~IControladorLog();
 		public:			
 			//log en el logger por defecto
 			virtual void Log(const std::string& mensaje, LogLevel logLevel = DebugLog) = 0;

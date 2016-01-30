@@ -35,8 +35,10 @@
 
 #define LOGGER "ACQUISITIONTABLEMODEL"
 
-GNC::GUI::AcquisitionNode::AcquisitionNode(AcquisitionNode* parent, const GNC::GCS::Ptr<GIL::DICOM::DicomDataset> info): pParent(parent),
-	pData(info)
+GNC::GUI::AcquisitionNode::AcquisitionNode(AcquisitionNode* parent, const GNC::GCS::Ptr<GIL::DICOM::DicomDataset> info):
+        pData(info), 
+        pParent(parent)
+	
 {
 	if (IsSeriesNode()) {
 		uid = pData->getTag(GKDCM_SeriesInstanceUID);
@@ -127,8 +129,9 @@ void GNC::GUI::AcquisitionNode::SetDateTime(const std::string& strDate, const st
 
 
 /////////////////////////////
-GNC::GUI::AcquisitionTableModel::AcquisitionTableModel(): m_Mode(MM_SERIES),
-	m_pComandoPACS(NULL)
+GNC::GUI::AcquisitionTableModel::AcquisitionTableModel():
+        m_pComandoPACS(NULL), 
+        m_Mode(MM_SERIES)
 {
 	m_pImageList = new wxImageList(SIZE_ICONOS,SIZE_ICONOS,true);
 	m_pImageList->Add(GinkgoResourcesManager::History::GetIcoEstudio());

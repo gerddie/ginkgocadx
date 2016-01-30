@@ -39,7 +39,7 @@ namespace GNC {
 			vtkSmartPointer<vtkImageData> CargarITKMultidimensionalUnsignedShort(IComando* cmd, ListaRutas& listaFicheros, int* orientacion,double* spacing = NULL);
 
 			ControladorCarga();
-			~ControladorCarga();
+			virtual ~ControladorCarga();
 			static ControladorCarga* m_psInstancia;
 			static wxCriticalSection* m_pCriticalSection;
 		};

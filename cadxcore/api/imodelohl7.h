@@ -198,7 +198,7 @@ namespace GIL {
 			{
 			}
 
-			Field(const Field& otro)
+		Field(const Field& otro):std::map<size_t, Component>(otro)
 			{
 				*this = otro;
 			}
@@ -325,7 +325,7 @@ namespace GIL {
 			{
 			}
 
-			Segment(const Segment& otro)
+		Segment(const Segment& otro):std::map<size_t, std::list<Field> >(otro)
 			{
 				*this = otro;
 			}
@@ -567,7 +567,7 @@ namespace GIL {
 			{
 			}
 
-			Message(const Message& otro)
+		Message(const Message& otro):std::list<Segment>(otro)
 			{
 				*this = otro;
 			}

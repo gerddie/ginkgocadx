@@ -97,7 +97,7 @@ namespace GNC {
 			static void FreeInstance();
 		protected:
 			IConfigurationController();
-			~IConfigurationController();
+			virtual ~IConfigurationController();
 		};
 	}
 }

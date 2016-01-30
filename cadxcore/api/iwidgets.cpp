@@ -256,7 +256,8 @@ std::string GNC::GCS::Widgets::IWidget::PuntoToStringMundo(const GNC::GCS::Vecto
 	double wp[4];
 	std::stringstream out;
 	out.precision(3);
-	const double ip[3] = {valor.x, valor.y, m_pManager->GetRendererActivo()->m_pImageViewer->GetTindex()};
+	const double ip[3] = {valor.x, valor.y,
+                              static_cast<double>(m_pManager->GetRendererActivo()->m_pImageViewer->GetTindex())};
 	m_pManager->GetRendererActivo()->m_pImageViewer->CoordenadasImagenACoordenadasMundo(ip, wp);
 	out << "[ x = " << wp[0] << ", y = " << wp[1] << ", z=" << wp[2] << "  ]";
 	return out.str();

@@ -203,7 +203,7 @@ namespace GNC {
 				if (matcher.IsValid()) {
 					matcher->getMatchingCriteria().clear();
 					wxVariant tag,value;
-					for (int i = 0; i < m_pModel->GetCount(); ++i) {
+					for (unsigned i = 0; i < m_pModel->GetCount(); ++i) {
 						m_pModel->GetValueByRow(tag, i, COL_UID);
 						m_pModel->GetValueByRow(value, i, COL_VALUE);
 						matcher->getMatchingCriteria()[std::string(tag.GetString().ToUTF8())] = value.GetString().ToUTF8();
@@ -230,7 +230,7 @@ namespace GNC {
 				if (dlg.ShowModal() == wxID_OK) {
 					std::pair<std::string, std::string> value = dlg.getTag();
 					wxVariant val;
-					for (int i = 0; i < m_pModel->GetItemCount(); ++i) {
+					for (unsigned  i = 0; i < m_pModel->GetItemCount(); ++i) {
 						m_pModel->GetValueByRow(val, i, COL_UID);
 						if (val.GetString() == wxString::FromUTF8(value.first.c_str()))
 						{
@@ -687,7 +687,7 @@ namespace GNC {
 				GNC::GCS::Ptr<GNC::GCS::Matcher> pStudyMatcher(new GNC::GCS::Matcher());
 				editStudyCriteriaPanel->updateMatcher(pStudyMatcher);
 				this->hangingProtocol->setStudyMatcher(pStudyMatcher);
-				for (int i = 0; i < m_pNoteBookWindows->GetPageCount(); ++i) {
+				for (unsigned i = 0; i < m_pNoteBookWindows->GetPageCount(); ++i) {
 					wxWindow* pWin = m_pNoteBookWindows->GetPage(i);
 					StudyWindow* sw = dynamic_cast<StudyWindow*> (pWin);
 					if (sw != NULL) {

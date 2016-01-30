@@ -139,7 +139,7 @@ namespace GNC {
 		protected:
 			IControladorPermisos();
 			
-			~IControladorPermisos();
+			virtual ~IControladorPermisos();
 
 		public:
 

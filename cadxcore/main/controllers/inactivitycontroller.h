@@ -46,7 +46,7 @@ namespace GNC {
 		protected:			
 			TimerInactivity*		  m_pTimerInactivity;
 			InactivityController();
-			~InactivityController();
+			virtual ~InactivityController();
 		};
 	}
 }

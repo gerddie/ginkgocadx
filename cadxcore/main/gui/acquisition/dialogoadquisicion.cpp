@@ -448,13 +448,11 @@ void GNC::GUI::DialogoAdquisicion::Search()
 std::string GNC::GUI::DialogoAdquisicion::GetModalities()
 {
 	std::string modalities;
-	bool all = true;
 
 	for (TModalitiesVector::iterator it =m_modalitiesList.begin(); it !=m_modalitiesList.end(); ++it) {
 		wxCheckBox* pCheck = dynamic_cast<wxCheckBox*>(*it);
 		if(pCheck != NULL)
 			if(pCheck->IsChecked()){
-				all = false;
 				if (modalities == ""){
 					modalities = pCheck->GetLabel().ToUTF8();
 				}
@@ -655,7 +653,7 @@ void GNC::GUI::DialogoAdquisicion::OnComboStoredQueriesClick(wxCommandEvent& /*e
 		std::set<std::string> modalitiesChecked;
 		if (pStoredQuery->hasCondition(GKDCM_ModalitiesInStudy)) {
 			std::string modalitiesInStudy = pStoredQuery->getCondition(GKDCM_ModalitiesInStudy)->getValue().c_str();
-			//split field through \\
+			//split field through \ 
 			//split with \ bar
 			wxStringTokenizer tknz(wxString::FromUTF8(modalitiesInStudy.c_str()), wxT("\\"));
 			//insert in the set the values

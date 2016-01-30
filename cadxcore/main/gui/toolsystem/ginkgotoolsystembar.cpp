@@ -211,6 +211,8 @@ GNC::GUI::GinkgoToolSystemBar::GinkgoToolSystemBar(wxWindow* pParent, GNC::GCS::
 		break;
 	case GNC::GCS::ITool::TMenuEdicion:
 		break;
+        default:
+                break; 
 	}
 	pToolArt->SetCustomBaseColor(color);
 

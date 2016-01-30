@@ -39,7 +39,7 @@ namespace GNC {
 			TimerAutocleaning*		  m_pTimerAutocleaning;
 			static AutoCleaningController* m_pInstance;
 			AutoCleaningController();
-			~AutoCleaningController();
+			virtual ~AutoCleaningController();
 		};
 	}
 }

@@ -50,7 +50,7 @@ namespace GNC {
 
 	protected:
 		HistoryToolsController();
-		~HistoryToolsController();
+		virtual ~HistoryToolsController();
 
 		static HistoryToolsController* m_pInstance;
 

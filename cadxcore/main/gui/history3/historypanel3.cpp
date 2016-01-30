@@ -111,7 +111,9 @@ namespace GNC {
 		class wxPopUpMenuThumbnails: public wxMenu
 		{
 		public:
-			wxPopUpMenuThumbnails(GNC::GUI::HistoryPanel3* historyPanel, long seriesPk) :wxMenu(), HistoryPanel(historyPanel), SeriesPk(seriesPk)
+			wxPopUpMenuThumbnails(GNC::GUI::HistoryPanel3* historyPanel, long seriesPk) :wxMenu(),
+                                                                                                     SeriesPk(seriesPk), 
+                                                                                                     HistoryPanel(historyPanel)
 			{				
 				if (seriesPk != -1) {
 					wxMenuItem* pItem = Append(wxID_ANY, _("Open Series"));
@@ -934,7 +936,6 @@ void GNC::GUI::HistoryPanel3::OpenSeriesOrStudyWith(long pk, bool isSeries)
 void GNC::GUI::HistoryPanel3::OpenSeriesOrStudy(long pk, bool isSeries, bool force)
 {
 	//show current...
-	bool seriesIsAlreadyOpen = false;
 	GNC::GCS::IHistoryController::SeriesModelList seriesModelList;
 	{
 		GNC::GCS::IVista* pView = NULL;
@@ -960,7 +961,6 @@ void GNC::GUI::HistoryPanel3::OpenSeriesOrStudy(long pk, bool isSeries, bool for
 			GNC::Entorno::Instance()->GetVentanaPrincipal()->ForzarCambioVista(pView);
 			GNC::GCS::HistoryController::FileModel fileModel = GNC::GCS::HistoryController::Instance()->GetFrameOfReference(seriesModelList.front().pk);
 			pView->ActivarRuta(fileModel.pk);
-			seriesIsAlreadyOpen = true;
 			if (!force) {
 				return;
 			}

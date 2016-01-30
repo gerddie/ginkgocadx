@@ -994,7 +994,6 @@ namespace GNC {
 							wxVariant val2;
 							bool notFound = true;
 							for (unsigned int i = 0; notFound && i < m_pModel->GetCount(); ++i) {
-								wxDataViewItem item = m_pModel->GetItem(i);
 								m_pModel->GetValueByRow(val2, i, NAME_COLUMN_IDX);
 								if (val == val2) {
 									m_pListPacs->SelectRow(i);									

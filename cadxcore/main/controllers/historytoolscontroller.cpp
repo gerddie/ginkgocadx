@@ -22,6 +22,8 @@
 #include <wx/dc.h>
 #include <wx/wxginkgotoolbar.h>
 
+#include <iostream> 
+
 GNC::HistoryToolsController::HistoryToolsController()
 {
 }
@@ -57,8 +59,9 @@ void GNC::HistoryToolsController::RegisterAll()
 
 void GNC::HistoryToolsController::UnRegisterAll()
 {
+        std::cout << "GNC::HistoryToolsController::UnRegisterAll()\n"; 
 	for (ToolMap::iterator it = m_tools.begin(); it != m_tools.end(); ++it) {
-		delete (*it).second;
+		//delete (*it).second;
 	}
 	m_tools.clear();
 }

@@ -71,6 +71,7 @@ inline char clampByte(int color) {
 	else{
 		color = (char)(color);
 	}
+        return color; 
 }
 
 // integer implementation (fast but incomplete)

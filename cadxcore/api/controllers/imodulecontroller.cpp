@@ -25,9 +25,9 @@ GNC::GCS::ModoControlador::ModoControlador(int _id, const std::string& _descripc
 id(_id),
 descripcion(_descripcion),
 m_listaModalidades(listaModalidades),
+m_hangingSupportLevel(supportLevel), 
 m_listImportationUIDs(listaImportacion),
-bitmap(_bitmap),
-m_hangingSupportLevel(supportLevel)
+bitmap(_bitmap)
 {
 }
 

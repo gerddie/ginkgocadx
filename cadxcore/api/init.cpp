@@ -6,6 +6,8 @@
 #include <cstring>
 #endif
 
+#include <iostream>
+
 #if defined(_WIN32)
 int EXTAPI Init(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
@@ -33,6 +35,7 @@ int EXTAPI Init(int argc, char** argv)
 		return InitTest();
 	}
 #endif
+        std::cout << "calling InitWX(argc, argv);\n"; 
 	return InitWX(argc, argv);
 }
 #endif

@@ -267,14 +267,12 @@ void GNC::GUI::GinkgoCloudSearchDialog::Search()
 std::string GNC::GUI::GinkgoCloudSearchDialog::GetModalities()
 {
 	std::string modalities;
-	bool all = true;
 
 	for (TModalitiesVector::iterator it =m_modalitiesList.begin(); it !=m_modalitiesList.end(); ++it) {
 		wxCheckBox* pCheck = dynamic_cast<wxCheckBox*>(*it);
 		if(pCheck != NULL)
 			if(pCheck->IsChecked()){
-				all = false;
-				if (modalities == ""){
+                                if (modalities == ""){
 					modalities = pCheck->GetLabel().ToUTF8();
 				}
 				else{

@@ -18,8 +18,8 @@ m_pRendererActivo(NULL),
 m_Modified(false),
 m_pView(pView),
 m_Enabled(true),
-m_cursor(GNC::GCS::Widgets::CUR_FLECHA),
-m_pDefaultEventListenerDelegate(NULL)
+m_pDefaultEventListenerDelegate(NULL), 
+m_cursor(GNC::GCS::Widgets::CUR_FLECHA)
 { }
 
 GNC::GCS::IWidgetsManager::~IWidgetsManager() {

@@ -179,10 +179,11 @@ namespace GNC {
 
 		protected:
 			void setStatus(TStatus status);
+			TStatus m_status;
 			std::string m_description;
 			std::list<long> m_seriesId;
 			long m_idBBDD;
-			TStatus m_status;
+		
 			std::string m_errorDescription;
 		};
 	}

@@ -88,11 +88,12 @@ namespace GNC {
 			virtual bool SupportsImportationUID(const std::string &importationUID) const;
 
 		protected:
-			T_HangingProtocolSupportLevel m_hangingSupportLevel;
-			TipoListaModalidades  m_listaModalidades;
-			TipoListaUIDsImportacion m_listImportationUIDs;
 			int id;
 			std::string descripcion;
+			TipoListaModalidades  m_listaModalidades;
+			T_HangingProtocolSupportLevel m_hangingSupportLevel;
+			
+			TipoListaUIDsImportacion m_listImportationUIDs;
 			wxBitmap* bitmap;
 		};
 
