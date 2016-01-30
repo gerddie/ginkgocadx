@@ -145,7 +145,7 @@ namespace GADAPI
 				errmsg << _Std("Error sending message:") << ep.m_error_str;
 			}
 			else {
-				errmsg << _Std("Error sending message. It was sent ") << nbytes << _Std(" bytes from a total of ") << outputStream;
+				errmsg << _Std("Error sending message. It was sent ") << nbytes << _Std(" bytes from a total of ") << outputStream.str();
 			}
 			throw GIL::HL7::HL7Exception(errmsg.str(), "COMM");
 		}
