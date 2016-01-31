@@ -1190,7 +1190,7 @@ void GNC::GUI::HistoryPanel3::LoadPreviewsFromStudy(const GNC::GCS::Ptr<GNC::GCS
 	
 	for (GNC::GCS::HistoryController::SeriesModelList::const_iterator it = seriesList.begin(); it != seriesList.end(); ++it) {
 		GNC::GCS::HistoryController::FileModel frame = GNC::GCS::HistoryController::Instance()->GetFrameOfReference((*it).pk);
-		wxString pathOfItem = wxString::Format(wxT("%ld"), (int) frame.pk);
+		wxString pathOfItem = wxString::Format(wxT("%d"), (int) frame.pk);
 		
 
 		wxHistoryImageThumbnailItem* pItem = new wxHistoryImageThumbnailItem(pathOfItem, wxHistoryImageThumbnailItem::TI_Series, (*it).pk, frame.pk, pModel->location);
