@@ -19,11 +19,11 @@
 
 
 GNC::GUI::wxMenuItemTool::wxMenuItemTool(wxMenu* pMenuPadre, long id, const wxString& name,
-                                         const wxBitmap& bitmap, wxEvtHandler* pHandler, int type):
+                                         const wxBitmap& /*bitmap*/, wxEvtHandler* pHandler, int type):
         wxMenuItem(pMenuPadre, id, name, name, type == wxITEM_CHECK ? wxITEM_CHECK : wxITEM_NORMAL)
 {
 	m_pHandler = pHandler;
-	this->SetBitmap(bitmap);
+	//this->SetBitmap(bitmap);
 }
 
 GNC::GUI::wxMenuItemTool::~wxMenuItemTool() {
