@@ -200,9 +200,7 @@ void ThumbnailsCommand::Execute()
                 typedef itk::RGBPixel<unsigned char> PixelType;
                 typedef itk::Image< PixelType,  2 > ImageType;
 
-                typedef itk::VectorResampleImageFilter< ImageType, ImageType > FilterType;
                 typedef itk::ImageRegionConstIterator< ImageType > ImageIteratorType;
-                typedef itk::ImageDuplicator< ImageType > DuplicatorType;
 
                 typedef itk::VTKImageToImageFilter<ImageType> TipoFiltro;
 

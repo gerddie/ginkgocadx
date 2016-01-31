@@ -102,7 +102,7 @@ public:
 	{ this->PanLock = false;}
 
 protected:
-	GVtkObserver() : IVista(NULL), ZoomLock(false), PanLock(false)
+	GVtkObserver() : ZoomLock(false),  PanLock(false), IVista(NULL)
 	{
 	}
 

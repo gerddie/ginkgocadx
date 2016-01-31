@@ -609,7 +609,7 @@ namespace GNC {
 				wxVariant val;
 				bool notFound = true;
 				for (unsigned int i = 0; notFound && i < m_pModel->GetCount(); ++i) {
-					wxDataViewItem item = m_pModel->GetItem(i);
+					m_pModel->GetItem(i);
 					m_pModel->GetValueByRow(val, i, PERM_COL_NAME_IDX);
 					std::string stdVal(val.GetString().ToUTF8());
 					if (stdVal == name) {

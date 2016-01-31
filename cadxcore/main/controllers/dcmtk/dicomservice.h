@@ -142,7 +142,7 @@ namespace GIL {
 
 			const std::string& GetCliCert() const { return m_CliCert; }
 			const std::string& GetCliKey() const { return m_CliKey; }
-			const bool GetValidate() const { return m_Validate; }
+			bool GetValidate() const { return m_Validate; }
 
 		protected:
 

@@ -73,10 +73,11 @@ namespace GNC {
 
 //====================================================================================================
 
-GNC::GCS::Widgets::WTextBox::WTextBox(IWidgetsManager* pManager, long vid, GNC::GCS::Vector posicion, TNoteMode mode, const char* nombre, std::string texto) : IWidget(pManager, vid, nombre,0,TID_USER_ANNOTATION_WIDGET), 
+GNC::GCS::Widgets::WTextBox::WTextBox(IWidgetsManager* pManager, long vid, GNC::GCS::Vector posicion, TNoteMode mode, const char* nombre, std::string texto) :
+        IWidget(pManager, vid, nombre,0,TID_USER_ANNOTATION_WIDGET), 
 	GNC::GCS::Widgets::IWidgetSerializable(),
-	m_mode(mode),
-	m_Enabled(true)
+        m_Enabled(true),
+        m_mode(mode)
 {
 	m_Texto = texto;
 	m_Vacio = false;
@@ -97,10 +98,11 @@ GNC::GCS::Widgets::WTextBox::~WTextBox()
 
 //----------------------------------------------------------------------------------------------------
 //region "Serializado y desserializado"
-GNC::GCS::Widgets::WTextBox::WTextBox(IWidgetsManager* pManager, long vid, wxXmlNode* nodo):GNC::GCS::Widgets::IWidget(pManager, vid, "Nota de Texto"), 
+GNC::GCS::Widgets::WTextBox::WTextBox(IWidgetsManager* pManager, long vid, wxXmlNode* nodo):
+        GNC::GCS::Widgets::IWidget(pManager, vid, "Nota de Texto"), 
 	GNC::GCS::Widgets::IWidgetSerializable(nodo),
-	m_mode(TNM_Static),
-	m_Enabled(true)
+        m_Enabled(true),
+        m_mode(TNM_Static)
 {
 
 	wxString strTmp = nodo->GetAttribute(wxT("x"),wxT("0.0"));

@@ -63,14 +63,16 @@ namespace GADAPI
 		try {
 			pCI = GNC::GCS::IEntorno::Instance()->GetPACSController();
 			int fileNum = 1;
-			for (std::list<std::string>::const_iterator it = m_pAcquireParams->m_urlList.begin(); it != m_pAcquireParams->m_urlList.end(); ++it)
+			for (std::list<std::string>::const_iterator it = m_pAcquireParams->m_urlList.begin();
+                             it != m_pAcquireParams->m_urlList.end(); ++it)
 			{
 				{
-					if (!NotificarProgreso(fileNum/m_pAcquireParams->m_urlList.size(), std::string(wxString::Format(_("Downloading file %d"), fileNum++).ToUTF8()))) {
-						return;
+					if (!NotificarProgreso(fileNum/m_pAcquireParams->m_urlList.size(),
+                                                               std::string(wxString::Format(_("Downloading file %d"), fileNum).ToUTF8()))) {
+                                                return;
 					}
 				}
-						
+                                ++fileNum; 
 				std::ostringstream ostr;
 				ostr << pathDownloadedFiles;
 				ostr << (char)wxFileName::GetPathSeparator();

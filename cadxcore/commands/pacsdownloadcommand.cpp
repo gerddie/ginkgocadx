@@ -46,9 +46,9 @@ namespace GADAPI
 {
 
 	PACSDownloadCommandParams::PACSDownloadCommandParams(const std::string& serverSeleccionado, const GIL::DICOM::DicomDataset& base, bool link, bool silent) :
-		m_base(base),
-		m_link(link),
-		m_silent(silent)
+                m_link(link),
+                m_silent(silent), 
+                m_base(base)
 	{			
 		m_base = base;
 		m_pModelo = GNC::GCS::Ptr<IModeloDicom>(new IModeloDicom());

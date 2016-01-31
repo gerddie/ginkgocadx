@@ -99,8 +99,13 @@ public:
 
 #endif
 	}
-
-	friend std::ostream& operator<<(std::ostream& out, const Timer& t)
+#ifdef _WINDOWS
+#define UNUSED
+#else         
+#define UNUSED __attribute__((unused))
+#endif
+        
+	friend std::ostream& operator<<(std::ostream& out, const Timer& t UNUSED )
 	{
 #if defined(_WINDOWS)
 		const double tiempo = (double)(t.mFin.QuadPart - t.mInicio.QuadPart ) / (double) t.mFrecuencia.QuadPart;
@@ -1470,7 +1475,7 @@ if (!Enabled || !Initialized) {
 		if (ren != NULL) {
 			vtkCamera* cam = ren->GetActiveCamera();
 			if (cam != NULL) {
-				double pt[3]  = { x, y, 0.0f };
+				double pt[3]  = { static_cast<double>(x), static_cast<double>(y), 0.0};
 				double world[4] = {0.0f, 0.0f, 0.0f, 0.0f};
 				m_pPicker->Pick(pt, ren);
 				m_pPicker->GetPickPosition(world);
@@ -1542,7 +1547,7 @@ void wxVTKRenderWindowInteractor::RayPick(double displayPos[2], double worldPos[
 
 		if (ren != NULL) {
 			vtkCamera* cam = ren->GetActiveCamera();
-			double pt[3]  = { x, y, 0.0f };
+			double pt[3]  = { static_cast<double>(x), static_cast<double>(y), 0.0 };
 			double world[4] = {0.0f, 0.0f, 0.0f, 0.0f};
 			m_pPicker->Pick(pt, ren);
 			m_pPicker->GetPickPosition(world);
@@ -1609,7 +1614,7 @@ void wxVTKRenderWindowInteractor::TransformarEvento(wxMouseEvent &event)
 			if (cam != NULL) {
 
 
-				double pt[3]  = { x, y, 0.0f };
+				double pt[3]  = { static_cast<double>(x), static_cast<double>(y), 0.0f };
 				double world[4] = {0.0f, 0.0f, 0.0f, 0.0f};
 				m_pPicker->Pick(pt, ren);
 				m_pPicker->GetPickPosition(world);

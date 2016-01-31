@@ -203,10 +203,10 @@ namespace GNKVisualizator {
 			Channel(const ChannelInfo& info, const GNC::GCS::Vector& pos, const GNC::GCS::Vector& size, GNC::GCS::Vector& rel):
 				sx(0.0),
 				sy(0.0),
-				Info(info),
 				Pos(pos),
 				Size(size),
-				Rel(rel)				
+				Rel(rel),
+                                Info(info)
 			{				
 			}
 			

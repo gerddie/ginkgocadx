@@ -16,6 +16,7 @@
 #include <api/api.h>
 #include <list>
 #include <string>
+#include <atomic>
 
 //----------------------------------------------------------------------------------------------------
 //region Forward Declarations
@@ -59,7 +60,7 @@ namespace GNC {
 			//----------------------------------------------------------------------------------------------------
 			//region Interfaz de subscripcion
 			private:
-				ILocker* m_pLocker; // ILocker que ha bloqueado el cerrojo.
+//				ILocker* m_pLocker; // ILocker que ha bloqueado el cerrojo.
 			//endregion
 
 			//----------------------------------------------------------------------------------------------------

@@ -25,8 +25,8 @@
 namespace GNC {
 	namespace GUI {
 		DownloadAgainDialog::DownloadAgainDialog(wxWindow* pParent, std::string uid, bool isSeries): DownloadAgainDialogBase(pParent),
-			IsSeries(isSeries),
-			UID(uid)
+                                                                                                             UID(uid),
+                                                                                                             IsSeries(isSeries)
 		{
 			if (IsSeries) {
 				m_pLabelMessage->SetLabel(_("This series has been already downloaded in the local history, Do you want to download it again?"));

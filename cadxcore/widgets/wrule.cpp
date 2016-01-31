@@ -163,8 +163,9 @@ GNC::GCS::Widgets::WRule::~WRule()
 //endregion
 
 //region "Serializado y desserializado"
-GNC::GCS::Widgets::WRule::WRule(IWidgetsManager* pManager, long vid, wxXmlNode* nodo): GNC::GCS::Widgets::IWidget(pManager, vid, "Regla"),
-	GNC::GCS::Widgets::IWidgetSerializable(nodo), m_Pendiente(0.0), m_Angulo(0.0), m_Distancia(0)
+GNC::GCS::Widgets::WRule::WRule(IWidgetsManager* pManager, long vid, wxXmlNode* nodo):
+        GNC::GCS::Widgets::IWidget(pManager, vid, "Regla"),
+	GNC::GCS::Widgets::IWidgetSerializable(nodo), m_Angulo(0.0), m_Pendiente(0.0), m_Distancia(0)
 {
 	if(nodo->GetName() != wxT("rule_widget")){
 		std::cerr<< "Ha ocurrido un error al desserializar el widget regla"<<std::endl;

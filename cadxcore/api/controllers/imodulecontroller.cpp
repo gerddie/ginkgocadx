@@ -92,7 +92,7 @@ GNC::GCS::IdHL7::IdHL7(const IdHL7& o)
 }
 
 GNC::GCS::IdHL7::IdHL7(const std::string& e, const std::string& c, const std::string& d, const std::string& n, const std::string& t, const std::string& td, const std::string& v) :
-etiqueta(e), codigo(c), descripcion(d), namespaceid(n), tipoobservacion(t), tipodatos(td), version(v)
+etiqueta(e), codigo(c), namespaceid(n), descripcion(d),  tipoobservacion(t), tipodatos(td), version(v)
 {
 }
 

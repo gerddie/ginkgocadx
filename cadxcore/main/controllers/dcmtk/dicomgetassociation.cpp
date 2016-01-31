@@ -33,14 +33,15 @@
 
 
 
-GetAssociation::GetAssociation(const std::string& _ambitolog, IModeloDicom* pModelo) : FindAssociation(_ambitolog),
+GetAssociation::GetAssociation(const std::string& _ambitolog, IModeloDicom* pModelo) :
+        FindAssociation(_ambitolog),
 	m_maxReceivePDULength(ASC_DEFAULTMAXPDU),
 	m_pModelo(pModelo),
+        m_wellKnownNumResults(0), 
 	m_numeroImagenes(0),
 	m_mensaje(""),
 	m_errorMessage(""),
-	m_bytesDescargados(0),
-	m_wellKnownNumResults(0)
+	m_bytesDescargados(0)
 {
 	m_abstractSyntax.assign(UID_GETStudyRootQueryRetrieveInformationModel);
 }
@@ -320,8 +321,6 @@ OFCondition GetAssociation::getSCU(DcmDataset *pdset) {
 	DcmDataset* rspIds = NULL;
 	const char* sopClass;
 	DcmDataset* statusDetail = NULL;
-	GetCallbackInfo callbackData;
-	StoreCallbackInfo storeCallbackData;
 
 	if (pdset == NULL) {
 		LOG_ERROR(ambitolog, "Dataset nulo en getSCU");
@@ -344,15 +343,6 @@ OFCondition GetAssociation::getSCU(DcmDataset *pdset) {
 	if (presId == 0) {
 		return DIMSE_NOVALIDPRESENTATIONCONTEXTID;
 	}
-
-	callbackData.assoc = assoc;
-	callbackData.presId = presId;
-	callbackData.pCaller = this;
-
-	storeCallbackData.assoc = assoc;
-	//storeCallbackData.presId = presId;
-	storeCallbackData.pCaller = this;
-	storeCallbackData.lastTick = std::clock();
 
 	req.MessageID = msgId;
 	strcpy(req.AffectedSOPClassUID, sopClass);

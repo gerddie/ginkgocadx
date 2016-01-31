@@ -287,11 +287,11 @@ namespace GNC {
 				{
 					//parse annotation...
 					std::ostringstream annotationStream;
-					int initialPos = 0;
+					unsigned initialPos = 0;
 					int defValuePos,formatPos = 0;
 					std::ostringstream::pos_type lastEndl = 0;
 					std::string tmp;
-					for (int curPos = 0; curPos < str.length(); ++curPos) {
+					for (unsigned curPos = 0; curPos < str.length(); ++curPos) {
 						if (str[curPos] == '$') {
 							//copy from initial position...
 							annotationStream << str.substr(initialPos, curPos - initialPos);

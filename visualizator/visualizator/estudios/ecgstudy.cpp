@@ -166,7 +166,7 @@ TMapVectorStrings GetValues(GIL::DICOM::DicomDataset* sequence, TVectorPairStrin
 		{
 			unsigned int nr = 0;
 
-			for (;nr < (int)items.size();nr++) {
+			for (;nr < items.size();nr++) {
 				if (items[nr].first == itemName) {
 					break;
 				}

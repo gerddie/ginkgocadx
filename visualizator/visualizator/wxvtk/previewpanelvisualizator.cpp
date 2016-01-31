@@ -100,10 +100,12 @@ namespace GNKVisualizator {
 		class EXTAPI wxLeafPanelDefaultHandler: public wxEvtHandler
 		{
 			public:
-				wxLeafPanelDefaultHandler(wxEvtHandler* pParent, GVistaCompleja* view, long seriesPk): m_pParent(pParent),
-					GView(view),
-					SeriesPk(seriesPk)
-				{
+				wxLeafPanelDefaultHandler(wxEvtHandler* pParent, GVistaCompleja* view, long seriesPk):
+                                        GView(view), 
+                                        SeriesPk(seriesPk),
+                                        m_pParent(pParent)
+
+                                        {
 					// Connect Events
 					m_pParent->Connect(PACS_UPLOAD, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxLeafPanelDefaultHandler::OnPacsUpload),NULL,this);
 				}

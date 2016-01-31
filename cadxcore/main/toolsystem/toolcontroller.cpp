@@ -134,7 +134,10 @@ namespace GNC {
 	}
 }
 
-GNC::ToolController::ToolController(): EventHandler(new GNC::GUI::wxEventHandlerToolController(this)), m_leftTool(NULL), m_rightTool(NULL), m_middleTool(NULL)
+GNC::ToolController::ToolController(): EventHandler(new GNC::GUI::wxEventHandlerToolController(this)),
+                                       m_leftTool(NULL),
+                                       m_rightTool(NULL),
+                                       m_middleTool(NULL)
 {	
 }
 

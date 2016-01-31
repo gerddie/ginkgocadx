@@ -293,8 +293,6 @@ void GNC::GCS::CloudCommand::doGet(GNC::GCS::CloudGetCommandParams* pParams) {
 		if (gzIn.IsOk()) {
 			wxTarInputStream tarIn(gzIn);
 			if (tarIn.IsOk()) {
-				std::auto_ptr<wxTarEntry> entry;
-
 				pParams->m_baseDir = GNC::GCS::IEntorno::Instance()->CrearDirectorioTemporal();
 				wxString baseTargetDir(FROMPATH(pParams->m_baseDir));
 

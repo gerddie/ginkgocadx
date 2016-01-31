@@ -14,11 +14,11 @@
 #include "observers/iwidgetsobserver.h"
 
 GNC::GCS::IWidgetsManager::IWidgetsManager(GNC::GCS::IVista* pView) :
+m_pDefaultEventListenerDelegate(NULL),
 m_pRendererActivo(NULL),
 m_Modified(false),
 m_pView(pView),
 m_Enabled(true),
-m_pDefaultEventListenerDelegate(NULL), 
 m_cursor(GNC::GCS::Widgets::CUR_FLECHA)
 { }
 

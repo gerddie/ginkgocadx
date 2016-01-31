@@ -62,7 +62,7 @@ public:
 	*  @param suppSOPs - [out] List containing supported output SOP classes
 	*  @return String containing the Storage SOP class UID
 	*/
-	virtual void supportedSOPClassUIDs(OFList<OFString> suppSOPs) 
+	virtual void supportedSOPClassUIDs(OFList<OFString> /*suppSOPs*/) 
 	{
 	}
 

@@ -96,7 +96,7 @@ namespace GNC {
 		std::list<long> PACSUploadDialog::GetSelectedSeries()
 		{
 			std::list<long> series;
-			for (int i = 0; i < m_pSeriesList->GetCount(); ++i) {
+			for (unsigned i = 0; i < m_pSeriesList->GetCount(); ++i) {
 				if (m_positionsId.find(i) != m_positionsId.end()) {
 					series.push_back(m_positionsId[i]);
 				}

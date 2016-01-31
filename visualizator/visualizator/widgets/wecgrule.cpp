@@ -122,10 +122,12 @@ GNC::GCS::Widgets::TipoCursor GNKVisualizator::Widgets::WECGRuleBuilder::GetCurs
 
 //region "Constructor y destructor"
 
-GNKVisualizator::Widgets::WECGRule::WECGRule(GNC::GCS::IWidgetsManager* pManager, long vid, GNC::GCS::Nodo nodos[2], const char* nombre) : GNC::GCS::Widgets::IWidget(pManager, vid, nombre,0,TID_USER_ANNOTATION_WIDGET),
+GNKVisualizator::Widgets::WECGRule::WECGRule(GNC::GCS::IWidgetsManager* pManager, long vid, GNC::GCS::Nodo nodos[2], const char* nombre) :
+        GNC::GCS::Widgets::IWidget(pManager, vid, nombre,0,TID_USER_ANNOTATION_WIDGET),
+        m_pTextBox(NULL), 
 	m_MouseDown(false),
-	m_Distancia(0),
-	m_pTextBox(NULL)
+	m_Distancia(0)
+
 {
 	m_Vertices[0] = nodos[0];
 	m_Vertices[1] = nodos[1];

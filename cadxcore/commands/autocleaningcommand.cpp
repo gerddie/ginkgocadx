@@ -90,7 +90,7 @@ void GADAPI::AutoCleaningCommand::Execute()
 	wxDiskspaceSize_t spaceToFree = 0;
 	wxDiskspaceSize_t KB = 1024;
 	wxDiskspaceSize_t MB = KB*1024;
-	wxDiskspaceSize_t GB = MB*1024;
+        //	wxDiskspaceSize_t GB = MB*1024;
 
 	//if there is no series to delete try with next criteria
 	if (m_pAutoCleaningParameters->HdSpace > 0 && m_pAutoCleaningParameters->seriesToDelete.empty()) {

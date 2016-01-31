@@ -2497,18 +2497,18 @@ vtkSmartPointer<vtkGinkgoImageViewer> vtkGinkgoImageViewer::GetParent (void) con
 Add a child to the list of children. Check if the child is already
 in the list firt.
 */
-void vtkGinkgoImageViewer::AddChild (vtkSmartPointer<vtkGinkgoImageViewer> p_view)
+void vtkGinkgoImageViewer::AddChild (vtkSmartPointer<vtkGinkgoImageViewer> /*p_view*/)
 {
 }
 
-void vtkGinkgoImageViewer::AddChildren (std::list<vtkSmartPointer<vtkGinkgoImageViewer> > p_viewlist)
+void vtkGinkgoImageViewer::AddChildren (std::list<vtkSmartPointer<vtkGinkgoImageViewer> > /*p_viewlist*/)
 {
 }
 
 /**
 Remove a child form the list of children.
 */
-void vtkGinkgoImageViewer::RemoveChild (vtkSmartPointer<vtkGinkgoImageViewer> view)
+void vtkGinkgoImageViewer::RemoveChild (vtkSmartPointer<vtkGinkgoImageViewer> /*view*/)
 {
 }
 

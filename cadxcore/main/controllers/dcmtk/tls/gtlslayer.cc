@@ -27,7 +27,7 @@ END_EXTERN_C
 #include "dcmtk/dcmtls/tlstrans.h"
 #include "dcmtk/dcmnet/dicom.h"
 
-OFBool GTLSTransportLayer::setTempDHParametersFromString(const std::string& params)
+OFBool GTLSTransportLayer::setTempDHParametersFromString(const std::string& /*params*/)
 {
 	#if defined(USE_PATCHED_LIBS)
 	if (!transportLayerContext) {
@@ -46,7 +46,7 @@ GTLSTransportLayer::~GTLSTransportLayer()
 
 }
 
-DcmTransportLayerStatus GTLSTransportLayer::setPrivateKeyFromString(const std::string& keyStr)
+DcmTransportLayerStatus GTLSTransportLayer::setPrivateKeyFromString(const std::string& /*keyStr*/)
 {
 	#if defined(USE_PATCHED_LIBS)
 	if (!transportLayerContext) {
@@ -77,7 +77,7 @@ DcmTransportLayerStatus GTLSTransportLayer::setPrivateKeyFromString(const std::s
 	return TCS_ok;
 }
 
-DcmTransportLayerStatus GTLSTransportLayer::setCertificateFromString(const std::string& certStr)
+DcmTransportLayerStatus GTLSTransportLayer::setCertificateFromString(const std::string& /*certStr*/)
 {
 	#if defined(USE_PATCHED_LIBS)
 	if (!transportLayerContext) {

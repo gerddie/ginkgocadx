@@ -86,7 +86,9 @@ gnkLog4cplus::GUIAppender::GUIAppender(const log4cplus::helpers::Properties prop
 }
 
 gnkLog4cplus::GUIAppender::GUIAppender(const GUIAppender& o) :
-	logToStdErr(o.logToStdErr),
+        dcmtk::log4cplus::helpers::SharedObject(o),
+        dcmtk::log4cplus::Appender(), 
+        logToStdErr(o.logToStdErr),
 	immediateFlush(o.immediateFlush),
 	m_pLogger(o.m_pLogger), 
 	m_Logs(o.m_Logs),

@@ -851,9 +851,9 @@ namespace GIL {
 		}
 
 		DicomStoreAssociation::DicomStoreAssociation() :
-			m_Validate(false),
-			m_TLS(false),
-			m_UseUserPass(false),
+                        m_TLS(false),
+                        m_UseUserPass(false),
+                        m_Validate(false),
 			assoc(NULL),
 			net(NULL)
 		{

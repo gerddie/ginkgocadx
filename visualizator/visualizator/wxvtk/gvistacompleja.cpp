@@ -472,15 +472,16 @@ namespace GNKVisualizator {
 //////////////////////////////////////////////END DRAG&DROP////////////////////////////////////////////
 
 
-GVistaCompleja::GVistaCompleja(GNKVisualizator::Vista2D* pIVista) : VistaComplejaBase(pIVista->GetVisualizatorStudy()->ParentWindow ),
+GVistaCompleja::GVistaCompleja(GNKVisualizator::Vista2D* pIVista) :
+        VistaComplejaBase(pIVista->GetVisualizatorStudy()->ParentWindow ),
 	IVista(pIVista),
+        m_pManager (GNC::GCS::IEntorno::Instance()->NewWidgetsManager(IVista)),
 	Delegate(new GVistaComplejaDelegate(this)),
 	OverlaysDelegate(new GVistaComplejaOverlaysDelegate(this)),
 	WindowLayoutDelegate(new GVistaComplejaWindowLayoutDelegate(this)),
-	m_pManager (GNC::GCS::IEntorno::Instance()->NewWidgetsManager(IVista)),
-	m_pPanelPreview(new GNKVisualizator::GUI::PreviewPanelVisualizator(pIVista, this)),
 	PixelsBluringDelegate(new GVistaComplejaPixelsBluringDelegate(this)),
-	AnnotatorDelegate(new GVistaComplejaAnnotatorDelegate(this, pIVista))
+        AnnotatorDelegate(new GVistaComplejaAnnotatorDelegate(this, pIVista)), 
+	m_pPanelPreview(new GNKVisualizator::GUI::PreviewPanelVisualizator(pIVista, this))
 {
 	IVista->GetVisualizatorStudy()->Window = this;
 	m_hasBeenRendered = false;

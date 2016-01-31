@@ -22,7 +22,6 @@
 
 GNC::GCS::ILockable::ILockable()
 {
-	m_pLocker = NULL;
 	m_IsLocked = false;
 	m_pCS = new wxCriticalSection();
 }

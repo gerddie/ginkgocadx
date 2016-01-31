@@ -962,7 +962,7 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
 
 			// =======================================UPLOAD SHADER ========
 			if( this->UseShader){
-				GLenum terror = 0;
+                                GLenum terror = 0;
 				GLint params = 0;
 
 				//code of the shader
@@ -1349,7 +1349,8 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
 			scalars->GetRange(normRange);
 			double* drange = LookupTable->GetRange();
 
-			float range[2] = { (drange[0]-normRange[0]) / (normRange[1]-normRange[0]), (drange[1]-normRange[0]) / (normRange[1]-normRange[0])};
+			float range[2] = { static_cast<float>((drange[0]-normRange[0]) / (normRange[1]-normRange[0])),
+                                           static_cast<float>((drange[1]-normRange[0]) / (normRange[1]-normRange[0]))};
 
 			// === shift ===
 			float shift = -range[0];

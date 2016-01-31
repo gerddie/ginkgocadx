@@ -52,11 +52,12 @@
 // Singleton de persistencia
 namespace GADAPI
 {
-	SendPACSCommand::SendPACSCommand(const std::string& selectedServer, const std::string& hl7Message, const std::list<long> seriesId) : GNC::GCS::IComando(NULL),
+	SendPACSCommand::SendPACSCommand(const std::string& selectedServer, const std::string& hl7Message, const std::list<long> seriesId) :
+                GNC::GCS::IComando(NULL),
 		m_selectedServer(selectedServer),
-		m_hl7Message(hl7Message),
-		m_seriesId(seriesId)
-	{
+                m_seriesId(seriesId), 
+		m_hl7Message(hl7Message)
+        {
 		checkDependencies();
 	}
 

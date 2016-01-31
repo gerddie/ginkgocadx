@@ -410,7 +410,7 @@ namespace GNC {
 
 							bool notFound = true;
 							for (unsigned int i = 0; notFound && i < m_pModel->GetCount(); ++i) {
-								wxDataViewItem item = m_pModel->GetItem(i);
+								m_pModel->GetItem(i);
 
 								wxVariant val2;
 								m_pModel->GetValueByRow(val2, i, UB_COL_TITLE_IDX);

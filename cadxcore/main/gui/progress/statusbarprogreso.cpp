@@ -36,8 +36,8 @@ IMPLEMENT_DYNAMIC_CLASS(EventoMensajesUsuarioAsync, wxEvent)
 
 
 GNC::GUI::StatusBarProgreso::StatusBarProgreso( wxWindow* pPadre, wxWindow* pPadrePanel, bool listenMessages, wxWindowID id, long style) : 
-	m_dirty (true),
-	wxStatusBar(pPadre, id, style)
+        wxStatusBar(pPadre, id, style),
+        m_dirty (true)
 {
 	m_pPanelTareas = new PanelTareasBase(pPadrePanel);
 	m_pPanelTareas->Show(false);

@@ -653,7 +653,7 @@ void GNC::GUI::DialogoAdquisicion::OnComboStoredQueriesClick(wxCommandEvent& /*e
 		std::set<std::string> modalitiesChecked;
 		if (pStoredQuery->hasCondition(GKDCM_ModalitiesInStudy)) {
 			std::string modalitiesInStudy = pStoredQuery->getCondition(GKDCM_ModalitiesInStudy)->getValue().c_str();
-			//split field through \ 
+			//split field through \ (what?) 
 			//split with \ bar
 			wxStringTokenizer tknz(wxString::FromUTF8(modalitiesInStudy.c_str()), wxT("\\"));
 			//insert in the set the values

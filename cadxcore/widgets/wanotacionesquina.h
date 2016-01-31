@@ -114,7 +114,7 @@ namespace GNC {
 			* strPos: The patient position string (HFS, HFP...)
 			* defautlunknown: When orientation index is empty, set the default index to unknown ("?") or empty ("") values
 			**/
-			int EXTAPI GetPatientPositionOrientationIndex(const std::string& strPos, bool defaultunknown);
+			int GetPatientPositionOrientationIndex(const std::string& strPos, bool defaultunknown);
 
 			/**
 			* Gets the patient orientation char ("R", "L", "S"...) from:
@@ -122,7 +122,7 @@ namespace GNC {
 			* axis: The axis: 0==x, 1==y, 2==z
 			* dir: The direction: -1 == decreasing, +1 == decreasing
 			**/
-			const char* EXTAPI GetPatientPositionOrientationChar(int patientPosIndex, int axis, int dir);
+			const char* GetPatientPositionOrientationChar(int patientPosIndex, int axis, int dir);
 		}
 	}
 }

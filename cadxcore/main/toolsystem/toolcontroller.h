@@ -74,10 +74,11 @@ namespace GNC {
 
 		typedef std::map<long, GNC::GCS::ITool*> TToolMap;
 		TToolMap m_tools;
+		GNC::GCS::Ptr<GNC::GUI::wxEventHandlerToolController> EventHandler;
 		GNC::GCS::IWidgetTool* m_leftTool;
 		GNC::GCS::IWidgetTool* m_rightTool;
 		GNC::GCS::IWidgetTool* m_middleTool;
-		GNC::GCS::Ptr<GNC::GUI::wxEventHandlerToolController> EventHandler;
+
 
 
 	private:

@@ -18,11 +18,12 @@
 #include <wx/menuitem.h>
 
 
-GNC::GUI::wxMenuItemTool::wxMenuItemTool(wxMenu* pMenuPadre, long id, const wxString& name, const wxBitmap& bitmap, wxEvtHandler* pHandler, int type): wxMenuItem(pMenuPadre, id, name, name, type == wxITEM_CHECK ? wxITEM_CHECK : wxITEM_NORMAL) {
+GNC::GUI::wxMenuItemTool::wxMenuItemTool(wxMenu* pMenuPadre, long id, const wxString& name,
+                                         const wxBitmap& bitmap, wxEvtHandler* pHandler, int type):
+        wxMenuItem(pMenuPadre, id, name, name, type == wxITEM_CHECK ? wxITEM_CHECK : wxITEM_NORMAL)
+{
 	m_pHandler = pHandler;
-#ifdef __WXMSW__
-	SetBitmaps(bitmap);
-#endif
+	this->SetBitmap(bitmap);
 }
 
 GNC::GUI::wxMenuItemTool::~wxMenuItemTool() {

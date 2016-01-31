@@ -21,7 +21,7 @@
 class GetAssociation : public FindAssociation {
 public:
 
-	std::string m_errorMessage;
+
     GetAssociation(const std::string& ambitolog, IModeloDicom* pModelo=NULL);
     virtual ~GetAssociation();
 	
@@ -77,6 +77,7 @@ public:
 public:
 	 int m_numeroImagenes;
 	 std::string m_mensaje;
+	 std::string m_errorMessage;
 	 long m_bytesDescargados;
 protected:
 	typedef struct TMedida{

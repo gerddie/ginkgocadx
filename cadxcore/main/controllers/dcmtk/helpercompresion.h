@@ -13,7 +13,7 @@
 #pragma once
 #include <string>
 
-const bool DecompressJPEG2000(const std::string& fileIn, const std::string& fOut);
+bool DecompressJPEG2000(const std::string& fileIn, const std::string& fOut);
 
-const bool CompressJPEG2000(const std::string& fileIn, const std::string& fOut);
+bool CompressJPEG2000(const std::string& fileIn, const std::string& fOut);
 

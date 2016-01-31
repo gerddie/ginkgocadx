@@ -37,7 +37,7 @@ namespace GNC {
 
 		protected:
 			IEventsController();
-			~IEventsController();
+			virtual ~IEventsController();
 
 		public:
 

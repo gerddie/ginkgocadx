@@ -31,7 +31,7 @@
 #include <itkImageFileWriter.h>
 
 //descomprime una imagen utilizando itk...
-const bool DecompressJPEG2000(const std::string& fileIn, const std::string& fOut)
+bool DecompressJPEG2000(const std::string& fileIn, const std::string& fOut)
 {
 	typedef double PixelType;
 	typedef itk::Image<PixelType, 3 > ImageType;
@@ -353,7 +353,7 @@ const bool DecompressJPEG2000(const std::string& fileIn, const std::string& fOut
 
 
 //descomprime una imagen utilizando itk...
-const bool CompressJPEG2000(const std::string& fileIn, const std::string& fOut)
+bool CompressJPEG2000(const std::string& fileIn, const std::string& fOut)
 {
 	typedef double PixelType;
 	typedef itk::Image<PixelType, 3 > ImageType;

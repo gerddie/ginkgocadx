@@ -92,7 +92,7 @@ namespace GNC {
 
 		protected:
 			IControladorExtensiones();
-			~IControladorExtensiones();
+			virtual ~IControladorExtensiones();
 		};
 	}
 }

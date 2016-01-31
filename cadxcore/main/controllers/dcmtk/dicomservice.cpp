@@ -49,16 +49,17 @@
 #ifdef MACRO_QUE_ESTORBA
 #define verify MACRO_QUE_ESTORBA
 #endif
-GIL::DICOM::Service::Service(const std::string& _ambitolog) : GNC::GCS::Thread(_ambitolog),
-ambitolog(_ambitolog),
-m_pNotificadorProgreso(NULL),
-m_timeout(15),
-m_Role(RT_Acceptor),
-m_TLS(false),
-m_UseUserPass(false),
-m_Validate(false),
-m_WantToStop(false),
-m_acceptorPort(11111)
+GIL::DICOM::Service::Service(const std::string& _ambitolog) :
+        GNC::GCS::Thread(_ambitolog),
+        ambitolog(_ambitolog),
+        m_pNotificadorProgreso(NULL),
+        m_acceptorPort(11111),
+        m_timeout(15),
+        m_Role(RT_Acceptor),
+        m_TLS(false),
+        m_UseUserPass(false),
+        m_Validate(false),
+        m_WantToStop(false)
 {
 	GNC::GCS::ConfigurationController::Instance()->readIntGeneral("/GinkgoCore/PACS/Local", "Puerto", m_acceptorPort, 11112);
 	this->m_pNet = NULL;

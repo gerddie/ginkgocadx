@@ -1648,9 +1648,12 @@ wxSize wxThumbnailCtrl::DoGetBestSize() const
 /// Load the thumbnail
 class LoadThread: public wxThread {
  public:
-	 LoadThread(const wxString& filename, wxBitmap& bitmap, wxImageThumbnailItem* item): wxThread(wxTHREAD_JOINABLE), m_filename(filename), m_cachedBitmap(bitmap)
+	 LoadThread(const wxString& filename, wxBitmap& bitmap, wxImageThumbnailItem* _item):
+                 wxThread(wxTHREAD_JOINABLE),
+                 m_cachedBitmap(bitmap),
+                 m_filename(filename),
+                 item(_item)
 	 {
-		 this->item = item;
 	 }
 
 	 virtual void *Entry() 
