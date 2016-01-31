@@ -208,6 +208,7 @@ void* GNC::CommandLauncher::Entry()
 			}
 
 			try {
+                                GNC::GCS::ILocker pLocker(GNC::CommandController::Instance());
 				m_pComando->Execute();
 			}
 			catch (GNC::GCS::CommandControllerException& ) {

@@ -26,6 +26,8 @@
 // TODO: Refactor this
 #include <wx/thread.h>
 
+#include <atomic>
+
 //----------------------------------------------------------------------------------------------------
 //region forward declarations
 namespace GNC {
@@ -81,7 +83,7 @@ namespace GNC {
 		GNC::GCS::WaitQueue    m_Dependencias;
 
 		// this varable should be an atomic or guarded by a mutex
-		bool                   m_Abortar;
+		std::atomic<bool>      m_Abortar;
 		
 		bool                   m_Shutdown;
 
