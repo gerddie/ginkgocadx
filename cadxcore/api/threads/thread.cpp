@@ -19,6 +19,8 @@
 
 #include <wx/thread.h>
 
+GNC::GCS::ILockable GNC::GCS::ThreadController::Lock;
+
 //-----------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------------
 
@@ -106,8 +108,8 @@ namespace GNC {
 
 			virtual void* Entry() {
 				GNC::GCS::Threading::SetThreadName( GetId(), this->m_threadIface->GetName());
-
-				try {					
+                                
+				try {
 					return this->m_threadIface->Task();
 				}
 				catch (GNC::GCS::IException& ex) {
@@ -150,8 +152,7 @@ const std::string& GNC::GCS::Thread::GetName() const
 //-----------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------------
 GNC::GCS::ThreadController::ThreadMap GNC::GCS::ThreadController::RegisteredThreads;
-unsigned long GNC::GCS::ThreadController::TidCount = 1;
-GNC::GCS::ILockable GNC::GCS::ThreadController::Lock;
+std::atomic<unsigned long> GNC::GCS::ThreadController::TidCount(1);
 
 unsigned long GNC::GCS::ThreadController::Launch(Thread* thread, bool detached)
 {
@@ -159,10 +160,11 @@ unsigned long GNC::GCS::ThreadController::Launch(Thread* thread, bool detached)
 	ThreadAdaptorPrivate* threadPrivate = new ThreadAdaptorPrivate(thread, detached ? wxTHREAD_DETACHED : wxTHREAD_JOINABLE);
 	threadPrivate->Create();	
 	{
-		GNC::GCS::ILocker lock(Lock);
 		tid = TidCount++;
-		RegisteredThreads[tid] = threadPrivate;
 		threadPrivate->SetTid(tid);
+
+                GNC::GCS::ILocker lock(Lock);
+                RegisteredThreads[tid] = threadPrivate;
 	}	
 	threadPrivate->Run();
 

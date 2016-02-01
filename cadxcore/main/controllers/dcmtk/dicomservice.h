@@ -31,6 +31,8 @@
 #define verify MACRO_QUE_ESTORBA
 #endif
 
+#include <atomic>
+
 struct T_ASC_Network;
 
 class GTLSTransportLayer;
@@ -177,7 +179,7 @@ namespace GIL {
 
 			unsigned long m_ServiceThreadId;
 			
-			bool m_WantToStop;
+			std::atomic<bool> m_WantToStop;
 		};
 	}
 }

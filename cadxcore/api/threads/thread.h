@@ -16,6 +16,7 @@
 #include <map>
 #include <api/api.h>
 #include <api/ilock.h>
+#include <atomic>
 
 namespace GNC {
 	namespace GCS {
@@ -73,7 +74,7 @@ namespace GNC {
 
 		protected:
 			static GNC::GCS::ILockable Lock;
-			static unsigned long TidCount;
+			static std::atomic<unsigned long> TidCount;
 		private:
 			static ThreadMap RegisteredThreads;
 		};

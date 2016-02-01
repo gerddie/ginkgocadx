@@ -81,7 +81,6 @@ GIL::DICOM::Service::~Service() {
 }
 
 OFCondition GIL::DICOM::Service::Start() {
-	GNC::GCS::ILocker lock(lockerRunning);
 	m_WantToStop = false;
 
 	OFCondition cond;
@@ -141,7 +140,7 @@ OFCondition GIL::DICOM::Service::Start() {
 		LOG_WARN(assoc->ambitolog, "unable to load temporary DH parameters. Ignoring");
 		}
 		*/
-
+                
 		cond = ASC_setTransportLayer(m_pNet, m_pTLSLayer, 0);
 		if (cond.bad())
 		{
@@ -192,8 +191,11 @@ OFCondition GIL::DICOM::Service::acceptAssociation()
 	OFString sprofile;
 	OFString temp_str;
 
-	cond = ASC_receiveAssociation(m_pNet, &assoc, m_rcvPDUSize, NULL, NULL, m_TLS, DUL_NOBLOCK, 1);
-
+        {
+                GNC::GCS::ILocker lock(lockerRunning);
+                cond = ASC_receiveAssociation(m_pNet, &assoc, m_rcvPDUSize, NULL, NULL, m_TLS, DUL_NOBLOCK, 1);
+        }
+        
 	// if some kind of error occured, take care of it
 	if (cond.bad())
 	{
@@ -316,6 +318,8 @@ void GIL::DICOM::Service::Stop() {
 
 	GNC::GCS::ICommandController::Instance()->AbortarComandosDeOwner(this);
 	m_WantToStop = true;
+        
+	GNC::GCS::ILocker lock(lockerRunning);
 
 	if (m_pNet != NULL && m_pNet->network != NULL) {
 		int sock = DUL_networkSocket(m_pNet->network);

@@ -15,6 +15,7 @@
 #include <api/api.h>
 #include <api/observers/ieventsobserver.h>
 #include <wx/thread.h>
+#include <atomic>
 
 class wxSQLite3Database;
 class wxCriticalSection;
@@ -41,7 +42,7 @@ namespace GIL {
 
 			virtual void ProcesarEvento(GNC::GCS::Events::IEvent *evt) ;
 			wxSemaphore		m_semaphore;
-			bool m_Abortado;
+			std::atomic<bool> m_Abortado;
 		};
 	}
 }
