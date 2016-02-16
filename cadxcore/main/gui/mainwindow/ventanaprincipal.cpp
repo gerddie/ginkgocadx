@@ -471,8 +471,7 @@ void VentanaPrincipal::OnSalir(wxCommandEvent& WXUNUSED(event))
 }
 void VentanaPrincipal::OnAcercaDe(wxCommandEvent& WXUNUSED(event))
 {
-	AboutDialog* dlg = new AboutDialog(this);
-	dlg->ShowModal();
+	AboutDialog(this).ShowModal();
 }
 
 
