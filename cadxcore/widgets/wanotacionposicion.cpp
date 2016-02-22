@@ -38,7 +38,7 @@ GNC::GCS::Widgets::WAnotacionPosicion::~WAnotacionPosicion()
 	GTRACE("Anotador posicion destruido");
 
 	std::ostringstream os;
-	os <<  GNC::Entorno::Instance()->GetApplicationName() << " " << GNC::Entorno::Instance()->GetGinkgoCopyRight() << " " << "MetaEmotion Healthcare";
+	os <<  GNC::Entorno::Instance()->GetApplicationName() << " " << GNC::Entorno::Instance()->GetGinkgoCopyRight();
 	std::string mensaje = os.str();
 	GNC::GCS::ControladorEventos::Instance()->ProcesarEvento(new GNC::GCS::Events::EventoMensajes(NULL,mensaje));	
 }

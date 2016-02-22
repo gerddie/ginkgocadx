@@ -63,18 +63,7 @@
 #if defined GINKGO_PRO
 #include <ginkgopro/ginkgo_pro_defines.h>
 #else
-#define EULA "This is a open source Ginkgo CADx Framework build. MetaEmotion S.L does not provide support so eximes from all responsabilities derived from its usage.\n\nWARRANTY DISCLAIMER\n\n" \
-	"The software, procedures, information and data made available by MetaEmotion S.L. under current conditions are provided \"AS IS\", without warranties of any kind except for contracted services, in which cases the specific contract conditions will be applied.\n" \
-	"MetaEmotion S.L. expressly disclaims any representations and warranties, including without limitation, the implied warranties of merchantability and fitness for a particular purpose.\n\n" \
-	"MetaEmotion S.L. shall have no liability for:\n" \
-    " * Any loss or injury caused, in whole or in part, by its actions, omissions, or negligence, or for contingencies beyond its control, in procuring, compiling, or delivering the Information or\n" \
-    " * Any errors, omissions, or inaccuracies in the Information regardless of how caused, or delays or interruptions in delivery of the Information; or\n" \
-	" * Any decision made or action taken or not taken in reliance upon the Information furnished hereunder.\n\n" \
-	"Under no circumstances shall the authors be liable for direct, indirect, special, incidental, consequential damages or misdiagnosis\n" \
-    "resulting from the use, misuse, or inability to use the software, even if the authors have been advised of the possibility of such damages.\n" \
-	"This software musn't be sold without prior approval of the authors.\n" \
-	"\nThe user assumes the entire risk of using this program as well as conditions above."\
-	"\nGinkgo CADx is licensed under the LGPL v3 license. You can find the legal terms of the license at http://www.gnu.org/copyleft/lgpl.html"
+#define EULA "Ginkgo CADx is licensed under the LGPL v3 license. You can find the legal terms of the license at http://www.gnu.org/copyleft/lgpl.html"
 #endif
 
 //helper

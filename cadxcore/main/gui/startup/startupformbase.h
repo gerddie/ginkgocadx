@@ -37,12 +37,7 @@ namespace GNC
 			
 			protected:
 				wxBoxSizer* m_pSizerToolBar;
-				wxHyperlinkCtrl* m_hyperlink2;
 				wxStaticText* m_staticText2;
-				wxHyperlinkCtrl* m_hyperlink31;
-				wxStaticText* m_staticText3;
-				wxStaticText* m_staticText9;
-				wxHyperlinkCtrl* m_hyperlink3;
 				
 				// Virtual event handlers, overide them in your derived class
 				virtual void OnEraseBackground( wxEraseEvent& event ) { event.Skip(); }

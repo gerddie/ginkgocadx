@@ -1973,7 +1973,7 @@ void VentanaPrincipal::MostrarVentana()
 	GNC::GCS::ControladorEventos::Instance()->Registrar(this, GNC::GCS::Events::EventoUpdateAvailable() );
 
 	std::ostringstream os;
-	os <<  GNC::Entorno::Instance()->GetApplicationName() << " " << GNC::Entorno::Instance()->GetGinkgoCopyRight() << " " << "MetaEmotion Healthcare";
+	os <<  GNC::Entorno::Instance()->GetApplicationName() << " " << GNC::Entorno::Instance()->GetGinkgoCopyRight();
 	SetStatusText(wxString::FromUTF8(os.str().c_str()));
 #if !defined(_GINKGO_DEBUG)
 	SetSize(wxDisplay().GetClientArea().GetSize());

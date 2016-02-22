@@ -31,21 +31,9 @@ VentanaPrincipalBase::VentanaPrincipalBase( wxWindow* parent, wxWindowID id, con
 	wxBoxSizer* bSizer17;
 	bSizer17 = new wxBoxSizer( wxHORIZONTAL );
 	
-	m_pHipervinculoActualizacion = new wxHyperlinkCtrl( m_pPanelActualizacionInterno, wxID_ANY, _("New version available"), wxT("http://www.metaemotion.com"), wxDefaultPosition, wxDefaultSize, wxHL_DEFAULT_STYLE );
-	bSizer17->Add( m_pHipervinculoActualizacion, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
-	
+
 	
 	bSizer17->Add( 0, 0, 1, wxEXPAND|wxALIGN_CENTER_VERTICAL, 5 );
-	
-	m_pDoNotWarnAgain = new wxCheckBox( m_pPanelActualizacionInterno, wxID_ANY, _("Do not warn me again about this update"), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer17->Add( m_pDoNotWarnAgain, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
-	
-	m_pBotonCerrarPanelActualizacion = new wxButton( m_pPanelActualizacionInterno, wxID_ANY, _("X"), wxDefaultPosition, wxDefaultSize, wxBU_EXACTFIT );
-	m_pBotonCerrarPanelActualizacion->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), 70, 90, 92, false, wxEmptyString ) );
-	m_pBotonCerrarPanelActualizacion->SetToolTip( _("Close this notification") );
-	
-	bSizer17->Add( m_pBotonCerrarPanelActualizacion, 0, wxALIGN_CENTER|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL|wxFIXED_MINSIZE, 2 );
-	
 	
 	m_pPanelActualizacionInterno->SetSizer( bSizer17 );
 	m_pPanelActualizacionInterno->Layout();
