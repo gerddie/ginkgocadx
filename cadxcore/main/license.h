@@ -22,15 +22,15 @@
 #include <string>
 
 #if !defined(GINKGO_VERSION)
-#define GINKGO_VERSION "3.7.1"
+#define GINKGO_VERSION "3.7.2"
 #endif
 
 #if !defined(GINKGO_REVISION)
-#define GINKGO_REVISION 1573
+#define GINKGO_REVISION 1
 #endif
 
 #if !defined(GINKGO_BUILD)
-#define GINKGO_BUILD "41"
+#define GINKGO_BUILD "1"
 #endif
 
 #define GINKGO_COPYRIGHT   "© 2007-2016"
