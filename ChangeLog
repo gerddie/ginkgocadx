@@ -1,0 +1,453 @@
+Version 3.7.2 (2016-02-23)
+--------------------------	
+
+* Move to github and start fork of abandoned version
+* Update build to use VTK-6, ITK-4, and DCMTK 3.6.1
+* Fix some possible race conditions by using std::atomic
+* Clean up licenses
+* remove embedded jsoncpp
+
+Version 3.7.1 (2014-12-01)
+---------------------------
+* Orientation label fixes in CR and MG modalities.
+* Widgets interactuation and selection usability enhances.
+* Deadlock fix in smart retrieve.
+* Bug fix in upload permission.
+* wxWidgets update to 3.0.1.
+* Compilation fix provided by Olly Betts (http://bugs.debian.org/749487)
+* Some issues fixes provided by Dmitry Smirnov.
+* Set process default to LTR layout in Windows.
+
+Version 3.7.0 (2014-06-16)
+---------------------------
+* Ortogonal rule tool for ECG
+* Added Maximum number of C-Find responses parametrization in profiles.
+* MPR layout enhances.
+* Text and annotations enhances.
+* Other visual and style improvements: contrast, colors..
+* Bug fix in export window.
+* Bug fix expanding empty results iun PACS search.
+* Fixed series double click behaviour.
+* DOC modality added.
+* Tool selection memorization
+* EC modality added in ECG viewer modality support list
+* Other usability enhances and behavior fixes.
+
+Version 3.6.1 (2014-02-27)
+---------------------------
+* UI migrated to wxWidgets 3.0.0 all forms has changed
+* Smart retrieve feature, allows user to automatically download studies.
+* User can store favourite queries
+* WADO retrieves in CD/DVD/USB recording workflow
+* Added translation to french and serbian
+* Traslation updates
+* Allow to specify config file by command line: --config-file=<path>
+* Usability enhances in mouse button processing.
+* Search restrictions removed performing Q/R from integration profiles
+* Other minor bug fixes
+
+Version 3.6.0 (2013-12-18)
+---------------------------
+* Added permission to specify what Storage SOP Class to use in dicomization
+* Added permision to allow specify accession number in dicomization window
+* Final cancel ignored in DICOM communications, when maximum response limit is reached, for the responses to appear in the window. 
+* Error fixes in cloud dialog.
+* Anonymous usage statistics.
+* Corner annotations are now fully customizable.
+* Allow new attributes to be added on anonymization tool.
+* Added permission to specify what Storage SOP Class to use in dicomization
+* Added permision to allow specify accession number in dicomization window
+* Cloud API enhances.
+* Error fixes in cloud dialog.
+* Pure WADO integration through XML integration file
+* Resources directory bug fixed.
+* Final cancel ignored in DICOM communications, when maximum response limit is reached, for the responses to appear in the window.  
+
+Version 3.5.1 (2013-10-23)
+---------------------------
+* Bugfixes.
+
+Versión 3.5.0 (2013-10-10)
+---------------------------
+* Better hanging protocols support.
+* Camera rotation tool.
+* Added new LUTs for PET/Fussion
+* GUI usability enhances.
+* Internal refactoring.
+* Other internal improvements and bug fixes.
+
+Versión 3.4.1 (2013-08-05)
+---------------------------
+* Mainteinance release.
+
+Versión 3.4.0 (2013-07-17)
+---------------------------
+
+* Fixed bug viewing CT Dose
+* Fixed bug checking if a slice belongs to a volume
+* Cloud bugfixes and API update
+* Show the free disk space before import.
+* Fixed bug in viewer layout.
+* Zoom level visual helper.
+* Show architecture (32 or 64 bits) in main window.
+* Show a warning before overwriting studies.
+* Static rule widget.
+* Check minimum and maximum values to verify representation.
+* Multiple monitor support enhances in GinkgoCADx Hanging Reports.
+
+Versión 3.3.0 (2013-04-17)
+
+* Ginkgo Cloud for sharing anonymized studies: Search and download support.
+* Query/Retrieve panel ui enhances
+* History and tools ui enhances
+* Internal threads managing enhances.
+* Image Orientation (L,R,S,I,A,P) annotations.
+* SC Image report generation
+* Minor enhances
+* Some tools are now available in top menu bar.
+* Allow to paste images through clipboard when importing.
+
+Version 3.2.0 (2013-02-15)
+---------------------------
+* PACS downloads simplified.
+* Enhanced error notification in PACS operations.
+* WADO download support
+* URI integration support ginkgo:// (automatically registered with Windows installer.)
+* Bug fixes :
+	- Rotation + flip behaviour fix
+
+Version 3.1.0 (2012-12-12)
+---------------------------
+* Custom Hanging protocols support.
+* GinkgoCADx now can open studies directly.
+* Drag&Drop support.
+* Some fixes suggested by users:
+ - Linux launcher
+ - Show Slice Thickness.
+* Resources extracted from executable:
+ - Images
+* DICOM Nodes specific charset configuration
+* wrong LGPL3 aditional clause removed
+* DICOMDir now imports in link-mode
+* Task retry feature
+* Log monitor charset fixed
+* Open automatically feature fixed
+* Some speed enhances
+* Polish traslation
+* HL7 not enabled by default
+* Added a DICOM grayscale test card to verify visuallization
+* Open automatically behavior restored (at drag&drop, file as arg...)
+* Retry feature sending to PACS.
+* Look&Feel enhancements
+* PACS localization selection support.
+* Many bug fixes.
+
+Version 3.0.0 rc (2012-09-14)
+---------------------------
+* Binary architecture of modules back to static
+* Grid layout removed
+* 1:1 zoom
+* Look&Feel enhancements
+* Stability and accuracy deep revision. Code review and refactoring.
+* Unit test support
+* Tool system refactoring.
+* History refactoring.
+* Many bug fixes.
+
+Version 2.14.0.4972 final (2012-06-26)
+---------------------------
+* Fixed bug in DICOM print with compressed images.
+* Fixed bug in DICOM loader.
+* Some enhancements and minor corrections.
+* Translation updates.
+* Linux official distribution binaries upgraded for Ubuntu Precise Pangolin: 12.04 LTS.
+
+MD5 of the released files with this version:
+
+d91260f97856f90c065817a966824cf7 Ginkgo_CADx-2.14.0.4972_linux_x86.tgz
+9961cd7e078d8f5f379806434e226f15 Ginkgo_CADx-2.14.0.4972_linux_x86_64.tgz
+eae562b09e2528c3e84fbdf943770441 Ginkgo_CADx-2.14.0.4972_installer.exe
+e67d82359487aaa742cb2e949791f143 Ginkgo_CADx-2.14.0.4972_win32.zip
+a52f7d2319195224e675b6e1af088947 ginkgocadx-2.14.0.4972.tgz
+
+
+Version 2.12.0.4869 final (2012-04-19)
+---------------------------
+* Window level speed has been enhanced using Pixels shaders when possible.
+* Brazillian portuguese translation
+* Charset of dicomized files can be selected in configuration
+* Some window/level related bugs has been corrected
+* Image description tag is shown in corner annotations
+* Other minor improvements and bug fixes
+
+MD5 of the released files with this version:
+7ac293aa10427c82368bcbf0dc853f35  Ginkgo_CADx-2.12.0.4889_linux_x86_64.tgz
+11acbd3a039f14b3f3cfe5e64124fd78  Ginkgo_CADx-2.12.0.4889_linux_x86.tgz
+7d2902f89ac90f93f6cfd754e5d1e50f  ginkgocadx-2.12.0.4889.tgz
+f9cb7b89b28f1cc3094cd4774f4531da Ginkgo_CADx-2.12.0.4889_installer.exe
+85c3b368c1bbf37d2dfa484e8b5cd383 Ginkgo_CADx-2.12.0.4889_win32.zip
+
+Version 2.10.0.4786 final (2012-03-08)
+---------------------------
+* UID root of dicomized files changed to metaemotion's uid
+* Second surname field has been deleted from dicomization
+* PDF's could be dicomized in opensource dicomization workflow
+* Refactoring of profiles configuration
+* Refactoring of integration subsystem, ORU mensaje is specified in a template
+
+MD5 of the released files with this version:
+f66cb29d5da6a9478e9ba0f7f6e49097  Ginkgo_CADx-2.10.0.4786_linux_x86_64.tgz
+e8e4d256c347059d628bca3e59c1a32a  Ginkgo_CADx-2.10.0.4786_linux_x86.tgz
+fbb5b602f33c6305954d4314c41e0553  Ginkgo_CADx-2.10.0.4786_installer.exe
+b2e1ed41f84e8ef73da009d3e24e33b7  Ginkgo_CADx-2.10.0.4786_win32.zip
+a08c8e8fe03b9063a015319556d93e76  ginkgocadx-2.10.0.4786.tgz
+
+Version 2.8.0.4540 final (2012-01-26)
+----------------------------
+* Stable version
+* corrected error in CMake building
+* Other minor improvements and bug fixes
+
+MD5 of the released files with this version:
+ab7bbcc41b8cdd41bc8e5327e897972b Ginkgo_CADx-2.8.0.4602_final_installer.exe
+5cad9495c728115119bc9899aaad736d Ginkgo_CADx-2.8.0.4602_final_win32.zip
+656c7449334fd294ca95dd00a1effb08 Ginkgo_CADx-2.8.0.4602_linux_x86.tgz
+c865b6f1ecef528983525db5e3ad66c2 Ginkgo_CADx-2.8.0.4602_linux_x86_64.tgz
+c5a42f5d44b68653a89321cee0775d1a ginkgocadx-2.8.0.4602.tgz
+
+Version 2.8.0.4540 rc (2012-01-16)
+----------------------------
+* Full tools subsystem refactoring. Now it's possible to bind a mouse button to a tool.
+* New zoom and pan tools has been included
+* Corrected bug in connections to ClearCanvas PACS server
+* Corrected menu bug in Unity, menu is shown as it was in ubuntu 9.x
+* Change name/surname order in patient name at importation
+* Export/import configuration from xml has been deprecated, now you can export/import using ini files
+* New open removable unit menu option has been included in Windows release
+* If there is not metric information rule and area tools uses pixels
+* Default photometric interpretation has been changed form YBR_FULL to YBR_FULL_422 that is commonly used in JPEG
+* Some changes in log system, tree view has been deleted and log level is persistent
+
+MD5 of the released files with this version:
+e9a2fc2dcd2b84d382657e3abe1403a8  Ginkgo_CADx-2.8.0.4540_rc.dmg
+610e7db74a35dbfb5dc262ca1d62d237  Ginkgo_CADx-2.8.0.4540_rc_linux_x86_64.tgz
+1f2c40dec224b98fe2c8c4ab255b54c2  Ginkgo_CADx-2.8.0.4540_rc_linux_x86.tgz
+1805b20061deb94a262c619feeb22a3d  ginkgocadx-2.8.0.4540_rc.tgz
+d142f76d67fab65e777c9bfa45c9d4a0  Ginkgo_CADx-2.8.0.4540_rc_installer.exe
+e77b097914cfc8dc7c77c7641bb3b26d  Ginkgo_CADx-2.8.0.4540_rc_win32.zip
+
+
+Version 2.6.0.1 final (2011-11-18)
+----------------------------
+* Added proxy support for http connections (check for updates and start up page)
+* Added slider tool to move between slices of a series
+* New functionallity: export to DICOM Dir with anonymization support
+* Corrected problems in downloading huge files from PACS
+* Other minor improvements and bug fixes
+* ITK patches applied to Linux x86 version
+
+MD5 of the released files with this version:
+d57ef1b76a764559a0c75871f6884e1d  Ginkgo_CADx-2.6.0.0_final.dmg
+872dd7a0825852470d0e2a19757890e6  Ginkgo_CADx-2.6.0.0_final_linux_x86_64.tgz
+3cfeb2ebfff9f4fded6b6d64dad99d89  Ginkgo_CADx-2.6.0.0_final_linux_x86.tgz
+a14935041cf5e882c84d70e97de961f3  ginkgocadx-2.6.0.0_final.tgz
+30eac5bf001484aa438b2fbe1c49d4de  Ginkgo_CADx-2.6.0.0_installer.exe
+5b965b2614403cb6d4a02a180d0bd153  Ginkgo_CADx-2.6.0.0_win32.zip
+
+Version 2.6.0.0 rc (2011-11-04)
+----------------------------
+* Enhanced ECG initial zoom and position.
+* Initial image 2D/3D view maximized.
+* Load extensions module has been redesigned, now extensions use manifest file
+* Date search fails in some PACS, corrected date format in PACS searches
+* Position and zoom has been synchronized in grid mode
+* Now position is not reseted in slice changing
+* Log format modified
+* Windows installer has been improved
+* Metadata is included in generated files when Ginkgo CADx executes an integration workflow
+* DICOM parser improved, file reading speed has been improved. 
+* Spanish translations deep correction
+* Restyling of some dialogs (Dicom inspector, pacs configuration, progress dialog...)
+* Other minor improvements and bug fixes
+
+MD5 of the released files with this version:
+fd6b3595774a5c3e85cb70aeaad7e26c  Ginkgo_CADx-2.6.0.0_rc.dmg
+95dfc48e4fd4cdbdc59bad58c31a67e3  Ginkgo_CADx-2.6.0.0_rc_installer.exe
+48864c42e4fdf7e9b7dcfeda532ae801  Ginkgo_CADx-2.6.0.0_rc_linux_x86_64.tgz
+d1615a1481e836c8182442c48fb4fb2f  Ginkgo_CADx-2.6.0.0_rc_linux_x86.tgz
+0a8a4de4a2e3267d8943c3043c7dc0fc  ginkgocadx-2.6.0.0_rc.tgz
+dca3442541ab4edbba45dc3dfc1b871b  Ginkgo_CADx-2.6.0.0_rc_win32.zip
+
+Version 2.5.4.1 final (2011-09-23)
+----------------------------
+* Stable version release
+* Welcome screen added
+* Bug resolved in parameters interpretation
+* Other minor improvements and bug fixes
+
+MD5 of the released files with this version:
+c7193a4a6f8b988bf76a167667f7400f  Ginkgo_CADx-2.5.4.1_win32.zip
+938875c68ddd0eeb6d31a7eb283704e5  Ginkgo_CADx-2.5.4.1_installer.exe
+5737e667cb70689d0d251c94b598a597  Ginkgo_CADx-2.5.4.1_linux_x86_64.tgz
+89672165ecb1ab6e27a7c15020607538  Ginkgo_CADx-2.5.4.1_linux_x86.tgz
+fd85e6fdc007d855cefbfb27ffded671  Ginkgo_CADx-2.5.4.1.dmg
+8618e01cb1a2ef4b7b5397919d8c9f8d  ginkgocadx-2.5.4.1.tgz
+
+Version 2.5.4.0 rc (2011-09-02)
+----------------------------
+* Compilation instructions document updated
+* Microsoft Redistributable libraries incuded in Ginkgo CADx release (in the instalator)
+* Corrected a bug in acquisition from a DicomDir in Linux
+* Corrected a bug in Windows when Ginkgo CADx tries to open an integration file stored in a path with special characters (á,ó,ñ,...)
+* Import files from a location has been improved, you can import files from a directory where files are stored with the medical image system, Ginkgo CADx can be configured to delete images after importation, monitoring images of a directory...
+* Integration XML parsing has changed, XML without pid parameter are valid. If you send an XML file without this parameter you can select importation workflow in Ginkgo CADx instead of doing it in the EHR application
+* GXML and GKXML files are registered as Ginkgo CADx files in Windows installer, so you can open it automatically doing double click and they are associated automatically in the navigator with Ginkgo CADx application
+* Maximum number of opened tabs can be limited in profiles section
+* A timer can be set to control inactivity time, if the timer reaches to 0 inactive tab will be closed
+* Hotkeys has been asociated with Ginkgo CADx tools
+* Restyling of download tab from a PACS dialog
+* Restyling of PACS dialog it's now more compact
+* Restyling of extensions sections from configuration
+* Corner annotations hidden by default, status of hidden/shown are stored in configuration
+* HL7 monitor redesigned, now is executed as a Ginkgo CADx command and shows progress and errors in the progress bar, problems related with HL7 connections can be detected easily
+* Pixel interpolation can be selected in Image menu, a linear interpolation at pixel level is applied to avoid pixelization
+* Windows build file (Ginkgo-CADx.sln) has been updated and checked, now you can compile core and extensions without any problem
+
+MD5 of the released files with this version:
+
+9f8e09a99c16ee63d0167d1e3dd35fa2  Ginkgo_CADx-2.5.4.0_rc_win32.zip
+c9bb3ed05d30db89b949ad034a91fc01  Ginkgo_CADx-2.5.4.0_rc_installer.exe
+f811687755bed3507f3c37e62d36007b  Ginkgo_CADx-2.5.4.0_rc_linux_x86_64.tgz
+527399d7d4b9740e4e19b4c0b05c8aaa  Ginkgo_CADx-2.5.4.0_rc_linux_x86.tgz
+201663079ef5074abfb0e9f5b43b4e8d  ginkgocadx-2.5.4.0_rc.tgz
+e2e4c948b9f4a2b1bbf47e6803668e16  Ginkgo_CADx-2.5.4.0_rc.dmg
+
+Version 2.5.2 (2011-07-22)
+----------------------------
+* Bug fixed: xml invocation with parser english results in exception 
+* Bug fixed: dicom acquisition didn't work with japanese language
+* Other minor improvements and bug fixes
+
+MD5 of the released files with this version:
+5cbfeb23f50099e0cc2eb47db329f271 ginkgocadx-2.5.2.0.tgz
+e293085ab0c8f0dd9d31ee6fd4bf4a30 Ginkgo_CADx-2.5.2.0.dmg
+b3cca5def6e74018592bc61998f0e31e Ginkgo_CADx-2.5.2.0_installer.exe
+cfcd65a81c351436c14a399ccf81447f Ginkgo_CADx-2.5.2.0_linux_x86.tgz
+f9563583e2ebe33ae5b286220e467803 Ginkgo_CADx-2.5.2.0_linux_x86_64.tgz
+0c3cc48fb19ed18934d2910a3238fe65 Ginkgo_CADx-2.5.2.0_win32.zip
+
+Version 2.5.1 (2011-07-13)
+----------------------------
+* Feature: Workflows started by external applications (xml, xml-rpc) can be reprocessed if somethings failed (uploading to pacs or sending the HL7 message).
+* Fixed: Windows 32 version doesn't load properly conformance.xml
+* Other minor improvements and bug fixes
+
+MD5 of the released files with this version:
+
+8d65fcc57f6a77ea74dfe3b24f8ce5cc  Ginkgo_CADx-2.5.1.0.dmg
+1a2626e474cf38c4b83699d8eb177b9f  Ginkgo_CADx-2.5.1.0_installer.exe
+8ee57d98c358bb0d521de07e083bd027  Ginkgo_CADx-2.5.1.0_linux_x86_64.tgz
+ffeeed59c8974f8f487fcea47a6edcc2  Ginkgo_CADx-2.5.1.0_linux_x86.tgz
+85fc0b84af2c351d4e001c092395381b  Ginkgo_CADx-2.5.1.0_win32.zip
+
+Version 2.5.0.0 (2011-07-06)
+----------------------------
+* Refactorization of DICOM network layer, starts constructing conformance.xml to enhance C-GET interoperability
+* Improve error handling of DICOM network errors
+* Removes dependency of wxWidgets configuration, Ginkgo CADx implements it's own configuration controller to handle one configuration file for sytem properties and other for user properties
+* New Ginkgo CADx extension released: Ginkgo CADx Lite Visualizator, it's focused to work with computers without 3D acceleration, you can use Ginkgo CADx in old computers!
+* New translations incorporated: German, Turkish
+* Restyling of Importation first step
+* Other minor improvements and bug fixes
+
+MD5 of the released files with this version:
+
+73818708b08a477751544259925b85f9  Ginkgo_CADx-2.5.0.0.dmg
+37e3c9f92917c5371cf23f34113e900e  Ginkgo_CADx-2.5.0.0_installer.exe
+dd08d8b0f7ec8b245c6b6603297f5440  Ginkgo_CADx-2.5.0.0_win32.zip
+ae8b9f9978236dde03fe1d4713030a30  Ginkgo_CADx-2.5.0.0_linux_x86_64.tgz
+34485fab2496cffa19ace239cbf31780  Ginkgo_CADx-2.5.0.0_linux_x86.tgz
+7c1d69fd2f360c51e079ba453393fd51  ginkgocadx-2.5.0.0.tgz
+
+Version 2.4.1.0 (2011-04-29)
+----------------------------
+* Log layout has changed, logs are grouped by thread
+* Mayor bug fix problem in Windows when Ginkgo CADx receives an integration xml as parameter, Ginkgo CADx didn't find plugins
+* wxSQLite3 update to version 2.1.1
+* wxTreeListCtrl update to release 1104
+* openssl update to openssl 1.0.0d
+
+Version 2.4.0.0 (2011-04-15)
+----------------------------
+* New architecture, refactoring of Ginkgo CADx Core.
+* ITK, VTK and wxWidgets are compiled as dll library. It's opened the possibility of make extensions containing
+  full modules with it's own views, studies...
+* New ECG view has been created, full support of ECG. (thanks to Generalitat de Catalunya for the support)
+* Sequencial instance number is now included in all slices of each imported series (thanks to Guillermo Lopez)
+* Internationalization support improved, you can easily translate Ginkgo CADx and incorporate compiled gettext
+  files in lang folder
+* Upload to PACS improved we have done a full restyling of user interaction.
+* You can configure Ginkgo CADx download implementation to work with PACS that only allows download full studies.
+  You can select series/studies download mode.
+* User/password validation when communicating with PACS server has been implemented.
+* XML Integration parser has been translated to English to provide a easier way of integration.
+* DCMTK migration to version 3.6.0
+* Log4cplus has been replaced by log4cplus of DCMTK
+* Bug fixes
+
+MD5 of the released files with this version:
+a5e51c1b505ebc3fa44bfa111fa2932b  Ginkgo_CADx-2.4.0.0_installer.exe
+0b0e9518564590a1940af8fcb20850ea  Ginkgo_CADx-2.4.0.0_linux_x86_64.tgz
+e5744efdfac2463b2b02c5bc753471e2  Ginkgo_CADx-2.4.0.0_linux_x86.tgz
+6ab0df05cac9a9c3765f7c353609b292  Ginkgo_CADx-2.4.0.0_win32.zip
+
+Version 2.3.0.0 (2011-02-25)
+----------------------------
+* Volume reconstruction totally functional
+* Surface reconstruction totally functional
+* XML-RPC interface implemented
+* Corrections in C-GET to get complete studies
+* Updated Ginkgo Translations
+* Bug fixes
+
+MD5 of the released files with this version:
+a35dc7dac51fe22899f48a9a51fad3c6  Ginkgo_CADx-2.3.0.0.dmg (OSX DMG).
+fbcf44e2a7b5364712c2e7fe57e3b708  Ginkgo_CADx-2.3.0.0_installer.exe (Windows32 Installer).
+1474d94324f3076f9083c3494d9cd846  Ginkgo_CADx-2.3.0.0_linux_x64.tgz (Linux64 Executable).
+6d22ab840fc886b8ee49376328385d8c  Ginkgo_CADx-2.3.0.0_linux_x86.tgz (Linux32 Executable).
+ab1ddab3e2745c533e42c1231916a514  Ginkgo_CADx-2.3.0.0_src.tgz (Source code).
+2781fd9ae11cb07fc95b9594ca37963a  Ginkgo_CADx-2.3.0.0_win32_standalone.zip (Windows32 Executable).
+
+Version 2.2.1.0 (2011-02-15)
+----------------------------
+* Ginkgo CADs acceps -version parameter
+* Modifications in the definition of the integration XML and HL7 message of dicomization
+* Default PACS server selection, it will be used when Ginkgo CADx is executed with a dicomization XML
+* Spanish translation updated
+* Japanese translations
+* Improved verbose level in DICOM operations
+* Overlay interpretation improved in series with slices with different number of overlays
+* Correction of "No Options" bar refresh problem
+* Series with spacing 0 are interpreted as spacing 1x1
+* Restyling of medical history bar with collapsible nodes and searching filters
+* Restyling of PACS acquisition dialog
+* Restyling of About Ginkgo dialog
+* Restyling of license dialog
+* Correction of virtual memory leak 
+* Improved update support
+* DICOM exportation and diagnostics upload system change, when a diagnostic is uploaded to a PACS the diagnostic is merged with the original file.
+* Images without metric information are detected and the user is warned about it.
+* Integration of CharLS library to read JPEG-LS DICOMs
+* Optimization of PACS commands, GET retrieve is improved and exhaustive tested  with DCM4CHEE pacs
+* Bug Fixes
+* Printing bug on Linux (thanks to André Alvim Tolentino).
+* EXPERIMENTAL 3D reconstruction (buggy and feature incomplete): CT Surface Rendering. Disabled by default. Can be enabled with permission profiles: Tools -> Settings -> Profiles -> New/Edit; Set 3D Reconstruction: "true", 3D Surface Rendering: "true".
+
+MD5 of the released files with this version:
+
+e8116a4ee3671743cd6f7020386f8fe6  Ginkgo_CADx-2.2.1.0.dmg Mac (OSX DMG).
+ca21f42b9daa4525e6c6d3216791bab4  Ginkgo_CADx-2.2.1.0_installer.exe (Windows32 Installer).
+29053b222edf07ed758fe5e232b13016  Ginkgo_CADx-2.2.1.0_linux_x64.tgz (Linux64 Executable).
+6bc50d307d536f9a2262c114a770aa0e  Ginkgo_CADx-2.2.1.0_linux_x86.tgz (Linux32 Executable).
+ad7299db649942708952a9f49884b723  Ginkgo_CADx-2.2.1.0.tgz (Source code).
+0b51df0bba3f1d25fc161447d5836932  Ginkgo_CADx-2.2.1.0_win32_standalone.zip (Windows32 Executable).
