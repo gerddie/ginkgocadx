@@ -486,7 +486,7 @@ void GNC::GCS::CloudCommand::doFind(GNC::GCS::CloudFindCommandParams* pParams) {
 			else {
 				std::ostringstream os;
 				os << _Std("Error parsing JSon: ");
-				os << reader.getFormatedErrorMessages();
+				os << reader.getFormattedErrorMessages();
 				m_pCloudParams->m_error = os.str();
 				LOG_ERROR("CloudFind", m_pCloudParams->m_error);
 			}

@@ -21,13 +21,6 @@ SET( INTERNET_DIST           TRUE CACHE BOOL "Public distribution")
 
 SET( CMAKE_OSX_ARCHITECTURES "i386" CACHE STRING "MacOSX Architectures" FORCE)
 
-IF(NOT CMAKE_BUILD_TYPE)
-SET(CMAKE_BUILD_TYPE Release CACHE STRING
-"Choose the type of build, options are: None Debug Release RelWithDebInfo MinSizeRel."
-FORCE)
-ENDIF(NOT CMAKE_BUILD_TYPE)
-
-
 SET( GINKGO_VERSION_STR ${GINKGO_VERSION}.${GINKGO_REVISION}.${GINKGO_BUILD})
 
 #############################################################################################
@@ -36,6 +29,23 @@ SET(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/CM
 INCLUDE(SysDefs)
 
 #############################################################################################
+
+IF(UNIX)
+  include(CheckCXXCompilerFlag)
+  CHECK_CXX_COMPILER_FLAG("-std=c++11" HAS_GNU_CXX11_FLAG)
+  IF(HAS_GNU_CXX11_FLAG)
+    SET(CXX_11_FLAG "-std=c++11")
+  ELSE(HAS_GNU_CXX11_FLAG)
+    CHECK_CXX_COMPILER_FLAG("-std=c++0x" HAS_GNU_CXX0X_FLAG)
+    IF(HAS_GNU_CXX0X_FLAG)
+      SET(CXX_11_FLAG "-std=c++0x")
+    ELSE(HAS_GNU_CXX0X_FLAG)
+      MESSAGE(WARNING "Don't know how to enable C++11, if you are lucky, they are enabled by default")
+    ENDIF(HAS_GNU_CXX0X_FLAG)
+  ENDIF(HAS_GNU_CXX11_FLAG)
+  
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}  ${CXX_11_FLAG} -fvisibility=hidden")
+ENDIF(UNIX)
 
 #doesn't work... using custom build
 #IF(LINUX)
@@ -47,46 +57,42 @@ IF(LINUX)
 FIND_PACKAGE(GTK2 REQUIRED)
 ENDIF()
 
-IF(USE_PATCHED_LIBS)
-MESSAGE("Using patched libs")
-ENDIF()
+#IF(USE_PATCHED_LIBS)
+#MESSAGE("Using patched libs")
+#ENDIF()
 
 IF(NOT USE_CUSTOM_WX)
-MESSAGE("Using system wxWidgets")
 FIND_PACKAGE(wxWidgets 3.0.1 COMPONENTS core base html gl net xml aui adv richtext xrc propgrid REQUIRED)
 ELSE()
-MESSAGE("Using custom wxWidgets")
+MESSAGE(STATUS "Using custom wxWidgets")
 SET_CUSTOM_wxWidgets_PACKAGE()
 ENDIF()
 
 IF(NOT USE_CUSTOM_VTK)
-MESSAGE("Using system VTK")
 FIND_PACKAGE(VTK REQUIRED)
 ELSE()
-MESSAGE("Using custom VTK")
+MESSAGE(STATUS "Using custom VTK")
 SET_CUSTOM_VTK_PACKAGE()
 ENDIF()
 
 IF(NOT USE_CUSTOM_ITK)
-MESSAGE("Using system ITK")
 FIND_PACKAGE(ITK REQUIRED)
 ELSE()
-MESSAGE("Using custom ITK")
+MESSAGE(STATUS "Using custom ITK")
 SET_CUSTOM_ITK_PACKAGE()
 ENDIF()
 
 IF(NOT USE_CUSTOM_DCMTK)
-MESSAGE("Using system DCMTK")
 FIND_PACKAGE(DCMTK 3.6.0 EXACT REQUIRED)
 ELSE()
-MESSAGE("Using custom DCMTK")
+MESSAGE(STATUS "Using custom DCMTK")
 SET_CUSTOM_DCMTK_PACKAGE()
 ENDIF()
 
 IF(NOT USE_SYSTEM_SQLITE)
-MESSAGE("Using builtin SQLite")
+MESSAGE(STATUS "Using builtin SQLite")
 ELSE()
-MESSAGE("Using system SQLite")
+MESSAGE(STATUS "Using system SQLite")
 #FIND_PACKAGE(sqlite REQUIRED)
 
 ENDIF()
@@ -112,7 +118,7 @@ ENDIF()
 
 ADD_CUSTOM_TARGET(${PROJECT_NAME} echo)
 
-MESSAGE("Building ${GINKGO_PROJECT} ${GINKGO_VERSION_STR}")
+MESSAGE(STATUS "Building ${GINKGO_PROJECT} ${GINKGO_VERSION_STR}")
 
 ADD_DEPENDENCIES(${PROJECT_NAME} "${GINKGO_PROJECT}")
 

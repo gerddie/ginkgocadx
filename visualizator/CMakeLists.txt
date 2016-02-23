@@ -166,5 +166,5 @@ IF(MACOS)
 	
 ENDIF()
 
-MESSAGE("OS=[${OS}], Arch=[${ARCH}], Target=[${CMAKE_BUILD_TYPE}], Project=[${PROJECT_NAME}]")
+MESSAGE(STATUS "OS=[${OS}], Arch=[${ARCH}], Target=[${CMAKE_BUILD_TYPE}], Project=[${PROJECT_NAME}]")
 

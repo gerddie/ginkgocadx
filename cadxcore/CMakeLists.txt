@@ -147,7 +147,7 @@ FIND_PATH(libjsoncpp_INCLUDE_DIR json/json.h
 )
 INCLUDE_DIRECTORIES(${libjsoncpp_INCLUDE_DIR})
 set(libjsoncpp_LIBRARIES jsoncpp)
-MESSAGE("libjsoncpp_LIBRARIES=${libjsoncpp_LIBRARIES} libjsoncpp_INCLUDE_DIR=${libjsoncpp_INCLUDE_DIR}")
+MESSAGE(STATUS "libjsoncpp_LIBRARIES=${libjsoncpp_LIBRARIES} libjsoncpp_INCLUDE_DIR=${libjsoncpp_INCLUDE_DIR}")
 
 ADD_DEFINITIONS(${libcurl_defines})
 INCLUDE_DIRECTORIES(${libcurl_INCLUDE_DIR})
@@ -326,5 +326,5 @@ IF(MACOS)
 	
 ENDIF()
 
-MESSAGE("OS=[${OS}], Arch=[${ARCH}], Target=[${CMAKE_BUILD_TYPE}], Project=[${PROJECT_NAME}]")
+MESSAGE(STATUS "OS=[${OS}], Arch=[${ARCH}], Target=[${CMAKE_BUILD_TYPE}], Project=[${PROJECT_NAME}]")
 
