@@ -33,10 +33,11 @@
 #define GINKGO_BUILD "41"
 #endif
 
-#define GINKGO_COPYRIGHT   "© 2007-2014"
+#define GINKGO_COPYRIGHT   "© 2007-2016"
 #define PRODUCT_NAME	"Ginkgo CADx"
 #define PRODUCT_SUBTITLE _Std("Open Source DICOM CADx environment")
-#define CREDITS "<a href=\"www.ginkgo-cadx.com\">www.ginkgo-cadx.com</a>"\
+#define CREDITS "<a href=\"https://github.com/gerddie/ginkgocadx\">https://github.com/gerddie/ginkgocadx</a>"\
+"<p>© 2015-2016 Gert Wollny</p>"\
 "<p>© 2007-2014 <a href=\"http://healthcare.metaemotion.com/\">MetaEmotion Healthcare</a></p>"\
 "<p>¡Queremos agradecer a Sacyl por todo el apoyo en la creación de Ginkgo CADx!</p>"\
 "<h3>Traductores</h3>"\
