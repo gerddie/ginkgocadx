@@ -44,7 +44,8 @@ IF(UNIX)
     ENDIF(HAS_GNU_CXX0X_FLAG)
   ENDIF(HAS_GNU_CXX11_FLAG)
   
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}  ${CXX_11_FLAG} -fvisibility=hidden")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}  ${CXX_11_FLAG}")
+  MESSAGE(STATUS "CXX_FLAGS = ${CMAKE_CXX_FLAGS}")
 ENDIF(UNIX)
 
 #doesn't work... using custom build
