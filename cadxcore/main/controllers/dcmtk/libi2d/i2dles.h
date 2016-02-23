@@ -1,9 +1,35 @@
 /*
- *  
- *  $Id$
- *  Ginkgo CADx Project
+ * This file is part of Ginkgo CADx
+ *
+ *
  *
  *  Code addapted from DCMTK
+ *  Copyright (C) 2001-2007, OFFIS
+ *
+ *  This software and supporting documentation were developed by
+ *
+ *    Kuratorium OFFIS e.V.
+ *    Healthcare Information and Communication Systems
+ *    Escherweg 2
+ *    D-26121 Oldenburg, Germany
+ *
+ *  THIS SOFTWARE IS MADE AVAILABLE,  AS IS,  AND OFFIS MAKES NO  WARRANTY
+ *  REGARDING  THE  SOFTWARE,  ITS  PERFORMANCE,  ITS  MERCHANTABILITY  OR
+ *  FITNESS FOR ANY PARTICULAR USE, FREEDOM FROM ANY COMPUTER DISEASES  OR
+ *  ITS CONFORMITY TO ANY SPECIFICATION. THE ENTIRE RISK AS TO QUALITY AND
+ *  PERFORMANCE OF THE SOFTWARE IS WITH THE USER.
+ *
+ *  Module:  dcmdata
+ *
+ *  Author:  Michael Onken
+ *
+ *  Purpose: Class for conversion of image file into new DICOM SC Image IODs
+ *
+ *  Last Update:      $Author: onken $
+ *  Update Date:      $Date: 2009-01-16 09:51:55 $
+ *  CVS/RCS Revision: $Revision: 1.2 $
+ *  Status:           $State: Exp $
+
  *
  */
 #pragma once

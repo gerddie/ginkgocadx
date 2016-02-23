@@ -1,3 +1,4 @@
+#error delete file 
 /*
  *  
  *  $Id: permisoscore.h $

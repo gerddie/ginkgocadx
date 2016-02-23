@@ -1,11 +1,22 @@
-// Created:20030427
-// By Jeff Connelly
-
-// Endpoint master header file
-
-// Win32 note: when using MFC AppWizard, do NOT enable Windows Sockets
-// The header <afxsock.h> will conflict with Endpoint's. If you accidentally
-// did, just delete #include <afxsock.h> from stdafx.h
+/*
+ * This file is part of Ginkgo CADx
+ *
+ * Copyright (c) 2015-2016 Gert Wollny
+ * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
+ *
+ * Ginkgo CADx is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as 
+ * published by the Free Software Foundation; version 3. 
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser Public License
+ * along with Ginkgo CADx; if not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 
 #ifndef __EP_ENDPOINT_H
 #define __EP_ENDPOINT_H
