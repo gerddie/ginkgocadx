@@ -1,4 +1,4 @@
-﻿/*
+/*
  * This file is part of Ginkgo CADx
  *
  * Copyright (c) 2015-2016 Gert Wollny
