@@ -64,17 +64,12 @@ VentanaPrincipalBase::VentanaPrincipalBase( wxWindow* parent, wxWindowID id, con
 	
 	// Connect Events
 	this->Connect( wxEVT_KEY_DOWN, wxKeyEventHandler( VentanaPrincipalBase::OnKeydown ) );
-	m_pDoNotWarnAgain->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( VentanaPrincipalBase::OnDoNotWarnAgainClicked ), NULL, this );
-	m_pBotonCerrarPanelActualizacion->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( VentanaPrincipalBase::OnVersionNotifierClose ), NULL, this );
 }
 
 VentanaPrincipalBase::~VentanaPrincipalBase()
 {
 	// Disconnect Events
 	this->Disconnect( wxEVT_KEY_DOWN, wxKeyEventHandler( VentanaPrincipalBase::OnKeydown ) );
-	m_pDoNotWarnAgain->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( VentanaPrincipalBase::OnDoNotWarnAgainClicked ), NULL, this );
-	m_pBotonCerrarPanelActualizacion->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( VentanaPrincipalBase::OnVersionNotifierClose ), NULL, this );
-	
 }
 
 DialogoComandosEnEjecucionBase::DialogoComandosEnEjecucionBase( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )

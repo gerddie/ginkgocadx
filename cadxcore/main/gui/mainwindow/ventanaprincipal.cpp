@@ -396,12 +396,7 @@ void VentanaPrincipal::OnDoNotWarnAgainClicked( wxCommandEvent& /*event*/ )
 {
 	if (m_VersionChecked) {
 		wxString valor;
-		if (m_pDoNotWarnAgain->GetValue()) {
-			GNC::GCS::ConfigurationController::Instance()->writeStringGeneral("/GinkgoCore/SkipUpdate", m_VersionCheck, "1");
-		}
-		else{
-			GNC::GCS::ConfigurationController::Instance()->writeStringGeneral("/GinkgoCore/SkipUpdate", m_VersionCheck, "0");
-		}
+                GNC::GCS::ConfigurationController::Instance()->writeStringGeneral("/GinkgoCore/SkipUpdate", m_VersionCheck, "1");
 		GNC::GCS::ConfigurationController::Instance()->Flush();
 	}
 
@@ -1787,13 +1782,6 @@ void VentanaPrincipal::ProcesarEvento(GNC::GCS::Events::IEvent *pEvt)
 					m_pHipervinculoActualizacion->SetLabel(wxString(_("New version available (")) + wxString::FromUTF8(m_VersionNueva.c_str()) + _T(")") );
 					m_pHipervinculoActualizacion->SetURL(wxString::FromUTF8(pE->GetURL().c_str()));
 					m_pHipervinculoActualizacion->SetToolTip(wxString::FromUTF8(pE->GetDescription().c_str()));
-
-					if (valor == "1") {
-						m_pDoNotWarnAgain->SetValue(true);
-					}
-					else {
-						m_pDoNotWarnAgain->SetValue(false);
-					}
 
 					m_pPanelActualizacion->Show();
 					//m_pPanelCentral->Layout();

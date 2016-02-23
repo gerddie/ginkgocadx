@@ -48,14 +48,11 @@ class VentanaPrincipalBase : public wxFrame
 		wxPanel* m_pPanelActualizacion;
 		wxPanel* m_pPanelActualizacionInterno;
 		wxHyperlinkCtrl* m_pHipervinculoActualizacion;
-		wxCheckBox* m_pDoNotWarnAgain;
-		wxButton* m_pBotonCerrarPanelActualizacion;
 		wxBoxSizer* m_pSizerCentral;
 		wxPanel* m_pPanelCentral;
 		
 		// Virtual event handlers, overide them in your derived class
 		virtual void OnKeydown( wxKeyEvent& event ) { event.Skip(); }
-		virtual void OnDoNotWarnAgainClicked( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnVersionNotifierClose( wxCommandEvent& event ) { event.Skip(); }
 		
 	
