@@ -174,8 +174,8 @@ GVistaSimple::~GVistaSimple() {
 	ViewImage2D->Detach();
 	//necesario para que no haga un doble delete
 	EstudioReferido->SetViewer(NULL);
-        ViewInteractor2D->Reparent(NULL);
-	//ViewInteractor2D->Delete();
+        //ViewInteractor2D->Reparent(NULL);
+	ViewInteractor2D->Delete();
 	
 }
 

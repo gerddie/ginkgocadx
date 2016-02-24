@@ -475,6 +475,11 @@ int wxVTKRenderWindowInteractor::DestroyTimer()
 
 bool wxVTKRenderWindowInteractor::Reparent( wxWindowBase *newParent )
 {
+	// should not reparent to NULL , because then it is turned into a toplevel windows
+	// which it is not
+	assert(newParent);
+	
+	
 	LOG_DEBUG("Core/GL", "Reparenting to " << (void*) newParent << std::endl);
 
 	return wxWindowBase::Reparent(newParent);
