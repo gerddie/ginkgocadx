@@ -278,7 +278,7 @@ GNC::GUI::HistoryPanel3::~HistoryPanel3()
 
 	ViewImage2D->Detach();
 	//necesario para que no haga un doble delete
-        ViewInteractor2D->Reparent(NULL);
+        //        ViewInteractor2D->Reparent(NULL);
 	ViewInteractor2D->Delete();
 
 

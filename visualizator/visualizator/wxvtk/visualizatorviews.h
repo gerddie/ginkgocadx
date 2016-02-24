@@ -56,8 +56,9 @@ class VistaSimpleBase : public wxPanel
 		
 	
 	public:
-		vtkSmartPointer<wxVTKRenderWindowInteractor> ViewInteractor2D;
 		vtkSmartPointer<vtkGinkgoImageViewer> ViewImage2D;
+		vtkSmartPointer<wxVTKRenderWindowInteractor> ViewInteractor2D;
+
 		
 		VistaSimpleBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxCLIP_CHILDREN|wxFULL_REPAINT_ON_RESIZE|wxTAB_TRAVERSAL ); 
 		~VistaSimpleBase();
@@ -147,8 +148,9 @@ class GWaveformViewBase : public wxPanel
 		
 	
 	public:
-		vtkSmartPointer<wxVTKRenderWindowInteractor> ViewInteractor2D;
 		vtkSmartPointer<vtkGinkgoImageViewer> ViewImage2D;
+		vtkSmartPointer<wxVTKRenderWindowInteractor> ViewInteractor2D;
+
 		
 		GWaveformViewBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxTAB_TRAVERSAL ); 
 		~GWaveformViewBase();

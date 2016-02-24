@@ -20,6 +20,7 @@
 
 #include <limits>
 #include <sstream>
+#include <iostream>
 #include <stdlib.h>
 #include <cmath>
 
@@ -133,8 +134,9 @@ class Pipeline {
 public:
 	vtkSmartPointer<vtkAlgorithmOutput>             InputConnection;
 	vtkSmartPointer<vtkRenderer>                    Renderer;
+        vtkSmartPointer<vtkRenderWindowInteractor>      RenderWindowInteractor;
 	vtkSmartPointer<vtkRenderWindow>                RenderWindow;
-	vtkSmartPointer<vtkRenderWindowInteractor>      RenderWindowInteractor;
+
 
 	vtkSmartPointer<vtkInteractorStyle>             InteractorStyle;
 
@@ -170,111 +172,123 @@ public:
 	GNC::GCS::Ptr<GNC::GCS::IGinkgoMatrix4x4> ModelMatrix;
 	GNC::GCS::Ptr<GNC::GCS::IGinkgoMatrix4x4> ModelMatrixInv;
 
-	Pipeline(): ModelMatrix(GNC::GCS::IGinkgoMatrix4x4::New()),
-		ModelMatrixInv(GNC::GCS::IGinkgoMatrix4x4::New())
-	{
-		ImageActor      = vtkSmartPointer<vtkActor>::New();
-
-		#if defined(DEBUG_PIPELINE)
-
-		DebugVolumePolyData = vtkSmartPointer<vtkPolyData>::New();
-		DebugVolumePoints = vtkSmartPointer<vtkPoints>::New();
-		DebugVolumePolys = vtkSmartPointer<vtkCellArray>::New();
-		DebugVolumeScalars = vtkSmartPointer<vtkDoubleArray>::New();
-		DebugVolumeMapper = vtkSmartPointer<vtkPolyDataMapper>::New();
-		DebugVolumeActor = vtkSmartPointer<vtkActor>::New();
-		
-		for (int i=0; i<8; i++) DebugVolumePoints->InsertPoint(i, 0, 0, 0);
-		for (int i=0; i<6; i++) DebugVolumePolys->InsertNextCell(4, pts[i]);
-		for (int i=0; i<8; i++) DebugVolumeScalars->InsertTuple1(i,i);
-
-		DebugVolumePolyData->SetPoints(DebugVolumePoints);
-		DebugVolumePolyData->SetPolys(DebugVolumePolys);
-		DebugVolumePolyData->GetPointData()->SetScalars(DebugVolumeScalars);
-		DebugVolumeMapper->SetInput(DebugVolumePolyData);
-		DebugVolumeMapper->SetScalarVisibility(0);
-		DebugVolumeActor->SetMapper(DebugVolumeMapper);
-		DebugVolumeActor->GetProperty()->SetRepresentationToWireframe();
-
-		#endif
-
-		OverlayActor    = vtkSmartPointer<vtkActor>::New();
-		PlaneProperty   = vtkSmartPointer<vtkProperty>::New();
-
-		PlaneProperty->SetAmbient(1.0);
-		PlaneProperty->SetAmbientColor(1.0,1.0,1.0);
-		PlaneProperty->SetOpacity(1);
-
-		PlaneSource = vtkSmartPointer<vtkPlaneSource>::New();
-		PlaneSource->SetXResolution(1);
-		PlaneSource->SetYResolution(1);
-
-		Textura            = vtkSmartPointer<vtkGinkgoOpenGLTexture>::New();
-		TexturaOverlay     = vtkSmartPointer<vtkGinkgoTexture>::New();
-		MapperPlano        = vtkSmartPointer<vtkPolyDataMapper>::New();
-		MapperPlanoOverlay = vtkSmartPointer<vtkPolyDataMapper>::New();
-		Plane              = vtkSmartPointer<vtkPlane>::New();
-
-		double bounds[6];
-		bounds[0] = -0.5;
-		bounds[1] =  0.5;
-		bounds[2] = -0.5;
-		bounds[3] =  0.5;
-		bounds[4] = -0.5;
-		bounds[5] =  0.5;
-
-		double center[3];
-		center[0] = (bounds[0] + bounds[1])/2.0;
-		center[1] = (bounds[2] + bounds[3])/2.0;
-		center[2] = (bounds[4] + bounds[5])/2.0;
-
-		PlaneSource->SetOrigin(center[0],bounds[2],bounds[4]);
-		PlaneSource->SetPoint1(center[0],bounds[3],bounds[4]);
-		PlaneSource->SetPoint2(center[0],bounds[2],bounds[5]);
-
-		Textura->SetPremultipliedAlpha(1.0);
-		Textura->SetInterpolate(1);
-		Textura->RepeatOff();
-		TexturaOverlay->SetInterpolate(1);
-		TexturaOverlay->RepeatOff();
-		TexturaOverlay->MapColorScalarsThroughLookupTableOn();
-		vtkLookupTable* tblover = vtkLookupTableManager::GetOverlayLooupTable();
-		TexturaOverlay->SetLookupTable(tblover);
-		TexturaOverlay->GetLookupTable()->SetRange(0, 1);
-		tblover->Delete();
-
-		MapperPlano->SetInputData(vtkPolyData::SafeDownCast(PlaneSource->GetOutput()));
-		MapperPlano->ScalarVisibilityOff();
-		MapperPlanoOverlay->ScalarVisibilityOff();
-		MapperPlanoOverlay->SetInputData(vtkPolyData::SafeDownCast(PlaneSource->GetOutput()));
-
-		WindowLevel = vtkSmartPointer<vtkImageMapToWindowLevelColors>::New();
-
-		vtkLookupTable* tbl = vtkLookupTableManager::GetLinearLookupTable();
-		LookupTableId = vtkLookupTableManager::LUT_LINEAR;
-		LookupTable = tbl;
-
-		tbl->Delete();
-
-		ImageActor->SetMapper(MapperPlano);
-		ImageActor->SetTexture(Textura);
-		ImageActor->GetProperty()->SetLighting(false);
-		ImageActor->PickableOff();
-		ImageActor->GetProperty()->SetOpacity(1.0);
-		OverlayActor->SetMapper(MapperPlanoOverlay);
-		OverlayActor->SetTexture(TexturaOverlay);
-		OverlayActor->GetProperty()->SetLighting(false);
-		OverlayActor->PickableOff();
-
-		ResetMatrices();
-	}
-
-	void ResetMatrices()
-	{
-		ModelMatrix->Identity();
-		ModelMatrixInv->Identity();
-	}
+	Pipeline();
+        ~Pipeline(); 
+        void ResetMatrices(); 
+        
 };
+
+Pipeline::Pipeline(): ModelMatrix(GNC::GCS::IGinkgoMatrix4x4::New()),
+                      ModelMatrixInv(GNC::GCS::IGinkgoMatrix4x4::New())
+{
+        ImageActor      = vtkSmartPointer<vtkActor>::New();
+        
+#if defined(DEBUG_PIPELINE)
+        
+        DebugVolumePolyData = vtkSmartPointer<vtkPolyData>::New();
+        DebugVolumePoints = vtkSmartPointer<vtkPoints>::New();
+        DebugVolumePolys = vtkSmartPointer<vtkCellArray>::New();
+        DebugVolumeScalars = vtkSmartPointer<vtkDoubleArray>::New();
+        DebugVolumeMapper = vtkSmartPointer<vtkPolyDataMapper>::New();
+        DebugVolumeActor = vtkSmartPointer<vtkActor>::New();
+	
+        for (int i=0; i<8; i++) DebugVolumePoints->InsertPoint(i, 0, 0, 0);
+        for (int i=0; i<6; i++) DebugVolumePolys->InsertNextCell(4, pts[i]);
+        for (int i=0; i<8; i++) DebugVolumeScalars->InsertTuple1(i,i);
+        
+        DebugVolumePolyData->SetPoints(DebugVolumePoints);
+        DebugVolumePolyData->SetPolys(DebugVolumePolys);
+        DebugVolumePolyData->GetPointData()->SetScalars(DebugVolumeScalars);
+        DebugVolumeMapper->SetInput(DebugVolumePolyData);
+        DebugVolumeMapper->SetScalarVisibility(0);
+        DebugVolumeActor->SetMapper(DebugVolumeMapper);
+        DebugVolumeActor->GetProperty()->SetRepresentationToWireframe();
+        
+#endif
+        
+        OverlayActor    = vtkSmartPointer<vtkActor>::New();
+        PlaneProperty   = vtkSmartPointer<vtkProperty>::New();
+        
+        PlaneProperty->SetAmbient(1.0);
+        PlaneProperty->SetAmbientColor(1.0,1.0,1.0);
+        PlaneProperty->SetOpacity(1);
+        
+        PlaneSource = vtkSmartPointer<vtkPlaneSource>::New();
+        PlaneSource->SetXResolution(1);
+        PlaneSource->SetYResolution(1);
+        
+        Textura            = vtkSmartPointer<vtkGinkgoOpenGLTexture>::New();
+        TexturaOverlay     = vtkSmartPointer<vtkGinkgoTexture>::New();
+        MapperPlano        = vtkSmartPointer<vtkPolyDataMapper>::New();
+        MapperPlanoOverlay = vtkSmartPointer<vtkPolyDataMapper>::New();
+        Plane              = vtkSmartPointer<vtkPlane>::New();
+        
+        double bounds[6];
+        bounds[0] = -0.5;
+        bounds[1] =  0.5;
+        bounds[2] = -0.5;
+        bounds[3] =  0.5;
+        bounds[4] = -0.5;
+        bounds[5] =  0.5;
+        
+        double center[3];
+        center[0] = (bounds[0] + bounds[1])/2.0;
+        center[1] = (bounds[2] + bounds[3])/2.0;
+        center[2] = (bounds[4] + bounds[5])/2.0;
+        
+        PlaneSource->SetOrigin(center[0],bounds[2],bounds[4]);
+        PlaneSource->SetPoint1(center[0],bounds[3],bounds[4]);
+        PlaneSource->SetPoint2(center[0],bounds[2],bounds[5]);
+        
+        Textura->SetPremultipliedAlpha(1.0);
+        Textura->SetInterpolate(1);
+        Textura->RepeatOff();
+        TexturaOverlay->SetInterpolate(1);
+        TexturaOverlay->RepeatOff();
+        TexturaOverlay->MapColorScalarsThroughLookupTableOn();
+        vtkLookupTable* tblover = vtkLookupTableManager::GetOverlayLooupTable();
+        TexturaOverlay->SetLookupTable(tblover);
+        TexturaOverlay->GetLookupTable()->SetRange(0, 1);
+        tblover->Delete();
+        
+        MapperPlano->SetInputData(vtkPolyData::SafeDownCast(PlaneSource->GetOutput()));
+        MapperPlano->ScalarVisibilityOff();
+        MapperPlanoOverlay->ScalarVisibilityOff();
+        MapperPlanoOverlay->SetInputData(vtkPolyData::SafeDownCast(PlaneSource->GetOutput()));
+        
+        WindowLevel = vtkSmartPointer<vtkImageMapToWindowLevelColors>::New();
+        
+        vtkLookupTable* tbl = vtkLookupTableManager::GetLinearLookupTable();
+        LookupTableId = vtkLookupTableManager::LUT_LINEAR;
+        LookupTable = tbl;
+        
+        tbl->Delete();
+
+        ImageActor->SetMapper(MapperPlano);
+        ImageActor->SetTexture(Textura);
+        ImageActor->GetProperty()->SetLighting(false);
+        ImageActor->PickableOff();
+        ImageActor->GetProperty()->SetOpacity(1.0);
+        OverlayActor->SetMapper(MapperPlanoOverlay);
+        OverlayActor->SetTexture(TexturaOverlay);
+        OverlayActor->GetProperty()->SetLighting(false);
+        OverlayActor->PickableOff();
+        
+        ResetMatrices();
+}
+
+Pipeline::~Pipeline()
+{
+        std::cout << "Pipeline::~Pipeline()\n"; 
+}
+
+
+void Pipeline::ResetMatrices()
+{
+        ModelMatrix->Identity();
+        ModelMatrixInv->Identity();
+}
+
 
 class Interactuacion
 {
@@ -491,10 +505,10 @@ void vtkGinkgoImageViewer::Initialize(void)
 		p.Renderer->SetBackground(0.0f, 0.0f, 0.0f);
 	}
 	if (p.RenderWindow && p.Renderer) {
-		p.RenderWindow->AddRenderer(members->Pipeline.Renderer);
+		p.RenderWindow->AddRenderer(p.Renderer);
 	}
 
-	if (p.RenderWindowInteractor && p.InteractorStyle) {
+	if (p.RenderWindow && p.RenderWindowInteractor && p.InteractorStyle) {
 		p.RenderWindowInteractor->SetInteractorStyle(p.InteractorStyle);
 		p.RenderWindowInteractor->SetRenderWindow(p.RenderWindow);
 		e.Initialized = true;

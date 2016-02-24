@@ -19,6 +19,7 @@
 #pragma implementation "thumbnailctrl.h"
 #endif
 
+#include <iostream>
 #include <algorithm>
 
 // For compilers that support precompilation, includes "wx.h".
@@ -1765,7 +1766,9 @@ wxImageThumbnailItem::~wxImageThumbnailItem()
 				}
 				delete pThread;
 			}
-		} catch (...) {}
+		} catch (...) {
+                        std::cerr << "wxImageThumbnailItem::~wxImageThumbnailItem(): something went wrong halting the thread\n"; 
+                }
 	}
 	delete m_plock;
 }

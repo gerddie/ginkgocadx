@@ -338,7 +338,7 @@ wxVTKRenderWindowInteractor::~wxVTKRenderWindowInteractor()
 		m_c = NULL;
 	}
 #if defined(__WXGTK__) && defined(wxUSE_GLCANVAS) && wxCHECK_VERSION(2, 9, 0)
-	delete this->GLContext;
+//	delete this->GLContext;
 #endif
 
 	SetRenderWindow(NULL);
