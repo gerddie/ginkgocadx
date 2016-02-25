@@ -992,7 +992,7 @@ namespace GIL {
 				if (server->GetRetrieveMethod() == DicomServer::MOVE) {
 
 					if (server) {
-						LOG_INFO("C-MOVE", "Downloading serie from PACS " << serverId << ": " << server->AET << "@" << server->HostName << ":" << server->Port << " PDU=" << server->PDU << ", TLS=" << server->useTLS << ",  User = " << server->pacsUser << ", Method=C-MOVE");
+						LOG_INFO("C-MOVE", "Downloading series from PACS " << serverId << ": " << server->AET << "@" << server->HostName << ":" << server->Port << " PDU=" << server->PDU << ", TLS=" << server->useTLS << ",  User = " << server->pacsUser << ", Method=C-MOVE");
 					}
 
 					if (server) {
@@ -1016,7 +1016,7 @@ namespace GIL {
 				}
 				else {
 					if (server) {
-						LOG_INFO("C-GET", "Downloading serie from PACS " << serverId << ": " << server->AET << "@" << server->HostName << ":" << server->Port << " PDU=" << server->PDU << ", TLS=" << server->useTLS << ",  User = " << server->pacsUser << ", Method=C-GET");
+						LOG_INFO("C-GET", "Downloading series from PACS " << serverId << ": " << server->AET << "@" << server->HostName << ":" << server->Port << " PDU=" << server->PDU << ", TLS=" << server->useTLS << ",  User = " << server->pacsUser << ", Method=C-GET");
 					}
 
 					NetClient<GetAssociation> a(connectionKey, "C-GET", pNotificador);

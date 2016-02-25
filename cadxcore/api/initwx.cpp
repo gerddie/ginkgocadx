@@ -500,7 +500,7 @@ bool Ginkgo::OnInit()
 	GNC::GCS::IControladorPermisos::Instance()->AddDefinicionPermiso("style", _Std("Style"), "widgets.fontSize", "Widgets font size", true, "14.0", true);
 	GNC::GCS::IControladorPermisos::Instance()->AddDefinicionPermiso("style", _Std("Style"), "widgets.maxTextWidth", "Widgets max text width", true, "350.0", true);
 	GNC::GCS::IControladorPermisos::Instance()->AddDefinicionPermiso("style", _Std("Style"), "widgets.lineWidth", "Widgets line width", true, "1.0", true);
-	GNC::GCS::IControladorPermisos::Instance()->AddDefinicionPermiso("style", _Std("Style"), "widgets.draggingLineWidth", "Widgets dragging line widht", true, "1.0", true);
+	GNC::GCS::IControladorPermisos::Instance()->AddDefinicionPermiso("style", _Std("Style"), "widgets.draggingLineWidth", "Widgets dragging line width", true, "1.0", true);
 
 	GNC::GCS::IControladorPermisos::Instance()->AddDefinicionPermiso("style", _Std("Style"), "ecg.label.fontSize", "ECG labels size", true, "14.0", true);
 
