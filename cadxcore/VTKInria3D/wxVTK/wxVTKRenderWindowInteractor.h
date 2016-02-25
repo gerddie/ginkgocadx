@@ -138,9 +138,7 @@ class EXTAPI wxVTKRenderWindowInteractor : public wxWindow, public vtkRenderWind
     virtual void OnEnter(wxMouseEvent &event);
     virtual void OnLeave(wxMouseEvent &event);
     virtual void OnMouseWheel(wxMouseEvent& event);
-#if wxCHECK_VERSION(2, 8, 0)
     virtual void OnMouseCaptureLost(wxMouseCaptureLostEvent& event);
-#endif
     virtual void OnKeyDown(wxKeyEvent &event);
     virtual void OnKeyUp(wxKeyEvent &event);
     virtual void OnChar(wxKeyEvent &event);
@@ -183,7 +181,7 @@ class EXTAPI wxVTKRenderWindowInteractor : public wxWindow, public vtkRenderWind
     int RenderWhenDisabled;
     int UseCaptureMouse;
 
-#if defined(__WXGTK__) && defined(wxUSE_GLCANVAS) && wxCHECK_VERSION(2, 9, 0)
+#if defined(__WXGTK__) && defined(wxUSE_GLCANVAS)
     wxGLContext* GLContext;
 #endif
 

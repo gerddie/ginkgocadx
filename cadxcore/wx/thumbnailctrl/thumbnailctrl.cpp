@@ -35,11 +35,7 @@
 
 #include "thumbnailctrl.h"
 
-#if wxCHECK_VERSION(2,5,5)
 #define USE_BUFFERED_PAINT 1
-#else
-#define USE_BUFFERED_PAINT 0
-#endif
 
 // #include "utils.h"
 #include "wx/settings.h"
@@ -108,9 +104,7 @@ wxThumbnailCtrl::wxThumbnailCtrl( wxWindow* parent, wxWindowID id, const wxPoint
 bool wxThumbnailCtrl::Create( wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style)
 {
     if (!wxScrolledWindow::Create(parent, id, pos, size, style
-#if wxCHECK_VERSION(2,5,1)
         |wxFULL_REPAINT_ON_RESIZE
-#endif
         ))
         return false;
 
@@ -123,9 +117,7 @@ bool wxThumbnailCtrl::Create( wxWindow* parent, wxWindowID id, const wxPoint& po
     SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_3DFACE));
     m_tagBitmap = wxBitmap(tick_xpm);
 
-#if wxCHECK_VERSION(2,5,1)
     SetBackgroundStyle(wxBG_STYLE_CUSTOM);
-#endif
 
     // Tell the sizers to use the given or best size
 	 SetSize(size);

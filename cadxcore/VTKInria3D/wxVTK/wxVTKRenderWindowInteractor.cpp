@@ -127,16 +127,6 @@ public:
 	}
 };
 
-//Keep this for compatibilty reason, this was introduced in wxGTK 2.4.0
-#if (!wxCHECK_VERSION(2, 4, 0))
-wxWindow* wxGetTopLevelParent(wxWindow *win)
-{
-	while ( win && !win->IsTopLevel() )
-		win = win->GetParent();
-	return win;
-}
-#endif
-
 // To access objc calls on cocoa
 #ifdef __WXCOCOA__
 #ifdef VTK_USE_COCOA
@@ -149,24 +139,9 @@ wxWindow* wxGetTopLevelParent(wxWindow *win)
 #endif //__WXCOCOA__
 
 #ifdef __WXGTK__
-#    include <gdk/gdkx.h> // GDK_WINDOW_XWINDOW is found here in wxWidgets 2.8.0
-#    include "gdk/gdkprivate.h"
-#if wxCHECK_VERSION(2, 8, 0)
-#ifdef __WXGTK20__
-#if  wxCHECK_VERSION(3, 0, 0) || wxCHECK_VERSION(3, 0, 1)
+#include <gdk/gdkx.h> 
+#include "gdk/gdkprivate.h"
 #include <gtk/gtk.h>
-#elif  wxCHECK_VERSION(2, 9, 0)
-#include <gtk/gtk.h>
-#include <wx/gtk/private/win_gtk.h>
-#else
-#include <wx/gtk/win_gtk.h>
-#endif
-#else
-#include <wx/gtk1/win_gtk.h>
-#endif
-#else
-#include <wx/gtk/win_gtk.h>
-#endif
 #endif
 
 #ifdef __WXX11__
@@ -178,11 +153,7 @@ wxWindow* wxGetTopLevelParent(wxWindow *win)
 //For more info on this class please go to:
 //http://wxvtk.sf.net
 //This hack is for some buggy wxGTK version:
-#if wxCHECK_VERSION(2, 3, 2) && !wxCHECK_VERSION(2, 4, 1) && defined(__WXGTK__)
-#  define WX_USE_X_CAPTURE 0
-#else
-#  define WX_USE_X_CAPTURE 1
-#endif
+#define WX_USE_X_CAPTURE 1
 
 #define ID_wxVTKRenderWindowInteractor_TIMER 1001
 
@@ -217,9 +188,7 @@ IMPLEMENT_DYNAMIC_CLASS(wxVTKRenderWindowInteractor, wxWindow)
 	EVT_ENTER_WINDOW(wxVTKRenderWindowInteractor::OnEnter)
 	EVT_LEAVE_WINDOW(wxVTKRenderWindowInteractor::OnLeave)
 	EVT_MOUSEWHEEL  (wxVTKRenderWindowInteractor::OnMouseWheel)
-#if wxCHECK_VERSION(2, 8, 0)
 	EVT_MOUSE_CAPTURE_LOST(wxVTKRenderWindowInteractor::OnMouseCaptureLost)
-#endif
 	EVT_KEY_DOWN    (wxVTKRenderWindowInteractor::OnKeyDown)
 	EVT_KEY_UP      (wxVTKRenderWindowInteractor::OnKeyUp)
 	EVT_CHAR        (wxVTKRenderWindowInteractor::OnChar)
@@ -244,11 +213,7 @@ IMPLEMENT_DYNAMIC_CLASS(wxVTKRenderWindowInteractor, wxWindow)
 //---------------------------------------------------------------------------
 wxVTKRenderWindowInteractor::wxVTKRenderWindowInteractor()
 #if defined(__WXGTK__) && defined(wxUSE_GLCANVAS)
-#if  wxCHECK_VERSION(2, 9, 0)
 	: wxGLCanvas(0, -1, wxvtk_attributes, wxDefaultPosition, wxDefaultSize, 0, wxT("wxVTKRenderWindowInteractor")),
-#else
-	: wxGLCanvas(0, -1, wxDefaultPosition, wxDefaultSize, 0, wxT("wxVTKRenderWindowInteractor"), wxvtk_attributes),
-#endif
 	vtkRenderWindowInteractor()
 #else
 	: wxWindow(), vtkRenderWindowInteractor()
@@ -265,7 +230,7 @@ wxVTKRenderWindowInteractor::wxVTKRenderWindowInteractor()
 #if defined(__WXMSW__) || defined(__WXMAC__)
 	this->SetUseCaptureMouse(0);
 #endif
-#if defined(__WXGTK__) && defined(wxUSE_GLCANVAS) && wxCHECK_VERSION(2, 9, 0)
+#if defined(__WXGTK__) && defined(wxUSE_GLCANVAS)
 	this->GLContext = new wxGLContext (this);
 #endif
 	this->RenderWindow = NULL;
@@ -279,35 +244,29 @@ wxVTKRenderWindowInteractor::wxVTKRenderWindowInteractor()
 }
 
 //---------------------------------------------------------------------------
-wxVTKRenderWindowInteractor::wxVTKRenderWindowInteractor(wxWindow *parent,
-														 wxWindowID id,
-														 const wxPoint &pos,
-														 const wxSize &size,
-														 long style,
-														 const wxString &name)
+wxVTKRenderWindowInteractor::wxVTKRenderWindowInteractor(wxWindow *parent, wxWindowID id,
+                                                         const wxPoint &pos,
+                                                         const wxSize &size,
+                                                         long style, const wxString &name)
 #if defined(__WXGTK__) && defined(wxUSE_GLCANVAS)
-#if  wxCHECK_VERSION(2, 9, 0)
-														 : wxGLCanvas(parent, id, wxvtk_attributes, pos, size, style, name),
+        : wxGLCanvas(parent, id, wxvtk_attributes, pos, size, style, name),
+          vtkRenderWindowInteractor(), 
 #else
-														 : wxGLCanvas(parent, id, pos, size, style, name, wxvtk_attributes),
-#endif
-														 vtkRenderWindowInteractor()
-#else
-														 : wxWindow(parent, id, pos, size, style, name), vtkRenderWindowInteractor()
+          : wxWindow(parent, id, pos, size, style, name), vtkRenderWindowInteractor(), 
 #endif //__WXGTK__
-														 , timer(this, ID_wxVTKRenderWindowInteractor_TIMER)
-														 , ActiveButton(wxEVT_NULL)
-														 , Stereo(0)
-														 , Handle(0)
-														 , Created(true)
-														 , RenderWhenDisabled(1)
-														 , UseCaptureMouse(0)
+          timer(this, ID_wxVTKRenderWindowInteractor_TIMER),
+          ActiveButton(wxEVT_NULL),
+          Stereo(0),
+          Handle(0),
+          Created(true),
+          RenderWhenDisabled(1),
+          UseCaptureMouse(0)
 {
 	vtkDebugLeaks::ConstructClass("wxVTKRenderWindowInteractor");
 #if defined(__WXMSW__) || defined(__WXMAC__)
 	this->SetUseCaptureMouse(1);
 #endif
-#if defined(__WXGTK__) && defined(wxUSE_GLCANVAS) && wxCHECK_VERSION(2, 9, 0)
+#if defined(__WXGTK__) && defined(wxUSE_GLCANVAS)
 	this->GLContext = new wxGLContext (this);
 #endif
 	this->RenderWindow = NULL;
@@ -337,9 +296,6 @@ wxVTKRenderWindowInteractor::~wxVTKRenderWindowInteractor()
 		delete m_c;
 		m_c = NULL;
 	}
-#if defined(__WXGTK__) && defined(wxUSE_GLCANVAS) && wxCHECK_VERSION(2, 9, 0)
-//	delete this->GLContext;
-#endif
 
 	SetRenderWindow(NULL);
 	SetInteractorStyle(NULL);
@@ -379,11 +335,7 @@ void wxVTKRenderWindowInteractor::Enable()
 	// that's it
 	Enabled = 1;
 #if defined(__WXGTK__) && defined(wxUSE_GLCANVAS)
-#if wxCHECK_VERSION(2, 9, 0)
 	SetCurrent( *GLContext );
-#else
-	SetCurrent();
-#endif
 #endif
 	Modified();
 }
@@ -543,11 +495,7 @@ long wxVTKRenderWindowInteractor::GetHandleHack()
 
 	// Find and return the actual X-Window.
 #if defined(__WXGTK__) || defined(__WXX11__)
-	#if  wxCHECK_VERSION(2, 9, 0)
-		return this->GetXWindow();
-	#else
-		(long)GetXWindow(this);
-	#endif
+        return this->GetXWindow();
 #endif
 
 	//#ifdef __WXMOTIF__
@@ -632,56 +580,33 @@ void wxVTKRenderWindowInteractor::OnSize(wxSizeEvent& /*event*/)
 	GetClientSize(&w, &h);
 
 #if defined(__WXGTK__)
-	#if  wxCHECK_VERSION(2, 9, 0)
-		GtkWidget *widget = GetHandle();
-		if (widget != NULL) {
-			GtkWidget* parent_widget = GetParent()->GetHandle();
-			if (parent_widget != NULL) {
-				gtk_widget_realize(parent_widget);
+        GtkWidget *widget = GetHandle();
+        if (widget != NULL) {
+                GtkWidget* parent_widget = GetParent()->GetHandle();
+                if (parent_widget != NULL) {
+                        gtk_widget_realize(parent_widget);
    			Window parent_wid = GDK_WINDOW_XWINDOW( parent_widget->window );
-				RenderWindow->SetParentId(reinterpret_cast<void *>(parent_wid));
-			}
-			else {
-				RenderWindow->SetParentId(NULL);
-			}
-         gtk_widget_realize(widget);
-         Window wid = GDK_WINDOW_XWINDOW( widget->window );
-			RenderWindow->SetWindowId(reinterpret_cast<void *>(wid));
-			
-
-			SetCurrent();
-			UpdateSize(w, h);
-			return;
-		}
-		else {
-			return;
-		}
-	#else
-		GdkWindow *window = GTK_PIZZA(m_wxwindow)->bin_window;
-		if (window == NULL) {
-			if (GetHandleHack()) {
-				/*
-				Handle = GetHandleHack();
-				RenderWindow->SetNextWindowId(reinterpret_cast<void *>(Handle));
-				RenderWindow->WindowRemap();
-				*/
-				RenderWindow->SetParentId(reinterpret_cast<void *>(GetXWindow(GetParent())));
-				RenderWindow->SetWindowId(reinterpret_cast<void *>(Handle));
-				SetCurrent();
-				UpdateSize(w, h);
-				return;
-			}
-			else {
-				SetCurrent();
-				return;
-			}
-		}
-	#endif
+                        RenderWindow->SetParentId(reinterpret_cast<void *>(parent_wid));
+                }
+                else {
+                        RenderWindow->SetParentId(NULL);
+                }
+                gtk_widget_realize(widget);
+                Window wid = GDK_WINDOW_XWINDOW( widget->window );
+                RenderWindow->SetWindowId(reinterpret_cast<void *>(wid));
+                
+                
+                SetCurrent(*GLContext);
+                UpdateSize(w, h);
+                return;
+        } else {
+                return;
+        }
 #endif
 	UpdateSize(w, h);
-
+        
 	if (!Enabled)
-	{
+                {
 		return;
 	}
 
@@ -1067,8 +992,6 @@ void wxVTKRenderWindowInteractor::OnMouseWheel(wxMouseEvent& event)
 	TransformarEvento(event);
 }
 
-//---------------------------------------------------------------------------
-#if wxCHECK_VERSION(2, 8, 0)
 void wxVTKRenderWindowInteractor::OnMouseCaptureLost(wxMouseCaptureLostEvent& /*event*/)
 {
 	if (ActiveButton != wxEVT_NULL)
@@ -1082,7 +1005,6 @@ void wxVTKRenderWindowInteractor::OnMouseCaptureLost(wxMouseCaptureLostEvent& /*
 	// without a previous CaptureMouse().
 	ActiveButton = wxEVT_NULL;
 }
-#endif
 
 //---------------------------------------------------------------------------
 void wxVTKRenderWindowInteractor::Render()
@@ -1090,11 +1012,7 @@ void wxVTKRenderWindowInteractor::Render()
 	//Timer t;
 	//t.start();
 
-#if wxCHECK_VERSION(2, 8, 0)
 	int renderAllowed = !IsFrozen();
-#else
-	int renderAllowed = 1;
-#endif
 
 	if (renderAllowed && !RenderWhenDisabled)
 	{
@@ -1126,33 +1044,8 @@ void wxVTKRenderWindowInteractor::Render()
 			//store the new situation
 
 			Handle = GetHandleHack();
-#if defined(__WXGTK__)
-
-	#if  wxCHECK_VERSION(2, 9, 0)
-			/*
-   	   GtkWidget *widget = GetHandle();
-      	if (widget != NULL) {
-	         GtkWidget* parent_widget = GetParent()->GetHandle();
-   	      if (parent_widget != NULL) {
-         	   gtk_widget_realize(parent_widget);
-	            Window parent_wid = GDK_WINDOW_XWINDOW( parent_widget->window );
-         	   RenderWindow->SetParentId(reinterpret_cast<void *>(parent_wid));
-	   	   }
-   	      else {
-         	   RenderWindow->SetParentId(NULL);
-	         }
-      	   gtk_widget_realize(widget);
-         	Window wid = GDK_WINDOW_XWINDOW( widget->window );
-   	      RenderWindow->SetWindowId(reinterpret_cast<void *>(wid));
-	         SetCurrent();
-      	}
-			*/
-	#else
-			RenderWindow->SetParentId(reinterpret_cast<void *>(GetXWindow(GetParent())));
-			RenderWindow->SetWindowId(reinterpret_cast<void *>(Handle));
-			SetCurrent();
-	#endif
-#elif defined(__WXOSX__)
+                        
+#if defined(__WXOSX__)
 			RenderWindow->SetParentId(reinterpret_cast<void *>(this->GetParent()->GetHandle()));
 			RenderWindow->SetWindowId(reinterpret_cast<void *>(Handle));
 #elif defined(__WXMSW__)
@@ -1194,7 +1087,7 @@ void wxVTKRenderWindowInteractor::Render()
 			//t.stop();
 			//std::cerr << "wxVTKRenderWindowInteractor::Render(2) " << t << std::endl;
 		}
-#endif
+#endif // VTK_MAJOR_VERSION > 4 || (VTK_MAJOR_VERSION == 4 && VTK_MINOR_VERSION > 2)
 	}
 }
 //---------------------------------------------------------------------------
