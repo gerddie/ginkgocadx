@@ -2,7 +2,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
 PROJECT(BUILD_ALL)
 
-SET( GINKGO_VERSION 3.7.2 CACHE STRING "Mayor version number")
+SET( GINKGO_VERSION 3.7.4 CACHE STRING "Mayor version number")
 SET( GINKGO_REVISION 1 CACHE STRING "Incremental revision number")
 SET( GINKGO_BUILD 1 CACHE STRING "Incremental build number")
 
