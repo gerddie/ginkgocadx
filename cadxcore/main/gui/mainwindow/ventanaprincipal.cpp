@@ -211,7 +211,8 @@ EVT_CLOSE(VentanaPrincipal::OnWindowClose)
 EVT_MENU(ID_Inicio_Aplicacion, VentanaPrincipal::OnInicioAplicacion)
 END_EVENT_TABLE()
 
-VentanaPrincipal::VentanaPrincipal(wxWindow* pParent, const wxString& title) : VentanaPrincipalBase(pParent, wxID_ANY, title), m_mgr(m_pPanelCentral, wxAUI_MGR_ALLOW_FLOATING | wxAUI_MGR_TRANSPARENT_DRAG | wxAUI_MGR_VENETIAN_BLINDS_HINT ),
+VentanaPrincipal::VentanaPrincipal(wxWindow* pParent, const wxString& title) : VentanaPrincipalBase(pParent, wxID_ANY, title),
+        m_mgr(m_pPanelCentral, wxAUI_MGR_ALLOW_FLOATING | wxAUI_MGR_TRANSPARENT_DRAG | wxAUI_MGR_VENETIAN_BLINDS_HINT ),
 	StartupView(NULL)
 {
 	//load attributes
@@ -263,8 +264,9 @@ VentanaPrincipal::VentanaPrincipal(wxWindow* pParent, const wxString& title) : V
 	Connect(wxEVT_PROGRESO, EventoProgresoFunctionHandler(VentanaPrincipal::OnComando), NULL, this);
 
 	m_pNoteBook = new wxGinkgoAuiNoteBook(m_pPanelCentral, wxID_ANY,wxDefaultPosition,
-												  wxDefaultSize,
-												  wxAUI_NB_TAB_SPLIT |  wxAUI_NB_TAB_MOVE | wxAUI_NB_SCROLL_BUTTONS | wxAUI_NB_WINDOWLIST_BUTTON | wxAUI_NB_CLOSE_ON_ALL_TABS | wxEXPAND );
+                                              wxDefaultSize,
+                                              wxAUI_NB_TAB_SPLIT |  wxAUI_NB_TAB_MOVE | wxAUI_NB_SCROLL_BUTTONS
+                                              | wxAUI_NB_WINDOWLIST_BUTTON | wxAUI_NB_CLOSE_ON_ALL_TABS | wxEXPAND );
 	m_pNoteBook->SetBackgroundColour(wxColour(0, 0, 0));
 	m_pNoteBook->Connect( wxEVT_CHILD_FOCUS, wxChildFocusEventHandler( VentanaPrincipal::OnNotebookFocus ) );
 

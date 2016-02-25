@@ -58,7 +58,7 @@ class VentanaPrincipalBase : public wxFrame
 	
 	public:
 		
-		VentanaPrincipalBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 800,600 ), long style = wxDEFAULT_FRAME_STYLE|wxMAXIMIZE|wxRESIZE_BORDER|wxCLIP_CHILDREN|wxTAB_TRAVERSAL );
+		VentanaPrincipalBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 800,600 ), long style = wxDEFAULT_FRAME_STYLE );
 		
 		~VentanaPrincipalBase();
 	
