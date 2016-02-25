@@ -21,6 +21,7 @@
 #include <limits> 
 #include <wx/toplevel.h>
 #include <wx/display.h>
+#include <wx/log.h>
 #include "configurationcontroller.h"
 #include "windowattributescontroller.h"
 #include "controladorlog.h"
@@ -74,16 +75,19 @@ namespace GNC {
 					if (pTopLevel != NULL) {
 						bool isMaximized = defaultMaximized;
 						(*it).readBoolValue(IS_MAXIMIZED_KEY, isMaximized);
+                                                wxLogDebug("pTopLevel:isMaximized=%d", isMaximized); 
 						pTopLevel->Maximize(isMaximized);
 						if (!isMaximized) {
 							(*it).readIntValue(WIDTH_KEY_POSITION, size.x, 0);
 							(*it).readIntValue(HEIGH_KEY_POSITION, size.y, 0);
+
 						}
 					} else {
 						(*it).readIntValue(WIDTH_KEY_POSITION, size.x, 0);
 						(*it).readIntValue(HEIGH_KEY_POSITION, size.y, 0);
 					}
 					pWindow->SetSize(size);
+                                        wxLogDebug("Set windows size:(%d, %d)", size.x, size.y); 
 				}
 			}
 		}

@@ -211,12 +211,13 @@ EVT_CLOSE(VentanaPrincipal::OnWindowClose)
 EVT_MENU(ID_Inicio_Aplicacion, VentanaPrincipal::OnInicioAplicacion)
 END_EVENT_TABLE()
 
-VentanaPrincipal::VentanaPrincipal(wxWindow* pParent, const wxString& title) : VentanaPrincipalBase(pParent, wxID_ANY, title),
+VentanaPrincipal::VentanaPrincipal(wxWindow* pParent, const wxString& title) :
+VentanaPrincipalBase(pParent, wxID_ANY, title, wxDefaultPosition, wxSize( 800,600 ), wxDEFAULT_FRAME_STYLE),
         m_mgr(m_pPanelCentral, wxAUI_MGR_ALLOW_FLOATING | wxAUI_MGR_TRANSPARENT_DRAG | wxAUI_MGR_VENETIAN_BLINDS_HINT ),
 	StartupView(NULL)
 {
 	//load attributes
-	GNC::GCS::WindowAttributesController::LoadWindowAttributes(MAIN_WINDOW_ID, this, true);
+	GNC::GCS::WindowAttributesController::LoadWindowAttributes(MAIN_WINDOW_ID, this, false);
 	//
 
     //SetDoubleBuffered(true);
@@ -1971,24 +1972,20 @@ void VentanaPrincipal::MostrarVentana()
 	std::ostringstream os;
 	os <<  GNC::Entorno::Instance()->GetApplicationName() << " " << GNC::Entorno::Instance()->GetGinkgoCopyRight();
 	SetStatusText(wxString::FromUTF8(os.str().c_str()));
-#if !defined(_GINKGO_DEBUG)
-	SetSize(wxDisplay().GetClientArea().GetSize());
-#endif
-	Center();
+	//Center();
 #if !defined(_GINKGO_DEBUG)
 /////////////////ATENCION!!!! esto es porque sino en windows no va bien, se desvincula la status bar
 	#ifdef _WIN32
 			Show(true);
 			Maximize(true);
 	#else
-			Maximize(true);
 			Show(true);
 	#endif
 #else
 	Show(true);
 #endif
 	SetFocus();
-	ComprobarActualizaciones();
+        //	ComprobarActualizaciones();
 
 }
 
