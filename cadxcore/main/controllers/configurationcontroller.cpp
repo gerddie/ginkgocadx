@@ -29,6 +29,7 @@
 #include <wx/fileconf.h>
 #include <wx/stdpaths.h>
 #include <wx/file.h>
+#include <wx/log.h>
 #ifdef __WINDOWS__
 #include <wx/msw/private.h>     // includes <windows.h>
 #endif
@@ -828,12 +829,14 @@ namespace GNC {
 			}
 			wxString localFileconfig = GetLocalFileName(wxT("GinkgoUser"));
 			m_pUserConfig = new wxFileConfig(wxT("GinkgoUser"), wxT("Metaemotion"), localFileconfig, wxEmptyString, wxCONFIG_USE_LOCAL_FILE );
-			
+                        wxLogDebug("User config file: %s", localFileconfig);
+                        
 			wxString pathEjecutable = wxStandardPaths::Get().GetExecutablePath();
 			wxFileName fileName(pathEjecutable);
 			//= than execute
 			fileName.SetExt(wxT("ini"));
 			m_pathGlobalConfig = fileName.GetLongPath();
+                        wxLogDebug("Global config file: %s", m_pathGlobalConfig);
 			if(wxFileExists(m_pathGlobalConfig)) {
 				m_pGeneralConfig = new wxFileConfig(wxEmptyString,wxEmptyString,m_pathGlobalConfig,wxEmptyString,wxCONFIG_USE_LOCAL_FILE);
 			} else {
@@ -855,6 +858,7 @@ namespace GNC {
 			m_pathUserConfig = m_pGeneralConfig->GetLocalFileName(wxT("GinkgoUser"));
 
 			wxString pathMachineConfig = fileName.GetPath(true) +  wxT("GinkgoMachine.ini");
+                        wxLogDebug("Machine config file: %s", pathMachineConfig); 
 			if(wxFileExists(pathMachineConfig)) {
 				m_pMachineConfig = new wxFileConfig(wxEmptyString,wxEmptyString,pathMachineConfig,wxEmptyString,wxCONFIG_USE_LOCAL_FILE);
 			} else {
