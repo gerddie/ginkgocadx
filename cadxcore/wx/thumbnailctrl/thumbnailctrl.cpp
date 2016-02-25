@@ -1764,10 +1764,11 @@ wxImageThumbnailItem::~wxImageThumbnailItem()
 				if (pThread->IsRunning()) {
 					pThread->Wait();
 				}
+                                pThread->Delete();
 				delete pThread;
 			}
 		} catch (...) {
-                        std::cerr << "wxImageThumbnailItem::~wxImageThumbnailItem(): something went wrong halting the thread\n"; 
+                        wxLogDebug("wxImageThumbnailItem::~wxImageThumbnailItem(): something went wrong halting the thread\n"); 
                 }
 	}
 	delete m_plock;
