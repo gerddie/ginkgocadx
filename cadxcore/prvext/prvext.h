@@ -58,8 +58,6 @@ public:
 		this->provider = provider;
 		this->description = description;
 		this->updateurl = updateurl;
-		
-		AsignarFechaCompilacion(__DATE__);
 	}
 	PrivateExtension(const std::string& sid, const std::string& provider, const std::string& description, const char* updateurl, const wxBitmap& bitmapIcon) : icon(bitmapIcon)
 	{
@@ -67,14 +65,9 @@ public:
 		this->provider = provider;
 		this->description = description;
 		this->updateurl = updateurl;
-		
-		AsignarFechaCompilacion(__DATE__);
 	}
 
-	PrivateExtension(const PrivateExtension& o)
-	{
-		*this = o;
-	}
+	PrivateExtension(const PrivateExtension& o) = default; 
 
 	virtual ~PrivateExtension()
 	{
@@ -100,11 +93,6 @@ public:
 		return this->description;
 	}
 
-	void AsignarFechaCompilacion(const std::string& fecha)
-	{
-		this->fecha_compilacion = fecha;
-	}
-
 	void AsignPath(const std::string& path) 
 	{
 		this->path = path;
@@ -113,11 +101,6 @@ public:
 	const std::string& GetPath() const
 	{
 		return this->path;
-	}
-
-	const std::string& GetFechaCompilacion() const
-	{
-		return this->fecha_compilacion;
 	}
 
 	const std::string& GetUpdateURL() const
@@ -129,16 +112,7 @@ public:
 		return icon;
 	}
 
-	PrivateExtension& operator=(const PrivateExtension& o)
-	{
-		this->sid = o.sid;
-		this->description = o.description;
-		this->fecha_compilacion = o.fecha_compilacion;
-		this->updateurl = o.updateurl;
-
-		this->icon = o.icon;
-		return *this;
-	}
+	PrivateExtension& operator=(const PrivateExtension& o) = default; 
 
 	friend std::ostream& operator<<(std::ostream &os, const PrivateExtension& ext)
 	{
@@ -163,7 +137,6 @@ protected:
 	std::string sid;
 	std::string provider;
 	std::string description;
-	std::string fecha_compilacion;
 	std::string path;
 	std::string updateurl;
 	wxBitmap    icon;

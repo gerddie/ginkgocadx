@@ -22,7 +22,7 @@
 #include <string>
 
 #if !defined(GINKGO_VERSION)
-#define GINKGO_VERSION "3.7.2"
+#define GINKGO_VERSION "3.7.5"
 #endif
 
 #if !defined(GINKGO_REVISION)
