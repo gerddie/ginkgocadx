@@ -59,10 +59,8 @@ public:
 		// Apparently we need that on linux (GTK) too:
 		this->SetFocus();
 
-#if VTK_MAJOR_VERSION > 4 || (VTK_MAJOR_VERSION == 4 && VTK_MINOR_VERSION > 0)
 		SetEventInformationFlipY(event.GetX(), event.GetY(),
 			event.ControlDown(), event.ShiftDown(), '\0', 1, NULL);
-#endif
 
 		if (event.LeftDClick())
 		{

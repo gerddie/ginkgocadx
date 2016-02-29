@@ -31,12 +31,8 @@ PURPOSE.  See the above copyright notice for more information.
 #  include "vtkVersion.h"
 #endif
 
-#if VTK_MAJOR_VERSION > 4 || (VTK_MAJOR_VERSION == 4 && VTK_MINOR_VERSION > 0)
-#  include "vtkCommand.h"
-#else
-#  include "vtkInteractorStyle.h"
-#endif
 #include "vtkDebugLeaks.h"
+#include "vtkCommand.h"
 
 #ifdef __WXMAC__
 #ifdef __WXCOCOA__
@@ -184,7 +180,6 @@ IMPLEMENT_DYNAMIC_CLASS(wxVTKRenderWindowInteractor, wxWindow)
 	EVT_LEFT_UP     (wxVTKRenderWindowInteractor::OnButtonUp)
 	EVT_MIDDLE_UP   (wxVTKRenderWindowInteractor::OnButtonUp)
 	EVT_RIGHT_UP    (wxVTKRenderWindowInteractor::OnButtonUp)
-#if !(VTK_MAJOR_VERSION == 3 && VTK_MINOR_VERSION == 1)
 	EVT_ENTER_WINDOW(wxVTKRenderWindowInteractor::OnEnter)
 	EVT_LEAVE_WINDOW(wxVTKRenderWindowInteractor::OnLeave)
 	EVT_MOUSEWHEEL  (wxVTKRenderWindowInteractor::OnMouseWheel)
@@ -192,7 +187,6 @@ IMPLEMENT_DYNAMIC_CLASS(wxVTKRenderWindowInteractor, wxWindow)
 	EVT_KEY_DOWN    (wxVTKRenderWindowInteractor::OnKeyDown)
 	EVT_KEY_UP      (wxVTKRenderWindowInteractor::OnKeyUp)
 	EVT_CHAR        (wxVTKRenderWindowInteractor::OnChar)
-#endif
 	EVT_TIMER       (ID_wxVTKRenderWindowInteractor_TIMER, wxVTKRenderWindowInteractor::OnTimer)
 	EVT_SIZE        (wxVTKRenderWindowInteractor::OnSize)
 	END_EVENT_TABLE()
@@ -401,7 +395,6 @@ int wxVTKRenderWindowInteractor::CreateTimer(int WXUNUSED(timertype))
 	return 1;
 
 }
-#if VTK_MAJOR_VERSION > 5 || (VTK_MAJOR_VERSION == 5 && VTK_MINOR_VERSION >= 2)
 //------------------------------------------------------------------
 int wxVTKRenderWindowInteractor::InternalCreateTimer(int /*timerId*/, int timerType,
 													 unsigned long duration)
@@ -417,7 +410,6 @@ int wxVTKRenderWindowInteractor::InternalDestroyTimer(int /*platformTimerId*/)
 	timer.Stop();
 	return 1;
 }
-#endif
 //---------------------------------------------------------------------------
 int wxVTKRenderWindowInteractor::DestroyTimer()
 {
@@ -442,20 +434,9 @@ void wxVTKRenderWindowInteractor::OnTimer(wxTimerEvent& WXUNUSED(event))
 {
 	if (!Enabled)
 		return;
-
-#if VTK_MAJOR_VERSION > 4 || (VTK_MAJOR_VERSION == 4 && VTK_MINOR_VERSION > 0)
-	// new style
-#if VTK_MAJOR_VERSION > 5 || (VTK_MAJOR_VERSION == 5 && VTK_MINOR_VERSION >= 2)
 	// pass the right timer id
 	int timerId = this->GetCurrentTimerId();
 	this->InvokeEvent(vtkCommand::TimerEvent, &timerId);
-#else
-	this->InvokeEvent(vtkCommand::TimerEvent, NULL);
-#endif
-#else
-	// old style
-	InteractorStyle->OnTimer();
-#endif
 }
 
 //---------------------------------------------------------------------------
@@ -543,10 +524,7 @@ void wxVTKRenderWindowInteractor::OnPaint(wxPaintEvent& WXUNUSED(event))
 	vtkCarbonRenderWindow* rwin = vtkCarbonRenderWindow::SafeDownCast(RenderWindow);
 	if( rwin )
 	{
-#if VTK_MAJOR_VERSION > 4 || (VTK_MAJOR_VERSION == 4 && VTK_MINOR_VERSION > 4)
-		// Must be somewhere after VTK 4.4
 		rwin->UpdateGLRegion();
-#endif
 	}
 #endif
 #endif
@@ -568,14 +546,10 @@ void wxVTKRenderWindowInteractor::OnEraseBackground(wxEraseEvent &event)
 #endif
 }
 //---------------------------------------------------------------------------
-#if defined(__WXGTK__)
-void wxVTKRenderWindowInteractor::OnSize(wxSizeEvent& event)
-{
-	wxGLCanvas::OnSize(event);
-#else
+
 void wxVTKRenderWindowInteractor::OnSize(wxSizeEvent& /*event*/)
 {
-#endif
+
 	int w, h;
 	GetClientSize(&w, &h);
 
@@ -610,11 +584,7 @@ void wxVTKRenderWindowInteractor::OnSize(wxSizeEvent& /*event*/)
 		return;
 	}
 
-#if VTK_MAJOR_VERSION > 4 || (VTK_MAJOR_VERSION == 4 && VTK_MINOR_VERSION > 0)
 	InvokeEvent(vtkCommand::ConfigureEvent, NULL);
-#endif
-	//this will check for Handle
-	//Render();
 }
 //---------------------------------------------------------------------------
 void wxVTKRenderWindowInteractor::OnMotion(wxMouseEvent &event)
@@ -623,41 +593,25 @@ void wxVTKRenderWindowInteractor::OnMotion(wxMouseEvent &event)
 	{
 		return;
 	}
-	//un poco excesivo activarlo en el onmotion
-	//Activar();
-#if VTK_MAJOR_VERSION > 4 || (VTK_MAJOR_VERSION == 4 && VTK_MINOR_VERSION > 0)
 	SetEventInformationFlipY(event.GetX(), event.GetY(),
 		event.ControlDown(), event.ShiftDown(), '\0', 0, NULL);
 
 	InvokeEvent(vtkCommand::MouseMoveEvent, NULL);
-#else
-	InteractorStyle->OnMouseMove(event.ControlDown(), event.ShiftDown(),
-		event.GetX(), Size[1] - event.GetY() - 1);
-#endif
 	TransformarEvento(event);
 }
 //---------------------------------------------------------------------------
-#if !(VTK_MAJOR_VERSION == 3 && VTK_MINOR_VERSION == 1)
-void wxVTKRenderWindowInteractor::OnEnter(wxMouseEvent &event)
+
+ void wxVTKRenderWindowInteractor::OnEnter(wxMouseEvent &event)
 {
 	if (!Enabled)
 	{
 		return;
 	}
-	//un poco excesivo activarlo en el OnEnter
-	//Activar();
 
-#if VTK_MAJOR_VERSION > 4 || (VTK_MAJOR_VERSION == 4 && VTK_MINOR_VERSION > 0)
-	// new style
 	SetEventInformationFlipY(event.GetX(), event.GetY(),
 		event.ControlDown(), event.ShiftDown(), '\0', 0, NULL);
 
 	InvokeEvent(vtkCommand::EnterEvent, NULL);
-#else
-	// old style
-	InteractorStyle->OnEnter(event.ControlDown(), event.ShiftDown(),
-		event.GetX(), Size[1] - event.GetY() - 1);
-#endif
 	TransformarEvento(event);
 }
 //---------------------------------------------------------------------------
@@ -667,20 +621,11 @@ void wxVTKRenderWindowInteractor::OnLeave(wxMouseEvent &event)
 	{
 		return;
 	}
-	//un poco excesivo activarlo en el OnLeave
-	//Activar();
 
-#if VTK_MAJOR_VERSION > 4 || (VTK_MAJOR_VERSION == 4 && VTK_MINOR_VERSION > 0)
-	// new style
 	SetEventInformationFlipY(event.GetX(), event.GetY(),
 		event.ControlDown(), event.ShiftDown(), '\0', 0, NULL);
 
 	InvokeEvent(vtkCommand::LeaveEvent, NULL);
-#else
-	// old style
-	InteractorStyle->OnLeave(event.ControlDown(), event.ShiftDown(),
-		event.GetX(), Size[1] - event.GetY() - 1);
-#endif
 	TransformarEvento(event);
 }
 //---------------------------------------------------------------------------
@@ -692,7 +637,6 @@ void wxVTKRenderWindowInteractor::OnKeyDown(wxKeyEvent &event)
 	}
 	Activar();
 
-#if VTK_MAJOR_VERSION > 4 || (VTK_MAJOR_VERSION == 4 && VTK_MINOR_VERSION > 0)
 	// new style
 	int keycode = event.GetKeyCode();
 	char key = '\0';
@@ -720,10 +664,6 @@ void wxVTKRenderWindowInteractor::OnKeyDown(wxKeyEvent &event)
 	SetEventInformationFlipY(mousePos.x, mousePos.y,
 		event.ControlDown(), event.ShiftDown(), key, 0, keysym);
 	InvokeEvent(vtkCommand::KeyPressEvent, NULL);
-#else
-	InteractorStyle->OnKeyDown(event.ControlDown(), event.ShiftDown(),
-		event.GetKeyCode(), 1);
-#endif
 	TransformarEvento(event);
 	if (event.GetSkipped()) {
 		event.ResumePropagation(20);
@@ -738,7 +678,6 @@ void wxVTKRenderWindowInteractor::OnKeyUp(wxKeyEvent &event)
 	}
 	Activar();
 
-#if VTK_MAJOR_VERSION > 4 || (VTK_MAJOR_VERSION == 4 && VTK_MINOR_VERSION > 0)
 	// new style
 	int keycode = event.GetKeyCode();
 	char key = '\0';
@@ -767,10 +706,6 @@ void wxVTKRenderWindowInteractor::OnKeyUp(wxKeyEvent &event)
 	SetEventInformationFlipY(mousePos.x, mousePos.y,
 		event.ControlDown(), event.ShiftDown(), key, 0, keysym);
 	InvokeEvent(vtkCommand::KeyReleaseEvent, NULL);
-#else
-	InteractorStyle->OnKeyUp(event.ControlDown(), event.ShiftDown(),
-		event.GetKeyCode(), 1);
-#endif
 	TransformarEvento(event);
 	if (event.GetSkipped()) {
 		event.ResumePropagation(20);
@@ -778,7 +713,7 @@ void wxVTKRenderWindowInteractor::OnKeyUp(wxKeyEvent &event)
 	event.Skip();
 
 }
-#endif //!(VTK_MAJOR_VERSION == 3 && VTK_MINOR_VERSION == 1)
+
 //---------------------------------------------------------------------------
 void wxVTKRenderWindowInteractor::OnChar(wxKeyEvent &event)
 {
@@ -788,7 +723,6 @@ void wxVTKRenderWindowInteractor::OnChar(wxKeyEvent &event)
 	}
 	TransformarEvento(event);
 
-#if VTK_MAJOR_VERSION > 4 || (VTK_MAJOR_VERSION == 4 && VTK_MINOR_VERSION > 0)
 	// new style
 	int keycode = event.GetKeyCode();
 	char key = '\0';
@@ -816,7 +750,7 @@ void wxVTKRenderWindowInteractor::OnChar(wxKeyEvent &event)
 	SetEventInformationFlipY(mousePos.x, mousePos.y,
 		event.ControlDown(), event.ShiftDown(), key, 0, keysym);
 	InvokeEvent(vtkCommand::CharEvent, NULL);
-#endif
+
 	TransformarEvento(event);
 	if (event.GetSkipped()) {
 		event.ResumePropagation(20);
@@ -839,57 +773,27 @@ void wxVTKRenderWindowInteractor::OnButtonDown(wxMouseEvent &event)
 	// Apparently we need that on linux (GTK) too:
 	this->SetFocus();
 
-#if VTK_MAJOR_VERSION > 4 || (VTK_MAJOR_VERSION == 4 && VTK_MINOR_VERSION > 0)
 	SetEventInformationFlipY(event.GetX(), event.GetY(),
 		event.ControlDown(), event.ShiftDown(), '\0', 0, NULL);
-#endif
 
 	if(event.RightDown())
 	{
-#if VTK_MAJOR_VERSION > 4 || (VTK_MAJOR_VERSION == 4 && VTK_MINOR_VERSION > 0)
-		// new style
 		InvokeEvent(vtkCommand::RightButtonPressEvent, NULL);
-#else
-		// old style
-		InteractorStyle->OnRightButtonDown(event.ControlDown(), event.ShiftDown(),
-			event.GetX(), Size[1] - event.GetY() - 1);
-#endif
 	}
 	else if(event.LeftDown())
 	{
-#if VTK_MAJOR_VERSION > 4 || (VTK_MAJOR_VERSION == 4 && VTK_MINOR_VERSION > 0)
-		// new style
+
 		InvokeEvent(vtkCommand::LeftButtonPressEvent, NULL);
-#else
-		// old style
-		InteractorStyle->OnLeftButtonDown(event.ControlDown(),  event.ShiftDown(),
-			event.GetX(), Size[1] - event.GetY() - 1);
-#endif
 	}
 	else if (event.LeftDClick())
 	{
-#if VTK_MAJOR_VERSION > 4 || (VTK_MAJOR_VERSION == 4 && VTK_MINOR_VERSION > 0)
-		// new style
-		//     this->SetRepeatCount (1);
+
 		InvokeEvent(vtkCommand::LeftButtonPressEvent, NULL);
-		//     this->SetRepeatCount (0);
-#else
-		// old style
-		InteractorStyle->OnLeftButtonDown(event.ControlDown(),  event.ShiftDown(),
-			event.GetX(), Size[1] - event.GetY() - 1);
-#endif
 	}
 
 	else if(event.MiddleDown())
 	{
-#if VTK_MAJOR_VERSION > 4 || (VTK_MAJOR_VERSION == 4 && VTK_MINOR_VERSION > 0)
-		// new style
 		InvokeEvent(vtkCommand::MiddleButtonPressEvent, NULL);
-#else
-		// old style
-		InteractorStyle->OnMiddleButtonDown(event.ControlDown(), event.ShiftDown(),
-			event.GetX(), Size[1] - event.GetY() - 1);
-#endif
 	}
 	//save the button and capture mouse until the button is released
 	//Only if :
@@ -917,43 +821,20 @@ void wxVTKRenderWindowInteractor::OnButtonUp(wxMouseEvent &event)
 	// See report by Shang Mu / Kerry Loux on wxVTK mailing list
 	this->SetFocus();
 
-#if VTK_MAJOR_VERSION > 4 || (VTK_MAJOR_VERSION == 4 && VTK_MINOR_VERSION > 0)
 	SetEventInformationFlipY(event.GetX(), event.GetY(),
 		event.ControlDown(), event.ShiftDown(), '\0', 0, NULL);
-#endif
 
 	if(ActiveButton == wxEVT_RIGHT_DOWN)
 	{
-#if VTK_MAJOR_VERSION > 4 || (VTK_MAJOR_VERSION == 4 && VTK_MINOR_VERSION > 0)
-		// new style
 		InvokeEvent(vtkCommand::RightButtonReleaseEvent, NULL);
-#else
-		// old style
-		InteractorStyle->OnRightButtonUp(event.ControlDown(), event.ShiftDown(),
-			event.GetX(), Size[1] - event.GetY() - 1);
-#endif
 	}
 	else if(ActiveButton == wxEVT_LEFT_DOWN)
 	{
-#if VTK_MAJOR_VERSION > 4 || (VTK_MAJOR_VERSION == 4 && VTK_MINOR_VERSION > 0)
-		// new style
 		InvokeEvent(vtkCommand::LeftButtonReleaseEvent, NULL);
-#else
-		// old style
-		InteractorStyle->OnLeftButtonUp(event.ControlDown(), event.ShiftDown(),
-			event.GetX(), Size[1] - event.GetY() - 1);
-#endif
 	}
 	else if(ActiveButton == wxEVT_MIDDLE_DOWN)
 	{
-#if VTK_MAJOR_VERSION > 4 || (VTK_MAJOR_VERSION == 4 && VTK_MINOR_VERSION > 0)
-		// new style
 		InvokeEvent(vtkCommand::MiddleButtonReleaseEvent, NULL);
-#else
-		// old style
-		InteractorStyle->OnMiddleButtonUp(event.ControlDown(), event.ShiftDown(),
-			event.GetX(), Size[1] - event.GetY() - 1);
-#endif
 	}
 	//if the ActiveButton is realeased, then release mouse capture
 	if ((ActiveButton != wxEVT_NULL) && WX_USE_X_CAPTURE && UseCaptureMouse)
@@ -968,7 +849,6 @@ void wxVTKRenderWindowInteractor::OnMouseWheel(wxMouseEvent& event)
 {
 	Activar();
 	// Mouse wheel was only added after VTK 4.4 (I think...)
-#if VTK_MAJOR_VERSION > 4 || (VTK_MAJOR_VERSION == 4 && VTK_MINOR_VERSION > 4)
 	// new style
 	//Set vtk event information ... The numebr of wheel rotations is stored in
 	//the x varible.  y varible is zero
@@ -987,7 +867,6 @@ void wxVTKRenderWindowInteractor::OnMouseWheel(wxMouseEvent& event)
 			InvokeEvent(vtkCommand::MouseWheelBackwardEvent, NULL);
 		}
 	}
-#endif
 
 	TransformarEvento(event);
 }
@@ -1036,7 +915,6 @@ void wxVTKRenderWindowInteractor::Render()
 			//t.stop();
 			//std::cout << "wxVTKRenderWindowInteractor::Render(1) " << t << std::endl;
 		}
-#if VTK_MAJOR_VERSION > 4 || (VTK_MAJOR_VERSION == 4 && VTK_MINOR_VERSION > 2)
 		else if(GetHandleHack())
 		{
 			//this means the user has reparented us; let's adapt to the
@@ -1087,7 +965,6 @@ void wxVTKRenderWindowInteractor::Render()
 			//t.stop();
 			//std::cerr << "wxVTKRenderWindowInteractor::Render(2) " << t << std::endl;
 		}
-#endif // VTK_MAJOR_VERSION > 4 || (VTK_MAJOR_VERSION == 4 && VTK_MINOR_VERSION > 2)
 	}
 }
 //---------------------------------------------------------------------------
@@ -1297,24 +1174,13 @@ void wxVTKRenderWindowInteractor::OnMouseDoubleClick(wxMouseEvent &event)
 	// Apparently we need that on linux (GTK) too:
 	this->SetFocus();
 
-#if VTK_MAJOR_VERSION > 4 || (VTK_MAJOR_VERSION == 4 && VTK_MINOR_VERSION > 0)
 	SetEventInformationFlipY(event.GetX(), event.GetY(),
 		event.ControlDown(), event.ShiftDown(), '\0', 1, NULL);
-#endif
 
 	if (event.LeftDClick())
 	{
-#if VTK_MAJOR_VERSION > 4 || (VTK_MAJOR_VERSION == 4 && VTK_MINOR_VERSION > 0)
-		// new style
-		//     this->SetRepeatCount (1);
 		InvokeEvent(vtkCommand::LeftButtonPressEvent, NULL);
 		InvokeEvent(vtkCommand::LeftButtonReleaseEvent, NULL);
-		//     this->SetRepeatCount (0);
-#else
-		// old style
-		InteractorStyle->OnLeftButtonDown(event.ControlDown(),  event.ShiftDown(),
-			event.GetX(), Size[1] - event.GetY() - 1);
-#endif
 	}
 
 	ActiveButton = wxEVT_NULL;
@@ -1352,18 +1218,6 @@ void wxVTKRenderWindowInteractor::OnActivar()
 
 void wxVTKRenderWindowInteractor::DisplayToWorld(double displayPos[3], double worldPos[4])
 {
-/*THIS FUNCTION IS NOT RELIABLE!!
-if (!Enabled || !Initialized) {
-		return;
-	}
-	vtkRenderer* pRenderer = FindPokedRenderer(0,0);
-
-	if (pRenderer == NULL || !pRenderer->IsActiveCameraCreated()) {
-		return;
-	}
-
-	vtkInteractorObserver::ComputeDisplayToWorld(pRenderer, displayPos[0], displayPos[1], displayPos[2], worldPos);
-	*/
 	worldPos[0] = worldPos[1] = worldPos[2] = worldPos[3] = 0.0;
 	if (m_pPicker != NULL && m_pImageViewer != NULL) {
 		int x = displayPos[0];
@@ -1385,9 +1239,6 @@ if (!Enabled || !Initialized) {
 				if (cam->GetParallelProjection()) {
 					this->m_pImageViewer->IntersectarRayo(world, cdir, worldPos);
 					worldPos[3] = 1.0;
-				}
-				else {
-					//std::cout << "Error: Reproyeccion en proyeccion perspectiva no soportado" << std::endl;
 				}
 			}
 		}
