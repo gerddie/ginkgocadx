@@ -1025,21 +1025,18 @@ DialogoServidorPACSBase::DialogoServidorPACSBase( wxWindow* parent, wxWindowID i
 	fgSizer18->Add( m_pCheckAbort, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
 	m_pTextAbort = new wxTextCtrl( m_pPanelHL7, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE );
-	m_pTextAbort->SetMaxLength( 0 ); 
 	fgSizer18->Add( m_pTextAbort, 1, wxALL|wxEXPAND, 5 );
 	
 	m_pCheckCompleted = new wxCheckBox( m_pPanelHL7, wxID_ANY, _("Completed message"), wxDefaultPosition, wxDefaultSize, 0 );
 	fgSizer18->Add( m_pCheckCompleted, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
 	m_pTextCompleted = new wxTextCtrl( m_pPanelHL7, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE );
-	m_pTextCompleted->SetMaxLength( 0 ); 
 	fgSizer18->Add( m_pTextCompleted, 0, wxALL|wxEXPAND, 5 );
 	
 	m_pCheckInProgress = new wxCheckBox( m_pPanelHL7, wxID_ANY, _("In progress message"), wxDefaultPosition, wxDefaultSize, 0 );
 	fgSizer18->Add( m_pCheckInProgress, 0, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
 	
 	m_pTextProgress = new wxTextCtrl( m_pPanelHL7, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE );
-	m_pTextProgress->SetMaxLength( 0 ); 
 	fgSizer18->Add( m_pTextProgress, 0, wxALL|wxEXPAND, 5 );
 	
 	
@@ -1654,7 +1651,6 @@ DialogoEditarCertificadoBase::DialogoEditarCertificadoBase( wxWindow* parent, wx
 	bSizer87->Add( m_pLabel, 0, wxBOTTOM|wxRIGHT, 5 );
 	
 	m_pTextoCertificado = new wxTextCtrl( m_pPanelPublic, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE );
-	m_pTextoCertificado->SetMaxLength( 0 ); 
 	bSizer87->Add( m_pTextoCertificado, 1, wxEXPAND|wxTOP|wxBOTTOM, 5 );
 	
 	m_button62 = new wxButton( m_pPanelPublic, wxID_ANY, _("Load ..."), wxDefaultPosition, wxDefaultSize, 0 );
@@ -1680,7 +1676,6 @@ DialogoEditarCertificadoBase::DialogoEditarCertificadoBase( wxWindow* parent, wx
 	bSizer871->Add( m_pLabel11, 0, wxTOP|wxBOTTOM|wxRIGHT, 5 );
 	
 	m_pTextoPrivateKey = new wxTextCtrl( m_pPanelPrivate, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE );
-	m_pTextoPrivateKey->SetMaxLength( 0 ); 
 	bSizer871->Add( m_pTextoPrivateKey, 1, wxEXPAND|wxTOP, 5 );
 	
 	m_button621 = new wxButton( m_pPanelPrivate, wxID_ANY, _("Load ..."), wxDefaultPosition, wxDefaultSize, 0 );
