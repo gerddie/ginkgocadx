@@ -123,7 +123,8 @@ namespace GNC {
 
 			IdHL7& operator = (const IdHL7& o);
 
-			operator const std::string () const;
+			// return value should be const, but clang++ 3.7 doesn't like it
+			operator std::string () const;
 		};
 
 		/** Module controller. Responsable de proveer una factoría de controladores de estudios y registrarlos mediante el controlador de vistas. **/

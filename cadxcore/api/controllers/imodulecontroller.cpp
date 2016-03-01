@@ -116,7 +116,7 @@ GNC::GCS::IdHL7& GNC::GCS::IdHL7::operator = (const GNC::GCS::IdHL7& o)
 	return *this;
 }
 
-GNC::GCS::IdHL7::operator const std::string() const {
+GNC::GCS::IdHL7::operator std::string() const {
 	return codigo + "^" + descripcion + "^" + namespaceid;
 }
 
