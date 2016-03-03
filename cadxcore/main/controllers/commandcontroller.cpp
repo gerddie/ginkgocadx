@@ -214,7 +214,9 @@ void* GNC::CommandLauncher::Entry()
 			}
 
 			try {
-                                GNC::GCS::ILocker pLocker(GNC::CommandController::Instance());
+                                // don't add the lock for GNC::CommandController::Instance() here,
+                                // even though running tread sanitizer might suggest that this is a
+                                //  good idea
 				m_pComando->Execute();
 			}
 			catch (GNC::GCS::CommandControllerException& ) {
