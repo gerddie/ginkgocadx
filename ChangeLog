@@ -1,5 +1,30 @@
+Version 3.7.5 (2016-02-25)
+--------------------------
+
+* Correct regression that MOVE answers from PACS server
+  time out
+* Work around that clang++ uses  move constructor instead of
+  copy constructor
+* Remove __DATE__ macros from code, Closes: #9
+* Remove pre VTK-6 code path Closes: #7
+* Remove calls to SetMaxLength on multiline widgets Closes: #10 
+* Update DCMTK version specifier 
+* Remove pre-3.0 wxWidget code Closes: #6 
+
+Version 3.7.4 (2016-02-25)
+--------------------------
+
+* Disable forced maximization on non-windows (Closes:#5)
+
+Version 3.7.3 (2016-02-25)
+--------------------------
+
+* don't reparent vtkwxRenderWindow to NULL (Closes: #2)
+* correct some stelling errors.
+
+
 Version 3.7.2 (2016-02-23)
---------------------------	
+--------------------------
 
 * Move to github and start fork of abandoned version
 * Update build to use VTK-6, ITK-4, and DCMTK 3.6.1
