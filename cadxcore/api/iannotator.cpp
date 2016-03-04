@@ -251,7 +251,7 @@ std::string GNC::GCS::IAnnotator::GetPositionAnnotation(GNC::GCS::Contexto3D* c,
 	double ip[3] = {0,0,0};
 	c->pRenderer->m_pImageViewer->Proyect2D(wP.v, ip);
 	int pp[3] = {0, 0, 0};
-	int dims[3];
+	int dims[3] = {1, 1, 1};
 
 	c->GetRenderer()->m_pImageViewer->GetDimensions(dims);
 				
