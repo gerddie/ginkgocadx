@@ -219,13 +219,13 @@ wxVTKRenderWindowInteractor::wxVTKRenderWindowInteractor()
 	, Created(true)
 	, RenderWhenDisabled(1)
 	, UseCaptureMouse(1)
+#if defined(__WXGTK__) && defined(wxUSE_GLCANVAS)
+        , GLContext(new wxGLContext (this))
+#endif
 {
 	vtkDebugLeaks::ConstructClass("wxVTKRenderWindowInteractor");
 #if defined(__WXMSW__) || defined(__WXMAC__)
 	this->SetUseCaptureMouse(0);
-#endif
-#if defined(__WXGTK__) && defined(wxUSE_GLCANVAS)
-	this->GLContext = new wxGLContext (this);
 #endif
 	this->RenderWindow = NULL;
 	this->SetRenderWindow(vtkRenderWindow::New());
@@ -255,13 +255,13 @@ wxVTKRenderWindowInteractor::wxVTKRenderWindowInteractor(wxWindow *parent, wxWin
           Created(true),
           RenderWhenDisabled(1),
           UseCaptureMouse(0)
+#if defined(__WXGTK__) && defined(wxUSE_GLCANVAS)
+        , GLContext(new wxGLContext (this))
+#endif
 {
 	vtkDebugLeaks::ConstructClass("wxVTKRenderWindowInteractor");
 #if defined(__WXMSW__) || defined(__WXMAC__)
 	this->SetUseCaptureMouse(1);
-#endif
-#if defined(__WXGTK__) && defined(wxUSE_GLCANVAS)
-	this->GLContext = new wxGLContext (this);
 #endif
 	this->RenderWindow = NULL;
 	this->SetRenderWindow(vtkRenderWindow::New());
@@ -293,6 +293,14 @@ wxVTKRenderWindowInteractor::~wxVTKRenderWindowInteractor()
 
 	SetRenderWindow(NULL);
 	SetInteractorStyle(NULL);
+
+        // this is a leak, but for some reason, deleting the context here
+        // results in a segfault. My bet is that vtkRenderWindowInteractor
+        // does still hold a resource that makes X11[xcb] fail on an unknown
+        // sequence number, but since wxVTKRenderWindowInteractor is derived
+        // from vtkRenderWindowInteractor the tear-down can not be done in
+        // the right order. 
+        // delete GLContext; 
 }
 //---------------------------------------------------------------------------
 wxVTKRenderWindowInteractor * wxVTKRenderWindowInteractor::New()

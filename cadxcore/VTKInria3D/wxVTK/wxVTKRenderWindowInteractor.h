@@ -40,6 +40,7 @@
 // For compilers that support precompilation, includes "wx/wx.h".
 #include "wx/wxprec.h"
 #include <api/api.h>
+#include <memory>
 
 #ifdef __BORLANDC__
 #  pragma hdrstop
@@ -182,7 +183,7 @@ class EXTAPI wxVTKRenderWindowInteractor : public wxWindow, public vtkRenderWind
     int UseCaptureMouse;
 
 #if defined(__WXGTK__) && defined(wxUSE_GLCANVAS)
-    wxGLContext* GLContext;
+    wxGLContext *GLContext;
 #endif
 
 	//----------------------------------------------------------------------------------------------------
