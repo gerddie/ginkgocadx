@@ -55,7 +55,7 @@ namespace GSEC {
 			{
 			}
 
-			~IControladorAutenticacion()
+                        virtual ~IControladorAutenticacion()
 			{
 			}
 		};
