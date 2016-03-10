@@ -805,24 +805,26 @@ namespace GIL
 					OFCondition cond;
 
 					if (seqPadre == NULL) {
-						//cond = i2d->getOverrideKeys()->insert(item, OFTrue);
-						std::cerr << "No se pudo insertar el item directamente a la raiz. Deben insertarse en secuencias o en otros items.  " << nItems << " elementos perdidos: " << cond.text() << std::endl;
+						std::cerr << "No se pudo insertar el item directamente a la raiz. "
+                                                          << "Deben insertarse en secuencias o en otros items.  "
+                                                          << nItems << " elementos perdidos: " << cond.text() << std::endl;
 						std::cerr << "tag << " << (*it) <<std::endl;
 						delete item;
 					}
 					else {
 						cond = seqPadre->insert(item, true, false);
-						GTRACE(seqPadre->getTag().toString().c_str() << " << " << item->getTag().toString())
-					}
-
-					if (cond.bad()) {
-						std::cerr << "No se pudo insertar el item a la raiz.  " << nItems << " elementos perdidos: " << cond.text() << std::endl;
-						delete item;
-					}
-					else {
-						numTotalInsertados += nItems + 1;
-						numItemsInsertados++;
-					}
+						GTRACE(seqPadre->getTag().toString().c_str() << " << " << item->getTag().toString()); 
+                                                
+                                                if (cond.bad()) {
+                                                        std::cerr << "No se pudo insertar el item a la raiz.  "
+                                                                  << nItems << " elementos perdidos: " << cond.text() << std::endl;
+                                                        delete item;
+                                                }
+                                                else {
+                                                        numTotalInsertados += nItems + 1;
+                                                        numItemsInsertados++;
+                                                }
+                                        }
 				}
 				else {
 					delete item;
