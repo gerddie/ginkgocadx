@@ -609,19 +609,23 @@ GVistaCompleja::GVistaCompleja(GNKVisualizator::Vista2D* pIVista) :
 GVistaCompleja::~GVistaCompleja()
 {
 	std::string modality("");
-	IVista->GetEstudio()->GetTagActiveImage(GKDCM_Modality, modality);
-	IVista->GetToolController()->FinalizeToolController();
 
-	IVista->ComienzaDestruccion();
+    if (IVista != NULL) {
+        IVista->GetEstudio()->GetTagActiveImage(GKDCM_Modality, modality);
+        IVista->GetToolController()->FinalizeToolController();
+
+        IVista->ComienzaDestruccion();
+    }
+
 	//FUNDAMENTAL PARA QUE los viewers se destruyan correctamente y sin leaks ya que Viewer es smart pointer
 	for(TListaGVistasSimples::iterator it = m_VistasSimples.begin(); it != m_VistasSimples.end(); ++it) {
 		(*it)->UnRefIVista();
 	}
 
-	IVista->VisualizatorStudy->Viewer = NULL;
 
 	if (IVista != NULL) {
-		GNC::GCS::IEntorno::Instance()->GetCommandController()->AbortarComandosDeOwner(IVista);
+        IVista->VisualizatorStudy->Viewer = NULL;
+        GNC::GCS::IEntorno::Instance()->GetCommandController()->AbortarComandosDeOwner(IVista);
 	}
 
 	//Disconnect(wxEVT_CHILD_FOCUS, wxChildFocusEventHandler(GVistaCompleja::OnFocus),NULL,this);
@@ -643,8 +647,10 @@ GVistaCompleja::~GVistaCompleja()
 		((GNC::GCS::IContratable<GNKVisualizator::IReconstructionContract>*)hReconstruction)->DesSubscribirsLosDeLaVista(IVista);
 	}*/
 
-	IVista->Lock();
-	delete IVista;
+    if (IVista != NULL) {
+        IVista->Lock();
+        delete IVista;
+    }
 }
 
 void GVistaCompleja::AddVistaSimple()
