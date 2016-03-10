@@ -72,7 +72,7 @@ enum E_JPGMARKER { E_JPGMARKER_SOF0 = 0xC0, E_JPGMARKER_SOF1 = 0xC1, E_JPGMARKER
                    E_JPGMARKER_JPGN8 = 0xF8, E_JPGMARKER_JPGN9 = 0xF9, E_JPGMARKER_JPGN10 = 0xFA,
                    E_JPGMARKER_JPGN11 = 0xFB, E_JPGMARKER_JPGN12 = 0xFC, E_JPGMARKER_JPGN13 = 0xFD,
                    E_JPGMARKER_COM = 0xFE, E_JPGMARKER_TEM = 0x01, E_JPGMARKER_RES0 = 0x02,
-                   E_JPGMARKER_RESN = 0xBF };
+                   E_JPGMARKER_RESN = 0xBF, E_JPGMARKER_UNKNOWN = 0x00 };
 
 /**
  * Struct that represents a marker in a JPEG file, i.e. it consists

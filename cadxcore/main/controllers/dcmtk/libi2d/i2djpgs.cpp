@@ -137,7 +137,7 @@ OFCondition I2DJpegSource::readPixelData(Uint16& rows,
   }
 
   // Check for image data in file (look for SOF marker)
-  E_JPGMARKER jpegEncoding;
+  E_JPGMARKER jpegEncoding = E_JPGMARKER_UNKNOWN;
   OFIterator<JPEGFileMapEntry*> entry = m_jpegFileMap.begin();
   while (entry != m_jpegFileMap.end())
   {
