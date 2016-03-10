@@ -415,9 +415,17 @@ GIL::DICOM::ArrayHelper::ArrayHelper(const std::list<std::string>& list)
 
 GIL::DICOM::ArrayHelper::ArrayHelper(const ArrayHelper& o)
 {
-	array = NULL;
-	size = 0;
-	*this = o;
+    this->size = o.size;
+    this->array = new const char* [this->size];
+    for (unsigned int i = 0; i < this->size; i++) {
+        this->array[i] = strdup(o.array[i]);
+    }
+}
+
+void GIL::DICOM::ArrayHelper::swap(ArrayHelper& other)
+{
+    std::swap(array, other.array);
+    std::swap(size, other.size);
 }
 
 GIL::DICOM::ArrayHelper::~ArrayHelper()
@@ -427,23 +435,11 @@ GIL::DICOM::ArrayHelper::~ArrayHelper()
 
 GIL::DICOM::ArrayHelper& GIL::DICOM::ArrayHelper::operator=(const GIL::DICOM::ArrayHelper& o)
 {
-	this->free();
-	this->size = o.size;
-	this->array = new const char* [this->size];
-	for (unsigned int i = 0; i < this->size; i++) {
-		unsigned int len = strlen(o.array[i]);
-		
-		char* cpstr = new char[len + 1];
-		unsigned int j = 0;
-		for (; j < len; j++) {
-			cpstr[j] = o.array[i][j];
-		}
-		cpstr[j] = 0;
-		this->array[i] = cpstr;
-	}
-
-	return *this;
-
+    if (this != &o) {
+        ArrayHelper help(o);
+        swap(help);
+    }
+    return *this;
 }
 
 GIL::DICOM::ArrayHelper& GIL::DICOM::ArrayHelper::operator=(const std::list<std::string>& list)
@@ -458,18 +454,12 @@ void GIL::DICOM::ArrayHelper::copyFrom(const std::list<std::string>& list)
 	this->size = list.size();
 	this->array = new const char* [this->size];
 	unsigned int i = 0;
-	for (std::list<std::string>::const_iterator it = list.begin(); it != list.end(); ++it) {
-		const std::string& str = (*it);
-		char* cpstr = new char[str.size() + 1];
-		unsigned int j = 0;
-		for (std::string::const_iterator its = str.begin(); its != str.end(); ++its) {
-			cpstr[j++] = (*its);
-		}
-		cpstr[j] = 0;
-		this->array[i++] = cpstr;
+    for (auto it = list.begin(); it != list.end(); ++it) {
+        this->array[i++] = strdup(it->c_str());
 	}
 }
-void GIL::DICOM::ArrayHelper::free() {
+void GIL::DICOM::ArrayHelper::free()
+{
 	if (this->size != 0) {
 		for (unsigned int i = 0; i < this->size; i++) {
 			delete[] this->array[i];

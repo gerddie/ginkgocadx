@@ -94,6 +94,8 @@ namespace GIL {
 
 			void free();
 
+            void swap(ArrayHelper& other);
+
 			const char** array;
 			unsigned int size;
 		};
