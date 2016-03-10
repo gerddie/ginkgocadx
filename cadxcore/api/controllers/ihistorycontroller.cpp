@@ -53,6 +53,7 @@ GNC::GCS::IHistoryController::FileModel::FileModel() :
 	series_fk(-1),
 	orientation('A'),
 	slice_location(0.0),
+    slice_thickness(0.0),
 	height(0),
 	width(0),
 	number_of_frames(0),
