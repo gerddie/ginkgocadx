@@ -523,33 +523,33 @@ namespace GIL {
 
 			// Insertamos todos los items correspondientes a este nivel en la raiz (de haberla, si no: en el dataset).
 
-			for (DicomDataset::DatasetList::iterator it = base.items.begin(); it != base.items.end(); ++it) {
+			for (auto it = base.items.begin(); it != base.items.end(); ++it) {
+                                
 				DcmItem *item = new DcmItem();
 
 				int nItems = InsertarJerarquia((*it),dcmDataSet, item, NULL);
 
 				if (nItems > 0) {
 
-					OFCondition cond;
-
 					if (seqPadre == NULL) {
 						//cond = dcmDataSet->insert(item, OFTrue);
-						std::cerr << "No se pudo insertar el item directamente a la raiz. Deben insertarse en secuencias o en otros items.  " << nItems << " elementos perdidos: " << cond.text() << std::endl;
+						std::cerr << "No se pudo insertar el item directamente a la raiz. "
+                                                          << "Deben insertarse en secuencias o en otros items.  "
+                                                          << nItems << " elementos perdidos: " << cond.text() << std::endl;
 						delete item;
 					}
 					else {
-						cond = seqPadre->insert(item, OFTrue);
-					//	std::cout << seqPadre->getTag().toString().c_str() << " << " << item->getTag().toString() << std::endl;
-					}
-
-					if (cond.bad()) {
-						std::cerr << "No se pudo insertar el item a la raiz.  " << nItems << " elementos perdidos: " << cond.text() << std::endl;
-						delete item;
-					}
-					else {
-						numTotalInsertados += nItems + 1;
-						numItemsInsertados++;
-					}
+						OFCondition cond = seqPadre->insert(item, OFTrue);
+                                                
+                                                if (cond.bad()) {
+                                                        std::cerr << "No se pudo insertar el item a la raiz.  "
+                                                                  << nItems << " elementos perdidos: " << cond.text() << std::endl;
+                                                        delete item;
+                                                } else {
+                                                        numTotalInsertados += nItems + 1;
+                                                        numItemsInsertados++;
+                                                }
+                                        }
 				}
 				else {
 					delete item;
