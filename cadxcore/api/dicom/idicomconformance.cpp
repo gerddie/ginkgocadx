@@ -420,6 +420,11 @@ GIL::DICOM::ArrayHelper::ArrayHelper(const ArrayHelper& o)
 	*this = o;
 }
 
+GIL::DICOM::ArrayHelper::~ArrayHelper()
+{
+    this->free();
+}
+
 GIL::DICOM::ArrayHelper& GIL::DICOM::ArrayHelper::operator=(const GIL::DICOM::ArrayHelper& o)
 {
 	this->free();

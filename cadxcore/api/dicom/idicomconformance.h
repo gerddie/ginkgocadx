@@ -88,6 +88,8 @@ namespace GIL {
 
 			ArrayHelper& operator=(const std::list<std::string>& list);
 
+            ~ArrayHelper();
+
 			void copyFrom(const std::list<std::string>& list);
 
 			void free();
