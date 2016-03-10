@@ -115,7 +115,7 @@ namespace GNKVisualizator
 				Delegate(new GWaveformViewDelegate(this)),
 				AnnotatorDelegate(new GWaveformAnnotatorDelegate(this, pView))
 		{
-			View = pView;
+            View = pView;
 			WECG = NULL;
 
 			ViewImage2D->SetBackgroundColor(0.0f,0.0f,0.0f);
@@ -217,8 +217,9 @@ namespace GNKVisualizator
 			this->Disconnect(wxEVT_CHILD_FOCUS, wxChildFocusEventHandler(GWaveformView::OnFocus),NULL,this);
 			if (View != NULL) {
 				GNC::GCS::IEntorno::Instance()->GetCommandController()->AbortarComandosDeOwner(View);
+                View->GetToolController()->FinalizeToolController();
 			}			
-			View->GetToolController()->FinalizeToolController();
+
 			m_pManager->EliminarTodosLosWidgets(false);
 			
 			ViewInteractor2D->SetRepresentation(NULL);
@@ -233,8 +234,10 @@ namespace GNKVisualizator
 			ViewInteractor2D->Delete();
 			ViewInteractor2D = NULL;
 
-			View->Lock();
-			delete View;
+            if (View != NULL) {
+                View->Lock();
+                delete View;
+            }
 		}
 
 		void GWaveformView::InitPipeline()
