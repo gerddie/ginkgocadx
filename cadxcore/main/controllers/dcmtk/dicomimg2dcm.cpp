@@ -535,7 +535,7 @@ namespace GIL {
 						//cond = dcmDataSet->insert(item, OFTrue);
 						std::cerr << "No se pudo insertar el item directamente a la raiz. "
                                                           << "Deben insertarse en secuencias o en otros items.  "
-                                                          << nItems << " elementos perdidos: " << cond.text() << std::endl;
+                                                          << nItems << " elementos perdidos: " << std::endl;
 						delete item;
 					}
 					else {
