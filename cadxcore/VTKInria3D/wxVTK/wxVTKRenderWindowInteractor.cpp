@@ -286,10 +286,8 @@ wxVTKRenderWindowInteractor::~wxVTKRenderWindowInteractor()
 		this->m_pPicker->Delete();
 		this->m_pPicker = NULL;
 	}
-	if(this->m_c != NULL) {
-		delete m_c;
-		m_c = NULL;
-	}
+        
+        delete m_c;
 
 	SetRenderWindow(NULL);
 	SetInteractorStyle(NULL);
@@ -485,13 +483,10 @@ long wxVTKRenderWindowInteractor::GetHandleHack()
 	// Find and return the actual X-Window.
 #if defined(__WXGTK__) || defined(__WXX11__)
         return this->GetXWindow();
+#else
+        return handle_tmp;
 #endif
 
-	//#ifdef __WXMOTIF__
-	//    handle_tmp = (long)this->GetXWindow();
-	//#endif
-
-	return handle_tmp;
 }
 //---------------------------------------------------------------------------
 void wxVTKRenderWindowInteractor::OnPaint(wxPaintEvent& WXUNUSED(event))
@@ -584,15 +579,13 @@ void wxVTKRenderWindowInteractor::OnSize(wxSizeEvent& /*event*/)
         } else {
                 return;
         }
-#endif
+#else 
 	UpdateSize(w, h);
-        
-	if (!Enabled)
-                {
+        if (!Enabled) {
 		return;
 	}
-
 	InvokeEvent(vtkCommand::ConfigureEvent, NULL);
+#endif        
 }
 //---------------------------------------------------------------------------
 void wxVTKRenderWindowInteractor::OnMotion(wxMouseEvent &event)
