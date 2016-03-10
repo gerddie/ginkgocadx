@@ -37,6 +37,7 @@
 #include <arpa/inet.h>
 #endif
 
+using std::string;
 
 std::string GNC::GCS::AETWildcards::Parse(const std::string& AET)
 {
@@ -45,7 +46,7 @@ std::string GNC::GCS::AETWildcards::Parse(const std::string& AET)
 
 	if ( (AET.find("%IP") != std::string::npos) || (AET.find("%HOSTNAME") != std::string::npos) || (AET.find("%hostname") != std::string::npos))  {
 		char bufHostName[256];
-		char bufIP4[16];
+        string bufIP4;
 
 		std::memset(bufHostName, 0, 256 * sizeof(char));
 
@@ -87,12 +88,10 @@ std::string GNC::GCS::AETWildcards::Parse(const std::string& AET)
 			else {
 				struct sockaddr_in* sockaddr_ipv4 = (struct sockaddr_in *) l_addrInfo->ai_addr;
 				const char* ip = inet_ntoa(sockaddr_ipv4->sin_addr);
-#if defined(_WINDOWS)
-				strcpy_s(bufIP4, ip);
-#else
-				strcpy(bufIP4, ip);
-#endif
-				unsigned long* sAddr = (unsigned long*) &sockaddr_ipv4->sin_addr.s_addr;
+
+                bufIP4 = string(ip);
+
+                unsigned long* sAddr = (unsigned long*) &sockaddr_ipv4->sin_addr.s_addr;
 				{
 					std::stringstream ss;
 					ss << std::setw(3) << std::setfill('0');
@@ -147,7 +146,7 @@ std::string GNC::GCS::AETWildcards::Parse(const std::string& AET)
 						else {
 							it0 = realAET.find("%IP");
 							if (it0 != std::string::npos) {
-								realAET = realAET.replace(it0, 3, bufIP4 );
+                                realAET = realAET.replace(it0, 3, bufIP4.c_str() );
 							}
 							else {
 								it0 = realAET.find("%HOSTNAME");
