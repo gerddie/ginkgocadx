@@ -24,6 +24,8 @@
 #include <api/utils/iginkgomatrix4x4.h>
 #include <api/ioverlay.h>
 
+#include <cassert>
+#include <api/controllers/icontroladorlog.h>
 #include "widgetsactor.h"
 
 #include <vtkRenderer.h>
@@ -613,7 +615,16 @@ int WidgetsMapper::Draw(vtkRenderer *aren, vtkActor* /*act*/)
 	
 	glMatrixMode(GL_MODELVIEW);
 
-	vtkGinkgoImageViewer* pViewer = m_pWRenderer->m_pImageViewer;
+    if (!m_pWRenderer) {
+        LOG_ERROR("idgetsMapper::Draw", "m_pWRenderer=NULL, bailing out");
+        return 0;
+    }
+
+    vtkGinkgoImageViewer* pViewer = m_pWRenderer->m_pImageViewer;
+    if (!pViewer) {
+        LOG_ERROR("idgetsMapper::Draw", "m_pWRenderer->m_pImageViewer=NULL, bailing out");
+        return 0;
+    }
 
 	double MatrizModelo[16];
 
