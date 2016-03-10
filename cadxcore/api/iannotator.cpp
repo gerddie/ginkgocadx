@@ -59,7 +59,7 @@ std::string GNC::GCS::IAnnotator::GetAnnotationValue(GNC::GCS::Contexto3D* c, co
 			return "64 bits";
 		}
 	} else if (key == "${VOLUME.IDX}") {
-		if (m_pView != NULL && m_pView != NULL && m_pView->GetEstudio().IsValid()) {
+        if (m_pView != NULL && m_pView->GetEstudio().IsValid()) {
 			std::ostringstream ostr;
 			ostr << m_pView->GetEstudio()->ActiveFileIndex + 1;
 			return ostr.str();
