@@ -180,7 +180,9 @@ void GNC::GCS::IStudyContext::SetActiveIndex(int indice)
 		Loader->SetInput(fichero.PathOfFile);
 		Loader->UpdateInformation();
 		double spacing[3] = {1.0f, 1.0f, 1.0f};
-		GetSpacingActive(spacing[0], spacing[1], spacing[2]);
+        if (!GetSpacingActive(spacing[0], spacing[1], spacing[2])) {
+            LOG_INFO("StudyContext", "GNC::GCS::IStudyContext::SetActiveIndex: no active spacing, use defaul (1,1,1)");
+        }
 		Loader->SetOutputSpacing(spacing);
 		double origin[3] = {0.0f, 0.0f, 0.0f};
 		GetOriginActive(origin[0], origin[1], origin[2]);
@@ -189,7 +191,7 @@ void GNC::GCS::IStudyContext::SetActiveIndex(int indice)
 			// FIXME: Comprobar si el pipeline esta conectado.
 			Viewer->SetupPipeline();
 		} else {
-			//std::cerr << "No se ha inicializado el contexto correctamente (Viewer NULL) tal vez sea un estudio referido" << std::endl;
+            LOG_ERROR("StudyContext", "GNC::GCS::IStudyContext::SetActiveIndex: no idea what is wrong ...");
 		}
 	}
 	else {
