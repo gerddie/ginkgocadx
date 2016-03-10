@@ -19,6 +19,7 @@
  */
 
 #include "imodelohl7.h"
+#include <cassert>
 
 std::string GIL::HL7::DefaultEscapeER7(const std::string& str)
 {
@@ -153,13 +154,9 @@ const std::string GIL::HL7::Field::UnEscapeER7(const std::string& str) const
 							printNext = true;
 							break;
 					}
-				}
-				else {
-					if (printNext) {
-						ss << str[i];
-						printNext = false;
-					}
-				}
+                } else {
+                    assert(!printNext);
+                }
 			}
 		}
 		else {
@@ -247,12 +244,8 @@ const std::string GIL::HL7::Segment::UnEscapeER7(const std::string& str) const
 							printNext = true;
 							break;
 					}
-				}
-				else {
-					if (printNext) {
-						ss << str[i];
-						printNext = false;
-					}
+                } else {
+                    assert(!printNext);
 				}
 			}
 		}
@@ -343,10 +336,7 @@ const std::string GIL::HL7::Message::UnEscapeER7(const std::string& str) const
 					}
 				}
 				else {
-					if (printNext) {
-						ss << str[i];
-						printNext = false;
-					}
+                    assert(!printNext);
 				}
 			}
 		}
