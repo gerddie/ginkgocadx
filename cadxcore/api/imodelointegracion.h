@@ -61,10 +61,8 @@ namespace GIL {
 			user=password = "";
 		}
 
-		IModeloPACSServer(const IModeloPACSServer& otro)
-		{
-			*this = otro;
-		}
+        IModeloPACSServer(const IModeloPACSServer& otro) = default;
+
 
 		IModeloPACSServer(const std::string& sid, const std::string& AET, const std::string& hostname, const std::string& puerto, const std::string& pdu, IMPS_Method metodo, const std::string& retrieveLevel = "SERIES", bool tls = false, bool verify = false, const std::string& cert = "", const std::string& key = "", const std::string& defaultCharset = "ISO_IR 192")
 		{
@@ -82,22 +80,8 @@ namespace GIL {
 			this->defaultCharset = defaultCharset;
 		}
 
-		IModeloPACSServer& operator=(const IModeloPACSServer& otro)
-		{
-			this->sid      = otro.sid;
-			this->AET      = otro.AET;
-			this->hostname = otro.hostname;
-			this->puerto   = otro.puerto;
-			this->pdu      = otro.pdu;
-			this->tls      = otro.tls;
-			this->verify   = verify;
-			this->metodo   = otro.metodo;	
-			this->retrieveLevel = otro.retrieveLevel;
-			this->cert     = otro.cert;
-			this->key      = otro.key;
-			this->defaultCharset = otro.defaultCharset;
-			return *this;
-		}
+        IModeloPACSServer& operator=(const IModeloPACSServer& otro) = default;
+
 	};
 
 	class EXTAPI IVariableModel
