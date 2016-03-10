@@ -56,6 +56,7 @@ namespace GNC {
 			m_pResult = NULL;
 			m_pNotificadorProgreso = NULL;
 			m_Abortado = false;
+            m_Id = -1;
 			m_Nombre = name;
 			m_pOwner = pOwner;
 			if (m_Nombre.size() == 0)
