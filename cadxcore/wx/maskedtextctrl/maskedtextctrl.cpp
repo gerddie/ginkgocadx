@@ -1322,7 +1322,11 @@ void wxMaskedTextCtrl::OnCut(wxUpdateUIEvent& event)
 	GetSelection(&nSelectionStart, &nSelectionEnd);
 
 	// First do our version of the cut.
-	/*int nDeleteCount = */ DeleteRange(nSelectionStart, nSelectionEnd);
+    if (nSelectionStart != nSelectionEnd) {
+        int nDeleteCount =  DeleteRange(nSelectionStart, nSelectionEnd);
+        if (nDeleteCount == 0)
+            LOG_DEBUG("wx", "Deletecount zero even though the selection was not empty");
+    }
 
 	// Before updating, let the control do its normal thing.
 	// This will save us the effort of filling the clipboard.
