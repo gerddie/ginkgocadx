@@ -92,11 +92,16 @@ bool RemoveTempDir(const wxString& dirPath)
 						cont = dir.GetNext(&fileName);
 					}
 				}else{
+                    int result;
 					#ifdef _WIN32
-					_chmod(TOPATH(fileName).c_str(), _S_IWRITE);
+                    result = _chmod(TOPATH(fileName).c_str(), _S_IWRITE);
 					#else 
-					chmod(TOPATH(fileName).c_str(), 0644);
+                    result = chmod(TOPATH(fileName).c_str(), 0644);
 					#endif
+                    if (result != 0) {
+                        LOG_ERROR("Core", "Unable to change permission of '" << TOPATH(fileName) << "':" << strerror(errno));
+                    }
+
 					if (wxRemoveFile(fileName)) {
 						cont = dir.GetFirst(&fileName);
 					} else {
@@ -419,12 +424,15 @@ std::string GNC::Entorno::CrearDirectorioTemporal()
 	} while (wxDirExists(dirTmp));
 
 	#if defined(_WINDOWS)
-	wxMkDir(dirTmp);
+    bool success = wxMkDir(dirTmp);
 	#else
-	wxMkDir(dirTmp.ToUTF8(), 0770);
+    bool success = wxMkDir(dirTmp.ToUTF8(), 0770);
 	#endif
 
-	std::string resultado(TOPATH(dirTmp));
+    std::string resultado(TOPATH(dirTmp));
+    if (!success) {
+        LOG_ERROR("Core", "Error creating temporary directory '"<<resultado << "'");
+    }
 	return resultado;
 }
 
