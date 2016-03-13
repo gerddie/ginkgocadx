@@ -22,6 +22,7 @@
 #include <cstdlib>
 #include <cstdio>
 #include "endpoint.h"
+#include <api/controllers/icontroladorlog.h>
 #ifdef _WIN32
 #define _WINSOCKAPI_    // stops windows.h including winsock.h
 #include <windows.h>
@@ -123,7 +124,7 @@ bool Endpoint::Create( int type, EndpointAddrlist remote, EndpointAddrlist local
     EndpointAddress try_local, try_remote;
     m_type = type & EP_SOCK_MASK;
     m_server = type & SERVER;
-    m_sockfd = m_servfd = 0;
+    m_sockfd = m_servfd = -1;
 
     m_bool = false;
     m_error_cat = EP_ERROR_NONE;
@@ -236,16 +237,18 @@ bool Endpoint::Create( int type, EndpointAddrlist remote, EndpointAddrlist local
         }
 
         // Ok...a local address was given, do a passive open?
-	// This is not always the case, a local address can be given and
+        // This is not always the case, a local address can be given and
         // the socket be an active open, although thats rare.
         // - Only TCP servers require listen() and accept()
         if ((type & SERVER) && (type & EP_SOCK_MASK) == TCP && m_bool == true)
         {
             // What to do here? Data transfer occurs over newfd,
             // but the current fd is bound to the local address
-	    m_servfd = m_sockfd;
+            m_servfd = m_sockfd;
             m_local_server = m_local;
-            m_sockfd = 0;
+
+            // GW: make the socked invalid, because it is now handled by m_servfd
+            m_sockfd = -1;
             listen(m_servfd, 10);
 
             if( options == DOACCEPT )
@@ -285,7 +288,7 @@ bool Endpoint::Create( int type, EndpointAddrlist remote, EndpointAddrlist local
 
              // Only socket() if doesn't exist yet; it may have been
              // created and bound in the previous step
-             if (!m_sockfd)
+             if (m_sockfd < 0)
              {
                  if (m_type >= RAW_BASE && g_raw_sockfd)
                      m_sockfd = g_raw_sockfd;
@@ -294,7 +297,7 @@ bool Endpoint::Create( int type, EndpointAddrlist remote, EndpointAddrlist local
                                        try_remote.ai_protocol);
              }
 
-             if (m_sockfd <= 0)
+             if (m_sockfd < 0)
              {
                 m_error_cat = EP_ERROR_SOCKET;
                 SetLastError();
@@ -306,6 +309,7 @@ bool Endpoint::Create( int type, EndpointAddrlist remote, EndpointAddrlist local
                    << " protocol=" << try_remote.ai_protocol;
                 m_error_str = ss.str();
                 */
+                continue;
              }
              if (m_type < RAW_BASE)  // only if not raw (will be in header)
              {
@@ -340,24 +344,26 @@ bool Endpoint::Create( int type, EndpointAddrlist remote, EndpointAddrlist local
         }
 
         // Get local socket name = local address
-        sockaddr* sa = new sockaddr;
+        sockaddr sa;
 #ifdef _WIN32
         int n;
 #else
         unsigned int n;
 #endif
         n = sizeof(sockaddr);
-        getsockname(m_sockfd, sa, &n);
-
-        if (!m_local && (type & EP_SOCK_MASK) == TCP)
-            m_local = EndpointAddress(sa, SOCK_STREAM);
-        else if (!m_local && (type & EP_SOCK_MASK) == UDP)
-            m_local = EndpointAddress(sa, SOCK_STREAM);
-        else if (!m_local && (type & EP_SOCK_MASK) >= RAW_BASE)
-            m_local = EndpointAddress(sa, SOCK_STREAM);
+        if (getsockname(m_sockfd, &sa, &n) == 0) {
+            if (!m_local && (type & EP_SOCK_MASK) == TCP)
+                m_local = EndpointAddress(&sa, SOCK_STREAM);
+            else if (!m_local && (type & EP_SOCK_MASK) == UDP)
+                m_local = EndpointAddress(&sa, SOCK_STREAM);
+            else if (!m_local && (type & EP_SOCK_MASK) >= RAW_BASE)
+                m_local = EndpointAddress(&sa, SOCK_STREAM);
+        }else{
+            LOG_ERROR("Met", "Unable to acquire socket name")
+        }
 
         // Don't need to getpeername() because its specified
-        delete sa;
+
         } else { // not CLIENT (i.e., SERVER)
 #ifdef _EP_DEBUG
             std::cout << "ignoring remote address for server" << std::endl;
@@ -386,7 +392,7 @@ bool Endpoint::Accept()
   // This is not always the case, a local address can be given and
   // the socket be an active open, although thats rare.
   // - Only TCP servers require listen() and accept()
-  if( (m_server & SERVER) && (m_type & EP_SOCK_MASK) == TCP && m_bool == true && m_servfd > 0 )
+  if( (m_server & SERVER) && (m_type & EP_SOCK_MASK) == TCP && m_bool == true && m_servfd >= 0 )
   {
      // Don't need to getsockname() because local endpoint is given
      // Passive open (accept), returned sockaddr will be peer name
@@ -407,7 +413,7 @@ bool Endpoint::Accept()
 
 
     int newfd = accept(m_servfd, sa, &n);
-    if (newfd > 0)
+    if (newfd >= 0)
     {
       m_sockfd = newfd;
 #ifdef _EP_DEBUG
@@ -421,8 +427,11 @@ bool Endpoint::Accept()
       // cannot do this until 1) the connection is accepted
       // and 2) until sa* is finished being used (stores
       // the remote address).
-      getsockname( m_sockfd, sa, &n );
-      m_local = EndpointAddress(sa, m_type);
+      if (getsockname( m_sockfd, sa, &n ) != 0) {
+          m_local = EndpointAddress(sa, m_type);
+      }else{
+          LOG_ERROR("Net", "Unable to acquire socket name:" << strerror(errno));
+      }
 
       return true;
     }
@@ -920,13 +929,17 @@ void Endpoint::setup_raw(std::string argv0)
 				<< "Also, make sure the owner is root: chown root " << argv0
 				<< std::endl;
 			//exit(-2);
+            close(rawfd);
 			return;
 		}
 	#endif
 
     // Set to real user ID so any further bugs won't compromise root
 #ifndef _WIN32
-    setuid(getuid());
+    if (setuid(getuid()) < 0) {
+        LOG_ERROR("Net", "Error dropping privileges:" << strerror(errno));
+    }
+
 #endif
 
    Endpoint::set_raw_sockfd(rawfd);
@@ -945,7 +958,7 @@ bool Endpoint::Close()
 {
   EndpointAddress blank;
   m_remote = blank;
-  if( m_sockfd > 0 )
+  if( m_sockfd >= 0 )
   {
 #ifdef _WIN32
     closesocket ( m_sockfd );
@@ -953,7 +966,7 @@ bool Endpoint::Close()
     close ( m_sockfd );
 #endif
   }
-  m_sockfd = 0;
+  m_sockfd = -1;
   return true;
 }
 
@@ -991,7 +1004,7 @@ void Endpoint::ShutdownSocket(int socketID, EP_Mode mode)
 
 bool Endpoint::CloseServer()
 {
-  if( m_servfd > 0 )
+  if( m_servfd >= 0 )
   {
 #ifdef _WIN32
     closesocket ( m_servfd );
@@ -999,7 +1012,7 @@ bool Endpoint::CloseServer()
     close ( m_servfd );
 #endif
   }
-  m_servfd = 0;
+  m_servfd = -1;
   return true;
 }
 
