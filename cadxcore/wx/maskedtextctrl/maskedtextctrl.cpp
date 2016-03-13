@@ -16,6 +16,7 @@
 
 #include "wx/wxprec.h"
 #include "maskedtextctrl.h"
+#include <api/controllers/icontroladorlog.h>
 
 IMPLEMENT_DYNAMIC_CLASS(wxMaskData, wxObject)
 IMPLEMENT_DYNAMIC_CLASS(wxMaskedTextCtrl, wxTextCtrl)
@@ -1386,16 +1387,17 @@ void wxMaskedTextCtrl::Clear()
 		long nSelectionEnd = 0;
 		GetSelection(&nSelectionStart, &nSelectionEnd);
 
-		// First do our version of the cut.
-		/*int nDeleteCount =*/ DeleteRange(nSelectionStart, nSelectionEnd);
+                // First do our version of the cut.
+        if (nSelectionStart != nSelectionEnd) {
+            int nDeleteCount = DeleteRange(nSelectionStart, nSelectionEnd);
+
+            // if the selection is not empty there should be some debug message
+            if (nDeleteCount != 0)
+                LOG_DEBUG("wx", "Deletecount zero even though the selection was not empty");
+        }
 
 		// Now we update with our standard mask.
 		UpdateControl(nSelectionStart);
-/*		if(nDeleteCount==0)
-		{
-			// I don't think we want to beep if no input characters were cleared.
-			//ValidationError();
-		}*/
 	}
 }
 
