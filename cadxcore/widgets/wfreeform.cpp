@@ -396,20 +396,21 @@ bool GNC::GCS::Widgets::WFreeForm::HitTest(float x, float y, const GNC::GCS::Vec
 {
 	//distance to each line....
 	bool hits = false;
+    if (m_Vertices.empty())
+        return false;
+
 	GNC::GCS::Vector point(x, y);
-	VerticesPoligono::iterator prev;
-	for (VerticesPoligono::iterator it = m_Vertices.begin(); !hits && it != m_Vertices.end(); ++it) 
+    hits = HitTest(m_Vertices.front(), m_Vertices.back(), point, u);
+
+    VerticesPoligono::iterator prev = m_Vertices.begin();
+    VerticesPoligono::iterator it = prev;
+    ++it;
+
+    while (!hits && (it != m_Vertices.end()))
 	{
-		//distance between two nodes
-		if (it == m_Vertices.begin())
-		{
-			hits = HitTest(m_Vertices.front(), m_Vertices.back(), point, u);
-		} 
-		else
-		{
-			hits = HitTest((*prev), (*it), point, u);
-		}
-		prev = it;
+        hits = HitTest((*prev), (*it), point, u);
+        prev = it;
+        ++it;
 	}
 	return hits;
 }
