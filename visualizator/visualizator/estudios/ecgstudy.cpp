@@ -570,10 +570,10 @@ void GNKVisualizator::ECGStudy::LoadChannels()
 		int numSamples = 0;
 		double samplingFreq = 0.0;
 		short paddingValue = 0;
-		std::string orig;
-		std::string groupLabel;	
-		int bitsAllocated;
-		std::string waveFormSampleInterpretation;
+        std::string orig("unknown");
+        std::string groupLabel("unknown");
+        int bitsAllocated;
+        std::string waveFormSampleInterpretation("unknown");
 		
 		for (GIL::DICOM::DicomDataset::DatasetList::reverse_iterator itSequences = waveformSeq->items.rbegin(); itSequences != waveformSeq->items.rend(); ++itSequences) 
 		{
@@ -587,10 +587,13 @@ void GNKVisualizator::ECGStudy::LoadChannels()
 			Get(wf.getTag(TAGS::SamplingFrequency), samplingFreq);
 			//FIXME mal no pilla bien el padding value porque es de tipo ox
 			Get(wf.getTag(TAGS::WaveformPaddingValue), paddingValue);
-			wf.getTag(TAGS::WaveformOriginality, orig);
-			wf.getTag(TAGS::MultiplexGroupLabel, groupLabel);
+            if (!wf.getTag(TAGS::WaveformOriginality, orig))
+                LOG_DEBUG("ECGStudy", "Tag " << TAGS::WaveformOriginality << "not found");
+            if (!wf.getTag(TAGS::MultiplexGroupLabel, groupLabel))
+                LOG_DEBUG("ECGStudy", "Tag " << TAGS::MultiplexGroupLabel << "not found");
 			Get(wf.getTag(TAGS::WaveformBitsAllocated), bitsAllocated);
-			wf.getTag(TAGS::WaveformSampleInterpretation, waveFormSampleInterpretation);
+            if (!wf.getTag(TAGS::WaveformSampleInterpretation, waveFormSampleInterpretation))
+                LOG_DEBUG("ECGStudy", "Tag " << TAGS::WaveformSampleInterpretation << "not found");
 			if (bitsAllocated != 16 || waveFormSampleInterpretation != "SS") {
 				LOG_ERROR("ECGStudy", "We are unnable to interpret bitsAllocated=" << bitsAllocated << " waveFormSampleInterpretation=" << waveFormSampleInterpretation);
 				throw GNC::GCS::ControladorCargaException(_Std("ECG format not supported"), "ECGStudy");
