@@ -1105,6 +1105,12 @@ void wxThumbnailCtrl::ScrollIntoView(int n, int keyCode)
     int ppuX, ppuY;
     GetScrollPixelsPerUnit(& ppuX, & ppuY);
 
+    // just maake sure they are not zero. Assertiopn would also do, but would crash the program
+    if (ppuX == 0)
+        ppuX = 1;
+    if (ppuY == 0)
+        ppuY = 1;
+
     int startX, startY;
     GetViewStart(& startX, & startY);
     startX = 0;
@@ -1143,14 +1149,14 @@ void wxThumbnailCtrl::ScrollIntoView(int n, int keyCode)
         {
             // Make it scroll so this item is at the top
             // of the window
-            int y = rect.y ;
+            double y = rect.y ;
             SetScrollbars(ppuX, ppuY, sx, sy, 0, (int) (0.5 + y/ppuY));
         }
         else if ((rect.y + rect.height) > (clientSize.y + startY))
         {
             // Make it scroll so this item is at the bottom
             // of the window
-            int y = rect.y - (clientSize.y - m_thumbnailOverallSize.y - m_spacing) ;
+            double y = rect.y - (clientSize.y - m_thumbnailOverallSize.y - m_spacing) ;
             SetScrollbars(ppuX, ppuY, sx, sy, 0, (int) (0.5 + y/ppuY));
         }
     }
