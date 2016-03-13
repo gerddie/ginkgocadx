@@ -188,8 +188,11 @@ OFCondition Association::SendObject(DcmDataset *dataset) {
 
     bzero((char*) & req, sizeof (req));
     req.MessageID = msgId;
-    strncpy(req.AffectedSOPClassUID, sopClass, sizeof (req.AffectedSOPClassUID));
-    strncpy(req.AffectedSOPInstanceUID, sopInstance, sizeof (req.AffectedSOPInstanceUID));
+    strncpy(req.AffectedSOPClassUID, sopClass, sizeof (req.AffectedSOPClassUID)-1);
+    req.AffectedSOPClassUID[sizeof (req.AffectedSOPClassUID)-1] = 0;
+    strncpy(req.AffectedSOPInstanceUID, sopInstance, sizeof (req.AffectedSOPInstanceUID)-1);
+    req.AffectedSOPInstanceUID[sizeof(req.AffectedSOPInstanceUID)-1] = 0;
+
     req.DataSetType = DIMSE_DATASET_PRESENT;
     req.Priority = DIMSE_PRIORITY_LOW;
 
@@ -404,16 +407,21 @@ const std::string& Association::GetOurAET() {
     return m_ourAET;
 }
 
+#warning This code returns a pointer to a static variable, that is not thread save
+// This function should be deprecates and replaced by a version that returns
+// the OFString.
+
 const char* Association::GetKey(DcmDataset* query, const DcmTagKey& tag) {
     OFString val;
     static char buffer[129];
     query->findAndGetOFString(tag, val, 0, OFTrue);
-	 #if defined(_WINDOWS)
-	 strncpy_s(buffer, val.c_str(), sizeof (buffer));
+#if defined(_WINDOWS)
+     strncpy_s(buffer, val.c_str(), sizeof (buffer) - 1);
 #else
-    strncpy(buffer, val.c_str(), sizeof (buffer));
-#endif
+     strncpy(buffer, val.c_str(), sizeof (buffer) - 1);
 
+#endif
+     buffer[sizeof (buffer) - 1] = 0;
     return buffer;
 }
 
