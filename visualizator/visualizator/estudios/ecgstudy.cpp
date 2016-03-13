@@ -555,9 +555,14 @@ void GNKVisualizator::ECGStudy::LoadChannels()
 		{
 			
 			pDICOMManager->CargarFichero(GetPathActiveImage(), *base, false);
-			pDICOMManager->FindTag(0x5400, 0x1010, tag);
+            bool tag_found = pDICOMManager->FindTag(0x5400, 0x1010, tag);
 
 			GNC::GCS::IEntorno::Instance()->GetPACSController()->LiberarInstanciaDeDICOMManager(pDICOMManager);
+            if (!tag_found) {
+                LOG_WARN("ECGStudy","Got data set that should contain waveform data, but the tag (0x5400, 0x1010) is not available");
+                return;
+            }
+
 		}
 		else {
 			GNC::GCS::IEntorno::Instance()->GetPACSController()->LiberarInstanciaDeDICOMManager(pDICOMManager);
@@ -662,11 +667,14 @@ void GNKVisualizator::ECGStudy::LoadChannels()
 			}//for channels
 
 			{
-				short* data = (short*)tag.GetValor();
-				for (int i = 0; i < numSamples; i++) {
-					for (TListChannelInfo::iterator it = group.Channels.begin(); it != group.Channels.end(); ++it) {
+
+                auto nSamples = tag.GetSize() / 2; // size is given in byte
+                short* data = (short*)tag.GetValor();
+                unsigned int samplepos = 0;
+                for (int i = 0; i < numSamples && samplepos < nSamples; i++) {
+                    for (TListChannelInfo::iterator it = group.Channels.begin(); it != group.Channels.end(); ++it, ++samplepos) {
 						GNKVisualizator::ChannelInfo& c = *it;
-						c.Samples.push_back(*(data++));
+                        c.Samples.push_back(*data++);
 					}
 				}
 
