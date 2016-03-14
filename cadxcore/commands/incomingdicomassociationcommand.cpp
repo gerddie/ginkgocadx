@@ -59,7 +59,7 @@
 #include <main/controllers/controladoreventos.h>
 struct StoreCallbackData
 {
-	std::string imageFileName;
+    //std::string imageFileName;
 	DcmFileFormat* dcmff;
 	T_ASC_Association* assoc;
 };
@@ -425,9 +425,15 @@ void GADAPI::PACS::IncomingDicomAssociationCommand::storeSCP( T_ASC_Association 
 
 	if (m_TempDir.size() == 0) {
 		 m_TempDir = GNC::Entorno::Instance()->CreateGinkgoTempFile();
-	}
+    }
 
-	std::string fileName = tempnam(m_TempDir.c_str(), "sscpfile_");
+    // still not secure, but no longer a resource leak
+    char *fileName = tempnam(m_TempDir.c_str(), "sscpfile_");
+    if (!fileName) {
+        LOG_ERROR(ambitolog, "Unable to create unique file name:"<< strerror(errno));
+        *rcond = makeOFCondition(OFM_dcmnet, 20, OF_error, "IncomingDicomAssociationCommand::storeSCP: unable to create unique file name");
+        return;
+    }
 
 	// dump some information if required
 	OFString str;
@@ -437,7 +443,6 @@ void GADAPI::PACS::IncomingDicomAssociationCommand::storeSCP( T_ASC_Association 
 	// intialize some variables
 	StoreCallbackData callbackData;
 	callbackData.assoc = assoc;
-	callbackData.imageFileName = fileName.c_str();
 	DcmFileFormat dcmff;
 	callbackData.dcmff = &dcmff;
 
@@ -455,7 +460,8 @@ void GADAPI::PACS::IncomingDicomAssociationCommand::storeSCP( T_ASC_Association 
 	// DIMSE_storeProvider must be called with certain parameters.
 	bool opt_useMetaheader = true;
 	int opt_dimse_timeout = 60;
-	cond = DIMSE_storeProvider(assoc, presID, req, fileName.c_str(), opt_useMetaheader, NULL, storeSCPCallback, &callbackData, DIMSE_NONBLOCKING, opt_dimse_timeout);
+    cond = DIMSE_storeProvider(assoc, presID, req, fileName, opt_useMetaheader, NULL, storeSCPCallback, &callbackData, DIMSE_NONBLOCKING, opt_dimse_timeout);
+
 
 
 	// if some error occured, dump corresponding information and remove the outfile if necessary
@@ -464,13 +470,13 @@ void GADAPI::PACS::IncomingDicomAssociationCommand::storeSCP( T_ASC_Association 
 		OFString temp_str;
 		LOG_ERROR(ambitolog, "Store SCP Failed: " << DimseCondition::dump(temp_str, cond));
 		// remove file
-		if (strcmp(fileName.c_str(), NULL_DEVICE_NAME) != 0)
-			OFStandard::deleteFile(fileName.c_str());
+        if (strcmp(fileName, NULL_DEVICE_NAME) != 0)
+            OFStandard::deleteFile(fileName);
 	}
 	else {
-		m_DicomFileList.push_back(fileName);
+        m_DicomFileList.push_back(std::string(fileName));
 	}
-	
+    free(fileName);
 	*rcond = cond;
 }
 
