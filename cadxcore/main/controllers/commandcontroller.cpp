@@ -464,6 +464,16 @@ void GNC::CommandController::ProcessSync(GNC::GCS::IComando* cmd, bool autodelet
 
 void GNC::CommandController::ProcessAsync(const std::string& /*str*/, GNC::GCS::IComando* cmd, void * owner)
 {
+    // in the release build we don't want to crash the program here
+#ifdef NDEBUG
+    if (!cmd) {
+            LOG_ERROR("CommandController", "Initiate command with an empty command structure");
+            return;
+    }
+#else
+    assert(cmd);
+#endif
+
 	cmd->SetOwner(owner);
 	cmd->SetNotificadorProgreso(NULL);
 	CommandLauncher* thread = threadPool->Borrow();
