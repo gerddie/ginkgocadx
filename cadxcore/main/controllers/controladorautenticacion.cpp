@@ -417,7 +417,7 @@ std::string GSEC::Auth::ControladorAutenticacion::GetHashPassword(const std::str
 
 GNC::GCS::Ptr<wxSQLite3Database> GSEC::Auth::ControladorAutenticacion::GetNewConexionSeguridad()
 {
-	wxSQLite3Database* pConexion = new wxSQLite3Database();
+    GNC::GCS::Ptr<wxSQLite3Database> pConexion(new wxSQLite3Database());
 	try{
 		//pillamos la bbdd
 		std::string pathFicheroDB;
