@@ -23,6 +23,7 @@
 #include <api/controllers/ipacscontroller.h>
 #include <api/controllers/ieventscontroller.h>
 #include <main/controllers/commandcontroller.h>
+#include <api/controllers/icontroladorlog.h>
 #include <eventos/mensajes.h>
 #include <main/entorno.h>
 #include <main/controllers/historycontroller.h>
@@ -145,6 +146,11 @@ namespace GADAPI
 	void AcquireFromURLCommand::ProcesarEvento(GNC::GCS::Events::IEvent *evt)
 	{
 		GNC::GCS::Events::EventoProgresoComando* pEvt = dynamic_cast<GNC::GCS::Events::EventoProgresoComando*> (evt);
+        if (!pEvt) {
+            LOG_TRACE("Net", "AcquireFromURLCommand::ProcesarEvento: unexpected event type, ignore");
+            return;
+        }
+
 		GNC::GCS::IComando* pCmd = pEvt->GetComando();
 		if (pCmd != NULL && pCmd->GetOwner() == this &&pEvt->GetTipo() == GNC::GCS::Events::EventoProgresoComando::TEP_Finalizado)
 		{
