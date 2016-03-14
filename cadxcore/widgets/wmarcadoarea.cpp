@@ -202,7 +202,11 @@ GNC::GCS::Widgets::TipoCursor GNC::GCS::Widgets::WMarcadoAreaBuilder::GetCursor(
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //region "Constructor y destructor"
 
-GNC::GCS::Widgets::WMarcadoArea::WMarcadoArea(GNC::GCS::Widgets::WMarcadoAreaBuilder::ModoMarcado modo, IWidgetsManager* pManager, unsigned int vid, VerticesPoligono& vertices, long gid,  GNC::GCS::Widgets::Observadores::IObservadorMarcadoArea* pObservador, const char* nombre) : GNC::GCS::Widgets::IWidget(pManager, vid, nombre,gid), GNC::GCS::Widgets::Notificadores::INotificadorMarcadoArea(pObservador)
+GNC::GCS::Widgets::WMarcadoArea::WMarcadoArea(GNC::GCS::Widgets::WMarcadoAreaBuilder::ModoMarcado modo, IWidgetsManager* pManager,
+                                              unsigned int vid, VerticesPoligono& vertices, long gid,
+                                              GNC::GCS::Widgets::Observadores::IObservadorMarcadoArea* pObservador, const char* nombre) :
+    GNC::GCS::Widgets::IWidget(pManager, vid, nombre,gid), GNC::GCS::Widgets::Notificadores::INotificadorMarcadoArea(pObservador),
+    m_AreaMetrica(0.0f)
 {
 	m_Vertices = vertices;
 
