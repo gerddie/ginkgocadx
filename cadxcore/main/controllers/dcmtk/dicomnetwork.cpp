@@ -184,6 +184,7 @@ OFCondition GIL::DICOM::DCMTK::Network::ASC_ConnectAssociation(Association* asso
 		
 		if (! tLayer->checkPrivateKeyMatchesCertificate())
 		{
+            delete tLayer;
 			return makeOFCondition(OFM_dcmtls, DULC_TLSERROR, OF_error, "TLS Error: Private key and certificate do not match");
 		}
 		
