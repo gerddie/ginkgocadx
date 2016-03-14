@@ -34,7 +34,8 @@ namespace GIL {
 				TE_Error,
 				TE_Warning,
 				TE_Enviado,
-				TE_Pendiente				
+                TE_Pendiente,
+                TE_Unknown
 			} TEstado;
 			int m_id;
 			std::string m_mensaje;
@@ -49,18 +50,20 @@ namespace GIL {
 				: m_id(id), m_mensaje(mensaje), m_fecha(fecha), m_mensajeError(mensajeError), m_destino(destino), m_msgControlId(msgControlId), m_protocolo(protocolo), m_procesarACK(procesarACK)
 			{
 				switch(estado) {
-					case 'S':
-						m_estado = TE_Enviado;
-						break;
-					case 'N':
-						m_estado = TE_Pendiente;
-						break;
-					case 'W':
-						m_estado = TE_Warning;
-						break;
-					case 'E':
-						m_estado = TE_Error;
-						break;
+                case 'S':
+                    m_estado = TE_Enviado;
+                    break;
+                case 'N':
+                    m_estado = TE_Pendiente;
+                    break;
+                case 'W':
+                    m_estado = TE_Warning;
+                    break;
+                case 'E':
+                    m_estado = TE_Error;
+                    break;
+                default:
+                    m_estado = TE_Unknown;
 				}				
 			}
 

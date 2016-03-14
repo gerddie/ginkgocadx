@@ -383,6 +383,8 @@ namespace GNC {
 							data.push_back(_("Error"));
 							data.push_back(wxString::FromUTF8((*it).m_mensajeError.c_str()));
 							break;
+                    default:
+                        LOG_DEBUG("HL7", "VentanaControlHL7::RefrescarMensajes: unknown message state");
 					}
 					data.push_back(wxString::FromUTF8((*it).m_mensaje.c_str()));
 					data.push_back(wxString::Format(wxT("%d"), (*it).m_id));
