@@ -63,7 +63,7 @@ Endpoint::Endpoint( int type, std::string remote, std::string local, int options
         EndpointAddrlist(local, "", type), options );
 }
 
-Endpoint::Endpoint( int type, std::string address )
+Endpoint::Endpoint( int type, std::string address ):Endpoint()
 { 
 	Create( type, address ); 
 }
@@ -348,6 +348,13 @@ bool Endpoint::Create( int type, const EndpointAddrlist& _remote, const Endpoint
              }
         }
 
+        // we were not able to establishe a connection
+        if (m_sockfd < 0) {
+            LOG_ERROR("Net", "Unable to open socket");
+            m_bool = false;
+            return false;
+        }
+
         // Get local socket name = local address
         sockaddr sa;
 #ifdef _WIN32
@@ -364,7 +371,7 @@ bool Endpoint::Create( int type, const EndpointAddrlist& _remote, const Endpoint
             else if (!m_local && (type & EP_SOCK_MASK) >= RAW_BASE)
                 m_local = EndpointAddress(&sa, SOCK_STREAM);
         }else{
-            LOG_ERROR("Met", "Unable to acquire socket name")
+            LOG_ERROR("Net", "Unable to acquire socket name")
         }
 
         // Don't need to getpeername() because its specified
@@ -377,7 +384,7 @@ bool Endpoint::Create( int type, const EndpointAddrlist& _remote, const Endpoint
     }
 
    // Always set IP_HDRINCL on raw sockets so we can write the IP header
-   if (m_type >= RAW_BASE)
+   if (m_bool && (m_type >= RAW_BASE))
    {
        int on = 1;
        if (setsockopt(m_sockfd, IPPROTO_IP, IP_HDRINCL, (const char*)&on, sizeof(on)) < 0)
