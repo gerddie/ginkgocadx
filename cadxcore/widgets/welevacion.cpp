@@ -45,8 +45,10 @@ GNC::GCS::Widgets::WElevacionBuilder::WElevacionBuilder(GNC::GCS::IWidgetsManage
 	m_ListaCreada = false;
 	m_RadioCacheado = 0.0f;
 	m_LIndex = 0;
-	m_pRepActiva = NULL;
+    m_pRepActiva = nullptr;
 	m_Dentro = true;
+    m_RepresentacionActiva = 0;
+    m_pObservador = nullptr;
 }
 
 GNC::GCS::Widgets::WElevacionBuilder::~WElevacionBuilder()
