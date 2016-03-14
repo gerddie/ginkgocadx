@@ -70,8 +70,7 @@ std::list<std::string> GIL::ParserXMLSpanish::GetKeys()
 void GIL::ParserXMLSpanish::ParseIntegrationXML(GIL::IntegrationModelList& models, wxXmlNode* pRoot) 
 {
 	MapaServers servers;
-	std::string xpp; // XML Pretty Printed for extended information info.
-	// PreCargamos la lista de PACS de la configuracion
+    // PreCargamos la lista de PACS de la configuracion
 	DicomServerList::TServerList ListOfServers = DicomServerList::Instance()->GetServerList();
 	for (DicomServerList::TServerList::iterator it = ListOfServers.begin(); it != ListOfServers.end(); ++it)
 	{
@@ -97,7 +96,7 @@ void GIL::ParserXMLSpanish::ParseIntegrationXML(GIL::IntegrationModelList& model
 					pacsServer.sid = propVal.ToUTF8();
 				}
 				else {
-					throw IntegrationException(_Std("Omitted Identificator"), xpp, "CONF/pacs");
+                    throw IntegrationException(_Std("Omitted Identificator"), "CONF/pacs");
 				}
 
 				propVal = nodo->GetAttribute(wxT("aet"), wxEmptyString);
@@ -105,7 +104,7 @@ void GIL::ParserXMLSpanish::ParseIntegrationXML(GIL::IntegrationModelList& model
 					pacsServer.AET = propVal.ToUTF8();
 				}
 				else {
-					throw IntegrationException(_Std("Omitted AET"), xpp, "CONF/pacs");
+                    throw IntegrationException(_Std("Omitted AET"), "CONF/pacs");
 				}
 
 				propVal = nodo->GetAttribute(wxT("hostname"), wxEmptyString);
@@ -113,7 +112,7 @@ void GIL::ParserXMLSpanish::ParseIntegrationXML(GIL::IntegrationModelList& model
 					pacsServer.hostname = propVal.ToUTF8();
 				}
 				else {
-					throw IntegrationException(_Std("Hostname missing"), xpp, "CONF/pacs");
+                    throw IntegrationException(_Std("Hostname missing"), "CONF/pacs");
 				}
 
 				propVal = nodo->GetAttribute(wxT("puerto"), wxEmptyString);
@@ -121,7 +120,7 @@ void GIL::ParserXMLSpanish::ParseIntegrationXML(GIL::IntegrationModelList& model
 					pacsServer.puerto = propVal.ToUTF8();
 				}
 				else {
-					throw IntegrationException(_Std("Omitted port"), xpp, "CONF/pacs");
+                    throw IntegrationException(_Std("Omitted port"), "CONF/pacs");
 				}
 				
 				propVal = nodo->GetAttribute(wxT("tls"), wxEmptyString);
@@ -191,13 +190,13 @@ void GIL::ParserXMLSpanish::ParseIntegrationXML(GIL::IntegrationModelList& model
 					long puerto;
 					long pdu;
 					if(!wxString::FromUTF8(pacsServer.pdu.c_str()).ToLong(&pdu)) {
-						throw IntegrationException(_Std("The pdu size is not a valid number"), xpp, "CONF/pacs");
+                        throw IntegrationException(_Std("The pdu size is not a valid number"), "CONF/pacs");
 					}
 					server->PDU = pdu;
 					if(wxString::FromUTF8(pacsServer.puerto.c_str()).ToLong(&puerto)) {
 						server->Port = puerto;
 					} else {
-						throw IntegrationException(_Std("Port is not a valid number"), xpp, "CONF/pacs");
+                        throw IntegrationException(_Std("Port is not a valid number"), "CONF/pacs");
 					}
 					if (pacsServer.metodo == GIL::IModeloPACSServer::IMPS_GET) {
 						server->retrieveMethod = DicomServer::GET;
@@ -222,7 +221,7 @@ void GIL::ParserXMLSpanish::ParseIntegrationXML(GIL::IntegrationModelList& model
 					long puerto;
 					long pdu;
 					if(!wxString::FromUTF8(pacsServer.pdu.c_str()).ToLong(&pdu)) {
-						throw IntegrationException(_Std("The pdu size is not a valid number"), xpp, "CONF/pacs");
+                        throw IntegrationException(_Std("The pdu size is not a valid number"), "CONF/pacs");
 					}
 					if(wxString::FromUTF8(pacsServer.puerto.c_str()).ToLong(&puerto)) {
 						DicomServer::TRetrieveMethod retrieveMethod = DicomServer::MOVE;
@@ -231,7 +230,7 @@ void GIL::ParserXMLSpanish::ParseIntegrationXML(GIL::IntegrationModelList& model
 						}
 						DicomServerList::Instance()->AddServer( DicomServer(pacsServer.sid, pacsServer.AET, pacsServer.hostname, (int)puerto, 0, true, pdu, pacsServer.tls, pacsServer.user, pacsServer.password, retrieveMethod, "", wxString::FromUTF8(pacsServer.retrieveLevel.c_str()).Upper() == wxT("SERIES"), false, pacsServer.verify, pacsServer.cert, pacsServer.key, pacsServer.defaultCharset), true );
 					} else {
-						throw IntegrationException(_Std("The port is not a valid number"), xpp, "CONF/pacs");
+                        throw IntegrationException(_Std("The port is not a valid number"), "CONF/pacs");
 					}
 				}
 			}
@@ -249,7 +248,7 @@ void GIL::ParserXMLSpanish::ParseIntegrationXML(GIL::IntegrationModelList& model
 		GIL::IModeloIntegracion* modelo = ParsePlantilla(pRoot, servers);
 		models.push_back(modelo);
 	} else {
-		throw IntegrationException(_Std("Setting not found"), xpp, "CONF");
+        throw IntegrationException(_Std("Setting not found"), "CONF");
 	}
 }
 
@@ -259,8 +258,7 @@ GIL::IModeloIntegracion* GIL::ParserXMLSpanish::ParsePlantilla(wxXmlNode* nodo, 
 	//se extrae de la configuracion el codigo de aplicacion
 	GNC::GCS::ConfigurationController::Instance()->readStringGeneral("/GinkgoCore/HCE","CodigoAplicacion", codigoAplicacion);
 
-	std::string xpp; // XML Pretty Printed for extended information info.
-	wxString propVal;
+    wxString propVal;
 	GIL::IModeloIntegracion* modelo = new IModeloIntegracion();
 	//se copia el raw data
 	{
@@ -293,11 +291,11 @@ GIL::IModeloIntegracion* GIL::ParserXMLSpanish::ParsePlantilla(wxXmlNode* nodo, 
 			modelo->accion = GIL::IModeloIntegracion::TA_Imprimir;
 		}
 		else {
-			throw IntegrationException(_Std("\"accion\" attribute invalid at \"plantilla\" scope" ), xpp, "CONF/template");
+            throw IntegrationException(_Std("\"accion\" attribute invalid at \"plantilla\" scope" ), "CONF/template");
 		}
 	}
 	else {
-		throw IntegrationException(_Std("\"accion\" attribute expected at \"plantilla\" scope"), xpp, "CONF/template");
+        throw IntegrationException(_Std("\"accion\" attribute expected at \"plantilla\" scope"), "CONF/template");
 	}
 
 	propVal = nodo->GetAttribute(wxT("id_peticion"), wxEmptyString);
@@ -316,7 +314,7 @@ GIL::IModeloIntegracion* GIL::ParserXMLSpanish::ParsePlantilla(wxXmlNode* nodo, 
 			modelo->GlobalVariables.InsertVariable(GKDI_GLOBAL_PACS_RETRIEVE_SID, std::string(propVal.ToUTF8()), "String Id del pacs de obtencion");
 		}
 		else {
-			throw IntegrationException(_Std("\"pacs_retrieve_sid\" attribute empty at \"plantilla\" scope"), xpp, "CONF/template");
+            throw IntegrationException(_Std("\"pacs_retrieve_sid\" attribute empty at \"plantilla\" scope"), "CONF/template");
 		}					
 	}
 
@@ -326,7 +324,7 @@ GIL::IModeloIntegracion* GIL::ParserXMLSpanish::ParsePlantilla(wxXmlNode* nodo, 
 			modelo->GlobalVariables.InsertVariable(GKDI_GLOBAL_PACS_STORE_SID, std::string(propVal.ToUTF8()), "String Id del pacs de almacenamiento");
 		}
 		else {
-			throw IntegrationException(_Std("\"pacs_store_sid\" attribute empty at \"plantilla\" scope"), xpp, "CONF/template");
+            throw IntegrationException(_Std("\"pacs_store_sid\" attribute empty at \"plantilla\" scope"),  "CONF/template");
 		}					
 	}
 
@@ -343,7 +341,7 @@ GIL::IModeloIntegracion* GIL::ParserXMLSpanish::ParsePlantilla(wxXmlNode* nodo, 
 			else {
 				uid = "";
 				if(modelo->accion != GIL::IModeloIntegracion::TA_Dicomizar) {
-					throw IntegrationException(_Std("\"uid\" attribute expected at \"dimse\" scope"), xpp, "CONF/template");
+                    throw IntegrationException(_Std("\"uid\" attribute expected at \"dimse\" scope"),  "CONF/template");
 				}
 			}
 
@@ -366,13 +364,13 @@ GIL::IModeloIntegracion* GIL::ParserXMLSpanish::ParsePlantilla(wxXmlNode* nodo, 
 					//sop instance uid
 				}
 				else {
-					throw IntegrationException(_Std("\"ambito\" attribute invalid at \"dimse\" scope"), xpp, "CONF/template");
+                    throw IntegrationException(_Std("\"ambito\" attribute invalid at \"dimse\" scope"), "CONF/template");
 				}
 			}
 			else {
 				modelo->TagsDICOMOverwrite.tags["0020|000d"] = "STUDY";
 				if(modelo->accion != GIL::IModeloIntegracion::TA_Dicomizar) {
-					throw IntegrationException(_Std("\"ambito\" attribute expected at \"dimse\" scope"), xpp, "CONF/template");
+                    throw IntegrationException(_Std("\"ambito\" attribute expected at \"dimse\" scope"), "CONF/template");
 				}
 			}
 			
@@ -405,7 +403,7 @@ GIL::IModeloIntegracion* GIL::ParserXMLSpanish::ParsePlantilla(wxXmlNode* nodo, 
 						codigo =  propVal.ToUTF8();
 					}
 					else {
-						throw IntegrationException(_Std("\"codigo\" attribute expected at \"paciente\" scope"), xpp, "CONF/template");
+                        throw IntegrationException(_Std("\"codigo\" attribute expected at \"paciente\" scope"), "CONF/template");
 					}
 					propVal = hijosPaciente->GetAttribute(wxT("valor"), wxEmptyString);
 					if ( !propVal.empty() ) {
@@ -441,14 +439,14 @@ GIL::IModeloIntegracion* GIL::ParserXMLSpanish::ParsePlantilla(wxXmlNode* nodo, 
 						codigo =  propVal.ToUTF8();
 					}
 					else {
-						throw IntegrationException(_Std("\"codigo\" attribute expected at \"medico\" scope"), xpp, "CONF/template");
+                        throw IntegrationException(_Std("\"codigo\" attribute expected at \"medico\" scope"), "CONF/template");
 					}
 					propVal = hijosMedico->GetAttribute(wxT("valor"), wxEmptyString);					
 					if ( !propVal.empty() ) {
 						valor =  propVal.ToUTF8();
 					}
 					else {
-						throw IntegrationException(_Std("\"valor\" attribute expected at \"medico\" scope"), xpp, "CONF/template");
+                        throw IntegrationException(_Std("\"valor\" attribute expected at \"medico\" scope"), "CONF/template");
 					}
 					if (!modelo->GlobalVariables.Contains(GKDI_REFERRING_PHISICIAN_ID) || codigo=="NNESP") {
 						modelo->GlobalVariables.InsertVariable(GKDI_REFERRING_PHISICIAN_ID,  valor, "Referring Physician Id");
@@ -459,7 +457,7 @@ GIL::IModeloIntegracion* GIL::ParserXMLSpanish::ParsePlantilla(wxXmlNode* nodo, 
 						modelo->GlobalVariables.InsertVariable(GKDI_REFERRING_PHISICIAN_INSTITUTION_ID, std::string(propVal.ToUTF8()));
 					}
 					else {
-						throw IntegrationException(_Std("\"cid\" atribute expected at \"centro\" scope"), xpp, "CONF/template");
+                        throw IntegrationException(_Std("\"cid\" atribute expected at \"centro\" scope"), "CONF/template");
 					}
 
 					if(hijosMedico->GetChildren() != NULL){
@@ -475,7 +473,7 @@ GIL::IModeloIntegracion* GIL::ParserXMLSpanish::ParsePlantilla(wxXmlNode* nodo, 
 				modelo->GlobalVariables.InsertVariable(GKDI_HCE_ID, std::string(propVal.ToUTF8()));
 			}
 			else {
-				throw IntegrationException(_Std("\"aid\" attribute expected at \"hce\" scope"), xpp, "CONF/template");
+                throw IntegrationException(_Std("\"aid\" attribute expected at \"hce\" scope"), "CONF/template");
 			}
 		}
 
@@ -489,14 +487,14 @@ GIL::IModeloIntegracion* GIL::ParserXMLSpanish::ParsePlantilla(wxXmlNode* nodo, 
 			if ( !propVal.empty() ) {
 				codigo = propVal.Upper().ToUTF8();
 			}else {
-				throw IntegrationException(_Std("\"codigo\" attribute expected at \"metadato\" scope"), xpp, "CONF/template");
+                throw IntegrationException(_Std("\"codigo\" attribute expected at \"metadato\" scope"), "CONF/template");
 			}
 
 			propVal = hijo->GetAttribute(wxT("clave"), wxEmptyString);
 			if ( !propVal.empty() ) {
 				clave = propVal.Lower().ToUTF8();
 			}else {
-				throw IntegrationException(_Std("\"clave\" attribute expected at \"metadato\" scope"), xpp, "CONF/template");
+                throw IntegrationException(_Std("\"clave\" attribute expected at \"metadato\" scope"), "CONF/template");
 			}
 
 			propVal = hijo->GetAttribute(wxT("valor"), wxEmptyString);
@@ -527,10 +525,10 @@ GIL::IModeloIntegracion* GIL::ParserXMLSpanish::ParsePlantilla(wxXmlNode* nodo, 
 	if (modelo->accion == GIL::IModeloIntegracion::TA_Dicomizar) {
 		//solo se sobreescribe en dicomizacion
 		if (!modelo->GlobalVariables.Contains(GKDI_HCE_PETITION_ID)) {
-			throw IntegrationException(_Std("\"id_peticion\" attribute expected at \"gnkworkflow\" scope"), xpp, "CONF/template");
+            throw IntegrationException(_Std("\"id_peticion\" attribute expected at \"gnkworkflow\" scope"), "CONF/template");
 		}
 		if (!modelo->GlobalVariables.Contains(GKDI_JIMENA_AMBITO_PETICION)) {
-			throw IntegrationException(_Std("\"ambito\" attribute expected at \"plantilla\" scope"), xpp, "CONF/template");
+            throw IntegrationException(_Std("\"ambito\" attribute expected at \"plantilla\" scope"), "CONF/template");
 		}
 		if (modelo->GlobalVariables.Contains(GKDI_PATIENT_ID)) {
 			modelo->TagsDICOMOverwrite.tags["0010|0020"] = modelo->GlobalVariables.GetValue(GKDI_PATIENT_ID);
@@ -558,14 +556,14 @@ GIL::IModeloIntegracion* GIL::ParserXMLSpanish::ParsePlantilla(wxXmlNode* nodo, 
 		}
 	} else if (modelo->accion == GIL::IModeloIntegracion::TA_Obtener) {
 		if (modelo->TagsDICOMOverwrite.tags.empty()) {
-			throw IntegrationException(_Std("You must specify attributes you want to use in the query"), xpp, "CONF/template");
+            throw IntegrationException(_Std("You must specify attributes you want to use in the query"), "CONF/template");
 		}
 	}
 	if(!modelo->GlobalVariables.Contains(GKDI_HCE_ID)) {
-		throw IntegrationException(_Std("id_application expected"), xpp, "CONF/template");
+        throw IntegrationException(_Std("id_application expected"), "CONF/template");
 	}
 	if (!modelo->GlobalVariables.Contains(GKDI_PATIENT_ID) && modelo->accion == GIL::IModeloIntegracion::TA_Dicomizar) {
-		throw IntegrationException(_Std("It has been read a \"patient\" tag without identifiers"), xpp, "CONF/template");
+        throw IntegrationException(_Std("It has been read a \"patient\" tag without identifiers"), "CONF/template");
 	}
 	//se pone el codigo de aplicacion y el primer PACS de la configuracion si no nos ha venido  ninguno
 	modelo->GlobalVariables.InsertVariable(GKDI_GLOBAL_APPLICATION_CODE, codigoAplicacion);
@@ -581,7 +579,7 @@ GIL::IModeloIntegracion* GIL::ParserXMLSpanish::ParsePlantilla(wxXmlNode* nodo, 
 	if ( (modelo->accion == GIL::IModeloIntegracion::TA_Dicomizar && !modelo->GlobalVariables.Contains(GKDI_GLOBAL_PACS_STORE_SID)) || 
 		(modelo->accion == GIL::IModeloIntegracion::TA_Obtener && !modelo->GlobalVariables.Contains(GKDI_GLOBAL_PACS_RETRIEVE_SID)) ) 
 	{
-		throw IntegrationException(_Std("You must define a default PACS in the integration XML or in the settings menu"), xpp, "CONF/template");
+        throw IntegrationException(_Std("You must define a default PACS in the integration XML or in the settings menu"), "CONF/template");
 	}
 	return modelo;
 }
