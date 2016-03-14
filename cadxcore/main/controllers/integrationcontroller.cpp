@@ -591,7 +591,9 @@ void GIL::IntegrationController::ParsearModeloIntegracion(GIL::IntegrationModelL
 
 	wxStringInputStream flujoEntrada(wxString::FromUTF8(xmlString.c_str()));
 
-	xml.Load(flujoEntrada,wxT("UTF 8"));
+    if (!xml.Load(flujoEntrada,wxT("UTF 8"))) {
+        throw IntegrationException(_Std("Empty configuration"), "CONF");
+    }
 
 	wxXmlNode* raiz = xml.GetRoot();
 
@@ -635,8 +637,8 @@ void GIL::IntegrationController::ParsearModeloIntegracion(GIL::IntegrationModelL
 
 	} else {
 		std::ostringstream ostr;
-		ostr << _Std("XML Parser Not Found. Key=") << parserKey; 
-		throw IntegrationException(ostr.str(), xpp, "CONF");
+        ostr << _Std("XML Parser Not Found. Key=") << parserKey << " " << xpp;
+        throw IntegrationException(ostr.str(), "CONF");
 	}
 }
 
