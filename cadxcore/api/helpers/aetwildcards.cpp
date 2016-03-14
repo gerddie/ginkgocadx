@@ -83,7 +83,7 @@ std::string GNC::GCS::AETWildcards::Parse(const std::string& AET)
 			if ( (ret = getaddrinfo(bufHostName, NULL, &l_addrInfoHints, &l_addrInfo)) != 0 )
 			{
 				std::cout << "getaddrinfo() Error: " << ret << std::endl;
-			}
+            }
 #endif
 			else {
 				struct sockaddr_in* sockaddr_ipv4 = (struct sockaddr_in *) l_addrInfo->ai_addr;
@@ -115,7 +115,8 @@ std::string GNC::GCS::AETWildcards::Parse(const std::string& AET)
 					ss << std::setw(3) << std::setfill('0');
 					ss << (int) ( ( (*sAddr) & 0x000000FF) );
 					ip4[0] = ss.str();
-				}
+                }
+                freeaddrinfo(l_addrInfo);
 			}
 		}
 
