@@ -1220,7 +1220,7 @@ namespace GIL {
 			{
 				std::ostringstream progress;
 				progress << _Std("Downloading file") << " " << curr << "/" << sopInstanceUID.size();
-				if (!pNotificador->NotificarProgreso((float)(curr-1)/sopInstanceUID.size(), progress.str())) {
+                if (!pNotificador->NotificarProgreso((float)(curr)/sopInstanceUID.size(), progress.str())) {
 					return false;
 				}
 				std::ostringstream ostr;
