@@ -521,12 +521,13 @@ namespace GADAPI {
 	void DicomizeCommand::ProcesarEvento(GNC::GCS::Events::IEvent *evt)
 	{
 		GNC::GCS::Events::EventoProgresoComando* pEvt = dynamic_cast<GNC::GCS::Events::EventoProgresoComando*> (evt);
-		GNC::GCS::IComando* pCmd = pEvt->GetComando();
-		if (pEvt == NULL  || pEvt->GetComando() == NULL || pCmd != m_pIntegracionParams->m_pComandoEspera) {
+
+        if (pEvt == NULL  || pEvt->GetComando() == NULL || pEvt->GetComando() != m_pIntegracionParams->m_pComandoEspera) {
 			LOG_TRACE("DicomizeCommand", "Evento ignorado. No corresponde al comando de interes");
 			return;
 		}
-		if (pEvt->GetTipo() == GNC::GCS::Events::EventoProgresoComando::TEP_Finalizado)
+
+        if (pEvt->GetTipo() == GNC::GCS::Events::EventoProgresoComando::TEP_Finalizado)
 		{	
 			GADAPI::ComandoIncluirHistorial::ComandoIncluirHistorialParams* pCmdHistoryParams= dynamic_cast< GADAPI::ComandoIncluirHistorial::ComandoIncluirHistorialParams* > (m_pIntegracionParams->m_pParamsEspera);
 			if (pCmdHistoryParams != NULL) {
