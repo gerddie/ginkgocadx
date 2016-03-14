@@ -67,7 +67,7 @@ namespace GNC {
 			IPreviewLeaf()
 			{
 			}
-			IPreviewLeaf(const std::string& label, const std::string& l2) :IPreviewNode(label), label2(l2)
+                        IPreviewLeaf(const std::string& label, const std::string& l2) :IPreviewNode(label), label2(l2), file_pk(-1)
 			{
 			}
 
