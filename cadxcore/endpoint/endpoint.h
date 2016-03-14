@@ -85,12 +85,12 @@ public:
     
     Endpoint( int type, std::string remotehost, std::string remoteservice,
              std::string localhost, std::string localservice, int options = DOACCEPT );
-    Endpoint( int type, EndpointAddrlist address, int options = DOACCEPT );
-    Endpoint( int type, EndpointAddrlist local, EndpointAddrlist remote, int options = DOACCEPT );
+    Endpoint( int type, const EndpointAddrlist& address, int options = DOACCEPT );
+    Endpoint( int type, const EndpointAddrlist& local, const EndpointAddrlist& remote, int options = DOACCEPT );
     
 
-    bool Create( int type, EndpointAddrlist address, int options = DOACCEPT );
-    bool Create( int type, EndpointAddrlist remote, EndpointAddrlist local, int options = DOACCEPT );
+    bool Create( int type, const EndpointAddrlist& address, int options = DOACCEPT );
+    bool Create( int type, const EndpointAddrlist& remote, const EndpointAddrlist& local, int options = DOACCEPT );
     bool Create( int type, std::string host, std::string service, int options = DOACCEPT );
     bool Create( int type, std::string remotehost, std::string remoteservice,
                  std::string localhost, std::string localservice, int options = DOACCEPT );

@@ -56,6 +56,9 @@ class EndpointAddress : public addrinfo
 	}
 
 	EndpointAddress(sockaddr* sa, int type) {
+
+        Reset();
+
 		if (!sa)
 		{
 			m_Inicializada = false;
@@ -112,6 +115,8 @@ class EndpointAddress : public addrinfo
 		ai_flags =otra.ai_flags;
 		ai_family = otra.ai_family;
 		ai_socktype = otra.ai_socktype;
+
+        // GW: Not sure why the protocolis not copied
 		ai_protocol = 0;
 
 		ai_addr = &m_sockaddr;
@@ -134,7 +139,8 @@ class EndpointAddress : public addrinfo
 		ai_flags = otra.ai_flags;
 		ai_family = otra.ai_family;
 		ai_socktype = otra.ai_socktype;
-		ai_protocol = otra.ai_protocol;
+
+        // GW: Not sure why the protocolis not copied
 		ai_protocol = 0;
 
 		ai_addr = &m_sockaddr;
@@ -243,10 +249,10 @@ public:
                 int protocol = TCP | CLIENT, int family = AF_INET);
 
     EndpointAddrlist & operator=(const EndpointAddrlist & orig) {Copy(orig); return *this;}
-    operator bool() { return m_bool; }
+    operator bool() const { return m_bool; }
     void Copy(const EndpointAddrlist & );
 
-    EndpointAddress GetAddress();
+    EndpointAddress GetAddress() const;
     EndpointAddress GetAddressNext();
     static std::string StrIP(struct addrinfo*);
     int SetLastError();

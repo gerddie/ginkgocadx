@@ -44,22 +44,24 @@ Endpoint::Endpoint()
 	m_type = 0;
 }
 
-Endpoint::Endpoint( int type, std::string hostname, int service, int options )
+Endpoint::Endpoint( int type, std::string hostname, int service, int options ):Endpoint()
 {     
 	// we could be getting an option instead of a service-
 	// because of the Endpoint(int, string) constructor below.  
 	// option constants DOACCEPT and NOACCEPT are set to 
 	// non-service ints.
-	if( service == DOACCEPT || service == NOACCEPT )
-	{ options = service; }
+    if( service == DOACCEPT || service == NOACCEPT ){
+        options = service;
+    }
 	std::ostringstream o;         o << service;
 	Create( type, hostname, o.str(), options ); 
 }
 
-Endpoint::Endpoint( int type, std::string remote, std::string local, int options  )
+Endpoint::Endpoint( int type, std::string remote, std::string local, int options  ):Endpoint()
 { 
 	Create( type, EndpointAddrlist(remote, "", type), 
-		EndpointAddrlist(local, "", type), options ); }
+        EndpointAddrlist(local, "", type), options );
+}
 
 Endpoint::Endpoint( int type, std::string address )
 { 
@@ -67,17 +69,17 @@ Endpoint::Endpoint( int type, std::string address )
 }
 
 Endpoint::Endpoint( int type, std::string remotehost, std::string remoteservice,
-						 std::string localhost, std::string localservice, int options  )
+                    std::string localhost, std::string localservice, int options  ):Endpoint()
 { 
 	Create( type, remotehost, remoteservice, localhost, localservice, options ); 
 }
 
-Endpoint::Endpoint( int type, EndpointAddrlist address, int options  )
+Endpoint::Endpoint( int type, const EndpointAddrlist& address, int options  ):Endpoint()
 { 
 	Create( type, address, options ); 
 }
 
-Endpoint::Endpoint( int type, EndpointAddrlist local, EndpointAddrlist remote, int options )
+Endpoint::Endpoint( int type, const EndpointAddrlist& local, const EndpointAddrlist& remote, int options ):Endpoint()
 { 
 	Create( type, local, remote, options ); 
 }
@@ -101,7 +103,7 @@ bool Endpoint::Create( int type, std::string hostname, std::string service, int 
       return Create( type, EndpointAddrlist(hostname, service, type), options );
 }
 
-bool Endpoint::Create( int type, EndpointAddrlist addr, int options )
+bool Endpoint::Create( int type, const EndpointAddrlist& addr, int options )
 {
     EndpointAddrlist local, remote;
     m_type = type & EP_SOCK_MASK;
@@ -119,8 +121,11 @@ bool Endpoint::Create( int type, EndpointAddrlist addr, int options )
 }
 
 // Main creation function - all Create() calls go here
-bool Endpoint::Create( int type, EndpointAddrlist remote, EndpointAddrlist local, int options )
+bool Endpoint::Create( int type, const EndpointAddrlist& _remote, const EndpointAddrlist& _local, int options )
 {
+
+    EndpointAddrlist local = _local;
+    EndpointAddrlist remote = _remote;
     EndpointAddress try_local, try_remote;
     m_type = type & EP_SOCK_MASK;
     m_server = type & SERVER;

@@ -203,6 +203,7 @@ void EndpointAddrlist::Copy(const EndpointAddrlist & original)
 {
     m_error_code = original.m_error_code;
     m_error_str = original.m_error_str;
+    m_error_cat = original.m_error_cat;
     m_bool = original.m_bool;
     m_addrlist = original.m_addrlist;
 	m_addrs = m_addrlist.begin();
@@ -327,29 +328,21 @@ bool EndpointAddrlist::Create(std::string hostname, std::string service,
         error = getaddrinfo(str_hostname, str_service, &hints, &res);
         if (error)
         {
-	    const char* strerror = NULL;
-		 //FIXME
-      //      strerror = gai_strerror(error);
-
-            /*
-	    std::stringstream ss;
+            std::stringstream ss;
             ss << "Used hostname: "
                << (str_hostname ? str_hostname : "(null)")
                << ", service: "
 			   << (str_service ? str_service : "(null)") << std::endl;
-            ss << "getaddrinfo: " << strerror << std::endl;
+            ss << "getaddrinfo: " << strerror(errno) << std::endl;
 
             if (hints.ai_flags & AI_NUMERICHOST)
                 ss << "(A literal address, i.e. not a DNS name, is required)" << std::endl;
             m_error_str = ss.str();
-            */
 
             m_error_cat = EP_ERROR_GETADDRINFO;
             m_error_code = error;
-				if(strerror != NULL) {
-					m_error_str = strerror;
-				}
-				DeleteList();
+
+            DeleteList();
             m_bool = false;
         }
         else
@@ -411,7 +404,7 @@ bool EndpointAddrlist::Create(std::string hostname, std::string service,
 }
 
 // Get current address
-EndpointAddress EndpointAddrlist::GetAddress()
+EndpointAddress EndpointAddrlist::GetAddress() const
 { 
 	if(m_addrs != m_addrlist.end()){
 		return *m_addrs; 
