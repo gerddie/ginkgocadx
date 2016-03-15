@@ -480,7 +480,8 @@ namespace GIL {
 		}
 
 		// Conversión de transferencias
-		static OFBool decompressFile(DcmFileFormat fileformat, const char * fname, const char *outfname)
+        // coverity[PASS_BY_VALUE] (GW: assuming this was done intentional)
+        static OFBool decompressFile(DcmFileFormat fileformat, const char * fname, const char *outfname)
 		{
 			OFBool status = true;
 			OFCondition cond;
@@ -514,7 +515,8 @@ namespace GIL {
 			return status;
 		}
 
-		static OFBool compressFile(DcmFileFormat fileformat, const char * fname, const char *outfname)
+        // coverity[PASS_BY_VALUE] (GW: assuming this was done intentional)
+        static OFBool compressFile(DcmFileFormat fileformat, const char * fname, const char *outfname)
 		{
 			OFCondition cond;
 			OFBool status = true;
