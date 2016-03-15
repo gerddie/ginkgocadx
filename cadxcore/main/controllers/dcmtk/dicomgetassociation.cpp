@@ -353,7 +353,8 @@ OFCondition GetAssociation::getSCU(DcmDataset *pdset) {
 	}
 
 	req.MessageID = msgId;
-	strcpy(req.AffectedSOPClassUID, sopClass);
+    strncpy(req.AffectedSOPClassUID, sopClass, DIC_UI_LEN);
+    req.AffectedSOPClassUID[DIC_UI_LEN] = 0;
 	req.Priority = DIMSE_PRIORITY_HIGH;
 	req.DataSetType = DIMSE_DATASET_PRESENT;
 
