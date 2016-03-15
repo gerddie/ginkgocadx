@@ -1300,6 +1300,8 @@ namespace GIL {
 			{
 				wxString msg = wxString::Format(_("Uploading file %d of %d"), (int)(_numberSent+1), (int)(listaFicheros.size()) );
 				m_mensaje = std::string(msg.ToUTF8());
+
+                // coverity[CHECKED_RETURN] GW: assume that test for abort not of interest.
 				pNotificador->NotificarProgreso(0.0f, m_mensaje);
 
 				cond = cstore(assoc, *iter);
