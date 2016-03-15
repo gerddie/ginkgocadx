@@ -162,13 +162,14 @@ void* GIL::HL7::ControladorEnvioHl7::Entry()
 void GIL::HL7::ControladorEnvioHl7::ProcesarEvento(GNC::GCS::Events::IEvent *evt)
 {
 	GNC::GCS::Events::EventoProgresoComando* pEvt = dynamic_cast<GNC::GCS::Events::EventoProgresoComando*> (evt);
-	GNC::GCS::IComando* pCmd = pEvt->GetComando();
-	if (pEvt == NULL  || pEvt->GetComando() == NULL) {
+
+    if (pEvt == NULL  || pEvt->GetComando() == NULL) {
 		return;
 	}
-	if (pEvt->GetTipo() == GNC::GCS::Events::EventoProgresoComando::TEP_Finalizado)
+
+    if (pEvt->GetTipo() == GNC::GCS::Events::EventoProgresoComando::TEP_Finalizado)
 	{
-		GADAPI::SendHL7Command* pCmdSend = dynamic_cast< GADAPI::SendHL7Command * > (pCmd);
+        GADAPI::SendHL7Command* pCmdSend = dynamic_cast< GADAPI::SendHL7Command * > (pEvt->GetComando());
 		if (pCmdSend != NULL)
 		{
 			m_semaphore.Post();
