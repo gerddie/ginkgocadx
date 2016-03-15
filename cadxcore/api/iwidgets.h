@@ -96,7 +96,7 @@ namespace GNC {
 				*this = otro;
 			}
 
-			inline Nodo(const Vector& otro)
+            inline Nodo(const Vector& otro):Nodo()
 			{
 
 				*this = otro;
