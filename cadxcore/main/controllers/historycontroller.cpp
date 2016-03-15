@@ -315,11 +315,15 @@ void GNC::GCS::HistoryController::ReloadHistory(const std::string& pathDicomDir,
 
 		wxString wxDirectorio = FROMPATH(GetGinkgoDicomDir());
 		if(!wxDirExists(wxDirectorio)){
+            bool success;
 #ifdef _WIN32
-			wxMkdir(wxDirectorio,511);
+            success = wxMkdir(wxDirectorio,511);
 #else
-			wxMkDir(wxDirectorio.ToUTF8(), 0770);
+            success = wxMkDir(wxDirectorio.ToUTF8(), 0770);
 #endif
+            if (!success) {
+                LOG_ERROR(LOGGER, "unable to create directory '" << wxDirectorio.c_str() << "'");
+            }
 		}
 
 		//existe el historial??
