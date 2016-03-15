@@ -871,10 +871,13 @@ OFCondition PrintAssociation::createRQ(
   // construct N-CREATE-RQ
   request.CommandField = DIMSE_N_CREATE_RQ;
   request.msg.NCreateRQ.MessageID = assoc->nextMsgID++;
-  strcpy(request.msg.NCreateRQ.AffectedSOPClassUID, sopclassUID);
+  strncpy(request.msg.NCreateRQ.AffectedSOPClassUID, sopclassUID, DIC_UI_LEN);
+  request.msg.NCreateRQ.AffectedSOPClassUID[DIC_UI_LEN] = 0;
+
   if (sopinstanceUID.size() > 0)
   {
-    strcpy(request.msg.NCreateRQ.AffectedSOPInstanceUID, sopinstanceUID.c_str());
+    strncpy(request.msg.NCreateRQ.AffectedSOPInstanceUID, sopinstanceUID.c_str(), DIC_UI_LEN);
+    request.msg.NCreateRQ.AffectedSOPInstanceUID[DIC_UI_LEN] = 0;
     request.msg.NCreateRQ.opts = O_NCREATE_AFFECTEDSOPINSTANCEUID;
   } else {
     request.msg.NCreateRQ.AffectedSOPInstanceUID[0] = 0;
@@ -931,8 +934,10 @@ OFCondition PrintAssociation::setRQ(
   // construct N-SET-RQ
   request.CommandField = DIMSE_N_SET_RQ;
   request.msg.NSetRQ.MessageID = assoc->nextMsgID++;
-  strcpy(request.msg.NSetRQ.RequestedSOPClassUID, sopclassUID);
-  strcpy(request.msg.NSetRQ.RequestedSOPInstanceUID, sopinstanceUID);
+  strncpy(request.msg.NSetRQ.RequestedSOPClassUID, sopclassUID, DIC_UI_LEN);
+  request.msg.NSetRQ.RequestedSOPClassUID[DIC_UI_LEN] = 0;
+  strncpy(request.msg.NSetRQ.RequestedSOPInstanceUID, sopinstanceUID, DIC_UI_LEN);
+  request.msg.NSetRQ.RequestedSOPInstanceUID[DIC_UI_LEN] = 0;
    
   OFCondition cond = sendNRequest(presCtx, request, modificationList, response, statusDetail, attributeListOut);
   if (cond.good()) status = response.msg.NSetRSP.DimseStatus;
@@ -977,8 +982,11 @@ OFCondition PrintAssociation::getRQ(
   // construct N-GET-RQ
   request.CommandField = DIMSE_N_GET_RQ;
   request.msg.NGetRQ.MessageID = assoc->nextMsgID++;
-  strcpy(request.msg.NGetRQ.RequestedSOPClassUID, sopclassUID);
-  strcpy(request.msg.NGetRQ.RequestedSOPInstanceUID, sopinstanceUID);
+  strncpy(request.msg.NGetRQ.RequestedSOPClassUID, sopclassUID, DIC_UI_LEN);
+  request.msg.NGetRQ.RequestedSOPClassUID[DIC_UI_LEN] = 0;
+  strncpy(request.msg.NGetRQ.RequestedSOPInstanceUID, sopinstanceUID, DIC_UI_LEN);
+  request.msg.NGetRQ.RequestedSOPInstanceUID[DIC_UI_LEN] = 0;
+
   request.msg.NGetRQ.ListCount = 0;
   if (attributeIdentifierList) request.msg.NGetRQ.ListCount = (int)numShorts;
   request.msg.NGetRQ.AttributeIdentifierList = (DIC_US *)attributeIdentifierList;
@@ -1027,8 +1035,10 @@ OFCondition PrintAssociation::actionRQ(
   // construct N-ACTION-RQ
   request.CommandField = DIMSE_N_ACTION_RQ;
   request.msg.NActionRQ.MessageID = assoc->nextMsgID++;
-  strcpy(request.msg.NActionRQ.RequestedSOPClassUID, sopclassUID);
-  strcpy(request.msg.NActionRQ.RequestedSOPInstanceUID, sopinstanceUID);
+  strncpy(request.msg.NActionRQ.RequestedSOPClassUID, sopclassUID, DIC_UI_LEN);
+  request.msg.NActionRQ.RequestedSOPClassUID[DIC_UI_LEN] = 0;
+  strncpy(request.msg.NActionRQ.RequestedSOPInstanceUID, sopinstanceUID, DIC_UI_LEN);
+  request.msg.NActionRQ.RequestedSOPInstanceUID[DIC_UI_LEN] = 0;
   request.msg.NActionRQ.ActionTypeID = (DIC_US)actionTypeID;
    
   OFCondition cond = sendNRequest(presCtx, request, actionInformation, response, statusDetail, actionReply);
@@ -1072,8 +1082,10 @@ OFCondition PrintAssociation::deleteRQ(
   // construct N-DELETE-RQ
   request.CommandField = DIMSE_N_DELETE_RQ;
   request.msg.NDeleteRQ.MessageID = assoc->nextMsgID++;
-  strcpy(request.msg.NDeleteRQ.RequestedSOPClassUID, sopclassUID);
-  strcpy(request.msg.NDeleteRQ.RequestedSOPInstanceUID, sopinstanceUID);
+  strncpy(request.msg.NDeleteRQ.RequestedSOPClassUID, sopclassUID, DIC_UI_LEN);
+  request.msg.NDeleteRQ.RequestedSOPClassUID[DIC_UI_LEN] = 0;
+  strncpy(request.msg.NDeleteRQ.RequestedSOPInstanceUID, sopinstanceUID, DIC_UI_LEN);
+  request.msg.NDeleteRQ.RequestedSOPInstanceUID[DIC_UI_LEN] = 0;
    
   OFCondition cond = sendNRequest(presCtx, request, NULL, response, statusDetail, attributeListOut);
   if (cond.good()) status = response.msg.NDeleteRSP.DimseStatus;
