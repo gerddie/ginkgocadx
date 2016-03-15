@@ -412,12 +412,13 @@ bool GNC::CommandLauncher::NotificarProgreso(float progresoNormalizado, const st
 
 GNC::CommandController* GNC::CommandController::m_psInstancia = NULL;
 
-GNC::CommandController::CommandController()
+GNC::CommandController::CommandController():
+    m_Destroying(false),
+    m_EsperarComandos(false),
+    m_pProgreso(nullptr),
+    m_idThreads(1)
 {
-	m_Destroying = false;
-	m_pProgreso = NULL;
-	m_idThreads = 1;
-	threadPool = new GNC::ThreadPool();
+    threadPool = new GNC::ThreadPool();
 }
 
 GNC::CommandController::~CommandController()
@@ -465,14 +466,10 @@ void GNC::CommandController::ProcessSync(GNC::GCS::IComando* cmd, bool autodelet
 void GNC::CommandController::ProcessAsync(const std::string& /*str*/, GNC::GCS::IComando* cmd, void * owner)
 {
     // in the release build we don't want to crash the program here
-#ifdef NDEBUG
     if (!cmd) {
             LOG_ERROR("CommandController", "Initiate command with an empty command structure");
             return;
     }
-#else
-    assert(cmd);
-#endif
 
 	cmd->SetOwner(owner);
 	cmd->SetNotificadorProgreso(NULL);
