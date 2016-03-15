@@ -390,7 +390,9 @@ bool CustomAssociation::createRQ( const std::string& sopclassUID, const GIL::DIC
 	// construct N-CREATE-RQ
 	request.CommandField = DIMSE_N_CREATE_RQ;
 	request.msg.NCreateRQ.MessageID = assoc->nextMsgID++;
-	strcpy(request.msg.NCreateRQ.AffectedSOPClassUID, sopclassUID.c_str());
+
+    strncpy(request.msg.NCreateRQ.AffectedSOPClassUID, sopclassUID.c_str(), sizeof(request.msg.NCreateRQ.AffectedSOPClassUID) - 1);
+    request.msg.NCreateRQ.AffectedSOPClassUID[sizeof(request.msg.NCreateRQ.AffectedSOPClassUID)-1] = 0;
 	request.msg.NCreateRQ.AffectedSOPInstanceUID[0] = 0;
 	request.msg.NCreateRQ.opts = 0;
 	
@@ -448,9 +450,12 @@ bool CustomAssociation::setRQ( const std::string& sopclassUID, const std::string
 	// construct N-CREATE-RQ
 	request.CommandField = DIMSE_N_SET_RQ;
 	request.msg.NSetRQ.MessageID = assoc->nextMsgID++;
-	strcpy(request.msg.NSetRQ.RequestedSOPClassUID, sopclassUID.c_str());
-	strcpy(request.msg.NSetRQ.RequestedSOPInstanceUID, sopinstanceUID.c_str());
-	
+    strncpy(request.msg.NSetRQ.RequestedSOPClassUID, sopclassUID.c_str(), sizeof(request.msg.NSetRQ.RequestedSOPClassUID)-1);
+    request.msg.NSetRQ.RequestedSOPClassUID[sizeof(request.msg.NSetRQ.RequestedSOPClassUID)-1] = 0;
+
+    strncpy(request.msg.NSetRQ.RequestedSOPInstanceUID, sopinstanceUID.c_str(), sizeof(request.msg.NSetRQ.RequestedSOPInstanceUID)-1);
+    request.msg.NSetRQ.RequestedSOPInstanceUID[sizeof(request.msg.NSetRQ.RequestedSOPInstanceUID)-1] = 0;
+
 	DcmDataset inAttr;
 	DcmDataset* outAttr;
 	GIL::DICOM::PACSController::Instance()->FillInQuery(modificationList, &inAttr, m_server);
