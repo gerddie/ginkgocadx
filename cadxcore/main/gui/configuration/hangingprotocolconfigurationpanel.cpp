@@ -620,11 +620,15 @@ namespace GNC {
 
 			
 		public:
-			EditHangingProtocolDialog(wxWindow* pParent): EditHangingProtocolDialogBase(pParent)
+            EditHangingProtocolDialog(wxWindow* pParent): EditHangingProtocolDialogBase(pParent),
+                hangingSupportLevel(GNC::GCS::ModoControlador::THSL_FULL),
+                editStudyCriteriaPanel(nullptr)
 			{	
 			}
 			EditHangingProtocolDialog(wxWindow* pParent, const GNC::GCS::Ptr<GNC::GCS::HangingProtocol>& hP): EditHangingProtocolDialogBase(pParent),
-				hangingProtocol(new GNC::GCS::HangingProtocol(*hP))
+                hangingSupportLevel(GNC::GCS::ModoControlador::THSL_FULL),
+                editStudyCriteriaPanel(nullptr),
+                hangingProtocol(new GNC::GCS::HangingProtocol(*hP))
 			{
 			}
 
