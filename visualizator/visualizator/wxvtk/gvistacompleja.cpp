@@ -161,14 +161,13 @@ public:
 		GView->IVista->VisualizatorStudy->Viewer = NULL;
 		if(tamAnterior > nuevoTam) {
 			//hay que borrar
-			for(int i = 0; i< tamAnterior-nuevoTam; i++) {
-				GVistaCompleja::TListaGVistasSimples::iterator pVista = GView->m_VistasSimples.begin();
-				GView->m_pManager->LiberarRecursos((*pVista)->ViewInteractor2D);
-				GView->m_pSizerSeries->Detach((*pVista));
-				(*pVista)->Destroy();
-
-				GView->m_VistasSimples.erase(pVista);
-			}
+            for(int i = nuevoTam; i< tamAnterior; i++) {
+                auto pVista = GView->m_VistasSimples[i];
+                GView->m_pManager->LiberarRecursos(pVista->ViewInteractor2D);
+                GView->m_pSizerSeries->Detach(pVista);
+                pVista->Destroy();
+            }
+            GView->m_VistasSimples.resize(nuevoTam);
 		} else {
 			int interpolationMode = VTK_NEAREST_INTERPOLATION;
 			for (unsigned int i = 0; i < GView->m_VistasSimples.size(); ++i) {
