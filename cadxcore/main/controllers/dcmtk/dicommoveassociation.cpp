@@ -102,10 +102,13 @@ OFCondition MoveAssociation::moveSCU(DcmDataset *pdset) {
 	}
 
 	req.MessageID = msgId;
-	strcpy(req.AffectedSOPClassUID, sopClass);
+    strncpy(req.AffectedSOPClassUID, sopClass, DIC_UI_LEN);
+    req.AffectedSOPClassUID[DIC_UI_LEN] = 0;
 	req.Priority = DIMSE_PRIORITY_HIGH;
 	req.DataSetType = DIMSE_DATASET_PRESENT;
-	strcpy(req.MoveDestination, m_ourAET.c_str());
+
+    strncpy(req.MoveDestination, m_ourAET.c_str(), DIC_AE_LEN);
+    req.MoveDestination[DIC_AE_LEN] = 0;
 
 	cond = DIMSE_moveUser(
 		assoc,
