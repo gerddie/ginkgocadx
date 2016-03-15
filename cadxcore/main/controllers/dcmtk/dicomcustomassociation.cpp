@@ -391,8 +391,8 @@ bool CustomAssociation::createRQ( const std::string& sopclassUID, const GIL::DIC
 	request.CommandField = DIMSE_N_CREATE_RQ;
 	request.msg.NCreateRQ.MessageID = assoc->nextMsgID++;
 
-    strncpy(request.msg.NCreateRQ.AffectedSOPClassUID, sopclassUID.c_str(), sizeof(request.msg.NCreateRQ.AffectedSOPClassUID) - 1);
-    request.msg.NCreateRQ.AffectedSOPClassUID[sizeof(request.msg.NCreateRQ.AffectedSOPClassUID)-1] = 0;
+    strncpy(request.msg.NCreateRQ.AffectedSOPClassUID, sopclassUID.c_str(), DIC_UI_LEN);
+    request.msg.NCreateRQ.AffectedSOPClassUID[DIC_UI_LEN] = 0;
 	request.msg.NCreateRQ.AffectedSOPInstanceUID[0] = 0;
 	request.msg.NCreateRQ.opts = 0;
 	
@@ -450,11 +450,11 @@ bool CustomAssociation::setRQ( const std::string& sopclassUID, const std::string
 	// construct N-CREATE-RQ
 	request.CommandField = DIMSE_N_SET_RQ;
 	request.msg.NSetRQ.MessageID = assoc->nextMsgID++;
-    strncpy(request.msg.NSetRQ.RequestedSOPClassUID, sopclassUID.c_str(), sizeof(request.msg.NSetRQ.RequestedSOPClassUID)-1);
-    request.msg.NSetRQ.RequestedSOPClassUID[sizeof(request.msg.NSetRQ.RequestedSOPClassUID)-1] = 0;
+    strncpy(request.msg.NSetRQ.RequestedSOPClassUID, sopclassUID.c_str(), DIC_UI_LEN);
+    request.msg.NSetRQ.RequestedSOPClassUID[DIC_UI_LEN] = 0;
 
-    strncpy(request.msg.NSetRQ.RequestedSOPInstanceUID, sopinstanceUID.c_str(), sizeof(request.msg.NSetRQ.RequestedSOPInstanceUID)-1);
-    request.msg.NSetRQ.RequestedSOPInstanceUID[sizeof(request.msg.NSetRQ.RequestedSOPInstanceUID)-1] = 0;
+    strncpy(request.msg.NSetRQ.RequestedSOPInstanceUID, sopinstanceUID.c_str(), DIC_UI_LEN);
+    request.msg.NSetRQ.RequestedSOPInstanceUID[DIC_UI_LEN] = 0;
 
 	DcmDataset inAttr;
 	DcmDataset* outAttr;
