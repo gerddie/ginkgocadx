@@ -83,7 +83,8 @@ OFCondition FindAssociation::findSCU(T_ASC_Association *assoc, DcmDataset *query
 	req.MessageID = msgId;
 	req.DataSetType = DIMSE_DATASET_PRESENT;
 	req.Priority = DIMSE_PRIORITY_LOW;
-	strcpy(req.AffectedSOPClassUID, m_abstractSyntax.c_str());
+    strncpy(req.AffectedSOPClassUID, m_abstractSyntax.c_str(), DIC_UI_LEN);
+    req.AffectedSOPClassUID[DIC_UI_LEN] = 0;
 	
 	FindCallbackInfo callbackData;
 	callbackData.pCaller = this;
