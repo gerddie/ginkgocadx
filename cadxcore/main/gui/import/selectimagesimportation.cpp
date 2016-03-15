@@ -617,15 +617,22 @@ namespace GNC {
 			} else {
 				GNC::GCS::IEntorno::MapaUbicaciones& mapa = GNC::Entorno::Instance()->GetUbicaciones();
 				GNC::GCS::IEntorno::MapaUbicaciones::iterator it = mapa.begin();
+
 				for (int i = 1; i != id && it != mapa.end(); i++, ++it);
-				if ((*it).second->Monitorize && !m_pButtonsBar->GetToolToggled(id)) {
-					//if uncheck a monitorize change to normal mode
-					UnCheckAll();
-					m_pTimerDirectory->Stop();
-					m_pDropTarget->SetEnable(true);
-				} else {
-					SetUbicacion((*it).second, id);
-				}
+                if (it != mapa.end()) {
+                    if (it->second->Monitorize && !m_pButtonsBar->GetToolToggled(id)) {
+                        //if uncheck a monitorize change to normal mode
+                        UnCheckAll();
+                        m_pTimerDirectory->Stop();
+                        m_pDropTarget->SetEnable(true);
+                    } else {
+                        SetUbicacion((*it).second, id);
+                    }
+                }else{
+                    // GW: this probably shouldn't happen
+                    LOG_ERROR("SelectImagesImportation", "id(" << id << ") not in Ubicationmap");
+                }
+
 			}
 		}
 
