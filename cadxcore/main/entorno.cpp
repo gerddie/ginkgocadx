@@ -191,15 +191,15 @@ GNC::Entorno::Entorno()
 	wxString wxTempDir = wxStandardPaths::Get().GetTempDir() + wxFileName::GetPathSeparator() + wxT("GinkgoCADx");
 	m_GinkgoTempDir = TOPATH(wxTempDir);
 	if (!wxDirExists(wxTempDir)) {
-        bool success;
-		#ifdef _WIN32
-        success = wxMkdir(wxTempDir,511);
-		#else
-        success = wxMkDir(wxTempDir.ToUTF8(), 0770);
-		#endif
-        if (!success) {
-            LOG_ERROR("Core", "Unable to create temporary directory '" << m_GinkgoTempDir << "'");
-        }
+                bool success;
+#ifdef _WIN32
+                success = wxMkdir(wxTempDir,511);
+#else
+                success = (wxMkDir(wxTempDir.ToUTF8(), 0770) == 0);
+#endif
+                if (!success) {
+                        LOG_ERROR("Core", "Unable to create temporary directory '" << m_GinkgoTempDir << "'");
+                }
 	}
 	
 	m_GinkgoUserDir = TOPATH(wxStandardPaths::Get().GetUserDataDir());
@@ -208,15 +208,15 @@ GNC::Entorno::Entorno()
 		wxString directorioUser = FROMPATH(m_GinkgoUserDir);
 		//se crea el user dir
 		if(!wxDirExists(directorioUser)) {
-            bool success;
-			#ifdef _WIN32
-            success = wxMkdir(directorioUser,511);
-			#else
-            success = wxMkDir(directorioUser.ToUTF8(), 0770);
-			#endif
-            if (!success) {
-                LOG_ERROR("Core", "Unable to create user directory '" << m_GinkgoUserDir << "'");
-            }
+                        bool success;
+#ifdef _WIN32
+                        success = wxMkdir(directorioUser,511);
+#else
+                        success = (wxMkDir(directorioUser.ToUTF8(), 0770) == 0);
+#endif
+                        if (!success) {
+                                LOG_ERROR("Core", "Unable to create user directory '" << m_GinkgoUserDir << "'");
+                        }
 		}
 	}
 

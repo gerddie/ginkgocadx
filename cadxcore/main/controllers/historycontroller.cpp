@@ -319,7 +319,7 @@ void GNC::GCS::HistoryController::ReloadHistory(const std::string& pathDicomDir,
 #ifdef _WIN32
             success = wxMkdir(wxDirectorio,511);
 #else
-            success = wxMkDir(wxDirectorio.ToUTF8(), 0770);
+            success = (wxMkDir(wxDirectorio.ToUTF8(), 0770) == 0);
 #endif
             if (!success) {
                 LOG_ERROR(LOGGER, "unable to create directory '" << wxDirectorio.c_str() << "'");

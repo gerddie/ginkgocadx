@@ -172,7 +172,7 @@ namespace GNC {
 		#ifdef _WIN32
                     success = wxMkdir(path,511);
 		#else
-                    success = wxMkDir(path.ToUTF8(), 0770);
+                    success = (wxMkDir(path.ToUTF8(), 0770) == 0);
 		#endif
                     if(!success || !wxDirExists(path))
 					{
