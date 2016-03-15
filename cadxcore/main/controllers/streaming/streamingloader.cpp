@@ -220,6 +220,9 @@ void GNC::StreamingLoader::SetInput(const std::string& fichero)
 
 								if (pixelRepresentation->GetMetaDataObjectValue() == "1") {//if its signed and largest value > (2^highbit)-1
 									long long exp = (long long) atol(bitsStored->GetMetaDataObjectValue().c_str());
+                                    if (exp < 1) {
+                                        throw GNC::GCS::ControladorCargaException( _Std("Error reading the study: Number of stored bits not positive") , "ControladorCarga/CargaMultidimensional");
+                                    }
 									long long limit = (1L << (exp-1));
 									long long val = (long long) atol(largestValue->GetMetaDataObjectValue().c_str());
 									long long maxVal = val;//(long long) (  (val * rescaleSlope) + rescaleIntercept );
