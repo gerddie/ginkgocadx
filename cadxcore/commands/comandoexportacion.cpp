@@ -34,6 +34,7 @@
 #include <api/ientorno.h>
 #include <api/dicom/idicommanager.h>
 #include <api/internationalization/internationalization.h>
+#include <api/controllers/icontroladorlog.h>
 
 #include <api/controllers/ipacscontroller.h>
 
@@ -174,24 +175,42 @@ namespace GADAPI {
 
 			if (pDatosPersistentes->m_target == GNC::GUI::TipoWizardExportacion::NEW_STUDY) {
 				baseUIDs.tags.clear();
+
+                // GW: The original code didn't test whether the tag was actually found, and
+                // so the first fail would create an UID for an empty value, and
+                // for later calls the old value would be re-used (which would obvioulsy be wrong).
+                // so now we just don't set the baseUID tags if they are not available
+                // this may now reveal another bug.
+
 				//study instance uid
-				base.getTag(GKDCM_StudyInstanceUID, stringTmp);
-				if (mapOfUIDs.find(stringTmp) == mapOfUIDs.end()) {
-					mapOfUIDs[stringTmp] = pDICOMManager->GetNewUID();
-				}
-				baseUIDs.tags[GKDCM_StudyInstanceUID] = mapOfUIDs[stringTmp];
+                if (base.getTag(GKDCM_StudyInstanceUID, stringTmp)) {
+                    if (mapOfUIDs.find(stringTmp) == mapOfUIDs.end()) {
+                        mapOfUIDs[stringTmp] = pDICOMManager->GetNewUID();
+                    }
+                    baseUIDs.tags[GKDCM_StudyInstanceUID] = mapOfUIDs[stringTmp];
+                }else{
+                    LOG_INFO("Commands", "tag " << GKDCM_StudyInstanceUID << " not available");
+                }
+
 				//series instance uid
-				base.getTag(GKDCM_SeriesInstanceUID, stringTmp);
-				if (mapOfUIDs.find(stringTmp) == mapOfUIDs.end()) {
-					mapOfUIDs[stringTmp] = pDICOMManager->GetNewUID();
-				}
-				baseUIDs.tags[GKDCM_SeriesInstanceUID] = mapOfUIDs[stringTmp];
-				//sop instance
-				base.getTag(GKDCM_SOPInstanceUID, stringTmp);
-				if (mapOfUIDs.find(stringTmp) == mapOfUIDs.end()) {
-					mapOfUIDs[stringTmp] = pDICOMManager->GetNewUID();
-				}
-				baseUIDs.tags[GKDCM_SOPInstanceUID] = mapOfUIDs[stringTmp];
+                if (base.getTag(GKDCM_SeriesInstanceUID, stringTmp)) {
+                    if (mapOfUIDs.find(stringTmp) == mapOfUIDs.end()) {
+                        mapOfUIDs[stringTmp] = pDICOMManager->GetNewUID();
+                    }
+                    baseUIDs.tags[GKDCM_SeriesInstanceUID] = mapOfUIDs[stringTmp];
+                }else{
+                    LOG_INFO("Commands", "tag " << GKDCM_SeriesInstanceUID << " not available");
+                }
+
+                //sop instance
+                if (base.getTag(GKDCM_SOPInstanceUID, stringTmp)) {
+                    if (mapOfUIDs.find(stringTmp) == mapOfUIDs.end()) {
+                        mapOfUIDs[stringTmp] = pDICOMManager->GetNewUID();
+                    }
+                    baseUIDs.tags[GKDCM_SOPInstanceUID] = mapOfUIDs[stringTmp];
+                }else{
+                    LOG_INFO("Commands", "tag " << GKDCM_SOPInstanceUID << " not available");
+                }
 				//update uids
 				pDICOMManager->ActualizarJerarquia(baseUIDs);
 			}
