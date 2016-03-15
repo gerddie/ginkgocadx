@@ -181,20 +181,25 @@ bool GIL::IntegrationController::Process(GIL::IntegrationModelList& models)
 				} else {
 					GIL::DICOM::DicomDataset base = modelo->TagsDICOMOverwrite;
 					std::string qrlevel, uid;
-					base.getTag(GKDCM_QueryRetrieveLevel,qrlevel);
-					if (qrlevel == "STUDY" && base.getTag(GKDCM_StudyInstanceUID, uid) && GNC::GCS::HistoryController::Instance()->ExistsStudyWithUID(uid)) {
-						GNC::GUI::DownloadAgainDialog dlg(GNC::Entorno::Instance()->GetVentanaRaiz(), uid, false);
-						int answer = dlg.ShowModal();
-						if (answer != wxID_OK) {
-							continue;
-						}
-					} else if (qrlevel == "SERIES" && base.getTag(GKDCM_SeriesInstanceUID, uid) && GNC::GCS::HistoryController::Instance()->ExistsSeriesWithUID(uid)) {
-						GNC::GUI::DownloadAgainDialog dlg(GNC::Entorno::Instance()->GetVentanaRaiz(), uid, false);
-						int answer = dlg.ShowModal();
-						if (answer != wxID_OK) {
-							continue;
-						}
-					}
+                    if (base.getTag(GKDCM_QueryRetrieveLevel,qrlevel)) {
+                        if (qrlevel == "STUDY" && base.getTag(GKDCM_StudyInstanceUID, uid) && GNC::GCS::HistoryController::Instance()->ExistsStudyWithUID(uid)) {
+                            GNC::GUI::DownloadAgainDialog dlg(GNC::Entorno::Instance()->GetVentanaRaiz(), uid, false);
+                            int answer = dlg.ShowModal();
+                            if (answer != wxID_OK) {
+                                continue;
+                            }
+                        } else if (qrlevel == "SERIES" && base.getTag(GKDCM_SeriesInstanceUID, uid) && GNC::GCS::HistoryController::Instance()->ExistsSeriesWithUID(uid)) {
+                            GNC::GUI::DownloadAgainDialog dlg(GNC::Entorno::Instance()->GetVentanaRaiz(), uid, false);
+                            int answer = dlg.ShowModal();
+                            if (answer != wxID_OK) {
+                                continue;
+                            }
+                        }else{
+                            LOG_INFO("GIL/WF/Importar", "Unknown GKDCM_QueryRetrieveLevel '"<< qrlevel << "'");
+                        }
+                    }else{
+                        LOG_INFO("GIL/WF/Importar", "unable to aquire GKDCM_QueryRetrieveLevel");
+                    }
 					pParams = new GADAPI::PACSDownloadCommandParams(modelo->GlobalVariables.GetValue(GKDI_GLOBAL_PACS_RETRIEVE_SID), base);
 
 					GADAPI::PACSDownloadCommand* pComandoPACS = new GADAPI::PACSDownloadCommand(pParams);
@@ -203,9 +208,8 @@ bool GIL::IntegrationController::Process(GIL::IntegrationModelList& models)
 					numProcessed++;
 				} 
 			}
-		}
-		else if(modelo->accion == GIL::IModeloIntegracion::TA_Open) 
-		{
+        }
+        else if(modelo->accion == GIL::IModeloIntegracion::TA_Open)  {
 			LOG_STAT(ANON_STAT_INT_OPEN)
 			for (GIL::IModeloIntegracion::ListOfPaths::iterator itFile = modelo->Files.begin(); itFile != modelo->Files.end(); ++itFile) 
 			{
