@@ -119,6 +119,10 @@ void GNC::ShowTagsTool::ProcesarEvento(GNC::GCS::Events::IEvent *evt)
 {
 	if ( evt->GetCodigoEvento() == ginkgoEVT_Core_ModificacionImagen) {
 		GNC::GCS::Events::EventoModificacionImagen* pEvt = dynamic_cast<GNC::GCS::Events::EventoModificacionImagen*>(evt);
+
+        if (!pEvt)
+            return;
+
 		if (pEvt->GetTipo() == GNC::GCS::Events::EventoModificacionImagen::SliceCambiado 
 			|| pEvt->GetTipo() == GNC::GCS::Events::EventoModificacionImagen::ImagenCargada
 			|| pEvt->GetTipo() == GNC::GCS::Events::EventoModificacionImagen::AnotacionesEstaticasModificadas) {
