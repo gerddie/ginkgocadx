@@ -818,6 +818,10 @@ void GNC::GUI::HistoryPanel3::OnThumbnailDClick(wxThumbnailEvent& /*evt*/)
 	int selected = m_pThumbnails->GetSelection();
 	if (selected >= 0) {
 		wxHistoryImageThumbnailItem* pItem = static_cast<wxHistoryImageThumbnailItem*>(m_pThumbnails->GetItem(selected));
+        if (!pItem) {
+            LOG_ERROR("History3", "selected item doesn't exists??");
+            return;
+        }
 		if (pItem->GetType() == wxHistoryImageThumbnailItem::TI_Series) {
 			//open series
 			OpenSeriesOrStudy(pItem->GetSeriesPk(), true,!GNC::GCS::IControladorPermisos::Instance()->Get("core.restrictions", "reutilize_study"));
