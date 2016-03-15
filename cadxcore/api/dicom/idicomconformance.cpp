@@ -342,17 +342,18 @@ void GIL::DICOM::Conformance::Load() {
 			for (wxXmlNode* mentry = entry->GetChildren(); mentry != NULL; mentry = mentry->GetNext()) {
 				
 				if ( (mentry->GetName().CmpNoCase(wxT("modality")) == 0) && mentry->GetAttribute(wxT("ref-id"), &wxM_RefId)) {
-					mentry->GetAttribute(wxT("descr"), &wxM_Descr);
+                    if(mentry->GetAttribute(wxT("descr"), &wxM_Descr)) {
 					
-					m_RefId = std::string(wxM_RefId.ToUTF8());
-					m_Modalities.AddModality( m_RefId, std::string(wxM_Descr.ToUTF8()) );
+                        m_RefId = std::string(wxM_RefId.ToUTF8());
+                        m_Modalities.AddModality( m_RefId, std::string(wxM_Descr.ToUTF8()) );
 
-					for (wxXmlNode* scentry = mentry->GetChildren(); scentry != NULL; scentry = scentry->GetNext()) {
+                        for (wxXmlNode* scentry = mentry->GetChildren(); scentry != NULL; scentry = scentry->GetNext()) {
 
-						if ((scentry->GetName().CmpNoCase(wxT("allowed-sop-class")) == 0) && scentry->GetAttribute(wxT("ref"), &wxSC_Ref)) {
-							m_Modalities.AddSOPClassForModality( m_RefId, std::string(wxSC_Ref.ToUTF8()) );
-						}
-					}
+                            if ((scentry->GetName().CmpNoCase(wxT("allowed-sop-class")) == 0) && scentry->GetAttribute(wxT("ref"), &wxSC_Ref)) {
+                                m_Modalities.AddSOPClassForModality( m_RefId, std::string(wxSC_Ref.ToUTF8()) );
+                            }
+                        }
+                    }
 				}
 			}
 		}
