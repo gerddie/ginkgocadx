@@ -407,12 +407,19 @@ namespace GNC {
 					StudyWindow* pStudyWindow;
 				};//end PreviewPanel
 				public:
-					StudyWindow(wxWindow* pParent): StudyWindowBase(pParent), layout(new GNC::GCS::Layout())
+                    StudyWindow(wxWindow* pParent): StudyWindowBase(pParent),
+                        layout(new GNC::GCS::Layout()),
+                        editSeriesCriteriaPanel(nullptr),
+                        selectedPreview(nullptr),
+                        hangingSupportLevel(GNC::GCS::ModoControlador::THSL_FULL)
 					{
 					}
 
 					StudyWindow(wxWindow* pParent, const GNC::GCS::Ptr<GNC::GCS::Layout>& lo): StudyWindowBase(pParent),
-						layout(lo)
+                        layout(lo),
+                        editSeriesCriteriaPanel(nullptr),
+                        selectedPreview(nullptr),
+                        hangingSupportLevel(GNC::GCS::ModoControlador::THSL_FULL)
 					{
 					}
 					~StudyWindow()
