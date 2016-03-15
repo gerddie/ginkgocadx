@@ -21,6 +21,7 @@
 #include <api/internationalization/internationalization.h>
 #include <api/controllers/ipacscontroller.h>
 #include <api/controllers/ieventscontroller.h>
+#include <api/controllers/icontroladorlog.h>
 #include <main/controllers/commandcontroller.h>
 #include <main/controllers/hangingprotocolcontroller.h>
 #include <eventos/mensajes.h>
@@ -181,11 +182,15 @@ namespace GADAPI
 	void SynchronizationCommand::ProcesarEvento(GNC::GCS::Events::IEvent *evt)
 	{
 		GNC::GCS::Events::EventoProgresoComando* pEvt = dynamic_cast<GNC::GCS::Events::EventoProgresoComando*> (evt);
-		GNC::GCS::IComando* pCmd = pEvt->GetComando();
-		if (pCmd != NULL && pCmd->GetOwner() == this &&pEvt->GetTipo() == GNC::GCS::Events::EventoProgresoComando::TEP_Finalizado)
-		{
-			m_pSynchronizeParams->m_pSemWait->Post();						
-		}
+        if (pEvt) {
+            GNC::GCS::IComando* pCmd = pEvt->GetComando();
+            if (pCmd != NULL && pCmd->GetOwner() == this &&pEvt->GetTipo() == GNC::GCS::Events::EventoProgresoComando::TEP_Finalizado)
+            {
+                m_pSynchronizeParams->m_pSemWait->Post();
+            }
+        }else{
+            LOG_ERROR("Command", "SynchronizationCommand::ProcesarEvento: unexpected or no event");
+        }
 	}
 
 }
