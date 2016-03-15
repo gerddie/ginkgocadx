@@ -427,7 +427,9 @@ void GADAPI::PACS::IncomingDicomAssociationCommand::storeSCP( T_ASC_Association 
 		 m_TempDir = GNC::Entorno::Instance()->CreateGinkgoTempFile();
     }
 
-    // still not secure, but no longer a resource leak
+    // GW: still not secure, but no longer a resource leak, see also #16
+    // since right now I don't know how to properly work around this, I'll just tag the code.
+    // coverity[SECURE_TEMP]
     char *fileName = tempnam(m_TempDir.c_str(), "sscpfile_");
     if (!fileName) {
         LOG_ERROR(ambitolog, "Unable to create unique file name:"<< strerror(errno));
