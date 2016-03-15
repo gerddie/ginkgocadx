@@ -123,10 +123,13 @@ void DIMSE_printNStatusString(std::ostream& dumpStream, int status)
 	case STATUS_N_UnrecognizedOperation:
 		dumpStream << "0x0211: Unrecognized operation";
 		break;
-	default:
-		dumpStream << "0x" << STD_NAMESPACE hex << STD_NAMESPACE setfill('0') << STD_NAMESPACE setw(4)
-			<< status << ": Unknown Status Code";
+    default: {
+        char prev = dumpStream.fill('0');
+        dumpStream << "0x" << std::hex << std::setw(4) << status
+                   << ": Unknown Status Code" << std::resetiosflags(std::ios::showbase);
+        dumpStream.fill(prev);
 		break;
+    }
 	}
 }
 
