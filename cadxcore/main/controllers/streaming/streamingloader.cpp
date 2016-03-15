@@ -65,95 +65,6 @@
 //#define DEBUG_PRINT_DIR_COSINES
 #define USE_STREAMING true
 
-class CargaItkProgressCallback : public itk::Command
-{
-public:
-	typedef CargaItkProgressCallback         Self;
-	typedef itk::Command                     Superclass;
-
-	typedef itk::SmartPointer<Self>          Pointer;
-	typedef itk::SmartPointer<const Self>    ConstPointer;
-
-	itkTypeMacro (CargaItkProgressCallback, itk::Command);
-	itkNewMacro (Self);
-
-	/** Standard Command virtual methods */
-	void Execute(itk::Object *caller, const itk::EventObject &event){
-		return;
-		itk::ProcessObject* po = dynamic_cast<itk::ProcessObject*>(caller);
-		if( !po )
-			return;
-
-		if( typeid(event) == typeid ( itk::ProgressEvent)  )
-		{
-			try {
-				if(!m_stop){
-					if (m_pComando) {
-						if (!m_pComando->NotificarProgreso(po->GetProgress(),m_texto))
-						{
-							po->SetAbortGenerateData(true);
-						}
-					}
-				}
-			}
-			catch(std::exception& /*ex*/){
-				po->SetAbortGenerateData(true);
-				return;
-			}
-		}
-	}
-
-	void Execute(const itk::Object *caller, const itk::EventObject &event){
-		return;
-		itk::ProcessObject* po = dynamic_cast<itk::ProcessObject*>( const_cast<itk::Object*>(caller));
-
-		if( !po ) return;
-
-		if( typeid(event) == typeid ( itk::ProgressEvent)  )
-		{
-			try{
-				if(!m_stop){
-					if (m_pComando) {
-						if (!m_pComando->NotificarProgreso(po->GetProgress(),m_texto))
-						{
-							po->SetAbortGenerateData(true);
-						}
-					}
-				}
-			}catch(std::exception& /*ex*/){
-				po->SetAbortGenerateData(true);
-				return;
-			}
-		}
-	}
-
-	void SetCommand (GNC::GCS::IComando* cmd)
-	{
-		m_pComando = cmd;
-	}
-
-	void SetTexto  (std::string str)
-	{
-		m_texto = str;
-	}
-
-protected:
-	CargaItkProgressCallback(){
-		m_pComando = NULL;
-		m_stop=false;
-	}
-
-	~CargaItkProgressCallback(){
-		m_pComando = NULL;
-	}
-
-private:
-	GNC::GCS::IComando* m_pComando;
-	std::string m_texto;
-	bool m_stop;
-};
-
-
 
 GNC::StreamingLoader::StreamingLoader(): DirectionCosines(GNC::GCS::IGinkgoMatrix4x4::New())
 {
@@ -268,6 +179,12 @@ void GNC::StreamingLoader::SetInput(const std::string& fichero)
 			itk::MetaDataDictionary& dict = m_IO->GetMetaDataDictionary();
 			if (dict.HasKey("0028|0107") && dict.HasKey( "0028|0103") && dict.HasKey("0028|0102")) {
 				//get highBit
+#ifdef __GNUC__
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
+#pragma GCC diagnostic ignored "-Wunused-variable"
+#endif
+                // GW: not clear what this is supposed to check
 				if(itk::MetaDataObject<std::string>* highBit = dynamic_cast<itk::MetaDataObject <std::string> *>(dict["0028|0102"].GetPointer())) 
 				{
 					if(itk::MetaDataObject<std::string>* bitsStored = dynamic_cast<itk::MetaDataObject <std::string> *>(dict["0028|0101"].GetPointer())) 
@@ -278,6 +195,7 @@ void GNC::StreamingLoader::SetInput(const std::string& fichero)
 							//get pixel representation
 							if(itk::MetaDataObject<std::string>* pixelRepresentation = dynamic_cast<itk::MetaDataObject <std::string> *>(dict["0028|0103"].GetPointer())) 
 							{
+                                // GW: not clear what this is supposed to check
 								long long minimum = 0;
 								double rescaleIntercept = 0.0;
 								double rescaleSlope = 1.0;
@@ -321,6 +239,9 @@ void GNC::StreamingLoader::SetInput(const std::string& fichero)
 						}
 					}
 				}
+#ifdef __GNUC__
+#pragma GCC diagnostic pop
+#endif
 			}//check if image data is coherent
 		}
 
