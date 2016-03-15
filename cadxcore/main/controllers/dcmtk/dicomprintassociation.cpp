@@ -173,10 +173,13 @@ static void DIMSE_printNStatusString(std::ostream& dumpStream, int status)
     case STATUS_N_PRINT_IB_Fail_MoreThanOneVOILUT:
       dumpStream << "0xC606: Image box failure - More than one VOI LUT";
       break;
-    default:
-      dumpStream << "0x" << STD_NAMESPACE hex << STD_NAMESPACE setfill('0') << STD_NAMESPACE setw(4)
-          << status << ": Unknown Status Code";
+    default: {
+      char prev = dumpStream.fill('0');
+      dumpStream << "0x" << std::hex << std::setw(4) << status
+                 << ": Unknown Status Code" << std::resetiosflags(std::ios::showbase);
+      dumpStream.fill(prev);
       break;
+  }
   }
 }
 
@@ -637,6 +640,7 @@ void PrintAssociation::OnAddPresentationContext(T_ASC_Parameters* params) {
 	
 	if (implicitOnly)
 	{
+        //coverity[DEADCODE] GW: don't know why this code is here, maybe future possibilities?
 		transferSyntaxes[0] = UID_LittleEndianImplicitTransferSyntax;
 		transferSyntaxCount = 1;
 	} else {
@@ -655,15 +659,21 @@ void PrintAssociation::OnAddPresentationContext(T_ASC_Parameters* params) {
 	}
 	
 	/* we always propose basic grayscale, presentation LUT and annotation box*/
-	if (cond.good()) cond = ASC_addPresentationContext(params, 1, UID_BasicGrayscalePrintManagementMetaSOPClass, transferSyntaxes, transferSyntaxCount);
+    if (cond.good())
+        cond = ASC_addPresentationContext(params, 1, UID_BasicGrayscalePrintManagementMetaSOPClass, transferSyntaxes, transferSyntaxCount);
+
 	if (negotiatePresentationLUT)
 	{
-		if (cond.good()) cond = ASC_addPresentationContext(params, 3, UID_PresentationLUTSOPClass, transferSyntaxes, transferSyntaxCount);
+        //coverity[DEADCODE] GW: don't know why this code is here, maybe future possibilities?
+        if (cond.good())
+            cond = ASC_addPresentationContext(params, 3, UID_PresentationLUTSOPClass, transferSyntaxes, transferSyntaxCount);
 	}
 	
 	if (negotiateAnnotationBox)
 	{
-		if (cond.good()) cond = ASC_addPresentationContext(params, 5, UID_BasicAnnotationBoxSOPClass, transferSyntaxes, transferSyntaxCount);
+        //coverity[DEADCODE] GW: don't know why this code is here, maybe future possibilities?
+        if (cond.good())
+            cond = ASC_addPresentationContext(params, 5, UID_BasicAnnotationBoxSOPClass, transferSyntaxes, transferSyntaxCount);
 	}
 }
 
