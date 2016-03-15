@@ -36,10 +36,12 @@
 
 namespace GNC {
 	namespace GCS {
-		ProxySettings::ProxySettings()
+        ProxySettings::ProxySettings():
+            port(0),
+            useProxy(false),
+            requiresAuth(false)
 		{
-			useProxy = false;
-		}
+        }
 		ProxySettings::~ProxySettings()
 		{
 		}
