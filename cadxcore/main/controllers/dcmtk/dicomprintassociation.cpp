@@ -640,7 +640,7 @@ void PrintAssociation::OnAddPresentationContext(T_ASC_Parameters* params) {
 	
 	if (implicitOnly)
 	{
-        //coverity[DEADCODE] GW: don't know why this code is here, maybe future possibilities?
+        // coverity[DEADCODE] GW: don't know why this code is here, maybe future possibilities?
 		transferSyntaxes[0] = UID_LittleEndianImplicitTransferSyntax;
 		transferSyntaxCount = 1;
 	} else {
@@ -664,14 +664,14 @@ void PrintAssociation::OnAddPresentationContext(T_ASC_Parameters* params) {
 
 	if (negotiatePresentationLUT)
 	{
-        //coverity[DEADCODE] GW: don't know why this code is here, maybe future possibilities?
+        // coverity[DEADCODE] GW: don't know why this code is here, maybe future possibilities?
         if (cond.good())
             cond = ASC_addPresentationContext(params, 3, UID_PresentationLUTSOPClass, transferSyntaxes, transferSyntaxCount);
 	}
 	
 	if (negotiateAnnotationBox)
 	{
-        //coverity[DEADCODE] GW: don't know why this code is here, maybe future possibilities?
+        // coverity[DEADCODE] GW: don't know why this code is here, maybe future possibilities?
         if (cond.good())
             cond = ASC_addPresentationContext(params, 5, UID_BasicAnnotationBoxSOPClass, transferSyntaxes, transferSyntaxCount);
 	}
