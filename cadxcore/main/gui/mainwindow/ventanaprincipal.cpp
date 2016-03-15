@@ -1782,10 +1782,6 @@ void VentanaPrincipal::ProcesarEvento(GNC::GCS::Events::IEvent *pEvt)
 					//wxWindowDisabler dis;
 					//SuperFreeze();
 
-					m_pHipervinculoActualizacion->SetLabel(wxString(_("New version available (")) + wxString::FromUTF8(m_VersionNueva.c_str()) + _T(")") );
-					m_pHipervinculoActualizacion->SetURL(wxString::FromUTF8(pE->GetURL().c_str()));
-					m_pHipervinculoActualizacion->SetToolTip(wxString::FromUTF8(pE->GetDescription().c_str()));
-
 					m_pPanelActualizacion->Show();
 					//m_pPanelCentral->Layout();
 					Layout();

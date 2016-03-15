@@ -47,7 +47,7 @@ class VentanaPrincipalBase : public wxFrame
 		wxBoxSizer* m_pMainSizer;
 		wxPanel* m_pPanelActualizacion;
 		wxPanel* m_pPanelActualizacionInterno;
-		wxHyperlinkCtrl* m_pHipervinculoActualizacion;
+        //wxHyperlinkCtrl* m_pHipervinculoActualizacion;
 		wxBoxSizer* m_pSizerCentral;
 		wxPanel* m_pPanelCentral;
 		
