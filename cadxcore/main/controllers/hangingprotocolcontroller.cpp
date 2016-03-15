@@ -206,11 +206,17 @@ void GNC::GCS::Matcher::setMatchingCriteria(const std::map<std::string, std::str
 /**
 Defines a specific layout, is recursive to allow splitted cells
 */
-GNC::GCS::Layout::Layout():rows(1), columns(1),isDetached(false)
+GNC::GCS::Layout::Layout():rows(1),
+    columns(1),
+    pParent(nullptr),
+    isDetached(false),
+    isMaximized(false),
+    xPos(0), yPos(0),
+    width(1), height(1)
 {
 }
 
-GNC::GCS::Layout::Layout(wxXmlNode* layoutRoot)
+GNC::GCS::Layout::Layout(wxXmlNode* layoutRoot):Layout()
 {
 	long tmp;
 	if (layoutRoot->GetAttribute(LO_ATT_ROWS, wxT("1")).ToLong(&tmp)) {
@@ -278,6 +284,7 @@ GNC::GCS::Layout::Layout(const Layout& other)
 	this->yPos = other.yPos;
 	this->width = other.width;
 	this->height = other.height;
+    pParent = other.pParent;
 }
 
 GNC::GCS::Layout::~Layout()
@@ -592,7 +599,9 @@ void GNC::GCS::Layout::applyWindowProperties(GNC::GCS::IVista* pView)
 
 
 /////////////////////////////////////////////////////
-GNC::GCS::HangingProtocol::HangingProtocol():active(true)
+GNC::GCS::HangingProtocol::HangingProtocol():
+    openingMode(0),
+    active(true)
 {
 }
 
