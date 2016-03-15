@@ -322,7 +322,10 @@ void GNC::GCS::ControladorVistas::Destruir(GNC::GCS::IVista* pVista)
 
 void GNC::GCS::ControladorVistas::Destruir(wxWindow* pVentana)
 {
-	pVentana->Hide();
+
+    if (pVentana)
+        pVentana->Hide();
+
 	//resets inactivity
 	GNC::GCS::InactivityController::Instance()->ResetsInactivity();
 	//
@@ -331,6 +334,7 @@ void GNC::GCS::ControladorVistas::Destruir(wxWindow* pVentana)
 	GTRACE("ControladorVistas::DestruirVista(wxWindow* pVentana = " << pVentana << ")");
 
 	if (pVentana != NULL) {
+
 		MapaVentanas::iterator it = m_MapaVentanas.find(pVentana);
 		if (it != m_MapaVentanas.end()) {
 			GNC::GCS::IVista* pVista = (*it).second;
