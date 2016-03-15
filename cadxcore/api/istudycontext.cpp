@@ -93,6 +93,8 @@ GNC::GCS::IStudyContext::IStudyContext(const GNC::GCS::IStudyContext* o)
 		ParentWindow = NULL;
 		Viewer       = NULL;
 		Loader = GNC::GCS::ControladorCarga::Instance()->NewLoader();
+        renderConnection    = Loader->GetOutputPort();
+        ActiveFileIndex = -1;
 	}
 }
 

@@ -102,7 +102,7 @@ namespace GNC {
 			IStudyContext();
 
 			IStudyContext(const IStudyContext& o);
-			IStudyContext(const IStudyContext* o);
+            IStudyContext(const IStudyContext* o)__attribute_deprecated__;
 
 			virtual ~IStudyContext();
 
