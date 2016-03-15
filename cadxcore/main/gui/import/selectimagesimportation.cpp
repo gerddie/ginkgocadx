@@ -303,14 +303,16 @@ namespace GNC {
 					}
 				}
 			}
-			while(m_pImagenes->GetSelection()!=-1){
+            int selection = m_pImagenes->GetSelection();
+            while(selection != -1){
 				if (deleteFromDisk) {
-					wxThumbnailItem* item = m_pImagenes->GetItem(m_pImagenes->GetSelection());
+                    wxThumbnailItem* item = m_pImagenes->GetItem(selection);
 					if (item != NULL) {
 						wxRemoveFile(item->GetFilename());
 					}
 				}
-				m_pImagenes->Delete(m_pImagenes->GetSelection());
+                m_pImagenes->Delete(selection);
+                selection = m_pImagenes->GetSelection();
 			}
 		}
 
@@ -351,6 +353,8 @@ namespace GNC {
 			}
 
 			wxBusyInfo info(_("Generating preview..."));
+
+            // coverity[NEGATIVE_RETURNS] since we force above that the size is one, this is not negative.
 			wxThumbnailItem* item = m_pImagenes->GetItem(m_pImagenes->GetSelection());
 			if (item == NULL)
 				return;
