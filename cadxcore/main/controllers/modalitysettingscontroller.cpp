@@ -256,7 +256,9 @@ GNC::GCS::DefaultModalitySettings::DefaultModalitySettings(): annotationSettings
 	this->interpolationMode = TIM_LINEAR;
 }
 
-GNC::GCS::DefaultModalitySettings::DefaultModalitySettings(wxXmlNode* defaultSettingsNode): annotationSettings(new AnnotationSettings())
+GNC::GCS::DefaultModalitySettings::DefaultModalitySettings(wxXmlNode* defaultSettingsNode):
+     interpolationMode(TIM_LINEAR),
+    annotationSettings(new AnnotationSettings())
 {
 	this->modality = defaultSettingsNode->GetAttribute(DMS_ATT_MODALITY, wxEmptyString).ToUTF8();
 	this->initialWindowLevelLabel = defaultSettingsNode->GetAttribute(DMS_ATT_INITIAL_WL, wxEmptyString).ToUTF8();
