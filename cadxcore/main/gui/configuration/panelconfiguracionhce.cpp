@@ -89,11 +89,7 @@ std::string GNC::GUI::PanelConfiguracionHCE::GetCabecera()
 bool GNC::GUI::PanelConfiguracionHCE::Validar()
 {
 	bool ok = true;
-	std::stringstream sstream;
-
-	if (!ok) {
-		wxMessageBox(wxString::FromUTF8(sstream.str().c_str()),_("Info"),wxOK | wxICON_INFORMATION, this);
-	}
+    // GW: Whatever this was meant to validate, no idea, eliminating dead code.
 
 	//reset xml-rpc server
 	return ok;
