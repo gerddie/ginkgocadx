@@ -43,15 +43,16 @@
 
 GetAssociation::GetAssociation(const std::string& _ambitolog, IModeloDicom* pModelo) :
         FindAssociation(_ambitolog),
-	m_maxReceivePDULength(ASC_DEFAULTMAXPDU),
-	m_pModelo(pModelo),
-        m_wellKnownNumResults(0), 
-	m_numeroImagenes(0),
-	m_mensaje(""),
-	m_errorMessage(""),
-	m_bytesDescargados(0)
+        m_maxReceivePDULength(ASC_DEFAULTMAXPDU),
+        m_wellKnownNumResults(0),
+        m_pModelo(pModelo),
+
+        m_numeroImagenes(0),
+        m_mensaje(""),
+        m_errorMessage(""),
+        m_bytesDescargados(0)
 {
-	m_abstractSyntax.assign(UID_GETStudyRootQueryRetrieveInformationModel);
+    m_abstractSyntax.assign(UID_GETStudyRootQueryRetrieveInformationModel);
 }
 
 GetAssociation::~GetAssociation() { }
