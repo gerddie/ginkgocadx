@@ -603,11 +603,17 @@ bool GNC::GCS::HistoryController::AddFiles(const StringList& listaPaths, TAddErr
 							wxString pathDicom = FROMPATH(fileModel.file.real_path);
 
 							if(wxCopyFile(FROMPATH((*it)),pathDicom)) {
+                                int success;
 								#ifdef _WIN32
-								_chmod(TOPATH(pathDicom).c_str(), _S_IWRITE);
+                                success = _chmod(TOPATH(pathDicom).c_str(), _S_IWRITE);
 								#else 
-								chmod(TOPATH(pathDicom).c_str(), 0644);
-								#endif
+                                success = chmod(TOPATH(pathDicom).c_str(), 0644);
+                                #endif
+                                if (success < 0) {
+                                    LOG_ERROR("Historial", "Error changing permissions on :"
+                                              << TOPATH(pathDicom).c_str() << "':" << strerror(errno));
+                                }
+
 								if(action == TAA_MOVE) {
 									wxRemoveFile(FROMPATH((*it)));
 								}
