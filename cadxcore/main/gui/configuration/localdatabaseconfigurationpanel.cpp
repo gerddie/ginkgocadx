@@ -168,12 +168,13 @@ namespace GNC {
 				if(answer == wxNO) {
 					return false;
 				} else {
+                    bool success;
 		#ifdef _WIN32
-					wxMkdir(path,511);
+                    success = wxMkdir(path,511);
 		#else
-					wxMkDir(path.ToUTF8(), 0770);
+                    success = wxMkDir(path.ToUTF8(), 0770);
 		#endif
-					if(!wxDirExists(path))
+                    if(!success || !wxDirExists(path))
 					{
 						wxMessageBox(_("Failed to create directory, make sure the path is correct and you have permissions on parent directory"), _("Info"));
 						return false;
