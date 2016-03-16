@@ -1127,14 +1127,14 @@ void wxThumbnailCtrl::ScrollIntoView(int n, int keyCode)
         {
             // Make it scroll so this item is at the bottom
             // of the window
-            int y = rect.y - (clientSize.y - m_thumbnailOverallSize.y - m_spacing) ;
+            double y = rect.y - (clientSize.y - m_thumbnailOverallSize.y - m_spacing) ;
             SetScrollbars(ppuX, ppuY, sx, sy, 0, (int) (0.5 + y/ppuY));
         }
         else if (rect.y < startY)
         {
             // Make it scroll so this item is at the top
             // of the window
-            int y = rect.y ;
+            double y = rect.y ;
             SetScrollbars(ppuX, ppuY, sx, sy, 0, (int) (0.5 + y/ppuY));
         }
     }
