@@ -36,6 +36,7 @@ END_EVENT_TABLE()
 
 
 
+
 wxMaskData::wxMaskData() :
 	m_eType(MaskDataTypeLITERAL),
     m_eSubType(MaskDataSubTypeNONE),
@@ -124,20 +125,38 @@ wxChar wxMaskData::PreProcessChar(wxChar chNewChar)
 	return chProcessedChar;
 }
 
+wxMaskedTextCtrl::wxMaskedTextCtrl():
+    m_bInsertMode(TRUE),
+    m_chPromptSymbol(chSPACE),
+    m_chIntlDecimal(chPERIOD),
+    m_chIntlThousands(chCOMMA),
+    m_chIntlTime(chCOLON),
+    m_chIntlDate(chSLASH),
+    m_bAutoTab(FALSE),
+    m_bBackwardLocationRight(TRUE),
+    m_bNeedValidation(TRUE),
+    m_bValidation(FALSE),
+    m_dtDateTime(wxInvalidDateTime),
+    m_dtMinDateTime(wxInvalidDateTime),
+    m_dtMaxDateTime(wxInvalidDateTime)
+{
+}
 
 wxMaskedTextCtrl::wxMaskedTextCtrl(wxWindow *parent, wxWindowID id, const wxString& mask, const wxString &value, const wxPoint &pos, const wxSize &size, int style = 0)
-        : wxTextCtrl(parent, id, value, pos, size, style), m_bInsertMode(TRUE), m_chPromptSymbol(chSPACE),
-			m_chIntlDecimal(chPERIOD),
-			m_chIntlThousands(chCOMMA),
-			m_chIntlTime(chCOLON),
-			m_chIntlDate(chSLASH),
-			m_bAutoTab(FALSE),
-			m_bBackwardLocationRight(TRUE),
-			m_bNeedValidation(TRUE),
-			m_bValidation(FALSE),
-			m_dtDateTime(wxInvalidDateTime),
-			m_dtMinDateTime(wxInvalidDateTime),
-			m_dtMaxDateTime(wxInvalidDateTime)
+        : wxTextCtrl(parent, id, value, pos, size, style),
+          m_bInsertMode(TRUE),
+          m_chPromptSymbol(chSPACE),
+          m_chIntlDecimal(chPERIOD),
+          m_chIntlThousands(chCOMMA),
+          m_chIntlTime(chCOLON),
+          m_chIntlDate(chSLASH),
+          m_bAutoTab(FALSE),
+          m_bBackwardLocationRight(TRUE),
+          m_bNeedValidation(TRUE),
+          m_bValidation(FALSE),
+          m_dtDateTime(wxInvalidDateTime),
+          m_dtMinDateTime(wxInvalidDateTime),
+          m_dtMaxDateTime(wxInvalidDateTime)
 {
 	wxString str = mask;
 	SetMask(str);
