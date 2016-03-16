@@ -40,11 +40,12 @@
 //region "Implementacion de WAnguloBuilder"
 
 GNC::GCS::Widgets::WAnguloBuilder::WAnguloBuilder(GNC::GCS::IWidgetsManager* pManager, const GNC::GCS::TriggerButton& buttonMask) :
-		GNC::GCS::Widgets::IWidgetBuilder(pManager, buttonMask),
-		m_Estado(WBS_Ninguno),
-                m_Modo(MA_Normal),
-		m_NodoActual(0),
-                m_pAnguloTemp(NULL)
+    GNC::GCS::Widgets::IWidgetBuilder(pManager, buttonMask),
+    m_Changed(false),
+    m_Estado(WBS_Ninguno),
+    m_Modo(MA_Normal),
+    m_NodoActual(0),
+    m_pAnguloTemp(NULL)
 {
 }
 
