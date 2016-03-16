@@ -21,18 +21,6 @@
 #pragma once
 #include <string>
 
-#if !defined(GINKGO_VERSION)
-#define GINKGO_VERSION "3.7.5"
-#endif
-
-#if !defined(GINKGO_REVISION)
-#define GINKGO_REVISION 1
-#endif
-
-#if !defined(GINKGO_BUILD)
-#define GINKGO_BUILD "1"
-#endif
-
 #define GINKGO_COPYRIGHT   "© 2007-2016"
 #define PRODUCT_NAME	"Ginkgo CADx"
 #define PRODUCT_SUBTITLE _Std("Open Source DICOM CADx environment")

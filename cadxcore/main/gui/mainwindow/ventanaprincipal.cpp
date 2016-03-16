@@ -1738,62 +1738,13 @@ void VentanaPrincipal::OnNotebookMenuTab(wxAuiNotebookEvent& )
 
 void VentanaPrincipal::OnNotebookFocus(wxChildFocusEvent&)
 {
-
-/*	if(m_pNoteBook->GetPageCount() > 0){
-		GNC::GCS::IVista* v  = GNC::GCS::ControladorVistas::Instance()->ObtenerPrimeraVista(m_pNoteBook->GetPage(m_pNoteBook->GetSelection()));
-		v->GetWindow()->SetFocus();
-	}
-	*/
+        
 }
 
 //region "eventos ginkgo"
 void VentanaPrincipal::ProcesarEvento(GNC::GCS::Events::IEvent *pEvt)
 {
-	switch (pEvt->GetCodigoEvento()) {
-		case ginkgoEVT_Core_UpdateAvailable:
-			{
-				GNC::GCS::Events::EventoUpdateAvailable* pE = dynamic_cast<GNC::GCS::Events::EventoUpdateAvailable*>(pEvt);
-				if (pE != NULL) {
-
-					int curRevision = GNC::GCS::IEntorno::Instance()->GetGinkgoRevision();
-
-					bool superior = false;
-
-					if ( pE->GetRevision() > curRevision ) {
-						superior = true;
-					}
-					
-					m_VersionChecked = true;
-					m_VersionNueva = pE->GetVersionString();
-
-					if (!superior) {
-						if (pE->Informar()) {
-							wxMessageBox(_("There is not newest Ginkgo CADx versions at this moment."), _("Ginkgo CADx updated"), wxICON_INFORMATION);
-						}
-						return;
-					}
-
-					std::string valor;
-					GNC::GCS::ConfigurationController::Instance()->readStringGeneral("/GinkgoCore/SkipUpdate", m_VersionNueva, valor, "0");
-					if (valor == "1" && !pE->Informar()) {
-						return;
-					}
-
-					//wxWindowDisabler dis;
-					//SuperFreeze();
-
-					m_pPanelActualizacion->Show();
-					//m_pPanelCentral->Layout();
-					Layout();
-					Refresh(true);
-
-					//SuperThaw();
-				}
-			}
-			break;
-		default:
-			break;
-	}
+        LOG_ERROR("Core", "Currently the check for update event is disabled");
 }
 //endregion
 

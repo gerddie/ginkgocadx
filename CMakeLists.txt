@@ -2,9 +2,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
 PROJECT(BUILD_ALL)
 
-SET( GINKGO_VERSION 3.7.4 CACHE STRING "Mayor version number")
-SET( GINKGO_REVISION 1 CACHE STRING "Incremental revision number")
-SET( GINKGO_BUILD 1 CACHE STRING "Incremental build number")
+SET( GINKGO_VERSION 3.8.0)
 
 SET( USE_PATCHED_LIBS        FALSE CACHE BOOL "Use patched libraries")
 SET( BUILD_VISUALIZATION_EXT TRUE CACHE BOOL "Build Visualization extention")
@@ -21,7 +19,7 @@ SET( INTERNET_DIST           TRUE CACHE BOOL "Public distribution")
 
 SET( CMAKE_OSX_ARCHITECTURES "i386" CACHE STRING "MacOSX Architectures" FORCE)
 
-SET( GINKGO_VERSION_STR ${GINKGO_VERSION}.${GINKGO_REVISION}.${GINKGO_BUILD})
+SET( GINKGO_VERSION_STR ${GINKGO_VERSION})
 
 #############################################################################################
 

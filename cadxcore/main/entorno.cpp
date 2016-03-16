@@ -139,7 +139,7 @@ GNC::Entorno::Entorno()
 	m_isChildInstance = false;
 
 	std::ostringstream os;
-	os << GINKGO_VERSION << "." << GINKGO_REVISION << "." << GINKGO_BUILD;
+	os << GINKGO_VERSION;
 	if (sizeof(void*) == 4) {
 		os << " 32 bits";
 	}
@@ -297,18 +297,6 @@ const std::string& GNC::Entorno::GetGinkgoVersionString()
 std::string GNC::Entorno::GetGinkgoVersion()
 {
 	return std::string(GINKGO_VERSION);
-}
-
-/** Gets the revision mark (incremental) **/
-int GNC::Entorno::GetGinkgoRevision()
-{
-	return GINKGO_REVISION;
-}
-
-/** Gets the build mark (incremental) **/
-std::string GNC::Entorno::GetGinkgoBuild()
-{
-	return std::string(GINKGO_BUILD);
 }
 
 /** Gets the mayor version number **/

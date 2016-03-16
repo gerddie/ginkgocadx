@@ -81,12 +81,6 @@ namespace GNC {
 		/** Gets the GinkgoCADx version string **/
 		virtual std::string GetGinkgoVersion();
 
-		/** Gets the revision mark (incremental) **/
-		virtual int GetGinkgoRevision();
-
-		/** Gets the build mark (incremental) **/
-		virtual std::string GetGinkgoBuild();
-
 		/** Gets the mayor version number **/
 		virtual int GetGinkgoMayorVersionNumber();
 		
