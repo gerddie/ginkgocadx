@@ -177,6 +177,7 @@ namespace GNC {
 				Anotaciones(GNC::GCS::IWidgetsRenderer* pRenderer)
 				{
 					m_Correcta            = false;
+                    m_TamFuente           = 10; // GW: guessed value, will probably be overwritten before use
 					m_RecalcularTamOptimo = false;
 					m_pRenderer           = pRenderer;
 					m_Modificada          = false;
