@@ -125,8 +125,10 @@ void DIMSE_printNStatusString(std::ostream& dumpStream, int status)
 		break;
     default: {
         char prev = dumpStream.fill('0');
+        auto flags = dumpStream.flags();
         dumpStream << "0x" << std::hex << std::setw(4) << status
-                   << ": Unknown Status Code" << std::resetiosflags(std::ios::showbase);
+                   << ": Unknown Status Code";
+        dumpStream.flags(flags);
         dumpStream.fill(prev);
 		break;
     }
