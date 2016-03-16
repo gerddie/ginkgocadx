@@ -68,6 +68,7 @@
 #define wxTHUMBNAIL_DEFAULT_IMAGE_SIZE wxSize(80, 80)
 #define wxTHUMBNAIL_DEFAULT_SPACING 3
 #define wxTHUMBNAIL_DEFAULT_MARGIN 1
+#define wxTHUMBNAIL_DEFAULT_HEIGHT 10
 #define wxTHUMBNAIL_DEFAULT_UNFOCUSSED_BACKGROUND wxColour(175, 175, 175)
 #define wxTHUMBNAIL_DEFAULT_FOCUSSED_BACKGROUND wxColour(140, 140, 140)
 // #define wxTHUMBNAIL_DEFAULT_UNSELECTED_BACKGROUND wxColour(205, 205, 205)
@@ -233,9 +234,6 @@ public:
     /// Creation
     bool Create( wxWindow* parent, wxWindowID id = -1, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize,
         long style = wxTH_TEXT_LABEL|wxTH_IMAGE_LABEL|wxTH_EXTENSION_LABEL );
-
-    /// Member initialisation
-    void Init();
 
     /// Call Freeze to prevent refresh
     void Freeze();

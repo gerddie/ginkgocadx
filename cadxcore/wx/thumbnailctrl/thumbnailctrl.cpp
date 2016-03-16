@@ -91,12 +91,29 @@ wxThumbnailCtrl* wxThumbnailCtrl::sm_currentThumbnailCtrl = NULL;
 
 wxThumbnailCtrl::wxThumbnailCtrl( )
 {
-    Init();
+    m_thumbnailOverallSize = wxTHUMBNAIL_DEFAULT_OVERALL_SIZE;
+    m_thumbnailImageSize = wxTHUMBNAIL_DEFAULT_IMAGE_SIZE;
+    m_freezeCount = 0;
+    m_spacing = wxTHUMBNAIL_DEFAULT_SPACING;
+    m_thumbnailMargin = wxTHUMBNAIL_DEFAULT_MARGIN;
+    m_thumbnailTextHeight = wxTHUMBNAIL_DEFAULT_HEIGHT;
+    m_firstSelection = -1;
+    m_lastSelection = -1;
+    m_sortMode = wxTHUMBNAIL_SORT_NAME_UP;
+    m_focussedThumbnailBackgroundColour = wxTHUMBNAIL_DEFAULT_FOCUSSED_BACKGROUND;
+    m_unfocussedThumbnailBackgroundColour  = wxTHUMBNAIL_DEFAULT_UNFOCUSSED_BACKGROUND;
+    m_unselectedThumbnailBackgroundColour = wxTHUMBNAIL_DEFAULT_UNSELECTED_BACKGROUND;
+    m_typeColour = wxTHUMBNAIL_DEFAULT_TYPE_COLOUR;
+    m_tagColour = wxTHUMBNAIL_DEFAULT_TAG_COLOUR;
+    m_focusRectColour = wxTHUMBNAIL_DEFAULT_FOCUS_RECT_COLOUR;
+    m_selectedTextColour = wxTHUMBNAIL_DEFAULT_SELECTED_TEXT_COLOR;
+    m_unselectedTextColour = wxTHUMBNAIL_DEFAULT_UNSELECTED_TEXT_COLOR;
+    m_focusItem = -1;
 }
 
-wxThumbnailCtrl::wxThumbnailCtrl( wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style)
+wxThumbnailCtrl::wxThumbnailCtrl( wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style):
+    wxThumbnailCtrl()
 {
-    Init();
     Create(parent, id, pos, size, style);
 }
 
@@ -131,27 +148,6 @@ bool wxThumbnailCtrl::Create( wxWindow* parent, wxWindowID id, const wxPoint& po
     return true;
 }
 
-/// Member initialisation
-void wxThumbnailCtrl::Init()
-{
-    m_thumbnailOverallSize = wxTHUMBNAIL_DEFAULT_OVERALL_SIZE;
-    m_thumbnailImageSize = wxTHUMBNAIL_DEFAULT_IMAGE_SIZE;
-    m_freezeCount = 0;
-    m_spacing = wxTHUMBNAIL_DEFAULT_SPACING;
-    m_thumbnailMargin = wxTHUMBNAIL_DEFAULT_MARGIN;
-    m_firstSelection = -1;
-    m_lastSelection = -1;
-    m_sortMode = wxTHUMBNAIL_SORT_NAME_UP;
-    m_focussedThumbnailBackgroundColour = wxTHUMBNAIL_DEFAULT_FOCUSSED_BACKGROUND;
-    m_unfocussedThumbnailBackgroundColour  = wxTHUMBNAIL_DEFAULT_UNFOCUSSED_BACKGROUND;
-    m_unselectedThumbnailBackgroundColour = wxTHUMBNAIL_DEFAULT_UNSELECTED_BACKGROUND;
-    m_typeColour = wxTHUMBNAIL_DEFAULT_TYPE_COLOUR;
-    m_tagColour = wxTHUMBNAIL_DEFAULT_TAG_COLOUR;
-    m_focusRectColour = wxTHUMBNAIL_DEFAULT_FOCUS_RECT_COLOUR;
-	 m_selectedTextColour = wxTHUMBNAIL_DEFAULT_SELECTED_TEXT_COLOR;
-	 m_unselectedTextColour = wxTHUMBNAIL_DEFAULT_UNSELECTED_TEXT_COLOR;
-    m_focusItem = -1;
-}
 
 /// Call Freeze to prevent refresh
 void wxThumbnailCtrl::Freeze()
