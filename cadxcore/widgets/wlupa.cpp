@@ -45,9 +45,11 @@
 
 //region "Implementacion de WBuilder"
 
-GNC::GCS::Widgets::WLupaBuilder::WLupaBuilder(GNC::GCS::IWidgetsManager* pManager, GNC::GCS::Widgets::ModoLupa modo, const GNC::GCS::TriggerButton& buttonMask, long gid) : GNC::GCS::Widgets::IWidgetBuilder(pManager, buttonMask, gid), IObservadorWidget(-1, gid)
+GNC::GCS::Widgets::WLupaBuilder::WLupaBuilder(GNC::GCS::IWidgetsManager* pManager, GNC::GCS::Widgets::ModoLupa modo,
+                                              const GNC::GCS::TriggerButton& buttonMask, long gid) :
+    GNC::GCS::Widgets::IWidgetBuilder(pManager, buttonMask, gid), IObservadorWidget(-1, gid)
 {
-	m_ModoActivo = modo;
+    m_ModoActivo = modo;
 	m_pLupaActiva = NULL;
 
 	m_pManager->InsertarObservador(this);
@@ -141,7 +143,12 @@ GNC::GCS::Widgets::TipoCursor GNC::GCS::Widgets::WLupaBuilder::GetCursor()
 
 //region "Constructor y destructor"
 
-GNC::GCS::Widgets::WLupa::WLupa(GNC::GCS::IWidgetsRenderer* pRenderer, const GNC::GCS::Vector& relacionImagenPantalla, GNC::GCS::Vector& puntoAnclaje, ModoLupa modo, IWidgetsManager* pManager, long vid, const char* nombre, long gid) : GNC::GCS::Widgets::IWidget(pManager, vid, nombre, gid)
+GNC::GCS::Widgets::WLupa::WLupa(GNC::GCS::IWidgetsRenderer* pRenderer, const GNC::GCS::Vector& relacionImagenPantalla, GNC::GCS::Vector& puntoAnclaje,
+                                ModoLupa modo, IWidgetsManager* pManager, long vid, const char* nombre, long gid) :
+    GNC::GCS::Widgets::IWidget(pManager, vid, nombre, gid),
+        m_LDown(false),
+        m_RDown(false),
+        m_Dentro(false)
 {
 	m_TopLevel = true;
 
