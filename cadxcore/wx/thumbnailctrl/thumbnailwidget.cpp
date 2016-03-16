@@ -71,14 +71,16 @@ END_EVENT_TABLE()
  * wxThumbnailWidget constructors
  */
 
-wxThumbnailWidget::wxThumbnailWidget( )
+wxThumbnailWidget::wxThumbnailWidget( ):
+    m_dirCtrl(nullptr),
+    m_imageBrowser(nullptr),
+    m_selectionCount(-1)
 {
-    m_selectionCount = -1;
 }
 
-wxThumbnailWidget::wxThumbnailWidget( wxWindow* parent, wxWindowID id, const wxString& caption, const wxPoint& pos, const wxSize& size, long style )
+wxThumbnailWidget::wxThumbnailWidget( wxWindow* parent, wxWindowID id, const wxString& caption, const wxPoint& pos, const wxSize& size, long style ):
+    m_selectionCount(-1)
 {
-    m_selectionCount = -1;
     Create(parent, id, caption, pos, size, style);
 }
 
