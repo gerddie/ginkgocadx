@@ -39,7 +39,7 @@ namespace GNC
 		namespace Widgets {
 			struct StripDescription
 			{
-				StripDescription();
+                StripDescription() = default;
 				StripDescription(GNC::GCS::Vector position, GNC::GCS::Vector size);
 
 				GNC::GCS::Vector rasterPosition;

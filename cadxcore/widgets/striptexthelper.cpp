@@ -27,16 +27,15 @@
 #include <vtkgl.h>
 #include <cairo/cairo.h>
 
-GNC::GCS::Widgets::StripDescription::StripDescription()
+GNC::GCS::Widgets::StripDescription::StripDescription(GNC::GCS::Vector position, GNC::GCS::Vector size):
+    rasterPosition(position),
+    rasterSize(size)
 {
-}
-GNC::GCS::Widgets::StripDescription::StripDescription(GNC::GCS::Vector position, GNC::GCS::Vector size)
-{
-	this->rasterPosition = position;
-	this->rasterSize = size;
+
 }
 
-GNC::GCS::Widgets::StripTextRenderer::StripTextRenderer()
+GNC::GCS::Widgets::StripTextRenderer::StripTextRenderer():
+    m_textHeigh(2)
 {
 	m_pFontOptions = cairo_font_options_create();
 	tc.Redimensionar(2, 2);
