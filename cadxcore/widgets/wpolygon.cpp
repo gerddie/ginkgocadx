@@ -433,20 +433,20 @@ bool GNC::GCS::Widgets::WPolygon::HitTest(float x, float y, const GNC::GCS::Vect
 {
 	//distance to each line....
 	bool hits = false;
+    if (m_Vertices.empty())
+        return hits;
+
 	GNC::GCS::Vector point(x, y);
-	TPolygonVertexList::iterator prev;
-	for (TPolygonVertexList::iterator it = m_Vertices.begin(); !hits && it != m_Vertices.end(); ++it) 
+    TPolygonVertexList::iterator it = m_Vertices.begin();
+    TPolygonVertexList::iterator prev = it++;
+
+
+    hits = HitTest(m_Vertices.front(), m_Vertices.back(), point, u);
+
+    while  (!hits && it != m_Vertices.end())
 	{
-		//distance between two nodes
-		if (it == m_Vertices.begin())
-		{
-			hits = HitTest(m_Vertices.front(), m_Vertices.back(), point, u);
-		} 
-		else
-		{
-			hits = HitTest((*prev), (*it), point, u);
-		}
-		prev = it;
+        hits = HitTest((*prev), (*it), point, u);
+        prev = it++;
 	}
 	return hits;
 }
