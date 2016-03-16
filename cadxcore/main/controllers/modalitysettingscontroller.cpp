@@ -18,6 +18,14 @@
  *
  */
 
+#include <wx/log.h>
+#include <wx/xml/xml.h>
+#include <wx/mstream.h>
+#include <wx/sstream.h>
+#include <wx/regex.h>
+#include <wx/sizer.h>
+#include <wx/display.h>
+
 #include "modalitysettingscontroller.h"
 #include <limits> 
 #include <iomanip>
@@ -33,12 +41,7 @@
 #include <main/gui/mainwindow/ventanaprincipal.h>
 #include <main/entorno.h>
 
-#include <wx/xml/xml.h>
-#include <wx/mstream.h>
-#include <wx/sstream.h>
-#include <wx/regex.h>
-#include <wx/sizer.h>
-#include <wx/display.h>
+
 
 #define MS_DOCUMENT_ROOT wxT("modality-settings")
 
@@ -627,8 +630,13 @@ void GNC::GCS::ModalitySettingsController::LoadFromConfiguration()
 	LoadDefaultModalitySettings();
 	//Deserialize...
 	std::string serializedValue;
-	GNC::GCS::ConfigurationController::Instance()->readStringUser("/GinkgoCore/ModalitySettings","DefaultModalitySettings", serializedValue);
-	if (!serializedValue.empty()) {
+
+    // silence the log about missing environment variables in modality settings
+    auto oldLogLevel = wxLog::GetLogLevel();
+    wxLog::SetLogLevel(wxLOG_Error);
+    GNC::GCS::ConfigurationController::Instance()->readStringUser("/GinkgoCore/ModalitySettings","DefaultModalitySettings", serializedValue);
+    wxLog::SetLogLevel(oldLogLevel);
+    if (!serializedValue.empty()) {
 		wxString wxSerializedValue = wxString::FromUTF8(serializedValue.c_str());
 		wxStringInputStream istream(wxSerializedValue);
 		wxXmlDocument doc;
