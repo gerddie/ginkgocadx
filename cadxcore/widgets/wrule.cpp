@@ -171,7 +171,12 @@ GNC::GCS::Widgets::WRule::~WRule()
 //region "Serializado y desserializado"
 GNC::GCS::Widgets::WRule::WRule(IWidgetsManager* pManager, long vid, wxXmlNode* nodo):
         GNC::GCS::Widgets::IWidget(pManager, vid, "Regla"),
-	GNC::GCS::Widgets::IWidgetSerializable(nodo), m_Angulo(0.0), m_Pendiente(0.0), m_Distancia(0)
+    GNC::GCS::Widgets::IWidgetSerializable(nodo),
+    m_MouseDown(false),
+    m_Angulo(0.0),
+    m_Pendiente(0.0),
+    m_Distancia(0),
+    m_SupportsCallibration(false)
 {
 	if(nodo->GetName() != wxT("rule_widget")){
 		std::cerr<< "Ha ocurrido un error al desserializar el widget regla"<<std::endl;
@@ -187,9 +192,7 @@ GNC::GCS::Widgets::WRule::WRule(IWidgetsManager* pManager, long vid, wxXmlNode* 
 		child = child->GetNext();
 	}
 
-	m_MouseDown = false;
-
-	GNC::GCS::Events::EventoModificacionImagen evt1(m_pManager->GetVista());
+    GNC::GCS::Events::EventoModificacionImagen evt1(m_pManager->GetVista());
 	GNC::GCS::IEventsController::Instance()->Registrar(this, evt1);
 
 	m_pTextBox = new GNC::GCS::Widgets::WTextBox(m_pManager, m_VID, m_Vertices[1], GNC::GCS::Widgets::WTextBox::TNM_Dynamic, "ruleBox", "");
