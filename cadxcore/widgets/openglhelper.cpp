@@ -47,6 +47,7 @@ GNC::GCS::TexturaCairo::TexturaCairo() {
 	pPixelData        = NULL;
 	cs                = NULL;
 	cr                = NULL;
+    opacidad          = 0.5f;
 	m_Interpolar      = false;
 	trel.Asignar(1.0f, 1.0f);
 }
