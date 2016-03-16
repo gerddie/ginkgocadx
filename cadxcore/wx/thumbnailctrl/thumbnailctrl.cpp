@@ -1187,14 +1187,14 @@ void wxThumbnailCtrl::EnsureVisible(int n)
     {
         // Make it scroll so this item is at the bottom
         // of the window
-        int y = rect.y - (clientSize.y - m_thumbnailOverallSize.y - m_spacing) ;
+        double y = rect.y - (clientSize.y - m_thumbnailOverallSize.y - m_spacing) ;
         SetScrollbars(ppuX, ppuY, sx, sy, 0, (int) (0.5 + y/ppuY));
     }
     else if (rect.y < startY)
     {
         // Make it scroll so this item is at the top
         // of the window
-        int y = rect.y ;
+        double y = rect.y ;
         SetScrollbars(ppuX, ppuY, sx, sy, 0, (int) (0.5 + y/ppuY));
     }
 }
@@ -1742,10 +1742,11 @@ bool wxImageThumbnailItem::Draw(wxDC& dc, wxThumbnailCtrl* /*ctrl*/, const wxRec
 }
 
 wxImageThumbnailItem::wxImageThumbnailItem(const wxString& filename):
-        wxThumbnailItem(filename) 
+        wxThumbnailItem(filename),
+        pThread(nullptr),
+        m_ctrl(nullptr)
 {
-	pThread = NULL;
-	m_plock = new wxCriticalSection;
+    m_plock = new wxCriticalSection;
 }
 
 wxImageThumbnailItem::~wxImageThumbnailItem()
