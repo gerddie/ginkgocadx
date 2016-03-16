@@ -136,7 +136,15 @@ bool IsCodeSequence(GIL::DICOM::DicomDataset& base, const std::string& tag, std:
 	GIL::DICOM::DicomDataset* seq = base.buscar_secuencia(tag);
 	if (seq != NULL && seq->items.size() > 0) {
 		if (seq->items.front().getTag(TAGS::CodingSchemeDesignator) == codingSchemeDesignator || seq->items.front().getTag(TAGS::CodingSchemeVersion) == codingSchemeVersion) {
-			seq->items.front().getTag(TAGS::CodingValue, codeValue);
+            if (!seq->items.front().getTag(TAGS::CodingValue, codeValue)){
+                /* GW: I don't know what it means when the CodingValue tag is not found,
+                 * but one of the callers simply discards the value, and the other checks against
+                 * it, so if it is empty, nothing should happen, so just make sure that the
+                 * value is cleaned.
+                 */
+                codeValue="";
+                LOG_ERROR("EGCStudy", "IsCodeSequence: Tag 'CodingValue' but still returning true");
+            }
 			return true;
 		}
 	} 
