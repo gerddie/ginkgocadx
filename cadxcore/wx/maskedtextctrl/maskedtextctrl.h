@@ -102,7 +102,7 @@ DECLARE_DYNAMIC_CLASS(wxMaskedTextCtrl)
 
 // Member functions ---------------------------------------------------------
 public:
-	wxMaskedTextCtrl();
+    wxMaskedTextCtrl() = default;
 	wxMaskedTextCtrl(wxWindow *parent, wxWindowID id, const wxString& mask, const wxString &value, const wxPoint &pos, const wxSize &size, int style);
 	virtual ~wxMaskedTextCtrl();
 

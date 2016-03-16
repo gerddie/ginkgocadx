@@ -38,6 +38,7 @@ END_EVENT_TABLE()
 
 wxMaskData::wxMaskData() :
 	m_eType(MaskDataTypeLITERAL),
+    m_eSubType(MaskDataSubTypeNONE),
 	m_chValue(chNULL)
 {
 }
@@ -143,10 +144,6 @@ wxMaskedTextCtrl::wxMaskedTextCtrl(wxWindow *parent, wxWindowID id, const wxStri
 
 	if(m_listData.GetCount() != 0)
 		UpdateControl();
-}
-
-wxMaskedTextCtrl::wxMaskedTextCtrl()
-{
 }
 
 wxMaskedTextCtrl::~wxMaskedTextCtrl()
