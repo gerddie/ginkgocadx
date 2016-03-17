@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -51,86 +51,92 @@
 #define FLIP_V			1864
 #define CLEAR_ROTATION_AND_FLIP	1865
 
-namespace GNC {
-	namespace GUI {
-		class wxEventHandlerRotateAndFlip : public wxEvtHandler {
-		public:
-			wxEventHandlerRotateAndFlip(wxEvtHandler* pParent, GNC::RotateAndFlipTool* pHerramienta):wxEvtHandler() {
-				m_pEvtParent = pParent;
-				m_pHerramienta=pHerramienta;
+namespace GNC
+{
+namespace GUI
+{
+class wxEventHandlerRotateAndFlip : public wxEvtHandler
+{
+public:
+        wxEventHandlerRotateAndFlip(wxEvtHandler* pParent, GNC::RotateAndFlipTool* pHerramienta):wxEvtHandler()
+        {
+                m_pEvtParent = pParent;
+                m_pHerramienta=pHerramienta;
 
-				m_pEvtParent->Connect(ROTATE_LEFT, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerRotateAndFlip::OnUpdateRotateAndFlipUI),NULL,this);
-				m_pEvtParent->Connect(ROTATE_RIGHT, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerRotateAndFlip::OnUpdateRotateAndFlipUI),NULL,this);
-				m_pEvtParent->Connect(FLIP_H, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerRotateAndFlip::OnUpdateRotateAndFlipUI),NULL,this);
-				m_pEvtParent->Connect(FLIP_V, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerRotateAndFlip::OnUpdateRotateAndFlipUI),NULL,this);
-				m_pEvtParent->Connect(CLEAR_ROTATION_AND_FLIP, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerRotateAndFlip::OnUpdateRotateAndFlipUI),NULL,this);
+                m_pEvtParent->Connect(ROTATE_LEFT, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerRotateAndFlip::OnUpdateRotateAndFlipUI),NULL,this);
+                m_pEvtParent->Connect(ROTATE_RIGHT, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerRotateAndFlip::OnUpdateRotateAndFlipUI),NULL,this);
+                m_pEvtParent->Connect(FLIP_H, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerRotateAndFlip::OnUpdateRotateAndFlipUI),NULL,this);
+                m_pEvtParent->Connect(FLIP_V, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerRotateAndFlip::OnUpdateRotateAndFlipUI),NULL,this);
+                m_pEvtParent->Connect(CLEAR_ROTATION_AND_FLIP, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerRotateAndFlip::OnUpdateRotateAndFlipUI),NULL,this);
 
-				m_pEvtParent->Connect(ROTATE_LEFT, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerRotateAndFlip::OnRotateLeft),NULL,this);
-				m_pEvtParent->Connect(ROTATE_RIGHT, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(wxEventHandlerRotateAndFlip::OnRotateRight),NULL,this);
-				m_pEvtParent->Connect(FLIP_H, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(wxEventHandlerRotateAndFlip::OnFlipH),NULL,this);
-				m_pEvtParent->Connect(FLIP_V, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(wxEventHandlerRotateAndFlip::OnFlipV),NULL,this);
-				m_pEvtParent->Connect(CLEAR_ROTATION_AND_FLIP, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(wxEventHandlerRotateAndFlip::ClearRotationAndFlip),NULL,this);
-			}
+                m_pEvtParent->Connect(ROTATE_LEFT, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerRotateAndFlip::OnRotateLeft),NULL,this);
+                m_pEvtParent->Connect(ROTATE_RIGHT, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(wxEventHandlerRotateAndFlip::OnRotateRight),NULL,this);
+                m_pEvtParent->Connect(FLIP_H, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(wxEventHandlerRotateAndFlip::OnFlipH),NULL,this);
+                m_pEvtParent->Connect(FLIP_V, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(wxEventHandlerRotateAndFlip::OnFlipV),NULL,this);
+                m_pEvtParent->Connect(CLEAR_ROTATION_AND_FLIP, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(wxEventHandlerRotateAndFlip::ClearRotationAndFlip),NULL,this);
+        }
 
-			~wxEventHandlerRotateAndFlip() {
-				m_pEvtParent->Disconnect(ROTATE_LEFT, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerRotateAndFlip::OnUpdateRotateAndFlipUI),NULL,this);
-				m_pEvtParent->Disconnect(ROTATE_RIGHT, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerRotateAndFlip::OnUpdateRotateAndFlipUI),NULL,this);
-				m_pEvtParent->Disconnect(FLIP_H, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerRotateAndFlip::OnUpdateRotateAndFlipUI),NULL,this);
-				m_pEvtParent->Disconnect(FLIP_V, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerRotateAndFlip::OnUpdateRotateAndFlipUI),NULL,this);
-				m_pEvtParent->Disconnect(CLEAR_ROTATION_AND_FLIP, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerRotateAndFlip::OnUpdateRotateAndFlipUI),NULL,this);
+        ~wxEventHandlerRotateAndFlip()
+        {
+                m_pEvtParent->Disconnect(ROTATE_LEFT, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerRotateAndFlip::OnUpdateRotateAndFlipUI),NULL,this);
+                m_pEvtParent->Disconnect(ROTATE_RIGHT, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerRotateAndFlip::OnUpdateRotateAndFlipUI),NULL,this);
+                m_pEvtParent->Disconnect(FLIP_H, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerRotateAndFlip::OnUpdateRotateAndFlipUI),NULL,this);
+                m_pEvtParent->Disconnect(FLIP_V, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerRotateAndFlip::OnUpdateRotateAndFlipUI),NULL,this);
+                m_pEvtParent->Disconnect(CLEAR_ROTATION_AND_FLIP, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerRotateAndFlip::OnUpdateRotateAndFlipUI),NULL,this);
 
-				m_pEvtParent->Disconnect(ROTATE_LEFT, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerRotateAndFlip::OnRotateLeft),NULL,this);
-				m_pEvtParent->Disconnect(ROTATE_RIGHT, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(wxEventHandlerRotateAndFlip::OnRotateRight),NULL,this);
-				m_pEvtParent->Disconnect(FLIP_H, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(wxEventHandlerRotateAndFlip::OnFlipH),NULL,this);
-				m_pEvtParent->Disconnect(FLIP_V, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(wxEventHandlerRotateAndFlip::OnFlipV),NULL,this);
-				m_pEvtParent->Disconnect(CLEAR_ROTATION_AND_FLIP, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(wxEventHandlerRotateAndFlip::ClearRotationAndFlip),NULL,this);
-				m_pEvtParent = NULL;
-				m_pHerramienta = NULL;
-			}
+                m_pEvtParent->Disconnect(ROTATE_LEFT, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerRotateAndFlip::OnRotateLeft),NULL,this);
+                m_pEvtParent->Disconnect(ROTATE_RIGHT, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(wxEventHandlerRotateAndFlip::OnRotateRight),NULL,this);
+                m_pEvtParent->Disconnect(FLIP_H, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(wxEventHandlerRotateAndFlip::OnFlipH),NULL,this);
+                m_pEvtParent->Disconnect(FLIP_V, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(wxEventHandlerRotateAndFlip::OnFlipV),NULL,this);
+                m_pEvtParent->Disconnect(CLEAR_ROTATION_AND_FLIP, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(wxEventHandlerRotateAndFlip::ClearRotationAndFlip),NULL,this);
+                m_pEvtParent = NULL;
+                m_pHerramienta = NULL;
+        }
 
-			void OnRotateLeft( wxCommandEvent& event )
-			{
-				m_pHerramienta->Rotate(false);
-				event.Skip(false);
-			}
+        void OnRotateLeft( wxCommandEvent& event )
+        {
+                m_pHerramienta->Rotate(false);
+                event.Skip(false);
+        }
 
-			void OnRotateRight( wxCommandEvent& event )
-			{
-				m_pHerramienta->Rotate(true);
-				event.Skip(false);
-			}
+        void OnRotateRight( wxCommandEvent& event )
+        {
+                m_pHerramienta->Rotate(true);
+                event.Skip(false);
+        }
 
-			void OnFlipH( wxCommandEvent& event )
-			{
-				m_pHerramienta->Flip(false);
-				event.Skip(false);
-			}
+        void OnFlipH( wxCommandEvent& event )
+        {
+                m_pHerramienta->Flip(false);
+                event.Skip(false);
+        }
 
-			void OnFlipV( wxCommandEvent& event )
-			{
-				m_pHerramienta->Flip(true);
-				event.Skip(false);
-			}
+        void OnFlipV( wxCommandEvent& event )
+        {
+                m_pHerramienta->Flip(true);
+                event.Skip(false);
+        }
 
-			void OnUpdateRotateAndFlipUI(wxUpdateUIEvent& event) {
-				event.Enable(m_pHerramienta->IsEnabled());
-			}
+        void OnUpdateRotateAndFlipUI(wxUpdateUIEvent& event)
+        {
+                event.Enable(m_pHerramienta->IsEnabled());
+        }
 
-			void ClearRotationAndFlip( wxCommandEvent& event )
-			{
-				m_pHerramienta->Clear();
-				event.Skip(false);
-			}
+        void ClearRotationAndFlip( wxCommandEvent& event )
+        {
+                m_pHerramienta->Clear();
+                event.Skip(false);
+        }
 
-			GNC::RotateAndFlipTool* m_pHerramienta;
-			wxEvtHandler* m_pEvtParent;
-		};
-	}
+        GNC::RotateAndFlipTool* m_pHerramienta;
+        wxEvtHandler* m_pEvtParent;
+};
+}
 }
 
 GNC::GCS::ITool* GNC::RotateAndFlipTool::NewTool()
 {
-	return new GNC::RotateAndFlipTool();
+        return new GNC::RotateAndFlipTool();
 }
 
 GNC::RotateAndFlipTool::RotateAndFlipTool()
@@ -139,67 +145,67 @@ GNC::RotateAndFlipTool::RotateAndFlipTool()
 GNC::RotateAndFlipTool::~RotateAndFlipTool()
 {
 }
-		
+
 bool GNC::RotateAndFlipTool::ExecuteAction()
-{	
-	return false;
+{
+        return false;
 }
 
 bool GNC::RotateAndFlipTool::HasDropDownMenu()
 {
-	return true;
+        return true;
 }
 
 void GNC::RotateAndFlipTool::AppendDropDownMenu(wxEvtHandler* pParent, wxMenu* pMenu)
 {
-	if (pMenu->GetMenuItemCount() > 0 && !pMenu->GetMenuItems().back()->IsSeparator()) {
-		pMenu->AppendSeparator();
-	}
-	pMenu->Append(new GNC::GUI::wxMenuItemTool(pMenu, CLEAR_ROTATION_AND_FLIP, _("Undo rotate and flip"), GinkgoResourcesManager::MenuIcons::GetIcoReset(), new GNC::GUI::wxEventHandlerRotateAndFlip( pParent, this)));
-	pMenu->AppendSeparator();
-	pMenu->Append(new GNC::GUI::wxMenuItemTool(pMenu, ROTATE_LEFT, _("Rotate 90") + wxString::FromUTF8("º ")+ _("counter-clockwise"), GinkgoResourcesManager::ToolIcons::GetIcoRotateLeft(), new GNC::GUI::wxEventHandlerRotateAndFlip( pParent, this)));
-	pMenu->Append(new GNC::GUI::wxMenuItemTool(pMenu, ROTATE_RIGHT, _("Rotate 90") + wxString::FromUTF8("º ")+ _("clockwise"), GinkgoResourcesManager::ToolIcons::GetIcoRotateRight(), new GNC::GUI::wxEventHandlerRotateAndFlip( pParent, this)));
-	pMenu->AppendSeparator();
-	pMenu->Append(new GNC::GUI::wxMenuItemTool(pMenu, FLIP_H, _("Flip horizontal"), GinkgoResourcesManager::ToolIcons::GetIcoFlipHorizontal(), new GNC::GUI::wxEventHandlerRotateAndFlip( pParent, this)));
-	pMenu->Append(new GNC::GUI::wxMenuItemTool(pMenu, FLIP_V, _("Flip vertical"), GinkgoResourcesManager::ToolIcons::GetIcoFlipVertical(), new GNC::GUI::wxEventHandlerRotateAndFlip( pParent, this)));		
+        if (pMenu->GetMenuItemCount() > 0 && !pMenu->GetMenuItems().back()->IsSeparator()) {
+                pMenu->AppendSeparator();
+        }
+        pMenu->Append(new GNC::GUI::wxMenuItemTool(pMenu, CLEAR_ROTATION_AND_FLIP, _("Undo rotate and flip"), GinkgoResourcesManager::MenuIcons::GetIcoReset(), new GNC::GUI::wxEventHandlerRotateAndFlip( pParent, this)));
+        pMenu->AppendSeparator();
+        pMenu->Append(new GNC::GUI::wxMenuItemTool(pMenu, ROTATE_LEFT, _("Rotate 90") + wxString::FromUTF8("º ")+ _("counter-clockwise"), GinkgoResourcesManager::ToolIcons::GetIcoRotateLeft(), new GNC::GUI::wxEventHandlerRotateAndFlip( pParent, this)));
+        pMenu->Append(new GNC::GUI::wxMenuItemTool(pMenu, ROTATE_RIGHT, _("Rotate 90") + wxString::FromUTF8("º ")+ _("clockwise"), GinkgoResourcesManager::ToolIcons::GetIcoRotateRight(), new GNC::GUI::wxEventHandlerRotateAndFlip( pParent, this)));
+        pMenu->AppendSeparator();
+        pMenu->Append(new GNC::GUI::wxMenuItemTool(pMenu, FLIP_H, _("Flip horizontal"), GinkgoResourcesManager::ToolIcons::GetIcoFlipHorizontal(), new GNC::GUI::wxEventHandlerRotateAndFlip( pParent, this)));
+        pMenu->Append(new GNC::GUI::wxMenuItemTool(pMenu, FLIP_V, _("Flip vertical"), GinkgoResourcesManager::ToolIcons::GetIcoFlipVertical(), new GNC::GUI::wxEventHandlerRotateAndFlip( pParent, this)));
 }
 
 void GNC::RotateAndFlipTool::AppendToolIn(wxEvtHandler* pParent, wxMenu* pMenu)
 {
-	if (AppendsInMenu()) {
-		AppendDropDownMenu(pParent, pMenu);
-	}
+        if (AppendsInMenu()) {
+                AppendDropDownMenu(pParent, pMenu);
+        }
 }
 
 void GNC::RotateAndFlipTool::Rotate(bool right)
 {
-	GNC::GCS::IWidgetsContract::TViewerList listOfViewers;
-	WidgetsContract->GetAllViewers(listOfViewers);
-	for (GNC::GCS::IWidgetsContract::TViewerList::iterator it =listOfViewers.begin(); it != listOfViewers.end(); ++it) {
-		(*it)->RotateCamera(right);
-	}
-	GNC::GCS::IEventsController::Instance()->ProcesarEvento(new GNC::GCS::Events::EventoModificacionImagen(WidgetsContract->GetManager()->GetVista(), GNC::GCS::Events::EventoModificacionImagen::AnotacionesEstaticasModificadas));	
-	GNC::GCS::IEventsController::Instance()->ProcesarEvento(new GNC::GCS::Events::EventoRender(WidgetsContract->GetManager()->GetVista()));
+        GNC::GCS::IWidgetsContract::TViewerList listOfViewers;
+        WidgetsContract->GetAllViewers(listOfViewers);
+        for (GNC::GCS::IWidgetsContract::TViewerList::iterator it =listOfViewers.begin(); it != listOfViewers.end(); ++it) {
+                (*it)->RotateCamera(right);
+        }
+        GNC::GCS::IEventsController::Instance()->ProcesarEvento(new GNC::GCS::Events::EventoModificacionImagen(WidgetsContract->GetManager()->GetVista(), GNC::GCS::Events::EventoModificacionImagen::AnotacionesEstaticasModificadas));
+        GNC::GCS::IEventsController::Instance()->ProcesarEvento(new GNC::GCS::Events::EventoRender(WidgetsContract->GetManager()->GetVista()));
 }
 
 void GNC::RotateAndFlipTool::Flip(bool vertical)
 {
-	GNC::GCS::IWidgetsContract::TViewerList listOfViewers;
-	WidgetsContract->GetAllViewers(listOfViewers);
-	for (GNC::GCS::IWidgetsContract::TViewerList::iterator it =listOfViewers.begin(); it != listOfViewers.end(); ++it) {
-		(*it)->Flip(vertical);
-	}
-	GNC::GCS::IEventsController::Instance()->ProcesarEvento(new GNC::GCS::Events::EventoModificacionImagen(WidgetsContract->GetManager()->GetVista(), GNC::GCS::Events::EventoModificacionImagen::AnotacionesEstaticasModificadas));	
-	GNC::GCS::IEventsController::Instance()->ProcesarEvento(new GNC::GCS::Events::EventoRender(WidgetsContract->GetManager()->GetVista()));
+        GNC::GCS::IWidgetsContract::TViewerList listOfViewers;
+        WidgetsContract->GetAllViewers(listOfViewers);
+        for (GNC::GCS::IWidgetsContract::TViewerList::iterator it =listOfViewers.begin(); it != listOfViewers.end(); ++it) {
+                (*it)->Flip(vertical);
+        }
+        GNC::GCS::IEventsController::Instance()->ProcesarEvento(new GNC::GCS::Events::EventoModificacionImagen(WidgetsContract->GetManager()->GetVista(), GNC::GCS::Events::EventoModificacionImagen::AnotacionesEstaticasModificadas));
+        GNC::GCS::IEventsController::Instance()->ProcesarEvento(new GNC::GCS::Events::EventoRender(WidgetsContract->GetManager()->GetVista()));
 }
 
 void GNC::RotateAndFlipTool::Clear()
 {
-	GNC::GCS::IWidgetsContract::TViewerList listOfViewers;
-	WidgetsContract->GetAllViewers(listOfViewers);
-	for (GNC::GCS::IWidgetsContract::TViewerList::iterator it =listOfViewers.begin(); it != listOfViewers.end(); ++it) {
-		(*it)->ClearRotationAndFlip(true);
-	}
-	GNC::GCS::IEventsController::Instance()->ProcesarEvento(new GNC::GCS::Events::EventoModificacionImagen(WidgetsContract->GetManager()->GetVista(), GNC::GCS::Events::EventoModificacionImagen::AnotacionesEstaticasModificadas));	
-	GNC::GCS::IEventsController::Instance()->ProcesarEvento(new GNC::GCS::Events::EventoRender(WidgetsContract->GetManager()->GetVista()));
+        GNC::GCS::IWidgetsContract::TViewerList listOfViewers;
+        WidgetsContract->GetAllViewers(listOfViewers);
+        for (GNC::GCS::IWidgetsContract::TViewerList::iterator it =listOfViewers.begin(); it != listOfViewers.end(); ++it) {
+                (*it)->ClearRotationAndFlip(true);
+        }
+        GNC::GCS::IEventsController::Instance()->ProcesarEvento(new GNC::GCS::Events::EventoModificacionImagen(WidgetsContract->GetManager()->GetVista(), GNC::GCS::Events::EventoModificacionImagen::AnotacionesEstaticasModificadas));
+        GNC::GCS::IEventsController::Instance()->ProcesarEvento(new GNC::GCS::Events::EventoRender(WidgetsContract->GetManager()->GetVista()));
 }

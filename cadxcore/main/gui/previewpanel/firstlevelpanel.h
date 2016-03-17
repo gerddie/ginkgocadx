@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -25,26 +25,29 @@
 #include "ipreviewpanel.h"
 #include "previewpanelmodel.h"
 
-namespace GNC {
-	namespace GUI {
-		class FirstLevelPanel: public FirstLevelPanelBase, public INodoHistorial {
-		public:
-			FirstLevelPanel(GNC::GCS::IVista* pView, INodoHistorial* pPadre,  GNC::GUI::IPreviewNode* pNode);
-			~FirstLevelPanel();
+namespace GNC
+{
+namespace GUI
+{
+class FirstLevelPanel: public FirstLevelPanelBase, public INodoHistorial
+{
+public:
+        FirstLevelPanel(GNC::GCS::IVista* pView, INodoHistorial* pPadre,  GNC::GUI::IPreviewNode* pNode);
+        ~FirstLevelPanel();
 
-			wxWindow* GetWxWindow();
-			virtual void GetNodeSize(int &x, int &y);
+        wxWindow* GetWxWindow();
+        virtual void GetNodeSize(int &x, int &y);
 
 
-		protected:
-			virtual void OnChar(wxKeyEvent &event);
-			virtual void OnPaint(wxPaintEvent& event);
-			virtual void OnSize(wxSizeEvent &event);
-			virtual void OnMouseWheel(wxMouseEvent &event);
-			virtual void OnEraseBackground( wxEraseEvent& event );
+protected:
+        virtual void OnChar(wxKeyEvent &event);
+        virtual void OnPaint(wxPaintEvent& event);
+        virtual void OnSize(wxSizeEvent &event);
+        virtual void OnMouseWheel(wxMouseEvent &event);
+        virtual void OnEraseBackground( wxEraseEvent& event );
 
-			GNC::GUI::IPreviewNode* m_pNode;
-			GNC::GCS::IVista* m_pView;
-		};
-	}
+        GNC::GUI::IPreviewNode* m_pNode;
+        GNC::GCS::IVista* m_pView;
+};
+}
 }

@@ -6,8 +6,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -27,73 +27,79 @@
 #include <api/api.h>
 #include <export/contracts/iwidgetscontract.h>
 
-namespace GIL {
-	namespace DICOM {
-		class DicomDataset;
-	}
+namespace GIL
+{
+namespace DICOM
+{
+class DicomDataset;
+}
 }
 
-namespace GNC {
-	namespace GCS {
-		class EXTAPI IWindowLevelContract : public IWidgetsContract {
-		public:
+namespace GNC
+{
+namespace GCS
+{
+class EXTAPI IWindowLevelContract : public IWidgetsContract
+{
+public:
 
-			class EXTAPI WindowLevel{
+        class EXTAPI WindowLevel
+        {
 
-			public:
+        public:
 
-				typedef enum TWL_TYPE {
-					TWLT_FILE,
-					TWLT_PREDEFINED,
-					TWLT_USER_DEFINED
-				} TWL_TYPE;
-				
-				WindowLevel();
+                typedef enum TWL_TYPE {
+                        TWLT_FILE,
+                        TWLT_PREDEFINED,
+                        TWLT_USER_DEFINED
+                } TWL_TYPE;
 
-				WindowLevel(const std::string& label, const double& window,const double& level, TWL_TYPE type);
+                WindowLevel();
 
-				WindowLevel(const WindowLevel& otro);
+                WindowLevel(const std::string& label, const double& window,const double& level, TWL_TYPE type);
 
-				WindowLevel& operator=(const WindowLevel& otro);
+                WindowLevel(const WindowLevel& otro);
 
-				TWL_TYPE			m_type;
-				std::string         m_label;
-				double              m_window;
-				double              m_level;
-			};
+                WindowLevel& operator=(const WindowLevel& otro);
 
-			typedef std::vector<WindowLevel> ListaWindowLevels;
+                TWL_TYPE			m_type;
+                std::string         m_label;
+                double              m_window;
+                double              m_level;
+        };
 
-			public:
+        typedef std::vector<WindowLevel> ListaWindowLevels;
 
-			IWindowLevelContract();
+public:
 
-			~IWindowLevelContract();
+        IWindowLevelContract();
 
-			virtual bool HasCurrentWindowLevel() ;
+        ~IWindowLevelContract();
 
-			virtual void SetUserDefinedWindowLevel(double window, double level);
+        virtual bool HasCurrentWindowLevel() ;
 
-			virtual WindowLevel GetCurrentWindowLevel();
+        virtual void SetUserDefinedWindowLevel(double window, double level);
 
-			virtual bool HasDefaultWindowLevel();
+        virtual WindowLevel GetCurrentWindowLevel();
 
-			virtual WindowLevel GetAndSetDefaultWindowLevel();
+        virtual bool HasDefaultWindowLevel();
 
-			virtual void RemoveUserDefined();
+        virtual WindowLevel GetAndSetDefaultWindowLevel();
 
-			virtual void Setup(const GIL::DICOM::DicomDataset& base);
+        virtual void RemoveUserDefined();
 
-			virtual ListaWindowLevels& GetWindowLevelList() = 0;
-			virtual std::string GetLabelCurrent() = 0;
-			virtual void SetLabelCurrent(const std::string& labelCurrent) = 0;
-			virtual void DoAutoCalculateWindowLevel() = 0;
-			virtual void DoResetWindowLevel() = 0;
-			virtual void DoSetWindowLevel(double window, double level) = 0;
-			virtual double GetCurrentWindow();
-			virtual double GetCurrentLevel();
-		};
-	}
+        virtual void Setup(const GIL::DICOM::DicomDataset& base);
+
+        virtual ListaWindowLevels& GetWindowLevelList() = 0;
+        virtual std::string GetLabelCurrent() = 0;
+        virtual void SetLabelCurrent(const std::string& labelCurrent) = 0;
+        virtual void DoAutoCalculateWindowLevel() = 0;
+        virtual void DoResetWindowLevel() = 0;
+        virtual void DoSetWindowLevel(double window, double level) = 0;
+        virtual double GetCurrentWindow();
+        virtual double GetCurrentLevel();
+};
+}
 }
 
 #endif

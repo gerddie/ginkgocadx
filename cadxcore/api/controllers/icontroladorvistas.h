@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -27,49 +27,52 @@
 
 class wxWindow;
 
-namespace GNC {
-	namespace GCS {
+namespace GNC
+{
+namespace GCS
+{
 
-		class EXTAPI IControladorVistas {
-		public:
-			typedef std::list<IVista*> TipoListaVistas;
+class EXTAPI IControladorVistas
+{
+public:
+        typedef std::list<IVista*> TipoListaVistas;
 
-			static IControladorVistas* Instance();
-			static void FreeInstance();
+        static IControladorVistas* Instance();
+        static void FreeInstance();
 
-			virtual wxWindow* GetRootWindow() = 0;
+        virtual wxWindow* GetRootWindow() = 0;
 
-			virtual void Freeze() = 0;
-			virtual void Thaw() = 0;
+        virtual void Freeze() = 0;
+        virtual void Thaw() = 0;
 
-			virtual void SetTitulo(GNC::GCS::IVista* pVista, const std::string& titulo) = 0;
-			virtual std::string GetTitulo(GNC::GCS::IVista* pVista) = 0;
+        virtual void SetTitulo(GNC::GCS::IVista* pVista, const std::string& titulo) = 0;
+        virtual std::string GetTitulo(GNC::GCS::IVista* pVista) = 0;
 
-			virtual void Registrar(GNC::GCS::IVista*  pVista) = 0;
-			virtual void Destruir(GNC::GCS::IVista*   pVista) = 0;
-			virtual void Destruir(wxWindow* pVentana) = 0;
+        virtual void Registrar(GNC::GCS::IVista*  pVista) = 0;
+        virtual void Destruir(GNC::GCS::IVista*   pVista) = 0;
+        virtual void Destruir(wxWindow* pVentana) = 0;
 
 //region "Getters de vistas activas"
 
-			virtual GNC::GCS::IVista* GetVistaActiva() = 0;
+        virtual GNC::GCS::IVista* GetVistaActiva() = 0;
 
 //endregion
 
 //region "Propagacion de eventos de cambios de configuracion
-			virtual void PropagarConfiguracionCambiada() = 0;
+        virtual void PropagarConfiguracionCambiada() = 0;
 //endregion
 
 //region "Gestion de carga y descarga de vistas"
-			virtual void SolicitarActivarVista(GNC::GCS::IVista* pVista) = 0;
+        virtual void SolicitarActivarVista(GNC::GCS::IVista* pVista) = 0;
 //endregion
 
-			virtual TipoListaVistas GetVistas() = 0;
+        virtual TipoListaVistas GetVistas() = 0;
 
-		protected:
+protected:
 
-			virtual ~IControladorVistas();
-			IControladorVistas();
+        virtual ~IControladorVistas();
+        IControladorVistas();
 
-		};
-	}
+};
+}
 }

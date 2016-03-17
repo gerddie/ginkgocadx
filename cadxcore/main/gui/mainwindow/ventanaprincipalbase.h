@@ -39,102 +39,114 @@ class TitledPanelSinBorder;
 ///////////////////////////////////////////////////////////////////////////////
 /// Class VentanaPrincipalBase
 ///////////////////////////////////////////////////////////////////////////////
-class VentanaPrincipalBase : public wxFrame 
+class VentanaPrincipalBase : public wxFrame
 {
-	private:
-	
-	protected:
-		wxBoxSizer* m_pMainSizer;
-		wxPanel* m_pPanelActualizacion;
-		wxPanel* m_pPanelActualizacionInterno;
+private:
+
+protected:
+        wxBoxSizer* m_pMainSizer;
+        wxPanel* m_pPanelActualizacion;
+        wxPanel* m_pPanelActualizacionInterno;
         //wxHyperlinkCtrl* m_pHipervinculoActualizacion;
-		wxBoxSizer* m_pSizerCentral;
-		wxPanel* m_pPanelCentral;
-		
-		// Virtual event handlers, overide them in your derived class
-		virtual void OnKeydown( wxKeyEvent& event ) { event.Skip(); }
-		virtual void OnVersionNotifierClose( wxCommandEvent& event ) { event.Skip(); }
-		
-	
-	public:
-		
-		VentanaPrincipalBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 800,600 ), long style = wxDEFAULT_FRAME_STYLE );
-		
-		~VentanaPrincipalBase();
-	
+        wxBoxSizer* m_pSizerCentral;
+        wxPanel* m_pPanelCentral;
+
+        // Virtual event handlers, overide them in your derived class
+        virtual void OnKeydown( wxKeyEvent& event )
+        {
+                event.Skip();
+        }
+        virtual void OnVersionNotifierClose( wxCommandEvent& event )
+        {
+                event.Skip();
+        }
+
+
+public:
+
+        VentanaPrincipalBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 800,600 ), long style = wxDEFAULT_FRAME_STYLE );
+
+        ~VentanaPrincipalBase();
+
 };
 
 ///////////////////////////////////////////////////////////////////////////////
 /// Class DialogoComandosEnEjecucionBase
 ///////////////////////////////////////////////////////////////////////////////
-class DialogoComandosEnEjecucionBase : public wxDialog 
+class DialogoComandosEnEjecucionBase : public wxDialog
 {
-	private:
-	
-	protected:
-		BodyPanel* m_panel10;
-		TitledPanelSinBorder* m_panel11;
-		wxListBox* m_pListacomandos;
-		FooterPanel* m_panel9;
-		wxButton* m_button1;
-		wxButton* m_button2;
-	
-	public:
-		
-		DialogoComandosEnEjecucionBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Closing Ginkgo CADx"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxCAPTION|wxCLOSE_BOX|wxRESIZE_BORDER|wxSYSTEM_MENU ); 
-		~DialogoComandosEnEjecucionBase();
-	
+private:
+
+protected:
+        BodyPanel* m_panel10;
+        TitledPanelSinBorder* m_panel11;
+        wxListBox* m_pListacomandos;
+        FooterPanel* m_panel9;
+        wxButton* m_button1;
+        wxButton* m_button2;
+
+public:
+
+        DialogoComandosEnEjecucionBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Closing Ginkgo CADx"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxCAPTION|wxCLOSE_BOX|wxRESIZE_BORDER|wxSYSTEM_MENU );
+        ~DialogoComandosEnEjecucionBase();
+
 };
 
 ///////////////////////////////////////////////////////////////////////////////
 /// Class DetachedDialogBase
 ///////////////////////////////////////////////////////////////////////////////
-class DetachedDialogBase : public wxFrame 
+class DetachedDialogBase : public wxFrame
 {
-	private:
-	
-	protected:
-		
-		// Virtual event handlers, overide them in your derived class
-		virtual void OnCloseDialogo( wxCloseEvent& event ) { event.Skip(); }
-		
-	
-	public:
-		
-		DetachedDialogBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 600,400 ), long style = wxCAPTION|wxCLOSE_BOX|wxFRAME_FLOAT_ON_PARENT|wxMAXIMIZE_BOX|wxRESIZE_BORDER|wxSYSTEM_MENU|wxCLIP_CHILDREN|wxTAB_TRAVERSAL );
-		
-		~DetachedDialogBase();
-	
+private:
+
+protected:
+
+        // Virtual event handlers, overide them in your derived class
+        virtual void OnCloseDialogo( wxCloseEvent& event )
+        {
+                event.Skip();
+        }
+
+
+public:
+
+        DetachedDialogBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 600,400 ), long style = wxCAPTION|wxCLOSE_BOX|wxFRAME_FLOAT_ON_PARENT|wxMAXIMIZE_BOX|wxRESIZE_BORDER|wxSYSTEM_MENU|wxCLIP_CHILDREN|wxTAB_TRAVERSAL );
+
+        ~DetachedDialogBase();
+
 };
 
 ///////////////////////////////////////////////////////////////////////////////
 /// Class DialogoLoginBase
 ///////////////////////////////////////////////////////////////////////////////
-class DialogoLoginBase : public wxDialog 
+class DialogoLoginBase : public wxDialog
 {
-	private:
-	
-	protected:
-		HeaderPanel* m_pHeader;
-		BodyPanel* m_pBody;
-		TitledPanel* m_pFormPanel;
-		wxStaticText* m_pLabelUser;
-		wxTextCtrl* m_pTCUsuario;
-		wxStaticText* m_staticText3;
-		wxTextCtrl* m_pTCPassword;
-		FooterPanel* m_panel6;
-		wxButton* m_pBotonCancelar;
-		wxButton* m_pButtonLogin;
-		
-		// Virtual event handlers, overide them in your derived class
-		virtual void OnLogin( wxCommandEvent& event ) { event.Skip(); }
-		
-	
-	public:
-		
-		DialogoLoginBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("User login"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxCAPTION|wxCLOSE_BOX|wxRESIZE_BORDER|wxSTAY_ON_TOP ); 
-		~DialogoLoginBase();
-	
+private:
+
+protected:
+        HeaderPanel* m_pHeader;
+        BodyPanel* m_pBody;
+        TitledPanel* m_pFormPanel;
+        wxStaticText* m_pLabelUser;
+        wxTextCtrl* m_pTCUsuario;
+        wxStaticText* m_staticText3;
+        wxTextCtrl* m_pTCPassword;
+        FooterPanel* m_panel6;
+        wxButton* m_pBotonCancelar;
+        wxButton* m_pButtonLogin;
+
+        // Virtual event handlers, overide them in your derived class
+        virtual void OnLogin( wxCommandEvent& event )
+        {
+                event.Skip();
+        }
+
+
+public:
+
+        DialogoLoginBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("User login"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxCAPTION|wxCLOSE_BOX|wxRESIZE_BORDER|wxSTAY_ON_TOP );
+        ~DialogoLoginBase();
+
 };
 
 #endif //__VENTANAPRINCIPALBASE_H__

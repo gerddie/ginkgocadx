@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -34,96 +34,96 @@
 
 #define FONDO_FIRST wxColour(194,194,194)
 
-namespace GNC {
-	namespace GUI {		
-		FirstLevelPanel::FirstLevelPanel(GNC::GCS::IVista* pView, INodoHistorial* pParent,  GNC::GUI::IPreviewNode* pNode): FirstLevelPanelBase(pParent->GetWxWindow()), 
-			INodoHistorial(pParent),
-			m_pView(pView)
-		{
-			wxPanel::SetBackgroundColour(*wxWHITE);
+namespace GNC
+{
+namespace GUI
+{
+FirstLevelPanel::FirstLevelPanel(GNC::GCS::IVista* pView, INodoHistorial* pParent,  GNC::GUI::IPreviewNode* pNode): FirstLevelPanelBase(pParent->GetWxWindow()),
+        INodoHistorial(pParent),
+        m_pView(pView)
+{
+        wxPanel::SetBackgroundColour(*wxWHITE);
 
-			m_pNode = pNode;
-					
-			//truncate string...
-			wxString tmp = wxString::FromUTF8(pNode->GetLabel().c_str());
-			wxClientDC dc(this);
-			dc.SetFont(m_pLabel->GetFont());
-			int x,y;
-			dc.GetTextExtent(tmp, &x, &y, NULL, NULL, NULL);
+        m_pNode = pNode;
 
-			while(x > TEXT_LENGTH)
-			{
-				dc.GetTextExtent(tmp, &x, &y, NULL, NULL, NULL);
-				tmp = tmp.substr(0,tmp.size()-2);
-			}
-			m_pLabel->SetLabel(tmp);
-		
-			this->SetToolTip(wxString::FromUTF8(pNode->GetLabel().c_str()));
-			m_pLabel->SetToolTip(wxString::FromUTF8(pNode->GetLabel().c_str()));
-			//end truncate
-			Layout();
-		}
+        //truncate string...
+        wxString tmp = wxString::FromUTF8(pNode->GetLabel().c_str());
+        wxClientDC dc(this);
+        dc.SetFont(m_pLabel->GetFont());
+        int x,y;
+        dc.GetTextExtent(tmp, &x, &y, NULL, NULL, NULL);
 
-		FirstLevelPanel::~FirstLevelPanel()
-		{
-		}
+        while(x > TEXT_LENGTH) {
+                dc.GetTextExtent(tmp, &x, &y, NULL, NULL, NULL);
+                tmp = tmp.substr(0,tmp.size()-2);
+        }
+        m_pLabel->SetLabel(tmp);
 
-		void FirstLevelPanel::GetNodeSize(int &x, int &y)
-		{
-			GetSize(&x,&y);
-		}
+        this->SetToolTip(wxString::FromUTF8(pNode->GetLabel().c_str()));
+        m_pLabel->SetToolTip(wxString::FromUTF8(pNode->GetLabel().c_str()));
+        //end truncate
+        Layout();
+}
 
-		void FirstLevelPanel::OnChar(wxKeyEvent &event)
-		{
-			event.ResumePropagation(10);
-			event.Skip(true);
-		}
-		
-		wxWindow* FirstLevelPanel::GetWxWindow()
-		{
-			return this;
-		}
+FirstLevelPanel::~FirstLevelPanel()
+{
+}
 
-		void FirstLevelPanel::OnPaint(wxPaintEvent& event)
-		{
-			wxPaintDC dc(this);
-			const int width = dc.GetSize().x;
-			const int height = dc.GetSize().y;
+void FirstLevelPanel::GetNodeSize(int &x, int &y)
+{
+        GetSize(&x,&y);
+}
 
-			dc.SetBrush(wxBrush(FONDO_FIRST));
-			dc.SetPen(wxPen(FONDO_FIRST, 1, wxSOLID));
-			m_pLabel->SetBackgroundColour(FONDO_FIRST);				
-			
-			dc.DrawRectangle(0,0,width,height);
-			//
-			FirstLevelPanelBase::OnPaint(event);
+void FirstLevelPanel::OnChar(wxKeyEvent &event)
+{
+        event.ResumePropagation(10);
+        event.Skip(true);
+}
 
-			wxColour borderColor(0,0,0);
-			dc.SetBrush(wxBrush(borderColor,wxTRANSPARENT));
-			dc.SetPen(wxPen(borderColor, 1, wxSOLID));
-			dc.DrawRectangle(0,0,width,height - 1);
-		}
+wxWindow* FirstLevelPanel::GetWxWindow()
+{
+        return this;
+}
 
-		void FirstLevelPanel::OnSize(wxSizeEvent & event)
-		{
-			Layout();
-			for (wxWindowList::iterator it = m_children.begin(); it != m_children.end(); ++it)
-			{
-				(*it)->Layout();
-			}
-			event.Skip();
-		}
+void FirstLevelPanel::OnPaint(wxPaintEvent& event)
+{
+        wxPaintDC dc(this);
+        const int width = dc.GetSize().x;
+        const int height = dc.GetSize().y;
 
-		void FirstLevelPanel::OnMouseWheel(wxMouseEvent& event)
-		{
-			event.ResumePropagation(2);
-			event.Skip(true);
-		}
+        dc.SetBrush(wxBrush(FONDO_FIRST));
+        dc.SetPen(wxPen(FONDO_FIRST, 1, wxSOLID));
+        m_pLabel->SetBackgroundColour(FONDO_FIRST);
+
+        dc.DrawRectangle(0,0,width,height);
+        //
+        FirstLevelPanelBase::OnPaint(event);
+
+        wxColour borderColor(0,0,0);
+        dc.SetBrush(wxBrush(borderColor,wxTRANSPARENT));
+        dc.SetPen(wxPen(borderColor, 1, wxSOLID));
+        dc.DrawRectangle(0,0,width,height - 1);
+}
+
+void FirstLevelPanel::OnSize(wxSizeEvent & event)
+{
+        Layout();
+        for (wxWindowList::iterator it = m_children.begin(); it != m_children.end(); ++it) {
+                (*it)->Layout();
+        }
+        event.Skip();
+}
+
+void FirstLevelPanel::OnMouseWheel(wxMouseEvent& event)
+{
+        event.ResumePropagation(2);
+        event.Skip(true);
+}
 
 
-		void FirstLevelPanel::OnEraseBackground( wxEraseEvent& event )
-		{
-			event.Skip(false);
-		}
-	};
+void FirstLevelPanel::OnEraseBackground( wxEraseEvent& event )
+{
+        event.Skip(false);
+}
+};
 };

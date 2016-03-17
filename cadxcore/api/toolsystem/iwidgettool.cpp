@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -38,18 +38,18 @@ GNC::GCS::IWidgetTool::~IWidgetTool()
 
 bool GNC::GCS::IWidgetTool::ExecuteAction()
 {
-	//none
-	LOG_ERROR("IWidgetTool","trying to execute a widget tool");
-	return false;
+        //none
+        LOG_ERROR("IWidgetTool","trying to execute a widget tool");
+        return false;
 }
 
 void GNC::GCS::IWidgetTool::AppendToolIn(wxGinkgoToolBar* pParent)
 {
-	if (AppendsInToolBar()) {
-		pParent->AddTool(this->ID, wxString::FromUTF8(Name.c_str()), Icon, wxString::FromUTF8(Name.c_str()), wxITEM_NORMAL);
-		pParent->ForceSetToolDropDown(this->ID, HasDropDownMenu());
-		pParent->EnableTool(this->ID, IsEnabled());
-	}
+        if (AppendsInToolBar()) {
+                pParent->AddTool(this->ID, wxString::FromUTF8(Name.c_str()), Icon, wxString::FromUTF8(Name.c_str()), wxITEM_NORMAL);
+                pParent->ForceSetToolDropDown(this->ID, HasDropDownMenu());
+                pParent->EnableTool(this->ID, IsEnabled());
+        }
 }
 
 

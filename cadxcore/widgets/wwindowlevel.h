@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -25,40 +25,45 @@
 #include <api/iwidgets.h>
 #include <widgets/observers/iobservadorwindowlevel.h>
 
-namespace GNC {
-	namespace GCS {
-		namespace Widgets {
-			//---------------------------------------------------------------------
+namespace GNC
+{
+namespace GCS
+{
+namespace Widgets
+{
+//---------------------------------------------------------------------
 
-			class WWindowLevelBuilder : public GNC::GCS::Widgets::IWidgetBuilder {
-			public:
+class WWindowLevelBuilder : public GNC::GCS::Widgets::IWidgetBuilder
+{
+public:
 
-				typedef GNC::GCS::Vector TVector;
-				typedef GNC::GCS::Widgets::Observadores::IObservadorWindowLevel TObservador;
+        typedef GNC::GCS::Vector TVector;
+        typedef GNC::GCS::Widgets::Observadores::IObservadorWindowLevel TObservador;
 
-				WWindowLevelBuilder(GNC::GCS::IWidgetsManager* pManager, const GNC::GCS::TriggerButton& buttonMask, long gid);
+        WWindowLevelBuilder(GNC::GCS::IWidgetsManager* pManager, const GNC::GCS::TriggerButton& buttonMask, long gid);
 
-				void SetObservador(TObservador* pObservador) {
-					m_pObservador = pObservador;
-				};
+        void SetObservador(TObservador* pObservador)
+        {
+                m_pObservador = pObservador;
+        };
 
-				~WWindowLevelBuilder();
+        ~WWindowLevelBuilder();
 
-				virtual void OnMouseEvents(GNC::GCS::Events::EventoRaton&);
+        virtual void OnMouseEvents(GNC::GCS::Events::EventoRaton&);
 
-				virtual void OnKeyEvents(GNC::GCS::Events::EventoTeclado&);
+        virtual void OnKeyEvents(GNC::GCS::Events::EventoTeclado&);
 
-				virtual void Render(GNC::GCS::Contexto3D* c);
+        virtual void Render(GNC::GCS::Contexto3D* c);
 
-				virtual GNC::GCS::Widgets::TipoCursor GetCursor();
+        virtual GNC::GCS::Widgets::TipoCursor GetCursor();
 
-			protected:
-				TObservador*             m_pObservador;
-				TVector                  m_NodoMoviendose;  // Cursor
-				TVector                  m_Start;           // Origen del trazado de la recta
-				bool                     m_MouseDown;
-				bool                     m_Changed;
-			};
-		};
-	};
+protected:
+        TObservador*             m_pObservador;
+        TVector                  m_NodoMoviendose;  // Cursor
+        TVector                  m_Start;           // Origen del trazado de la recta
+        bool                     m_MouseDown;
+        bool                     m_Changed;
+};
+};
+};
 };

@@ -6,8 +6,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -28,29 +28,33 @@
 #include <wx/dc.h>
 #include <wx/wxginkgotoolbar.h>
 
-namespace GNC {
-	namespace GCS {
-		class IToolController;
-	}
-	namespace GUI {
-		class GinkgoToolSystemBar : public wxGinkgoToolBar, public GNC::GCS::IEventsObserver {
-		public:
-			GinkgoToolSystemBar(wxWindow* pParent, GNC::GCS::IToolController* pToolBar, const GNC::GCS::ITool::TToolFamily& family);
-			~GinkgoToolSystemBar();
+namespace GNC
+{
+namespace GCS
+{
+class IToolController;
+}
+namespace GUI
+{
+class GinkgoToolSystemBar : public wxGinkgoToolBar, public GNC::GCS::IEventsObserver
+{
+public:
+        GinkgoToolSystemBar(wxWindow* pParent, GNC::GCS::IToolController* pToolBar, const GNC::GCS::ITool::TToolFamily& family);
+        ~GinkgoToolSystemBar();
 
-			virtual void ProcesarEvento(GNC::GCS::Events::IEvent* evt);
+        virtual void ProcesarEvento(GNC::GCS::Events::IEvent* evt);
 
-		protected:
-			virtual wxRect GetToolRect(int tool_id) const;
-			virtual void OnRightUp(wxMouseEvent& evt);
-			virtual void OnLeftUp(wxMouseEvent& evt);
-			virtual void OnMiddleUp(wxMouseEvent& evt);
-			virtual void OnDropDownTool(wxAuiToolBarEvent& evt);
-			virtual void OnKeyEvent(wxKeyEvent& event);
+protected:
+        virtual wxRect GetToolRect(int tool_id) const;
+        virtual void OnRightUp(wxMouseEvent& evt);
+        virtual void OnLeftUp(wxMouseEvent& evt);
+        virtual void OnMiddleUp(wxMouseEvent& evt);
+        virtual void OnDropDownTool(wxAuiToolBarEvent& evt);
+        virtual void OnKeyEvent(wxKeyEvent& event);
 
-			GNC::GCS::IToolController* m_pToolBar;
-		};
-	}
+        GNC::GCS::IToolController* m_pToolBar;
+};
+}
 }
 
 #endif

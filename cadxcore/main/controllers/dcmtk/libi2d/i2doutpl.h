@@ -1,5 +1,5 @@
 /*
-*  
+*
 *  $Id: i2doutpl.h $
 *  Ginkgo CADx Project
 *
@@ -46,66 +46,66 @@ class I2DOutputPlug: public D2DCommon
 
 public:
 
-	/** Constructor, initializes member variables
-	*  @return none
-	*/
-	I2DOutputPlug() : D2DCommon(), m_doAttribChecking(OFTrue)
-	{};
+        /** Constructor, initializes member variables
+        *  @return none
+        */
+        I2DOutputPlug() : D2DCommon(), m_doAttribChecking(OFTrue)
+        {};
 
-	/** Virtual function that returns a short name of the plugin.
-	*  @return The name of the plugin
-	*/
-	virtual OFString ident() =0;
+        /** Virtual function that returns a short name of the plugin.
+        *  @return The name of the plugin
+        */
+        virtual OFString ident() =0;
 
-	/** Virtual function that returns the Storage SOP class UID, the plugin writes.
-	*  @param suppSOPs - [out] List containing supported output SOP classes
-	*  @return String containing the Storage SOP class UID
-	*/
-	virtual void supportedSOPClassUIDs(OFList<OFString> suppSOPs) =0;
+        /** Virtual function that returns the Storage SOP class UID, the plugin writes.
+        *  @param suppSOPs - [out] List containing supported output SOP classes
+        *  @return String containing the Storage SOP class UID
+        */
+        virtual void supportedSOPClassUIDs(OFList<OFString> suppSOPs) =0;
 
-	/** Outputs SOP class specific information into dataset
-	* @param dataset - [in/out] Dataset to write to
-	* @return EC_Normal if successful, error otherwise
-	*/
-	virtual OFCondition convert(DcmDataset &dataset) const = 0;
+        /** Outputs SOP class specific information into dataset
+        * @param dataset - [in/out] Dataset to write to
+        * @return EC_Normal if successful, error otherwise
+        */
+        virtual OFCondition convert(DcmDataset &dataset) const = 0;
 
-	/** Do some completeness / validity checks. Should be called when
-	*  dataset is completed and is about to be saved.
-	*  @param dataset - [in] The dataset to check
-	*  @return Error string if error occurs, empty string otherwise
-	*/
-	virtual OFString isValid(DcmDataset& dataset) const = 0;
+        /** Do some completeness / validity checks. Should be called when
+        *  dataset is completed and is about to be saved.
+        *  @param dataset - [in] The dataset to check
+        *  @return Error string if error occurs, empty string otherwise
+        */
+        virtual OFString isValid(DcmDataset& dataset) const = 0;
 
-	/** Destructor
-	*  @return none
-	*/
-	virtual ~I2DOutputPlug() {};
+        /** Destructor
+        *  @return none
+        */
+        virtual ~I2DOutputPlug() {};
 
 
-	/** Enable/Disable basic validity checks for output dataset
-	*  @param doChecks - [in] OFTrue enables checking, OFFalse turns it off.
-	*  @param insertMissingType2 - [in] If true (default), missing type 2
-	*         attributes are inserted automatically
-	*  @param inventMissingType1 - [in] If true (default), missing type 1
-	*         attributes are inserted automatically with a predefined
-	*         value (if possible). An existing empty type 1 attribute is
-	*         assigned a value, too.
-	*  @return none
-	*/
-	virtual void setValidityChecking(OFBool doChecks,
-		OFBool insertMissingType2 = OFTrue,
-		OFBool inventMissingType1 = OFTrue)
-	{
-		m_doAttribChecking = doChecks;
-		m_inventMissingType2Attribs = insertMissingType2;
-		m_inventMissingType1Attribs = inventMissingType1;
-	};
+        /** Enable/Disable basic validity checks for output dataset
+        *  @param doChecks - [in] OFTrue enables checking, OFFalse turns it off.
+        *  @param insertMissingType2 - [in] If true (default), missing type 2
+        *         attributes are inserted automatically
+        *  @param inventMissingType1 - [in] If true (default), missing type 1
+        *         attributes are inserted automatically with a predefined
+        *         value (if possible). An existing empty type 1 attribute is
+        *         assigned a value, too.
+        *  @return none
+        */
+        virtual void setValidityChecking(OFBool doChecks,
+                                         OFBool insertMissingType2 = OFTrue,
+                                         OFBool inventMissingType1 = OFTrue)
+        {
+                m_doAttribChecking = doChecks;
+                m_inventMissingType2Attribs = insertMissingType2;
+                m_inventMissingType1Attribs = inventMissingType1;
+        };
 
 protected:
 
-	/// if enabled, some simple attribute checking is performed
-	/// default: enabled (OFTrue)
-	OFBool m_doAttribChecking;
+        /// if enabled, some simple attribute checking is performed
+        /// default: enabled (OFTrue)
+        OFBool m_doAttribChecking;
 };
 
 #endif // #ifndef I2DOUTPL_H

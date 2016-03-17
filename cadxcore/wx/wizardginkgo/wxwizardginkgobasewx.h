@@ -32,34 +32,49 @@ class HeaderPanel;
 ///////////////////////////////////////////////////////////////////////////////
 /// Class wxWizardGinkgoBaseWx
 ///////////////////////////////////////////////////////////////////////////////
-class wxWizardGinkgoBaseWx : public wxDialog 
+class wxWizardGinkgoBaseWx : public wxDialog
 {
-	private:
-	
-	protected:
-		HeaderPanel* m_pHeader;
-		BodyPanel* m_pBodyPanel;
-		wxPanel* m_pPanelPrincipal;
-		wxBoxSizer* m_pSizerPrincipal;
-		FooterPanel* m_pFooter;
-		wxStaticText* m_pBottomLeftLabel;
-		wxButton* m_pBAnterior;
-		wxButton* m_pBSiguiente;
-		wxButton* m_pBCerrar;
-		
-		// Virtual event handlers, overide them in your derived class
-		virtual void OnClose( wxCloseEvent& event ) { event.Skip(); }
-		virtual void OnSize( wxSizeEvent& event ) { event.Skip(); }
-		virtual void OnAnteriorClick( wxCommandEvent& event ) { event.Skip(); }
-		virtual void OnSiguienteClick( wxCommandEvent& event ) { event.Skip(); }
-		virtual void OnCancelarClick( wxCommandEvent& event ) { event.Skip(); }
-		
-	
-	public:
-		
-		wxWizardGinkgoBaseWx( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Test title"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 880,600 ), long style = wxDEFAULT_DIALOG_STYLE|wxMAXIMIZE_BOX|wxRESIZE_BORDER ); 
-		~wxWizardGinkgoBaseWx();
-	
+private:
+
+protected:
+        HeaderPanel* m_pHeader;
+        BodyPanel* m_pBodyPanel;
+        wxPanel* m_pPanelPrincipal;
+        wxBoxSizer* m_pSizerPrincipal;
+        FooterPanel* m_pFooter;
+        wxStaticText* m_pBottomLeftLabel;
+        wxButton* m_pBAnterior;
+        wxButton* m_pBSiguiente;
+        wxButton* m_pBCerrar;
+
+        // Virtual event handlers, overide them in your derived class
+        virtual void OnClose( wxCloseEvent& event )
+        {
+                event.Skip();
+        }
+        virtual void OnSize( wxSizeEvent& event )
+        {
+                event.Skip();
+        }
+        virtual void OnAnteriorClick( wxCommandEvent& event )
+        {
+                event.Skip();
+        }
+        virtual void OnSiguienteClick( wxCommandEvent& event )
+        {
+                event.Skip();
+        }
+        virtual void OnCancelarClick( wxCommandEvent& event )
+        {
+                event.Skip();
+        }
+
+
+public:
+
+        wxWizardGinkgoBaseWx( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Test title"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 880,600 ), long style = wxDEFAULT_DIALOG_STYLE|wxMAXIMIZE_BOX|wxRESIZE_BORDER );
+        ~wxWizardGinkgoBaseWx();
+
 };
 
 #endif //__WXWIZARDGINKGOBASEWX_H__

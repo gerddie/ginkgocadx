@@ -1,5 +1,5 @@
 /*
- *  
+ *
  *  $Id: d2dsource.h $
  *  Ginkgo CADx Project
  *
@@ -45,37 +45,37 @@ class D2DSource: public D2DCommon
 
 public:
 
-  /** Constructor
-   */
-  D2DSource() {}
+        /** Constructor
+         */
+        D2DSource() {}
 
 
-  /** Returns identifier for the image input format the plugin imports.
-   *  @return A short identifier (e. g. "JPEG")
-   */
-  virtual OFString inputFormat() const = 0;
+        /** Returns identifier for the image input format the plugin imports.
+         *  @return A short identifier (e. g. "JPEG")
+         */
+        virtual OFString inputFormat() const = 0;
 
-  /** Reads pixel data and corresponding attributes like rows etc. from image
-	 *  file and inserts them into dataset.
-	 *  @param imageSource - [in] The input plugin that actually reads the pixel data
-	 *  @param dset - [out] The dataset to export the pixel data attributes to
-	 *  @param outputTS - [out] The proposed transfex syntax of the dataset
-	 *  @return EC_Normal, if successful, error otherwise
-	 */
-	virtual OFCondition readAndInsertSpecificTags( DcmDataset* dset,
-									   E_TransferSyntax& outputTS) = 0;
+        /** Reads pixel data and corresponding attributes like rows etc. from image
+         *  file and inserts them into dataset.
+         *  @param imageSource - [in] The input plugin that actually reads the pixel data
+         *  @param dset - [out] The dataset to export the pixel data attributes to
+         *  @param outputTS - [out] The proposed transfex syntax of the dataset
+         *  @return EC_Normal, if successful, error otherwise
+         */
+        virtual OFCondition readAndInsertSpecificTags( DcmDataset* dset,
+                        E_TransferSyntax& outputTS) = 0;
 
-	
-	/** Do some completeness / validity checks. Should be called when
-	 *  dataset is completed and is about to be saved.
-	 *  @param dataset - [in] The dataset to check
-	 *  @return Error string if error occurs, empty string otherwise
-	 */
-	virtual OFString isValid(DcmDataset& dset) const = 0;
 
-  /** Virtual Destructor
-   */
-  virtual ~D2DSource() {}
+        /** Do some completeness / validity checks. Should be called when
+         *  dataset is completed and is about to be saved.
+         *  @param dataset - [in] The dataset to check
+         *  @return Error string if error occurs, empty string otherwise
+         */
+        virtual OFString isValid(DcmDataset& dset) const = 0;
+
+        /** Virtual Destructor
+         */
+        virtual ~D2DSource() {}
 
 protected:
 };

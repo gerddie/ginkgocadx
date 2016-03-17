@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -28,37 +28,39 @@
 #include <string>
 #include <vector>
 
-namespace GNC {
-	namespace GUI {
+namespace GNC
+{
+namespace GUI
+{
 
-		class DialogoConfiguracion: public IDialogoConfiguracion, public DialogoConfiguracionBase
-		{
-			public:
-				DialogoConfiguracion(wxWindow* pParent);
-				~DialogoConfiguracion();
+class DialogoConfiguracion: public IDialogoConfiguracion, public DialogoConfiguracionBase
+{
+public:
+        DialogoConfiguracion(wxWindow* pParent);
+        ~DialogoConfiguracion();
 
-				virtual void OnCambioNodoNavegacion(wxTreeEvent &event);
+        virtual void OnCambioNodoNavegacion(wxTreeEvent &event);
 
-				void CargarCurrent();
+        void CargarCurrent();
 
-				void OnPropiedadCambiada();
+        void OnPropiedadCambiada();
 
-				void OnCancelarClick(wxCommandEvent &event);
+        void OnCancelarClick(wxCommandEvent &event);
 
-				void OnAceptarClick(wxCommandEvent &event);
+        void OnAceptarClick(wxCommandEvent &event);
 
-				void OnAplicarClick(wxCommandEvent &event);
+        void OnAplicarClick(wxCommandEvent &event);
 
-				void OnExportarClick(wxCommandEvent &event);
+        void OnExportarClick(wxCommandEvent &event);
 
-				void OnImportarClick(wxCommandEvent &event);
+        void OnImportarClick(wxCommandEvent &event);
 
-				typedef std::map<wxTreeItemIdValue ,IPasoConfiguracion*> MapaPasos;
+        typedef std::map<wxTreeItemIdValue ,IPasoConfiguracion*> MapaPasos;
 
-				MapaPasos m_MapaPasos;
+        MapaPasos m_MapaPasos;
 
-				IPasoConfiguracion* m_currentPaso;
+        IPasoConfiguracion* m_currentPaso;
 
-		};
-	}
+};
+}
 }

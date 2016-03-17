@@ -1,5 +1,5 @@
 /*
- *  
+ *
  *  $Id: ginkgointeractorstyleimage2d.h $
  *  Ginkgo CADx Project
  *
@@ -35,71 +35,74 @@ class wxTimer;
 
 class EXTAPI GinkgoInteractorStyleImage2D : public vtkInteractorStyleImage
 {
- public:
-  static GinkgoInteractorStyleImage2D *New();
-  vtkTypeMacro (GinkgoInteractorStyleImage2D, vtkInteractorStyleImage);
-  
-  virtual void OnMouseMove();
-  virtual void OnLeftButtonDown();
-  virtual void OnLeftButtonUp();
-  virtual void OnMiddleButtonDown();
-  virtual void OnMiddleButtonUp();
-  virtual void OnRightButtonDown();
-  virtual void OnRightButtonUp();
-  virtual void OnMouseWheelForward();
-  virtual void OnMouseWheelBackward();
-  virtual void OnChar();
-  
-  void SetView (vtkGinkgoImageViewer* view)
-  {
-    this->View = view;
-  }
-  
-  vtkGetObjectMacro (View, vtkGinkgoImageViewer);
-  vtkSetMacro (ZSliceStep, int);
-  vtkGetMacro (ZSliceStep, int);
+public:
+        static GinkgoInteractorStyleImage2D *New();
+        vtkTypeMacro (GinkgoInteractorStyleImage2D, vtkInteractorStyleImage);
 
-  vtkSetMacro (WindowStep, double);
-  vtkGetMacro (WindowStep, double);
+        virtual void OnMouseMove();
+        virtual void OnLeftButtonDown();
+        virtual void OnLeftButtonUp();
+        virtual void OnMiddleButtonDown();
+        virtual void OnMiddleButtonUp();
+        virtual void OnRightButtonDown();
+        virtual void OnRightButtonUp();
+        virtual void OnMouseWheelForward();
+        virtual void OnMouseWheelBackward();
+        virtual void OnChar();
 
-  vtkSetMacro (LevelStep,  double);
-  vtkGetMacro (LevelStep,  double);
+        void SetView (vtkGinkgoImageViewer* view)
+        {
+                this->View = view;
+        }
 
-  vtkSetMacro (PreviewMode,  bool);
-  vtkGetMacro (PreviewMode,  bool);
+        vtkGetObjectMacro (View, vtkGinkgoImageViewer);
+        vtkSetMacro (ZSliceStep, int);
+        vtkGetMacro (ZSliceStep, int);
+
+        vtkSetMacro (WindowStep, double);
+        vtkGetMacro (WindowStep, double);
+
+        vtkSetMacro (LevelStep,  double);
+        vtkGetMacro (LevelStep,  double);
+
+        vtkSetMacro (PreviewMode,  bool);
+        vtkGetMacro (PreviewMode,  bool);
 
 
-  virtual void StartZSliceMove();
-  virtual void ZSliceMove();
-  virtual void ZSliceWheelForward();
-  virtual void ZSliceWheelBackward();
-  virtual void EndZSliceMove();
-  virtual void FullPage();
-  virtual void StartMeasure();
-  virtual void Measure();
-  virtual void EndMeasure();
-  virtual void WindowLevel ();
-  virtual void WindowLevelWheelForward ();
-  virtual void WindowLevelWheelBackward ();
+        virtual void StartZSliceMove();
+        virtual void ZSliceMove();
+        virtual void ZSliceWheelForward();
+        virtual void ZSliceWheelBackward();
+        virtual void EndZSliceMove();
+        virtual void FullPage();
+        virtual void StartMeasure();
+        virtual void Measure();
+        virtual void EndMeasure();
+        virtual void WindowLevel ();
+        virtual void WindowLevelWheelForward ();
+        virtual void WindowLevelWheelBackward ();
 
-  void PropagateCameraFocalAndPosition();
+        void PropagateCameraFocalAndPosition();
 
-  void DoZoom(double factor, bool launchTimer = true);
+        void DoZoom(double factor, bool launchTimer = true);
 
-  vtkRenderer* GetCurrentRenderer() { return CurrentRenderer; }
-  
- protected:
-  GinkgoInteractorStyleImage2D();
-  ~GinkgoInteractorStyleImage2D();
+        vtkRenderer* GetCurrentRenderer()
+        {
+                return CurrentRenderer;
+        }
 
- private:
-  
- private:
-  vtkGinkgoImageViewer*  View;
-  int                    ZSliceStep;
-  double                 WindowStep;
-  double                 LevelStep;
-  bool						PreviewMode;
-  wxTimer*				TimerZoom;
+protected:
+        GinkgoInteractorStyleImage2D();
+        ~GinkgoInteractorStyleImage2D();
+
+private:
+
+private:
+        vtkGinkgoImageViewer*  View;
+        int                    ZSliceStep;
+        double                 WindowStep;
+        double                 LevelStep;
+        bool						PreviewMode;
+        wxTimer*				TimerZoom;
 };
 

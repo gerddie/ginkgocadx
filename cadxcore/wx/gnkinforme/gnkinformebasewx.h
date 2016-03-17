@@ -37,50 +37,56 @@ class wxScrolledWindow;
 
 namespace GNC
 {
-	namespace GUI
-	{
-		
-		///////////////////////////////////////////////////////////////////////////////
-		/// Class GNKInformeBaseWx
-		///////////////////////////////////////////////////////////////////////////////
-		class GNKInformeBaseWx : public wxScrolledWindow
-		{
-			private:
-			
-			protected:
-				wxPanel* m_pPanelReport;
-				wxPanel* m_panel21;
-				wxStaticText* m_pNombrePaciente;
-				wxStaticBitmap* m_pBitmapSexo;
-				wxStaticText* m_pIdPaciente;
-				BodyPanel* m_pPanelCuerpo;
-				SubTitledPanel* m_pPanelDatosDemograficos;
-				wxFlexGridSizer* m_pSizerDatosDemograficos;
-				SubTitledPanelSeparatorV* m_panel22;
-				wxBoxSizer* m_pSizerCustom;
-				SubTitledPanel* m_pPanelComentarios;
-				wxTextCtrl* m_pComentarios;
-				SubTitledPanelSeparatorV* m_panel221;
-				SubTitledPanel* m_pPanelConsolidar;
-				wxListCtrl* m_pListaConsolidaciones;
-				wxPanel* m_pPanelBoton;
-				
-				wxStaticText* m_pLabelStatus;
-				wxButton* m_pBConsolidar;
-				
-				// Virtual event handlers, overide them in your derived class
-				virtual void OnComentariosText( wxCommandEvent& event ) { event.Skip(); }
-				virtual void OnConsolidarClick( wxCommandEvent& event ) { event.Skip(); }
-				
-			
-			public:
-				
-				GNKInformeBaseWx( wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxTAB_TRAVERSAL );
-				~GNKInformeBaseWx();
-			
-		};
-		
-	} // namespace GUI
+namespace GUI
+{
+
+///////////////////////////////////////////////////////////////////////////////
+/// Class GNKInformeBaseWx
+///////////////////////////////////////////////////////////////////////////////
+class GNKInformeBaseWx : public wxScrolledWindow
+{
+private:
+
+protected:
+        wxPanel* m_pPanelReport;
+        wxPanel* m_panel21;
+        wxStaticText* m_pNombrePaciente;
+        wxStaticBitmap* m_pBitmapSexo;
+        wxStaticText* m_pIdPaciente;
+        BodyPanel* m_pPanelCuerpo;
+        SubTitledPanel* m_pPanelDatosDemograficos;
+        wxFlexGridSizer* m_pSizerDatosDemograficos;
+        SubTitledPanelSeparatorV* m_panel22;
+        wxBoxSizer* m_pSizerCustom;
+        SubTitledPanel* m_pPanelComentarios;
+        wxTextCtrl* m_pComentarios;
+        SubTitledPanelSeparatorV* m_panel221;
+        SubTitledPanel* m_pPanelConsolidar;
+        wxListCtrl* m_pListaConsolidaciones;
+        wxPanel* m_pPanelBoton;
+
+        wxStaticText* m_pLabelStatus;
+        wxButton* m_pBConsolidar;
+
+        // Virtual event handlers, overide them in your derived class
+        virtual void OnComentariosText( wxCommandEvent& event )
+        {
+                event.Skip();
+        }
+        virtual void OnConsolidarClick( wxCommandEvent& event )
+        {
+                event.Skip();
+        }
+
+
+public:
+
+        GNKInformeBaseWx( wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxTAB_TRAVERSAL );
+        ~GNKInformeBaseWx();
+
+};
+
+} // namespace GUI
 } // namespace GNC
 
 #endif //__gnkinformebasewx__

@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -34,181 +34,190 @@
 #include <vtkSmartPointer.h>
 #include <vtkImageData.h>
 
-namespace GNC {
-	namespace GCS {
-		class IWidgetsRenderer;
-	}
+namespace GNC
+{
+namespace GCS
+{
+class IWidgetsRenderer;
+}
 }
 
 
-namespace GNC {
-	namespace GCS {
+namespace GNC
+{
+namespace GCS
+{
 
-		namespace Widgets {
+namespace Widgets
+{
 
-			class WLupa;
+class WLupa;
 
-			typedef enum ModoLupa {
-				ML_Aumentar,
-				ML_Disminuir
-			} ModoLupa;
-
-
-			class WLupaBuilder : public GNC::GCS::Widgets::IWidgetBuilder, public GNC::GCS::Widgets::IObservadorWidget {
-			public:
-
-				WLupaBuilder(GNC::GCS::IWidgetsManager* pManager, GNC::GCS::Widgets::ModoLupa modo, const GNC::GCS::TriggerButton& buttonMask, long gid);
-
-				~WLupaBuilder();
-
-				virtual void OnWidgetDestruido(IWidget*);
-
-				virtual void SetModo(GNC::GCS::Widgets::ModoLupa modo);
-
-				virtual void OnMouseEvents(GNC::GCS::Events::EventoRaton&);
-
-				virtual void OnKeyEvents(GNC::GCS::Events::EventoTeclado&);
-
-				virtual void Render(GNC::GCS::Contexto3D* c);
-
-				virtual GNC::GCS::Widgets::TipoCursor GetCursor();
-
-			protected:
-				GNC::GCS::Vector              m_PosicionCursor;
-				GNC::GCS::Widgets::ModoLupa   m_ModoActivo;
-				WLupa*                        m_pLupaActiva;
-
-			};
-
-			//----------------------------------------------------------------------------
-
-			class WLupa : public GNC::GCS::Widgets::IWidget, public GNC::GCS::IEventsObserver {
-
-			protected:
+typedef enum ModoLupa {
+        ML_Aumentar,
+        ML_Disminuir
+} ModoLupa;
 
 
-			public:
-				typedef GNC::GCS::Vector TVector;
-				typedef GNC::GCS::Matriz TMatriz;
+class WLupaBuilder : public GNC::GCS::Widgets::IWidgetBuilder, public GNC::GCS::Widgets::IObservadorWidget
+{
+public:
 
-				float               m_AnguloVertices;
-				unsigned int        m_NumVertices;
-				GNC::GCS::Vector*   m_VInteriores;
-				GNC::GCS::Vector*   m_VExteriores;
-				GNC::GCS::Vector*   m_VCoordsInteriores;
-				GNC::GCS::Vector    m_Centro;
+        WLupaBuilder(GNC::GCS::IWidgetsManager* pManager, GNC::GCS::Widgets::ModoLupa modo, const GNC::GCS::TriggerButton& buttonMask, long gid);
 
-			//region "Constructor y destructor"
+        ~WLupaBuilder();
 
-			public:
+        virtual void OnWidgetDestruido(IWidget*);
 
-				WLupa(GNC::GCS::IWidgetsRenderer* pRenderer, const GNC::GCS::Vector& relacionImagenPantalla, GNC::GCS::Vector& puntoAnclaje, ModoLupa modo, IWidgetsManager* pManager, long vid, const char* nombre, long gid);
+        virtual void SetModo(GNC::GCS::Widgets::ModoLupa modo);
 
-				~WLupa();
+        virtual void OnMouseEvents(GNC::GCS::Events::EventoRaton&);
 
-			//endregion
+        virtual void OnKeyEvents(GNC::GCS::Events::EventoTeclado&);
 
-			//region "Interfaz especifica"
-			private:
-				GNC::GCS::Widgets::ModoLupa   m_ModoActivo;
+        virtual void Render(GNC::GCS::Contexto3D* c);
 
-			public:
+        virtual GNC::GCS::Widgets::TipoCursor GetCursor();
 
-				void SetRendererActivo( GNC::GCS::IWidgetsRenderer* r);
+protected:
+        GNC::GCS::Vector              m_PosicionCursor;
+        GNC::GCS::Widgets::ModoLupa   m_ModoActivo;
+        WLupa*                        m_pLupaActiva;
 
-				void SetModo(GNC::GCS::Widgets::ModoLupa modo);
+};
 
-				void SetCenter(const GNC::GCS::Vector& punto)
-				{
-					m_Centro = punto;
-				}
+//----------------------------------------------------------------------------
 
-				const GNC::GCS::Vector& GetCenter() const
-				{
-					return m_Centro;
-				}
+class WLupa : public GNC::GCS::Widgets::IWidget, public GNC::GCS::IEventsObserver
+{
 
-				void SetPosCursor(const GNC::GCS::Vector& punto)
-				{
-					m_PosCursor = punto;
-				}
-
-				const GNC::GCS::Vector& GetPosCursor()
-				{
-					return m_PosCursor;
-				}
-
-			//endregion
-
-			//region "Interfaz generica"
-
-				virtual void Modificar(bool modificar);
-
-				virtual bool SoportaAutoBorrado() const {
-					return true;
-				}
-
-				virtual void OnMouseEvents(GNC::GCS::Events::EventoRaton&);
-
-				virtual void OnKeyEvents(GNC::GCS::Events::EventoTeclado&);
-
-				virtual bool HitTest(float x, float y, const GNC::GCS::Vector& umbral);
-
-				virtual bool HitTest(GNC::GCS::Vector* vertices, int numVertices);
-
-				virtual void Render(GNC::GCS::Contexto3D* c);
-
-			//endregion
-
-			//region "Estado interno"
-
-			private:
-				bool              m_MouseDown;
-				bool              m_LDown;
-				bool              m_RDown;
-				GNC::GCS::Vector  m_PosicionCursor;
-			//endregion
-
-				bool              m_Dentro;
-
-			public:
-				void SetMouseDown(bool estado) {
-					m_MouseDown = estado;
-				}
+protected:
 
 
-			//region "Propiedades geometricas"
-			private:
-				GNC::GCS::Vector  m_RelacionImagenPantalla;
+public:
+        typedef GNC::GCS::Vector TVector;
+        typedef GNC::GCS::Matriz TMatriz;
 
-				float             m_RadioLente;
-				float             m_RadioLentePantalla;
-				float             m_GrosorLupa;
-				float             m_GrosorLupaPantalla;
-				float             m_GrosorMango;
-				float             m_GrosorMangoPantalla;
+        float               m_AnguloVertices;
+        unsigned int        m_NumVertices;
+        GNC::GCS::Vector*   m_VInteriores;
+        GNC::GCS::Vector*   m_VExteriores;
+        GNC::GCS::Vector*   m_VCoordsInteriores;
+        GNC::GCS::Vector    m_Centro;
 
-				float             m_AnguloPosAsa;
-				float             m_AnguloAsa;
+        //region "Constructor y destructor"
 
-			public:
+public:
 
-				void Desplazar(const GNC::GCS::Vector& delta);
-				void DesplazarA(const GNC::GCS::Vector& posicion);
+        WLupa(GNC::GCS::IWidgetsRenderer* pRenderer, const GNC::GCS::Vector& relacionImagenPantalla, GNC::GCS::Vector& puntoAnclaje, ModoLupa modo, IWidgetsManager* pManager, long vid, const char* nombre, long gid);
 
-				void Recalcular();
+        ~WLupa();
 
-			public:
+        //endregion
 
-			//endregion
+        //region "Interfaz especifica"
+private:
+        GNC::GCS::Widgets::ModoLupa   m_ModoActivo;
 
-			//region Interfaz de eventos ginkgo
+public:
 
-				virtual void ProcesarEvento(GNC::GCS::Events::IEvent *evt);
+        void SetRendererActivo( GNC::GCS::IWidgetsRenderer* r);
 
-			//endregion
+        void SetModo(GNC::GCS::Widgets::ModoLupa modo);
 
-			};
-		}
-	}
+        void SetCenter(const GNC::GCS::Vector& punto)
+        {
+                m_Centro = punto;
+        }
+
+        const GNC::GCS::Vector& GetCenter() const
+        {
+                return m_Centro;
+        }
+
+        void SetPosCursor(const GNC::GCS::Vector& punto)
+        {
+                m_PosCursor = punto;
+        }
+
+        const GNC::GCS::Vector& GetPosCursor()
+        {
+                return m_PosCursor;
+        }
+
+        //endregion
+
+        //region "Interfaz generica"
+
+        virtual void Modificar(bool modificar);
+
+        virtual bool SoportaAutoBorrado() const
+        {
+                return true;
+        }
+
+        virtual void OnMouseEvents(GNC::GCS::Events::EventoRaton&);
+
+        virtual void OnKeyEvents(GNC::GCS::Events::EventoTeclado&);
+
+        virtual bool HitTest(float x, float y, const GNC::GCS::Vector& umbral);
+
+        virtual bool HitTest(GNC::GCS::Vector* vertices, int numVertices);
+
+        virtual void Render(GNC::GCS::Contexto3D* c);
+
+        //endregion
+
+        //region "Estado interno"
+
+private:
+        bool              m_MouseDown;
+        bool              m_LDown;
+        bool              m_RDown;
+        GNC::GCS::Vector  m_PosicionCursor;
+        //endregion
+
+        bool              m_Dentro;
+
+public:
+        void SetMouseDown(bool estado)
+        {
+                m_MouseDown = estado;
+        }
+
+
+        //region "Propiedades geometricas"
+private:
+        GNC::GCS::Vector  m_RelacionImagenPantalla;
+
+        float             m_RadioLente;
+        float             m_RadioLentePantalla;
+        float             m_GrosorLupa;
+        float             m_GrosorLupaPantalla;
+        float             m_GrosorMango;
+        float             m_GrosorMangoPantalla;
+
+        float             m_AnguloPosAsa;
+        float             m_AnguloAsa;
+
+public:
+
+        void Desplazar(const GNC::GCS::Vector& delta);
+        void DesplazarA(const GNC::GCS::Vector& posicion);
+
+        void Recalcular();
+
+public:
+
+        //endregion
+
+        //region Interfaz de eventos ginkgo
+
+        virtual void ProcesarEvento(GNC::GCS::Events::IEvent *evt);
+
+        //endregion
+
+};
+}
+}
 }

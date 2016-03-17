@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -25,40 +25,45 @@
 
 #include <api/dicom/idicom.h>
 
-namespace GNC {
-	namespace GCS {
-		class IVista;
-	}
+namespace GNC
+{
+namespace GCS
+{
+class IVista;
+}
 }
 
-namespace GNC {
-	namespace GUI {
-		typedef struct TipoWizardExportacion{
-			typedef enum {EXTERNAL_FOLDER, OVERWRITE, NEW_STUDY} Target;
-			Target		  m_target;
-			std::string   m_pathDestino;
+namespace GNC
+{
+namespace GUI
+{
+typedef struct TipoWizardExportacion {
+        typedef enum {EXTERNAL_FOLDER, OVERWRITE, NEW_STUDY} Target;
+        Target		  m_target;
+        std::string   m_pathDestino;
 
-			std::list<long> ListOfSeriesPks;
-			//parametros principales
-			std::list<std::string> ListOfDICOMPaths;
+        std::list<long> ListOfSeriesPks;
+        //parametros principales
+        std::list<std::string> ListOfDICOMPaths;
 
-			//exportacion ginkgo
-			GIL::DICOM::DicomDataset m_base;
-			bool m_incluirTagsGinkgo;
+        //exportacion ginkgo
+        GIL::DICOM::DicomDataset m_base;
+        bool m_incluirTagsGinkgo;
 
-						
-			TipoWizardExportacion() :
-					m_target(EXTERNAL_FOLDER),
-					m_pathDestino(),
-					ListOfSeriesPks(),
-					m_base(),
-					m_incluirTagsGinkgo(true)
-			{
-			}
 
-			~TipoWizardExportacion(){
-			}
+        TipoWizardExportacion() :
+                m_target(EXTERNAL_FOLDER),
+                m_pathDestino(),
+                ListOfSeriesPks(),
+                m_base(),
+                m_incluirTagsGinkgo(true)
+        {
+        }
 
-		} TipoWizardExportacion;
-	}
+        ~TipoWizardExportacion()
+        {
+        }
+
+} TipoWizardExportacion;
+}
 }

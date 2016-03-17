@@ -397,13 +397,13 @@ The following people have contributed to wxSQLite3:
 #define _WX_SQLITE3_DEF_H_
 
 #if defined(WXMAKINGLIB_WXSQLITE3)
-  #define WXDLLIMPEXP_SQLITE3
+#define WXDLLIMPEXP_SQLITE3
 #elif defined(WXMAKINGDLL_WXSQLITE3)
-  #define WXDLLIMPEXP_SQLITE3 WXEXPORT
+#define WXDLLIMPEXP_SQLITE3 WXEXPORT
 #elif defined(WXUSINGDLL_WXSQLITE3)
-  #define WXDLLIMPEXP_SQLITE3 WXIMPORT
+#define WXDLLIMPEXP_SQLITE3 WXIMPORT
 #else // not making nor using DLL
-  #define WXDLLIMPEXP_SQLITE3
+#define WXDLLIMPEXP_SQLITE3
 #endif
 
 /*
@@ -413,9 +413,9 @@ The following people have contributed to wxSQLite3:
   difference a separate macro for forward declarations is defined:
  */
 #if defined(__WINDOWS__) && defined(__GNUC__)
-  #define WXDLLIMPEXP_FWD_SQLITE3
+#define WXDLLIMPEXP_FWD_SQLITE3
 #else
-  #define WXDLLIMPEXP_FWD_SQLITE3 WXDLLIMPEXP_SQLITE3
+#define WXDLLIMPEXP_FWD_SQLITE3 WXDLLIMPEXP_SQLITE3
 #endif
 
 #endif // _WX_SQLITE3_DEF_H_

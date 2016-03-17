@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -22,39 +22,41 @@
 #include <string>
 #include <api/autoptr.h>
 
-namespace GNC {	
-	namespace GCS {
-		class SmartRetrieveService;
+namespace GNC
+{
+namespace GCS
+{
+class SmartRetrieveService;
 
-		class SmartRetrieveController
-		{
-		public:
-			static SmartRetrieveController *Instance();
-			static void FreeInstance();
-			
-			//stop and reload settings...
-			void resetStatus();
+class SmartRetrieveController
+{
+public:
+        static SmartRetrieveController *Instance();
+        static void FreeInstance();
 
-			bool isEnabled();
-			void enable(bool enable);
-			int getPeriod();
-			void setPeriod(int period);
-			int getMaxDownloadPerIteration();
-			void setMaxDownloadPerIteration(int maxDownloads);
+        //stop and reload settings...
+        void resetStatus();
 
-		protected:
-			SmartRetrieveController();
-			~SmartRetrieveController();
+        bool isEnabled();
+        void enable(bool enable);
+        int getPeriod();
+        void setPeriod(int period);
+        int getMaxDownloadPerIteration();
+        void setMaxDownloadPerIteration(int maxDownloads);
 
-			void stopThread();
-			void startThread();
-			
-			int tidService;
-			SmartRetrieveService* pThread;
-			//singleton
-			static SmartRetrieveController* m_pInstance;
-		};
-	}
+protected:
+        SmartRetrieveController();
+        ~SmartRetrieveController();
+
+        void stopThread();
+        void startThread();
+
+        int tidService;
+        SmartRetrieveService* pThread;
+        //singleton
+        static SmartRetrieveController* m_pInstance;
+};
+}
 }
 
 

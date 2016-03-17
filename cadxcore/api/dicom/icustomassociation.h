@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -26,39 +26,42 @@
 #include <api/dicom/idicom.h>
 #include <api/dicom/idicomconformance.h>
 
-namespace GIL {
-	namespace DICOM {	
-		class EXTAPI ICustomAssociation {
-			
-		protected:
+namespace GIL
+{
+namespace DICOM
+{
+class EXTAPI ICustomAssociation
+{
 
-			ICustomAssociation();
+protected:
 
-		public:
-			virtual ~ICustomAssociation();
+        ICustomAssociation();
 
-		public:
+public:
+        virtual ~ICustomAssociation();
 
-			virtual bool Connect(const std::string& serverId, const std::string& local_aet) = 0;
+public:
 
-			virtual bool createRQ( const std::string& sopclassUID, const GIL::DICOM::DicomDataset& attributeListIn,  int& status, std::string& affectedSopinstanceUID) = 0;
-			virtual bool setRQ(    const std::string& sopclassUID, const std::string& sopinstanceUID, const GIL::DICOM::DicomDataset& modificationList, int& status) = 0;
-			virtual bool getRQ(    const std::string& sopclassUID, const std::string& sopinstanceUID, const int *attributeIdentifierList, unsigned long numShorts, int& status,  GNC::GCS::Ptr<GIL::DICOM::DicomDataset>& attributeListOut) = 0;
-			virtual bool actionRQ( const std::string& sopclassUID, const std::string& sopinstanceUID, int actionTypeID, const GIL::DICOM::DicomDataset& actionInformation, int& status,  GNC::GCS::Ptr<GIL::DICOM::DicomDataset>& attributeListOut) = 0;
-			virtual bool deleteRQ( const std::string& sopclassUID, const std::string& sopinstanceUID, int& status) = 0;
+        virtual bool Connect(const std::string& serverId, const std::string& local_aet) = 0;
 
-			virtual bool releaseAssociation() = 0;
-			virtual bool abortAssociation() = 0;
+        virtual bool createRQ( const std::string& sopclassUID, const GIL::DICOM::DicomDataset& attributeListIn,  int& status, std::string& affectedSopinstanceUID) = 0;
+        virtual bool setRQ(    const std::string& sopclassUID, const std::string& sopinstanceUID, const GIL::DICOM::DicomDataset& modificationList, int& status) = 0;
+        virtual bool getRQ(    const std::string& sopclassUID, const std::string& sopinstanceUID, const int *attributeIdentifierList, unsigned long numShorts, int& status,  GNC::GCS::Ptr<GIL::DICOM::DicomDataset>& attributeListOut) = 0;
+        virtual bool actionRQ( const std::string& sopclassUID, const std::string& sopinstanceUID, int actionTypeID, const GIL::DICOM::DicomDataset& actionInformation, int& status,  GNC::GCS::Ptr<GIL::DICOM::DicomDataset>& attributeListOut) = 0;
+        virtual bool deleteRQ( const std::string& sopclassUID, const std::string& sopinstanceUID, int& status) = 0;
 
-		public:
+        virtual bool releaseAssociation() = 0;
+        virtual bool abortAssociation() = 0;
 
-			void SetStorageSOPClasses(const GIL::DICOM::SOPClassList& SOPClasses);
-			const std::string& getErrorMessage() const;
+public:
 
-		protected:
+        void SetStorageSOPClasses(const GIL::DICOM::SOPClassList& SOPClasses);
+        const std::string& getErrorMessage() const;
 
-			std::string errorMsg;		
-			GIL::DICOM::SOPClassList SOPClasses;
-		};
-	}
+protected:
+
+        std::string errorMsg;
+        GIL::DICOM::SOPClassList SOPClasses;
+};
+}
 }

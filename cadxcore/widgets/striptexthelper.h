@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -24,51 +24,53 @@
 #include <api/iwidgets.h>
 #include <widgets/openglhelper.h>
 
-namespace GNC {
-	namespace GCS {
-		class Contexto3D;
-	}
+namespace GNC
+{
+namespace GCS
+{
+class Contexto3D;
+}
 }
 //endregion
 struct _cairo_font_options;
 
 namespace GNC
 {
-	namespace GCS
-	{
-		namespace Widgets {
-			struct StripDescription
-			{
-                StripDescription() = default;
-				StripDescription(GNC::GCS::Vector position, GNC::GCS::Vector size);
+namespace GCS
+{
+namespace Widgets
+{
+struct StripDescription {
+        StripDescription() = default;
+        StripDescription(GNC::GCS::Vector position, GNC::GCS::Vector size);
 
-				GNC::GCS::Vector rasterPosition;
-				GNC::GCS::Vector rasterSize;
-				GNC::GCS::Vector textPosition;
-				GNC::GCS::Vector textSize;
-			};	
+        GNC::GCS::Vector rasterPosition;
+        GNC::GCS::Vector rasterSize;
+        GNC::GCS::Vector textPosition;
+        GNC::GCS::Vector textSize;
+};
 
-			class StripTextRenderer
-			{
-			public:
-				StripTextRenderer();
+class StripTextRenderer
+{
+public:
+        StripTextRenderer();
 
-				~StripTextRenderer();
+        ~StripTextRenderer();
 
-				void Render(const std::string& text, const GNC::GCS::Vector& renderPosition, bool leftAlign = true);
+        void Render(const std::string& text, const GNC::GCS::Vector& renderPosition, bool leftAlign = true);
 
-				void Update(const std::string& strip, const GNC::GCS::Widgets::Color& color, double fontSize, bool drawShadow);
+        void Update(const std::string& strip, const GNC::GCS::Widgets::Color& color, double fontSize, bool drawShadow);
 
-				double GetTextHeigh();
+        double GetTextHeigh();
 
-				void Destroy();
+        void Destroy();
 
-				std::map<char, StripDescription> m_CharMap;
-				_cairo_font_options* m_pFontOptions;
-				double m_textHeigh;
-				std::string m_text;
-				GNC::GCS::TexturaCairo tc;
-			}; 
-		}
-	}
+        std::map<char, StripDescription> m_CharMap;
+        _cairo_font_options* m_pFontOptions;
+        double m_textHeigh;
+        std::string m_text;
+        GNC::GCS::TexturaCairo tc;
+};
+}
+}
 }

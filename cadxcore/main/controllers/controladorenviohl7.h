@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -27,29 +27,31 @@
 class wxSQLite3Database;
 class wxCriticalSection;
 
-namespace GIL {
-	namespace HL7 {
-		class EXTAPI ControladorEnvioHl7:  protected wxThread, public GNC::GCS::IEventsObserver
-		{
-		public:
-			static void FreeInstance();
-			static void Arrancar();
-			static bool EstaArrancado();
-			void Abortar();
-			bool EstaAbortado();
+namespace GIL
+{
+namespace HL7
+{
+class EXTAPI ControladorEnvioHl7:  protected wxThread, public GNC::GCS::IEventsObserver
+{
+public:
+        static void FreeInstance();
+        static void Arrancar();
+        static bool EstaArrancado();
+        void Abortar();
+        bool EstaAbortado();
 
-		protected:
-			static ControladorEnvioHl7* m_pInstance;
-			static wxCriticalSection m_criticalSection;
+protected:
+        static ControladorEnvioHl7* m_pInstance;
+        static wxCriticalSection m_criticalSection;
 
-			ControladorEnvioHl7();
-			~ControladorEnvioHl7();
+        ControladorEnvioHl7();
+        ~ControladorEnvioHl7();
 
-			virtual void* Entry();
+        virtual void* Entry();
 
-			virtual void ProcesarEvento(GNC::GCS::Events::IEvent *evt) ;
-			wxSemaphore		m_semaphore;
-			std::atomic<bool> m_Abortado;
-		};
-	}
+        virtual void ProcesarEvento(GNC::GCS::Events::IEvent *evt) ;
+        wxSemaphore		m_semaphore;
+        std::atomic<bool> m_Abortado;
+};
+}
 }

@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -29,84 +29,89 @@
 #include <api/istudycontext.h>
 #include <export/contracts/iviewcontract.h>
 
-namespace GNC {
-	namespace GCS {
-		class IEntorno;
-	}
+namespace GNC
+{
+namespace GCS
+{
+class IEntorno;
+}
 }
 
 class wxWindow;
 
-namespace GNC {
-	namespace GUI {
-		class StartUpForm;
+namespace GNC
+{
+namespace GUI
+{
+class StartUpForm;
 
-		class StartUpStudy : public GNC::GCS::IStudyContext
-		{
-		public:
-			
-			StartUpStudy(){}
-			~StartUpStudy(){}
+class StartUpStudy : public GNC::GCS::IStudyContext
+{
+public:
 
-			virtual void CallbackCargarTagsImagen(const int /*indice*/, GIL::DICOM::IDICOMManager* /*pDicomManager*/) {}
+        StartUpStudy() {}
+        ~StartUpStudy() {}
 
-		protected:
+        virtual void CallbackCargarTagsImagen(const int /*indice*/, GIL::DICOM::IDICOMManager* /*pDicomManager*/) {}
 
-		};
+protected:
 
-		class StartUpView  : public GNC::GCS::IVista, public GNC::GCS::IViewContract {
-		public:
-			/* Constructor */
-			StartUpView (const GNC::GCS::Ptr<GNC::GUI::StartUpStudy>& study);
+};
 
-			/* Destructor */
-			~StartUpView ();
+class StartUpView  : public GNC::GCS::IVista, public GNC::GCS::IViewContract
+{
+public:
+        /* Constructor */
+        StartUpView (const GNC::GCS::Ptr<GNC::GUI::StartUpStudy>& study);
 
-			//suports save?
-			virtual bool SoportaGuardar();
+        /* Destructor */
+        ~StartUpView ();
 
-			//supports exportation?
-			virtual bool SoportaExportar();
+        //suports save?
+        virtual bool SoportaGuardar();
 
-			//----------------------------------------------------------------------------------------------------
-			//region Loading interface
+        //supports exportation?
+        virtual bool SoportaExportar();
 
-			// Starts loading. Synchronous with interface.
-			virtual void OnCargaIniciada();
+        //----------------------------------------------------------------------------------------------------
+        //region Loading interface
 
-			// Step1: LoadStudy not synchronized with interface thread
-			virtual void CargarEstudio(GNC::GCS::IComando* pCmdInvocador);
+        // Starts loading. Synchronous with interface.
+        virtual void OnCargaIniciada();
 
-			//Ends loading. Synchronous with interface
-			virtual void OnCargaFinalizada();
+        // Step1: LoadStudy not synchronized with interface thread
+        virtual void CargarEstudio(GNC::GCS::IComando* pCmdInvocador);
 
-			// Step2: init pipeline synchronous with interface
-			virtual void IniciarPipeline();
+        //Ends loading. Synchronous with interface
+        virtual void OnCargaFinalizada();
 
-			// stops pipeline, it's called if there has been an error loading study
-			virtual void DetenerPipeline();
+        // Step2: init pipeline synchronous with interface
+        virtual void IniciarPipeline();
 
-			//endregion
+        // stops pipeline, it's called if there has been an error loading study
+        virtual void DetenerPipeline();
 
-			//call when this view is activated
-			virtual void Activar();
+        //endregion
 
-			virtual void ActivarRuta(long /*file_pk*/){}
+        //call when this view is activated
+        virtual void Activar();
 
-			//view contract
-			virtual GNC::GCS::IVista* GetView();
+        virtual void ActivarRuta(long /*file_pk*/) {}
 
-			//return graphic form
-			virtual wxWindow* GetWindow();
+        //view contract
+        virtual GNC::GCS::IVista* GetView();
 
-			virtual wxSizer* GetBottomSizer();
+        //return graphic form
+        virtual wxWindow* GetWindow();
 
-		protected:
+        virtual wxSizer* GetBottomSizer();
 
-			void BuildTitle();
+protected:
 
-			GNC::GUI::StartUpForm* m_pWindow;
-			GNC::GCS::Ptr<GNC::GUI::StartUpStudy>     FooStudy;
-		};
-	}
+        void BuildTitle();
+
+        GNC::GUI::StartUpForm* m_pWindow;
+        GNC::GCS::Ptr<GNC::GUI::StartUpStudy>     FooStudy;
+};
+}
 }

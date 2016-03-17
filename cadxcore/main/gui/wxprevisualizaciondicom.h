@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -37,26 +37,33 @@ class wxVTKRenderWindowInteractor;
 class vtkGinkgoImageViewer;
 
 
-class EXTAPI wxPrevisualizacionDicom : public wxPanel {
+class EXTAPI wxPrevisualizacionDicom : public wxPanel
+{
 public:
-    wxPrevisualizacionDicom(wxWindow* parent, wxWindowID id = wxID_ANY);
-    ~wxPrevisualizacionDicom();
-	
-	void SetInput(vtkSmartPointer<vtkImageData>& data);
-	
-	vtkGinkgoImageViewer* GetView() { return ViewImage2D; };
-	wxVTKRenderWindowInteractor* GetInteractor() {return ViewInteractor;}
+        wxPrevisualizacionDicom(wxWindow* parent, wxWindowID id = wxID_ANY);
+        ~wxPrevisualizacionDicom();
 
-	virtual void OnMouseLeftDClick();
-	
+        void SetInput(vtkSmartPointer<vtkImageData>& data);
+
+        vtkGinkgoImageViewer* GetView()
+        {
+                return ViewImage2D;
+        };
+        wxVTKRenderWindowInteractor* GetInteractor()
+        {
+                return ViewInteractor;
+        }
+
+        virtual void OnMouseLeftDClick();
+
 protected:
-	/*
-	 GinkgoRenderWindowInteractor* ViewInteractor;
-	 GinkgoImageViewer*            ViewImage2D;
-	 */
-	wxVTKRenderWindowInteractor*  ViewInteractor;
-	vtkGinkgoImageViewer*     ViewImage2D;
-	wxBoxSizer*                   Sizer;
-	
-	void reset();
+        /*
+         GinkgoRenderWindowInteractor* ViewInteractor;
+         GinkgoImageViewer*            ViewImage2D;
+         */
+        wxVTKRenderWindowInteractor*  ViewInteractor;
+        vtkGinkgoImageViewer*     ViewImage2D;
+        wxBoxSizer*                   Sizer;
+
+        void reset();
 };

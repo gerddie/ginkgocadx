@@ -42,125 +42,152 @@ class TitledPanelSinBorder;
 ///////////////////////////////////////////////////////////////////////////////
 /// Class VistaSimpleBase
 ///////////////////////////////////////////////////////////////////////////////
-class VistaSimpleBase : public wxPanel 
+class VistaSimpleBase : public wxPanel
 {
-	private:
-	
-	protected:
-		wxSlider* m_pSliderTimeInstant;
-		
-		// Virtual event handlers, overide them in your derived class
-		virtual void OnChar( wxKeyEvent& event ) { event.Skip(); }
-		virtual void OnEraseBackground( wxEraseEvent& event ) { event.Skip(); }
-		virtual void OnTimeInstantChanged( wxScrollEvent& event ) { event.Skip(); }
-		
-	
-	public:
-		vtkSmartPointer<vtkGinkgoImageViewer> ViewImage2D;
-		vtkSmartPointer<wxVTKRenderWindowInteractor> ViewInteractor2D;
+private:
 
-		
-		VistaSimpleBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxCLIP_CHILDREN|wxFULL_REPAINT_ON_RESIZE|wxTAB_TRAVERSAL ); 
-		~VistaSimpleBase();
-	
+protected:
+        wxSlider* m_pSliderTimeInstant;
+
+        // Virtual event handlers, overide them in your derived class
+        virtual void OnChar( wxKeyEvent& event )
+        {
+                event.Skip();
+        }
+        virtual void OnEraseBackground( wxEraseEvent& event )
+        {
+                event.Skip();
+        }
+        virtual void OnTimeInstantChanged( wxScrollEvent& event )
+        {
+                event.Skip();
+        }
+
+
+public:
+        vtkSmartPointer<vtkGinkgoImageViewer> ViewImage2D;
+        vtkSmartPointer<wxVTKRenderWindowInteractor> ViewInteractor2D;
+
+
+        VistaSimpleBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxCLIP_CHILDREN|wxFULL_REPAINT_ON_RESIZE|wxTAB_TRAVERSAL );
+        ~VistaSimpleBase();
+
 };
 
 ///////////////////////////////////////////////////////////////////////////////
 /// Class VistaComplejaBase
 ///////////////////////////////////////////////////////////////////////////////
-class VistaComplejaBase : public wxPanel 
+class VistaComplejaBase : public wxPanel
 {
-	private:
-	
-	protected:
-		wxBoxSizer* m_pSizerTools;
-		wxBoxSizer* m_pSizerView;
-		wxGridSizer* m_pSizerSeries;
-		wxPanel* m_panel7;
-		wxPanel* m_pPanelManipulacion;
-		wxBoxSizer* m_pSizerIzquierda;
-		wxPanel* m_pPanelScroll;
-		wxBoxSizer* m_pSizerScroll;
-		wxBoxSizer* m_pSizerDerecho;
-		
-		// Virtual event handlers, overide them in your derived class
-		virtual void OnPaint( wxPaintEvent& event ) { event.Skip(); }
-		virtual void OnZSliderScroll( wxScrollEvent& event ) { event.Skip(); }
-		
-	
-	public:
-		wxSlider* m_pSliderSlice;
-		
-		VistaComplejaBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxTAB_TRAVERSAL ); 
-		~VistaComplejaBase();
-	
+private:
+
+protected:
+        wxBoxSizer* m_pSizerTools;
+        wxBoxSizer* m_pSizerView;
+        wxGridSizer* m_pSizerSeries;
+        wxPanel* m_panel7;
+        wxPanel* m_pPanelManipulacion;
+        wxBoxSizer* m_pSizerIzquierda;
+        wxPanel* m_pPanelScroll;
+        wxBoxSizer* m_pSizerScroll;
+        wxBoxSizer* m_pSizerDerecho;
+
+        // Virtual event handlers, overide them in your derived class
+        virtual void OnPaint( wxPaintEvent& event )
+        {
+                event.Skip();
+        }
+        virtual void OnZSliderScroll( wxScrollEvent& event )
+        {
+                event.Skip();
+        }
+
+
+public:
+        wxSlider* m_pSliderSlice;
+
+        VistaComplejaBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxTAB_TRAVERSAL );
+        ~VistaComplejaBase();
+
 };
 
 ///////////////////////////////////////////////////////////////////////////////
 /// Class DialogoSincronizacionBase
 ///////////////////////////////////////////////////////////////////////////////
-class DialogoSincronizacionBase : public wxDialog 
+class DialogoSincronizacionBase : public wxDialog
 {
-	private:
-	
-	protected:
-		BodyPanel* m_pBody;
-		TitledPanelSinBorder* m_panel7;
-		wxCheckListBox* m_pCheckListVistas;
-		FooterPanel* m_pFooter;
-		wxButton* m_button2;
-		wxButton* m_button3;
-		
-		// Virtual event handlers, overide them in your derived class
-		virtual void OnAceptarClick( wxCommandEvent& event ) { event.Skip(); }
-		virtual void OnCancelarClick( wxCommandEvent& event ) { event.Skip(); }
-		
-	
-	public:
-		
-		DialogoSincronizacionBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Synchronize..."), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 450,275 ), long style = wxDEFAULT_DIALOG_STYLE ); 
-		~DialogoSincronizacionBase();
-	
+private:
+
+protected:
+        BodyPanel* m_pBody;
+        TitledPanelSinBorder* m_panel7;
+        wxCheckListBox* m_pCheckListVistas;
+        FooterPanel* m_pFooter;
+        wxButton* m_button2;
+        wxButton* m_button3;
+
+        // Virtual event handlers, overide them in your derived class
+        virtual void OnAceptarClick( wxCommandEvent& event )
+        {
+                event.Skip();
+        }
+        virtual void OnCancelarClick( wxCommandEvent& event )
+        {
+                event.Skip();
+        }
+
+
+public:
+
+        DialogoSincronizacionBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Synchronize..."), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 450,275 ), long style = wxDEFAULT_DIALOG_STYLE );
+        ~DialogoSincronizacionBase();
+
 };
 
 ///////////////////////////////////////////////////////////////////////////////
 /// Class GWaveformViewBase
 ///////////////////////////////////////////////////////////////////////////////
-class GWaveformViewBase : public wxPanel 
+class GWaveformViewBase : public wxPanel
 {
-	private:
-	
-	protected:
-		wxBoxSizer* m_pSizerTools;
-		wxSplitterWindow* m_pSplitterPanel;
-		wxPanel* m_pPanelView;
-		SubTitledPanel* m_pPanelMetadata;
-		wxTextCtrl* m_pTextMeasurements;
-		wxTextCtrl* m_pTextDiagnosis;
-		wxPanel* m_panel7;
-		wxPanel* m_pManipulationPanel;
-		wxComboBox* m_pComboGroups;
-		wxBoxSizer* m_pSizerRight;
-		
-		// Virtual event handlers, overide them in your derived class
-		virtual void OnPaint( wxPaintEvent& event ) { event.Skip(); }
-		virtual void OnComboGroup( wxCommandEvent& event ) { event.Skip(); }
-		
-	
-	public:
-		vtkSmartPointer<vtkGinkgoImageViewer> ViewImage2D;
-		vtkSmartPointer<wxVTKRenderWindowInteractor> ViewInteractor2D;
+private:
 
-		
-		GWaveformViewBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxTAB_TRAVERSAL ); 
-		~GWaveformViewBase();
-		
-		void m_pSplitterPanelOnIdle( wxIdleEvent& )
-		{
-			m_pSplitterPanel->SetSashPosition( 149 );
-			m_pSplitterPanel->Disconnect( wxEVT_IDLE, wxIdleEventHandler( GWaveformViewBase::m_pSplitterPanelOnIdle ), NULL, this );
-		}
-	
+protected:
+        wxBoxSizer* m_pSizerTools;
+        wxSplitterWindow* m_pSplitterPanel;
+        wxPanel* m_pPanelView;
+        SubTitledPanel* m_pPanelMetadata;
+        wxTextCtrl* m_pTextMeasurements;
+        wxTextCtrl* m_pTextDiagnosis;
+        wxPanel* m_panel7;
+        wxPanel* m_pManipulationPanel;
+        wxComboBox* m_pComboGroups;
+        wxBoxSizer* m_pSizerRight;
+
+        // Virtual event handlers, overide them in your derived class
+        virtual void OnPaint( wxPaintEvent& event )
+        {
+                event.Skip();
+        }
+        virtual void OnComboGroup( wxCommandEvent& event )
+        {
+                event.Skip();
+        }
+
+
+public:
+        vtkSmartPointer<vtkGinkgoImageViewer> ViewImage2D;
+        vtkSmartPointer<wxVTKRenderWindowInteractor> ViewInteractor2D;
+
+
+        GWaveformViewBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxTAB_TRAVERSAL );
+        ~GWaveformViewBase();
+
+        void m_pSplitterPanelOnIdle( wxIdleEvent& )
+        {
+                m_pSplitterPanel->SetSashPosition( 149 );
+                m_pSplitterPanel->Disconnect( wxEVT_IDLE, wxIdleEventHandler( GWaveformViewBase::m_pSplitterPanelOnIdle ), NULL, this );
+        }
+
 };
 
 #endif //__VISUALIZATORVIEWS_H__

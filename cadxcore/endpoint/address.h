@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -46,184 +46,185 @@
 // A single address
 class EndpointAddress : public addrinfo
 {
-	public:
-	EndpointAddress()     {
-		Reset();
-	}
+public:
+        EndpointAddress()
+        {
+                Reset();
+        }
 
-	EndpointAddress(const EndpointAddress &otra) {
-		*this = otra;
-	}
+        EndpointAddress(const EndpointAddress &otra)
+        {
+                *this = otra;
+        }
 
-	EndpointAddress(sockaddr* sa, int type) {
+        EndpointAddress(sockaddr* sa, int type)
+        {
 
-        Reset();
+                Reset();
 
-		if (!sa)
-		{
-			m_Inicializada = false;
-			return;
-		}
+                if (!sa) {
+                        m_Inicializada = false;
+                        return;
+                }
 
-		ai_flags = 0;
-		ai_family = sa->sa_family;
-		ai_socktype = type;
-		ai_protocol = 0;
+                ai_flags = 0;
+                ai_family = sa->sa_family;
+                ai_socktype = type;
+                ai_protocol = 0;
 
-		ai_addr = &m_sockaddr;
-		m_sockaddr = *(sa);
-		ai_next = NULL;
+                ai_addr = &m_sockaddr;
+                m_sockaddr = *(sa);
+                ai_next = NULL;
 
-		ai_addrlen = sizeof(sockaddr);
+                ai_addrlen = sizeof(sockaddr);
 
-		ResetCanonName();
-		ai_canonname = m_CanonName;
+                ResetCanonName();
+                ai_canonname = m_CanonName;
 
-		m_sockaddr = *sa;
+                m_sockaddr = *sa;
 
-		ai_next = NULL;
+                ai_next = NULL;
 
-		m_Inicializada = true;
-	}
+                m_Inicializada = true;
+        }
 
-	~EndpointAddress()
-	{
-	}
+        ~EndpointAddress()
+        {
+        }
 
-	std::string IPPort();
+        std::string IPPort();
 
-	std::string IP();
+        std::string IP();
 
-	std::string DNS();
+        std::string DNS();
 
-	std::string Name();
+        std::string Name();
 
-	std::string Port();
+        std::string Port();
 
-	unsigned short PortNumber();
+        unsigned short PortNumber();
 
-	EndpointAddress & operator=(const EndpointAddress & otra) {
+        EndpointAddress & operator=(const EndpointAddress & otra)
+        {
 
-		if( !otra.m_Inicializada )
-		{
-			Reset();
-			return *this;
-		}
+                if( !otra.m_Inicializada ) {
+                        Reset();
+                        return *this;
+                }
 
-		ResetCanonName();
+                ResetCanonName();
 
-		ai_flags =otra.ai_flags;
-		ai_family = otra.ai_family;
-		ai_socktype = otra.ai_socktype;
+                ai_flags =otra.ai_flags;
+                ai_family = otra.ai_family;
+                ai_socktype = otra.ai_socktype;
 
-        // GW: Not sure why the protocolis not copied
-		ai_protocol = 0;
+                // GW: Not sure why the protocolis not copied
+                ai_protocol = 0;
 
-		ai_addr = &m_sockaddr;
-		m_sockaddr = *(otra.ai_addr);
-		ai_next =otra.ai_next;
+                ai_addr = &m_sockaddr;
+                m_sockaddr = *(otra.ai_addr);
+                ai_next =otra.ai_next;
 
-		ai_addrlen = sizeof(sockaddr);
+                ai_addrlen = sizeof(sockaddr);
 
-		CopyCanonName(otra.m_CanonName);
-		ai_canonname = m_CanonName;
+                CopyCanonName(otra.m_CanonName);
+                ai_canonname = m_CanonName;
 
-		m_Inicializada = otra.m_Inicializada;
+                m_Inicializada = otra.m_Inicializada;
 
-		return *this;
-	}
+                return *this;
+        }
 
-	EndpointAddress & operator=(const addrinfo & otra) {
-		ResetCanonName();
+        EndpointAddress & operator=(const addrinfo & otra)
+        {
+                ResetCanonName();
 
-		ai_flags = otra.ai_flags;
-		ai_family = otra.ai_family;
-		ai_socktype = otra.ai_socktype;
+                ai_flags = otra.ai_flags;
+                ai_family = otra.ai_family;
+                ai_socktype = otra.ai_socktype;
 
-        // GW: Not sure why the protocolis not copied
-		ai_protocol = 0;
+                // GW: Not sure why the protocolis not copied
+                ai_protocol = 0;
 
-		ai_addr = &m_sockaddr;
-		m_sockaddr = *(otra.ai_addr);
-		ai_next = otra.ai_next;
+                ai_addr = &m_sockaddr;
+                m_sockaddr = *(otra.ai_addr);
+                ai_next = otra.ai_next;
 
-		ai_addrlen = sizeof(sockaddr);
-		if (otra.ai_canonname != NULL) {
-			CopyCanonName(otra.ai_canonname);
-		}
-		ai_canonname = m_CanonName;
+                ai_addrlen = sizeof(sockaddr);
+                if (otra.ai_canonname != NULL) {
+                        CopyCanonName(otra.ai_canonname);
+                }
+                ai_canonname = m_CanonName;
 
-		m_Inicializada = true;
+                m_Inicializada = true;
 
-		return *this;
-	}
+                return *this;
+        }
 
-	EndpointAddress & operator*()
-	{
-		return *this;
-	}
+        EndpointAddress & operator*()
+        {
+                return *this;
+        }
 
-	operator std::string();
+        operator std::string();
 
-	operator bool() {
-		return m_Inicializada;
-	}
+        operator bool()
+        {
+                return m_Inicializada;
+        }
 
-	operator sockaddr()
-	{
-		if (!m_Inicializada) {
-			sockaddr _nil;
-			std::memset(&_nil, 0, sizeof(sockaddr));
-			return _nil;
-		}
-		else {
-			return m_sockaddr;
-		}
-	}
+        operator sockaddr()
+        {
+                if (!m_Inicializada) {
+                        sockaddr _nil;
+                        std::memset(&_nil, 0, sizeof(sockaddr));
+                        return _nil;
+                } else {
+                        return m_sockaddr;
+                }
+        }
 
-    bool m_Inicializada;
+        bool m_Inicializada;
 
 protected:
 
-	void Reset()
-	{
-		ai_flags = 0;
-		ai_family = 0;
-		ai_socktype = 0;
-		ai_protocol = 0;
-		ai_addrlen = sizeof(sockaddr);
-		ai_protocol = 0;
+        void Reset()
+        {
+                ai_flags = 0;
+                ai_family = 0;
+                ai_socktype = 0;
+                ai_protocol = 0;
+                ai_addrlen = sizeof(sockaddr);
+                ai_protocol = 0;
 
-		ai_addr = &m_sockaddr;
-		std::memset(&m_sockaddr, 0, sizeof(sockaddr));
-		ai_next = NULL;
+                ai_addr = &m_sockaddr;
+                std::memset(&m_sockaddr, 0, sizeof(sockaddr));
+                ai_next = NULL;
 
-		ai_addrlen = sizeof(sockaddr);
+                ai_addrlen = sizeof(sockaddr);
 
-		ResetCanonName();
-		ai_canonname = m_CanonName;
+                ResetCanonName();
+                ai_canonname = m_CanonName;
 
-		m_Inicializada = false;
-	}
+                m_Inicializada = false;
+        }
 
-	void ResetCanonName()
-	{
-		for (int i = 0; i < 255; i++)
-		{
-			m_CanonName[i] = 0;
-		}
-	}
+        void ResetCanonName()
+        {
+                for (int i = 0; i < 255; i++) {
+                        m_CanonName[i] = 0;
+                }
+        }
 
-	void CopyCanonName(const char* src)
-	{
-		for (int i = 0; i < 255 && src[i] != 0; i++)
-		{
-			m_CanonName[i] = src[i];
-		}
-	}
+        void CopyCanonName(const char* src)
+        {
+                for (int i = 0; i < 255 && src[i] != 0; i++) {
+                        m_CanonName[i] = src[i];
+                }
+        }
 
-    struct sockaddr m_sockaddr;
-    char m_CanonName[256];
+        struct sockaddr m_sockaddr;
+        char m_CanonName[256];
 
 };
 
@@ -236,37 +237,53 @@ protected:
 class EndpointAddrlist
 {
 public:
-    EndpointAddrlist() : m_error_cat(0), m_error_code(0) { m_bool = false; m_addrs = m_addrlist.begin(); };
-    EndpointAddrlist( const EndpointAddrlist & orig ) { Copy(orig); };
-    EndpointAddrlist(std::string hostname,
-                    std::string service = "",
-                    int protocol = TCP | CLIENT,
-                    int family = AF_INET)
-                    { Create(hostname, service, protocol, family); }
-    ~EndpointAddrlist();
+        EndpointAddrlist() : m_error_cat(0), m_error_code(0)
+        {
+                m_bool = false;
+                m_addrs = m_addrlist.begin();
+        };
+        EndpointAddrlist( const EndpointAddrlist & orig )
+        {
+                Copy(orig);
+        };
+        EndpointAddrlist(std::string hostname,
+                         std::string service = "",
+                         int protocol = TCP | CLIENT,
+                         int family = AF_INET)
+        {
+                Create(hostname, service, protocol, family);
+        }
+        ~EndpointAddrlist();
 
-    bool Create(std::string hostname, std::string service = "",
-                int protocol = TCP | CLIENT, int family = AF_INET);
+        bool Create(std::string hostname, std::string service = "",
+                    int protocol = TCP | CLIENT, int family = AF_INET);
 
-    EndpointAddrlist & operator=(const EndpointAddrlist & orig) {Copy(orig); return *this;}
-    operator bool() const { return m_bool; }
-    void Copy(const EndpointAddrlist & );
+        EndpointAddrlist & operator=(const EndpointAddrlist & orig)
+        {
+                Copy(orig);
+                return *this;
+        }
+        operator bool() const
+        {
+                return m_bool;
+        }
+        void Copy(const EndpointAddrlist & );
 
-    EndpointAddress GetAddress() const;
-    EndpointAddress GetAddressNext();
-    static std::string StrIP(struct addrinfo*);
-    int SetLastError();
-    std::list< EndpointAddress >  m_addrlist;
-    std::list< EndpointAddress >::iterator m_addrs;
+        EndpointAddress GetAddress() const;
+        EndpointAddress GetAddressNext();
+        static std::string StrIP(struct addrinfo*);
+        int SetLastError();
+        std::list< EndpointAddress >  m_addrlist;
+        std::list< EndpointAddress >::iterator m_addrs;
 
-    int m_error_cat;
-    int m_error_code;
-    std::string m_error_str;
-    bool m_bool;
+        int m_error_cat;
+        int m_error_code;
+        std::string m_error_str;
+        bool m_bool;
 
 private:
-    void DeleteList();
-    void CreateList( struct addrinfo* );
-    char canonname[256];
+        void DeleteList();
+        void CreateList( struct addrinfo* );
+        char canonname[256];
 };
 #endif

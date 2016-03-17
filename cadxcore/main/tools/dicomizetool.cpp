@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -32,7 +32,7 @@
 
 //----------------------------------------------------------------------
 
-GNC::DicomizeTool::DicomizeTool(): GNC::GCS::IHistoryTool(ID,GNC::GCS::IHistoryTool::TFamily_Dicomize, _Std("Dicomize"), _Std("Dicomize files")+ " \tAlt+d", GinkgoResourcesManager::MenuIcons::GetIcoImportar(), GinkgoResourcesManager::BigIcons::GetIcoBigDicomize()) 
+GNC::DicomizeTool::DicomizeTool(): GNC::GCS::IHistoryTool(ID,GNC::GCS::IHistoryTool::TFamily_Dicomize, _Std("Dicomize"), _Std("Dicomize files")+ " \tAlt+d", GinkgoResourcesManager::MenuIcons::GetIcoImportar(), GinkgoResourcesManager::BigIcons::GetIcoBigDicomize())
 {
 }
 
@@ -40,21 +40,20 @@ GNC::DicomizeTool::~DicomizeTool()
 {
 }
 
-bool GNC::DicomizeTool::Enabled() 
+bool GNC::DicomizeTool::Enabled()
 {
-	return GNC::GCS::IControladorPermisos::Instance()->Get("core.restrictions","import");
+        return GNC::GCS::IControladorPermisos::Instance()->Get("core.restrictions","import");
 }
 
 void GNC::DicomizeTool::Execute()
 {
-	try{
-		GNC::GUI::wxWizardImportacionGinkgo ib(GNC::HistoryToolsController::Instance()->GetHistoryPanel()->GetWxWindow(),NULL);
+        try {
+                GNC::GUI::wxWizardImportacionGinkgo ib(GNC::HistoryToolsController::Instance()->GetHistoryPanel()->GetWxWindow(),NULL);
 
-		ib.ShowModal();
-	}
-	catch(GIL::DICOM::I2DException& i){
-		LOG_ERROR("DicomizeTool", "Error in dicomization: " << i.GetCause())
-	}
+                ib.ShowModal();
+        } catch(GIL::DICOM::I2DException& i) {
+                LOG_ERROR("DicomizeTool", "Error in dicomization: " << i.GetCause())
+        }
 }
 
 

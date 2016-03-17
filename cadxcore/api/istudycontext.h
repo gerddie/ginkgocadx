@@ -6,8 +6,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -37,164 +37,174 @@ class vtkImageData;
 
 class wxWindow;
 
-namespace GNC {
-	namespace GCS {
-		class IEntorno;
-		class IVista;
-		class IStreamingLoader;
-		class IImagePropertiesProxy;
-		class IReferredStudyContext;
-		class IModuleController;
-		class Layout;
-		class HangingProtocol;
-	}
+namespace GNC
+{
+namespace GCS
+{
+class IEntorno;
+class IVista;
+class IStreamingLoader;
+class IImagePropertiesProxy;
+class IReferredStudyContext;
+class IModuleController;
+class Layout;
+class HangingProtocol;
+}
 }
 
-namespace GIL {
-	namespace DICOM {
-		class DicomDataset;
-		class TipoPrivateTags;
-		class IDICOMManager;
-	}
+namespace GIL
+{
+namespace DICOM
+{
+class DicomDataset;
+class TipoPrivateTags;
+class IDICOMManager;
+}
 }
 
-namespace GNC {
-	namespace GCS {
-		//region Interfaz de gestion de entrada (ficheros, diagnosticos, etc..)
-		class EXTAPI IStudyContext: public ILockable {
-		public:
-			typedef struct TStudyFile {
-				std::string PathOfFile;
-				bool			WidgetsLoaded;
-				GNC::GCS::Ptr<GIL::DICOM::TipoMetaInfo> MetaInfo;
-				GNC::GCS::Ptr<GIL::DICOM::DicomDataset> TagsImage;
-				GNC::GCS::Ptr<GIL::DICOM::TipoPrivateTags> PrivateTags;
+namespace GNC
+{
+namespace GCS
+{
+//region Interfaz de gestion de entrada (ficheros, diagnosticos, etc..)
+class EXTAPI IStudyContext: public ILockable
+{
+public:
+        typedef struct TStudyFile {
+                std::string PathOfFile;
+                bool			WidgetsLoaded;
+                GNC::GCS::Ptr<GIL::DICOM::TipoMetaInfo> MetaInfo;
+                GNC::GCS::Ptr<GIL::DICOM::DicomDataset> TagsImage;
+                GNC::GCS::Ptr<GIL::DICOM::TipoPrivateTags> PrivateTags;
 
-				TStudyFile()
-				{
-					PathOfFile = "";
-					WidgetsLoaded = false;
-				}
+                TStudyFile()
+                {
+                        PathOfFile = "";
+                        WidgetsLoaded = false;
+                }
 
-			} TStudyFile;
+        } TStudyFile;
 
 
-			typedef std::vector<GNC::GCS::Ptr<TStudyFile> >     TStudyFileVector;
+        typedef std::vector<GNC::GCS::Ptr<TStudyFile> >     TStudyFileVector;
 
-			GNC::GCS::IVista*                                 View;
-			GNC::GCS::IModuleController*                      Module;
-			vtkSmartPointer<vtkGinkgoImageViewer>             Viewer;
-			wxWindow*                                         ParentWindow; // La ventana WX de la que es padre la vista (Notebook/Grid..)
-			wxWindow*                                         Window;      // La ventana WX propia de la vista
+        GNC::GCS::IVista*                                 View;
+        GNC::GCS::IModuleController*                      Module;
+        vtkSmartPointer<vtkGinkgoImageViewer>             Viewer;
+        wxWindow*                                         ParentWindow; // La ventana WX de la que es padre la vista (Notebook/Grid..)
+        wxWindow*                                         Window;      // La ventana WX propia de la vista
 
-			GNC::GCS::Ptr<GNC::GCS::IStreamingLoader>         Loader;
+        GNC::GCS::Ptr<GNC::GCS::IStreamingLoader>         Loader;
 
-			vtkSmartPointer<vtkAlgorithmOutput>               renderConnection; // Conexion hacia renderer
-			GNC::GCS::Ptr<GNC::GCS::Layout>					  hangingLayout;
-			GNC::GCS::Ptr<GNC::GCS::HangingProtocol>          hangingProtocol;
+        vtkSmartPointer<vtkAlgorithmOutput>               renderConnection; // Conexion hacia renderer
+        GNC::GCS::Ptr<GNC::GCS::Layout>					  hangingLayout;
+        GNC::GCS::Ptr<GNC::GCS::HangingProtocol>          hangingProtocol;
 
-			int                                               ActiveFileIndex;
-			std::vector<long>											  OpenedSeries;
-		protected:
-			TStudyFileVector											  Files;
-		public:
+        int                                               ActiveFileIndex;
+        std::vector<long>											  OpenedSeries;
+protected:
+        TStudyFileVector											  Files;
+public:
 
-			IStudyContext();
+        IStudyContext();
 
-			IStudyContext(const IStudyContext& o);
-            IStudyContext(const IStudyContext* o)__attribute_deprecated__;
+        IStudyContext(const IStudyContext& o);
+        IStudyContext(const IStudyContext* o)__attribute_deprecated__;
 
-			virtual ~IStudyContext();
+        virtual ~IStudyContext();
 
-			static GNC::GCS::Ptr<GNC::GCS::IReferredStudyContext> NewRef(const GNC::GCS::Ptr<GNC::GCS::IStudyContext>& parent);
+        static GNC::GCS::Ptr<GNC::GCS::IReferredStudyContext> NewRef(const GNC::GCS::Ptr<GNC::GCS::IStudyContext>& parent);
 
-			IStudyContext& operator = (const IStudyContext& o);
+        IStudyContext& operator = (const IStudyContext& o);
 
-			/** Obtiene el puerto de conexion de salida del StreamingLoader. Se usa para inyectar pipelines que necesiten las vistas graficas
-				Pipeline: Loader.ruta_fichero => [...] => Loader.loaderOutputConnection => [PIPELINE_ESPECIFICO] => Viewer.renderInputConnection => [...]
-			**/
-			vtkSmartPointer<vtkAlgorithmOutput> GetLoaderOutputConnection();
+        /** Obtiene el puerto de conexion de salida del StreamingLoader. Se usa para inyectar pipelines que necesiten las vistas graficas
+        	Pipeline: Loader.ruta_fichero => [...] => Loader.loaderOutputConnection => [PIPELINE_ESPECIFICO] => Viewer.renderInputConnection => [...]
+        **/
+        vtkSmartPointer<vtkAlgorithmOutput> GetLoaderOutputConnection();
 
-			/** Obtiene el puerto de conexion de entrada hacia el renderer. Por defecto es la salida del StreamingLoader
-				Pipeline: Loader.ruta_fichero => [...] => Loader.loaderOutputConnection => [PIPELINE_ESPECIFICO] => Viewer.renderInputConnection => [...]
-			**/
-			void SetRendererInputConnection(const vtkSmartPointer<vtkAlgorithmOutput>& input);
+        /** Obtiene el puerto de conexion de entrada hacia el renderer. Por defecto es la salida del StreamingLoader
+        	Pipeline: Loader.ruta_fichero => [...] => Loader.loaderOutputConnection => [PIPELINE_ESPECIFICO] => Viewer.renderInputConnection => [...]
+        **/
+        void SetRendererInputConnection(const vtkSmartPointer<vtkAlgorithmOutput>& input);
 
-			void SetViewer(const vtkSmartPointer<vtkGinkgoImageViewer>& viewer);
+        void SetViewer(const vtkSmartPointer<vtkGinkgoImageViewer>& viewer);
 
-			virtual void SetActiveIndex(int indice);
-			
-			std::list<std::string> GetImagePaths();
+        virtual void SetActiveIndex(int indice);
 
-			const std::string& GetPathActiveImage();
-			const std::string& GetImagePath(const int indice);
+        std::list<std::string> GetImagePaths();
 
-			//tags
-			GNC::GCS::Ptr<GIL::DICOM::TipoMetaInfo>    GetMetaInfoActiveImage();
-			GNC::GCS::Ptr<GIL::DICOM::DicomDataset>   GetTagsActiveImage();
-			GNC::GCS::Ptr<GIL::DICOM::TipoPrivateTags> GetPrivateTagsActiveImage();
+        const std::string& GetPathActiveImage();
+        const std::string& GetImagePath(const int indice);
 
-			GNC::GCS::Ptr<GIL::DICOM::TipoMetaInfo>    GetMetaInfo(const int indice);
-			GNC::GCS::Ptr<GIL::DICOM::DicomDataset>   GetTagsImage(const int indice);
-			GNC::GCS::Ptr<GIL::DICOM::TipoPrivateTags> GetPrivateTags(int indice);
+        //tags
+        GNC::GCS::Ptr<GIL::DICOM::TipoMetaInfo>    GetMetaInfoActiveImage();
+        GNC::GCS::Ptr<GIL::DICOM::DicomDataset>   GetTagsActiveImage();
+        GNC::GCS::Ptr<GIL::DICOM::TipoPrivateTags> GetPrivateTagsActiveImage();
 
-			int GetSliceNumber();
-			virtual void RecalibrateActiveImage(double spacing[3], double origin[3]);
-			virtual void RecalibrateImage(const int indice, double spacing[3], double origin[3]);
+        GNC::GCS::Ptr<GIL::DICOM::TipoMetaInfo>    GetMetaInfo(const int indice);
+        GNC::GCS::Ptr<GIL::DICOM::DicomDataset>   GetTagsImage(const int indice);
+        GNC::GCS::Ptr<GIL::DICOM::TipoPrivateTags> GetPrivateTags(int indice);
 
-			virtual bool GetSpacingActive(double* spacing);
-			virtual bool GetSpacingActive(double& x, double& y, double& z);
-			// Returns true if image has spacing
-			bool GetSpacing(const int indice, double& x, double& y, double& z);
-			virtual void SetSpacing(const int indice, const double x, const double y, const double z);
+        int GetSliceNumber();
+        virtual void RecalibrateActiveImage(double spacing[3], double origin[3]);
+        virtual void RecalibrateImage(const int indice, double spacing[3], double origin[3]);
 
-			void GetOriginActive(double* origin);
-			void GetOriginActive(double& x, double& y, double& z);
-			void GetOrigin(const int indice, double& x, double& y, double& z);
+        virtual bool GetSpacingActive(double* spacing);
+        virtual bool GetSpacingActive(double& x, double& y, double& z);
+        // Returns true if image has spacing
+        bool GetSpacing(const int indice, double& x, double& y, double& z);
+        virtual void SetSpacing(const int indice, const double x, const double y, const double z);
 
-			void GetDimensionsActiveImage(int* dimensions);
-			void GetDimensionsActiveImage(int& x, int& y, int& z);
-			void GetDimensionsImage(const int indice, int& x, int& y, int& z);
+        void GetOriginActive(double* origin);
+        void GetOriginActive(double& x, double& y, double& z);
+        void GetOrigin(const int indice, double& x, double& y, double& z);
 
-			int GetTSizeActive();
+        void GetDimensionsActiveImage(int* dimensions);
+        void GetDimensionsActiveImage(int& x, int& y, int& z);
+        void GetDimensionsImage(const int indice, int& x, int& y, int& z);
 
-			int GetPathIndex(const std::string& path);
+        int GetTSizeActive();
 
-			std::string GetTagActiveImage(const std::string& tag);
-			bool GetTagActiveImage(const std::string& tag, std::string& valor);
+        int GetPathIndex(const std::string& path);
 
-			bool IsKeyImageActive();
-			bool IsKeyImage(int indice = 0);
+        std::string GetTagActiveImage(const std::string& tag);
+        bool GetTagActiveImage(const std::string& tag, std::string& valor);
 
-			void CreateLoader();
+        bool IsKeyImageActive();
+        bool IsKeyImage(int indice = 0);
 
-		protected:
-			void DoInitiallizeContext(const std::list<std::string>& rutas);
+        void CreateLoader();
 
-			void LoadMetaInfo(const int indice);
-			void LoadImageTags(const int indice);
-		public:
-			virtual void CallbackCargarTagsImagen(const int /*indice*/, GIL::DICOM::IDICOMManager* /*pDicomManager*/) = 0;
-		protected:
-			void CreateUnsignedCharMap(vtkSmartPointer<vtkImageData>& pMapa, GNC::GCS::Ptr<GIL::DICOM::TipoPrivateTags> pTagsPrivados, const unsigned char tag, const int indice, unsigned char valorInicial = 0);
-			void CreateCharMap(vtkSmartPointer<vtkImageData>& pMapa, GNC::GCS::Ptr<GIL::DICOM::TipoPrivateTags> pTagsPrivados, const unsigned char tag, const int indice, char valorInicial = 0);
+protected:
+        void DoInitiallizeContext(const std::list<std::string>& rutas);
 
-			friend class IContextoEstudioReferido;
-		};
+        void LoadMetaInfo(const int indice);
+        void LoadImageTags(const int indice);
+public:
+        virtual void CallbackCargarTagsImagen(const int /*indice*/, GIL::DICOM::IDICOMManager* /*pDicomManager*/) = 0;
+protected:
+        void CreateUnsignedCharMap(vtkSmartPointer<vtkImageData>& pMapa, GNC::GCS::Ptr<GIL::DICOM::TipoPrivateTags> pTagsPrivados, const unsigned char tag, const int indice, unsigned char valorInicial = 0);
+        void CreateCharMap(vtkSmartPointer<vtkImageData>& pMapa, GNC::GCS::Ptr<GIL::DICOM::TipoPrivateTags> pTagsPrivados, const unsigned char tag, const int indice, char valorInicial = 0);
 
-		class EXTAPI IReferredStudyContext : public IStudyContext
-		{
-		public:
-			IReferredStudyContext();
+        friend class IContextoEstudioReferido;
+};
 
-			virtual ~IReferredStudyContext();
+class EXTAPI IReferredStudyContext : public IStudyContext
+{
+public:
+        IReferredStudyContext();
 
-			void UnRefViewer();
+        virtual ~IReferredStudyContext();
 
-			virtual void CallbackCargarTagsImagen(const int indice, GIL::DICOM::IDICOMManager* pDicomManager) {EstudioPadre->CallbackCargarTagsImagen(indice, pDicomManager);}
+        void UnRefViewer();
 
-			GNC::GCS::Ptr<GNC::GCS::IStudyContext> EstudioPadre;
+        virtual void CallbackCargarTagsImagen(const int indice, GIL::DICOM::IDICOMManager* pDicomManager)
+        {
+                EstudioPadre->CallbackCargarTagsImagen(indice, pDicomManager);
+        }
 
-		};
-	}
+        GNC::GCS::Ptr<GNC::GCS::IStudyContext> EstudioPadre;
+
+};
+}
 }

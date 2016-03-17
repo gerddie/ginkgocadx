@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -27,43 +27,46 @@
 #include <commands/thumbnailscommand.h>
 
 class wxCriticalSection;
-namespace GNC {
-	namespace GCS {
-		class EXTAPI ThumbnailController: public GNC::GCS::IEventsObserver, public wxTimer
-		{
-		public:
-			static ThumbnailController* Instance();
-			static void FreeInstance();
+namespace GNC
+{
+namespace GCS
+{
+class EXTAPI ThumbnailController: public GNC::GCS::IEventsObserver, public wxTimer
+{
+public:
+        static ThumbnailController* Instance();
+        static void FreeInstance();
 
-			
-		protected:
-			static ThumbnailController* m_pInstance;
-			ThumbnailController();
-			~ThumbnailController();
 
-		public:
-			void requestThumbnail(long file_pk, ::GADAPI::ThumbnailsNotifier* pNotifier);
-			void removeRequest(::GADAPI::ThumbnailsNotifier* pNotifier);
-		protected:
-			virtual void Notify();
+protected:
+        static ThumbnailController* m_pInstance;
+        ThumbnailController();
+        ~ThumbnailController();
 
-			virtual void ProcesarEvento(GNC::GCS::Events::IEvent *evt);
+public:
+        void requestThumbnail(long file_pk, ::GADAPI::ThumbnailsNotifier* pNotifier);
+        void removeRequest(::GADAPI::ThumbnailsNotifier* pNotifier);
+protected:
+        virtual void Notify();
 
-			typedef struct TPetition {
-				GADAPI::ThumbnailsNotifier* m_pNotifier;
-				long m_file_pk;
-				TPetition(::GADAPI::ThumbnailsNotifier* pNotifier, long file_pk) {
-					m_pNotifier = pNotifier;
-					m_file_pk = file_pk;
-				}
-			} TPetition;
+        virtual void ProcesarEvento(GNC::GCS::Events::IEvent *evt);
 
-			typedef std::list<TPetition> TListPetitions;
+        typedef struct TPetition {
+                GADAPI::ThumbnailsNotifier* m_pNotifier;
+                long m_file_pk;
+                TPetition(::GADAPI::ThumbnailsNotifier* pNotifier, long file_pk)
+                {
+                        m_pNotifier = pNotifier;
+                        m_file_pk = file_pk;
+                }
+        } TPetition;
 
-			
-			::GADAPI::ThumbnailsCommand* m_pCmd;
-			TListPetitions m_petitions;
-			wxCriticalSection* m_pCriticalSection;
-		};
-	}
+        typedef std::list<TPetition> TListPetitions;
+
+
+        ::GADAPI::ThumbnailsCommand* m_pCmd;
+        TListPetitions m_petitions;
+        wxCriticalSection* m_pCriticalSection;
+};
+}
 }

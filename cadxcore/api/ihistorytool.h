@@ -6,8 +6,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -32,48 +32,53 @@ class wxGinkgoToolBar;
 class wxEvtHandler;
 class wxMenu;
 
-namespace GNC {
-	namespace GCS {
+namespace GNC
+{
+namespace GCS
+{
 
-		class EventHandlerHistoryTool;
+class EventHandlerHistoryTool;
 
-		class EXTAPI IHistoryTool
-		{
-		public:
-			typedef unsigned int UID;
-			typedef enum {
-					TFamily_Open,
-					TFamily_Dicomize,
-					TFamily_Delete,
-					TFamily_ShowMetadata,
-					TFamily_Q_R,
-					TFamily_Anonymize,
-					TFamily_Export,
-					TFamily_Other,
-					TFamily_Send
-				} TToolFamily;
+class EXTAPI IHistoryTool
+{
+public:
+        typedef unsigned int UID;
+        typedef enum {
+                TFamily_Open,
+                TFamily_Dicomize,
+                TFamily_Delete,
+                TFamily_ShowMetadata,
+                TFamily_Q_R,
+                TFamily_Anonymize,
+                TFamily_Export,
+                TFamily_Other,
+                TFamily_Send
+        } TToolFamily;
 
-			IHistoryTool(UID id, TToolFamily family, const std::string& shortDescription, const std::string& description, const wxBitmap& icon, const wxBitmap& bigIcon = wxBitmap());
+        IHistoryTool(UID id, TToolFamily family, const std::string& shortDescription, const std::string& description, const wxBitmap& icon, const wxBitmap& bigIcon = wxBitmap());
 
-			virtual ~IHistoryTool();
+        virtual ~IHistoryTool();
 
-			virtual void AppendToolIn(wxGinkgoToolBar* pParent, bool big = false);
-			virtual void AppendToolIn(wxEvtHandler* pParent, wxMenu* pMenu);
+        virtual void AppendToolIn(wxGinkgoToolBar* pParent, bool big = false);
+        virtual void AppendToolIn(wxEvtHandler* pParent, wxMenu* pMenu);
 
-			virtual void Execute() = 0;
-			virtual void Execute(const std::list<long>& seriesPk);
+        virtual void Execute() = 0;
+        virtual void Execute(const std::list<long>& seriesPk);
 
-			virtual bool Enabled() { return true;}
-			virtual bool AreSeriesFullyDownloaded(const std::list<long>& seriesPk);
+        virtual bool Enabled()
+        {
+                return true;
+        }
+        virtual bool AreSeriesFullyDownloaded(const std::list<long>& seriesPk);
 
-			UID ID;
-			TToolFamily Family;
-			std::string ShortDescription;
-			std::string Description;
-			wxBitmap Icon;
-			wxBitmap BigIcon;
-			EventHandlerHistoryTool* EventHandler;
-		};
-	}
+        UID ID;
+        TToolFamily Family;
+        std::string ShortDescription;
+        std::string Description;
+        wxBitmap Icon;
+        wxBitmap BigIcon;
+        EventHandlerHistoryTool* EventHandler;
+};
+}
 }
 #endif

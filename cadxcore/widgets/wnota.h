@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -27,56 +27,65 @@
 
 //----------------------------------------------------------------------------------------------------
 //region Forward Declarations
-namespace GNC {
-	namespace GCS {
-		namespace Widgets {
-			
-			namespace Dialogos {
-				class SeleccionTexto;
-			}
-			
-			class WTextBox;
-		}
-	}
+namespace GNC
+{
+namespace GCS
+{
+namespace Widgets
+{
+
+namespace Dialogos
+{
+class SeleccionTexto;
+}
+
+class WTextBox;
+}
+}
 }
 //endregion
 
-namespace GNC {
-	namespace GCS {
-		namespace Widgets {
+namespace GNC
+{
+namespace GCS
+{
+namespace Widgets
+{
 
-			namespace Dialogos {
-				class SeleccionTexto;
-			}
+namespace Dialogos
+{
+class SeleccionTexto;
+}
 
-			class WTextBox;
+class WTextBox;
 
-			//====================================================================================================
-			//= Builder de notas
-			//====================================================================================================
-			class WNotaBuilder : public GNC::GCS::Widgets::IWidgetBuilder {
-			public:
-				typedef GNC::GCS::Vector TVector;
-				WNotaBuilder(GNC::GCS::IWidgetsManager* pManager, const GNC::GCS::TriggerButton& buttonMask);
+//====================================================================================================
+//= Builder de notas
+//====================================================================================================
+class WNotaBuilder : public GNC::GCS::Widgets::IWidgetBuilder
+{
+public:
+        typedef GNC::GCS::Vector TVector;
+        WNotaBuilder(GNC::GCS::IWidgetsManager* pManager, const GNC::GCS::TriggerButton& buttonMask);
 
-				~WNotaBuilder();
+        ~WNotaBuilder();
 
-				virtual void OnMouseEvents(GNC::GCS::Events::EventoRaton&);
+        virtual void OnMouseEvents(GNC::GCS::Events::EventoRaton&);
 
-				virtual void OnKeyEvents(GNC::GCS::Events::EventoTeclado&);
+        virtual void OnKeyEvents(GNC::GCS::Events::EventoTeclado&);
 
-				virtual void Render(GNC::GCS::Contexto3D* c);
+        virtual void Render(GNC::GCS::Contexto3D* c);
 
-				virtual GNC::GCS::Widgets::TipoCursor GetCursor();
+        virtual GNC::GCS::Widgets::TipoCursor GetCursor();
 
-			protected:
-				TVector m_Posicion;
-				GNC::GCS::Widgets::IWidgetBuilder::Estado m_Estado;
-				bool m_MouseDown;
+protected:
+        TVector m_Posicion;
+        GNC::GCS::Widgets::IWidgetBuilder::Estado m_Estado;
+        bool m_MouseDown;
 
-				WTextBox* m_pTempWidget;
+        WTextBox* m_pTempWidget;
 
-			};
-		}
-	}
+};
+}
+}
 }

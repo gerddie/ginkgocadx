@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -37,41 +37,42 @@
 #include <vtk/interactor/ginkgointeractorstyleimage2d.h>
 
 
-GNC::CameraRotationTool::CameraRotationTool() {
-	m_pBuilder = NULL;
+GNC::CameraRotationTool::CameraRotationTool()
+{
+        m_pBuilder = NULL;
 }
 
-GNC::CameraRotationTool::~CameraRotationTool() 
+GNC::CameraRotationTool::~CameraRotationTool()
 {
-	if (m_pBuilder != NULL) {
-		delete m_pBuilder;
-		m_pBuilder = NULL;
-	}
+        if (m_pBuilder != NULL) {
+                delete m_pBuilder;
+                m_pBuilder = NULL;
+        }
 }
 
 GNC::GCS::ITool* GNC::CameraRotationTool::NewTool()
 {
-	return new GNC::CameraRotationTool();
+        return new GNC::CameraRotationTool();
 }
 
 void GNC::CameraRotationTool::Connect()
 {
-	if (m_pBuilder != NULL) {
-		delete m_pBuilder;
-		m_pBuilder = NULL;
-	}
-	m_pBuilder = new TBuilder(WidgetsContract->GetManager(), GetTriggerButton(), (unsigned long)this);
-	WidgetsContract->GetViewerActivo()->SetInteractionStyle(vtkGinkgoImageViewer::ZOOM_INTERACTION);
-	WidgetsContract->GetManager()->SetCursor(m_pBuilder->GetCursor());
+        if (m_pBuilder != NULL) {
+                delete m_pBuilder;
+                m_pBuilder = NULL;
+        }
+        m_pBuilder = new TBuilder(WidgetsContract->GetManager(), GetTriggerButton(), (unsigned long)this);
+        WidgetsContract->GetViewerActivo()->SetInteractionStyle(vtkGinkgoImageViewer::ZOOM_INTERACTION);
+        WidgetsContract->GetManager()->SetCursor(m_pBuilder->GetCursor());
 }
 
 void GNC::CameraRotationTool::Disconnect()
 {
-	WidgetsContract->GetViewerActivo()->SetInteractionStyle(vtkGinkgoImageViewer::ZOOM_INTERACTION);
-	WidgetsContract->GetManager()->SetCursor(GNC::GCS::Widgets::CUR_FLECHA);
-	// DesSubscribimos los eventos de la ventana a un metodo especifico del panel de esta herramienta
-	if (m_pBuilder != NULL) {
-		delete m_pBuilder;
-		m_pBuilder = NULL;
-	}
+        WidgetsContract->GetViewerActivo()->SetInteractionStyle(vtkGinkgoImageViewer::ZOOM_INTERACTION);
+        WidgetsContract->GetManager()->SetCursor(GNC::GCS::Widgets::CUR_FLECHA);
+        // DesSubscribimos los eventos de la ventana a un metodo especifico del panel de esta herramienta
+        if (m_pBuilder != NULL) {
+                delete m_pBuilder;
+                m_pBuilder = NULL;
+        }
 }

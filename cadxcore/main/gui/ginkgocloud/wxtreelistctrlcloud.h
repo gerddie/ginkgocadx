@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -61,71 +61,71 @@
 class wxTreeListCtrlCloud : public wxTreeListCtrl
 {
 public:
-	wxTreeListCtrlCloud(wxWindow *parent, wxWindowID id = -1,
-               const wxPoint& pos = wxDefaultPosition,
-               const wxSize& size = wxDefaultSize,
-               long style = wxTR_DEFAULT_STYLE,
-               const wxValidator &validator = wxDefaultValidator,
-               const wxString& name = wxTreeListCtrlNameStr )
-					: wxTreeListCtrl(parent, id, pos, size, style, validator, name)
-    {
-	}
-	~wxTreeListCtrlCloud() {}
+        wxTreeListCtrlCloud(wxWindow *parent, wxWindowID id = -1,
+                            const wxPoint& pos = wxDefaultPosition,
+                            const wxSize& size = wxDefaultSize,
+                            long style = wxTR_DEFAULT_STYLE,
+                            const wxValidator &validator = wxDefaultValidator,
+                            const wxString& name = wxTreeListCtrlNameStr )
+                : wxTreeListCtrl(parent, id, pos, size, style, validator, name)
+        {
+        }
+        ~wxTreeListCtrlCloud() {}
 
-	virtual int OnCompareItems (const wxTreeItemId& item1, const wxTreeItemId& item2) 
-	{
-		wxTreeItemId root = GetRootItem();
-		if (item1.IsOk() && item2.IsOk()) {
-			//alphabetically no case sensitive
-			int descCompare =  GetItemText(item1).CompareTo(GetItemText(item2), wxString::ignoreCase);
-			if (descCompare !=0) {
-				return descCompare;
-			} else {
-				//date compare...
-				wxDateTime date1,date2;
-				date1.ParseFormat(GetItemText(item1, DATE_COLUMN), _("%m/%d/%Y %H:%M:%S"));
-				date2.ParseFormat(GetItemText(item2, DATE_COLUMN), _("%m/%d/%Y %H:%M:%S"));
-				if (date1.IsValid() && date2.IsValid()) {
-					wxTimeSpan diff = date1.Subtract(date2);
-					if (diff.IsPositive()) {
-						return 1;
-					} else {
-						return -1;
-					}
-				} else {
-					return 0;
-				}
-			}
-		}
-		return wxTreeListCtrl::OnCompareItems(item1, item2);
-	}
+        virtual int OnCompareItems (const wxTreeItemId& item1, const wxTreeItemId& item2)
+        {
+                wxTreeItemId root = GetRootItem();
+                if (item1.IsOk() && item2.IsOk()) {
+                        //alphabetically no case sensitive
+                        int descCompare =  GetItemText(item1).CompareTo(GetItemText(item2), wxString::ignoreCase);
+                        if (descCompare !=0) {
+                                return descCompare;
+                        } else {
+                                //date compare...
+                                wxDateTime date1,date2;
+                                date1.ParseFormat(GetItemText(item1, DATE_COLUMN), _("%m/%d/%Y %H:%M:%S"));
+                                date2.ParseFormat(GetItemText(item2, DATE_COLUMN), _("%m/%d/%Y %H:%M:%S"));
+                                if (date1.IsValid() && date2.IsValid()) {
+                                        wxTimeSpan diff = date1.Subtract(date2);
+                                        if (diff.IsPositive()) {
+                                                return 1;
+                                        } else {
+                                                return -1;
+                                        }
+                                } else {
+                                        return 0;
+                                }
+                        }
+                }
+                return wxTreeListCtrl::OnCompareItems(item1, item2);
+        }
 
-	virtual int OnCompareItems (const wxTreeItemId& item1, const wxTreeItemId& item2, int column) 
-	{
-		wxTreeItemId root = GetRootItem();
-		if (item1.IsOk() && item2.IsOk() && column == DATE_COLUMN) {
-			if (GetItemParent(item1) == root && GetItemParent(item2) == root) {
-				//first case patient level:
-				//alphabetically no case sensitive
-				return wxTreeListCtrl::OnCompareItems(item1, item2, column);
-			} else {
-				//study and series level
-				//date compare...
-				wxDateTime date1,date2;
-				date1.ParseFormat(GetItemText(item1, DATE_COLUMN), _("%m/%d/%Y %H:%M:%S"));
-				date2.ParseFormat(GetItemText(item2, DATE_COLUMN), _("%m/%d/%Y %H:%M:%S"));
-				if (date1.IsValid() && date2.IsValid()) {
-					wxTimeSpan diff = date1.Subtract(date2);
-					if (diff.IsPositive()) {
-						return 1;
-					} else {
-						return -1;
-					}
-				} else {
-					return 0;
-				}
-			} 
-		}
-		return wxTreeListCtrl::OnCompareItems(item1, item2, column);
-	}
+        virtual int OnCompareItems (const wxTreeItemId& item1, const wxTreeItemId& item2, int column)
+        {
+                wxTreeItemId root = GetRootItem();
+                if (item1.IsOk() && item2.IsOk() && column == DATE_COLUMN) {
+                        if (GetItemParent(item1) == root && GetItemParent(item2) == root) {
+                                //first case patient level:
+                                //alphabetically no case sensitive
+                                return wxTreeListCtrl::OnCompareItems(item1, item2, column);
+                        } else {
+                                //study and series level
+                                //date compare...
+                                wxDateTime date1,date2;
+                                date1.ParseFormat(GetItemText(item1, DATE_COLUMN), _("%m/%d/%Y %H:%M:%S"));
+                                date2.ParseFormat(GetItemText(item2, DATE_COLUMN), _("%m/%d/%Y %H:%M:%S"));
+                                if (date1.IsValid() && date2.IsValid()) {
+                                        wxTimeSpan diff = date1.Subtract(date2);
+                                        if (diff.IsPositive()) {
+                                                return 1;
+                                        } else {
+                                                return -1;
+                                        }
+                                } else {
+                                        return 0;
+                                }
+                        }
+                }
+                return wxTreeListCtrl::OnCompareItems(item1, item2, column);
+        }
 };

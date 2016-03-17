@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -24,7 +24,7 @@
 
 GNC::GCS::ControladorPermisosException::ControladorPermisosException(const std::string& msg, bool fatal) throw() : GNC::GCS::IException(msg, "GNC", fatal)
 {
-}				
+}
 
 
 GNC::GCS::IControladorPermisos::IControladorPermisos()
@@ -36,11 +36,11 @@ GNC::GCS::IControladorPermisos::~IControladorPermisos()
 }
 GNC::GCS::IControladorPermisos* GNC::GCS::IControladorPermisos::Instance()
 {
-	return GNC::ControladorPermisos::Instance();
+        return GNC::ControladorPermisos::Instance();
 }
 
 void GNC::GCS::IControladorPermisos::FreeInstance()
 {
-	GNC::ControladorPermisos::FreeInstance();
+        GNC::ControladorPermisos::FreeInstance();
 
 }

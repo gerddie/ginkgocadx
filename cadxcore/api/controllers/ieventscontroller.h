@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -24,43 +24,48 @@
 
 //----------------------------------------------------------------------------------------------------
 //region Forward Declarations
-namespace GNC {
-	namespace GCS {
-		class IEventsObserver;
-		namespace Events {
-			class IEvent;
-		}
-	}
+namespace GNC
+{
+namespace GCS
+{
+class IEventsObserver;
+namespace Events
+{
+class IEvent;
+}
+}
 }
 //endregion
 
-namespace GNC {
-	namespace GCS {
+namespace GNC
+{
+namespace GCS
+{
 
-		//====================================================================================================
-		//= Interfaz del controlador de eventos
-		//====================================================================================================
-		class EXTAPI IEventsController
-		{
+//====================================================================================================
+//= Interfaz del controlador de eventos
+//====================================================================================================
+class EXTAPI IEventsController
+{
 
-		protected:
-			IEventsController();
-			virtual ~IEventsController();
+protected:
+        IEventsController();
+        virtual ~IEventsController();
 
-		public:
+public:
 
-			static IEventsController* Instance();
-			static void FreeInstance();
-			
-			//se apunta a escuchar un evento
-			virtual void Registrar (GNC::GCS::IEventsObserver* pObservador, const GNC::GCS::Events::IEvent& evento) = 0;
-			//se desapunta de escuchar un evento
-			virtual void DesRegistrar (GNC::GCS::IEventsObserver* pObservador, const GNC::GCS::Events::IEvent& evento) = 0;
-			//se desapunta de todos los eventos a los que escucha
-			virtual void DesRegistrar (GNC::GCS::IEventsObserver* pObservador) = 0;
-			//avisa a los observadores registrados a este evento
-			virtual void ProcesarEvento(GNC::GCS::Events::IEvent *evt) = 0;
-		};
+        static IEventsController* Instance();
+        static void FreeInstance();
 
-	}
+        //se apunta a escuchar un evento
+        virtual void Registrar (GNC::GCS::IEventsObserver* pObservador, const GNC::GCS::Events::IEvent& evento) = 0;
+        //se desapunta de escuchar un evento
+        virtual void DesRegistrar (GNC::GCS::IEventsObserver* pObservador, const GNC::GCS::Events::IEvent& evento) = 0;
+        //se desapunta de todos los eventos a los que escucha
+        virtual void DesRegistrar (GNC::GCS::IEventsObserver* pObservador) = 0;
+        //avisa a los observadores registrados a este evento
+        virtual void ProcesarEvento(GNC::GCS::Events::IEvent *evt) = 0;
+};
+
+}
 }

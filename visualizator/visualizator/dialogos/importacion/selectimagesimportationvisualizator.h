@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -28,30 +28,34 @@
 #include <wx/ginkgostyle/ginkgostyle.h>
 #include <main/gui/import/selectimagesimportation.h>
 
-namespace GNC {
-	namespace GCS {
-		class IEntorno;
-	}
+namespace GNC
+{
+namespace GCS
+{
+class IEntorno;
+}
 }
 
-namespace GNKVisualizator {
-	namespace GUI {
+namespace GNKVisualizator
+{
+namespace GUI
+{
 
-		class SelectImagesImportationVisualizator: public GNC::GUI::SelectImagesImportation
-		{
-			public:
-				SelectImagesImportationVisualizator(wxWindow* pParent,IWizard* pWizard,const GNC::GCS::Ptr<GNC::GUI::ImportationData>& importationData,const std::string &dirTemporal);
-				~SelectImagesImportationVisualizator();
+class SelectImagesImportationVisualizator: public GNC::GUI::SelectImagesImportation
+{
+public:
+        SelectImagesImportationVisualizator(wxWindow* pParent,IWizard* pWizard,const GNC::GCS::Ptr<GNC::GUI::ImportationData>& importationData,const std::string &dirTemporal);
+        ~SelectImagesImportationVisualizator();
 
-				virtual bool Validar();
+        virtual bool Validar();
 
-				virtual bool Dicomizar();
+        virtual bool Dicomizar();
 
-				void RellenarTagsComunes(GIL::DICOM::DicomDataset& base);
+        void RellenarTagsComunes(GIL::DICOM::DicomDataset& base);
 
-				GNC::GCS::Ptr<GNC::GUI::ImportationData> m_pImportationData;
-				std::string m_dirTemporal;
-				bool m_dicomizado;
-		};
-	}
+        GNC::GCS::Ptr<GNC::GUI::ImportationData> m_pImportationData;
+        std::string m_dirTemporal;
+        bool m_dicomizado;
+};
+}
 }

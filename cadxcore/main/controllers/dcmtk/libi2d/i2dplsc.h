@@ -1,5 +1,5 @@
 /*
- *  
+ *
  *  $Id: i2dplsc.h $
  *  Ginkgo CADx Project
  *
@@ -48,41 +48,41 @@ class I2DOutputPlugSC : public I2DOutputPlug
 
 public:
 
-  /** Constructor, initializes member variables with standard values
-   *  @return none
-   */
-  I2DOutputPlugSC();
+        /** Constructor, initializes member variables with standard values
+         *  @return none
+         */
+        I2DOutputPlugSC();
 
-  /** Virtual function that returns a short name of the plugin.
-   *  @return The name of the plugin
-   */
-  virtual OFString ident();
+        /** Virtual function that returns a short name of the plugin.
+         *  @return The name of the plugin
+         */
+        virtual OFString ident();
 
-  /** Overwrites function from base class. Returns the Storage SOP class
-   *  written by this plugin
-   *  @param suppSOPs - [out] List of UIDS representing SOP classes supported
-   *                    by this plugin
-   *  @return none
-   */
-  virtual void supportedSOPClassUIDs(OFList<OFString> suppSOPs);
+        /** Overwrites function from base class. Returns the Storage SOP class
+         *  written by this plugin
+         *  @param suppSOPs - [out] List of UIDS representing SOP classes supported
+         *                    by this plugin
+         *  @return none
+         */
+        virtual void supportedSOPClassUIDs(OFList<OFString> suppSOPs);
 
-  /** Outputs SOP class specific information into dataset
-   * @param dataset - [in/out] Dataset to write to
-   * @return EC_Normal if successful, error otherwise
-   */
-  virtual OFCondition convert(DcmDataset &dataset) const;
+        /** Outputs SOP class specific information into dataset
+         * @param dataset - [in/out] Dataset to write to
+         * @return EC_Normal if successful, error otherwise
+         */
+        virtual OFCondition convert(DcmDataset &dataset) const;
 
-  /** Do some completeness / validity checks. Should be called when
-   *  dataset is completed and is about to be saved.
-   *  @param dataset - [in] The dataset to check
-   *  @return Error string if error occurs, empty string otherwise
-   */
-  virtual OFString isValid(DcmDataset& dataset) const;
+        /** Do some completeness / validity checks. Should be called when
+         *  dataset is completed and is about to be saved.
+         *  @param dataset - [in] The dataset to check
+         *  @return Error string if error occurs, empty string otherwise
+         */
+        virtual OFString isValid(DcmDataset& dataset) const;
 
-  /** Virtual Destructor, clean up memory
-   *  @return none
-   */
-  virtual ~I2DOutputPlugSC();
+        /** Virtual Destructor, clean up memory
+         *  @return none
+         */
+        virtual ~I2DOutputPlugSC();
 
 };
 

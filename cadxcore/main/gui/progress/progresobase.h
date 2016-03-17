@@ -28,37 +28,37 @@ class GinkgoGauge;
 ///////////////////////////////////////////////////////////////////////////////
 /// Class PanelTareasBase
 ///////////////////////////////////////////////////////////////////////////////
-class PanelTareasBase : public wxPanel 
+class PanelTareasBase : public wxPanel
 {
-	private:
-	
-	protected:
-	
-	public:
-		wxScrolledWindow* m_pTasks;
-		wxBoxSizer* m_pSizerTareas;
-		wxStaticText* m_pSinTareas;
-		
-		PanelTareasBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxTAB_TRAVERSAL );
-		~PanelTareasBase();
-	
+private:
+
+protected:
+
+public:
+        wxScrolledWindow* m_pTasks;
+        wxBoxSizer* m_pSizerTareas;
+        wxStaticText* m_pSinTareas;
+
+        PanelTareasBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxTAB_TRAVERSAL );
+        ~PanelTareasBase();
+
 };
 
 ///////////////////////////////////////////////////////////////////////////////
 /// Class PanelTareaBase
 ///////////////////////////////////////////////////////////////////////////////
-class PanelTareaBase : public wxPanel 
+class PanelTareaBase : public wxPanel
 {
-	private:
-	
-	protected:
-	
-	public:
-		GinkgoGauge* m_pProgress;
-		
-		PanelTareaBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxTAB_TRAVERSAL );
-		~PanelTareaBase();
-	
+private:
+
+protected:
+
+public:
+        GinkgoGauge* m_pProgress;
+
+        PanelTareaBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxTAB_TRAVERSAL );
+        ~PanelTareaBase();
+
 };
 
 #endif //__progresobase__

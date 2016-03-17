@@ -1,5 +1,5 @@
-void assert(bool x) 
+void assert(bool x)
 {
         if (!x)
-		__coverity_panic__();  
+                __coverity_panic__();
 }

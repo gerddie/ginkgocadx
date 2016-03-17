@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -30,46 +30,51 @@
 
 
 
-namespace GIL{
-	class IModeloIntegracion;
-	namespace DICOM{
-		class IPACSController;
-	}
+namespace GIL
+{
+class IModeloIntegracion;
+namespace DICOM
+{
+class IPACSController;
+}
 }
 
-namespace GADAPI {
-	class PACSDownloadCommandParams : public GNC::GCS::IComandoParams {
+namespace GADAPI
+{
+class PACSDownloadCommandParams : public GNC::GCS::IComandoParams
+{
 
-	public:
-		//download only specifying 
-		PACSDownloadCommandParams(const std::string& serverSeleccionado, const GIL::DICOM::DicomDataset& base, bool link = false, bool silent = false);
-		virtual ~PACSDownloadCommandParams();
+public:
+        //download only specifying
+        PACSDownloadCommandParams(const std::string& serverSeleccionado, const GIL::DICOM::DicomDataset& base, bool link = false, bool silent = false);
+        virtual ~PACSDownloadCommandParams();
 
-	public:
-		std::string              m_serverSeleccionado;
-		bool					 m_link;
-		bool					 m_silent;
-		std::string              m_error;
-		GNC::GCS::Ptr<IModeloDicom> m_pModelo;
-		GIL::DICOM::DicomDataset m_base;
-	};
+public:
+        std::string              m_serverSeleccionado;
+        bool					 m_link;
+        bool					 m_silent;
+        std::string              m_error;
+        GNC::GCS::Ptr<IModeloDicom> m_pModelo;
+        GIL::DICOM::DicomDataset m_base;
+};
 
 
 
-	class EXTAPI PACSDownloadCommand : public GNC::GCS::IComando {
-	public:
-		PACSDownloadCommand(PACSDownloadCommandParams* pParams);
+class EXTAPI PACSDownloadCommand : public GNC::GCS::IComando
+{
+public:
+        PACSDownloadCommand(PACSDownloadCommandParams* pParams);
 
-    protected:
-		virtual void Execute();
-		virtual void Update();
+protected:
+        virtual void Execute();
+        virtual void Update();
 
-    public:
+public:
 
-		virtual bool NotificarProgreso(float progresoNormalizado, const std::string &texto);
+        virtual bool NotificarProgreso(float progresoNormalizado, const std::string &texto);
 
-		void LiberarRecursos();
+        void LiberarRecursos();
 
-		PACSDownloadCommandParams* m_pPACSParams;
-	};
+        PACSDownloadCommandParams* m_pPACSParams;
+};
 }

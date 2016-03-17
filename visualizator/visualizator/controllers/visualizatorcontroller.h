@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -24,37 +24,42 @@
 #include <api/controllers/imodulecontroller.h>
 #include "../vistas/vista2d.h"
 
-namespace GIL{
-	class IModeloIntegracion;
+namespace GIL
+{
+class IModeloIntegracion;
 }
 
-namespace GNKVisualizator{
-	namespace GUI{
-		class ContenedorHerramientas;
-	}
+namespace GNKVisualizator
+{
+namespace GUI
+{
+class ContenedorHerramientas;
+}
 }
 /* Controlador del módulo visor DICOM */
-namespace GNKVisualizator {
-	class ControladorAtencionPrimaria : public GNC::GCS::IModuleController {
-	public:
+namespace GNKVisualizator
+{
+class ControladorAtencionPrimaria : public GNC::GCS::IModuleController
+{
+public:
 
-		/* Constructor */
-		ControladorAtencionPrimaria(GNC::GCS::IEntorno* pEntorno);
+        /* Constructor */
+        ControladorAtencionPrimaria(GNC::GCS::IEntorno* pEntorno);
 
-		/* Destructor */
-		~ControladorAtencionPrimaria();
+        /* Destructor */
+        ~ControladorAtencionPrimaria();
 
-		virtual void RegistrarVistas();
-		virtual bool SupportsImportationUID(const std::string &importationUID);
+        virtual void RegistrarVistas();
+        virtual bool SupportsImportationUID(const std::string &importationUID);
 
-		/* Abre un estudio de manera no interactiva desde un directorio y devuelve su controlador específico */
-		virtual GNC::GCS::IVista* OpenView(int modo, GNC::GCS::IHistoryController::SeriesModelList& series, GNC::GCS::Ptr<GNC::GCS::HangingProtocol> hangingProtocol);
-		
-		// Metodos de inicializacion de la configuracion particular
-		virtual bool SoportaImportacion() const;
+        /* Abre un estudio de manera no interactiva desde un directorio y devuelve su controlador específico */
+        virtual GNC::GCS::IVista* OpenView(int modo, GNC::GCS::IHistoryController::SeriesModelList& series, GNC::GCS::Ptr<GNC::GCS::HangingProtocol> hangingProtocol);
 
-		void GetPasosImportacion(IWizard* pWizard,std::list<IPasoWizard*> &listaPasos, wxWindow* pParent, std::string &dirTemporal,GNC::GCS::Ptr<GIL::IModeloIntegracion> pModeloIntegracion);
+        // Metodos de inicializacion de la configuracion particular
+        virtual bool SoportaImportacion() const;
 
-	protected:
-	};
+        void GetPasosImportacion(IWizard* pWizard,std::list<IPasoWizard*> &listaPasos, wxWindow* pParent, std::string &dirTemporal,GNC::GCS::Ptr<GIL::IModeloIntegracion> pModeloIntegracion);
+
+protected:
+};
 }

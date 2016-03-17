@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -30,22 +30,22 @@ GNC::GCS::IPipelineProperties::~IPipelineProperties()
 
 void GNC::GCS::IPipelineProperties::GetFPDimensions(double dims[3])
 {
-	int idims[3] = {0, 0, 0};
-	GetDimensions(idims);
-	dims[0] = (double) idims[0];
-	dims[1] = (double) idims[1];
-	dims[2] = (double) idims[2];
+        int idims[3] = {0, 0, 0};
+        GetDimensions(idims);
+        dims[0] = (double) idims[0];
+        dims[1] = (double) idims[1];
+        dims[2] = (double) idims[2];
 
 }
 
 /**Gets the slice output dimensions **/
 void GNC::GCS::IPipelineProperties::GetFPOutputDimensions(double dims[3])
 {
-	int odims[3] = {0, 0, 0};
-	GetOutputDimensions(odims);
-	dims[0] = (double) odims[0];
-	dims[1] = (double) odims[1];
-	dims[2] = (double) odims[2];
+        int odims[3] = {0, 0, 0};
+        GetOutputDimensions(odims);
+        dims[0] = (double) odims[0];
+        dims[1] = (double) odims[1];
+        dims[2] = (double) odims[2];
 }
 
 //endregion
@@ -61,5 +61,5 @@ void GNC::GCS::IPipelineProperties::SetCustomOrientation(GNC::GCS::Vector3D&, GN
 /** Gets the output current slice number **/
 int GNC::GCS::IPipelineProperties::GetCurrentSliceIndex() const
 {
-	return 0;
+        return 0;
 }

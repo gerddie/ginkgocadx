@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -21,19 +21,21 @@
 #pragma once
 #include "downloadcloudbase.h"
 
-namespace GNC {
-	namespace GUI {
+namespace GNC
+{
+namespace GUI
+{
 
-		class OpenGinkgoCloudDialog: public GNC::GUI::OpenGinkgoCloudDialogBase
-		{
-		public:
-			OpenGinkgoCloudDialog(wxWindow* pParent);
-			~OpenGinkgoCloudDialog();
+class OpenGinkgoCloudDialog: public GNC::GUI::OpenGinkgoCloudDialogBase
+{
+public:
+        OpenGinkgoCloudDialog(wxWindow* pParent);
+        ~OpenGinkgoCloudDialog();
 
-		protected:
-			virtual void OnCancel(wxCommandEvent& evt);
-			virtual void OnAccept(wxCommandEvent &evt);
-			virtual void OnKeyUp(wxKeyEvent &evt);
-		};
-	}
+protected:
+        virtual void OnCancel(wxCommandEvent& evt);
+        virtual void OnAccept(wxCommandEvent &evt);
+        virtual void OnKeyUp(wxKeyEvent &evt);
+};
+}
 }

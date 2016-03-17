@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -40,10 +40,9 @@ When a file is dropped on the window, it will be processes as it was passed as f
 */
 bool GNC::GUI::DropTargetMainWindow::OnDropFiles(wxCoord /*x*/, wxCoord /*y*/, const wxArrayString& filenames)
 {
-	std::list<std::string> listaPaths;
-	for(wxArrayString::const_iterator it = filenames.begin(); it!= filenames.end(); ++it)
-	{
-		GNC::Entorno::Instance()->GetVentanaPrincipal()->EjecutarParametro(*it, false);
-	}
-	return true;
+        std::list<std::string> listaPaths;
+        for(wxArrayString::const_iterator it = filenames.begin(); it!= filenames.end(); ++it) {
+                GNC::Entorno::Instance()->GetVentanaPrincipal()->EjecutarParametro(*it, false);
+        }
+        return true;
 }

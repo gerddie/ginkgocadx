@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -23,62 +23,65 @@
 #include <main/gui/open/opendialogsbase.h>
 
 
-namespace GNC {
-	namespace GUI {
-		////////////////////////////////////////////////////
-		////////////DIALOGO DICOMDIR////////////////////////
-		////////////////////////////////////////////////////
-		
-		class DicomDirTableModel;
-		class DialogoDicomDir: public DialogoDicomDirBase
-		{
-		public:
-			DialogoDicomDir(wxWindow* pParent, const std::string& pathDicomDir);
+namespace GNC
+{
+namespace GUI
+{
+////////////////////////////////////////////////////
+////////////DIALOGO DICOMDIR////////////////////////
+////////////////////////////////////////////////////
 
-			~DialogoDicomDir();
-			void OnCopyClick(wxCommandEvent&);
-			void OnLinkClick(wxCommandEvent&);
-			void OnItemActivation(wxDataViewEvent& event);
-			void OnColumnHeaderClick(wxDataViewEvent& event);
-			void OnListChar(wxKeyEvent&event);
-		protected:
-			void Acquire(bool copy);
+class DicomDirTableModel;
+class DialogoDicomDir: public DialogoDicomDirBase
+{
+public:
+        DialogoDicomDir(wxWindow* pParent, const std::string& pathDicomDir);
 
-			wxObjectDataPtr<DicomDirTableModel> m_pDicomDirTableModel;
-		};
+        ~DialogoDicomDir();
+        void OnCopyClick(wxCommandEvent&);
+        void OnLinkClick(wxCommandEvent&);
+        void OnItemActivation(wxDataViewEvent& event);
+        void OnColumnHeaderClick(wxDataViewEvent& event);
+        void OnListChar(wxKeyEvent&event);
+protected:
+        void Acquire(bool copy);
 
-		class SelectDrive: public SelectDriveBase
-		{
-		public:
-			typedef struct TDrive {
-				std::string id;
-				std::string label;
-				TDrive(const std::string& id, const std::string& label) {
-					this->id = id;
-					this->label = label;
-				}
-			} TDrive;
-			typedef std::list<TDrive> TListOfDrives;
-			TListOfDrives m_drives;
+        wxObjectDataPtr<DicomDirTableModel> m_pDicomDirTableModel;
+};
 
-			SelectDrive(wxWindow* pParent, const TListOfDrives& drives);
-			~SelectDrive();
+class SelectDrive: public SelectDriveBase
+{
+public:
+        typedef struct TDrive {
+                std::string id;
+                std::string label;
+                TDrive(const std::string& id, const std::string& label)
+                {
+                        this->id = id;
+                        this->label = label;
+                }
+        } TDrive;
+        typedef std::list<TDrive> TListOfDrives;
+        TListOfDrives m_drives;
 
-			void SetMessage(const wxString& label);
-			std::string GetSelectedDrive();
-		};
+        SelectDrive(wxWindow* pParent, const TListOfDrives& drives);
+        ~SelectDrive();
 
-		class CopyOrLink: public CopyOrLinkBase
-		{
-		public:
-			CopyOrLink(wxWindow* pParent);
-			~CopyOrLink();
+        void SetMessage(const wxString& label);
+        std::string GetSelectedDrive();
+};
 
-			bool HasSelectedCopy();
-		protected:
-			void OnCopy(wxCommandEvent &event);
-			void OnLink(wxCommandEvent &event);
-			bool m_copy;
-		};
-	}
+class CopyOrLink: public CopyOrLinkBase
+{
+public:
+        CopyOrLink(wxWindow* pParent);
+        ~CopyOrLink();
+
+        bool HasSelectedCopy();
+protected:
+        void OnCopy(wxCommandEvent &event);
+        void OnLink(wxCommandEvent &event);
+        bool m_copy;
+};
+}
 }

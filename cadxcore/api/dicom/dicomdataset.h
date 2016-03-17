@@ -6,8 +6,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -29,80 +29,83 @@
 #include <ostream>
 #include <api/api.h>
 
-namespace GIL {
-	namespace DICOM {
+namespace GIL
+{
+namespace DICOM
+{
 
-		typedef std::map<std::string, std::string> ListaTags;
+typedef std::map<std::string, std::string> ListaTags;
 
-		class EXTAPI DicomDataset {
+class EXTAPI DicomDataset
+{
 
-		private:
-			
+private:
 
-		public:
 
-			typedef std::list<DicomDataset> DatasetList;
+public:
 
-			DatasetList secuencias;
-			DatasetList items;
-			ListaTags tags;
+        typedef std::list<DicomDataset> DatasetList;
 
-			std::string tagName;
+        DatasetList secuencias;
+        DatasetList items;
+        ListaTags tags;
 
-			DicomDataset() ;
+        std::string tagName;
 
-			~DicomDataset() ;
+        DicomDataset() ;
 
-			//añade referencias a las imagenes a las que hace referencia
-			void AddReference(const std::string& sopClassUID, const std::string& sopInstanceUID);
-			
-			//añade referencias a las imagenes originales
-			void AddReferenceSource(const std::string& sopClassUID, const std::string& sopInstanceUID);
+        ~DicomDataset() ;
 
-			void clear();
+        //añade referencias a las imagenes a las que hace referencia
+        void AddReference(const std::string& sopClassUID, const std::string& sopInstanceUID);
 
-			DicomDataset* buscar_secuencia(const char* tag);
+        //añade referencias a las imagenes originales
+        void AddReferenceSource(const std::string& sopClassUID, const std::string& sopInstanceUID);
 
-			DicomDataset* buscar_secuencia(const std::string & tag);
+        void clear();
 
-			/* Obtiene un tag y lo asigna en el parámetro de salida valor.
-			Devuelve true si el tag existe y false si el tag no existe */
-			bool getTag(const std::string& tag, std::string & valor) const;
+        DicomDataset* buscar_secuencia(const char* tag);
 
-			bool getTag(const char* tag, std::string & valor) const;
+        DicomDataset* buscar_secuencia(const std::string & tag);
 
-			const std::string& getTag(const char* tag) const;
-			const std::string& getTag(const std::string& tag) const;
+        /* Obtiene un tag y lo asigna en el parámetro de salida valor.
+        Devuelve true si el tag existe y false si el tag no existe */
+        bool getTag(const std::string& tag, std::string & valor) const;
 
-			template<class T>
-			inline T getTagAs(const std::string& tag, const T& defaultValue)
-			{
-				T ret = defaultValue;
-				std::stringstream is(getTag(tag));
-				is >> ret;
-				return ret;
-			}
+        bool getTag(const char* tag, std::string & valor) const;
 
-			void dump(std::ostream& out, int indentLevel = 0) const;
+        const std::string& getTag(const char* tag) const;
+        const std::string& getTag(const std::string& tag) const;
 
-			friend std::ostream & operator<<(std::ostream& out, const DicomDataset& j)
-			{
-				j.dump(out);
-				return out;
-			}
-			
-			friend std::ostream & operator<<(std::ostream& out, const DicomDataset* j)
-			{
-				if (j == NULL) {
-					out << "[ NULL ]" << std::endl;
-				} else {
-					out << *j;
-				}
-				return out;
-			}
+        template<class T>
+        inline T getTagAs(const std::string& tag, const T& defaultValue)
+        {
+                T ret = defaultValue;
+                std::stringstream is(getTag(tag));
+                is >> ret;
+                return ret;
+        }
 
-		};
-	}
+        void dump(std::ostream& out, int indentLevel = 0) const;
+
+        friend std::ostream & operator<<(std::ostream& out, const DicomDataset& j)
+        {
+                j.dump(out);
+                return out;
+        }
+
+        friend std::ostream & operator<<(std::ostream& out, const DicomDataset* j)
+        {
+                if (j == NULL) {
+                        out << "[ NULL ]" << std::endl;
+                } else {
+                        out << *j;
+                }
+                return out;
+        }
+
+};
+}
 }
 
 #endif

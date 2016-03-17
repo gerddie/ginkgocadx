@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -36,7 +36,7 @@
 
 //----------------------------------------------------------------------
 
-GNC::ExportDicomDirTool::ExportDicomDirTool(): GNC::GCS::IHistoryTool(ID,GNC::GCS::IHistoryTool::TFamily_Export, _Std("Export to DICOM Dir"), _Std("Export to DICOM Dir")+ " \tAlt+e", GinkgoResourcesManager::MenuIcons::GetIcoDicomDir()) 
+GNC::ExportDicomDirTool::ExportDicomDirTool(): GNC::GCS::IHistoryTool(ID,GNC::GCS::IHistoryTool::TFamily_Export, _Std("Export to DICOM Dir"), _Std("Export to DICOM Dir")+ " \tAlt+e", GinkgoResourcesManager::MenuIcons::GetIcoDicomDir())
 {
 }
 
@@ -44,34 +44,34 @@ GNC::ExportDicomDirTool::~ExportDicomDirTool()
 {
 }
 
-bool GNC::ExportDicomDirTool::Enabled() 
+bool GNC::ExportDicomDirTool::Enabled()
 {
-	return GNC::GCS::IControladorPermisos::Instance()->Get("core.restrictions","export");
+        return GNC::GCS::IControladorPermisos::Instance()->Get("core.restrictions","export");
 }
 
 void GNC::ExportDicomDirTool::Execute()
 {
-	GNC::GCS::IHistoryPanel* pHistory = GNC::HistoryToolsController::Instance()->GetHistoryPanel();
-	std::list<long> listOfPks;
-	pHistory->GetSelectedSeriesPk(listOfPks);
-	Execute(listOfPks);
+        GNC::GCS::IHistoryPanel* pHistory = GNC::HistoryToolsController::Instance()->GetHistoryPanel();
+        std::list<long> listOfPks;
+        pHistory->GetSelectedSeriesPk(listOfPks);
+        Execute(listOfPks);
 }
 
 void GNC::ExportDicomDirTool::Execute(const std::list<long>& listOfPks)
 {
-	GNC::GCS::IHistoryPanel* pHistory = GNC::HistoryToolsController::Instance()->GetHistoryPanel();
-	if (listOfPks.empty()) {
-		wxMessageBox(_("Select at least one series"), _("Info"), wxICON_INFORMATION, pHistory->GetWxWindow());
-		return;
-	}
+        GNC::GCS::IHistoryPanel* pHistory = GNC::HistoryToolsController::Instance()->GetHistoryPanel();
+        if (listOfPks.empty()) {
+                wxMessageBox(_("Select at least one series"), _("Info"), wxICON_INFORMATION, pHistory->GetWxWindow());
+                return;
+        }
 
-	if (!AreSeriesFullyDownloaded(listOfPks)) {
-		GNC::GUI::SynchronizeDialog dlg(pHistory->GetWxWindow(), listOfPks, this);
-		dlg.ShowModal();
-	} else {
-		GNC::GUI::ExportDicomDir dlg(pHistory->GetWxWindow(), listOfPks);
-		dlg.ShowModal();
-	}
+        if (!AreSeriesFullyDownloaded(listOfPks)) {
+                GNC::GUI::SynchronizeDialog dlg(pHistory->GetWxWindow(), listOfPks, this);
+                dlg.ShowModal();
+        } else {
+                GNC::GUI::ExportDicomDir dlg(pHistory->GetWxWindow(), listOfPks);
+                dlg.ShowModal();
+        }
 }
 
 

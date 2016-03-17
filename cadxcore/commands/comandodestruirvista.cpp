@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -35,7 +35,7 @@
 
 GADAPI::ComandoDestruirVistaParams::ComandoDestruirVistaParams(GNC::GCS::IVista* pVista)
 {
-	m_pVista = pVista;
+        m_pVista = pVista;
 }
 
 GADAPI::ComandoDestruirVistaParams::~ComandoDestruirVistaParams()
@@ -45,9 +45,9 @@ GADAPI::ComandoDestruirVistaParams::~ComandoDestruirVistaParams()
 
 GADAPI::ComandoDestruirVista::ComandoDestruirVista(ComandoDestruirVistaParams* pParams) : IComando(pParams, "ComandoDestruirVista")
 {
-	GTRACE(">> ComandoDestruirVista::ComandoDestruirVista(): " << this);
-	m_pDestruirParams = pParams;
-	GTRACE("<< ComandoDestruirVista::ComandoDestruirVista(): " << this);
+        GTRACE(">> ComandoDestruirVista::ComandoDestruirVista(): " << this);
+        m_pDestruirParams = pParams;
+        GTRACE("<< ComandoDestruirVista::ComandoDestruirVista(): " << this);
 }
 
 void GADAPI::ComandoDestruirVista::Execute()
@@ -57,10 +57,10 @@ void GADAPI::ComandoDestruirVista::Execute()
 
 void GADAPI::ComandoDestruirVista::Update()
 {
-	if (!EstaAbortado()) {
-		//este destruir no destruye bien la ventana, hay que invocar a ventana principal!!
+        if (!EstaAbortado()) {
+                //este destruir no destruye bien la ventana, hay que invocar a ventana principal!!
 
-		//GNC::GCS::ControladorVistas::Instance()->Destruir(m_pDestruirParams->m_pVista);
-	}
+                //GNC::GCS::ControladorVistas::Instance()->Destruir(m_pDestruirParams->m_pVista);
+        }
 }
 

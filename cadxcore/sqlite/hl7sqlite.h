@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -39,39 +39,39 @@
 
 inline int AbrirConexionBBDDMensajes(wxSQLite3Database& dataBase,const std::string& DBFileName)
 {
-	if(dataBase.IsOpen()) {
-		return (0);
-	}
+        if(dataBase.IsOpen()) {
+                return (0);
+        }
 
-	dataBase.Open(FROMPATH(DBFileName),wxEmptyString, WXSQLITE_OPEN_READWRITE|WXSQLITE_OPEN_CREATE);
+        dataBase.Open(FROMPATH(DBFileName),wxEmptyString, WXSQLITE_OPEN_READWRITE|WXSQLITE_OPEN_CREATE);
 
-	dataBase.EnableForeignKeySupport(false);
+        dataBase.EnableForeignKeySupport(false);
 
-	 return 1;
+        return 1;
 }
 
 inline int CreateMensajesHl7DB(wxSQLite3Database& dataBase,const std::string& DBFileName)
 {
-	if (!AbrirConexionBBDDMensajes(dataBase, DBFileName)) {
-		return (0);
-	}
-    /** Create Tables del Historial: **/
+        if (!AbrirConexionBBDDMensajes(dataBase, DBFileName)) {
+                return (0);
+        }
+        /** Create Tables del Historial: **/
 
-    /** 1. Tabla de mensajes **/
-	wxString sentencia(wxT(""));
-	sentencia << wxT("CREATE TABLE MensajesHL7 (");
-	sentencia << wxT("IDMensaje INTEGER PRIMARY KEY,");
-   sentencia << wxT("FechaEnvio DATETIME,");
-   sentencia << wxT("Mensaje TEXT,");
-	sentencia << wxT("URLEnvio VARCHAR(1000),");
-	sentencia << wxT("Protocolo integer,");
-	sentencia << wxT("ProcesarACK CHAR,");
-	sentencia << wxT("MsgControlId VARCHAR(100) Default '',");
-	sentencia << wxT("MensajeError VARCHAR(500) Default NULL,");
-	sentencia << wxT("Enviado CHAR Default 'N');");
-	dataBase.ExecuteUpdate(sentencia);
+        /** 1. Tabla de mensajes **/
+        wxString sentencia(wxT(""));
+        sentencia << wxT("CREATE TABLE MensajesHL7 (");
+        sentencia << wxT("IDMensaje INTEGER PRIMARY KEY,");
+        sentencia << wxT("FechaEnvio DATETIME,");
+        sentencia << wxT("Mensaje TEXT,");
+        sentencia << wxT("URLEnvio VARCHAR(1000),");
+        sentencia << wxT("Protocolo integer,");
+        sentencia << wxT("ProcesarACK CHAR,");
+        sentencia << wxT("MsgControlId VARCHAR(100) Default '',");
+        sentencia << wxT("MensajeError VARCHAR(500) Default NULL,");
+        sentencia << wxT("Enviado CHAR Default 'N');");
+        dataBase.ExecuteUpdate(sentencia);
 
-	return(1);
+        return(1);
 
 }
 

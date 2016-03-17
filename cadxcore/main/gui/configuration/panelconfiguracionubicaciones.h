@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -25,49 +25,52 @@
 #include <string>
 #include <vector>
 
-namespace Ubicaciones {
-	class UbicacionesGridTable;
+namespace Ubicaciones
+{
+class UbicacionesGridTable;
 }
 
-namespace GNC {
-	namespace GUI {
+namespace GNC
+{
+namespace GUI
+{
 
-		class PanelConfiguracionUbicaciones: public PanelConfiguracionUbicacionesBase, public IPasoConfiguracion
-		{
-			public:
-				PanelConfiguracionUbicaciones(wxWindow* pParent,IDialogoConfiguracion* pDialogo);
-				~PanelConfiguracionUbicaciones();
+class PanelConfiguracionUbicaciones: public PanelConfiguracionUbicacionesBase, public IPasoConfiguracion
+{
+public:
+        PanelConfiguracionUbicaciones(wxWindow* pParent,IDialogoConfiguracion* pDialogo);
+        ~PanelConfiguracionUbicaciones();
 
-				void Recargar();
+        void Recargar();
 
-				//region "Metodos de IPasoConfiguracion"
-				wxWindow* GetPanel();
+        //region "Metodos de IPasoConfiguracion"
+        wxWindow* GetPanel();
 
-				std::string GetTitle();
+        std::string GetTitle();
 
-				std::string GetCabecera();
+        std::string GetCabecera();
 
-				bool Validar();
+        bool Validar();
 
-				bool Guardar();
-				//endregion
+        bool Guardar();
+        //endregion
 
-			public:
-				wxObjectDataPtr<wxDataViewListStore> m_pModel;
-				typedef GNC::GCS::IEntorno::MapaUbicaciones UbicationsMapType;
-				UbicationsMapType m_Ubicaciones;
+public:
+        wxObjectDataPtr<wxDataViewListStore> m_pModel;
+        typedef GNC::GCS::IEntorno::MapaUbicaciones UbicationsMapType;
+        UbicationsMapType m_Ubicaciones;
 
-			protected:
-				
+protected:
 
-				virtual void OnUbicationsDClick( wxDataViewEvent& event );
-				virtual void OnUbicationsSelectionChanged( wxDataViewEvent& event);
-				
-				virtual void OnNuevoClick( wxCommandEvent& event );
-				virtual void OnEditarClick( wxCommandEvent& event );
-				virtual void OnEliminarClick( wxCommandEvent& event );
-				virtual void OnHelpClick(wxMouseEvent &event);
-				virtual void OnSize( wxSizeEvent& event );
-		};
-	}
+
+        virtual void OnUbicationsDClick( wxDataViewEvent& event );
+        virtual void OnUbicationsSelectionChanged( wxDataViewEvent& event);
+
+        virtual void OnNuevoClick( wxCommandEvent& event );
+        virtual void OnEditarClick( wxCommandEvent& event );
+        virtual void OnEliminarClick( wxCommandEvent& event );
+        virtual void OnHelpClick(wxMouseEvent &event);
+        virtual void OnSize( wxSizeEvent& event );
+};
+}
 }

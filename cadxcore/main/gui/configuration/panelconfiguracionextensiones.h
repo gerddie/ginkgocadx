@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -24,36 +24,38 @@
 #include <string>
 #include <vector>
 
-namespace GNC {
-	namespace GUI {
+namespace GNC
+{
+namespace GUI
+{
 
-		class PanelConfiguracionExtensiones: public PanelConfiguracionExtensionesBase, public IPasoConfiguracion
-		{
-			public:
-				PanelConfiguracionExtensiones(wxWindow* pParent,IDialogoConfiguracion* pDialogo);
-				~PanelConfiguracionExtensiones();
+class PanelConfiguracionExtensiones: public PanelConfiguracionExtensionesBase, public IPasoConfiguracion
+{
+public:
+        PanelConfiguracionExtensiones(wxWindow* pParent,IDialogoConfiguracion* pDialogo);
+        ~PanelConfiguracionExtensiones();
 
-				void Recargar();
+        void Recargar();
 
-				//region "Metodos de IPasoConfiguracion"
-				wxWindow* GetPanel();
+        //region "Metodos de IPasoConfiguracion"
+        wxWindow* GetPanel();
 
-				std::string GetTitle();
+        std::string GetTitle();
 
-				std::string GetCabecera();
+        std::string GetCabecera();
 
-				bool Validar();
+        bool Validar();
 
-				bool Guardar();
-				//endregion
+        bool Guardar();
+        //endregion
 
-				virtual void OnPropiedadCambiada();
+        virtual void OnPropiedadCambiada();
 
-			protected:
-								
-				void OnSize(wxSizeEvent &);
+protected:
 
-				bool m_hasBeenChanged;
-		};
-	}
+        void OnSize(wxSizeEvent &);
+
+        bool m_hasBeenChanged;
+};
+}
 }

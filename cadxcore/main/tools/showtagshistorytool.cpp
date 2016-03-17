@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -30,7 +30,7 @@
 
 //----------------------------------------------------------------------
 
-GNC::ShowTagsHistoryTool::ShowTagsHistoryTool(): GNC::GCS::IHistoryTool(ID,GNC::GCS::IHistoryTool::TFamily_ShowMetadata, _Std("DICOM inspector"), _Std("DICOM inspector"), GinkgoResourcesManager::ToolIcons::GetIcoMostrarOcultarTags()) 
+GNC::ShowTagsHistoryTool::ShowTagsHistoryTool(): GNC::GCS::IHistoryTool(ID,GNC::GCS::IHistoryTool::TFamily_ShowMetadata, _Std("DICOM inspector"), _Std("DICOM inspector"), GinkgoResourcesManager::ToolIcons::GetIcoMostrarOcultarTags())
 {
 }
 
@@ -40,28 +40,28 @@ GNC::ShowTagsHistoryTool::~ShowTagsHistoryTool()
 
 void GNC::ShowTagsHistoryTool::Execute()
 {
-	GNC::GCS::IHistoryPanel* pHistory = GNC::HistoryToolsController::Instance()->GetHistoryPanel();
-	std::list<long> listOfPks;
-	pHistory->GetSelectedSeriesPk(listOfPks);
+        GNC::GCS::IHistoryPanel* pHistory = GNC::HistoryToolsController::Instance()->GetHistoryPanel();
+        std::list<long> listOfPks;
+        pHistory->GetSelectedSeriesPk(listOfPks);
 
-	if (listOfPks.empty()) {
-		wxMessageBox(_("Select at least one series"), _("Info"), wxICON_INFORMATION, pHistory->GetWxWindow());
-		return;
-	}
-	int i = 0;
-	for (std::list<long>::iterator it = listOfPks.begin(); it != listOfPks.end(); ++it) {
-		GNC::GUI::PanelTags* m_pPanel = new GNC::GUI::PanelTags(pHistory->GetWxWindow(), false);
-		if (m_pPanel->SetSeriesPk((*it))) {
-			m_pPanel->Show(true);
-			wxPoint position = m_pPanel->GetPosition();
-			position.x += i;
-			position.y += i;
-			m_pPanel->SetPosition(position);
-			i += 10;
-		} else {
-			m_pPanel->Destroy();
-		}
-	}
+        if (listOfPks.empty()) {
+                wxMessageBox(_("Select at least one series"), _("Info"), wxICON_INFORMATION, pHistory->GetWxWindow());
+                return;
+        }
+        int i = 0;
+        for (std::list<long>::iterator it = listOfPks.begin(); it != listOfPks.end(); ++it) {
+                GNC::GUI::PanelTags* m_pPanel = new GNC::GUI::PanelTags(pHistory->GetWxWindow(), false);
+                if (m_pPanel->SetSeriesPk((*it))) {
+                        m_pPanel->Show(true);
+                        wxPoint position = m_pPanel->GetPosition();
+                        position.x += i;
+                        position.y += i;
+                        m_pPanel->SetPosition(position);
+                        i += 10;
+                } else {
+                        m_pPanel->Destroy();
+                }
+        }
 }
 
 #endif

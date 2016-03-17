@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -24,9 +24,9 @@
 
 GNC::GCS::IException::IException(const std::string& msg, const std::string& component, bool fatal) throw()
 {
-	this->cause = msg;
-	this->component = component;
-	this->fatal = fatal;
+        this->cause = msg;
+        this->component = component;
+        this->fatal = fatal;
 }
 
 GNC::GCS::IException::~IException() throw()
@@ -35,29 +35,32 @@ GNC::GCS::IException::~IException() throw()
 
 const std::string& GNC::GCS::IException::GetComponent() const
 {
-	return component;
+        return component;
 }
 
-const std::string& GNC::GCS::IException::GetCause() const {
-	return cause;
+const std::string& GNC::GCS::IException::GetCause() const
+{
+        return cause;
 }
 
 const char* GNC::GCS::IException::what() const throw()
 {
-	return cause.c_str();
+        return cause.c_str();
 }
 
-std::string GNC::GCS::IException::GetFullCause() const {
-	return *this;
+std::string GNC::GCS::IException::GetFullCause() const
+{
+        return *this;
 }
 
-bool GNC::GCS::IException::IsFatal()  const {
-	return fatal;
+bool GNC::GCS::IException::IsFatal()  const
+{
+        return fatal;
 }
 
 GNC::GCS::IException::operator std::string() const
 {
-	return _Std("Exception in component") + std::string(" ") + GetComponent() + std::string(" :\n")  + GetCause();
+        return _Std("Exception in component") + std::string(" ") + GetComponent() + std::string(" :\n")  + GetCause();
 }
 
 //=========================

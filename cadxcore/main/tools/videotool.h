@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -24,31 +24,34 @@
 #include <export/tools/ivideotool.h>
 #include <api/api.h>
 
-namespace GNC {
-	namespace GUI {
-		class VideoToolTimer;
-	}
-	class EXTAPI VideoTool : public GNC::GCS::IVideoTool {
-	public:
-		VideoTool();
-		~VideoTool();
+namespace GNC
+{
+namespace GUI
+{
+class VideoToolTimer;
+}
+class EXTAPI VideoTool : public GNC::GCS::IVideoTool
+{
+public:
+        VideoTool();
+        ~VideoTool();
 
-		virtual GNC::GCS::ITool* NewTool();
+        virtual GNC::GCS::ITool* NewTool();
 
-		virtual bool HasDropDownMenu();
-		void AppendDropDownMenu(wxEvtHandler* pParent, wxMenu* pMenu);
+        virtual bool HasDropDownMenu();
+        void AppendDropDownMenu(wxEvtHandler* pParent, wxMenu* pMenu);
 
-		virtual bool ExecuteAction();
-		virtual bool GoToNextSlide(bool force = false);
-		virtual bool IsBucleEnabled();
-		virtual void SetBucle(bool bucle);
-		virtual int GetPeriod();
-		virtual void SetPeriod(int period);
+        virtual bool ExecuteAction();
+        virtual bool GoToNextSlide(bool force = false);
+        virtual bool IsBucleEnabled();
+        virtual void SetBucle(bool bucle);
+        virtual int GetPeriod();
+        virtual void SetPeriod(int period);
 
-	protected:
-		GNC::GUI::VideoToolTimer* pTimer;
-		bool BlucleEnabled;
-		int Period;
-	};
+protected:
+        GNC::GUI::VideoToolTimer* pTimer;
+        bool BlucleEnabled;
+        int Period;
+};
 }
 #endif

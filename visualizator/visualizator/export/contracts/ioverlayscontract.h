@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -31,25 +31,28 @@
 class vtkGinkgoImageViewer;
 class vtkLookupTable;
 class vtkAlgorithmOutput;
-namespace GNC {
-	namespace GCS {
-		class IVista;
-	}
+namespace GNC
+{
+namespace GCS
+{
+class IVista;
 }
-namespace GNKVisualizator {
-	class IOverlaysContract: public GNC::GCS::IContract
-	{
-	private:
-		GNC::GCS::Ptr<GNKVisualizator::TListaOverlays>  m_pListaOverlays;
-	public:
-		GNKVisualizator::TEstadoOverlay m_EstadoOverlays;
-		GNC::GCS::IVista* m_pView;
-	
-		GNC::GCS::Ptr<GNKVisualizator::TListaOverlays>& GetOverlayList();
+}
+namespace GNKVisualizator
+{
+class IOverlaysContract: public GNC::GCS::IContract
+{
+private:
+        GNC::GCS::Ptr<GNKVisualizator::TListaOverlays>  m_pListaOverlays;
+public:
+        GNKVisualizator::TEstadoOverlay m_EstadoOverlays;
+        GNC::GCS::IVista* m_pView;
 
-		IOverlaysContract();
-		~IOverlaysContract();
-		virtual void Setup(GNC::GCS::Ptr<GNKVisualizator::TListaOverlays>& pListaOverlays, GNC::GCS::IVista* pView);
-	};
+        GNC::GCS::Ptr<GNKVisualizator::TListaOverlays>& GetOverlayList();
+
+        IOverlaysContract();
+        ~IOverlaysContract();
+        virtual void Setup(GNC::GCS::Ptr<GNKVisualizator::TListaOverlays>& pListaOverlays, GNC::GCS::IVista* pView);
+};
 }
 #endif

@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -27,37 +27,40 @@
 class wxSemaphore;
 
 
-namespace GADAPI {
-	class AcquireFromURLCommandParameters : public GNC::GCS::IComandoParams {
+namespace GADAPI
+{
+class AcquireFromURLCommandParameters : public GNC::GCS::IComandoParams
+{
 
-	public:
-		//download only specifying 
-		AcquireFromURLCommandParameters(const std::list<std::string>& urlList);
-		virtual ~AcquireFromURLCommandParameters();
+public:
+        //download only specifying
+        AcquireFromURLCommandParameters(const std::list<std::string>& urlList);
+        virtual ~AcquireFromURLCommandParameters();
 
-	public:
-		std::list<std::string> m_urlList;
-		std::string m_error;
-		wxSemaphore* m_pSemWait;
-	};
+public:
+        std::list<std::string> m_urlList;
+        std::string m_error;
+        wxSemaphore* m_pSemWait;
+};
 
 
 
-	class AcquireFromURLCommand : public GNC::GCS::IComando, public GNC::GCS::IEventsObserver {
-	public:
-		AcquireFromURLCommand(AcquireFromURLCommandParameters* pParams);
+class AcquireFromURLCommand : public GNC::GCS::IComando, public GNC::GCS::IEventsObserver
+{
+public:
+        AcquireFromURLCommand(AcquireFromURLCommandParameters* pParams);
 
-    protected:
-		virtual void Execute();
-		virtual void Update();
+protected:
+        virtual void Execute();
+        virtual void Update();
 
-    public:
+public:
 
-		virtual bool NotificarProgreso(float progresoNormalizado, const std::string &texto);
+        virtual bool NotificarProgreso(float progresoNormalizado, const std::string &texto);
 
-		virtual void LiberarRecursos();
-		virtual void ProcesarEvento(GNC::GCS::Events::IEvent *evt);
+        virtual void LiberarRecursos();
+        virtual void ProcesarEvento(GNC::GCS::Events::IEvent *evt);
 
-		AcquireFromURLCommandParameters* m_pAcquireParams;
-	};
+        AcquireFromURLCommandParameters* m_pAcquireParams;
+};
 }

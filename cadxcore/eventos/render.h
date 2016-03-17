@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -23,32 +23,36 @@
 #include <api/ievento.h>
 #include "eventosginkgo.h"
 
-namespace GNC {
-	namespace GCS {
-		namespace Events {
+namespace GNC
+{
+namespace GCS
+{
+namespace Events
+{
 
-			class EXTAPI EventoRender : public GNC::GCS::Events::IEvent
-			{
-			public:
+class EXTAPI EventoRender : public GNC::GCS::Events::IEvent
+{
+public:
 
-				EventoRender(GNC::GCS::IVista* pVista, int sliceAfectado = -1) : GNC::GCS::Events::IEvent(ginkgoEVT_Core_Render,0,100,pVista)
-				{
-					m_Nombre = "Render";
-					m_SliceAfectado = sliceAfectado;
-				}
+        EventoRender(GNC::GCS::IVista* pVista, int sliceAfectado = -1) : GNC::GCS::Events::IEvent(ginkgoEVT_Core_Render,0,100,pVista)
+        {
+                m_Nombre = "Render";
+                m_SliceAfectado = sliceAfectado;
+        }
 
-				~EventoRender()
-				{
-				}
+        ~EventoRender()
+        {
+        }
 
-				virtual void pushInfo(std::ostream& out) const {
-					out << "Slice = " << m_SliceAfectado;
-				}
+        virtual void pushInfo(std::ostream& out) const
+        {
+                out << "Slice = " << m_SliceAfectado;
+        }
 
-			protected:
-				int              m_SliceAfectado;
-			};
+protected:
+        int              m_SliceAfectado;
+};
 
-		}
-	}
+}
+}
 }

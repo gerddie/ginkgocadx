@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -27,93 +27,91 @@
 
 GNC::GCS::Widgets::Dialogos::SeleccionTexto::SeleccionTexto(wxWindow* parent, TWidget* pWidget, TManager* pManager) : SeleccionTextoBase(parent)
 {
-	wxIcon icono;
-	icono.CopyFromBitmap(GinkgoResourcesManager::MenuIcons::GetIcoEditar());
-	this->SetIcon(icono);
+        wxIcon icono;
+        icono.CopyFromBitmap(GinkgoResourcesManager::MenuIcons::GetIcoEditar());
+        this->SetIcon(icono);
 
-	m_pWidget = pWidget;
-	m_pManager = pManager;
-	m_pControlTexto->SetValue(wxString::FromUTF8(m_pWidget->m_Texto.c_str()));
-	m_pControlTexto->SetSelection(-1,-1);
+        m_pWidget = pWidget;
+        m_pManager = pManager;
+        m_pControlTexto->SetValue(wxString::FromUTF8(m_pWidget->m_Texto.c_str()));
+        m_pControlTexto->SetSelection(-1,-1);
 }
 
 GNC::GCS::Widgets::Dialogos::SeleccionTexto::~SeleccionTexto()
 {
-	if (m_pWidget != NULL && m_pWidget->m_pWidgetSeleccion == this) {
-		m_pWidget->m_pWidgetSeleccion= NULL;
-	}
+        if (m_pWidget != NULL && m_pWidget->m_pWidgetSeleccion == this) {
+                m_pWidget->m_pWidgetSeleccion= NULL;
+        }
 }
 
-void GNC::GCS::Widgets::Dialogos::SeleccionTexto::OnClickEnMenu(wxCommandEvent& /*event*/){
-	Center();
-	ShowModal();
+void GNC::GCS::Widgets::Dialogos::SeleccionTexto::OnClickEnMenu(wxCommandEvent& /*event*/)
+{
+        Center();
+        ShowModal();
 }
 
 void GNC::GCS::Widgets::Dialogos::SeleccionTexto::OnDialogoKeyDown( wxKeyEvent& event )
 {
-	if (event.GetKeyCode() == WXK_ESCAPE) {
-		Close();
-	}
-	else if (event.GetKeyCode() == WXK_RETURN) {
-		Actualizar();
-		Close();
-	}
-	else {
-		event.Skip();
-	}
+        if (event.GetKeyCode() == WXK_ESCAPE) {
+                Close();
+        } else if (event.GetKeyCode() == WXK_RETURN) {
+                Actualizar();
+                Close();
+        } else {
+                event.Skip();
+        }
 }
 
 void GNC::GCS::Widgets::Dialogos::SeleccionTexto::OnControlTextoKeyDown( wxKeyEvent& event )
 {
-	if (event.GetKeyCode() == WXK_ESCAPE) {
-		Close();
-	}
-	else {
-		event.Skip();
-	}
+        if (event.GetKeyCode() == WXK_ESCAPE) {
+                Close();
+        } else {
+                event.Skip();
+        }
 }
 
 void GNC::GCS::Widgets::Dialogos::SeleccionTexto::OnControlTextoTextoActualizado( wxCommandEvent& event )
 {
-	event.Skip();
+        event.Skip();
 }
 
 void GNC::GCS::Widgets::Dialogos::SeleccionTexto::OnBotonCancelarClick( wxCommandEvent& /*event*/ )
 {
-	Close();
+        Close();
 }
 
 void GNC::GCS::Widgets::Dialogos::SeleccionTexto::OnBotonAceptarClick( wxCommandEvent& /*event*/ )
 {
-	Actualizar();
-	Close();
+        Actualizar();
+        Close();
 }
 
 void GNC::GCS::Widgets::Dialogos::SeleccionTexto::OnActivar(wxActivateEvent &/*event*/)
 {
-	m_pControlTexto->SetFocus();
+        m_pControlTexto->SetFocus();
 }
 
 void GNC::GCS::Widgets::Dialogos::SeleccionTexto::Actualizar(bool actualizarWidget)
 {
 
 
-	if (actualizarWidget) {
+        if (actualizarWidget) {
 
-		bool modifica = false;
+                bool modifica = false;
 
-		std::string textoControl(m_pControlTexto->GetValue().ToUTF8());
+                std::string textoControl(m_pControlTexto->GetValue().ToUTF8());
 
-		if (m_pWidget->GetTexto() != textoControl) {
-			m_pWidget->SetTexto(textoControl);
-			modifica = true;
-		}
+                if (m_pWidget->GetTexto() != textoControl) {
+                        m_pWidget->SetTexto(textoControl);
+                        modifica = true;
+                }
 
-		if (modifica) {
-			m_pWidget->Invalidar();
-			m_pWidget->PropagarModificacion();
-		}
-	}
+                if (modifica) {
+                        m_pWidget->Invalidar();
+                        m_pWidget->PropagarModificacion();
+                }
+        }
 
 }
 

@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -21,20 +21,22 @@
 #pragma once
 #include "downloadcloudbase.h"
 
-namespace GNC {
-	namespace GUI {
+namespace GNC
+{
+namespace GUI
+{
 
-		class FileLinkDialog: public GNC::GUI::FileLinkDialogBase
-		{
-		public:
-			FileLinkDialog(wxWindow* pParent, std::string fileLink);
-			~FileLinkDialog();
+class FileLinkDialog: public GNC::GUI::FileLinkDialogBase
+{
+public:
+        FileLinkDialog(wxWindow* pParent, std::string fileLink);
+        ~FileLinkDialog();
 
-		protected:
-			virtual void OnCopyClipboard(wxCommandEvent& evt);
-			virtual void OnAccept(wxCommandEvent &evt);
-			virtual void OnKeyUp(wxKeyEvent &evt);
-			virtual void OnSendMail(wxCommandEvent& evt);
-		};
-	}
+protected:
+        virtual void OnCopyClipboard(wxCommandEvent& evt);
+        virtual void OnAccept(wxCommandEvent &evt);
+        virtual void OnKeyUp(wxKeyEvent &evt);
+        virtual void OnSendMail(wxCommandEvent& evt);
+};
+}
 }

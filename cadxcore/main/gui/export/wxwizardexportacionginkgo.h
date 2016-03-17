@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -26,35 +26,37 @@
 #include <string>
 #include <vector>
 
-namespace GNC {
-	namespace GCS
-	{
-		class WidgetsContract;
-	}
-	namespace GUI {
-		class wxWidzardExportacionGinkgo: public wxWizardGinkgoBase
-		{
+namespace GNC
+{
+namespace GCS
+{
+class WidgetsContract;
+}
+namespace GUI
+{
+class wxWidzardExportacionGinkgo: public wxWizardGinkgoBase
+{
 
-		public:
-			wxWidzardExportacionGinkgo(wxWindow* pParent, GNC::GCS::IWidgetsContract* WidgetsContract);
-			~wxWidzardExportacionGinkgo();
+public:
+        wxWidzardExportacionGinkgo(wxWindow* pParent, GNC::GCS::IWidgetsContract* WidgetsContract);
+        ~wxWidzardExportacionGinkgo();
 
-			virtual void OnCancelarClick(wxCommandEvent& event);
-			virtual void OnSiguienteClick(wxCommandEvent& event);
-			virtual void OnAnteriorClick(wxCommandEvent &event);
+        virtual void OnCancelarClick(wxCommandEvent& event);
+        virtual void OnSiguienteClick(wxCommandEvent& event);
+        virtual void OnAnteriorClick(wxCommandEvent &event);
 
-			void CargarCurrent();
+        void CargarCurrent();
 
-			bool IsOK();
+        bool IsOK();
 
 
-		protected:
-			typedef std::list<IPasoWizard*> ListaPasos;
-			ListaPasos m_ListaPasos;
+protected:
+        typedef std::list<IPasoWizard*> ListaPasos;
+        ListaPasos m_ListaPasos;
 
-			ListaPasos::size_type m_currentPasoIndex;
-			bool            m_OK;
+        ListaPasos::size_type m_currentPasoIndex;
+        bool            m_OK;
 
-		};
-	};
+};
+};
 };

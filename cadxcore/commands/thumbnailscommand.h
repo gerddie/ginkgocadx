@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -24,34 +24,36 @@
 
 class wxImage;
 
-namespace GADAPI {	
-	class ThumbnailsCommandParams;
+namespace GADAPI
+{
+class ThumbnailsCommandParams;
 
-	class EXTAPI ThumbnailsNotifier
-	{
-	public:
-		ThumbnailsNotifier(){}
-		virtual ~ThumbnailsNotifier(){}
+class EXTAPI ThumbnailsNotifier
+{
+public:
+        ThumbnailsNotifier() {}
+        virtual ~ThumbnailsNotifier() {}
 
-		virtual void SetImage(long file_pk, wxImage* pImage) = 0;
-	};
+        virtual void SetImage(long file_pk, wxImage* pImage) = 0;
+};
 
-	class EXTAPI ThumbnailsCommand : public GNC::GCS::IComando {
-	public:
-		ThumbnailsCommand(long file_pk, ThumbnailsNotifier* pNotificador);
+class EXTAPI ThumbnailsCommand : public GNC::GCS::IComando
+{
+public:
+        ThumbnailsCommand(long file_pk, ThumbnailsNotifier* pNotificador);
 
-		wxImage* GetImage();
+        wxImage* GetImage();
 
-    protected:
-		void Execute();
-		void Update();
+protected:
+        void Execute();
+        void Update();
 
-	protected:
-		wxImage* GetImageFromBD();
-		void GuardarImagen();
+protected:
+        wxImage* GetImageFromBD();
+        void GuardarImagen();
 
-		ThumbnailsCommandParams* m_pThumbParams;
-		bool                            m_Error;
+        ThumbnailsCommandParams* m_pThumbParams;
+        bool                            m_Error;
 
-	};
+};
 }

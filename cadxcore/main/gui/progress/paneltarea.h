@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -20,20 +20,23 @@
 
 #pragma once
 #include "progresobase.h"
-namespace GNC {
-	namespace GUI {
-		
-		class PanelTarea : public PanelTareaBase {
-		public:
-			PanelTarea( wxWindow* pPadre,long pidTarea);
-			~PanelTarea();
+namespace GNC
+{
+namespace GUI
+{
 
-			void SetProgress(const wxString& text, float progress);
-			wxString GetStatus();
-			float GetProgress();
-		protected:
-			void OnTareaCancelarClick(wxCommandEvent &event);
-			long m_PIDTarea;
-		};
-	}
+class PanelTarea : public PanelTareaBase
+{
+public:
+        PanelTarea( wxWindow* pPadre,long pidTarea);
+        ~PanelTarea();
+
+        void SetProgress(const wxString& text, float progress);
+        wxString GetStatus();
+        float GetProgress();
+protected:
+        void OnTareaCancelarClick(wxCommandEvent &event);
+        long m_PIDTarea;
+};
+}
 }

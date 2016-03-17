@@ -6,8 +6,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -22,20 +22,21 @@
 
 #include <api/icontract.h>
 
-namespace GNKVisualizator {
-	class IOverlaysContract;
-	class IOverlaysContractable: public GNC::GCS::IContractable
-	{
-	public:
-		IOverlaysContractable();
+namespace GNKVisualizator
+{
+class IOverlaysContract;
+class IOverlaysContractable: public GNC::GCS::IContractable
+{
+public:
+        IOverlaysContractable();
 
-		~IOverlaysContractable();
+        ~IOverlaysContractable();
 
-		virtual bool IsValidContract(GNC::GCS::IContract* contract);
+        virtual bool IsValidContract(GNC::GCS::IContract* contract);
 
-		
-		virtual void Register(GNC::GCS::IContract* contract);
-	protected:
-		GNKVisualizator::IOverlaysContract* OverlaysContract;
-	};
+
+        virtual void Register(GNC::GCS::IContract* contract);
+protected:
+        GNKVisualizator::IOverlaysContract* OverlaysContract;
+};
 }

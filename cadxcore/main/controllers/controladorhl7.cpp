@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -54,8 +54,8 @@
 
 GIL::HL7::ControladorHL7::ControladorHL7(TipoProtocolo protocolo)
 {
-	
-	m_Protocolo = protocolo;
+
+        m_Protocolo = protocolo;
 }
 
 GIL::HL7::ControladorHL7::~ControladorHL7()
@@ -68,47 +68,47 @@ GIL::HL7::ControladorHL7::~ControladorHL7()
 /* Envia el mensaje por MLLP */
 void GIL::HL7::ControladorHL7::EnviarMensaje(const GIL::HL7::Message& msg, bool procesarACK) const
 {
-	std::string hostname, port;
+        std::string hostname, port;
 
-	GNC::GCS::ConfigurationController::Instance()->readStringGeneral("/GinkgoCore/HCE","HostnameMI",hostname);
-	GNC::GCS::ConfigurationController::Instance()->readStringGeneral("/GinkgoCore/HCE","PuertoMI",port);
-	std::ostringstream ostr;
-	ostr << hostname << ":" << port;
-	std::string url = ostr.str();
+        GNC::GCS::ConfigurationController::Instance()->readStringGeneral("/GinkgoCore/HCE","HostnameMI",hostname);
+        GNC::GCS::ConfigurationController::Instance()->readStringGeneral("/GinkgoCore/HCE","PuertoMI",port);
+        std::ostringstream ostr;
+        ostr << hostname << ":" << port;
+        std::string url = ostr.str();
 
-	if (hostname.size() == 0) {
-		throw HL7Exception(_Std("Integration engine hostname not set"), "NET");
-	}
-	if (port.size() == 0) {
-		throw HL7Exception(_Std("Integration engine port not set"), "NET");
-	}
+        if (hostname.size() == 0) {
+                throw HL7Exception(_Std("Integration engine hostname not set"), "NET");
+        }
+        if (port.size() == 0) {
+                throw HL7Exception(_Std("Integration engine port not set"), "NET");
+        }
 
-	std::string msgControlId("");
-	switch(m_Protocolo) {
-		case GIL::HL7::ControladorHL7::TP_MLLP:
-			//se inserta en la BBDD de mensajes
-			if(procesarACK){
-				msgControlId = msg.GetSegment("MSH").GetField(10).GetComponent(1);
-			}
-			InsertarMensajeBBDD(msg,url,procesarACK,(int)TP_MLLP,msgControlId);
-			//EnviarMensajeMLLP(msg, url, procesarACK);
-			break;
-		default:
-			throw HL7Exception(_Std("Unsupported protocol"), "NET");
-	}
+        std::string msgControlId("");
+        switch(m_Protocolo) {
+        case GIL::HL7::ControladorHL7::TP_MLLP:
+                //se inserta en la BBDD de mensajes
+                if(procesarACK) {
+                        msgControlId = msg.GetSegment("MSH").GetField(10).GetComponent(1);
+                }
+                InsertarMensajeBBDD(msg,url,procesarACK,(int)TP_MLLP,msgControlId);
+                //EnviarMensajeMLLP(msg, url, procesarACK);
+                break;
+        default:
+                throw HL7Exception(_Std("Unsupported protocol"), "NET");
+        }
 }
 
 //endregion
 void GIL::HL7::ControladorHL7::InsertarMensajeBBDD(const GIL::HL7::Message& msg, const std::string& url,const bool procesarACK,const int protocolo,const std::string& msgControlId) const
 {
-	std::stringstream outputStream;
-	outputStream << msg;
-	std::string str = outputStream.str();
+        std::stringstream outputStream;
+        outputStream << msg;
+        std::string str = outputStream.str();
 
-	try{
-		GIL::HL7::MensajeHL7 mensaje(0,str,"",url,GIL::HL7::MensajeHL7::TE_Pendiente,"",protocolo,procesarACK,msgControlId);
-		GIL::HL7::ControladorBBDDHl7::Instance()->InsertarMensaje(mensaje);
-	}catch (GIL::HL7::HL7Exception& ) {
-		throw HL7Exception(_Std("Error queueing message. Check your supplier"), "NET");
-	}
+        try {
+                GIL::HL7::MensajeHL7 mensaje(0,str,"",url,GIL::HL7::MensajeHL7::TE_Pendiente,"",protocolo,procesarACK,msgControlId);
+                GIL::HL7::ControladorBBDDHl7::Instance()->InsertarMensaje(mensaje);
+        } catch (GIL::HL7::HL7Exception& ) {
+                throw HL7Exception(_Std("Error queueing message. Check your supplier"), "NET");
+        }
 }

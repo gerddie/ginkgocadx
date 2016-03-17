@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -34,46 +34,44 @@
 #include <vtk/vtkginkgoimageviewer.h>
 
 
-GNC::PointerTool::PointerTool() {
-	m_pSeleccionBuilder = NULL;
+GNC::PointerTool::PointerTool()
+{
+        m_pSeleccionBuilder = NULL;
 }
 
-GNC::PointerTool::~PointerTool() 
+GNC::PointerTool::~PointerTool()
 {
-	if (m_pSeleccionBuilder != NULL)
-	{		
-		// DesSubscribimos los eventos de la ventana a un metodo especifico del panel de esta herramienta
-		delete m_pSeleccionBuilder;
-		m_pSeleccionBuilder = NULL;
-	}
+        if (m_pSeleccionBuilder != NULL) {
+                // DesSubscribimos los eventos de la ventana a un metodo especifico del panel de esta herramienta
+                delete m_pSeleccionBuilder;
+                m_pSeleccionBuilder = NULL;
+        }
 }
 
 GNC::GCS::ITool* GNC::PointerTool::NewTool()
 {
-	return new GNC::PointerTool();
+        return new GNC::PointerTool();
 }
 
 void GNC::PointerTool::Connect()
 {
-	if (m_pSeleccionBuilder != NULL)
-	{		
-		// DesSubscribimos los eventos de la ventana a un metodo especifico del panel de esta herramienta
-		delete m_pSeleccionBuilder;
-		m_pSeleccionBuilder = NULL;
-	}
-	m_pSeleccionBuilder = new TSeleccionBuilder(WidgetsContract->GetManager(), GetTriggerButton(), (unsigned long)this);
-	WidgetsContract->GetViewerActivo()->SetInteractionStyle(vtkGinkgoImageViewer::ZOOM_INTERACTION);
-	WidgetsContract->GetManager()->SetCursor(m_pSeleccionBuilder->GetCursor());		
+        if (m_pSeleccionBuilder != NULL) {
+                // DesSubscribimos los eventos de la ventana a un metodo especifico del panel de esta herramienta
+                delete m_pSeleccionBuilder;
+                m_pSeleccionBuilder = NULL;
+        }
+        m_pSeleccionBuilder = new TSeleccionBuilder(WidgetsContract->GetManager(), GetTriggerButton(), (unsigned long)this);
+        WidgetsContract->GetViewerActivo()->SetInteractionStyle(vtkGinkgoImageViewer::ZOOM_INTERACTION);
+        WidgetsContract->GetManager()->SetCursor(m_pSeleccionBuilder->GetCursor());
 }
 
 void GNC::PointerTool::Disconnect()
 {
-	WidgetsContract->GetViewerActivo()->SetInteractionStyle(vtkGinkgoImageViewer::ZOOM_INTERACTION);
-	WidgetsContract->GetManager()->SetCursor(GNC::GCS::Widgets::CUR_FLECHA);
-	if (m_pSeleccionBuilder != NULL)
-	{		
-		// DesSubscribimos los eventos de la ventana a un metodo especifico del panel de esta herramienta
-		delete m_pSeleccionBuilder;
-		m_pSeleccionBuilder = NULL;
-	}
+        WidgetsContract->GetViewerActivo()->SetInteractionStyle(vtkGinkgoImageViewer::ZOOM_INTERACTION);
+        WidgetsContract->GetManager()->SetCursor(GNC::GCS::Widgets::CUR_FLECHA);
+        if (m_pSeleccionBuilder != NULL) {
+                // DesSubscribimos los eventos de la ventana a un metodo especifico del panel de esta herramienta
+                delete m_pSeleccionBuilder;
+                m_pSeleccionBuilder = NULL;
+        }
 }

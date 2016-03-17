@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -25,44 +25,47 @@
 #include <api/iconfiguracion.h>
 #include "panelesconfiguracionginkgobase.h"
 
-namespace GNC {
-	namespace GCS {
-		class ProxySettings;
-	}
-	namespace GUI {
+namespace GNC
+{
+namespace GCS
+{
+class ProxySettings;
+}
+namespace GUI
+{
 
-		class PanelConfiguracionGeneral : public PanelConfiguracionGeneralBase, public IPasoConfiguracion
-		{
-			public:
-				PanelConfiguracionGeneral(wxWindow* pParent,IDialogoConfiguracion* pDialogo);
-				~PanelConfiguracionGeneral();
+class PanelConfiguracionGeneral : public PanelConfiguracionGeneralBase, public IPasoConfiguracion
+{
+public:
+        PanelConfiguracionGeneral(wxWindow* pParent,IDialogoConfiguracion* pDialogo);
+        ~PanelConfiguracionGeneral();
 
-				void Recargar();
+        void Recargar();
 
-				//region "Metodos de IPasoConfiguracion"
-				wxWindow* GetPanel();
+        //region "Metodos de IPasoConfiguracion"
+        wxWindow* GetPanel();
 
-				std::string GetTitle();
+        std::string GetTitle();
 
-				std::string GetCabecera();
+        std::string GetCabecera();
 
-				bool Validar();
+        bool Validar();
 
-				bool Guardar();
-				//endregion
+        bool Guardar();
+        //endregion
 
-			protected:
-				wxString m_pathDicomDir;
-				void OnCheckForUpdates(wxCommandEvent &event);
-				void OnTextoCambiado(wxCommandEvent &event);
-				void OnIdiomaCambiado(wxCommandEvent &event);
-				virtual void OnProxySettings(wxCommandEvent &event);
-				virtual void OnCheckEnableProxySettings(wxCommandEvent &event);
+protected:
+        wxString m_pathDicomDir;
+        void OnCheckForUpdates(wxCommandEvent &event);
+        void OnTextoCambiado(wxCommandEvent &event);
+        void OnIdiomaCambiado(wxCommandEvent &event);
+        virtual void OnProxySettings(wxCommandEvent &event);
+        virtual void OnCheckEnableProxySettings(wxCommandEvent &event);
 
-				bool m_idiomaCambiado;
-				typedef std::map<std::string, int> TMapLanguages;
-				TMapLanguages m_mapLanguages;
-				GNC::GCS::ProxySettings* pProxySettings;
-		};
-	}
+        bool m_idiomaCambiado;
+        typedef std::map<std::string, int> TMapLanguages;
+        TMapLanguages m_mapLanguages;
+        GNC::GCS::ProxySettings* pProxySettings;
+};
+}
 }

@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -21,19 +21,19 @@
 #pragma once
 
 #if defined(_WINDOWS)
-	#pragma warning (disable : 4231)
-	#pragma warning (disable : 4275)
-	#pragma warning (disable : 4251)
+#pragma warning (disable : 4231)
+#pragma warning (disable : 4275)
+#pragma warning (disable : 4251)
 
-	#if defined(LIBTEST_EXPORTS)
-		#define EXTTEST _declspec(dllimport)
-	#else
-		#define EXTTEST _declspec(dllexport)
-	#endif
+#if defined(LIBTEST_EXPORTS)
+#define EXTTEST _declspec(dllimport)
 #else
-	#if defined(LIBTEST_EXPORTS)
-		#define EXTTEST
-	#else
-		#define EXTTEST __attribute__((visibility("default")))
-	#endif
+#define EXTTEST _declspec(dllexport)
+#endif
+#else
+#if defined(LIBTEST_EXPORTS)
+#define EXTTEST
+#else
+#define EXTTEST __attribute__((visibility("default")))
+#endif
 #endif

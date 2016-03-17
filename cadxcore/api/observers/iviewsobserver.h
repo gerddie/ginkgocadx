@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -20,32 +20,37 @@
 
 #pragma once
 
-namespace GNC {
-	namespace GCS {
-		class IVista;
-	}
+namespace GNC
+{
+namespace GCS
+{
+class IVista;
+}
 }
 
-namespace GNC {
-	namespace GCS {
-		/* Interfaz de observacion de vistas */
-		class EXTAPI IObservadorVistas {
-		public:
+namespace GNC
+{
+namespace GCS
+{
+/* Interfaz de observacion de vistas */
+class EXTAPI IObservadorVistas
+{
+public:
 
-			IObservadorVistas() {}
+        IObservadorVistas() {}
 
-			virtual ~IObservadorVistas() {}
+        virtual ~IObservadorVistas() {}
 
-			//region "Interfaz de observacion de vistas"
+        //region "Interfaz de observacion de vistas"
 
-			virtual void OnVistaActivada(GNC::GCS::IVista* /*pVista*/) {}
+        virtual void OnVistaActivada(GNC::GCS::IVista* /*pVista*/) {}
 
-			// Opcionales
-			virtual void OnVistaCreada(GNC::GCS::IVista* ) {}
+        // Opcionales
+        virtual void OnVistaCreada(GNC::GCS::IVista* ) {}
 
-			virtual void OnVistaDestruida(GNC::GCS::IVista* ) {}
-			//endregion
+        virtual void OnVistaDestruida(GNC::GCS::IVista* ) {}
+        //endregion
 
-		};
-	}
+};
+}
 }

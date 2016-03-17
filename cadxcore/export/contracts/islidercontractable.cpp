@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -24,7 +24,7 @@
 
 GNC::GCS::ISliderContractable::ISliderContractable()
 {
-	SliderContract = NULL;
+        SliderContract = NULL;
 }
 
 GNC::GCS::ISliderContractable::~ISliderContractable()
@@ -33,13 +33,13 @@ GNC::GCS::ISliderContractable::~ISliderContractable()
 
 bool GNC::GCS::ISliderContractable::IsValidContract(IContract* contract)
 {
-	GNC::GCS::ISliderContract* pWContract = dynamic_cast<GNC::GCS::ISliderContract*>(contract);
-	return pWContract != NULL;
+        GNC::GCS::ISliderContract* pWContract = dynamic_cast<GNC::GCS::ISliderContract*>(contract);
+        return pWContract != NULL;
 }
 
-			
+
 void GNC::GCS::ISliderContractable::Register(IContract* contract)
 {
-	GNC::GCS::IContractable::Register(contract);
-	SliderContract = static_cast<GNC::GCS::ISliderContract*>(contract);
+        GNC::GCS::IContractable::Register(contract);
+        SliderContract = static_cast<GNC::GCS::ISliderContract*>(contract);
 }

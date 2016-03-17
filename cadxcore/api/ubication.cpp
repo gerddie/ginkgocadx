@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -22,22 +22,22 @@
 #include "ubication.h"
 
 GIL::Ubicacion::Ubicacion() :
-	Monitorize(false),
-	CleanBefore(false),
-	CleanAfter(false)
+        Monitorize(false),
+        CleanBefore(false),
+        CleanAfter(false)
 {
 }
 
 GIL::Ubicacion::Ubicacion(const std::string& titulo, const std::string& ruta, const std::string& descripcion, bool monitorize, bool cleanbefore, bool cleanafter)
 {
-	this->Titulo = titulo;
-	Update(ruta, descripcion, monitorize, cleanbefore, cleanafter);
+        this->Titulo = titulo;
+        Update(ruta, descripcion, monitorize, cleanbefore, cleanafter);
 
 }
 
 GIL::Ubicacion::Ubicacion(const GIL::Ubicacion& otro)
 {
-	*this = otro;
+        *this = otro;
 }
 
 GIL::Ubicacion::~Ubicacion()
@@ -47,22 +47,22 @@ GIL::Ubicacion::~Ubicacion()
 
 void GIL::Ubicacion::Update(const std::string& ruta, const std::string& desc, bool monitorize, bool cleanbefore, bool cleanafter)
 {
-	this->Ruta        = ruta;
-	this->Descripcion = desc;
-	this->Monitorize  = monitorize;
-	this->CleanBefore = cleanbefore;
-	this->CleanAfter  = cleanafter;
+        this->Ruta        = ruta;
+        this->Descripcion = desc;
+        this->Monitorize  = monitorize;
+        this->CleanBefore = cleanbefore;
+        this->CleanAfter  = cleanafter;
 }
 
 GIL::Ubicacion& GIL::Ubicacion::operator=(const GIL::Ubicacion& otro)
 {
-	this->Titulo      = otro.Titulo;
-	this->Ruta        = otro.Ruta;
-	this->Descripcion = otro.Descripcion;
-	this->Monitorize	= otro.Monitorize;
-	this->CleanBefore	= otro.CleanBefore;
-	this->CleanAfter	= otro.CleanAfter;
+        this->Titulo      = otro.Titulo;
+        this->Ruta        = otro.Ruta;
+        this->Descripcion = otro.Descripcion;
+        this->Monitorize	= otro.Monitorize;
+        this->CleanBefore	= otro.CleanBefore;
+        this->CleanAfter	= otro.CleanAfter;
 
-	return *this;
-}		
+        return *this;
+}
 

@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -33,106 +33,112 @@
 
 class wxImage;
 class wxDataViewCtrl;
-namespace GNC {
-	class StreamingLoader;
-	namespace GCS {
-		class HangingProtocol;
-	}
-	namespace GUI {
-		class HistoryToolMenu;
-		class HistoryTableModel;
-		class ReloadHistoryTimer;
-		class StatusBarProgreso;
-		class wxPopUpMenuThumbnails;
+namespace GNC
+{
+class StreamingLoader;
+namespace GCS
+{
+class HangingProtocol;
+}
+namespace GUI
+{
+class HistoryToolMenu;
+class HistoryTableModel;
+class ReloadHistoryTimer;
+class StatusBarProgreso;
+class wxPopUpMenuThumbnails;
 
-		class HistoryPanel3: public HistoryPanel3Base, public GNC::GCS::IHistoryPanel, public GNC::GCS::IEventsObserver
-		{
-			friend class wxPopUpMenuThumbnails;
-			public:
-				static HistoryPanel3* Instance();
-				static void FreeInstance();
+class HistoryPanel3: public HistoryPanel3Base, public GNC::GCS::IHistoryPanel, public GNC::GCS::IEventsObserver
+{
+        friend class wxPopUpMenuThumbnails;
+public:
+        static HistoryPanel3* Instance();
+        static void FreeInstance();
 
-			protected:
-				HistoryPanel3(wxWindow* pParent);
-				~HistoryPanel3();
-				static HistoryPanel3* m_pInstance;
+protected:
+        HistoryPanel3(wxWindow* pParent);
+        ~HistoryPanel3();
+        static HistoryPanel3* m_pInstance;
 
-			public:
-				virtual bool Show(bool show = true);
-				virtual void ReloadHistory();
-				virtual void ReloadToolBar();	
-				virtual void ReloadCombos(bool checkPurgue);
-				
-				virtual void RefreshSearch(bool force = false);
-				virtual void GetSelectedSeriesPk(std::list<long>& listOfPks);
-				virtual wxWindow* GetWxWindow() { return this;}
+public:
+        virtual bool Show(bool show = true);
+        virtual void ReloadHistory();
+        virtual void ReloadToolBar();
+        virtual void ReloadCombos(bool checkPurgue);
 
-			protected:	
-				virtual void OnHistoryPanelIdle( wxIdleEvent& event );
-				virtual void doRefresh(bool force = false);
-				void RefreshPatientFilter();
-				void RefreshModalityFilter();
-				void RefreshDateFilter();
+        virtual void RefreshSearch(bool force = false);
+        virtual void GetSelectedSeriesPk(std::list<long>& listOfPks);
+        virtual wxWindow* GetWxWindow()
+        {
+                return this;
+        }
 
-				/** Advanced Search button toggled **/
-				virtual void OnAdvancedSearchToggled( wxCommandEvent& event );
+protected:
+        virtual void OnHistoryPanelIdle( wxIdleEvent& event );
+        virtual void doRefresh(bool force = false);
+        void RefreshPatientFilter();
+        void RefreshModalityFilter();
+        void RefreshDateFilter();
 
-				virtual void OnClose(wxCloseEvent &event);
-				virtual void OnSearchChange( wxCommandEvent& event );
-				void OnDateChanged( wxDateEvent& /*event*/ );
-				virtual void OnTreeItemActivated(wxDataViewEvent& event);
-				virtual void OnTreeItemMenu(wxDataViewEvent& event);
-				void ShowPreviewPanel(bool visible);
-				virtual void OnTreeSelChanged(wxDataViewEvent& event);
-				virtual void OnTreeKeyDown(wxKeyEvent& event);
-				virtual void OnThumbnailSelected(wxThumbnailEvent& evt);
-				virtual void OnThumbnailDClick(wxThumbnailEvent& evt);
-				virtual void OnThumbnailRClick(wxThumbnailEvent& evt);
+        /** Advanced Search button toggled **/
+        virtual void OnAdvancedSearchToggled( wxCommandEvent& event );
 
-				virtual void OnOpenMenu(wxCommandEvent& event);
-				virtual void OnOpenWithMenu(wxCommandEvent& event);
-				virtual void OnDelete(wxCommandEvent& event);
-				virtual void OnClearHistory(wxCommandEvent& event);
-				virtual void OnSynchronizeSelected(wxCommandEvent& event);
-				
-				GNC::GCS::IVista* GetViewFromSeries(long pk_series);
+        virtual void OnClose(wxCloseEvent &event);
+        virtual void OnSearchChange( wxCommandEvent& event );
+        void OnDateChanged( wxDateEvent& /*event*/ );
+        virtual void OnTreeItemActivated(wxDataViewEvent& event);
+        virtual void OnTreeItemMenu(wxDataViewEvent& event);
+        void ShowPreviewPanel(bool visible);
+        virtual void OnTreeSelChanged(wxDataViewEvent& event);
+        virtual void OnTreeKeyDown(wxKeyEvent& event);
+        virtual void OnThumbnailSelected(wxThumbnailEvent& evt);
+        virtual void OnThumbnailDClick(wxThumbnailEvent& evt);
+        virtual void OnThumbnailRClick(wxThumbnailEvent& evt);
 
-		public:
-				void OpenSeriesOrStudyWith( long pk_series, bool isSeries);
-				void OpenSeriesOrStudy(long pk_series, bool isSeries, bool force = false);
-				void OpenSeries(GNC::GCS::HistoryController::SeriesModelList& seriesModel, GNC::GCS::IModuleController* pModulo, int idModo, GNC::GCS::Ptr<GNC::GCS::HangingProtocol> hangingProtocol = NULL);
+        virtual void OnOpenMenu(wxCommandEvent& event);
+        virtual void OnOpenWithMenu(wxCommandEvent& event);
+        virtual void OnDelete(wxCommandEvent& event);
+        virtual void OnClearHistory(wxCommandEvent& event);
+        virtual void OnSynchronizeSelected(wxCommandEvent& event);
 
-		public:
-				void ClearHistory();
-				void RemoveSelected();
-				void SelectAll();
-				void DeselectAll();
-				void SynchronizeSelected();
-		protected:
-				void LoadPreviewsFromStudy(const GNC::GCS::Ptr<GNC::GCS::IHistoryController::StudyModel>& pModel);
-				void LoadPreviewsFromSeries(const GNC::GCS::Ptr<GNC::GCS::IHistoryController::SeriesModel>& pModel);
+        GNC::GCS::IVista* GetViewFromSeries(long pk_series);
 
-			public:
-				virtual void ProcesarEvento(GNC::GCS::Events::IEvent *evt);
+public:
+        void OpenSeriesOrStudyWith( long pk_series, bool isSeries);
+        void OpenSeriesOrStudy(long pk_series, bool isSeries, bool force = false);
+        void OpenSeries(GNC::GCS::HistoryController::SeriesModelList& seriesModel, GNC::GCS::IModuleController* pModulo, int idModo, GNC::GCS::Ptr<GNC::GCS::HangingProtocol> hangingProtocol = NULL);
 
-		protected:
-				typedef std::list<wxCheckBox*>  TModalitiesVector;
-				TModalitiesVector m_modalitiesList;
-				HistoryToolMenu*	m_pToolBar;
+public:
+        void ClearHistory();
+        void RemoveSelected();
+        void SelectAll();
+        void DeselectAll();
+        void SynchronizeSelected();
+protected:
+        void LoadPreviewsFromStudy(const GNC::GCS::Ptr<GNC::GCS::IHistoryController::StudyModel>& pModel);
+        void LoadPreviewsFromSeries(const GNC::GCS::Ptr<GNC::GCS::IHistoryController::SeriesModel>& pModel);
 
-				wxObjectDataPtr<HistoryTableModel> m_pHistoryTableModel;
-				wxDataViewCtrl* m_pHistoryTableView;
+public:
+        virtual void ProcesarEvento(GNC::GCS::Events::IEvent *evt);
 
-				ReloadHistoryTimer* m_pTimerReload;
-				GNC::GUI::StatusBarProgreso* m_pStatusBar;
-				std::string m_currentPreviewedFile;
-				//previews...
-				GNC::GCS::Ptr<GNC::StreamingLoader> Loader;
-				bool m_RefreshOnIdle;
+protected:
+        typedef std::list<wxCheckBox*>  TModalitiesVector;
+        TModalitiesVector m_modalitiesList;
+        HistoryToolMenu*	m_pToolBar;
 
-				GNC::GCS::History::StudyPatientFilter m_patientFilter;
-				GNC::GCS::History::StudyModalityFilter m_modalityFilter;
-				GNC::GCS::History::AcquisitionDateFilter m_dateFilter;
-		};
-	}
+        wxObjectDataPtr<HistoryTableModel> m_pHistoryTableModel;
+        wxDataViewCtrl* m_pHistoryTableView;
+
+        ReloadHistoryTimer* m_pTimerReload;
+        GNC::GUI::StatusBarProgreso* m_pStatusBar;
+        std::string m_currentPreviewedFile;
+        //previews...
+        GNC::GCS::Ptr<GNC::StreamingLoader> Loader;
+        bool m_RefreshOnIdle;
+
+        GNC::GCS::History::StudyPatientFilter m_patientFilter;
+        GNC::GCS::History::StudyModalityFilter m_modalityFilter;
+        GNC::GCS::History::AcquisitionDateFilter m_dateFilter;
+};
+}
 }

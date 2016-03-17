@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -28,34 +28,38 @@
 class wxXmlNode;
 // Forward Declarations
 
-namespace GNC {
-	namespace GCS {
-		namespace Widgets {
-			
-			class EXTAPI IWidgetSerializable {
-			public:
-				IWidgetSerializable();				
-				IWidgetSerializable(wxXmlNode* nodo);
-				
-				virtual ~IWidgetSerializable();
-				
-				virtual wxXmlNode* Serializar(const std::string& nombreMedico) = 0;
+namespace GNC
+{
+namespace GCS
+{
+namespace Widgets
+{
 
-				std::map<std::string,std::string> GetPropiedades();
-				
-			protected:
-				void SerializarMetadatos(wxXmlNode* nodo, const std::string& nombreMedico);
-				
-				void LeerMetadatos(wxXmlNode* nodo);
-						
-				void ActualizarTimestampModificacion();
-			
-			protected:
-				time_t m_timestampCreacion;
-				time_t m_timestampModificacion;
-				std::string m_nombreMedico;
-				bool m_modificado;
-			};
-		}
-	}
+class EXTAPI IWidgetSerializable
+{
+public:
+        IWidgetSerializable();
+        IWidgetSerializable(wxXmlNode* nodo);
+
+        virtual ~IWidgetSerializable();
+
+        virtual wxXmlNode* Serializar(const std::string& nombreMedico) = 0;
+
+        std::map<std::string,std::string> GetPropiedades();
+
+protected:
+        void SerializarMetadatos(wxXmlNode* nodo, const std::string& nombreMedico);
+
+        void LeerMetadatos(wxXmlNode* nodo);
+
+        void ActualizarTimestampModificacion();
+
+protected:
+        time_t m_timestampCreacion;
+        time_t m_timestampModificacion;
+        std::string m_nombreMedico;
+        bool m_modificado;
+};
+}
+}
 }

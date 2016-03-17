@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -17,7 +17,7 @@
  * along with Ginkgo CADx; if not, see <http://www.gnu.org/licenses/>.
  *
  */
-#pragma once 
+#pragma once
 #include <vector>
 #include <list>
 #include <map>
@@ -27,96 +27,104 @@
 #include <eventos/eventosginkgo.h>
 
 class wxWindow;
-namespace GNC {
-	namespace GCS {
-		class IVista;
-	}
-	namespace GUI {
-		//nodo seleccionable
-		class ISeleccionablePreview {
-		protected:
-			bool m_seleccionado;
-		public:			
-			ISeleccionablePreview(){
-				m_seleccionado = false;
-			}
-			~ISeleccionablePreview(){
-			}
-			bool EstaSeleccionado()
-			{
-				return m_seleccionado;
-			}
-			virtual void Seleccionar(bool seleccionar, bool force=false) = 0;
-		};
+namespace GNC
+{
+namespace GCS
+{
+class IVista;
+}
+namespace GUI
+{
+//nodo seleccionable
+class ISeleccionablePreview
+{
+protected:
+        bool m_seleccionado;
+public:
+        ISeleccionablePreview()
+        {
+                m_seleccionado = false;
+        }
+        ~ISeleccionablePreview()
+        {
+        }
+        bool EstaSeleccionado()
+        {
+                return m_seleccionado;
+        }
+        virtual void Seleccionar(bool seleccionar, bool force=false) = 0;
+};
 
-		class INodoHistorial {
-		public:
-			typedef std::list<GNC::GUI::INodoHistorial*> TChildrenList;
-			INodoHistorial(INodoHistorial* pPadre) 
-			{
-				m_pPadre = pPadre;
-			}
-			~INodoHistorial() 
-			{
-				m_pPadre = NULL;
-			}
-			INodoHistorial* GetParentNode()
-			{
-				return m_pPadre;
-			}
-			
-			virtual void GetNodeSize(int & /*x*/, int &/*y*/) {};
-			virtual wxWindow* GetWxWindow() = 0;
+class INodoHistorial
+{
+public:
+        typedef std::list<GNC::GUI::INodoHistorial*> TChildrenList;
+        INodoHistorial(INodoHistorial* pPadre)
+        {
+                m_pPadre = pPadre;
+        }
+        ~INodoHistorial()
+        {
+                m_pPadre = NULL;
+        }
+        INodoHistorial* GetParentNode()
+        {
+                return m_pPadre;
+        }
 
-		protected:
-			INodoHistorial* m_pPadre;
-		};
+        virtual void GetNodeSize(int & /*x*/, int &/*y*/) {};
+        virtual wxWindow* GetWxWindow() = 0;
 
-		//eventos variados...
-		//evento de seleccion
-		namespace Events {
-			class EventoSeleccionarHistorial: public GNC::GCS::Events::IEvent
-			{
-			public:
-				EventoSeleccionarHistorial(GNC::GCS::IVista* pView):GNC::GCS::Events::IEvent(ginkgoEVT_Core_HistorialSeleccionar, 0, 100, pView)
-				{
-					m_Nombre = "SeleccionarHistorial";
-					m_pSeleccionable=NULL;
-				}
+protected:
+        INodoHistorial* m_pPadre;
+};
 
-				EventoSeleccionarHistorial(GNC::GCS::IVista* pView, ISeleccionablePreview* pSeleccionable ):GNC::GCS::Events::IEvent(ginkgoEVT_Core_HistorialSeleccionar, 0 , 100, pView)
-				{
-					m_pSeleccionable = pSeleccionable;
-				}
+//eventos variados...
+//evento de seleccion
+namespace Events
+{
+class EventoSeleccionarHistorial: public GNC::GCS::Events::IEvent
+{
+public:
+        EventoSeleccionarHistorial(GNC::GCS::IVista* pView):GNC::GCS::Events::IEvent(ginkgoEVT_Core_HistorialSeleccionar, 0, 100, pView)
+        {
+                m_Nombre = "SeleccionarHistorial";
+                m_pSeleccionable=NULL;
+        }
 
-				~EventoSeleccionarHistorial()
-				{
-				}
+        EventoSeleccionarHistorial(GNC::GCS::IVista* pView, ISeleccionablePreview* pSeleccionable ):GNC::GCS::Events::IEvent(ginkgoEVT_Core_HistorialSeleccionar, 0 , 100, pView)
+        {
+                m_pSeleccionable = pSeleccionable;
+        }
 
-				ISeleccionablePreview* GetSeleccionable()
-				{
-					return m_pSeleccionable;
-				}
+        ~EventoSeleccionarHistorial()
+        {
+        }
 
-			protected:
-				ISeleccionablePreview* m_pSeleccionable;
-			};
-			
-			class EventoSetFocusHistorial: public GNC::GCS::Events::IEvent
-			{
-			public:
+        ISeleccionablePreview* GetSeleccionable()
+        {
+                return m_pSeleccionable;
+        }
 
-				EventoSetFocusHistorial(GNC::GCS::IVista* pView):GNC::GCS::Events::IEvent(ginkgoEVT_Core_SetFocus, 0, 100, pView)
-				{
-					m_Nombre = "SetFocusHistorial";
-				}
+protected:
+        ISeleccionablePreview* m_pSeleccionable;
+};
 
-				~EventoSetFocusHistorial()
-				{
-				}
-			protected:
-			};
+class EventoSetFocusHistorial: public GNC::GCS::Events::IEvent
+{
+public:
 
-		}//eventos
-	}
+        EventoSetFocusHistorial(GNC::GCS::IVista* pView):GNC::GCS::Events::IEvent(ginkgoEVT_Core_SetFocus, 0, 100, pView)
+        {
+                m_Nombre = "SetFocusHistorial";
+        }
+
+        ~EventoSetFocusHistorial()
+        {
+        }
+protected:
+};
+
+}//eventos
+}
 }

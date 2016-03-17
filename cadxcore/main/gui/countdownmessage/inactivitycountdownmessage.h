@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -23,21 +23,23 @@
 #include <wx/timer.h>
 #include "countdownmessagebase.h"
 
-namespace GNC {
-	namespace GUI {
-		class InactivityCountdownMessage: public InactivityCountdownMessageBase, public wxTimer
-		{
-		public:
-			InactivityCountdownMessage(wxWindow* pParent, const wxString& message);
-			~InactivityCountdownMessage();
-			virtual bool Show(bool show=true);
-		protected:
-			virtual void OnCancel(wxCommandEvent &event);
-			virtual void OnCloseButton(wxCommandEvent &event);
-			virtual void OnClose(wxCloseEvent &event);
-			virtual void Notify();
-			int m_last;
-			wxString m_message;
-		};
-	}
+namespace GNC
+{
+namespace GUI
+{
+class InactivityCountdownMessage: public InactivityCountdownMessageBase, public wxTimer
+{
+public:
+        InactivityCountdownMessage(wxWindow* pParent, const wxString& message);
+        ~InactivityCountdownMessage();
+        virtual bool Show(bool show=true);
+protected:
+        virtual void OnCancel(wxCommandEvent &event);
+        virtual void OnCloseButton(wxCommandEvent &event);
+        virtual void OnClose(wxCloseEvent &event);
+        virtual void Notify();
+        int m_last;
+        wxString m_message;
+};
+}
 }

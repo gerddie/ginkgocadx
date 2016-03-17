@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -21,21 +21,26 @@
 #pragma once
 #include <api/math/geometry.h>
 
-namespace GNC {
-	namespace GCS {
-		namespace Widgets {
-			namespace Observadores {
-				class IObservadorWindowLevel {
-				public:
-					typedef GNC::GCS::Vector TVector;
+namespace GNC
+{
+namespace GCS
+{
+namespace Widgets
+{
+namespace Observadores
+{
+class IObservadorWindowLevel
+{
+public:
+        typedef GNC::GCS::Vector TVector;
 
-					virtual ~IObservadorWindowLevel() {}
+        virtual ~IObservadorWindowLevel() {}
 
-					virtual void OnStart() = 0;
-					virtual void OnAjuste(TVector& start, TVector& stop) = 0;
-					virtual void OnEnd() = 0;
-				};
-			};
-		};
-	};
+        virtual void OnStart() = 0;
+        virtual void OnAjuste(TVector& start, TVector& stop) = 0;
+        virtual void OnEnd() = 0;
+};
+};
+};
+};
 };

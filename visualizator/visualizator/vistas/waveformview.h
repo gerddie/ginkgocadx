@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -29,60 +29,65 @@
 
 class wxWindow;
 class wxVtkPageView;
-namespace GNKVisualizator{
-	class VisualizatorStudy;
-	namespace GUI{
-		class GWaveformView;
-	}
+namespace GNKVisualizator
+{
+class VisualizatorStudy;
+namespace GUI
+{
+class GWaveformView;
+}
 
-	class WaveFormView : public GNC::GCS::IVista, public GNC::GCS::IViewContract
-	{
-	public:
-		/* Constructor */
-		WaveFormView(const GNC::GCS::Ptr<GNKVisualizator::ECGStudy>& estudio);
+class WaveFormView : public GNC::GCS::IVista, public GNC::GCS::IViewContract
+{
+public:
+        /* Constructor */
+        WaveFormView(const GNC::GCS::Ptr<GNKVisualizator::ECGStudy>& estudio);
 
-		//----------------------------------------------------------------------------------------------------
-		//region Interfaz de Carga
+        //----------------------------------------------------------------------------------------------------
+        //region Interfaz de Carga
 
-		// Comienzo de carga. Metodo sincrono con la interfaz.
-		virtual void OnCargaIniciada();
+        // Comienzo de carga. Metodo sincrono con la interfaz.
+        virtual void OnCargaIniciada();
 
-		// Paso 1: Cargar los ficheros en memoria. Metodo NO sincrono con la interfaz.
-		virtual void CargarEstudio(GNC::GCS::IComando* pCmdInvocador);
+        // Paso 1: Cargar los ficheros en memoria. Metodo NO sincrono con la interfaz.
+        virtual void CargarEstudio(GNC::GCS::IComando* pCmdInvocador);
 
-		// Finalizacion de la carga. Metodo sincrono con la interfaz.
-		virtual void OnCargaFinalizada();
+        // Finalizacion de la carga. Metodo sincrono con la interfaz.
+        virtual void OnCargaFinalizada();
 
-		// Paso 2: Inicializacion del pipeline. Metodo sincrono con la interfaz.
-		virtual void IniciarPipeline();
+        // Paso 2: Inicializacion del pipeline. Metodo sincrono con la interfaz.
+        virtual void IniciarPipeline();
 
-		// Parada del pipeline. Metodo sincrono con la interfaz Se invoca en el caso de que ocurra un error de carga.
-		virtual void DetenerPipeline();
+        // Parada del pipeline. Metodo sincrono con la interfaz Se invoca en el caso de que ocurra un error de carga.
+        virtual void DetenerPipeline();
 
-		//endregion
+        //endregion
 
-		/* Destructor */
-		~WaveFormView();
+        /* Destructor */
+        ~WaveFormView();
 
-		virtual bool SoportaGuardar();
+        virtual bool SoportaGuardar();
 
-		virtual bool SoportaExportar();
+        virtual bool SoportaExportar();
 
-		virtual void Activar();
-		virtual void ActivarRuta(long /*file_pk*/){}
+        virtual void Activar();
+        virtual void ActivarRuta(long /*file_pk*/) {}
 
-		virtual wxWindow* GetWindow();
+        virtual wxWindow* GetWindow();
 
-		GNC::GCS::Ptr<GNKVisualizator::ECGStudy>& GetECGStudy() {return VisualizatorStudy;}
+        GNC::GCS::Ptr<GNKVisualizator::ECGStudy>& GetECGStudy()
+        {
+                return VisualizatorStudy;
+        }
 
-		//iviewcontract
-		virtual GNC::GCS::IVista* GetView();
-	
-	protected:
-		GNKVisualizator::GUI::GWaveformView*             GVista;
-		GNC::GCS::Ptr<GNKVisualizator::ECGStudy>  VisualizatorStudy;
+        //iviewcontract
+        virtual GNC::GCS::IVista* GetView();
 
-		void GenerarTitulo();
-	};
+protected:
+        GNKVisualizator::GUI::GWaveformView*             GVista;
+        GNC::GCS::Ptr<GNKVisualizator::ECGStudy>  VisualizatorStudy;
+
+        void GenerarTitulo();
+};
 }
 

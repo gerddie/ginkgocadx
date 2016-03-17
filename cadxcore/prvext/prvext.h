@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -42,115 +42,117 @@
 
 class wxWindow;
 
-namespace GNC {
-	namespace GCS {
-		class IEntorno;
-		class IModuleController;
-	}
+namespace GNC
+{
+namespace GCS
+{
+class IEntorno;
+class IModuleController;
+}
 }
 class EXTAPI PrivateExtension
 {
 public:
-	typedef std::list<GNC::GCS::IModuleController*> TListControllers;
-	PrivateExtension(const std::string& sid, const std::string& provider, const std::string& description, const char* updateurl)
-	{
-		this->sid = sid;
-		this->provider = provider;
-		this->description = description;
-		this->updateurl = updateurl;
-	}
-	PrivateExtension(const std::string& sid, const std::string& provider, const std::string& description, const char* updateurl, const wxBitmap& bitmapIcon) : icon(bitmapIcon)
-	{
-		this->sid = sid;
-		this->provider = provider;
-		this->description = description;
-		this->updateurl = updateurl;
-	}
+        typedef std::list<GNC::GCS::IModuleController*> TListControllers;
+        PrivateExtension(const std::string& sid, const std::string& provider, const std::string& description, const char* updateurl)
+        {
+                this->sid = sid;
+                this->provider = provider;
+                this->description = description;
+                this->updateurl = updateurl;
+        }
+        PrivateExtension(const std::string& sid, const std::string& provider, const std::string& description, const char* updateurl, const wxBitmap& bitmapIcon) : icon(bitmapIcon)
+        {
+                this->sid = sid;
+                this->provider = provider;
+                this->description = description;
+                this->updateurl = updateurl;
+        }
 
-	PrivateExtension(const PrivateExtension& o) = default; 
+        PrivateExtension(const PrivateExtension& o) = default;
 
-	virtual ~PrivateExtension()
-	{
-	}
+        virtual ~PrivateExtension()
+        {
+        }
 
-	virtual TListControllers InitializeLibrary(GNC::GCS::IEntorno* pEntorno) = 0;
+        virtual TListControllers InitializeLibrary(GNC::GCS::IEntorno* pEntorno) = 0;
 
-	virtual bool IsActive() = 0;
+        virtual bool IsActive() = 0;
 
 
-	const std::string& GetSID() const
-	{
-		return this->sid;
-	}
+        const std::string& GetSID() const
+        {
+                return this->sid;
+        }
 
-	const std::string& GetProvider() const
-	{
-		return this->provider;
-	}
+        const std::string& GetProvider() const
+        {
+                return this->provider;
+        }
 
-	const std::string& GetDescription() const
-	{
-		return this->description;
-	}
+        const std::string& GetDescription() const
+        {
+                return this->description;
+        }
 
-	void AsignPath(const std::string& path) 
-	{
-		this->path = path;
-	}
+        void AsignPath(const std::string& path)
+        {
+                this->path = path;
+        }
 
-	const std::string& GetPath() const
-	{
-		return this->path;
-	}
+        const std::string& GetPath() const
+        {
+                return this->path;
+        }
 
-	const std::string& GetUpdateURL() const
-	{
-		return updateurl;
-	}
+        const std::string& GetUpdateURL() const
+        {
+                return updateurl;
+        }
 
-	wxBitmap& GetIcon() {
-		return icon;
-	}
+        wxBitmap& GetIcon()
+        {
+                return icon;
+        }
 
-	PrivateExtension& operator=(const PrivateExtension& o) = default; 
+        PrivateExtension& operator=(const PrivateExtension& o) = default;
 
-	friend std::ostream& operator<<(std::ostream &os, const PrivateExtension& ext)
-	{
-		os << "SID=" << ext.sid.c_str() << std::endl;
-		os << "DESCRIPTION=" << ext.description.c_str() << std::endl;
-		os << "PROVIDER=" << ext.provider.c_str() << std::endl;
-		os << "UPDATEURL=" << ext.updateurl.c_str();
-		return os;		
-	}
+        friend std::ostream& operator<<(std::ostream &os, const PrivateExtension& ext)
+        {
+                os << "SID=" << ext.sid.c_str() << std::endl;
+                os << "DESCRIPTION=" << ext.description.c_str() << std::endl;
+                os << "PROVIDER=" << ext.provider.c_str() << std::endl;
+                os << "UPDATEURL=" << ext.updateurl.c_str();
+                return os;
+        }
 
-	friend std::ostream& operator<<(std::ostream& os, PrivateExtension* ext)
-	{
-		if (ext != NULL) {
-			return os << (*ext);
-		}
-		else {
-			return os << "NULL";
-		}
-	}
+        friend std::ostream& operator<<(std::ostream& os, PrivateExtension* ext)
+        {
+                if (ext != NULL) {
+                        return os << (*ext);
+                } else {
+                        return os << "NULL";
+                }
+        }
 
 protected:
-	std::string sid;
-	std::string provider;
-	std::string description;
-	std::string path;
-	std::string updateurl;
-	wxBitmap    icon;
+        std::string sid;
+        std::string provider;
+        std::string description;
+        std::string path;
+        std::string updateurl;
+        wxBitmap    icon;
 
 private:
-	int ParseSVNBuild(const char* str)
-	{
-		int num = -1;
-		std::string beg;
-		std::string end;
-		std::stringstream ss(str);
-		ss >> beg >> num >> end;
-		return num;
-	}
+        int ParseSVNBuild(const char* str)
+        {
+                int num = -1;
+                std::string beg;
+                std::string end;
+                std::stringstream ss(str);
+                ss >> beg >> num >> end;
+                return num;
+        }
 
 };
 

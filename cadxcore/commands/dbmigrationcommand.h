@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -25,30 +25,33 @@
 
 class wxSemaphore;
 
-namespace GADAPI {
-	//lee un directorio en profundidad y lo incluye en el dicomdir
-	class EXTAPI DBMigrationCommandParams : public GNC::GCS::IComandoParams {
-	public:
-		DBMigrationCommandParams(const std::string& oldDicomDirPath,const std::string& newDicomDirPath, bool deleteAfterFinish);
-		virtual ~DBMigrationCommandParams();
+namespace GADAPI
+{
+//lee un directorio en profundidad y lo incluye en el dicomdir
+class EXTAPI DBMigrationCommandParams : public GNC::GCS::IComandoParams
+{
+public:
+        DBMigrationCommandParams(const std::string& oldDicomDirPath,const std::string& newDicomDirPath, bool deleteAfterFinish);
+        virtual ~DBMigrationCommandParams();
 
-		std::string OldDicomDir;
-		std::string NewDicomDir;
-		bool DeleteAfterFinish;
-		wxSemaphore* SemaphoreWaitIncludeFiles;
-	};
+        std::string OldDicomDir;
+        std::string NewDicomDir;
+        bool DeleteAfterFinish;
+        wxSemaphore* SemaphoreWaitIncludeFiles;
+};
 
-	class EXTAPI DBMigrationCommand : public GNC::GCS::IComando, public GNC::GCS::IEventsObserver {
-	public:
+class EXTAPI DBMigrationCommand : public GNC::GCS::IComando, public GNC::GCS::IEventsObserver
+{
+public:
 
-		DBMigrationCommand(DBMigrationCommandParams* pParams);
-     protected:
-		virtual void Execute();
-		virtual void Update();
+        DBMigrationCommand(DBMigrationCommandParams* pParams);
+protected:
+        virtual void Execute();
+        virtual void Update();
 
-		virtual void ProcesarEvento(GNC::GCS::Events::IEvent *evt) ;
-	protected:
+        virtual void ProcesarEvento(GNC::GCS::Events::IEvent *evt) ;
+protected:
 
-		DBMigrationCommandParams* m_pMigrationParams;
-	};
+        DBMigrationCommandParams* m_pMigrationParams;
+};
 }

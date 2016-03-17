@@ -6,8 +6,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -25,22 +25,27 @@
 #include <api/api.h>
 #include <export/contracts/iwidgetscontract.h>
 
-namespace GIL {
-	namespace DICOM {
-		class DicomDataset;
-	}
+namespace GIL
+{
+namespace DICOM
+{
+class DicomDataset;
+}
 }
 
-namespace GNC {
-	namespace GCS {
-		class EXTAPI IPixelsBluringContract : public IWidgetsContract {
-		public:
-			IPixelsBluringContract();
+namespace GNC
+{
+namespace GCS
+{
+class EXTAPI IPixelsBluringContract : public IWidgetsContract
+{
+public:
+        IPixelsBluringContract();
 
-			~IPixelsBluringContract();
+        ~IPixelsBluringContract();
 
-			virtual void Setup(const std::string& modality);
-		};
-	}
+        virtual void Setup(const std::string& modality);
+};
+}
 }
 

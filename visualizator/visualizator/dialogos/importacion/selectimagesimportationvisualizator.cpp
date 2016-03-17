@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -48,77 +48,79 @@
 
 #include "selectimagesimportationvisualizator.h"
 
-namespace GNKVisualizator {
-	namespace GUI {
+namespace GNKVisualizator
+{
+namespace GUI
+{
 
-		SelectImagesImportationVisualizator::SelectImagesImportationVisualizator(wxWindow* pParent,IWizard* pWizard,const GNC::GCS::Ptr<GNC::GUI::ImportationData>& importationData,const std::string &dirTemporal): 
-			GNC::GUI::SelectImagesImportation(pParent, dirTemporal, pWizard, importationData->m_pIntegrationModel)
-		{
-			Hide();
-			m_dicomizado = false;
-			m_pImportationData = importationData;
+SelectImagesImportationVisualizator::SelectImagesImportationVisualizator(wxWindow* pParent,IWizard* pWizard,const GNC::GCS::Ptr<GNC::GUI::ImportationData>& importationData,const std::string &dirTemporal):
+        GNC::GUI::SelectImagesImportation(pParent, dirTemporal, pWizard, importationData->m_pIntegrationModel)
+{
+        Hide();
+        m_dicomizado = false;
+        m_pImportationData = importationData;
 
-			m_dirTemporal=dirTemporal;
-		}
+        m_dirTemporal=dirTemporal;
+}
 
-		SelectImagesImportationVisualizator::~SelectImagesImportationVisualizator()
-		{
-		}
+SelectImagesImportationVisualizator::~SelectImagesImportationVisualizator()
+{
+}
 
 //region "Metodos heredados de Ipasowizard"
-		bool SelectImagesImportationVisualizator::Validar(){
-			bool correcto =  true;
-			if(GNC::GUI::SelectImagesImportation::Validar())
-			{
-				if(!m_dicomizado) {
-					m_dicomizado = Dicomizar();
-					correcto = m_dicomizado;
-				}
-			} else {
-				correcto = false;
-			}
-			return correcto;
-		}
+bool SelectImagesImportationVisualizator::Validar()
+{
+        bool correcto =  true;
+        if(GNC::GUI::SelectImagesImportation::Validar()) {
+                if(!m_dicomizado) {
+                        m_dicomizado = Dicomizar();
+                        correcto = m_dicomizado;
+                }
+        } else {
+                correcto = false;
+        }
+        return correcto;
+}
 
-		bool SelectImagesImportationVisualizator::Dicomizar() 
-		{
-			for(ListaFicheros::const_iterator it=m_pListaFicheros->begin(); it!= m_pListaFicheros->end(); ++it) {
-				std::string rutaFichero = (*it);
-				m_pImportationData->m_SourceFiles.push_back(rutaFichero);
-			}
+bool SelectImagesImportationVisualizator::Dicomizar()
+{
+        for(ListaFicheros::const_iterator it=m_pListaFicheros->begin(); it!= m_pListaFicheros->end(); ++it) {
+                std::string rutaFichero = (*it);
+                m_pImportationData->m_SourceFiles.push_back(rutaFichero);
+        }
 
-			RellenarTagsComunes(m_pImportationData->baseImages);
-			GADAPI::DicomizeCommandParams* pDicomParams = new GADAPI::DicomizeCommandParams(m_pImportationData,m_dirTemporal);
-			GADAPI::DicomizeCommand* pDicomCmd = new GADAPI::DicomizeCommand(pDicomParams);
-			GNC::GCS::IEntorno::Instance()->GetCommandController()->ProcessAsync(_Std("Performing tasks of integration ..."),pDicomCmd,NULL);
-			//se limpia la lista porque ya avisaremos de los nuevos ficheros
-			m_pListaFicheros->clear();
-			//
-			return true;
-			
-		}
+        RellenarTagsComunes(m_pImportationData->baseImages);
+        GADAPI::DicomizeCommandParams* pDicomParams = new GADAPI::DicomizeCommandParams(m_pImportationData,m_dirTemporal);
+        GADAPI::DicomizeCommand* pDicomCmd = new GADAPI::DicomizeCommand(pDicomParams);
+        GNC::GCS::IEntorno::Instance()->GetCommandController()->ProcessAsync(_Std("Performing tasks of integration ..."),pDicomCmd,NULL);
+        //se limpia la lista porque ya avisaremos de los nuevos ficheros
+        m_pListaFicheros->clear();
+        //
+        return true;
 
-		void SelectImagesImportationVisualizator::RellenarTagsComunes(GIL::DICOM::DicomDataset& base)
-		{
-			std::string tag;
+}
 
-			//institucion
-			if (GNC::GCS::ConfigurationController::Instance()->readStringGeneral("/GinkgoCore/Estacion","CentroNombre",tag)) {
-				base.tags[std::string("0008|0080")] = tag;
-			}
+void SelectImagesImportationVisualizator::RellenarTagsComunes(GIL::DICOM::DicomDataset& base)
+{
+        std::string tag;
 
-			//nombre del medico responsable de la institucion
-			if (GNC::GCS::ConfigurationController::Instance()->readStringUser("/GinkgoCore/Estacion","NombreMedico",tag)) {
-				base.tags[std::string("0008|0090")] = tag;
-			}
+        //institucion
+        if (GNC::GCS::ConfigurationController::Instance()->readStringGeneral("/GinkgoCore/Estacion","CentroNombre",tag)) {
+                base.tags[std::string("0008|0080")] = tag;
+        }
 
-			base.tags[std::string("0008|0070")] = EXT_PROVIDER;
+        //nombre del medico responsable de la institucion
+        if (GNC::GCS::ConfigurationController::Instance()->readStringUser("/GinkgoCore/Estacion","NombreMedico",tag)) {
+                base.tags[std::string("0008|0090")] = tag;
+        }
 
-			base.tags[std::string("0008|1090")] = EXT_NAME;
+        base.tags[std::string("0008|0070")] = EXT_PROVIDER;
 
-			//uid de aprimaria
-			base.tags[std::string("0018|1030")] = EXT_IMPORTER_SID;
-		}
-	//endregion
-	}
+        base.tags[std::string("0008|1090")] = EXT_NAME;
+
+        //uid de aprimaria
+        base.tags[std::string("0018|1030")] = EXT_IMPORTER_SID;
+}
+//endregion
+}
 }

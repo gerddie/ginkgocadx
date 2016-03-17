@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -27,26 +27,27 @@ class wxSizer;
 class wxXmlNode;
 class wxXmlDocument;
 
-namespace GNKVisualizator {
-	class VisualizatorStudy : public GNC::GCS::IStudyContext
-	{
-	public:
-		
-		VisualizatorStudy();
-		~VisualizatorStudy();
+namespace GNKVisualizator
+{
+class VisualizatorStudy : public GNC::GCS::IStudyContext
+{
+public:
 
-		void InitializeContext(long seriesPk);
+        VisualizatorStudy();
+        ~VisualizatorStudy();
 
-		//overlays...
-		bool TieneOverlaysImagenActiva();
-		bool TieneOverlaysImagen(const int indiceImagen);
-		GNC::GCS::Ptr<GNKVisualizator::TListaOverlays> GetOverlaysImagenActiva();
-		GNC::GCS::Ptr<GNKVisualizator::TListaOverlays> GetOverlaysImagen(const int indice);
+        void InitializeContext(long seriesPk);
 
-		virtual void CallbackCargarTagsImagen(const int /*indice*/, GIL::DICOM::IDICOMManager* /*pDicomManager*/) {}
+        //overlays...
+        bool TieneOverlaysImagenActiva();
+        bool TieneOverlaysImagen(const int indiceImagen);
+        GNC::GCS::Ptr<GNKVisualizator::TListaOverlays> GetOverlaysImagenActiva();
+        GNC::GCS::Ptr<GNKVisualizator::TListaOverlays> GetOverlaysImagen(const int indice);
 
-	protected:
+        virtual void CallbackCargarTagsImagen(const int /*indice*/, GIL::DICOM::IDICOMManager* /*pDicomManager*/) {}
 
-		std::vector<GNC::GCS::Ptr<TListaOverlays> >                ListaOverlays;
-	};
+protected:
+
+        std::vector<GNC::GCS::Ptr<TListaOverlays> >                ListaOverlays;
+};
 }

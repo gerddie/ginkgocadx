@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -24,43 +24,48 @@
 
 class wxWindow;
 
-class IDialogoConfiguracion {
+class IDialogoConfiguracion
+{
 public:
-	IDialogoConfiguracion() {}
-	virtual ~IDialogoConfiguracion() {}
-	virtual void OnPropiedadCambiada() = 0;
+        IDialogoConfiguracion() {}
+        virtual ~IDialogoConfiguracion() {}
+        virtual void OnPropiedadCambiada() = 0;
 };
 
-class IPasoConfiguracion{
+class IPasoConfiguracion
+{
 public:
-	IPasoConfiguracion(IDialogoConfiguracion* pDialogo) {
-		m_pDialogoConfiguracion = pDialogo;
-	}
+        IPasoConfiguracion(IDialogoConfiguracion* pDialogo)
+        {
+                m_pDialogoConfiguracion = pDialogo;
+        }
 
-	virtual ~IPasoConfiguracion() {
-		m_pDialogoConfiguracion = NULL;
-	}
-	
+        virtual ~IPasoConfiguracion()
+        {
+                m_pDialogoConfiguracion = NULL;
+        }
+
 protected:
-	IDialogoConfiguracion* m_pDialogoConfiguracion;
-	
+        IDialogoConfiguracion* m_pDialogoConfiguracion;
+
 public:
 
-	void OnPropiedadCambiada() {
-		if(m_pDialogoConfiguracion != NULL) {
-			m_pDialogoConfiguracion->OnPropiedadCambiada();
-		}
-	}
+        void OnPropiedadCambiada()
+        {
+                if(m_pDialogoConfiguracion != NULL) {
+                        m_pDialogoConfiguracion->OnPropiedadCambiada();
+                }
+        }
 
-	virtual void Recargar() = 0;
+        virtual void Recargar() = 0;
 
-	virtual wxWindow* GetPanel() = 0;
+        virtual wxWindow* GetPanel() = 0;
 
-	virtual std::string GetTitle() = 0;
+        virtual std::string GetTitle() = 0;
 
-	virtual std::string GetCabecera() = 0;
+        virtual std::string GetCabecera() = 0;
 
-	virtual bool Validar() = 0;
+        virtual bool Validar() = 0;
 
-	virtual bool Guardar() = 0;
+        virtual bool Guardar() = 0;
 };

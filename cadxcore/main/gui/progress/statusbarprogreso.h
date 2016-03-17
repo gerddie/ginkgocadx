@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -48,53 +48,62 @@ class EventoMensajesUsuarioAsync : public wxEvent
 {
 
 public:
-	typedef enum {
-		StatusBar,
-		PopUp
-	} TTipoMensaje;
+        typedef enum {
+                StatusBar,
+                PopUp
+        } TTipoMensaje;
 
-	typedef enum {
-		Informacion,
-		Aviso,
-		Error
-	} TipoGravedad;
+        typedef enum {
+                Informacion,
+                Aviso,
+                Error
+        } TipoGravedad;
 
-	EventoMensajesUsuarioAsync(const std::string& texto = "", TTipoMensaje tipo = StatusBar, TipoGravedad gravedad = Informacion) : m_Texto(texto)
-	{
-		SetEventType(wxEVT_MENSAJES_USUARIO_ASYNC);
-		m_tipoMensaje = tipo;
-		m_gravedad = gravedad;
-	}
+        EventoMensajesUsuarioAsync(const std::string& texto = "", TTipoMensaje tipo = StatusBar, TipoGravedad gravedad = Informacion) : m_Texto(texto)
+        {
+                SetEventType(wxEVT_MENSAJES_USUARIO_ASYNC);
+                m_tipoMensaje = tipo;
+                m_gravedad = gravedad;
+        }
 
-	EventoMensajesUsuarioAsync(const EventoMensajesUsuarioAsync& event) : wxEvent(event), m_Texto(event.m_Texto), m_gravedad(event.m_gravedad) { m_tipoMensaje = event.m_tipoMensaje;}
+        EventoMensajesUsuarioAsync(const EventoMensajesUsuarioAsync& event) : wxEvent(event), m_Texto(event.m_Texto), m_gravedad(event.m_gravedad)
+        {
+                m_tipoMensaje = event.m_tipoMensaje;
+        }
 
-	wxString GetTexto()
-	{
-		return wxString::FromUTF8(m_Texto.c_str());
+        wxString GetTexto()
+        {
+                return wxString::FromUTF8(m_Texto.c_str());
 
-	}
-	TTipoMensaje GetTipo() {
-		return m_tipoMensaje;
-	}
+        }
+        TTipoMensaje GetTipo()
+        {
+                return m_tipoMensaje;
+        }
 
-	void SetGravedad(TipoGravedad gravedad) {
-		m_gravedad = gravedad;
-	}
+        void SetGravedad(TipoGravedad gravedad)
+        {
+                m_gravedad = gravedad;
+        }
 
-	TipoGravedad GetGravedad() {
-		return m_gravedad;
-	}
+        TipoGravedad GetGravedad()
+        {
+                return m_gravedad;
+        }
 
-	virtual wxEvent *Clone() const { return new EventoMensajesUsuarioAsync(*this); }
+        virtual wxEvent *Clone() const
+        {
+                return new EventoMensajesUsuarioAsync(*this);
+        }
 
 protected:
-	std::string m_Texto;
-	TTipoMensaje m_tipoMensaje;
+        std::string m_Texto;
+        TTipoMensaje m_tipoMensaje;
 
-	TipoGravedad m_gravedad;
+        TipoGravedad m_gravedad;
 
 private:
-    DECLARE_DYNAMIC_CLASS_NO_ASSIGN(EventoMensajesUsuarioAsync)
+        DECLARE_DYNAMIC_CLASS_NO_ASSIGN(EventoMensajesUsuarioAsync)
 };
 
 
@@ -106,53 +115,55 @@ typedef void (wxEvtHandler::*EventoMensajesUsuarioAsyncFunction)(EventoMensajesU
 #define EVT_MENSAJES_USUARIO(func) \
     wx__DECLARE_EVT0(wxEVT_MENSAJES_USUARIO_ASYNC, EventoMensajesUsuarioAsyncHandler(func))
 
-namespace GNC {
-	namespace GUI {
-		class EXTAPI StatusBarProgreso : public wxStatusBar, public GNC::IControladorProgreso, public GNC::GCS::IEventsObserver {
-			enum
-			 {
-				  Field_Text,
-				  Field_GifProgreso,
-				  Field_TextoTarea,
-				  Field_ProgresoTarea,
-				  Field_Max
-			 };
-		public:
-			typedef std::map<long, PanelTarea*> MapaTareasType;
+namespace GNC
+{
+namespace GUI
+{
+class EXTAPI StatusBarProgreso : public wxStatusBar, public GNC::IControladorProgreso, public GNC::GCS::IEventsObserver
+{
+        enum {
+                Field_Text,
+                Field_GifProgreso,
+                Field_TextoTarea,
+                Field_ProgresoTarea,
+                Field_Max
+        };
+public:
+        typedef std::map<long, PanelTarea*> MapaTareasType;
 
-			StatusBarProgreso( wxWindow* pPadre, wxWindow* pPadrePanel, bool listenMessages, wxWindowID id = wxID_ANY, long style = wxST_SIZEGRIP );
+        StatusBarProgreso( wxWindow* pPadre, wxWindow* pPadrePanel, bool listenMessages, wxWindowID id = wxID_ANY, long style = wxST_SIZEGRIP );
 
-			~StatusBarProgreso();
+        ~StatusBarProgreso();
 
-			virtual void InsertarTarea(long taskId, const std::string& text);
+        virtual void InsertarTarea(long taskId, const std::string& text);
 
-			virtual void EliminarTarea(long taskId);
+        virtual void EliminarTarea(long taskId);
 
-			virtual void SetProgresoTarea(long taskId, float normalizedProgress, const std::string& text);
+        virtual void SetProgresoTarea(long taskId, float normalizedProgress, const std::string& text);
 
-			virtual void ShowProgressDialog(bool show);
-
-
-		protected:
-			void OnMostrarOcultarDialogoProgreso(wxMouseEvent& event);
-			void OnSize(wxSizeEvent& event);
-			void OnMove(wxMoveEvent& event);
-
-			void OnMensajeUsuario(EventoMensajesUsuarioAsync& event );
-			void OnIdle(wxIdleEvent &WXUNUSED(event));
+        virtual void ShowProgressDialog(bool show);
 
 
-		public:
-			void ProcesarEvento(GNC::GCS::Events::IEvent *evt) ;
+protected:
+        void OnMostrarOcultarDialogoProgreso(wxMouseEvent& event);
+        void OnSize(wxSizeEvent& event);
+        void OnMove(wxMoveEvent& event);
 
-			MapaTareasType m_MapaTareas;
-			PanelTareasBase*	     m_pPanelTareas;
-			wxAnimationCtrl* m_pIconoProgreso;
-			wxGauge* m_pProgresoTarea;
-			wxStaticText* m_pMensajeTarea;
-			wxStaticBitmap* m_pIconoParado;
-			bool m_dirty;
+        void OnMensajeUsuario(EventoMensajesUsuarioAsync& event );
+        void OnIdle(wxIdleEvent &WXUNUSED(event));
 
-		};
-	}
+
+public:
+        void ProcesarEvento(GNC::GCS::Events::IEvent *evt) ;
+
+        MapaTareasType m_MapaTareas;
+        PanelTareasBase*	     m_pPanelTareas;
+        wxAnimationCtrl* m_pIconoProgreso;
+        wxGauge* m_pProgresoTarea;
+        wxStaticText* m_pMensajeTarea;
+        wxStaticBitmap* m_pIconoParado;
+        bool m_dirty;
+
+};
+}
 }

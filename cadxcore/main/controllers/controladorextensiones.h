@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -25,42 +25,44 @@
 #include <map>
 #include <string>
 
-namespace GNC {
+namespace GNC
+{
 
-	class EXTAPI ControladorExtensiones : public GNC::GCS::IControladorExtensiones {
-	public:
+class EXTAPI ControladorExtensiones : public GNC::GCS::IControladorExtensiones
+{
+public:
 
-		static ControladorExtensiones* Instance();
-		static void FreeInstance();
+        static ControladorExtensiones* Instance();
+        static void FreeInstance();
 
-		void RegistrarModulo(GNC::GCS::IModuleController* pCtrlModulo);
-		void DesRegistrarModulo(GNC::GCS::IModuleController* pCtrlModulo);
-		void DesRegistrarModulos();
+        void RegistrarModulo(GNC::GCS::IModuleController* pCtrlModulo);
+        void DesRegistrarModulo(GNC::GCS::IModuleController* pCtrlModulo);
+        void DesRegistrarModulos();
 
-		GNC::GCS::IModuleController* ObtenerModulo(const std::string& idModulo);
+        GNC::GCS::IModuleController* ObtenerModulo(const std::string& idModulo);
 
-		typedef std::map<std::string, GNC::GCS::IModuleController*> ListaModulos;
-		typedef ListaModulos::iterator IteradorListaModulos;
-		typedef ListaModulos::const_iterator IteradorConstanteListaModulos;
+        typedef std::map<std::string, GNC::GCS::IModuleController*> ListaModulos;
+        typedef ListaModulos::iterator IteradorListaModulos;
+        typedef ListaModulos::const_iterator IteradorConstanteListaModulos;
 
-		std::list<GNC::GCS::IModuleController*> ModulosOrdenados();
-		const ControladorExtensiones::ListaModulos& Modulos() const;
+        std::list<GNC::GCS::IModuleController*> ModulosOrdenados();
+        const ControladorExtensiones::ListaModulos& Modulos() const;
 
-		// Realización de la interfaz IControladorExtensiones
-		virtual GADVAPI::PrivateExtensionManager& GetPrivateExtensionsManager();
+        // Realización de la interfaz IControladorExtensiones
+        virtual GADVAPI::PrivateExtensionManager& GetPrivateExtensionsManager();
 
-	protected:
-		ControladorExtensiones();
-		~ControladorExtensiones();
+protected:
+        ControladorExtensiones();
+        ~ControladorExtensiones();
 
-		void NotificarRegistro(GNC::GCS::IModuleController* pModulo);
-		void NotificarDesRegistro(GNC::GCS::IModuleController* pModulo);
+        void NotificarRegistro(GNC::GCS::IModuleController* pModulo);
+        void NotificarDesRegistro(GNC::GCS::IModuleController* pModulo);
 
-	protected:
-		static ControladorExtensiones* m_pInstance;
-		ListaModulos m_Modulos;
+protected:
+        static ControladorExtensiones* m_pInstance;
+        ListaModulos m_Modulos;
 
-		GADVAPI::PrivateExtensionManager m_Manager;
+        GADVAPI::PrivateExtensionManager m_Manager;
 
-	};
+};
 }

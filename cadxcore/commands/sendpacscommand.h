@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -24,42 +24,46 @@
 #include <api/ivista.h>
 #include <api/controllers/ipacscontroller.h>
 
-namespace GIL{
-	class IModeloIntegracion;
-	namespace DICOM{
-		class IPACSController;
-	}
+namespace GIL
+{
+class IModeloIntegracion;
+namespace DICOM
+{
+class IPACSController;
+}
 }
 
-namespace GADAPI {
-	class EXTAPI SendPACSCommand : public GNC::GCS::IComando {
-	public:
-		SendPACSCommand(const std::string& selectedServer, const std::string& hl7Message, const std::list<long> seriesId);
-		
-		SendPACSCommand( const SendPACSCommand& o);
-		SendPACSCommand& operator = (const SendPACSCommand& o);
-	protected:
-		void checkDependencies();
-	public:
+namespace GADAPI
+{
+class EXTAPI SendPACSCommand : public GNC::GCS::IComando
+{
+public:
+        SendPACSCommand(const std::string& selectedServer, const std::string& hl7Message, const std::list<long> seriesId);
 
-		virtual ~SendPACSCommand();		
-		virtual std::string getClassUID();
+        SendPACSCommand( const SendPACSCommand& o);
+        SendPACSCommand& operator = (const SendPACSCommand& o);
+protected:
+        void checkDependencies();
+public:
 
-		virtual std::string serialize();
-		virtual void init(const std::string& serializedValue);
+        virtual ~SendPACSCommand();
+        virtual std::string getClassUID();
 
-    protected:
-		virtual void Execute();
-		virtual void Update();
+        virtual std::string serialize();
+        virtual void init(const std::string& serializedValue);
 
-    public:
-		virtual bool NotificarProgreso(float progresoNormalizado, const std::string &texto);
+protected:
+        virtual void Execute();
+        virtual void Update();
 
-		void LiberarRecursos();
+public:
+        virtual bool NotificarProgreso(float progresoNormalizado, const std::string &texto);
 
-		std::string m_selectedServer;
-		std::list<long> m_seriesId;
-		std::string m_hl7Message;
-		std::string m_error;
-	};
+        void LiberarRecursos();
+
+        std::string m_selectedServer;
+        std::list<long> m_seriesId;
+        std::string m_hl7Message;
+        std::string m_error;
+};
 }

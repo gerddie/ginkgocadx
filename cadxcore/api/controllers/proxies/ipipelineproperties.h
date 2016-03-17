@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -28,81 +28,84 @@
 //region Forward Declarations
 
 //endregion
-namespace GNC {
-	namespace GCS {
-		class IGinkgoMatrix4x4;
-		class Vector3D;
+namespace GNC
+{
+namespace GCS
+{
+class IGinkgoMatrix4x4;
+class Vector3D;
 
-		//----------------------------------------------------------------------------------------------------
-		/** Pipeline Properties Proxy  class **/
-		class EXTAPI IPipelineProperties {
-		public:
-			
-			IPipelineProperties();
+//----------------------------------------------------------------------------------------------------
+/** Pipeline Properties Proxy  class **/
+class EXTAPI IPipelineProperties
+{
+public:
 
-			virtual ~IPipelineProperties();
+        IPipelineProperties();
 
-			//------------------------------------------------------------------------------------------------
-			//region mandatory
+        virtual ~IPipelineProperties();
 
-			/** Updates **/
-			virtual void Update() = 0;
+        //------------------------------------------------------------------------------------------------
+        //region mandatory
 
-			/** Updates output information **/
-			virtual void UpdateInformation() = 0;
+        /** Updates **/
+        virtual void Update() = 0;
 
-			/** Gets original (3D Volume) direction cosines **/
-			virtual const GNC::GCS::Ptr<GNC::GCS::IGinkgoMatrix4x4> GetDirection() = 0;
-		
-			/** Gets the original (3D Volume) origin **/
-			virtual void GetOrigin(double origin[3]) = 0;
-		
-			/** Gets the original (3D Volume) spacing **/
-			virtual void GetSpacing(double spacing[3]) = 0;
-		
-			/** Gets the original (3D Volume) dimensions **/
-			virtual void GetDimensions(int dims[3]) = 0;
+        /** Updates output information **/
+        virtual void UpdateInformation() = 0;
 
-			/* Gets the slice direction cosines */
-			virtual const GNC::GCS::Ptr<GNC::GCS::IGinkgoMatrix4x4> GetOutputDirection() = 0;
-		
-			/** Gets the slice output origin **/
-			virtual void GetOutputOrigin(double origin[3]) = 0;
-		
-			/** Gets the slice output spacing **/
-			virtual void GetOutputSpacing(double spacing[3]) = 0;
-		
-			/**Gets the slice output dimensions **/
-			virtual void GetOutputDimensions(int currentDimensions[3]) = 0;
+        /** Gets original (3D Volume) direction cosines **/
+        virtual const GNC::GCS::Ptr<GNC::GCS::IGinkgoMatrix4x4> GetDirection() = 0;
+
+        /** Gets the original (3D Volume) origin **/
+        virtual void GetOrigin(double origin[3]) = 0;
+
+        /** Gets the original (3D Volume) spacing **/
+        virtual void GetSpacing(double spacing[3]) = 0;
+
+        /** Gets the original (3D Volume) dimensions **/
+        virtual void GetDimensions(int dims[3]) = 0;
+
+        /* Gets the slice direction cosines */
+        virtual const GNC::GCS::Ptr<GNC::GCS::IGinkgoMatrix4x4> GetOutputDirection() = 0;
+
+        /** Gets the slice output origin **/
+        virtual void GetOutputOrigin(double origin[3]) = 0;
+
+        /** Gets the slice output spacing **/
+        virtual void GetOutputSpacing(double spacing[3]) = 0;
+
+        /**Gets the slice output dimensions **/
+        virtual void GetOutputDimensions(int currentDimensions[3]) = 0;
 
 
-			//endregion
+        //endregion
 
-			//------------------------------------------------------------------------------------------------
-			//region helpers
-			
-			/**Gets the original (3D Volume) dimensions as double floating point**/
-			void GetFPDimensions(double dims[3]);
+        //------------------------------------------------------------------------------------------------
+        //region helpers
 
-			/**Gets the slice output dimensions as double floating point**/
-			void GetFPOutputDimensions(double currentDimensions[3]);
+        /**Gets the original (3D Volume) dimensions as double floating point**/
+        void GetFPDimensions(double dims[3]);
 
-			//endregion
+        /**Gets the slice output dimensions as double floating point**/
+        void GetFPOutputDimensions(double currentDimensions[3]);
 
-			//------------------------------------------------------------------------------------------------
-			//region optional
+        //endregion
 
-			/** Sets camera custom orientation **/
-			virtual void SetCustomOrientation(GNC::GCS::Vector3D& camera_focal_point, GNC::GCS::Vector3D& camera_position, GNC::GCS::Vector3D& camera_view_up, double& rotation);
+        //------------------------------------------------------------------------------------------------
+        //region optional
 
-			/** Gets the output current slice number **/
-			virtual int GetCurrentSliceIndex() const;
+        /** Sets camera custom orientation **/
+        virtual void SetCustomOrientation(GNC::GCS::Vector3D& camera_focal_point, GNC::GCS::Vector3D& camera_position, GNC::GCS::Vector3D& camera_view_up, double& rotation);
 
-			//endregion
+        /** Gets the output current slice number **/
+        virtual int GetCurrentSliceIndex() const;
 
-		};
-		//endregion
-	}
+        //endregion
+
+};
+//endregion
+}
 }
 
 

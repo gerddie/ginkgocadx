@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -27,40 +27,45 @@
 #include <api/autoptr.h>
 
 
-namespace GNC {
-	namespace GCS {
-		namespace Events {
+namespace GNC
+{
+namespace GCS
+{
+namespace Events
+{
 
-			class EXTAPI HL7SendRequestEvent : public GNC::GCS::Events::IEvent
-			{
-			private:
-				std::string m_Message;
+class EXTAPI HL7SendRequestEvent : public GNC::GCS::Events::IEvent
+{
+private:
+        std::string m_Message;
 
-			public:
-				HL7SendRequestEvent() : GNC::GCS::Events::IEvent(ginkgoEVT_Core_HL7SendRequest, 0, 100, NULL)
-				{
-					m_Nombre = "HL7SendRequest";					
-				}
+public:
+        HL7SendRequestEvent() : GNC::GCS::Events::IEvent(ginkgoEVT_Core_HL7SendRequest, 0, 100, NULL)
+        {
+                m_Nombre = "HL7SendRequest";
+        }
 
-				HL7SendRequestEvent(const std::string& msg): GNC::GCS::Events::IEvent(ginkgoEVT_Core_HL7SendRequest, 0, 100, NULL){
-					this->m_Nombre  = "HL7SendRequest";
-					this->m_Message = msg;
+        HL7SendRequestEvent(const std::string& msg): GNC::GCS::Events::IEvent(ginkgoEVT_Core_HL7SendRequest, 0, 100, NULL)
+        {
+                this->m_Nombre  = "HL7SendRequest";
+                this->m_Message = msg;
 
-				}
+        }
 
-				~HL7SendRequestEvent()
-				{
-				}
+        ~HL7SendRequestEvent()
+        {
+        }
 
-				const std::string& GetMessage() const
-				{
-					return m_Message;
-				}
+        const std::string& GetMessage() const
+        {
+                return m_Message;
+        }
 
-				virtual void pushInfo(std::ostream& out) const {
-					out << "HL7SendRequest ()";
-				}
-			};
-		}
-	}
+        virtual void pushInfo(std::ostream& out) const
+        {
+                out << "HL7SendRequest ()";
+        }
+};
+}
+}
 }

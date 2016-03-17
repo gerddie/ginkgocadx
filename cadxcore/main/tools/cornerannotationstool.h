@@ -6,8 +6,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -27,23 +27,24 @@
 #include <export/tools/icornerannotationstool.h>
 #include <api/api.h>
 
-namespace GNC {
+namespace GNC
+{
 
-	class EXTAPI CornerAnnotationsTool : public GNC::GCS::ICornerAnnotationsTool
-	{
-		public:
-		virtual GNC::GCS::ITool* NewTool();
-		CornerAnnotationsTool();
-		~CornerAnnotationsTool();
-		
-		virtual bool ExecuteAction();
-		virtual void AppendToolIn(wxEvtHandler* pParent, wxMenu* pMenu);
-		bool IsVisible();
+class EXTAPI CornerAnnotationsTool : public GNC::GCS::ICornerAnnotationsTool
+{
+public:
+        virtual GNC::GCS::ITool* NewTool();
+        CornerAnnotationsTool();
+        ~CornerAnnotationsTool();
+
+        virtual bool ExecuteAction();
+        virtual void AppendToolIn(wxEvtHandler* pParent, wxMenu* pMenu);
+        bool IsVisible();
 
 
-	protected:
+protected:
 
-	};
+};
 }
 #endif
 #endif

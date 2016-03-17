@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -27,65 +27,67 @@
 #include "panelesconfiguracionginkgobase.h"
 #include <main/controllers/dcmtk/dicomservers.h>
 
-namespace GNC {
-	namespace GUI {
+namespace GNC
+{
+namespace GUI
+{
 
-		class PanelConfiguracionPACS: public PanelConfiguracionPACSBase, public IPasoConfiguracion
-		{
-			public:
-				PanelConfiguracionPACS(wxWindow* pParent, IDialogoConfiguracion* pDialogo);
-				~PanelConfiguracionPACS();
+class PanelConfiguracionPACS: public PanelConfiguracionPACSBase, public IPasoConfiguracion
+{
+public:
+        PanelConfiguracionPACS(wxWindow* pParent, IDialogoConfiguracion* pDialogo);
+        ~PanelConfiguracionPACS();
 
-				void Recargar();
+        void Recargar();
 
-				//region "Metodos de IPasoConfiguracion"
-				wxWindow* GetPanel();
+        //region "Metodos de IPasoConfiguracion"
+        wxWindow* GetPanel();
 
-				std::string GetTitle();
+        std::string GetTitle();
 
-				std::string GetCabecera();
+        std::string GetCabecera();
 
-				bool Validar();
+        bool Validar();
 
-				bool Guardar();
-				//endregion
+        bool Guardar();
+        //endregion
 
-				typedef struct TipoConfigLocal{
-					bool useTLS;
-					bool verifyCredentials;
-					std::string privateKey;
-					std::string certificate;
+        typedef struct TipoConfigLocal {
+                bool useTLS;
+                bool verifyCredentials;
+                std::string privateKey;
+                std::string certificate;
 
-					TipoConfigLocal() :
-							useTLS(false),
-							verifyCredentials(false)
-					{
-					}
-				} TipoConfigLocal;
-			protected:
-				virtual void OnAdvancedLocal(wxCommandEvent &event);
+                TipoConfigLocal() :
+                        useTLS(false),
+                        verifyCredentials(false)
+                {
+                }
+        } TipoConfigLocal;
+protected:
+        virtual void OnAdvancedLocal(wxCommandEvent &event);
 
-				virtual void OnListaPACSChoice(wxDataViewEvent &event);
-				
-				virtual void OnListaPACSDClick(wxDataViewEvent &event);
+        virtual void OnListaPACSChoice(wxDataViewEvent &event);
 
-				virtual void OnNuevoClick(wxCommandEvent &event);
+        virtual void OnListaPACSDClick(wxDataViewEvent &event);
 
-				virtual void OnEditarClick(wxCommandEvent &event);
+        virtual void OnNuevoClick(wxCommandEvent &event);
 
-				virtual void OnEliminarClick(wxCommandEvent &event);
+        virtual void OnEditarClick(wxCommandEvent &event);
 
-				virtual void OnSetDefaultClick(wxCommandEvent &event);
+        virtual void OnEliminarClick(wxCommandEvent &event);
 
-				virtual void OnTextoCambiado(wxCommandEvent &event );
+        virtual void OnSetDefaultClick(wxCommandEvent &event);
 
-				void OnSize(wxSizeEvent &);
+        virtual void OnTextoCambiado(wxCommandEvent &event );
 
-				wxObjectDataPtr<wxDataViewListStore> m_pModel;
-				typedef std::vector<GNC::GCS::Ptr<DicomServer> > TipoListaPACS;				
-				TipoListaPACS m_servidores;				
-				TipoConfigLocal m_configLocal;
+        void OnSize(wxSizeEvent &);
 
-		};
-	}
+        wxObjectDataPtr<wxDataViewListStore> m_pModel;
+        typedef std::vector<GNC::GCS::Ptr<DicomServer> > TipoListaPACS;
+        TipoListaPACS m_servidores;
+        TipoConfigLocal m_configLocal;
+
+};
+}
 }

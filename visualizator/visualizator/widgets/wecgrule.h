@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -35,91 +35,94 @@ class wxXmlNode;
 
 namespace GNC
 {
-	namespace GCS 
-	{
-		namespace Widgets
-		{
-			class WTextBox;
-		}
-	}
+namespace GCS
+{
+namespace Widgets
+{
+class WTextBox;
+}
+}
 }
 
-namespace GNKVisualizator {
-	namespace Widgets {
-		class WECGRule;
+namespace GNKVisualizator
+{
+namespace Widgets
+{
+class WECGRule;
 
-		class EXTAPI WECGRuleBuilder : public GNC::GCS::Widgets::IWidgetBuilder {
-		public:
+class EXTAPI WECGRuleBuilder : public GNC::GCS::Widgets::IWidgetBuilder
+{
+public:
 
-			typedef GNC::GCS::Vector TVector;
-			typedef GNC::GCS::Nodo   TNodo;
-			typedef GNC::GCS::Matriz TMatriz;
+        typedef GNC::GCS::Vector TVector;
+        typedef GNC::GCS::Nodo   TNodo;
+        typedef GNC::GCS::Matriz TMatriz;
 
-			WECGRuleBuilder(GNC::GCS::IWidgetsManager* pManager, const GNC::GCS::TriggerButton& buttonMask);
+        WECGRuleBuilder(GNC::GCS::IWidgetsManager* pManager, const GNC::GCS::TriggerButton& buttonMask);
 
-			~WECGRuleBuilder();
+        ~WECGRuleBuilder();
 
-			virtual void OnMouseEvents(GNC::GCS::Events::EventoRaton&);
+        virtual void OnMouseEvents(GNC::GCS::Events::EventoRaton&);
 
-			virtual void OnKeyEvents(GNC::GCS::Events::EventoTeclado&);
+        virtual void OnKeyEvents(GNC::GCS::Events::EventoTeclado&);
 
-			virtual void Render(GNC::GCS::Contexto3D* c);
+        virtual void Render(GNC::GCS::Contexto3D* c);
 
-			virtual GNC::GCS::Widgets::TipoCursor GetCursor();
+        virtual GNC::GCS::Widgets::TipoCursor GetCursor();
 
-		protected:
+protected:
 
-			bool                           m_MouseDown;
-			WECGRule*                      m_pReglaTemp;
+        bool                           m_MouseDown;
+        WECGRule*                      m_pReglaTemp;
 
-		};
+};
 
-		class EXTAPI WECGRule : public GNC::GCS::Widgets::IWidget 
-		{
-		friend class WECGRuleBuilder;
-		public:
+class EXTAPI WECGRule : public GNC::GCS::Widgets::IWidget
+{
+        friend class WECGRuleBuilder;
+public:
 
-			typedef GNC::GCS::Vector TVector;
-			typedef GNC::GCS::Matriz TMatriz;
+        typedef GNC::GCS::Vector TVector;
+        typedef GNC::GCS::Matriz TMatriz;
 
-			WECGRule(GNC::GCS::IWidgetsManager* pManager, long vid, GNC::GCS::Nodo nodos[2], const char* nombre = "");
-			~WECGRule();
+        WECGRule(GNC::GCS::IWidgetsManager* pManager, long vid, GNC::GCS::Nodo nodos[2], const char* nombre = "");
+        ~WECGRule();
 
-			virtual bool SoportaAutoBorrado() const;
+        virtual bool SoportaAutoBorrado() const;
 
-			virtual void OnMouseEvents(GNC::GCS::Events::EventoRaton&);
+        virtual void OnMouseEvents(GNC::GCS::Events::EventoRaton&);
 
-			virtual void OnKeyEvents(GNC::GCS::Events::EventoTeclado&);
+        virtual void OnKeyEvents(GNC::GCS::Events::EventoTeclado&);
 
-			virtual bool HitTest(float x, float y, const GNC::GCS::Vector& umbral);
+        virtual bool HitTest(float x, float y, const GNC::GCS::Vector& umbral);
 
-			virtual bool HitTest(GNC::GCS::Vector* vertices, int numVertices);
+        virtual bool HitTest(GNC::GCS::Vector* vertices, int numVertices);
 
-			virtual void Render(GNC::GCS::Contexto3D* c);
+        virtual void Render(GNC::GCS::Contexto3D* c);
 
-			virtual void OffscreenRender(GNC::GCS::Contexto3D* c);
+        virtual void OffscreenRender(GNC::GCS::Contexto3D* c);
 
-			virtual float Distancia();
+        virtual float Distancia();
 
-			bool isVertical();
+        bool isVertical();
 
-			virtual bool GetMenuContextual(wxMenu* pMenu, wxWindow* pParent) ;
+        virtual bool GetMenuContextual(wxMenu* pMenu, wxWindow* pParent) ;
 
-		protected:
-			
-			GNC::GCS::Nodo                   m_Vertices[2];
-			GNC::GCS::Vector                 m_StartPointMov;
-			GNC::GCS::Widgets::WTextBox*     m_pTextBox;
-			bool                             m_MouseDown;
+protected:
 
-			float                            m_Distancia;			
-		public:
+        GNC::GCS::Nodo                   m_Vertices[2];
+        GNC::GCS::Vector                 m_StartPointMov;
+        GNC::GCS::Widgets::WTextBox*     m_pTextBox;
+        bool                             m_MouseDown;
 
-			void Recalcular(GNC::GCS::IWidgetsRenderer* renderer);
-			
-		public:
-			//endregion
-			virtual void InsertarPropiedades(TListaMapasPropiedades &listaMapaPropiedades);
-		};
-	}
+        float                            m_Distancia;
+public:
+
+        void Recalcular(GNC::GCS::IWidgetsRenderer* renderer);
+
+public:
+        //endregion
+        virtual void InsertarPropiedades(TListaMapasPropiedades &listaMapaPropiedades);
+};
+}
 }

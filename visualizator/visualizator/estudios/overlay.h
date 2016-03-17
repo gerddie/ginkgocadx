@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -29,45 +29,48 @@
 #include <vtkSmartPointer.h>
 #include <vtkImageData.h>
 
-namespace GNKVisualizator{
-	
-	typedef std::map<int,bool> TEstadoOverlay;
+namespace GNKVisualizator
+{
 
-	typedef struct TOverlay {
-		std::string nombre;
-		int indice;
-		vtkSmartPointer<vtkImageData> img;
+typedef std::map<int,bool> TEstadoOverlay;
 
-		TOverlay() :
-			nombre("Overlay"),
-			indice(0)
-		{
-		}
+typedef struct TOverlay {
+        std::string nombre;
+        int indice;
+        vtkSmartPointer<vtkImageData> img;
 
-		~TOverlay() {
-			this->img = NULL;
-		}
+        TOverlay() :
+                nombre("Overlay"),
+                indice(0)
+        {
+        }
 
-		TOverlay(std::string nombre,int indice)
-		{
-			this->nombre = nombre;
-			this->indice = indice;
-		}
+        ~TOverlay()
+        {
+                this->img = NULL;
+        }
 
-		TOverlay(const TOverlay& otro){
-			this->nombre = otro.nombre;
-			this->indice = otro.indice;
-			this->img = otro.img;
-		}
+        TOverlay(std::string nombre,int indice)
+        {
+                this->nombre = nombre;
+                this->indice = indice;
+        }
 
-		TOverlay& operator = (const TOverlay& otro) 
-		{
-			this->nombre = otro.nombre;
-			this->indice = otro.indice;
-			this->img = otro.img;			
-			return *this;
-		}
-	} TOverlay;
-	
-	typedef std::list<TOverlay> TListaOverlays;
+        TOverlay(const TOverlay& otro)
+        {
+                this->nombre = otro.nombre;
+                this->indice = otro.indice;
+                this->img = otro.img;
+        }
+
+        TOverlay& operator = (const TOverlay& otro)
+        {
+                this->nombre = otro.nombre;
+                this->indice = otro.indice;
+                this->img = otro.img;
+                return *this;
+        }
+} TOverlay;
+
+typedef std::list<TOverlay> TListaOverlays;
 };

@@ -6,8 +6,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -27,30 +27,35 @@
 #include <export/tools/itrackballtool.h>
 #include <api/api.h>
 
-namespace GNC {
-	namespace GCS {
-		namespace Widgets {
-			class WTrackballBuilder;
-		}
-		namespace Events {
-			class EventoRaton;
-			class EventoTeclado;
-		}
-	}
+namespace GNC
+{
+namespace GCS
+{
+namespace Widgets
+{
+class WTrackballBuilder;
+}
+namespace Events
+{
+class EventoRaton;
+class EventoTeclado;
+}
+}
 
-	class EXTAPI TrackballTool : public GNC::GCS::ITrackballTool {
-	public:
-		typedef GNC::GCS::Events::EventoRaton       TEventoRaton;
-		typedef GNC::GCS::Events::EventoTeclado     TEventoTeclado;
-		typedef GNC::GCS::Widgets::WTrackballBuilder TBuilder;
-		TrackballTool();
-		~TrackballTool();
+class EXTAPI TrackballTool : public GNC::GCS::ITrackballTool
+{
+public:
+        typedef GNC::GCS::Events::EventoRaton       TEventoRaton;
+        typedef GNC::GCS::Events::EventoTeclado     TEventoTeclado;
+        typedef GNC::GCS::Widgets::WTrackballBuilder TBuilder;
+        TrackballTool();
+        ~TrackballTool();
 
 //region "Realización de la interfaz IHerramienta"
 
-		virtual GNC::GCS::ITool* NewTool();
-		virtual void Connect();
-		virtual void Disconnect();
+        virtual GNC::GCS::ITool* NewTool();
+        virtual void Connect();
+        virtual void Disconnect();
 
 //endregion
 
@@ -59,9 +64,9 @@ namespace GNC {
 
 //endregion
 
-	protected:
+protected:
 
-		TBuilder*            m_pBuilder;
-	};
+        TBuilder*            m_pBuilder;
+};
 }
 #endif

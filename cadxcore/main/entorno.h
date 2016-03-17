@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -32,176 +32,185 @@ class wxWindow;
 class wxApp;
 class wxSizer;
 
-namespace GNC {
-	namespace GCS {
-		class IExtensionsObserver;
-		class IObservadorVistas;
-		class IEventsController;
-	}
+namespace GNC
+{
+namespace GCS
+{
+class IExtensionsObserver;
+class IObservadorVistas;
+class IEventsController;
+}
 }
 
-namespace GNC {
-	class Entorno : public GNC::GCS::IEntorno {
-	public:
+namespace GNC
+{
+class Entorno : public GNC::GCS::IEntorno
+{
+public:
 
-		typedef std::list<GNC::GCS::IExtensionsObserver*> ExtensionsObserversList;
-		typedef std::list<GNC::GCS::IObservadorVistas*>   ViewsObserversList;
-		
-		bool m_isChildInstance;
+        typedef std::list<GNC::GCS::IExtensionsObserver*> ExtensionsObserversList;
+        typedef std::list<GNC::GCS::IObservadorVistas*>   ViewsObserversList;
 
-	protected:
+        bool m_isChildInstance;
 
-		/* Constructor */
-		Entorno();
-		/* Destructor */
-		~Entorno();
+protected:
 
-		static Entorno* m_pInstancia;
+        /* Constructor */
+        Entorno();
+        /* Destructor */
+        ~Entorno();
 
-	public:
-		static Entorno* Instance();
-		static void FreeInstance();
-		
-		
-		bool IsChildInstance() {
-			return m_isChildInstance;
-		}
-		
-		void SetChildInstance(bool child) {
-			m_isChildInstance = child;
-		}
+        static Entorno* m_pInstancia;
 
-		// Miembros estaticos
+public:
+        static Entorno* Instance();
+        static void FreeInstance();
 
-		//region version
 
-		/** Gets the GinkgoCADx version full string **/
-		virtual const std::string& GetGinkgoVersionString();
+        bool IsChildInstance()
+        {
+                return m_isChildInstance;
+        }
 
-		/** Gets the GinkgoCADx version string **/
-		virtual std::string GetGinkgoVersion();
+        void SetChildInstance(bool child)
+        {
+                m_isChildInstance = child;
+        }
 
-		/** Gets the mayor version number **/
-		virtual int GetGinkgoMayorVersionNumber();
-		
-		/** Gets the mayor version minor **/
-		virtual int GetGinkgoMinorVersionNumber();
+        // Miembros estaticos
 
-		/** Gets the application name */
-		virtual std::string GetApplicationName();
+        //region version
 
-		/** Gets the application subtitle */
-		virtual std::string GetApplicationSubTitle();
-		
-		/** Gets the application credits */
-		virtual std::string GetApplicationCredits();
+        /** Gets the GinkgoCADx version full string **/
+        virtual const std::string& GetGinkgoVersionString();
 
-		/** Gets the application eula */
-		virtual std::string GetApplicationEula();
-		//endregion
-		
-		//region license
-		virtual const std::string& GetLicenseMessage();
-		virtual void SetLicenseMessage(const std::string& license);
-		
-		virtual const std::string& GetGinkgoCopyRight();
-		//enregion
+        /** Gets the GinkgoCADx version string **/
+        virtual std::string GetGinkgoVersion();
 
-		//region helpers
-		virtual int ParseSVNBuild(const char* str);
-		//endregion
+        /** Gets the mayor version number **/
+        virtual int GetGinkgoMayorVersionNumber();
 
-		virtual const std::string& GetPluginsPath();
-		virtual const std::string& GetGinkgoUserDir();
-		virtual const std::string& GetGinkgoTempDir();
-		virtual std::string CreateGinkgoTempDir();
-		virtual void RemoveDirRecursive(const std::string& path);
-		virtual std::string CreateGinkgoTempFile();
-		virtual const std::string& GetGinkgoLanguageDir();
-		virtual const std::string& GetGinkgoResourcesDir();
-		virtual std::string CrearDirectorioTemporal();
-		virtual std::string  GetDicomLocalAET();
+        /** Gets the mayor version minor **/
+        virtual int GetGinkgoMinorVersionNumber();
 
-		std::string ParseAET(const std::string& AET);
+        /** Gets the application name */
+        virtual std::string GetApplicationName();
 
-		virtual wxApp* GetApp();
-		virtual void SetApp(wxApp* app);
+        /** Gets the application subtitle */
+        virtual std::string GetApplicationSubTitle();
 
-		virtual void YieldApp();
+        /** Gets the application credits */
+        virtual std::string GetApplicationCredits();
 
-		virtual VentanaPrincipal* GetVentanaPrincipal();
-		virtual void SetVentanaPrincipal(VentanaPrincipal* ventana);
+        /** Gets the application eula */
+        virtual std::string GetApplicationEula();
+        //endregion
 
-		virtual wxWindow* GetVentanaRaiz();
-		virtual void SetVentanaRaiz(wxWindow* window);
+        //region license
+        virtual const std::string& GetLicenseMessage();
+        virtual void SetLicenseMessage(const std::string& license);
 
-		virtual GNC::GCS::ICommandController* GetCommandController();
+        virtual const std::string& GetGinkgoCopyRight();
+        //enregion
 
-		virtual GIL::DICOM::IPACSController* GetPACSController();
+        //region helpers
+        virtual int ParseSVNBuild(const char* str);
+        //endregion
 
-		virtual GNC::GCS::IControladorVistas* GetControladorVistas();
+        virtual const std::string& GetPluginsPath();
+        virtual const std::string& GetGinkgoUserDir();
+        virtual const std::string& GetGinkgoTempDir();
+        virtual std::string CreateGinkgoTempDir();
+        virtual void RemoveDirRecursive(const std::string& path);
+        virtual std::string CreateGinkgoTempFile();
+        virtual const std::string& GetGinkgoLanguageDir();
+        virtual const std::string& GetGinkgoResourcesDir();
+        virtual std::string CrearDirectorioTemporal();
+        virtual std::string  GetDicomLocalAET();
 
-		virtual GNC::GCS::IEventsController* GetControladorEventos();
+        std::string ParseAET(const std::string& AET);
 
-		virtual GNC::GCS::IControladorCarga* GetControladorCarga();
+        virtual wxApp* GetApp();
+        virtual void SetApp(wxApp* app);
 
-		virtual GNC::GCS::IControladorPermisos* GetControladorPermisos();
+        virtual void YieldApp();
 
-		virtual GNC::GCS::IControladorExtensiones* GetControladorExtensiones();
+        virtual VentanaPrincipal* GetVentanaPrincipal();
+        virtual void SetVentanaPrincipal(VentanaPrincipal* ventana);
 
-		virtual GNC::GCS::IControladorAcciones*  GetControladorAcciones();
+        virtual wxWindow* GetVentanaRaiz();
+        virtual void SetVentanaRaiz(wxWindow* window);
 
-		virtual GNC::GCS::IControladorInternacionalizacion*  GetControladorInternacionalizacion();
+        virtual GNC::GCS::ICommandController* GetCommandController();
 
-		virtual GNC::GCS::IConfigurationController* GetConfigurationController();
+        virtual GIL::DICOM::IPACSController* GetPACSController();
 
-		virtual GNC::GCS::IWidgetsManager* NewWidgetsManager(GNC::GCS::IVista* pVista);
-		virtual void FreeWidgetsManager(GNC::GCS::IWidgetsManager* pManager);
+        virtual GNC::GCS::IControladorVistas* GetControladorVistas();
 
-		virtual GNC::GCS::IEntorno::MapaUbicaciones& GetUbicaciones() { return m_Ubicaciones; }
+        virtual GNC::GCS::IEventsController* GetControladorEventos();
+
+        virtual GNC::GCS::IControladorCarga* GetControladorCarga();
+
+        virtual GNC::GCS::IControladorPermisos* GetControladorPermisos();
+
+        virtual GNC::GCS::IControladorExtensiones* GetControladorExtensiones();
+
+        virtual GNC::GCS::IControladorAcciones*  GetControladorAcciones();
+
+        virtual GNC::GCS::IControladorInternacionalizacion*  GetControladorInternacionalizacion();
+
+        virtual GNC::GCS::IConfigurationController* GetConfigurationController();
+
+        virtual GNC::GCS::IWidgetsManager* NewWidgetsManager(GNC::GCS::IVista* pVista);
+        virtual void FreeWidgetsManager(GNC::GCS::IWidgetsManager* pManager);
+
+        virtual GNC::GCS::IEntorno::MapaUbicaciones& GetUbicaciones()
+        {
+                return m_Ubicaciones;
+        }
 
 
 //------------------------------------------------------------------------------
 //region "Extensions observers registry interface"
 
-	public:
-		virtual void RegisterExtensionsObserver(GNC::GCS::IExtensionsObserver* observer);
-		virtual void UnRegisterExtensionsObserver(GNC::GCS::IExtensionsObserver* observer);
-	
-	public: // TODO
-		ExtensionsObserversList ExtensionsObservers;
-		GNC::GCS::ILockable ExtensionsObserversLock;
+public:
+        virtual void RegisterExtensionsObserver(GNC::GCS::IExtensionsObserver* observer);
+        virtual void UnRegisterExtensionsObserver(GNC::GCS::IExtensionsObserver* observer);
+
+public: // TODO
+        ExtensionsObserversList ExtensionsObservers;
+        GNC::GCS::ILockable ExtensionsObserversLock;
 //endregion
 
 //------------------------------------------------------------------------------
 //region "Views observers registry interface"
 
-	public:
-		virtual void RegisterViewsObserver(GNC::GCS::IObservadorVistas* observer);
-		virtual void UnRegisterViewsObserver(GNC::GCS::IObservadorVistas* observer);
-		
-	public: // TODO
-		ViewsObserversList ViewsObservers;
-		GNC::GCS::ILockable ViewsObserversLock;
+public:
+        virtual void RegisterViewsObserver(GNC::GCS::IObservadorVistas* observer);
+        virtual void UnRegisterViewsObserver(GNC::GCS::IObservadorVistas* observer);
+
+public: // TODO
+        ViewsObserversList ViewsObservers;
+        GNC::GCS::ILockable ViewsObserversLock;
 //endregion
 
-	private:
-		std::string m_GinkgoVersion;
-		std::string m_GinkgoCopyRight;
-		std::string m_GinkgoPluginsDir;
-		std::string m_GinkgoUserDir;
-		std::string m_GinkgoTempDir;
-		std::string m_GinkgoLanguageDir;
-		std::string m_GinkgoResourcesDir;
-		std::string m_GinkgoLicenseMessage;
+private:
+        std::string m_GinkgoVersion;
+        std::string m_GinkgoCopyRight;
+        std::string m_GinkgoPluginsDir;
+        std::string m_GinkgoUserDir;
+        std::string m_GinkgoTempDir;
+        std::string m_GinkgoLanguageDir;
+        std::string m_GinkgoResourcesDir;
+        std::string m_GinkgoLicenseMessage;
 
-		int m_mayorVersionNumber;
-		int m_minorVersionNumber;
+        int m_mayorVersionNumber;
+        int m_minorVersionNumber;
 
-		wxApp* m_pApp;
-		VentanaPrincipal* m_pVentanaPrincipal;
-		wxWindow* m_pVentanaRaiz;
+        wxApp* m_pApp;
+        VentanaPrincipal* m_pVentanaPrincipal;
+        wxWindow* m_pVentanaRaiz;
 
-		friend class ::VentanaPrincipal;
-	};
+        friend class ::VentanaPrincipal;
+};
 }

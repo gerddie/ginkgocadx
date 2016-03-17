@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -25,186 +25,201 @@
 #include <iostream>
 #include <api/api.h>
 
-namespace GIL {
-	namespace DICOM {
+namespace GIL
+{
+namespace DICOM
+{
 
-		//-----------------------------------------------------------------------------------------------
-		//-----------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------
 
-		typedef std::map<std::string, std::string> TransferSyntaxMapImpl;
-		typedef std::list<std::string> TransferSyntaxList;
-		typedef std::list<std::string> SOPClassList;
+typedef std::map<std::string, std::string> TransferSyntaxMapImpl;
+typedef std::list<std::string> TransferSyntaxList;
+typedef std::list<std::string> SOPClassList;
 
-		class EXTAPI TransferSyntaxMap : public TransferSyntaxMapImpl {
-		public:
+class EXTAPI TransferSyntaxMap : public TransferSyntaxMapImpl
+{
+public:
 
-			void AddTransferSyntax(const std::string& tsRef, const std::string& tsUID);
+        void AddTransferSyntax(const std::string& tsRef, const std::string& tsUID);
 
-			const std::string& GetTransferSyntaxUID(const std::string& tsRef) const;
-		};
+        const std::string& GetTransferSyntaxUID(const std::string& tsRef) const;
+};
 
-		//-----------------------------------------------------------------------------------------------
-		//-----------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------
 
-		class EXTAPI SOPClassTuple {
-		public:
-			std::string scUID;
-			TransferSyntaxList tsRefs;
-			TransferSyntaxList tsUIDs;
+class EXTAPI SOPClassTuple
+{
+public:
+        std::string scUID;
+        TransferSyntaxList tsRefs;
+        TransferSyntaxList tsUIDs;
 
-			inline SOPClassTuple()
-			{
-			}
+        inline SOPClassTuple()
+        {
+        }
 
-			inline SOPClassTuple(const std::string& scUID) {
-				this->scUID = scUID;
-			}
+        inline SOPClassTuple(const std::string& scUID)
+        {
+                this->scUID = scUID;
+        }
 
-			inline SOPClassTuple(const SOPClassTuple& o) {
-				*this = o;
-			}
+        inline SOPClassTuple(const SOPClassTuple& o)
+        {
+                *this = o;
+        }
 
-			inline SOPClassTuple& operator=(const SOPClassTuple& o) {
-				this->scUID  = o.scUID;
-				this->tsRefs = o.tsRefs;
-				this->tsUIDs = o.tsUIDs;
-				return *this;
-			}
+        inline SOPClassTuple& operator=(const SOPClassTuple& o)
+        {
+                this->scUID  = o.scUID;
+                this->tsRefs = o.tsRefs;
+                this->tsUIDs = o.tsUIDs;
+                return *this;
+        }
 
-		};
+};
 
-		//-----------------------------------------------------------------------------------------------
-		//-----------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------
 
-		class EXTAPI ArrayHelper {
-		public:
-			ArrayHelper();
+class EXTAPI ArrayHelper
+{
+public:
+        ArrayHelper();
 
-			ArrayHelper(const std::list<std::string>& list);
+        ArrayHelper(const std::list<std::string>& list);
 
-			ArrayHelper(const ArrayHelper& o);
-			
-			ArrayHelper& operator=(const ArrayHelper& o);
+        ArrayHelper(const ArrayHelper& o);
 
-			ArrayHelper& operator=(const std::list<std::string>& list);
+        ArrayHelper& operator=(const ArrayHelper& o);
 
-            ~ArrayHelper();
+        ArrayHelper& operator=(const std::list<std::string>& list);
 
-			void copyFrom(const std::list<std::string>& list);
+        ~ArrayHelper();
 
-			void free();
+        void copyFrom(const std::list<std::string>& list);
 
-            void swap(ArrayHelper& other);
+        void free();
 
-			const char** array;
-			unsigned int size;
-		};
-		
-		typedef std::map<std::string, SOPClassTuple > SOPClassMapImpl;
+        void swap(ArrayHelper& other);
 
-		class EXTAPI SOPClassMap : public SOPClassMapImpl {
+        const char** array;
+        unsigned int size;
+};
 
-		public:
+typedef std::map<std::string, SOPClassTuple > SOPClassMapImpl;
 
-			void AddSOPClass(const std::string& scRef, const std::string& scUID);
+class EXTAPI SOPClassMap : public SOPClassMapImpl
+{
 
-			void AddTransferSyntaxForSOP(const std::string& scRef, const std::string& tsRef);
+public:
 
-			const std::string& GetSOPClassUID(const std::string& scRef) const;
+        void AddSOPClass(const std::string& scRef, const std::string& scUID);
 
-			/** Gets the transfer syntax names list (refs) supported by this SOP Class **/
-			const TransferSyntaxList& GetSupportedTransferSyntaxRefs(const std::string& scRef) const;
-			
-			/** Gets the transfer syntax oid list supported by this SOP Class **/
-			const TransferSyntaxList& GetSupportedTransferSyntaxUIDs(const std::string& scRef) const;
-		};
+        void AddTransferSyntaxForSOP(const std::string& scRef, const std::string& tsRef);
 
-		//-----------------------------------------------------------------------------------------------
-		//-----------------------------------------------------------------------------------------------
+        const std::string& GetSOPClassUID(const std::string& scRef) const;
 
-		class EXTAPI ModalityTuple {
-		public:
-			std::string descr;
-			SOPClassList scRefs;
-			SOPClassList scUIDs;
+        /** Gets the transfer syntax names list (refs) supported by this SOP Class **/
+        const TransferSyntaxList& GetSupportedTransferSyntaxRefs(const std::string& scRef) const;
 
-			inline ModalityTuple()
-			{
-			}
+        /** Gets the transfer syntax oid list supported by this SOP Class **/
+        const TransferSyntaxList& GetSupportedTransferSyntaxUIDs(const std::string& scRef) const;
+};
 
-			inline ModalityTuple(const std::string& descr) {
-				this->descr = descr;
-			}
+//-----------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------
 
-			inline ModalityTuple(const ModalityTuple& o) {
-				*this = o;
-			}
+class EXTAPI ModalityTuple
+{
+public:
+        std::string descr;
+        SOPClassList scRefs;
+        SOPClassList scUIDs;
 
-			inline ModalityTuple& operator=(const ModalityTuple& o) {
-				this->descr  = o.descr;
-				this->scRefs = o.scRefs;
-				this->scUIDs = o.scUIDs;
-				return *this;
-			}
+        inline ModalityTuple()
+        {
+        }
 
-		};
+        inline ModalityTuple(const std::string& descr)
+        {
+                this->descr = descr;
+        }
+
+        inline ModalityTuple(const ModalityTuple& o)
+        {
+                *this = o;
+        }
+
+        inline ModalityTuple& operator=(const ModalityTuple& o)
+        {
+                this->descr  = o.descr;
+                this->scRefs = o.scRefs;
+                this->scUIDs = o.scUIDs;
+                return *this;
+        }
+
+};
 
 
-		//-----------------------------------------------------------------------------------------------
-		//-----------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------
 
-		typedef std::map<std::string, ModalityTuple > ModalityMapImpl;
+typedef std::map<std::string, ModalityTuple > ModalityMapImpl;
 
-		class EXTAPI ModalityMap : public ModalityMapImpl {
+class EXTAPI ModalityMap : public ModalityMapImpl
+{
 
-		public:
+public:
 
-			void AddModality(const std::string& mRef, const std::string& desr);
-			
-			void AddSOPClassForModality(const std::string& mRef, const std::string& scRef);
+        void AddModality(const std::string& mRef, const std::string& desr);
 
-			const std::string& GetDescription(const std::string& mRef) const;
+        void AddSOPClassForModality(const std::string& mRef, const std::string& scRef);
 
-			/** Gets the SOP Classes names (refs) list supported by this Modality **/
-			const SOPClassList& GetSupportedSOPClassRefs(const std::string& mRef) const;
-			
-			/** Gets the SOP Classes oid list supported by this Modality **/
-			const SOPClassList& GetSupportedSOPClassUIDs(const std::string& mRef) const;
-		};
+        const std::string& GetDescription(const std::string& mRef) const;
 
-		//-----------------------------------------------------------------------------------------------
-		//-----------------------------------------------------------------------------------------------
+        /** Gets the SOP Classes names (refs) list supported by this Modality **/
+        const SOPClassList& GetSupportedSOPClassRefs(const std::string& mRef) const;
 
-		class EXTAPI Conformance {
+        /** Gets the SOP Classes oid list supported by this Modality **/
+        const SOPClassList& GetSupportedSOPClassUIDs(const std::string& mRef) const;
+};
 
-		public:
+//-----------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------
 
-			static void Load();
+class EXTAPI Conformance
+{
 
-			static const GIL::DICOM::TransferSyntaxMap& GetTransferSyntaxes();
+public:
 
-			static const GIL::DICOM::SOPClassMap& GetStorageSOPClasses();
+        static void Load();
 
-			static const GIL::DICOM::SOPClassMap& GetScpSOPClasses();
+        static const GIL::DICOM::TransferSyntaxMap& GetTransferSyntaxes();
 
-			static const GIL::DICOM::SOPClassMap& GetScuSOPClasses();
+        static const GIL::DICOM::SOPClassMap& GetStorageSOPClasses();
 
-			static const GIL::DICOM::ModalityMap& GetModalities();
+        static const GIL::DICOM::SOPClassMap& GetScpSOPClasses();
 
-		private:
+        static const GIL::DICOM::SOPClassMap& GetScuSOPClasses();
 
-			static GIL::DICOM::TransferSyntaxMap m_TransferSyntaxes;
+        static const GIL::DICOM::ModalityMap& GetModalities();
 
-			static GIL::DICOM::SOPClassMap m_StorageSOPClasses;
+private:
 
-			static GIL::DICOM::SOPClassMap m_ScpSOPClasses;
+        static GIL::DICOM::TransferSyntaxMap m_TransferSyntaxes;
 
-			static GIL::DICOM::SOPClassMap m_ScuSOPClasses;
+        static GIL::DICOM::SOPClassMap m_StorageSOPClasses;
 
-			static GIL::DICOM::ModalityMap m_Modalities;
+        static GIL::DICOM::SOPClassMap m_ScpSOPClasses;
 
-			static bool m_Loaded;
-			
-		};
-	}
+        static GIL::DICOM::SOPClassMap m_ScuSOPClasses;
+
+        static GIL::DICOM::ModalityMap m_Modalities;
+
+        static bool m_Loaded;
+
+};
+}
 }

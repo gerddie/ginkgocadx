@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -31,7 +31,7 @@
 
 //----------------------------------------------------------------------
 
-GNC::OpenGinkgoCloudLinkTool::OpenGinkgoCloudLinkTool(): GNC::GCS::IHistoryTool(ID,GNC::GCS::IHistoryTool::TFamily_Open, _Std("Open Ginkgo Cloud link"), _Std("Open Ginkgo Cloud link"), GinkgoResourcesManager::ToolIcons::GetIcoDownloadCloud()) 
+GNC::OpenGinkgoCloudLinkTool::OpenGinkgoCloudLinkTool(): GNC::GCS::IHistoryTool(ID,GNC::GCS::IHistoryTool::TFamily_Open, _Std("Open Ginkgo Cloud link"), _Std("Open Ginkgo Cloud link"), GinkgoResourcesManager::ToolIcons::GetIcoDownloadCloud())
 {
 }
 
@@ -39,16 +39,16 @@ GNC::OpenGinkgoCloudLinkTool::~OpenGinkgoCloudLinkTool()
 {
 }
 
-bool GNC::OpenGinkgoCloudLinkTool::Enabled() 
+bool GNC::OpenGinkgoCloudLinkTool::Enabled()
 {
-	return GNC::GCS::IControladorPermisos::Instance()->Get("core.restrictions","acquire") && GNC::GCS::IControladorPermisos::Instance()->Get("ginkgocloud","download");
+        return GNC::GCS::IControladorPermisos::Instance()->Get("core.restrictions","acquire") && GNC::GCS::IControladorPermisos::Instance()->Get("ginkgocloud","download");
 }
 
 void GNC::OpenGinkgoCloudLinkTool::Execute()
 {
-	GNC::GUI::OpenGinkgoCloudDialog* dlg = new GNC::GUI::OpenGinkgoCloudDialog(GNC::HistoryToolsController::Instance()->GetHistoryPanel()->GetWxWindow());
-	dlg->Show();
-	dlg->Raise();
+        GNC::GUI::OpenGinkgoCloudDialog* dlg = new GNC::GUI::OpenGinkgoCloudDialog(GNC::HistoryToolsController::Instance()->GetHistoryPanel()->GetWxWindow());
+        dlg->Show();
+        dlg->Raise();
 }
 
 

@@ -1,5 +1,5 @@
 /*
- *  
+ *
  *  $Id: i2dplsc.cpp $
  *  Ginkgo CADx Project
  *
@@ -50,44 +50,44 @@
 
 I2DOutputPlugSC::I2DOutputPlugSC()
 {
-  if (m_debug)
-    printMessage(m_logStream, "I2DOutputPlugSC: Output plugin for Secondary Capture initialized");
+        if (m_debug)
+                printMessage(m_logStream, "I2DOutputPlugSC: Output plugin for Secondary Capture initialized");
 }
 
 OFString I2DOutputPlugSC::ident()
 {
-  return "Secondary Capture Image SOP Class";
+        return "Secondary Capture Image SOP Class";
 }
 
 void I2DOutputPlugSC::supportedSOPClassUIDs(OFList<OFString> suppSOPs)
 {
-  suppSOPs.push_back(UID_SecondaryCaptureImageStorage);
+        suppSOPs.push_back(UID_SecondaryCaptureImageStorage);
 }
 
 
 OFCondition I2DOutputPlugSC::convert(DcmDataset &dataset) const
 {
-  if (m_debug)
-    printMessage(m_logStream, "I2DOutputPlugSC: Inserting SC specific attributes");
-  OFCondition cond;
-  cond = dataset.putAndInsertOFStringArray(DCM_SOPClassUID, UID_SecondaryCaptureImageStorage);
+        if (m_debug)
+                printMessage(m_logStream, "I2DOutputPlugSC: Inserting SC specific attributes");
+        OFCondition cond;
+        cond = dataset.putAndInsertOFStringArray(DCM_SOPClassUID, UID_SecondaryCaptureImageStorage);
 
-  return EC_Normal;
+        return EC_Normal;
 }
 
 
 OFString I2DOutputPlugSC::isValid(DcmDataset& dataset) const
 {
-  OFString err;
-  // Just return if checking was disabled
-  if (!m_doAttribChecking)
-    return err;
+        OFString err;
+        // Just return if checking was disabled
+        if (!m_doAttribChecking)
+                return err;
 
-  if (m_debug)
-    printMessage(m_logStream, "I2DOutputPlugSC: Checking SC specific attributes");
-  err += checkAndInventType1Attrib(DCM_ConversionType, &dataset, "WSD"); // WSD="Workstation"
+        if (m_debug)
+                printMessage(m_logStream, "I2DOutputPlugSC: Checking SC specific attributes");
+        err += checkAndInventType1Attrib(DCM_ConversionType, &dataset, "WSD"); // WSD="Workstation"
 
-  return err;
+        return err;
 }
 
 

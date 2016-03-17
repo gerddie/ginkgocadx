@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -29,50 +29,57 @@
 
 #include <main/controllers/dcmtk/dicomservers.h>
 
-namespace GNC {
-	namespace GCS {
-		class StoredQuery;
-	}
+namespace GNC
+{
+namespace GCS
+{
+class StoredQuery;
+}
 }
 
-namespace GIL{
-	class IModeloIntegracion;
-	namespace DICOM{
-		class IPACSController;
-	}
+namespace GIL
+{
+class IModeloIntegracion;
+namespace DICOM
+{
+class IPACSController;
+}
 }
 
-namespace GADAPI {
-	class ComandoPACSParams : public GNC::GCS::IComandoParams {
-	public:
-		typedef std::list< GNC::GCS::Ptr<GIL::DICOM::DicomDataset> > TSearchResultList;
-		ComandoPACSParams(const GNC::GCS::Ptr<GNC::GCS::StoredQuery>& query) ;
+namespace GADAPI
+{
+class ComandoPACSParams : public GNC::GCS::IComandoParams
+{
+public:
+        typedef std::list< GNC::GCS::Ptr<GIL::DICOM::DicomDataset> > TSearchResultList;
+        ComandoPACSParams(const GNC::GCS::Ptr<GNC::GCS::StoredQuery>& query) ;
 
-		virtual ~ComandoPACSParams();
+        virtual ~ComandoPACSParams();
 
-	public:
-		GNC::GCS::Ptr<GNC::GCS::StoredQuery> pQuery;
-		GNC::GCS::Ptr<TSearchResultList> m_apResults;
+public:
+        GNC::GCS::Ptr<GNC::GCS::StoredQuery> pQuery;
+        GNC::GCS::Ptr<TSearchResultList> m_apResults;
 
-		bool                     m_informar;
-		std::string              m_error;
-	};
+        bool                     m_informar;
+        std::string              m_error;
+};
 
 
 
-	class EXTAPI ComandoPACS : public GNC::GCS::IComando {
-	public:
-		ComandoPACS(ComandoPACSParams* pParams);
+class EXTAPI ComandoPACS : public GNC::GCS::IComando
+{
+public:
+        ComandoPACS(ComandoPACSParams* pParams);
 
-    protected:
-		virtual void Execute();
-		virtual void Update();
+protected:
+        virtual void Execute();
+        virtual void Update();
 
-    public:
-		virtual bool NotificarProgreso(float progresoNormalizado, const std::string &texto);
+public:
+        virtual bool NotificarProgreso(float progresoNormalizado, const std::string &texto);
 
-		void LiberarRecursos();
+        void LiberarRecursos();
 
-		ComandoPACSParams* m_pPACSParams;
-	};
+        ComandoPACSParams* m_pPACSParams;
+};
 }

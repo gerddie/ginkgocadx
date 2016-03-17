@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -38,77 +38,80 @@
 #define COL_HISTORY_MAX		9
 
 class wxImageList;
-namespace GNC {
-	namespace GUI {		
-		class HistoryNode: GNC::GCS::ILockable
-		{
-		public:
-			typedef std::list<GNC::GCS::Ptr<GNC::GCS::IHistoryController::SeriesModel> > SeriesModelList;
-			HistoryNode(const GNC::GCS::IHistoryController::StudyModel& study);
-			HistoryNode(const GNC::GCS::IHistoryController::SeriesModel& series, HistoryNode* parent);
-			HistoryNode();
-			virtual ~HistoryNode();
+namespace GNC
+{
+namespace GUI
+{
+class HistoryNode: GNC::GCS::ILockable
+{
+public:
+        typedef std::list<GNC::GCS::Ptr<GNC::GCS::IHistoryController::SeriesModel> > SeriesModelList;
+        HistoryNode(const GNC::GCS::IHistoryController::StudyModel& study);
+        HistoryNode(const GNC::GCS::IHistoryController::SeriesModel& series, HistoryNode* parent);
+        HistoryNode();
+        virtual ~HistoryNode();
 
-			bool IsStudyModel() const;
-			bool IsSeriesModel() const;
+        bool IsStudyModel() const;
+        bool IsSeriesModel() const;
 
-			HistoryNode* GetParent();
+        HistoryNode* GetParent();
 
-			//if creation datetime is < now - 2 h => si se ha recibido antes de dos horas
-			bool IsRecent();
-			
-			void UpdateStudyModel(const GNC::GCS::IHistoryController::StudyModel& studyModel, wxDataViewItemArray& itemsAdded, wxDataViewItemArray& itemsChanged);
-			void UpdateSeriesModel(const GNC::GCS::IHistoryController::SeriesModel& seriesModel);
-			const GNC::GCS::Ptr<GNC::GCS::IHistoryController::StudyModel>& GetStudyModel();
-			const GNC::GCS::Ptr<GNC::GCS::IHistoryController::SeriesModel>& GetSeriesModel();
+        //if creation datetime is < now - 2 h => si se ha recibido antes de dos horas
+        bool IsRecent();
 
-			virtual unsigned int GetChildren(wxDataViewItemArray &array) ;
-			virtual void GetSeriesModel(SeriesModelList& seriesList);
+        void UpdateStudyModel(const GNC::GCS::IHistoryController::StudyModel& studyModel, wxDataViewItemArray& itemsAdded, wxDataViewItemArray& itemsChanged);
+        void UpdateSeriesModel(const GNC::GCS::IHistoryController::SeriesModel& seriesModel);
+        const GNC::GCS::Ptr<GNC::GCS::IHistoryController::StudyModel>& GetStudyModel();
+        const GNC::GCS::Ptr<GNC::GCS::IHistoryController::SeriesModel>& GetSeriesModel();
 
-			virtual void ReloadSeries();
-			virtual void DeleteSeries(long seriesPk);
-		protected:			
-			GNC::GCS::Ptr<GNC::GCS::IHistoryController::StudyModel> pStudy;
-			GNC::GCS::Ptr<GNC::GCS::IHistoryController::SeriesModel> pSeries;
+        virtual unsigned int GetChildren(wxDataViewItemArray &array) ;
+        virtual void GetSeriesModel(SeriesModelList& seriesList);
 
-			typedef std::map<long, HistoryNode*> TMapIndex;
-			std::map<long, HistoryNode*> seriesMap;
+        virtual void ReloadSeries();
+        virtual void DeleteSeries(long seriesPk);
+protected:
+        GNC::GCS::Ptr<GNC::GCS::IHistoryController::StudyModel> pStudy;
+        GNC::GCS::Ptr<GNC::GCS::IHistoryController::SeriesModel> pSeries;
 
-			HistoryNode* pParent;			
-		};
+        typedef std::map<long, HistoryNode*> TMapIndex;
+        std::map<long, HistoryNode*> seriesMap;
 
-		class HistoryTableModel: public wxDataViewModel {
-		public:
-			HistoryTableModel();
-			~HistoryTableModel();
-			void ClearStudyMap();
+        HistoryNode* pParent;
+};
 
-			//wxDataViewModel methods
-			virtual unsigned int GetColumnCount() const;
-			virtual wxString GetColumnType( unsigned int col ) const;
-			virtual void GetValue( wxVariant &variant,
-                           const wxDataViewItem &item, unsigned int col ) const;
-			virtual bool SetValue( const wxVariant &variant,
-								   const wxDataViewItem &item, unsigned int col );
-			virtual bool IsEnabled( const wxDataViewItem &item, unsigned int col ) const;
-			virtual wxDataViewItem GetParent( const wxDataViewItem &item ) const;
-			virtual bool IsContainer( const wxDataViewItem &item ) const;
-			bool 	HasValue (const wxDataViewItem &item, unsigned col) const;
-			virtual bool HasContainerColumns (const wxDataViewItem &item) const ;
-			virtual unsigned int GetChildren( const wxDataViewItem &parent,
-                                      wxDataViewItemArray &array ) const;
-			int Compare( const wxDataViewItem &item1, const wxDataViewItem &item2,
-                 unsigned int column, bool ascending ) const;
-			//
+class HistoryTableModel: public wxDataViewModel
+{
+public:
+        HistoryTableModel();
+        ~HistoryTableModel();
+        void ClearStudyMap();
 
-			void ReloadTree(const GNC::GCS::HistoryController::StudyModelList& studyList, bool force);
-			void DeleteItems(wxDataViewItemArray& selected);
+        //wxDataViewModel methods
+        virtual unsigned int GetColumnCount() const;
+        virtual wxString GetColumnType( unsigned int col ) const;
+        virtual void GetValue( wxVariant &variant,
+                               const wxDataViewItem &item, unsigned int col ) const;
+        virtual bool SetValue( const wxVariant &variant,
+                               const wxDataViewItem &item, unsigned int col );
+        virtual bool IsEnabled( const wxDataViewItem &item, unsigned int col ) const;
+        virtual wxDataViewItem GetParent( const wxDataViewItem &item ) const;
+        virtual bool IsContainer( const wxDataViewItem &item ) const;
+        bool 	HasValue (const wxDataViewItem &item, unsigned col) const;
+        virtual bool HasContainerColumns (const wxDataViewItem &item) const ;
+        virtual unsigned int GetChildren( const wxDataViewItem &parent,
+                                          wxDataViewItemArray &array ) const;
+        int Compare( const wxDataViewItem &item1, const wxDataViewItem &item2,
+                     unsigned int column, bool ascending ) const;
+        //
 
-		protected:
-			long GetAge(const std::string& patBirthDate, const std::string& studyDateTime) const;
-			typedef std::map<long, HistoryNode*> TMapIndex;
-			std::map<long, HistoryNode*> studyMap;
-			wxImageList* m_pImageList;
-		};
-	}
+        void ReloadTree(const GNC::GCS::HistoryController::StudyModelList& studyList, bool force);
+        void DeleteItems(wxDataViewItemArray& selected);
+
+protected:
+        long GetAge(const std::string& patBirthDate, const std::string& studyDateTime) const;
+        typedef std::map<long, HistoryNode*> TMapIndex;
+        std::map<long, HistoryNode*> studyMap;
+        wxImageList* m_pImageList;
+};
+}
 }

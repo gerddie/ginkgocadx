@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -57,96 +57,99 @@
 #define DEFAULT_RSS "http://twitter.com/statuses/user_timeline/247267254.rss"
 #define DEFAULT_WELCOME_URL "http://ginkgo-cadx.com/[lan]/ginkgocadxwelcomescreen/"
 
-namespace GNC {
-	namespace GUI {
-		StartUpView ::StartUpView (const GNC::GCS::Ptr<GNC::GUI::StartUpStudy>& study) : GNC::GCS::IVista((GNC::GCS::Ptr<GNC::GCS::IStudyContext>)study)
-		{
-			FooStudy = study;
-			m_Cargada = false;
+namespace GNC
+{
+namespace GUI
+{
+StartUpView ::StartUpView (const GNC::GCS::Ptr<GNC::GUI::StartUpStudy>& study) : GNC::GCS::IVista((GNC::GCS::Ptr<GNC::GCS::IStudyContext>)study)
+{
+        FooStudy = study;
+        m_Cargada = false;
 
-			FooStudy->Window = m_pWindow = new StartUpForm (this);
-			
-			GNC::GCS::IToolController* pToolBar = this->GetToolController();
-			pToolBar->AddTool(HCore_ShowHistory, (GNC::GCS::IViewContract*) this);
+        FooStudy->Window = m_pWindow = new StartUpForm (this);
 
-			pToolBar->AddTool(HCore_DicomizeFromView, (GNC::GCS::IViewContract*) this);
-			pToolBar->AddTool(HCore_AddFileToHistory, (GNC::GCS::IViewContract*) this);
-			pToolBar->AddTool(HCore_QueryRetrieve, (GNC::GCS::IViewContract*) this);
-			
-			GNC::GCS::ControladorEventos::Instance()->ProcesarEvento(new GNC::GCS::Events::EventView(this, GNC::GCS::Events::EventView::Initialized));
-		}
+        GNC::GCS::IToolController* pToolBar = this->GetToolController();
+        pToolBar->AddTool(HCore_ShowHistory, (GNC::GCS::IViewContract*) this);
 
-		StartUpView ::~StartUpView ()
-		{
-		}
+        pToolBar->AddTool(HCore_DicomizeFromView, (GNC::GCS::IViewContract*) this);
+        pToolBar->AddTool(HCore_AddFileToHistory, (GNC::GCS::IViewContract*) this);
+        pToolBar->AddTool(HCore_QueryRetrieve, (GNC::GCS::IViewContract*) this);
 
-		//----------------------------------------------------------------------------------------------------
-	//region Loading interface
+        GNC::GCS::ControladorEventos::Instance()->ProcesarEvento(new GNC::GCS::Events::EventView(this, GNC::GCS::Events::EventView::Initialized));
+}
 
-		// Starts loading. Synchronous with interface.
-		void StartUpView::OnCargaIniciada()
-		{
-		}
+StartUpView ::~StartUpView ()
+{
+}
 
-		// Step1: LoadStudy not synchronized with interface thread
-		void StartUpView::CargarEstudio(GNC::GCS::IComando* /*pCmdInvocador*/)
-		{				
-		}
+//----------------------------------------------------------------------------------------------------
+//region Loading interface
 
-		//Ends loading. Synchronous with interface
-		void StartUpView::OnCargaFinalizada()
-		{
-		}
+// Starts loading. Synchronous with interface.
+void StartUpView::OnCargaIniciada()
+{
+}
 
-		// Step2: init pipeline synchronous with interface
-		void StartUpView::IniciarPipeline()
-		{
-			//build view title
-			BuildTitle();
-		}
+// Step1: LoadStudy not synchronized with interface thread
+void StartUpView::CargarEstudio(GNC::GCS::IComando* /*pCmdInvocador*/)
+{
+}
 
+//Ends loading. Synchronous with interface
+void StartUpView::OnCargaFinalizada()
+{
+}
 
-		// stops pipeline, it's called if there has been an error loading study
-		void StartUpView::DetenerPipeline()
-		{
-		}
-
-	//endregion
-
-		bool StartUpView::SoportaGuardar()
-		{
-			return false;
-		}
-
-		bool StartUpView::SoportaExportar()
-		{
-			return false;
-		}
-
-		GNC::GCS::IVista* StartUpView::GetView()
-		{
-			return this;
-		}
-
-		void StartUpView::Activar() {
-			GNC::GCS::IVista::Activar();
-			m_pWindow->SetFocus();
-		}
-
-		wxWindow * StartUpView::GetWindow()
-		{
-			return m_pWindow;
-		}
-
-		wxSizer* StartUpView::GetBottomSizer()
-		{
-			return m_pWindow->m_pSizerCenter;
-		}
+// Step2: init pipeline synchronous with interface
+void StartUpView::IniciarPipeline()
+{
+        //build view title
+        BuildTitle();
+}
 
 
-		void StartUpView::BuildTitle()
-		{
-			m_Titulo = _Std("Start page");
-		}
-	}
+// stops pipeline, it's called if there has been an error loading study
+void StartUpView::DetenerPipeline()
+{
+}
+
+//endregion
+
+bool StartUpView::SoportaGuardar()
+{
+        return false;
+}
+
+bool StartUpView::SoportaExportar()
+{
+        return false;
+}
+
+GNC::GCS::IVista* StartUpView::GetView()
+{
+        return this;
+}
+
+void StartUpView::Activar()
+{
+        GNC::GCS::IVista::Activar();
+        m_pWindow->SetFocus();
+}
+
+wxWindow * StartUpView::GetWindow()
+{
+        return m_pWindow;
+}
+
+wxSizer* StartUpView::GetBottomSizer()
+{
+        return m_pWindow->m_pSizerCenter;
+}
+
+
+void StartUpView::BuildTitle()
+{
+        m_Titulo = _Std("Start page");
+}
+}
 }

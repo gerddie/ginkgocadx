@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -55,476 +55,482 @@ class vtkDataArray;
 class vtkPlane;
 
 class InternalMembers;
-namespace GNC {
-	namespace GCS {
-		class IGinkgoMatrix4x4;
-	}
+namespace GNC
+{
+namespace GCS
+{
+class IGinkgoMatrix4x4;
+}
 }
 
-namespace GNC {
-	namespace GCS {
-		class IPipelineProperties;
-	}
+namespace GNC
+{
+namespace GCS
+{
+class IPipelineProperties;
+}
 }
 
 //endregion
 
 
-class EXTAPI vtkGinkgoImageViewer : public vtkObject {
+class EXTAPI vtkGinkgoImageViewer : public vtkObject
+{
 public:
 
-	//--------------------------------------------------------------------
-	//region Estructuras de datos
+        //--------------------------------------------------------------------
+        //region Estructuras de datos
 
-	typedef enum InteractionStyleIds {
-		NO_INTERACTION,
-		SELECT_INTERACTION,
-		ZOOM_WITH_SELECT_INTERACTION,
-		ZOOM_INTERACTION
-	} InteractionStyleIds;
+        typedef enum InteractionStyleIds {
+                NO_INTERACTION,
+                SELECT_INTERACTION,
+                ZOOM_WITH_SELECT_INTERACTION,
+                ZOOM_INTERACTION
+        } InteractionStyleIds;
 
-	typedef enum ConventionIds {
-		RADIOLOGIC,
-		NEUROLOGIC
-	} ConventionIds;
+        typedef enum ConventionIds {
+                RADIOLOGIC,
+                NEUROLOGIC
+        } ConventionIds;
 
-	typedef enum Axis
-	{
-		X = 0,
-		Y = 1,
-		Z = 2
-	} Axis;
+        typedef enum Axis {
+                X = 0,
+                Y = 1,
+                Z = 2
+        } Axis;
 
-	typedef enum PlanIds
-	{
-		SAGITTAL_ID,
-		CORONAL_ID,
-		AXIAL_ID,
-		NB_PLAN_IDS  // The number of PlanIds
-	} PlanIds;
+        typedef enum PlanIds {
+                SAGITTAL_ID,
+                CORONAL_ID,
+                AXIAL_ID,
+                NB_PLAN_IDS  // The number of PlanIds
+        } PlanIds;
 
-	typedef enum EventIds
-	{
-		ViewImagePositionChangeEvent=(vtkCommand::UserEvent+1),
-		ViewImageWindowLevelChangeEvent,
-		ViewImageZoomChangeEvent
-	} EventIds;
+        typedef enum EventIds {
+                ViewImagePositionChangeEvent=(vtkCommand::UserEvent+1),
+                ViewImageWindowLevelChangeEvent,
+                ViewImageZoomChangeEvent
+        } EventIds;
 
-	//endregion
+        //endregion
 
-	//--------------------------------------------------------------------
-	//region Constructores y soporte VTK
+        //--------------------------------------------------------------------
+        //region Constructores y soporte VTK
 
-	static vtkGinkgoImageViewer* New();
-	vtkTypeMacro(vtkGinkgoImageViewer, vtkObject);
+        static vtkGinkgoImageViewer* New();
+        vtkTypeMacro(vtkGinkgoImageViewer, vtkObject);
 
-	void InitDefaultInteractor();
+        void InitDefaultInteractor();
 
-	//--------------------------------------------------------------------
-	//region Entrada y pipeline
+        //--------------------------------------------------------------------
+        //region Entrada y pipeline
 
-	GNC::GCS::IPipelineProperties* IImagePropertiesProxy;
+        GNC::GCS::IPipelineProperties* IImagePropertiesProxy;
 
-	void PrepareForDelete(void);
+        void PrepareForDelete(void);
 
-	void Initialize();
+        void Initialize();
 
-	void Uninitialize();
+        void Uninitialize();
 
-	void SetInteraction();
+        void SetInteraction();
 
-	bool IsInstalledAndInitialized();
+        bool IsInstalledAndInitialized();
 
-	/** Enable or Disable interaction on the view. The Interaction mode is store
-	internaly and set at each time the widget is showed. The interaction
-	mode cannot be set before the vtkRenderWindowInteractor is initialized. */
-	void SetInteractionOff( void );
-	void SetInteractionOn( void );
+        /** Enable or Disable interaction on the view. The Interaction mode is store
+        internaly and set at each time the widget is showed. The interaction
+        mode cannot be set before the vtkRenderWindowInteractor is initialized. */
+        void SetInteractionOff( void );
+        void SetInteractionOn( void );
 
-	bool GetInteraction();
+        bool GetInteraction();
 
-	/**
-	Detach the view, i.e. add its own children (if any) to its parent's children (if any).
-	*/
-	void Detach (void);
+        /**
+        Detach the view, i.e. add its own children (if any) to its parent's children (if any).
+        */
+        void Detach (void);
 
-	void ResetCameraClippingRange(bool resetCameraPosition = true);
+        void ResetCameraClippingRange(bool resetCameraPosition = true);
 
-	void UpdateOrientation();
+        void UpdateOrientation();
 
-	void UpdateDisplayExtent();
+        void UpdateDisplayExtent();
 
-	void SetInput(const vtkSmartPointer<vtkImageData>& input, bool forzarSetup = false);
+        void SetInput(const vtkSmartPointer<vtkImageData>& input, bool forzarSetup = false);
 
-	void SetInputConnection(const vtkSmartPointer<vtkAlgorithmOutput>& input, bool forzeSetup = false);
-	
-	void RemoveInputs();
+        void SetInputConnection(const vtkSmartPointer<vtkAlgorithmOutput>& input, bool forzeSetup = false);
 
-	void SetOverlay(const vtkSmartPointer<vtkImageData>& inputOverlay);
+        void RemoveInputs();
 
-	void IntersectarRayo(double wp[4], double vd[3], double pt[3]);
+        void SetOverlay(const vtkSmartPointer<vtkImageData>& inputOverlay);
 
-	/** Proyecta un punto en coordenadas mundo a coordenadas imagen (plano con z=currentSlice) **/
-	double* Proyect2D(const double wp[4], double ip[2]) const;
+        void IntersectarRayo(double wp[4], double vd[3], double pt[3]);
 
-	/** Proyecta un punto en coordenadas imagen (plano con z=currentSlice) a coordenadas mundo **/
-	double* UnProyect2D(const double ip[3], double wp[4]) const;
+        /** Proyecta un punto en coordenadas mundo a coordenadas imagen (plano con z=currentSlice) **/
+        double* Proyect2D(const double wp[4], double ip[2]) const;
 
-	void SetupPipeline(bool forceReload = false);
+        /** Proyecta un punto en coordenadas imagen (plano con z=currentSlice) a coordenadas mundo **/
+        double* UnProyect2D(const double ip[3], double wp[4]) const;
 
-	vtkSmartPointer<vtkAlgorithmOutput> GetInputConnection();
+        void SetupPipeline(bool forceReload = false);
 
-	vtkSmartPointer<vtkImageData> GetInput();
+        vtkSmartPointer<vtkAlgorithmOutput> GetInputConnection();
 
-	vtkSmartPointer<vtkActor> GetImageActor();
+        vtkSmartPointer<vtkImageData> GetInput();
 
-	vtkSmartPointer<vtkPlane> GetPlane();
+        vtkSmartPointer<vtkActor> GetImageActor();
 
-	const GNC::GCS::Vector3D* GetSliceCoordinates();
+        vtkSmartPointer<vtkPlane> GetPlane();
 
-	long GetImageTexture();
+        const GNC::GCS::Vector3D* GetSliceCoordinates();
 
-	/*
-	void SetMaskImage(vtkSmartPointer<vtkImageData> mask, vtkSmartPointer<vtkLookupTable> lut);
+        long GetImageTexture();
 
-	void RemoveMaskImage();
-	*/
+        /*
+        void SetMaskImage(vtkSmartPointer<vtkImageData> mask, vtkSmartPointer<vtkLookupTable> lut);
 
-	/** Set the RenderWindow */
-	void SetRenderWindow(vtkSmartPointer<vtkRenderWindow> arg);
+        void RemoveMaskImage();
+        */
+
+        /** Set the RenderWindow */
+        void SetRenderWindow(vtkSmartPointer<vtkRenderWindow> arg);
 
 
-	/** Set the Renderer **/
-	void SetRenderer(vtkSmartPointer<vtkRenderer> arg);
+        /** Set the Renderer **/
+        void SetRenderer(vtkSmartPointer<vtkRenderer> arg);
 
 
-	/** Attach an interactor to the internal RenderWindow. **/
-	void SetInteractor(vtkSmartPointer<vtkRenderWindowInteractor>);
+        /** Attach an interactor to the internal RenderWindow. **/
+        void SetInteractor(vtkSmartPointer<vtkRenderWindowInteractor>);
 
-	/** Get the vtkRenderWindow associated */
-	vtkSmartPointer<vtkRenderWindow> GetRenderWindow();
-
-
-	/** Get the vtkRenderer associated */
-	vtkSmartPointer<vtkRenderer> GetRenderer();
+        /** Get the vtkRenderWindow associated */
+        vtkSmartPointer<vtkRenderWindow> GetRenderWindow();
 
 
-	/** Get the vtkRenderWindow associated */
-	vtkSmartPointer<vtkRenderWindowInteractor> GetRenderWindowInteractor();
+        /** Get the vtkRenderer associated */
+        vtkSmartPointer<vtkRenderer> GetRenderer();
 
 
-	/** Add the actor to the first renderer of the render window if exist.
-	Do nothing otherwise.*/
-	void AddActor(vtkSmartPointer<vtkProp> actor);
+        /** Get the vtkRenderWindow associated */
+        vtkSmartPointer<vtkRenderWindowInteractor> GetRenderWindowInteractor();
 
 
-	/** remove the actor from the first renderer of the render window if exist.
-	Do nothing otherwise.*/
-	void RemoveActor(vtkSmartPointer<vtkProp> actor);
+        /** Add the actor to the first renderer of the render window if exist.
+        Do nothing otherwise.*/
+        void AddActor(vtkSmartPointer<vtkProp> actor);
 
-	void Reset();
 
-	void SetTindex(int index);
-	int GetTindex();
+        /** remove the actor from the first renderer of the render window if exist.
+        Do nothing otherwise.*/
+        void RemoveActor(vtkSmartPointer<vtkProp> actor);
 
-	/** Call the RenderWindow's Render() method. */
-	void Render (void);
-	void SyncRender (void);
+        void Reset();
 
-	void Update();
+        void SetTindex(int index);
+        int GetTindex();
 
-	void UpdateImage();
+        /** Call the RenderWindow's Render() method. */
+        void Render (void);
+        void SyncRender (void);
 
-	//region Propiedades / Estado, to obtain old spaicing, dimensions... test proxy has to be false
-	bool GetDimensions( int dimensions[3], bool testProxy = true );
-	bool GetSpacing( double spacing[3], bool testProxy = true );
-	bool GetOrigin( double origin[3], bool testProxy = true  );
-	bool GetBounds( double bounds[6] );
+        void Update();
+
+        void UpdateImage();
+
+        //region Propiedades / Estado, to obtain old spaicing, dimensions... test proxy has to be false
+        bool GetDimensions( int dimensions[3], bool testProxy = true );
+        bool GetSpacing( double spacing[3], bool testProxy = true );
+        bool GetOrigin( double origin[3], bool testProxy = true  );
+        bool GetBounds( double bounds[6] );
 
 //	bool GetMatrizModelo(double matriz[16]);
-	const GNC::GCS::Ptr<GNC::GCS::IGinkgoMatrix4x4>& GetModelMatrix();
-	const GNC::GCS::Ptr<GNC::GCS::IGinkgoMatrix4x4>& GetModelMatrixInv();
+        const GNC::GCS::Ptr<GNC::GCS::IGinkgoMatrix4x4>& GetModelMatrix();
+        const GNC::GCS::Ptr<GNC::GCS::IGinkgoMatrix4x4>& GetModelMatrixInv();
 
-	int GetNumberOfComponents();
-	///intentar usar estas funciones sólo cuando la imagen este cargada
-	vtkDataArray* GetScalars();
-	void* GetScalarPointer();
-	int GetScalarType();
-	vtkSmartPointer<vtkImageData> GetDataObject();
-	//endregion
+        int GetNumberOfComponents();
+        ///intentar usar estas funciones sólo cuando la imagen este cargada
+        vtkDataArray* GetScalars();
+        void* GetScalarPointer();
+        int GetScalarType();
+        vtkSmartPointer<vtkImageData> GetDataObject();
+        //endregion
 
-	//--------------------------------------------------------------------
-	//region Comportamiento
+        //--------------------------------------------------------------------
+        //region Comportamiento
 
-	/**
-	Switch between radiological (left is right and right is left) and
-	neurological (left is left and right is right) conventions.
-	*/
-	void SetConventionsToRadiological(void);
+        /**
+        Switch between radiological (left is right and right is left) and
+        neurological (left is left and right is right) conventions.
+        */
+        void SetConventionsToRadiological(void);
 
-	/**
-	Switch between radiological (left is right and right is left) and
-	neurological (left is left and right is right) conventions.
-	*/
-	void SetConventionsToNeurological(void);
+        /**
+        Switch between radiological (left is right and right is left) and
+        neurological (left is left and right is right) conventions.
+        */
+        void SetConventionsToNeurological(void);
 
-	void SetOrientation(unsigned int p_orientation);
+        void SetOrientation(unsigned int p_orientation);
 
-	int GetOrientation();
-	
-	/** Copy camera status from other **/
-	void CopyCameraStatus(vtkGinkgoImageViewer* other);
+        int GetOrientation();
 
-	/** Copy camera from other **/
-	void CopyCamera(const vtkGinkgoImageViewer* other);
+        /** Copy camera status from other **/
+        void CopyCameraStatus(vtkGinkgoImageViewer* other);
 
-	/** Returns the current camera rotation in radians (-PI/2, PI/2] **/
-	double GetCameraRotation() const;
+        /** Copy camera from other **/
+        void CopyCamera(const vtkGinkgoImageViewer* other);
 
-	/** Returns if camera location has changed to Flip image vertically **/
-	bool   GetCameraFlipVertical() const;
+        /** Returns the current camera rotation in radians (-PI/2, PI/2] **/
+        double GetCameraRotation() const;
 
-	/** Returns if camera location has changed to Flip image horizonally **/
-	bool   GetCameraFlipHorizontal() const;
+        /** Returns if camera location has changed to Flip image vertically **/
+        bool   GetCameraFlipVertical() const;
 
+        /** Returns if camera location has changed to Flip image horizonally **/
+        bool   GetCameraFlipHorizontal() const;
 
-	/** Specify the interactor style */
-	void SetInteractorStyle(vtkSmartPointer<vtkInteractorStyle> style);
 
+        /** Specify the interactor style */
+        void SetInteractorStyle(vtkSmartPointer<vtkInteractorStyle> style);
 
-	/** Get the interactor style */
-	vtkSmartPointer<vtkInteractorStyle> GetInteractorStyle();
 
-	int GetInteractionStyle();
-	void SetInteractionStyle(int type);
+        /** Get the interactor style */
+        vtkSmartPointer<vtkInteractorStyle> GetInteractorStyle();
 
+        int GetInteractionStyle();
+        void SetInteractionStyle(int type);
 
-	/** Set the background color. Format is RGB, 0 <= R,G,B <=1
-	Example: SetBackgroundColor(0.9,0.9,0.9) for grey-white. */
-	void SetBackgroundColor(double r, double g, double b);
 
+        /** Set the background color. Format is RGB, 0 <= R,G,B <=1
+        Example: SetBackgroundColor(0.9,0.9,0.9) for grey-white. */
+        void SetBackgroundColor(double r, double g, double b);
 
-	/** Show/Hide the annotations. Call UpdateAnnotations after this function. */
-	void SetShowAnnotations (bool show);
-	bool GetShowAnnotations();
 
-	//--------------------------------------------------------------------
-	//region Propiedades
+        /** Show/Hide the annotations. Call UpdateAnnotations after this function. */
+        void SetShowAnnotations (bool show);
+        bool GetShowAnnotations();
 
-	void SetInterpolationMode(int enable);
-	int GetInterpolationMode();
+        //--------------------------------------------------------------------
+        //region Propiedades
 
-	bool GetWholeExtent(int extent[6]) const;
-	bool SetUpdateExtent(int extent[6]);
-	bool GetSliceRange(vtkGinkgoImageViewer::Axis axis, int range[2]) const;
+        void SetInterpolationMode(int enable);
+        int GetInterpolationMode();
 
-	bool GetLinkCameraFocalAndPosition();
-	void SetLinkCameraFocalAndPosition(bool link);
+        bool GetWholeExtent(int extent[6]) const;
+        bool SetUpdateExtent(int extent[6]);
+        bool GetSliceRange(vtkGinkgoImageViewer::Axis axis, int range[2]) const;
 
-	bool GetLinkZoom();
-	void SetLinkZoom(bool link);
+        bool GetLinkCameraFocalAndPosition();
+        void SetLinkCameraFocalAndPosition(bool link);
 
-	void ClearRotationAndFlip(bool update = false);
-	void RotateCamera( bool right);
-	void RotateCamera( double angle);
-	void Flip(bool vertical);
+        bool GetLinkZoom();
+        void SetLinkZoom(bool link);
 
+        void ClearRotationAndFlip(bool update = false);
+        void RotateCamera( bool right);
+        void RotateCamera( double angle);
+        void Flip(bool vertical);
 
-	//region Control: WindowLevel
 
-	void SetWindowLevelFrom(vtkSmartPointer<vtkGinkgoImageViewer> p_view);
-	void SetDefaultWindowLevel(float initialWindow, float initialLevel);
-	void SetAutoDefaultWindowLevel();
+        //region Control: WindowLevel
 
-	double GetWindow();
-	double GetLevel();
+        void SetWindowLevelFrom(vtkSmartPointer<vtkGinkgoImageViewer> p_view);
+        void SetDefaultWindowLevel(float initialWindow, float initialLevel);
+        void SetAutoDefaultWindowLevel();
 
-	void SetWindow(double window);
-	void SetLevel(double level);
-	void SyncSetWindow (double w);
-	void SyncSetLevel (double w);
+        double GetWindow();
+        double GetLevel();
 
-	void ResetToDefaultWindowLevel();
+        void SetWindow(double window);
+        void SetLevel(double level);
+        void SyncSetWindow (double w);
+        void SyncSetLevel (double w);
 
-	void SyncSetCameraFocalAndPosition(double* focal, double* pos);
-	void GetRelativePositionOfCamera(double focal[3], double pos[3]);
-	void SetRelativePositionOfCamera(const double focal[3], const double pos[3]);
+        void ResetToDefaultWindowLevel();
 
-	void SetLookupTable(vtkSmartPointer<vtkScalarsToColors> lut, int idLookupTable);
-	vtkSmartPointer<vtkScalarsToColors> GetLookupTable();
-	int GetIdLookupTable();
+        void SyncSetCameraFocalAndPosition(double* focal, double* pos);
+        void GetRelativePositionOfCamera(double focal[3], double pos[3]);
+        void SetRelativePositionOfCamera(const double focal[3], const double pos[3]);
 
-	/** Set Image Brightness (-1.0, 0.0, 1.0) (Only aplicable with RGB Images) **/
-	void SetBrightness(float brightness);
-	
-	/** Set Image Contrast (-1.0, 0.0, 1.0) (Only aplicable with RGB Images) **/
-	void SetContrast(float contrast);
+        void SetLookupTable(vtkSmartPointer<vtkScalarsToColors> lut, int idLookupTable);
+        vtkSmartPointer<vtkScalarsToColors> GetLookupTable();
+        int GetIdLookupTable();
 
-	/** Get Image Brightness (-1.0, 0.0, 1.0) (Only aplicable with RGB Images) **/
-	float GetBrightness();
+        /** Set Image Brightness (-1.0, 0.0, 1.0) (Only aplicable with RGB Images) **/
+        void SetBrightness(float brightness);
 
-	/** Get Image Contrast (-1.0, 0.0, 1.0) (Only aplicable with RGB Images) **/
-	float GetContrast();
+        /** Set Image Contrast (-1.0, 0.0, 1.0) (Only aplicable with RGB Images) **/
+        void SetContrast(float contrast);
 
-	void ResetBrightnessAndContrast();
+        /** Get Image Brightness (-1.0, 0.0, 1.0) (Only aplicable with RGB Images) **/
+        float GetBrightness();
 
-	//region Control: Zoom
-	void SetInitialParallelScale(double scale);
-	/**
-	Resets Zoom
-	\param maintainZoom Maintain current zoom scale
-	\param zoomMode Set the Zoom mode: ZM_CenteredBestFit = 0, ZM_CenteredOriginalSize = 1
-	**/
-	void ResetZoom(bool mantenerZoom, int zoomMode);
+        /** Get Image Contrast (-1.0, 0.0, 1.0) (Only aplicable with RGB Images) **/
+        float GetContrast();
 
-	/** Set the actual zoom factor of the view. */
-	void SetZoom(double factor);
-	double GetZoom();
-	/* Returns the height of one display pixel in world size (mm) */
-	double GetZoomFactor();
-	void SyncSetZoom(double factor);
+        void ResetBrightnessAndContrast();
 
-	int GetLeftButtonInteractionStyle();
-	int GetRightButtonInteractionStyle();
-	int GetMiddleButtonInteractionStyle();
-	int GetWheelInteractionStyle();
+        //region Control: Zoom
+        void SetInitialParallelScale(double scale);
+        /**
+        Resets Zoom
+        \param maintainZoom Maintain current zoom scale
+        \param zoomMode Set the Zoom mode: ZM_CenteredBestFit = 0, ZM_CenteredOriginalSize = 1
+        **/
+        void ResetZoom(bool mantenerZoom, int zoomMode);
 
+        /** Set the actual zoom factor of the view. */
+        void SetZoom(double factor);
+        double GetZoom();
+        /* Returns the height of one display pixel in world size (mm) */
+        double GetZoomFactor();
+        void SyncSetZoom(double factor);
 
-	//--------------------------------------------------------------------
-	//region Conversion de coordenadas
+        int GetLeftButtonInteractionStyle();
+        int GetRightButtonInteractionStyle();
+        int GetMiddleButtonInteractionStyle();
+        int GetWheelInteractionStyle();
 
-	void CoordenadasImagenACoordenadasMundo(const double ip[3], double wp[4]);
 
-	void CoordenadasImagenACoordenadasPixel(const double ip[3], int pp[2]);
+        //--------------------------------------------------------------------
+        //region Conversion de coordenadas
 
-	void CoordenadasImagenACoordenadasPixel(GNC::GCS::Vector& vector);
+        void CoordenadasImagenACoordenadasMundo(const double ip[3], double wp[4]);
 
-	void CoordenadasMundoACoordenadasImagen(const double wp[3], double ip[3]);
+        void CoordenadasImagenACoordenadasPixel(const double ip[3], int pp[2]);
 
-	/** Apply cosines correction if needed **/
-	void CoordenadasMundoACoordenadasMundoReal(const double wp[3], double rwp[3]);
+        void CoordenadasImagenACoordenadasPixel(GNC::GCS::Vector& vector);
 
-	//--------------------------------------------------------------------
-	//region Anotaciones
-	void ActualizarAnotaciones();
+        void CoordenadasMundoACoordenadasImagen(const double wp[3], double ip[3]);
 
-	//region Propiedades geometricas
+        /** Apply cosines correction if needed **/
+        void CoordenadasMundoACoordenadasMundoReal(const double wp[3], double rwp[3]);
 
-	void IntersectarRectangulo(double wp0[3], double wp1[3], double ip0[3], double ip1[3]);
+        //--------------------------------------------------------------------
+        //region Anotaciones
+        void ActualizarAnotaciones();
 
-	/** Update the annotations. */
-	void UpdateAnnotations( void );
+        //region Propiedades geometricas
 
-	void PrintSelf(ostream& os, vtkIndent indent);
+        void IntersectarRectangulo(double wp0[3], double wp1[3], double ip0[3], double ip1[3]);
 
-	unsigned int GetConventions();
+        /** Update the annotations. */
+        void UpdateAnnotations( void );
 
-	/** Reset the camera */
-	void ResetCamera();
+        void PrintSelf(ostream& os, vtkIndent indent);
 
-	vtkSmartPointer<vtkGinkgoImageViewer> GetParent (void) const;
+        unsigned int GetConventions();
 
-	/**
-	Add a child to the list of children. Check if the child is already
-	in the list firt.
-	*/
-	void AddChild (vtkSmartPointer<vtkGinkgoImageViewer> p_view);
+        /** Reset the camera */
+        void ResetCamera();
 
-	//BTX
-	void AddChildren (std::list<vtkSmartPointer<vtkGinkgoImageViewer> > p_viewlist);
-	//ETX
+        vtkSmartPointer<vtkGinkgoImageViewer> GetParent (void) const;
 
-	/**
-	Remove a child form the list of children.
-	*/
-	void RemoveChild (vtkSmartPointer<vtkGinkgoImageViewer> view);
+        /**
+        Add a child to the list of children. Check if the child is already
+        in the list firt.
+        */
+        void AddChild (vtkSmartPointer<vtkGinkgoImageViewer> p_view);
 
-	void RemoveAllChildren (void);
+        //BTX
+        void AddChildren (std::list<vtkSmartPointer<vtkGinkgoImageViewer> > p_viewlist);
+        //ETX
 
-	/**
-	This function is called right after setting both Renderer and RenderWindow.
-	It allows a class to add actors for instance without knowing when the Renderer
-	and RenderWindow are set. For example, vtkGinkgoImageViewer will add the corner annotations
-	during the call to the Initialize function.
-	*/
+        /**
+        Remove a child form the list of children.
+        */
+        void RemoveChild (vtkSmartPointer<vtkGinkgoImageViewer> view);
 
-	//BTX
-	std::list < vtkSmartPointer<vtkGinkgoImageViewer> > GetChildren(void) const
-	{ return this->Children;}
-	//ETX
+        void RemoveAllChildren (void);
 
-	void DrawOn();
-	void DrawOff();
+        /**
+        This function is called right after setting both Renderer and RenderWindow.
+        It allows a class to add actors for instance without knowing when the Renderer
+        and RenderWindow are set. For example, vtkGinkgoImageViewer will add the corner annotations
+        during the call to the Initialize function.
+        */
 
-	void SetIsProcessed(bool processed);
-	bool GetIsProcessed();
+        //BTX
+        std::list < vtkSmartPointer<vtkGinkgoImageViewer> > GetChildren(void) const
+        {
+                return this->Children;
+        }
+        //ETX
 
-	bool IsLocked (void)
-	{ return this->GetIsProcessed(); }
+        void DrawOn();
+        void DrawOff();
 
-	/**
-	Part of the function propagation mechanism, when the function Lock() is
-	called, the view does not transmit the function to its children (and does
-	not do anything in fact).
-	*/
-	void Lock (void);
+        void SetIsProcessed(bool processed);
+        bool GetIsProcessed();
 
-	/**
-	A call to UnLock() permits to transmit function calls to the view's children.
-	*/
-	void UnLock (void);
+        bool IsLocked (void)
+        {
+                return this->GetIsProcessed();
+        }
 
-	/**
-	Returns true if the view has this child in its list.
-	*/
-	bool HasChild (vtkSmartPointer<vtkGinkgoImageViewer>) const;
+        /**
+        Part of the function propagation mechanism, when the function Lock() is
+        called, the view does not transmit the function to its children (and does
+        not do anything in fact).
+        */
+        void Lock (void);
 
-	/** Set the render link ON or OFF */
-	void SetLinkRender(bool linkRender);
-	bool GetLinkRender();
+        /**
+        A call to UnLock() permits to transmit function calls to the view's children.
+        */
+        void UnLock (void);
 
-	/**force disable shaders...*/
-	void InternalEnableShaders(bool enabled);
+        /**
+        Returns true if the view has this child in its list.
+        */
+        bool HasChild (vtkSmartPointer<vtkGinkgoImageViewer>) const;
+
+        /** Set the render link ON or OFF */
+        void SetLinkRender(bool linkRender);
+        bool GetLinkRender();
+
+        /**force disable shaders...*/
+        void InternalEnableShaders(bool enabled);
 
 protected:
 
-	//BTX
-	vtkSmartPointer<vtkGinkgoImageViewer>                 Parent;
-	std::list< vtkSmartPointer<vtkGinkgoImageViewer> > Children;
-	//ETX
+        //BTX
+        vtkSmartPointer<vtkGinkgoImageViewer>                 Parent;
+        std::list< vtkSmartPointer<vtkGinkgoImageViewer> > Children;
+        //ETX
 
-	/**
-	Set the parent for this view. Internal use only.
-	*/
-	void SetParent (vtkSmartPointer<vtkGinkgoImageViewer> view);
+        /**
+        Set the parent for this view. Internal use only.
+        */
+        void SetParent (vtkSmartPointer<vtkGinkgoImageViewer> view);
 
 protected:
-	vtkGinkgoImageViewer();
-	~vtkGinkgoImageViewer();
+        vtkGinkgoImageViewer();
+        ~vtkGinkgoImageViewer();
 
-	void SetupAnnotations();
+        void SetupAnnotations();
 
-	void UpdateCamera();
+        void UpdateCamera();
 public:
-	void ActualizarImagen();
+        void ActualizarImagen();
 
 
 public:
-	std::string ImageSizeData;
-	std::string PixelSizeData;
-	std::string VoxelSizeData;
-	std::string CurrentPositionData;
-	std::string CurrentSliceData;
-	std::string CurrentPointValueData;
-	std::string CurrentPointPositionData;
-	std::string CurrentWindowLevelData;
+        std::string ImageSizeData;
+        std::string PixelSizeData;
+        std::string VoxelSizeData;
+        std::string CurrentPositionData;
+        std::string CurrentSliceData;
+        std::string CurrentPointValueData;
+        std::string CurrentPointPositionData;
+        std::string CurrentWindowLevelData;
 
-	InternalMembers*  members;
+        InternalMembers*  members;
 
-	std::string ambitolog;
+        std::string ambitolog;
 
-	GNC::GCS::Vector3D SliceCoordinates[4];
+        GNC::GCS::Vector3D SliceCoordinates[4];
 
-	GNC::GCS::Vector3D CurrentOrigin;
+        GNC::GCS::Vector3D CurrentOrigin;
 
 };

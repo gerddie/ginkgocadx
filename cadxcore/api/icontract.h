@@ -6,8 +6,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -26,59 +26,64 @@
 #include <api/api.h>
 #include <api/iexception.h>
 
-namespace GNC {
-	namespace GCS {
+namespace GNC
+{
+namespace GCS
+{
 
-		class EXTAPI ContractException : public GNC::GCS::IException {
-		public:
+class EXTAPI ContractException : public GNC::GCS::IException
+{
+public:
 
-			ContractException(const std::string& msg) throw();
-		};
+        ContractException(const std::string& msg) throw();
+};
 
-		//------------------------------------------------------------------------
-		/* Contract generic interface.
-		 */
-		class EXTAPI IContract {
-		public:
+//------------------------------------------------------------------------
+/* Contract generic interface.
+ */
+class EXTAPI IContract
+{
+public:
 
-			typedef enum {
-				TC_Mandatory,
-				TC_Optional
-			} ContractType;
+        typedef enum {
+                TC_Mandatory,
+                TC_Optional
+        } ContractType;
 
-			IContract(ContractType type = TC_Mandatory, int prio = 0);
+        IContract(ContractType type = TC_Mandatory, int prio = 0);
 
-			virtual ~IContract();
+        virtual ~IContract();
 
-			void Ping();
+        void Ping();
 
-			bool operator<(const IContract& other) const;
+        bool operator<(const IContract& other) const;
 
-			bool operator<(const IContract* other) const;
+        bool operator<(const IContract* other) const;
 
-		public:
-			ContractType m_Type;
-			int          m_Priority;
-		};
+public:
+        ContractType m_Type;
+        int          m_Priority;
+};
 
-		//------------------------------------------------------------------------
-		/* Contract management class */
-		class EXTAPI IContractable {
+//------------------------------------------------------------------------
+/* Contract management class */
+class EXTAPI IContractable
+{
 
-		//region "Public interface for contract management"
+        //region "Public interface for contract management"
 
-		protected:
-			GNC::GCS::IContract* m_pContract;
+protected:
+        GNC::GCS::IContract* m_pContract;
 
-		public:
+public:
 
-			IContractable();
+        IContractable();
 
-			virtual ~IContractable();
+        virtual ~IContractable();
 
-			virtual bool IsValidContract(IContract* contract) = 0;
-			virtual void Register(IContract* contract);
-		};
-	}
+        virtual bool IsValidContract(IContract* contract) = 0;
+        virtual void Register(IContract* contract);
+};
+}
 }
 #endif

@@ -6,8 +6,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -26,30 +26,33 @@
 #include <api/api.h>
 #include <api/icontract.h>
 
-namespace GNC {
-	namespace GCS {
-		class EXTAPI IWindowLayoutContract : public IContract {
-		public:
+namespace GNC
+{
+namespace GCS
+{
+class EXTAPI IWindowLayoutContract : public IContract
+{
+public:
 
-			IWindowLayoutContract();
-			~IWindowLayoutContract();
+        IWindowLayoutContract();
+        ~IWindowLayoutContract();
 
-			virtual void Setup(int minSlice, int maxSlice);
+        virtual void Setup(int minSlice, int maxSlice);
 
-			virtual void AddRow();
-			virtual void AddColumn();
-			virtual void DelRow();
-			virtual void DelColumn();
-			virtual void SetWindowLayout(int filas, int columnas) = 0;
-			virtual int GetColumns() = 0;
-			virtual int GetRows() = 0;
-			virtual void SplitActive(bool vertically);
-			virtual bool SupportsSplit();
+        virtual void AddRow();
+        virtual void AddColumn();
+        virtual void DelRow();
+        virtual void DelColumn();
+        virtual void SetWindowLayout(int filas, int columnas) = 0;
+        virtual int GetColumns() = 0;
+        virtual int GetRows() = 0;
+        virtual void SplitActive(bool vertically);
+        virtual bool SupportsSplit();
 
-			int m_MinSlice;
-			int m_MaxSlice;
-		};
-	}
+        int m_MinSlice;
+        int m_MaxSlice;
+};
+}
 }
 
 #endif

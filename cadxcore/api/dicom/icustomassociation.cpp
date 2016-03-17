@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -27,10 +27,10 @@ GIL::DICOM::ICustomAssociation::~ICustomAssociation() { }
 
 void GIL::DICOM::ICustomAssociation::SetStorageSOPClasses(const GIL::DICOM::SOPClassList& SOPClasses)
 {
-	this->SOPClasses = SOPClasses;
+        this->SOPClasses = SOPClasses;
 }
 
 const std::string& GIL::DICOM::ICustomAssociation::getErrorMessage() const
 {
-	return errorMsg;
+        return errorMsg;
 }

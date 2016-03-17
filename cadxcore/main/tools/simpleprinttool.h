@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -24,25 +24,26 @@
 #include <api/api.h>
 
 class wxPrintData;
-namespace GNC {
-	class EXTAPI SimplePrintTool : public GNC::GCS::ISimplePrintTool
-	{
-		public:
-		virtual GNC::GCS::ITool* NewTool();
-		SimplePrintTool();
-		~SimplePrintTool();
-		
-		virtual bool ExecuteAction();
-		
-		virtual bool HasDropDownMenu();
-		virtual void AppendDropDownMenu(wxEvtHandler* pParent, wxMenu* pMenu);
-		virtual void AppendToolIn(wxEvtHandler* pParent, wxMenu* pMenu);
+namespace GNC
+{
+class EXTAPI SimplePrintTool : public GNC::GCS::ISimplePrintTool
+{
+public:
+        virtual GNC::GCS::ITool* NewTool();
+        SimplePrintTool();
+        ~SimplePrintTool();
 
-		void doPrint();
-		void doPrintPreview();
-		void doSetup();
+        virtual bool ExecuteAction();
 
-	protected:
-		wxPrintData* pData;
-	};
+        virtual bool HasDropDownMenu();
+        virtual void AppendDropDownMenu(wxEvtHandler* pParent, wxMenu* pMenu);
+        virtual void AppendToolIn(wxEvtHandler* pParent, wxMenu* pMenu);
+
+        void doPrint();
+        void doPrintPreview();
+        void doSetup();
+
+protected:
+        wxPrintData* pData;
+};
 }

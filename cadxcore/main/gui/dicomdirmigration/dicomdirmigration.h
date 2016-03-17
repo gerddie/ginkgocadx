@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -22,32 +22,34 @@
 
 #include "dicomdirmigrationbase.h"
 
-namespace GNC {
-	namespace GUI {
-		class DicomDirMigrationDialog: public GNC::GUI::DicomDirMigrationDialogBase
-		{
-		public:
-			typedef enum TStatus {
-				TS_CloseAll,
-				TS_Migrate,
-				TS_Change
-			} TStatus;
-			DicomDirMigrationDialog(wxWindow* pParent, const std::string& dicomDirPath, int version, bool oldVersion);
-			~DicomDirMigrationDialog();
+namespace GNC
+{
+namespace GUI
+{
+class DicomDirMigrationDialog: public GNC::GUI::DicomDirMigrationDialogBase
+{
+public:
+        typedef enum TStatus {
+                TS_CloseAll,
+                TS_Migrate,
+                TS_Change
+        } TStatus;
+        DicomDirMigrationDialog(wxWindow* pParent, const std::string& dicomDirPath, int version, bool oldVersion);
+        ~DicomDirMigrationDialog();
 
-			TStatus GetStatus();
-			std::string GetDicomDirPath();
-			std::string GetOriginalDicomDirPath();
-			bool GetRemoveAfterMigration();
+        TStatus GetStatus();
+        std::string GetDicomDirPath();
+        std::string GetOriginalDicomDirPath();
+        bool GetRemoveAfterMigration();
 
-		protected:
-			virtual void OnSelectOther(wxCommandEvent& event);
-			virtual void OnMigrate(wxCommandEvent& event);
-			wxString SelectFolder();
-			std::string m_DicomDirPath;
-			std::string m_OriginalDicomDirPath;
-			int FromVersion;
-			TStatus Status;			
-		};
-	}
+protected:
+        virtual void OnSelectOther(wxCommandEvent& event);
+        virtual void OnMigrate(wxCommandEvent& event);
+        wxString SelectFolder();
+        std::string m_DicomDirPath;
+        std::string m_OriginalDicomDirPath;
+        int FromVersion;
+        TStatus Status;
+};
+}
 }

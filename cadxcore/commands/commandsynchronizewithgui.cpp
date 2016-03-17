@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -27,30 +27,31 @@
 #define IDC_COMANDO_SYNCHRONIZE_WITH_GUI           116
 
 // Singleton de persistencia
-namespace GADAPI {
-	CommandSynchronizeWithGUI::CommandSynchronizeWithGUI(ISynchronizedWithGUI* pParams, ISynchronizedData* pData, bool clearData):IComando(NULL)
-	{
-		SetId(IDC_COMANDO_SYNCHRONIZE_WITH_GUI);
-		m_pListener = pParams;
-		m_pData = pData;
-		m_clearData = clearData;
-	}
-	
-	CommandSynchronizeWithGUI::~CommandSynchronizeWithGUI()
-	{
-		if (m_clearData && m_pData != NULL) {
-			delete m_pData;
-		}
-	}
+namespace GADAPI
+{
+CommandSynchronizeWithGUI::CommandSynchronizeWithGUI(ISynchronizedWithGUI* pParams, ISynchronizedData* pData, bool clearData):IComando(NULL)
+{
+        SetId(IDC_COMANDO_SYNCHRONIZE_WITH_GUI);
+        m_pListener = pParams;
+        m_pData = pData;
+        m_clearData = clearData;
+}
 
-	void CommandSynchronizeWithGUI::Execute()
-	{
-	}
+CommandSynchronizeWithGUI::~CommandSynchronizeWithGUI()
+{
+        if (m_clearData && m_pData != NULL) {
+                delete m_pData;
+        }
+}
 
-	void CommandSynchronizeWithGUI::Update()
-	{
-		m_pListener->ExecuteSynchronized(m_pData);
-	}
+void CommandSynchronizeWithGUI::Execute()
+{
+}
+
+void CommandSynchronizeWithGUI::Update()
+{
+        m_pListener->ExecuteSynchronized(m_pData);
+}
 
 }
 

@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -24,7 +24,7 @@
 
 GNC::GCS::IWidgetsContractable::IWidgetsContractable()
 {
-	WidgetsContract = NULL;
+        WidgetsContract = NULL;
 }
 
 GNC::GCS::IWidgetsContractable::~IWidgetsContractable()
@@ -33,13 +33,13 @@ GNC::GCS::IWidgetsContractable::~IWidgetsContractable()
 
 bool GNC::GCS::IWidgetsContractable::IsValidContract(IContract* contract)
 {
-	GNC::GCS::IWidgetsContract* pWContract = dynamic_cast<GNC::GCS::IWidgetsContract*>(contract);
-	return pWContract != NULL;
+        GNC::GCS::IWidgetsContract* pWContract = dynamic_cast<GNC::GCS::IWidgetsContract*>(contract);
+        return pWContract != NULL;
 }
 
-			
+
 void GNC::GCS::IWidgetsContractable::Register(IContract* contract)
 {
-	GNC::GCS::IContractable::Register(contract);
-	WidgetsContract = static_cast<GNC::GCS::IWidgetsContract*>(contract);
+        GNC::GCS::IContractable::Register(contract);
+        WidgetsContract = static_cast<GNC::GCS::IWidgetsContract*>(contract);
 }

@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -26,29 +26,33 @@
 #include <api/api.h>
 #include <export/tools/ibrightnesscontrasttool.h>
 
-namespace GNC {
+namespace GNC
+{
 
-	namespace GCS {
-		namespace Widgets {
-			class IWidgetBuilder;
-		}
-	}
+namespace GCS
+{
+namespace Widgets
+{
+class IWidgetBuilder;
+}
+}
 
-	class EXTAPI BrightnessContrastTool : public GNC::GCS::IBrightnessContrastTool {
-	public:
+class EXTAPI BrightnessContrastTool : public GNC::GCS::IBrightnessContrastTool
+{
+public:
 
-		BrightnessContrastTool();
-		~BrightnessContrastTool();
+        BrightnessContrastTool();
+        ~BrightnessContrastTool();
 
 //region "ITool/IContract realization"
-		virtual GNC::GCS::ITool* NewTool();
-		virtual void Connect();
-		virtual void Disconnect();
+        virtual GNC::GCS::ITool* NewTool();
+        virtual void Connect();
+        virtual void Disconnect();
 //endregion
 
-	protected:
-		GNC::GCS::Widgets::IWidgetBuilder*                 m_pBuilder;
-	};
+protected:
+        GNC::GCS::Widgets::IWidgetBuilder*                 m_pBuilder;
+};
 }
 #endif
 #endif

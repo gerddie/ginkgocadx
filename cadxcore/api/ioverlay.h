@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -23,24 +23,30 @@
 #include <api/math/geometry.h>
 
 class vtkGinkgoImageViewer;
-namespace GNC {
-	namespace GCS {
-		namespace Widgets {
-			class IWidget;
-		}
-	}
+namespace GNC
+{
+namespace GCS
+{
+namespace Widgets
+{
+class IWidget;
+}
+}
 }
 
-namespace GNC {
-	namespace GCS {
-		
-		/* Interfaz que se ocupa de imprimir (OpenGL + Cairo) datos referidos a un widget o a un widgetsRenderer */
-		class IImpresorOverlay {
-		public:
-			virtual ~IImpresorOverlay() {}
+namespace GNC
+{
+namespace GCS
+{
 
-			virtual std::string ImprimirOverlay(GNC::GCS::Widgets::IWidget* w, vtkGinkgoImageViewer* pViewer) = 0;
-		};
-		
-	}
+/* Interfaz que se ocupa de imprimir (OpenGL + Cairo) datos referidos a un widget o a un widgetsRenderer */
+class IImpresorOverlay
+{
+public:
+        virtual ~IImpresorOverlay() {}
+
+        virtual std::string ImprimirOverlay(GNC::GCS::Widgets::IWidget* w, vtkGinkgoImageViewer* pViewer) = 0;
+};
+
+}
 }

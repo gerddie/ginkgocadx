@@ -6,8 +6,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -26,70 +26,73 @@
 #include <api/toolsystem/itoolcontroller.h>
 
 // Forward declarations
-namespace GNC {
-	namespace GCS {
-		class IWidgetTool;
-	}
+namespace GNC
+{
+namespace GCS
+{
+class IWidgetTool;
+}
 }
 
-namespace GNC {
-	namespace GUI
-	{
-		class wxEventHandlerToolController;
-	}
-		
-	class EXTAPI ToolController : public GNC::GCS::IToolController
-	{
-	public:
-		
-		ToolController();
+namespace GNC
+{
+namespace GUI
+{
+class wxEventHandlerToolController;
+}
 
-		virtual ~ToolController();
+class EXTAPI ToolController : public GNC::GCS::IToolController
+{
+public:
 
-		virtual void InitializeToolController();
-		virtual void ReconnectToolController();
-		virtual void FinalizeToolController();
+        ToolController();
 
-		virtual void LoadStatus(const std::string& view, const std::string& modality = "ALL");
-		virtual void SaveStatus(const std::string& view, const std::string& modality = "ALL");
+        virtual ~ToolController();
 
-		virtual void AddTool(long idTool, GNC::GCS::IContract* pContract);
-		virtual void RemoveTool(long idTool);
+        virtual void InitializeToolController();
+        virtual void ReconnectToolController();
+        virtual void FinalizeToolController();
 
-		virtual GNC::GCS::ITool* GetTool(long idTool);
-		virtual void Enable(long idTool, bool enabled);
+        virtual void LoadStatus(const std::string& view, const std::string& modality = "ALL");
+        virtual void SaveStatus(const std::string& view, const std::string& modality = "ALL");
 
-		virtual wxWindow* CreateNewToolBar(wxWindow* pParent, bool alignLeft = true);
-		virtual wxWindow* CreateNewToolBar(wxWindow* pParent, GNC::GCS::ITool::TToolFamily family, bool alignLeft = true);
-		virtual wxWindow* CreateNewToolBar(wxWindow* pParent, const TIdList& toolsToInclude, bool alignLeft = true);
-		virtual void AppendsToolInMenu(wxEvtHandler* pParent, wxMenu* pMenu, GNC::GCS::ITool::TToolFamily family);
-		virtual void AppendsToolsInToolBar(wxGinkgoToolBar* pToolBar, GNC::GCS::ITool::TToolFamily family);
-		virtual void AppendsToolsInToolBar(wxGinkgoToolBar* pToolBar, const GNC::GCS::IToolController::TIdList& toolsToInclude);
+        virtual void AddTool(long idTool, GNC::GCS::IContract* pContract);
+        virtual void RemoveTool(long idTool);
 
-		virtual void OnKeyAccelerator(GNC::GCS::Events::EventoTeclado& evento, wxWindow* pWindow);
+        virtual GNC::GCS::ITool* GetTool(long idTool);
+        virtual void Enable(long idTool, bool enabled);
 
-		virtual void ActivateTool(long idTool, const GNC::GCS::TriggerButton& buttonmask, wxWindow* pParent);
-		virtual void DoActivateTool(long idTool, const GNC::GCS::TriggerButton& buttonmask, wxWindow* pParent);
-		virtual void AppendDropDownMenu(long idTool, wxEvtHandler* pParent, wxMenu* pMenu);
+        virtual wxWindow* CreateNewToolBar(wxWindow* pParent, bool alignLeft = true);
+        virtual wxWindow* CreateNewToolBar(wxWindow* pParent, GNC::GCS::ITool::TToolFamily family, bool alignLeft = true);
+        virtual wxWindow* CreateNewToolBar(wxWindow* pParent, const TIdList& toolsToInclude, bool alignLeft = true);
+        virtual void AppendsToolInMenu(wxEvtHandler* pParent, wxMenu* pMenu, GNC::GCS::ITool::TToolFamily family);
+        virtual void AppendsToolsInToolBar(wxGinkgoToolBar* pToolBar, GNC::GCS::ITool::TToolFamily family);
+        virtual void AppendsToolsInToolBar(wxGinkgoToolBar* pToolBar, const GNC::GCS::IToolController::TIdList& toolsToInclude);
 
-		//connect key events to child tools
-		virtual void ConnectKeyEvents(wxWindow* pParent);
+        virtual void OnKeyAccelerator(GNC::GCS::Events::EventoTeclado& evento, wxWindow* pWindow);
 
-		virtual GNC::GCS::IWidgetTool* GetLeftTool();
-		virtual GNC::GCS::IWidgetTool* GetRightTool();
-		virtual GNC::GCS::IWidgetTool* GetMiddleTool();
+        virtual void ActivateTool(long idTool, const GNC::GCS::TriggerButton& buttonmask, wxWindow* pParent);
+        virtual void DoActivateTool(long idTool, const GNC::GCS::TriggerButton& buttonmask, wxWindow* pParent);
+        virtual void AppendDropDownMenu(long idTool, wxEvtHandler* pParent, wxMenu* pMenu);
 
-		typedef std::map<long, GNC::GCS::ITool*> TToolMap;
-		TToolMap m_tools;
-		GNC::GCS::Ptr<GNC::GUI::wxEventHandlerToolController> EventHandler;
-		GNC::GCS::IWidgetTool* m_leftTool;
-		GNC::GCS::IWidgetTool* m_rightTool;
-		GNC::GCS::IWidgetTool* m_middleTool;
+        //connect key events to child tools
+        virtual void ConnectKeyEvents(wxWindow* pParent);
+
+        virtual GNC::GCS::IWidgetTool* GetLeftTool();
+        virtual GNC::GCS::IWidgetTool* GetRightTool();
+        virtual GNC::GCS::IWidgetTool* GetMiddleTool();
+
+        typedef std::map<long, GNC::GCS::ITool*> TToolMap;
+        TToolMap m_tools;
+        GNC::GCS::Ptr<GNC::GUI::wxEventHandlerToolController> EventHandler;
+        GNC::GCS::IWidgetTool* m_leftTool;
+        GNC::GCS::IWidgetTool* m_rightTool;
+        GNC::GCS::IWidgetTool* m_middleTool;
 
 
 
-	private:
-		std::string GetToolStatusScope(const std::string& view, const std::string& modality);
-	};
+private:
+        std::string GetToolStatusScope(const std::string& view, const std::string& modality);
+};
 }
 #endif

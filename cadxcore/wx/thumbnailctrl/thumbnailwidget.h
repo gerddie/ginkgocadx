@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -71,37 +71,37 @@ class wxThumbnailCtrl;
 
 class EXTAPI wxThumbnailWidget: public wxControl
 {
-    DECLARE_DYNAMIC_CLASS( wxThumbnailWidget )
-    DECLARE_EVENT_TABLE()
+        DECLARE_DYNAMIC_CLASS( wxThumbnailWidget )
+        DECLARE_EVENT_TABLE()
 
 public:
-    /// Constructors
-    wxThumbnailWidget( );
-    wxThumbnailWidget( wxWindow* parent, wxWindowID id = SYMBOL_wxThumbnailWidget_IDNAME, const wxString& caption = SYMBOL_wxThumbnailWidget_TITLE, const wxPoint& pos = SYMBOL_wxThumbnailWidget_POSITION, const wxSize& size = SYMBOL_wxThumbnailWidget_SIZE, long style = SYMBOL_wxThumbnailWidget_STYLE );
+        /// Constructors
+        wxThumbnailWidget( );
+        wxThumbnailWidget( wxWindow* parent, wxWindowID id = SYMBOL_wxThumbnailWidget_IDNAME, const wxString& caption = SYMBOL_wxThumbnailWidget_TITLE, const wxPoint& pos = SYMBOL_wxThumbnailWidget_POSITION, const wxSize& size = SYMBOL_wxThumbnailWidget_SIZE, long style = SYMBOL_wxThumbnailWidget_STYLE );
 
-    /// Creation
-    bool Create( wxWindow* parent, wxWindowID id = SYMBOL_wxThumbnailWidget_IDNAME, const wxString& caption = SYMBOL_wxThumbnailWidget_TITLE, const wxPoint& pos = SYMBOL_wxThumbnailWidget_POSITION, const wxSize& size = SYMBOL_wxThumbnailWidget_SIZE, long style = SYMBOL_wxThumbnailWidget_STYLE );
+        /// Creation
+        bool Create( wxWindow* parent, wxWindowID id = SYMBOL_wxThumbnailWidget_IDNAME, const wxString& caption = SYMBOL_wxThumbnailWidget_TITLE, const wxPoint& pos = SYMBOL_wxThumbnailWidget_POSITION, const wxSize& size = SYMBOL_wxThumbnailWidget_SIZE, long style = SYMBOL_wxThumbnailWidget_STYLE );
 
-    /// Creates the controls and sizers
-    void CreateControls();
+        /// Creates the controls and sizers
+        void CreateControls();
 
-    /// Shows the images in the given dir
-    void ShowFolder(const wxString& path);
+        /// Shows the images in the given dir
+        void ShowFolder(const wxString& path);
 
-    /// Accessors
+        /// Accessors
 
-    void SetSelection(const wxString& filename);
-    wxString GetSelection() const ;
-    wxArrayString GetSelections() const ;
+        void SetSelection(const wxString& filename);
+        wxString GetSelection() const ;
+        wxArrayString GetSelections() const ;
 
-    /// Custom event handlers
-    void OnLeftClick(wxThumbnailEvent& event);
-    void OnLeftDClick(wxThumbnailEvent& event);
+        /// Custom event handlers
+        void OnLeftClick(wxThumbnailEvent& event);
+        void OnLeftDClick(wxThumbnailEvent& event);
 
 ////@begin wxThumbnailWidget event handler declarations
 
-    /// wxEVT_COMMAND_TREELIST_SELECTION_CHANGED event handler for ID_IMAGE_BROWSER_DIRCTRL
-    void OnImageBrowserDirctrlSelChanged( wxTreeEvent& event );
+        /// wxEVT_COMMAND_TREELIST_SELECTION_CHANGED event handler for ID_IMAGE_BROWSER_DIRCTRL
+        void OnImageBrowserDirctrlSelChanged( wxTreeEvent& event );
 
 ////@end wxThumbnailWidget event handler declarations
 
@@ -109,18 +109,18 @@ public:
 
 ////@end wxThumbnailWidget member function declarations
 
-    /// Should we show tooltips?
-    static bool ShowToolTips();
+        /// Should we show tooltips?
+        static bool ShowToolTips();
 
 ////@begin wxThumbnailWidget member variables
-    wxGenericDirCtrl* m_dirCtrl;
-    wxThumbnailCtrl* m_imageBrowser;
+        wxGenericDirCtrl* m_dirCtrl;
+        wxThumbnailCtrl* m_imageBrowser;
 ////@end wxThumbnailWidget member variables
 
-    // Work around calling selection callback twice
-    int m_selectionCount;
+        // Work around calling selection callback twice
+        int m_selectionCount;
 
-    // Initial path or filename, if set
-    wxString m_initialSelection;
+        // Initial path or filename, if set
+        wxString m_initialSelection;
 };
 

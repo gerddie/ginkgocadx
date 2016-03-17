@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -31,7 +31,7 @@
 
 GNC::GCS::ITool* GNC::ShowHistoryTool::NewTool()
 {
-	return new GNC::ShowHistoryTool();
+        return new GNC::ShowHistoryTool();
 }
 
 GNC::ShowHistoryTool::ShowHistoryTool()
@@ -40,31 +40,30 @@ GNC::ShowHistoryTool::ShowHistoryTool()
 GNC::ShowHistoryTool::~ShowHistoryTool()
 {
 }
-		
+
 bool GNC::ShowHistoryTool::ExecuteAction()
-{	
-	if (GNC::GUI::HistoryPanel3::Instance()->IsIconized()) {
-		GNC::GUI::HistoryPanel3::Instance()->Restore();
-	}
-	if (!GNC::GUI::HistoryPanel3::Instance()->IsShown())
-	{		
-		GNC::GUI::HistoryPanel3::Instance()->Show(true);
-	} else {
-		GNC::GUI::HistoryPanel3::Instance()->Raise();
-	}
-	
-	return true;
+{
+        if (GNC::GUI::HistoryPanel3::Instance()->IsIconized()) {
+                GNC::GUI::HistoryPanel3::Instance()->Restore();
+        }
+        if (!GNC::GUI::HistoryPanel3::Instance()->IsShown()) {
+                GNC::GUI::HistoryPanel3::Instance()->Show(true);
+        } else {
+                GNC::GUI::HistoryPanel3::Instance()->Raise();
+        }
+
+        return true;
 }
 
 void GNC::ShowHistoryTool::AppendToolIn(wxEvtHandler* pParent, wxMenu* pMenu)
 {
-	if (AppendsInMenu()) {
-		GNC::GUI::wxDefaultEvtHandlerTool* evtHandler = new GNC::GUI::wxDefaultEvtHandlerTool(pParent, this);
-		pMenu->Append(new GNC::GUI::wxMenuItemTool(pMenu, ID, wxString::FromUTF8(Name.c_str()),Icon, evtHandler));
-	}
+        if (AppendsInMenu()) {
+                GNC::GUI::wxDefaultEvtHandlerTool* evtHandler = new GNC::GUI::wxDefaultEvtHandlerTool(pParent, this);
+                pMenu->Append(new GNC::GUI::wxMenuItemTool(pMenu, ID, wxString::FromUTF8(Name.c_str()),Icon, evtHandler));
+        }
 }
 
 bool GNC::ShowHistoryTool::IsShown()
 {
-	return GNC::GUI::HistoryPanel3::Instance()->IsShown();
+        return GNC::GUI::HistoryPanel3::Instance()->IsShown();
 }

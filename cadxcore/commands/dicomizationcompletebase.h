@@ -31,38 +31,41 @@ class TitledPanel;
 
 namespace GNC
 {
-	namespace GUI
-	{
-		
-		///////////////////////////////////////////////////////////////////////////////
-		/// Class DicomizationCompleteBase
-		///////////////////////////////////////////////////////////////////////////////
-		class DicomizationCompleteBase : public wxDialog 
-		{
-			private:
-			
-			protected:
-				HeaderPanel* m_pHeader;
-				BodyPanel* m_pBodyPanel;
-				TitledPanel* m_pPanelTitled;
-				wxStaticText* m_staticText8;
-				FooterPanel* m_panel12;
-				
-				wxButton* m_button5;
-				
-				// Virtual event handlers, overide them in your derived class
-				virtual void OnYesClick( wxCommandEvent& event ) { event.Skip(); }
-				
-			
-			public:
-				wxCheckBox* m_pCheckNotShow;
-				
-				DicomizationCompleteBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Dicomization complete"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER );
-				~DicomizationCompleteBase();
-			
-		};
-		
-	} // namespace GUI
+namespace GUI
+{
+
+///////////////////////////////////////////////////////////////////////////////
+/// Class DicomizationCompleteBase
+///////////////////////////////////////////////////////////////////////////////
+class DicomizationCompleteBase : public wxDialog
+{
+private:
+
+protected:
+        HeaderPanel* m_pHeader;
+        BodyPanel* m_pBodyPanel;
+        TitledPanel* m_pPanelTitled;
+        wxStaticText* m_staticText8;
+        FooterPanel* m_panel12;
+
+        wxButton* m_button5;
+
+        // Virtual event handlers, overide them in your derived class
+        virtual void OnYesClick( wxCommandEvent& event )
+        {
+                event.Skip();
+        }
+
+
+public:
+        wxCheckBox* m_pCheckNotShow;
+
+        DicomizationCompleteBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Dicomization complete"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER );
+        ~DicomizationCompleteBase();
+
+};
+
+} // namespace GUI
 } // namespace GNC
 
 #endif //__dicomizationcompletebase__

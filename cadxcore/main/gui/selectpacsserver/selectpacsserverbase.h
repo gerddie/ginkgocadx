@@ -31,33 +31,33 @@ class TitledPanel;
 
 namespace GNC
 {
-	namespace GUI
-	{
-		
-		///////////////////////////////////////////////////////////////////////////////
-		/// Class SelectPacsServerBase
-		///////////////////////////////////////////////////////////////////////////////
-		class SelectPacsServerBase : public wxDialog 
-		{
-			private:
-			
-			protected:
-				BodyPanel* m_pBody;
-				TitledPanel* m_pPanelMessage;
-				wxStaticText* m_pLabel;
-				wxChoice* m_pServer;
-				FooterPanel* m_pFooter;
-				wxButton* m_pOkButton;
-				wxButton* m_button5;
-			
-			public:
-				
-				SelectPacsServerBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Select PACS"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxCAPTION|wxCLOSE_BOX|wxMAXIMIZE_BOX|wxRESIZE_BORDER|wxSYSTEM_MENU ); 
-				~SelectPacsServerBase();
-			
-		};
-		
-	} // namespace GUI
+namespace GUI
+{
+
+///////////////////////////////////////////////////////////////////////////////
+/// Class SelectPacsServerBase
+///////////////////////////////////////////////////////////////////////////////
+class SelectPacsServerBase : public wxDialog
+{
+private:
+
+protected:
+        BodyPanel* m_pBody;
+        TitledPanel* m_pPanelMessage;
+        wxStaticText* m_pLabel;
+        wxChoice* m_pServer;
+        FooterPanel* m_pFooter;
+        wxButton* m_pOkButton;
+        wxButton* m_button5;
+
+public:
+
+        SelectPacsServerBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Select PACS"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxCAPTION|wxCLOSE_BOX|wxMAXIMIZE_BOX|wxRESIZE_BORDER|wxSYSTEM_MENU );
+        ~SelectPacsServerBase();
+
+};
+
+} // namespace GUI
 } // namespace GNC
 
 #endif //__SELECTPACSSERVERBASE_H__

@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -32,12 +32,13 @@
 #include <vtk/vtkginkgoimageviewer.h>
 
 GNKVisualizator::ECGRuleTool::ECGRuleTool() :
-m_pRuleBuilder(NULL)
+        m_pRuleBuilder(NULL)
 {
-	m_pRuleBuilder = NULL;
+        m_pRuleBuilder = NULL;
 }
 
-GNKVisualizator::ECGRuleTool::~ECGRuleTool() {
+GNKVisualizator::ECGRuleTool::~ECGRuleTool()
+{
 
 }
 
@@ -47,37 +48,35 @@ GNKVisualizator::ECGRuleTool::~ECGRuleTool() {
 
 GNC::GCS::ITool* GNKVisualizator::ECGRuleTool::NewTool()
 {
-	return new GNKVisualizator::ECGRuleTool();
+        return new GNKVisualizator::ECGRuleTool();
 }
 
 void GNKVisualizator::ECGRuleTool::Connect()
 {
-	if (WidgetsContract == NULL) {
-		return;
-	}
-	if (m_pRuleBuilder != NULL)
-	{
-		delete m_pRuleBuilder;
-		m_pRuleBuilder = NULL;
-	}
+        if (WidgetsContract == NULL) {
+                return;
+        }
+        if (m_pRuleBuilder != NULL) {
+                delete m_pRuleBuilder;
+                m_pRuleBuilder = NULL;
+        }
 
-	m_pRuleBuilder = new GNKVisualizator::Widgets::WECGRuleBuilder(WidgetsContract->GetManager(), GetTriggerButton());
-	WidgetsContract->GetViewerActivo()->SetInteractionStyle(vtkGinkgoImageViewer::ZOOM_INTERACTION);
-	WidgetsContract->GetManager()->SetCursor(m_pRuleBuilder->GetCursor());
+        m_pRuleBuilder = new GNKVisualizator::Widgets::WECGRuleBuilder(WidgetsContract->GetManager(), GetTriggerButton());
+        WidgetsContract->GetViewerActivo()->SetInteractionStyle(vtkGinkgoImageViewer::ZOOM_INTERACTION);
+        WidgetsContract->GetManager()->SetCursor(m_pRuleBuilder->GetCursor());
 }
 
 void GNKVisualizator::ECGRuleTool::Disconnect()
 {
-	if (WidgetsContract == NULL) {
-		return;
-	}
-	WidgetsContract->GetViewerActivo()->SetInteractionStyle(vtkGinkgoImageViewer::ZOOM_INTERACTION);
-	WidgetsContract->GetManager()->SetCursor(GNC::GCS::Widgets::CUR_FLECHA);
-	if (m_pRuleBuilder != NULL)
-	{
-		delete m_pRuleBuilder;
-		m_pRuleBuilder = NULL;
-	}
+        if (WidgetsContract == NULL) {
+                return;
+        }
+        WidgetsContract->GetViewerActivo()->SetInteractionStyle(vtkGinkgoImageViewer::ZOOM_INTERACTION);
+        WidgetsContract->GetManager()->SetCursor(GNC::GCS::Widgets::CUR_FLECHA);
+        if (m_pRuleBuilder != NULL) {
+                delete m_pRuleBuilder;
+                m_pRuleBuilder = NULL;
+        }
 }
 
 //endregion

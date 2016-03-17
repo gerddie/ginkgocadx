@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -32,159 +32,163 @@
 //----------------------------------------------------------------------------------------------------
 //Forward Declarations
 
-namespace GNC {
-	namespace GCS {
-		class IWidgetsRenderer;
-	}
+namespace GNC
+{
+namespace GCS
+{
+class IWidgetsRenderer;
+}
 }
 class TimerAnimation;
 class wxMenu;
 
 //End Forward Declarations
 
-namespace GNC {
-	class WidgetsManager : public wxEvtHandler, public GNC::GCS::IWidgetsManager, public GNC::GCS::IEventsObserver {
+namespace GNC
+{
+class WidgetsManager : public wxEvtHandler, public GNC::GCS::IWidgetsManager, public GNC::GCS::IEventsObserver
+{
 
-	public:
-		WidgetsManager(GNC::GCS::IVista* pVista);
-		virtual ~WidgetsManager();
+public:
+        WidgetsManager(GNC::GCS::IVista* pVista);
+        virtual ~WidgetsManager();
 
-	//----------------------------------------------------------------------------------------------------
-	//region "Interfaz especifica"
+        //----------------------------------------------------------------------------------------------------
+        //region "Interfaz especifica"
 
-		virtual void RenderPrivate(GNC::GCS::Contexto3D* c);
-		
-		virtual void TickAnimation(double freq);
+        virtual void RenderPrivate(GNC::GCS::Contexto3D* c);
 
-		virtual void EnableAnimation();
+        virtual void TickAnimation(double freq);
 
-		virtual void DisableAnimation();
+        virtual void EnableAnimation();
 
-		virtual void Render();
+        virtual void DisableAnimation();
 
-		virtual void OffScreenRender(GNC::GCS::Contexto3D* c);
+        virtual void Render();
 
-		virtual void Modificado();
-		
-		virtual void ModificadoPorWidget(GNC::GCS::Widgets::IWidget* w);
+        virtual void OffScreenRender(GNC::GCS::Contexto3D* c);
 
-		virtual void OnMouseEvents(GNC::GCS::Events::EventoRaton& evento);
+        virtual void Modificado();
 
-		virtual void OnKeyEvents(GNC::GCS::Events::EventoTeclado& evento);
+        virtual void ModificadoPorWidget(GNC::GCS::Widgets::IWidget* w);
 
-		virtual void DefaultMouseEventProcess(GNC::GCS::Events::EventoRaton& evento);
+        virtual void OnMouseEvents(GNC::GCS::Events::EventoRaton& evento);
 
-		virtual void DefaultKeyEventProcess(GNC::GCS::Events::EventoTeclado& event);
+        virtual void OnKeyEvents(GNC::GCS::Events::EventoTeclado& evento);
 
-		// Propaga a todos los widgets no ocultos un hit test de seleccion. Los widgets se seleccionan si validan un hittest con el bounding box especificado.
-		virtual void PropagarHitTestSeleccion(GNC::GCS::Vector* vertices, int numVertices);
+        virtual void DefaultMouseEventProcess(GNC::GCS::Events::EventoRaton& evento);
 
-	//endregion
+        virtual void DefaultKeyEventProcess(GNC::GCS::Events::EventoTeclado& event);
 
-	//----------------------------------------------------------------------------------------------------
-	//region "Interfaz de registro de Renderers"
+        // Propaga a todos los widgets no ocultos un hit test de seleccion. Los widgets se seleccionan si validan un hittest con el bounding box especificado.
+        virtual void PropagarHitTestSeleccion(GNC::GCS::Vector* vertices, int numVertices);
 
-	public:
+        //endregion
 
-		virtual void SetRendererActivo(GNC::GCS::IWidgetsRenderer* pRenderer);
+        //----------------------------------------------------------------------------------------------------
+        //region "Interfaz de registro de Renderers"
 
-		virtual void InsertarRenderer(GNC::GCS::IWidgetsRenderer* pRenderer);
+public:
 
-		virtual void EliminarRenderer(GNC::GCS::IWidgetsRenderer* pRenderer);
+        virtual void SetRendererActivo(GNC::GCS::IWidgetsRenderer* pRenderer);
 
-		virtual void LiberarRecursos(GNC::GCS::IWidgetsRenderer* pRenderer);
+        virtual void InsertarRenderer(GNC::GCS::IWidgetsRenderer* pRenderer);
 
-	//endregion
+        virtual void EliminarRenderer(GNC::GCS::IWidgetsRenderer* pRenderer);
 
-	//----------------------------------------------------------------------------------------------------
-	//region "Interfaz de registro de IWidget's"
+        virtual void LiberarRecursos(GNC::GCS::IWidgetsRenderer* pRenderer);
 
-		virtual void InsertarWidget(GNC::GCS::Widgets::IWidget* pWidget, bool propagarEvento=true);
+        //endregion
 
-		virtual void EliminarWidget(const GNC::GCS::Widgets::IWidget* pWidget, bool propagarEvento=true);
+        //----------------------------------------------------------------------------------------------------
+        //region "Interfaz de registro de IWidget's"
 
-		/** Remove all widgets except anyone with this tid **/
-		virtual void RemoveAllWidgetsExceptTID(long tid, bool propagateEvents=true);
+        virtual void InsertarWidget(GNC::GCS::Widgets::IWidget* pWidget, bool propagarEvento=true);
 
-		virtual void RemoveUserAnnotationWidgets(bool propagateEvents = true);
+        virtual void EliminarWidget(const GNC::GCS::Widgets::IWidget* pWidget, bool propagarEvento=true);
 
-		virtual void EliminarWidget(GNC::GCS::IWidgetsManager::IteradorListaWidgets& it, bool propagarEvento=true);
+        /** Remove all widgets except anyone with this tid **/
+        virtual void RemoveAllWidgetsExceptTID(long tid, bool propagateEvents=true);
 
-		virtual void EliminarTodosLosWidgets(bool propagarEventos=true);
+        virtual void RemoveUserAnnotationWidgets(bool propagateEvents = true);
 
-		/** Set visible on all widgets matching TID **/
-		virtual void SetVisibleByTID(bool visible, long tid);
+        virtual void EliminarWidget(GNC::GCS::IWidgetsManager::IteradorListaWidgets& it, bool propagarEvento=true);
 
-		virtual void OcultarTodosLosWidgets(bool ocultar, long GID);
+        virtual void EliminarTodosLosWidgets(bool propagarEventos=true);
 
-		virtual void EliminarTodosLosWidgets(long GID);
+        /** Set visible on all widgets matching TID **/
+        virtual void SetVisibleByTID(bool visible, long tid);
 
-		virtual void OcultarWidgetsDeSubVista(bool ocultar, long vid);
+        virtual void OcultarTodosLosWidgets(bool ocultar, long GID);
 
-		virtual GNC::GCS::ListaWidgets& GetListaWidgets();
+        virtual void EliminarTodosLosWidgets(long GID);
 
-		virtual void GetListaWidgetsSubVista(long vid, GNC::GCS::ListaWidgets& lista);
+        virtual void OcultarWidgetsDeSubVista(bool ocultar, long vid);
 
-	//endregion
+        virtual GNC::GCS::ListaWidgets& GetListaWidgets();
 
-	//----------------------------------------------------------------------------------------------------
-	//endregion "Interfaz de Observadores"
+        virtual void GetListaWidgetsSubVista(long vid, GNC::GCS::ListaWidgets& lista);
 
-		virtual void NotificarCreacion(GNC::GCS::Widgets::IWidget* pWidget);
+        //endregion
 
-		virtual void NotificarDestruccion(GNC::GCS::Widgets::IWidget* pWidget);
+        //----------------------------------------------------------------------------------------------------
+        //endregion "Interfaz de Observadores"
 
-		virtual void NotificarModificacion(GNC::GCS::Widgets::IWidget* pWidget);
+        virtual void NotificarCreacion(GNC::GCS::Widgets::IWidget* pWidget);
 
-	//endregion
+        virtual void NotificarDestruccion(GNC::GCS::Widgets::IWidget* pWidget);
 
-	//----------------------------------------------------------------------------------------------------
-	//region "Interfaz annotation"
+        virtual void NotificarModificacion(GNC::GCS::Widgets::IWidget* pWidget);
 
-		virtual void SetAnnotator(const GNC::GCS::Ptr<GNC::GCS::IAnnotator>& pAnnotador);
-		virtual const GNC::GCS::Ptr<GNC::GCS::IAnnotator>& GetAnnotator();
-		virtual void ShowAnnotations(bool show);
-		virtual bool IsShownAnnotations();
+        //endregion
 
-	//enderegion
+        //----------------------------------------------------------------------------------------------------
+        //region "Interfaz annotation"
 
-	//----------------------------------------------------------------------------------------------------
-	//region "Interfaz de acceso al sistema de eventos ginkgo"
+        virtual void SetAnnotator(const GNC::GCS::Ptr<GNC::GCS::IAnnotator>& pAnnotador);
+        virtual const GNC::GCS::Ptr<GNC::GCS::IAnnotator>& GetAnnotator();
+        virtual void ShowAnnotations(bool show);
+        virtual bool IsShownAnnotations();
 
-		virtual void LanzarEventoCreacion(GNC::GCS::Widgets::IWidget* w);
-		virtual void LanzarEventoModificacion(GNC::GCS::Widgets::IWidget* w);
-		virtual void LanzarEventoDestruccion(GNC::GCS::Widgets::IWidget* w);
+        //enderegion
 
-		virtual void ProcesarEvento(GNC::GCS::Events::IEvent *evt);
+        //----------------------------------------------------------------------------------------------------
+        //region "Interfaz de acceso al sistema de eventos ginkgo"
 
-	//endregion
+        virtual void LanzarEventoCreacion(GNC::GCS::Widgets::IWidget* w);
+        virtual void LanzarEventoModificacion(GNC::GCS::Widgets::IWidget* w);
+        virtual void LanzarEventoDestruccion(GNC::GCS::Widgets::IWidget* w);
 
-	//----------------------------------------------------------------------------------------------------
-	//region "Gestion propia de WX"
+        virtual void ProcesarEvento(GNC::GCS::Events::IEvent *evt);
 
-		virtual void OnClickEnEliminar(wxCommandEvent& );
+        //endregion
 
-		virtual void OnClickEnPropiedades(wxCommandEvent& );
+        //----------------------------------------------------------------------------------------------------
+        //region "Gestion propia de WX"
 
-		virtual bool GetMenuContextual(wxMenu* menuContextual) const;
+        virtual void OnClickEnEliminar(wxCommandEvent& );
 
-	//endregion
+        virtual void OnClickEnPropiedades(wxCommandEvent& );
 
-	//----------------------------------------------------------------------------------------------------
-	//region "Cursores
-		virtual void SetCursor(GNC::GCS::Widgets::TipoCursor cursor);
-	//endregion
+        virtual bool GetMenuContextual(wxMenu* menuContextual) const;
 
-		bool m_mouseDerechoDown;
-		bool m_mouseIzquierdoDown;
-		bool m_middleDown;
-		
-	//----------------------------------------------------------------------------------------------------
-	//region "Helpers"
-	private:
-		inline void ModificarRenderersDeWidget(GNC::GCS::Widgets::IWidget* w);
-		TimerAnimation* m_pTimerAnimation;
-		GNC::GCS::Ptr<GNC::GCS::IAnnotator> m_pAnnotator;
-	//endregion
-	};
+        //endregion
+
+        //----------------------------------------------------------------------------------------------------
+        //region "Cursores
+        virtual void SetCursor(GNC::GCS::Widgets::TipoCursor cursor);
+        //endregion
+
+        bool m_mouseDerechoDown;
+        bool m_mouseIzquierdoDown;
+        bool m_middleDown;
+
+        //----------------------------------------------------------------------------------------------------
+        //region "Helpers"
+private:
+        inline void ModificarRenderersDeWidget(GNC::GCS::Widgets::IWidget* w);
+        TimerAnimation* m_pTimerAnimation;
+        GNC::GCS::Ptr<GNC::GCS::IAnnotator> m_pAnnotator;
+        //endregion
+};
 }

@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -29,43 +29,47 @@
 #include <string>
 #include <vector>
 
-namespace GNC {
+namespace GNC
+{
 
-	namespace GCS {
-		class IEntorno;
-		class IModuleController;
-	}
+namespace GCS
+{
+class IEntorno;
+class IModuleController;
+}
 
-	namespace GUI {
-		class ImportProfileToolBar;
+namespace GUI
+{
+class ImportProfileToolBar;
 
-		class PasoPefilImportacion: public PasoPerfilImportacionBase, public IPasoWizard
-		{
-			public:
-				PasoPefilImportacion(wxWindow* pParent,IWizard* pWizard);
-				~PasoPefilImportacion();
+class PasoPefilImportacion: public PasoPerfilImportacionBase, public IPasoWizard
+{
+public:
+        PasoPefilImportacion(wxWindow* pParent,IWizard* pWizard);
+        ~PasoPefilImportacion();
 
-				GNC::GCS::IModuleController* GetControladorSeleccionado(){
-					return m_pControladorModulo;
-				};
+        GNC::GCS::IModuleController* GetControladorSeleccionado()
+        {
+                return m_pControladorModulo;
+        };
 
-			protected:
-				GNC::GCS::IModuleController* m_pControladorModulo;
-				ImportProfileToolBar* m_pToolBar;
+protected:
+        GNC::GCS::IModuleController* m_pControladorModulo;
+        ImportProfileToolBar* m_pToolBar;
 
-			//region "Metodos heredados de IPasoWizard"
-				virtual std::string GetTitle();
+        //region "Metodos heredados de IPasoWizard"
+        virtual std::string GetTitle();
 
-				virtual std::string GetSubTitle();
+        virtual std::string GetSubTitle();
 
-				virtual bool Siguiente();
+        virtual bool Siguiente();
 
-				virtual bool Anterior();
+        virtual bool Anterior();
 
-				virtual bool Cancelar();
+        virtual bool Cancelar();
 
-				virtual bool Validar();
-			//endregion
-		};
-	}
+        virtual bool Validar();
+        //endregion
+};
+}
 }

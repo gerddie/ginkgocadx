@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -24,7 +24,7 @@
 
 GNC::GCS::IRuleContractable::IRuleContractable()
 {
-	RuleContract = NULL;
+        RuleContract = NULL;
 }
 
 GNC::GCS::IRuleContractable::~IRuleContractable()
@@ -33,13 +33,13 @@ GNC::GCS::IRuleContractable::~IRuleContractable()
 
 bool GNC::GCS::IRuleContractable::IsValidContract(IContract* contract)
 {
-	GNC::GCS::IRuleContract* pWContract = dynamic_cast<GNC::GCS::IRuleContract*>(contract);
-	return pWContract != NULL;
+        GNC::GCS::IRuleContract* pWContract = dynamic_cast<GNC::GCS::IRuleContract*>(contract);
+        return pWContract != NULL;
 }
 
-			
+
 void GNC::GCS::IRuleContractable::Register(IContract* contract)
 {
-	GNC::GCS::IContractable::Register(contract);
-	RuleContract = static_cast<GNC::GCS::IRuleContract*>(contract);
+        GNC::GCS::IContractable::Register(contract);
+        RuleContract = static_cast<GNC::GCS::IRuleContract*>(contract);
 }

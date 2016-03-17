@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -28,80 +28,86 @@
 
 class PrivateExtension;
 
-namespace GADVAPI {
+namespace GADVAPI
+{
 
-	class EXTAPI IPrivateExtensionWrapper {
+class EXTAPI IPrivateExtensionWrapper
+{
 
-	public:
+public:
 
-		virtual ~IPrivateExtensionWrapper() {}
+        virtual ~IPrivateExtensionWrapper() {}
 
-		#if defined(MONOLITIC)
-		virtual bool Load(PrivateExtension* pExt) = 0;
-		#else
-		virtual bool Load() = 0;
-		#endif
-		virtual bool UnLoad() = 0;
-		virtual bool IsLoaded() const = 0;
+#if defined(MONOLITIC)
+        virtual bool Load(PrivateExtension* pExt) = 0;
+#else
+        virtual bool Load() = 0;
+#endif
+        virtual bool UnLoad() = 0;
+        virtual bool IsLoaded() const = 0;
 
-		virtual bool IsActivated() const 
-		{
-			return true;
-		}
+        virtual bool IsActivated() const
+        {
+                return true;
+        }
 
-		virtual const std::string& GetProvider() const = 0;
-		virtual const std::string& GetDescription() const = 0;
+        virtual const std::string& GetProvider() const = 0;
+        virtual const std::string& GetDescription() const = 0;
 
-		virtual const std::string& GetUpdateURL() const = 0;
+        virtual const std::string& GetUpdateURL() const = 0;
 
-		virtual const std::string& GetError() const = 0;
+        virtual const std::string& GetError() const = 0;
 
-		virtual PrivateExtension* GetExtension() = 0;
+        virtual PrivateExtension* GetExtension() = 0;
 
-	};
+};
 
-	class EXTAPI PrivateExtensionManager : private std::map<std::string, IPrivateExtensionWrapper*>
-	{
-	public:
-		
-		typedef std::map<std::string, IPrivateExtensionWrapper*> Base;
-		typedef Base::iterator iterator;
+class EXTAPI PrivateExtensionManager : private std::map<std::string, IPrivateExtensionWrapper*>
+{
+public:
 
-		PrivateExtensionManager();
-		~PrivateExtensionManager();
+        typedef std::map<std::string, IPrivateExtensionWrapper*> Base;
+        typedef Base::iterator iterator;
 
-		IPrivateExtensionWrapper* GetExtension(const std::string& nombre);
+        PrivateExtensionManager();
+        ~PrivateExtensionManager();
 
-		void Scan();
+        IPrivateExtensionWrapper* GetExtension(const std::string& nombre);
 
-		void UnLoadAll();
+        void Scan();
 
-		iterator begin();
-		iterator end();
-		
-	};
+        void UnLoadAll();
+
+        iterator begin();
+        iterator end();
+
+};
 }
 
-namespace GNC {
-	namespace GCS {
+namespace GNC
+{
+namespace GCS
+{
 
-		class EXTAPI IExtensionException : public IException {
-		public:			
+class EXTAPI IExtensionException : public IException
+{
+public:
 
-		protected:
-			IExtensionException(const std::string& msg, const std::string& component="GNC", bool fatal = true) throw();
+protected:
+        IExtensionException(const std::string& msg, const std::string& component="GNC", bool fatal = true) throw();
 
-			~IExtensionException() throw();
-		};
+        ~IExtensionException() throw();
+};
 
-		class EXTAPI IControladorExtensiones {
-		public:
-			virtual GADVAPI::PrivateExtensionManager& GetPrivateExtensionsManager() = 0;
+class EXTAPI IControladorExtensiones
+{
+public:
+        virtual GADVAPI::PrivateExtensionManager& GetPrivateExtensionsManager() = 0;
 
-		protected:
-			IControladorExtensiones();
-			virtual ~IControladorExtensiones();
-		};
-	}
+protected:
+        IControladorExtensiones();
+        virtual ~IControladorExtensiones();
+};
+}
 }
 

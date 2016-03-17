@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -23,43 +23,48 @@
 #include <api/controllers/icontroladorvistas.h>
 #include <api/autoptr.h>
 
-namespace GNC {
-	namespace GCS {
-		class IVista;
-	}
+namespace GNC
+{
+namespace GCS
+{
+class IVista;
+}
 }
 
-namespace GADAPI {
-	class ComandoCarga;
+namespace GADAPI
+{
+class ComandoCarga;
 
-	class ComandoCargaParams : public GNC::GCS::IComandoParams, public GNC::GCS::IObservadorVistas {
-	public:
-		ComandoCargaParams(GNC::GCS::IVista* pVista, const bool loadFirst);
+class ComandoCargaParams : public GNC::GCS::IComandoParams, public GNC::GCS::IObservadorVistas
+{
+public:
+        ComandoCargaParams(GNC::GCS::IVista* pVista, const bool loadFirst);
 
-		virtual ~ComandoCargaParams();
+        virtual ~ComandoCargaParams();
 
-		virtual void OnVistaDestruida(GNC::GCS::IVista* pVista);
+        virtual void OnVistaDestruida(GNC::GCS::IVista* pVista);
 
-		GNC::GCS::IVista*               IVista;
-		ComandoCarga*                   Padre;
-		bool									  LoadFirst;
+        GNC::GCS::IVista*               IVista;
+        ComandoCarga*                   Padre;
+        bool									  LoadFirst;
 
-	};
+};
 
-	class ComandoCarga : public GNC::GCS::IComando {
-	public:
+class ComandoCarga : public GNC::GCS::IComando
+{
+public:
 
-		ComandoCarga(ComandoCargaParams* pParams);
+        ComandoCarga(ComandoCargaParams* pParams);
 
-    protected:
+protected:
 
-		virtual void Execute();
-		virtual void Update();
+        virtual void Execute();
+        virtual void Update();
 
-	protected:
+protected:
 
-		ComandoCargaParams* CargaParams;
-		std::string         Error;
+        ComandoCargaParams* CargaParams;
+        std::string         Error;
 
-	};
+};
 }

@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -30,26 +30,27 @@
 #include <visualizator/estudios/overlay.h>
 #include <api/api.h>
 
-namespace GNKVisualizator {
+namespace GNKVisualizator
+{
 
-	class OverlaysTool : public GNKVisualizator::IOverlaysTool
-	{
-		public:
-		virtual GNC::GCS::ITool* NewTool();
-		OverlaysTool();
-		~OverlaysTool();
+class OverlaysTool : public GNKVisualizator::IOverlaysTool
+{
+public:
+        virtual GNC::GCS::ITool* NewTool();
+        OverlaysTool();
+        ~OverlaysTool();
 
-		virtual bool ExecuteAction();
-		virtual void AppendToolIn(wxEvtHandler* pParent, wxMenu* pMenu);
-		
-		//cuando hacen click en ella...
-		GNC::GCS::Ptr<GNKVisualizator::TListaOverlays>& GetListaOverlays();
-		GNKVisualizator::TEstadoOverlay* GetEstadoOverlays();
-		virtual void ToggleOverlay(int idOverlay);		
+        virtual bool ExecuteAction();
+        virtual void AppendToolIn(wxEvtHandler* pParent, wxMenu* pMenu);
 
-	protected:
+        //cuando hacen click en ella...
+        GNC::GCS::Ptr<GNKVisualizator::TListaOverlays>& GetListaOverlays();
+        GNKVisualizator::TEstadoOverlay* GetEstadoOverlays();
+        virtual void ToggleOverlay(int idOverlay);
 
-	};
+protected:
+
+};
 }
 #endif
 
@@ -60,38 +61,40 @@ namespace GNKVisualizator {
 #include <map>
 
 
-namespace GNKVisualizator {
+namespace GNKVisualizator
+{
 
-	class HerramientaOverlays : public GNKVisualizator::IHerramientaOverlays {
+class HerramientaOverlays : public GNKVisualizator::IHerramientaOverlays
+{
 
-	protected:
+protected:
 
-	public:
-		HerramientaOverlays();
-		~HerramientaOverlays();
-		//menu del mapa de color
-		virtual bool AppendInMenu(wxWindow* pParent, wxMenu* pMenuParent);
+public:
+        HerramientaOverlays();
+        ~HerramientaOverlays();
+        //menu del mapa de color
+        virtual bool AppendInMenu(wxWindow* pParent, wxMenu* pMenuParent);
 
-		//region "Realización de la interfaz IHerramienta"
+        //region "Realización de la interfaz IHerramienta"
 
-		// Setup de paneles
-		virtual void CrearPaneles( wxPanel* panel );
+        // Setup de paneles
+        virtual void CrearPaneles( wxPanel* panel );
 
-		//endregion
+        //endregion
 
-		//cuando hacen click en ella...
-		GNKVisualizator::TListaOverlays* GetListaOverlays();
-		GNKVisualizator::TEstadoOverlay* GetEstadoOverlays();
-		virtual void ToggleOverlay(int idOverlay);
-		virtual void SolicitarActivacion();
-		
-		virtual void ConectarContratoFalso(bool activar);
-		virtual void SetVistaActiva(GNC::GCS::IVista* pVista);
-		virtual void ConectarContratos(bool activar);
+        //cuando hacen click en ella...
+        GNKVisualizator::TListaOverlays* GetListaOverlays();
+        GNKVisualizator::TEstadoOverlay* GetEstadoOverlays();
+        virtual void ToggleOverlay(int idOverlay);
+        virtual void SolicitarActivacion();
+
+        virtual void ConectarContratoFalso(bool activar);
+        virtual void SetVistaActiva(GNC::GCS::IVista* pVista);
+        virtual void ConectarContratos(bool activar);
 
 
-	protected:
+protected:
 
-	};
+};
 }
 #endif

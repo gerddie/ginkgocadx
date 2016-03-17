@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -50,71 +50,73 @@
 #include <resources/ginkgoresourcesmanager.h>
 #include <api/internationalization/internationalization.h>
 
-namespace GNC {
-	namespace GUI {
+namespace GNC
+{
+namespace GUI
+{
 
-		PanelConfigurationAnonymization::PanelConfigurationAnonymization(wxWindow* pParent, IDialogoConfiguracion* pDialogo): PanelConfigurationAnonymizationBase(pParent), IPasoConfiguracion(pDialogo)
-		{
-			GNC::GCS::AnonymizationController::TAnonymizationMap map = GNC::GCS::AnonymizationController::GetAnonymizationMap();
-			/*
-			m_pTagsDicom->SetColumnCount(2);
-			m_pTagsDicom->MakeColumnEditable(1, true);
-			m_pTagsDicom->SetColumnProportion(0, 3);
-			m_gridPermisos->SetColumnProportion(1, 1);
-			for(GNC::GCS::AnonymizationController::TAnonymizationMap::const_iterator it = map.begin(); it != map.end(); ++it)
-			{
-				if(!(*it).second.privado) {
-					if ((*it).second.espacioNombres != ultimaCategoria) {
-						ultimaCategoria = (*it).second.espacioNombres;
-						cat = m_gridPermisos->Append(new wxPropertyCategory(wxString::FromUTF8((*it).second.descripcionNamespace.c_str()),wxString::FromUTF8(ultimaCategoria.c_str())));
-					}
-					std::string clave = (*it).second.espacioNombres + SEPARADOR + (*it).second.id;
-					wxPGProperty* prop = cat->AppendChild(new wxBoolProperty(wxString::FromUTF8((*it).second.descripcion.c_str()), wxString::FromUTF8(clave.c_str()), (*it).second.activoPorDefecto ) );
-					prop->SetCell(2, new wxPGCell( wxString::FromUTF8( ((*it).second.valorPorDefecto).c_str())) );
-					prop->SetCell(3, new wxPGCell( _("Default value") ));
-				}
-			}
-			*/
-		}
+PanelConfigurationAnonymization::PanelConfigurationAnonymization(wxWindow* pParent, IDialogoConfiguracion* pDialogo): PanelConfigurationAnonymizationBase(pParent), IPasoConfiguracion(pDialogo)
+{
+        GNC::GCS::AnonymizationController::TAnonymizationMap map = GNC::GCS::AnonymizationController::GetAnonymizationMap();
+        /*
+        m_pTagsDicom->SetColumnCount(2);
+        m_pTagsDicom->MakeColumnEditable(1, true);
+        m_pTagsDicom->SetColumnProportion(0, 3);
+        m_gridPermisos->SetColumnProportion(1, 1);
+        for(GNC::GCS::AnonymizationController::TAnonymizationMap::const_iterator it = map.begin(); it != map.end(); ++it)
+        {
+        	if(!(*it).second.privado) {
+        		if ((*it).second.espacioNombres != ultimaCategoria) {
+        			ultimaCategoria = (*it).second.espacioNombres;
+        			cat = m_gridPermisos->Append(new wxPropertyCategory(wxString::FromUTF8((*it).second.descripcionNamespace.c_str()),wxString::FromUTF8(ultimaCategoria.c_str())));
+        		}
+        		std::string clave = (*it).second.espacioNombres + SEPARADOR + (*it).second.id;
+        		wxPGProperty* prop = cat->AppendChild(new wxBoolProperty(wxString::FromUTF8((*it).second.descripcion.c_str()), wxString::FromUTF8(clave.c_str()), (*it).second.activoPorDefecto ) );
+        		prop->SetCell(2, new wxPGCell( wxString::FromUTF8( ((*it).second.valorPorDefecto).c_str())) );
+        		prop->SetCell(3, new wxPGCell( _("Default value") ));
+        	}
+        }
+        */
+}
 
-		PanelConfigurationAnonymization::~PanelConfigurationAnonymization()
-		{
-			
-		}
+PanelConfigurationAnonymization::~PanelConfigurationAnonymization()
+{
 
-		void PanelConfigurationAnonymization::Recargar()
-		{
-			
-		}
+}
 
-		//region "Metodos de IPasoConfiguracion"
-		wxWindow* PanelConfigurationAnonymization::GetPanel()
-		{
-			return this;
-		}
+void PanelConfigurationAnonymization::Recargar()
+{
 
-		std::string PanelConfigurationAnonymization::GetTitle()
-		{
-			return _Std("Anonymization");
-		}
+}
 
-		std::string PanelConfigurationAnonymization::GetCabecera()
-		{
-			return _Std("Anonymization settings");
-		}
+//region "Metodos de IPasoConfiguracion"
+wxWindow* PanelConfigurationAnonymization::GetPanel()
+{
+        return this;
+}
 
-		bool PanelConfigurationAnonymization::Validar()
-		{
-			bool ok = true;
+std::string PanelConfigurationAnonymization::GetTitle()
+{
+        return _Std("Anonymization");
+}
 
-			return ok;
-		}
+std::string PanelConfigurationAnonymization::GetCabecera()
+{
+        return _Std("Anonymization settings");
+}
 
-		bool PanelConfigurationAnonymization::Guardar()
-		{
-			
-			return true;
-		}
-	//endregion
-	}
+bool PanelConfigurationAnonymization::Validar()
+{
+        bool ok = true;
+
+        return ok;
+}
+
+bool PanelConfigurationAnonymization::Guardar()
+{
+
+        return true;
+}
+//endregion
+}
 }

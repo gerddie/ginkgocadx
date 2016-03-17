@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -54,103 +54,105 @@
 
 inline wxBitmap _wxConvertMemoryToBitmap(const unsigned char* data, int length, wxBitmapType type = wxBITMAP_TYPE_ANY )
 {
-	wxMemoryInputStream stream( data, length );
-	return wxBitmap( wxImage( stream, type, -1), -1 );;
+        wxMemoryInputStream stream( data, length );
+        return wxBitmap( wxImage( stream, type, -1), -1 );;
 }
 
 
-namespace GNC {
-	namespace GUI {
-		class ExtensionPanel: public ExtensionPanelBase
-		{
-		public:
-			ExtensionPanel(wxWindow* pParent, GADVAPI::IPrivateExtensionWrapper* pExtension, PanelConfiguracionExtensiones* pConfigPanel): ExtensionPanelBase(pParent)
-			{
-				m_pExtension = pExtension;
-				m_pConfigPanel = pConfigPanel;
-				m_pThumbnail->SetBackgroundColour(this->GetBackgroundColour());
-				m_pLabelTitle->SetLabel(wxString::FromUTF8(pExtension->GetDescription().c_str()));
+namespace GNC
+{
+namespace GUI
+{
+class ExtensionPanel: public ExtensionPanelBase
+{
+public:
+        ExtensionPanel(wxWindow* pParent, GADVAPI::IPrivateExtensionWrapper* pExtension, PanelConfiguracionExtensiones* pConfigPanel): ExtensionPanelBase(pParent)
+        {
+                m_pExtension = pExtension;
+                m_pConfigPanel = pConfigPanel;
+                m_pThumbnail->SetBackgroundColour(this->GetBackgroundColour());
+                m_pLabelTitle->SetLabel(wxString::FromUTF8(pExtension->GetDescription().c_str()));
 
-				if (!pExtension->GetExtension()->GetIcon().IsOk()) {
-					//default icon 
-					m_pThumbnail->SetBitmap(GinkgoResourcesManager::Logos::GetExtensionsLogo());
-				} else {
-					//load icon
-					m_pThumbnail->SetBitmap(pExtension->GetExtension()->GetIcon());
-				}
+                if (!pExtension->GetExtension()->GetIcon().IsOk()) {
+                        //default icon
+                        m_pThumbnail->SetBitmap(GinkgoResourcesManager::Logos::GetExtensionsLogo());
+                } else {
+                        //load icon
+                        m_pThumbnail->SetBitmap(pExtension->GetExtension()->GetIcon());
+                }
 
-				Layout();
-			}
+                Layout();
+        }
 
-			~ExtensionPanel()
-			{
-			}
-
-
-			GADVAPI::IPrivateExtensionWrapper* m_pExtension;
-			PanelConfiguracionExtensiones* m_pConfigPanel;
-		};
+        ~ExtensionPanel()
+        {
+        }
 
 
+        GADVAPI::IPrivateExtensionWrapper* m_pExtension;
+        PanelConfiguracionExtensiones* m_pConfigPanel;
+};
 
-		PanelConfiguracionExtensiones::PanelConfiguracionExtensiones(wxWindow* pParent,IDialogoConfiguracion* pDialogo): PanelConfiguracionExtensionesBase(pParent), IPasoConfiguracion(pDialogo)
-		{
-			m_hasBeenChanged = false;
-			Recargar();
-		}
 
-		PanelConfiguracionExtensiones::~PanelConfiguracionExtensiones()
-		{
-		}
 
-		void PanelConfiguracionExtensiones::Recargar()
-		{
-			GADVAPI::PrivateExtensionManager& mgr = GNC::ControladorExtensiones::Instance()->GetPrivateExtensionsManager();
-			//mgr.Reload();
+PanelConfiguracionExtensiones::PanelConfiguracionExtensiones(wxWindow* pParent,IDialogoConfiguracion* pDialogo): PanelConfiguracionExtensionesBase(pParent), IPasoConfiguracion(pDialogo)
+{
+        m_hasBeenChanged = false;
+        Recargar();
+}
 
-			m_pScrollPanelExtensions->DestroyChildren();
-			for (GADVAPI::PrivateExtensionManager::iterator it = mgr.begin(); it != mgr.end(); ++it)
-			{
-				ExtensionPanel* pPanel = new ExtensionPanel(m_pScrollPanelExtensions, (*it).second, this);
-				m_pScrollPanelExtensions->GetSizer()->Add(pPanel, 0, wxEXPAND| wxALL, 0);
-			}
-			m_pScrollPanelExtensions->Layout();
-		}
+PanelConfiguracionExtensiones::~PanelConfiguracionExtensiones()
+{
+}
 
-		//region "Metodos de IPasoConfiguracion"
-		wxWindow* PanelConfiguracionExtensiones::GetPanel()
-		{
-			return this;
-		}
+void PanelConfiguracionExtensiones::Recargar()
+{
+        GADVAPI::PrivateExtensionManager& mgr = GNC::ControladorExtensiones::Instance()->GetPrivateExtensionsManager();
+        //mgr.Reload();
 
-		std::string PanelConfiguracionExtensiones::GetTitle()
-		{
-			return _Std("Extensions");
-		}
+        m_pScrollPanelExtensions->DestroyChildren();
+        for (GADVAPI::PrivateExtensionManager::iterator it = mgr.begin(); it != mgr.end(); ++it) {
+                ExtensionPanel* pPanel = new ExtensionPanel(m_pScrollPanelExtensions, (*it).second, this);
+                m_pScrollPanelExtensions->GetSizer()->Add(pPanel, 0, wxEXPAND| wxALL, 0);
+        }
+        m_pScrollPanelExtensions->Layout();
+}
 
-		std::string PanelConfiguracionExtensiones::GetCabecera()
-		{
-			return _Std("Extensions settings");
-		}
+//region "Metodos de IPasoConfiguracion"
+wxWindow* PanelConfiguracionExtensiones::GetPanel()
+{
+        return this;
+}
 
-		bool PanelConfiguracionExtensiones::Validar()
-		{
-			if(m_hasBeenChanged) {
-				wxMessageBox(_("Ginkgo CADx must restart for the extensions changes to take effect"),_("Info"));
-			}
-			return true;
-		}
+std::string PanelConfiguracionExtensiones::GetTitle()
+{
+        return _Std("Extensions");
+}
 
-		bool PanelConfiguracionExtensiones::Guardar()
-		{
-			return true;
-		}
+std::string PanelConfiguracionExtensiones::GetCabecera()
+{
+        return _Std("Extensions settings");
+}
 
-		//endregion
+bool PanelConfiguracionExtensiones::Validar()
+{
+        if(m_hasBeenChanged) {
+                wxMessageBox(_("Ginkgo CADx must restart for the extensions changes to take effect"),_("Info"));
+        }
+        return true;
+}
 
-		void PanelConfiguracionExtensiones::OnPropiedadCambiada(){
-			m_hasBeenChanged = true;
-			IPasoConfiguracion::OnPropiedadCambiada();
-		}
-	}
+bool PanelConfiguracionExtensiones::Guardar()
+{
+        return true;
+}
+
+//endregion
+
+void PanelConfiguracionExtensiones::OnPropiedadCambiada()
+{
+        m_hasBeenChanged = true;
+        IPasoConfiguracion::OnPropiedadCambiada();
+}
+}
 }

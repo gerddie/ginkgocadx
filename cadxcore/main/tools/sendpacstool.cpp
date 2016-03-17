@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -38,7 +38,7 @@
 
 //----------------------------------------------------------------------
 
-GNC::SendPACSTool::SendPACSTool(): GNC::GCS::IHistoryTool(ID,GNC::GCS::IHistoryTool::TFamily_Send, _Std("Send to PACS"), _Std("Send to PACS"), GinkgoResourcesManager::MenuIcons::GetIcoSendToPACS()) 
+GNC::SendPACSTool::SendPACSTool(): GNC::GCS::IHistoryTool(ID,GNC::GCS::IHistoryTool::TFamily_Send, _Std("Send to PACS"), _Std("Send to PACS"), GinkgoResourcesManager::MenuIcons::GetIcoSendToPACS())
 {
 }
 
@@ -46,37 +46,37 @@ GNC::SendPACSTool::~SendPACSTool()
 {
 }
 
-bool GNC::SendPACSTool::Enabled() 
+bool GNC::SendPACSTool::Enabled()
 {
-	return GNC::GCS::IControladorPermisos::Instance()->Get("core.pacs.limits","pacs_upload");
+        return GNC::GCS::IControladorPermisos::Instance()->Get("core.pacs.limits","pacs_upload");
 }
 
 void GNC::SendPACSTool::Execute()
 {
-	GNC::GCS::IHistoryPanel* pHistory = GNC::HistoryToolsController::Instance()->GetHistoryPanel();
-	std::list<long> listOfPks;
-	pHistory->GetSelectedSeriesPk(listOfPks);
-	Execute(listOfPks);
+        GNC::GCS::IHistoryPanel* pHistory = GNC::HistoryToolsController::Instance()->GetHistoryPanel();
+        std::list<long> listOfPks;
+        pHistory->GetSelectedSeriesPk(listOfPks);
+        Execute(listOfPks);
 }
 
 void GNC::SendPACSTool::Execute(const std::list<long>& listOfPks)
 {
-	GNC::GCS::IHistoryPanel* pHistory = GNC::HistoryToolsController::Instance()->GetHistoryPanel();
-	if (listOfPks.empty()) {
-		wxMessageBox(_("Select at least one series"), _("Info"), wxICON_INFORMATION, pHistory->GetWxWindow());
-		return;
-	}
+        GNC::GCS::IHistoryPanel* pHistory = GNC::HistoryToolsController::Instance()->GetHistoryPanel();
+        if (listOfPks.empty()) {
+                wxMessageBox(_("Select at least one series"), _("Info"), wxICON_INFORMATION, pHistory->GetWxWindow());
+                return;
+        }
 
-	if (!AreSeriesFullyDownloaded(listOfPks)) {
-		GNC::GUI::SynchronizeDialog dlg(pHistory->GetWxWindow(), listOfPks, this);
-		dlg.ShowModal();
-	} else {
-		GNC::GUI::SelectPacsServer dlg(pHistory->GetWxWindow());
-		if (dlg.ShowModal() == wxID_OK) {
-			GADAPI::SendPACSCommand* pCmd = new GADAPI::SendPACSCommand(dlg.GetSelectedServer(), "", listOfPks);
-			GNC::GCS::ICommandController::Instance()->ProcessAsync(_Std("Sending to PACS..."),pCmd, NULL);
-		}
-	}
+        if (!AreSeriesFullyDownloaded(listOfPks)) {
+                GNC::GUI::SynchronizeDialog dlg(pHistory->GetWxWindow(), listOfPks, this);
+                dlg.ShowModal();
+        } else {
+                GNC::GUI::SelectPacsServer dlg(pHistory->GetWxWindow());
+                if (dlg.ShowModal() == wxID_OK) {
+                        GADAPI::SendPACSCommand* pCmd = new GADAPI::SendPACSCommand(dlg.GetSelectedServer(), "", listOfPks);
+                        GNC::GCS::ICommandController::Instance()->ProcessAsync(_Std("Sending to PACS..."),pCmd, NULL);
+                }
+        }
 }
 
 

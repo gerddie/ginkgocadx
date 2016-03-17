@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -22,40 +22,45 @@
 #include "selecciontextobase.h"
 #include "../wtextbox.h"
 
-namespace GNC {
-	namespace GCS {
-		namespace Widgets {
-			namespace Dialogos {
-				class SeleccionTexto : public SeleccionTextoBase {
-				public:
-					typedef GNC::GCS::Widgets::WTextBox TWidget;
-					typedef GNC::GCS::IWidgetsManager TManager;
+namespace GNC
+{
+namespace GCS
+{
+namespace Widgets
+{
+namespace Dialogos
+{
+class SeleccionTexto : public SeleccionTextoBase
+{
+public:
+        typedef GNC::GCS::Widgets::WTextBox TWidget;
+        typedef GNC::GCS::IWidgetsManager TManager;
 
-					SeleccionTexto(wxWindow* parent, TWidget* pWidget, TManager* pManager);
-					~SeleccionTexto();
+        SeleccionTexto(wxWindow* parent, TWidget* pWidget, TManager* pManager);
+        ~SeleccionTexto();
 
-					virtual void OnClickEnMenu(wxCommandEvent& event);
+        virtual void OnClickEnMenu(wxCommandEvent& event);
 
-				protected:
+protected:
 
-					virtual void OnDialogoKeyDown( wxKeyEvent& event );
+        virtual void OnDialogoKeyDown( wxKeyEvent& event );
 
-					virtual void OnControlTextoKeyDown( wxKeyEvent& event );
+        virtual void OnControlTextoKeyDown( wxKeyEvent& event );
 
-					virtual void OnControlTextoTextoActualizado( wxCommandEvent& event );
+        virtual void OnControlTextoTextoActualizado( wxCommandEvent& event );
 
-					virtual void OnBotonCancelarClick( wxCommandEvent& event );
+        virtual void OnBotonCancelarClick( wxCommandEvent& event );
 
-					virtual void OnBotonAceptarClick( wxCommandEvent& event );
+        virtual void OnBotonAceptarClick( wxCommandEvent& event );
 
-					virtual void OnActivar(wxActivateEvent &event);
+        virtual void OnActivar(wxActivateEvent &event);
 
-					void Actualizar(bool actualizarWidget = true);
+        void Actualizar(bool actualizarWidget = true);
 
-					TWidget*   m_pWidget;
-					TManager*  m_pManager;
-				};
-			}
-		}
-	}
+        TWidget*   m_pWidget;
+        TManager*  m_pManager;
+};
+}
+}
+}
 }

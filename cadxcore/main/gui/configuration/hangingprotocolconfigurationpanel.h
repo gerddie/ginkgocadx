@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -24,52 +24,55 @@
 #include <string>
 #include <vector>
 
-namespace GNC {
-	namespace GCS {
-		class HangingProtocol;
-	}
-	namespace GUI {
-		class HangingProtocolConfigurationPanel: public HangingProtocolConfigurationPanelBase, public IPasoConfiguracion
-		{
-			public:
-				HangingProtocolConfigurationPanel(wxWindow* pParent,IDialogoConfiguracion* pDialogo);
-				~HangingProtocolConfigurationPanel();
+namespace GNC
+{
+namespace GCS
+{
+class HangingProtocol;
+}
+namespace GUI
+{
+class HangingProtocolConfigurationPanel: public HangingProtocolConfigurationPanelBase, public IPasoConfiguracion
+{
+public:
+        HangingProtocolConfigurationPanel(wxWindow* pParent,IDialogoConfiguracion* pDialogo);
+        ~HangingProtocolConfigurationPanel();
 
-				void Recargar();
+        void Recargar();
 
-				//region "Metodos de IPasoConfiguracion"
-				wxWindow* GetPanel();
+        //region "Metodos de IPasoConfiguracion"
+        wxWindow* GetPanel();
 
-				std::string GetTitle();
+        std::string GetTitle();
 
-				std::string GetCabecera();
+        std::string GetCabecera();
 
-				bool Validar();
+        bool Validar();
 
-				bool Guardar();
-				//endregion
+        bool Guardar();
+        //endregion
 
 
-			protected:
-				virtual void OnHangingListDClick(wxDataViewEvent& event);
-				virtual void OnHangingListChangeSelection(wxDataViewEvent& event);
+protected:
+        virtual void OnHangingListDClick(wxDataViewEvent& event);
+        virtual void OnHangingListChangeSelection(wxDataViewEvent& event);
 
-				virtual void OnSetActive(wxCommandEvent &event);
+        virtual void OnSetActive(wxCommandEvent &event);
 
-				virtual void OnNuevoClick(wxCommandEvent &event);
+        virtual void OnNuevoClick(wxCommandEvent &event);
 
-				virtual void OnEditarClick(wxCommandEvent &event);
-				void Edit();
+        virtual void OnEditarClick(wxCommandEvent &event);
+        void Edit();
 
-				virtual void OnEliminarClick(wxCommandEvent &event);
+        virtual void OnEliminarClick(wxCommandEvent &event);
 
-				virtual void OnTextoCambiado(wxCommandEvent &event );
+        virtual void OnTextoCambiado(wxCommandEvent &event );
 
-				virtual void OnPropiedadCambiada();
+        virtual void OnPropiedadCambiada();
 
-				void OnSize(wxSizeEvent &);
+        void OnSize(wxSizeEvent &);
 
-				wxObjectDataPtr<wxDataViewListStore> m_pModel;
-		};
-	}
+        wxObjectDataPtr<wxDataViewListStore> m_pModel;
+};
+}
 }

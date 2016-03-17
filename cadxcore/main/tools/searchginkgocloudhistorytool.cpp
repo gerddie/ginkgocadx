@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -32,7 +32,7 @@
 
 //----------------------------------------------------------------------
 
-GNC::SearchGinkgoCloudHistoryTool::SearchGinkgoCloudHistoryTool(): GNC::GCS::IHistoryTool(ID,GNC::GCS::IHistoryTool::TFamily_Q_R, _Std("Search Ginkgo Cloud"), _Std("Search Ginkgo Cloud"), GinkgoResourcesManager::ToolIcons::GetIcoSearchCloud(),GinkgoResourcesManager::BigIcons::GetIcoBigGinkgoCloudSearch()) 
+GNC::SearchGinkgoCloudHistoryTool::SearchGinkgoCloudHistoryTool(): GNC::GCS::IHistoryTool(ID,GNC::GCS::IHistoryTool::TFamily_Q_R, _Std("Search Ginkgo Cloud"), _Std("Search Ginkgo Cloud"), GinkgoResourcesManager::ToolIcons::GetIcoSearchCloud(),GinkgoResourcesManager::BigIcons::GetIcoBigGinkgoCloudSearch())
 {
 }
 
@@ -40,14 +40,14 @@ GNC::SearchGinkgoCloudHistoryTool::~SearchGinkgoCloudHistoryTool()
 {
 }
 
-bool GNC::SearchGinkgoCloudHistoryTool::Enabled() 
+bool GNC::SearchGinkgoCloudHistoryTool::Enabled()
 {
-	return GNC::GCS::IControladorPermisos::Instance()->Get("core.restrictions","acquire") && GNC::GCS::IControladorPermisos::Instance()->Get("ginkgocloud","download");
+        return GNC::GCS::IControladorPermisos::Instance()->Get("core.restrictions","acquire") && GNC::GCS::IControladorPermisos::Instance()->Get("ginkgocloud","download");
 }
 
 void GNC::SearchGinkgoCloudHistoryTool::Execute()
 {
-	GNC::GUI::GinkgoCloudSearchDialog::Instance()->Show();
+        GNC::GUI::GinkgoCloudSearchDialog::Instance()->Show();
 }
 
 

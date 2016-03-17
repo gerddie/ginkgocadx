@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -44,44 +44,46 @@
 #include <vtkRenderWindowInteractor.h>
 #include <vtk/vtkginkgoimageviewer.h>
 
-namespace GNC {
-	namespace GUI {
-		class wxPixelsBluringEventHandler: public wxDefaultEvtHandlerTool
-		{
-		public:
-			wxPixelsBluringEventHandler(wxEvtHandler* pParent, GNC::PixelsBluringTool* pTool): wxDefaultEvtHandlerTool(pParent, pTool)
-			{
-				m_pPixelsBluringTool = pTool;
-			}
+namespace GNC
+{
+namespace GUI
+{
+class wxPixelsBluringEventHandler: public wxDefaultEvtHandlerTool
+{
+public:
+        wxPixelsBluringEventHandler(wxEvtHandler* pParent, GNC::PixelsBluringTool* pTool): wxDefaultEvtHandlerTool(pParent, pTool)
+        {
+                m_pPixelsBluringTool = pTool;
+        }
 
-			~wxPixelsBluringEventHandler()
-			{
-			}
+        ~wxPixelsBluringEventHandler()
+        {
+        }
 
-			virtual void OnUpdateUI(wxUpdateUIEvent &event)
-			{
-				if (m_pPixelsBluringTool->IsEnabled()) {
-					wxDefaultEvtHandlerTool::OnUpdateUI(event);
-					if(m_pPixelsBluringTool->IsSet()) {
-						event.SetText(_("Unset pixels blurring"));
-					} else {
-						event.SetText(_("Set pixels blurring"));
-					}
-					event.Enable(true);
-				} else {
-					event.Enable(false);
-				}
-			}
-			GNC::PixelsBluringTool* m_pPixelsBluringTool;
-		};
+        virtual void OnUpdateUI(wxUpdateUIEvent &event)
+        {
+                if (m_pPixelsBluringTool->IsEnabled()) {
+                        wxDefaultEvtHandlerTool::OnUpdateUI(event);
+                        if(m_pPixelsBluringTool->IsSet()) {
+                                event.SetText(_("Unset pixels blurring"));
+                        } else {
+                                event.SetText(_("Set pixels blurring"));
+                        }
+                        event.Enable(true);
+                } else {
+                        event.Enable(false);
+                }
+        }
+        GNC::PixelsBluringTool* m_pPixelsBluringTool;
+};
 
-	}
+}
 }
 
 
 GNC::GCS::ITool* GNC::PixelsBluringTool::NewTool()
 {
-	return new GNC::PixelsBluringTool();
+        return new GNC::PixelsBluringTool();
 }
 
 GNC::PixelsBluringTool::PixelsBluringTool()
@@ -90,49 +92,48 @@ GNC::PixelsBluringTool::PixelsBluringTool()
 GNC::PixelsBluringTool::~PixelsBluringTool()
 {
 }
-		
+
 bool GNC::PixelsBluringTool::ExecuteAction()
 {
-	if (PixelsBluringContract->Inicializado()) {
-		GNC::GCS::IWidgetsContract::TViewerList list;
-		PixelsBluringContract->GetAllViewers(list);
-		bool enable = false;
-		if (PixelsBluringContract->GetViewerActivo()->GetInterpolationMode() == VTK_LINEAR_INTERPOLATION) {
-			enable = true;
-		}
-		for (GNC::GCS::IWidgetsContract::TViewerList::iterator it = list.begin(); it != list.end(); ++it) {
-			vtkGinkgoImageViewer* pW = (*it);
-			if (enable) {
-				pW->SetInterpolationMode(VTK_NEAREST_INTERPOLATION);
-			}
-			else {
-				pW->SetInterpolationMode(VTK_LINEAR_INTERPOLATION);
-			}
-		}
-		GNC::GCS::ControladorEventos::Instance()->ProcesarEvento(new GNC::GCS::Events::EventoRender(PixelsBluringContract->GetManager()->GetVista()));
-	}
-	return true;
+        if (PixelsBluringContract->Inicializado()) {
+                GNC::GCS::IWidgetsContract::TViewerList list;
+                PixelsBluringContract->GetAllViewers(list);
+                bool enable = false;
+                if (PixelsBluringContract->GetViewerActivo()->GetInterpolationMode() == VTK_LINEAR_INTERPOLATION) {
+                        enable = true;
+                }
+                for (GNC::GCS::IWidgetsContract::TViewerList::iterator it = list.begin(); it != list.end(); ++it) {
+                        vtkGinkgoImageViewer* pW = (*it);
+                        if (enable) {
+                                pW->SetInterpolationMode(VTK_NEAREST_INTERPOLATION);
+                        } else {
+                                pW->SetInterpolationMode(VTK_LINEAR_INTERPOLATION);
+                        }
+                }
+                GNC::GCS::ControladorEventos::Instance()->ProcesarEvento(new GNC::GCS::Events::EventoRender(PixelsBluringContract->GetManager()->GetVista()));
+        }
+        return true;
 }
 
 void GNC::PixelsBluringTool::AppendToolIn(wxEvtHandler* pParent, wxMenu* pMenu)
 {
-	if (AppendsInMenu()) {
-		GNC::GUI::wxPixelsBluringEventHandler* evtHandler = new GNC::GUI::wxPixelsBluringEventHandler(pParent, this);
-		pMenu->Append(new GNC::GUI::wxMenuItemTool(pMenu, ID, wxString::FromUTF8(Name.c_str()),Icon, evtHandler));
-	}
+        if (AppendsInMenu()) {
+                GNC::GUI::wxPixelsBluringEventHandler* evtHandler = new GNC::GUI::wxPixelsBluringEventHandler(pParent, this);
+                pMenu->Append(new GNC::GUI::wxMenuItemTool(pMenu, ID, wxString::FromUTF8(Name.c_str()),Icon, evtHandler));
+        }
 }
 
 bool GNC::PixelsBluringTool::IsSet()
 {
-	if (PixelsBluringContract->GetViewerActivo() != NULL) {
-		return PixelsBluringContract->GetViewerActivo()->GetInterpolationMode() == VTK_LINEAR_INTERPOLATION;
-	} else {
-		return NULL;
-	}
+        if (PixelsBluringContract->GetViewerActivo() != NULL) {
+                return PixelsBluringContract->GetViewerActivo()->GetInterpolationMode() == VTK_LINEAR_INTERPOLATION;
+        } else {
+                return NULL;
+        }
 }
 
 bool GNC::PixelsBluringTool::IsEnabled()
 {
-	return PixelsBluringContract->GetViewerActivo() != NULL;
+        return PixelsBluringContract->GetViewerActivo() != NULL;
 }
 #endif

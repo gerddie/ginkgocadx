@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -21,50 +21,60 @@
 #pragma once
 #include <api/ievento.h>
 
-namespace GNC {
-	namespace GCS {
-		namespace Widgets {
-			namespace Observadores {
+namespace GNC
+{
+namespace GCS
+{
+namespace Widgets
+{
+namespace Observadores
+{
 
-				/* Observador especifico de la herramienta lazo */
-				class IObservadorChromaComplejo {
-				public:
-					virtual ~IObservadorChromaComplejo(){}
+/* Observador especifico de la herramienta lazo */
+class IObservadorChromaComplejo
+{
+public:
+        virtual ~IObservadorChromaComplejo() {}
 
-					virtual void OnKeyEvent(GNC::GCS::Events::EventoTeclado & evt) = 0;
-				};
-			}
+        virtual void OnKeyEvent(GNC::GCS::Events::EventoTeclado & evt) = 0;
+};
+}
 
-			namespace Notificadores {
-				class INotificadorChromaComplejo {
+namespace Notificadores
+{
+class INotificadorChromaComplejo
+{
 
-				protected:
-					GNC::GCS::Widgets::Observadores::IObservadorChromaComplejo* m_pObservadorChroma;
+protected:
+        GNC::GCS::Widgets::Observadores::IObservadorChromaComplejo* m_pObservadorChroma;
 
-				public:
-					virtual ~INotificadorChromaComplejo() {}
+public:
+        virtual ~INotificadorChromaComplejo() {}
 
-					INotificadorChromaComplejo() {
-						m_pObservadorChroma = NULL;
-					}
+        INotificadorChromaComplejo()
+        {
+                m_pObservadorChroma = NULL;
+        }
 
-					INotificadorChromaComplejo(GNC::GCS::Widgets::Observadores::IObservadorChromaComplejo* pObservador) {
-						m_pObservadorChroma = pObservador;
-					}
+        INotificadorChromaComplejo(GNC::GCS::Widgets::Observadores::IObservadorChromaComplejo* pObservador)
+        {
+                m_pObservadorChroma = pObservador;
+        }
 
-				public:
-					void SetObservador(GNC::GCS::Widgets::Observadores::IObservadorChromaComplejo* pObservador)
-					{
-						m_pObservadorChroma = pObservador;
-					}
+public:
+        void SetObservador(GNC::GCS::Widgets::Observadores::IObservadorChromaComplejo* pObservador)
+        {
+                m_pObservadorChroma = pObservador;
+        }
 
-					virtual void NotificarKeyEvent(GNC::GCS::Events::EventoTeclado& evt) {
-						if (m_pObservadorChroma != NULL) {
-							m_pObservadorChroma->OnKeyEvent(evt);
-						}
-					}
-				};
-			}
-		}
-	}
+        virtual void NotificarKeyEvent(GNC::GCS::Events::EventoTeclado& evt)
+        {
+                if (m_pObservadorChroma != NULL) {
+                        m_pObservadorChroma->OnKeyEvent(evt);
+                }
+        }
+};
+}
+}
+}
 }

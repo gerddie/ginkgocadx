@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -22,59 +22,62 @@
 #include <string>
 #include <api/ilock.h>
 
-namespace GNC {
+namespace GNC
+{
 
-	//-------------------------------------------------------------------------
+//-------------------------------------------------------------------------
 
-	class EXTAPI IControladorProgreso {
-	public:
+class EXTAPI IControladorProgreso
+{
+public:
 
-		IControladorProgreso();
+        IControladorProgreso();
 
-		virtual ~IControladorProgreso();
+        virtual ~IControladorProgreso();
 
-		/** Interface **/
-		virtual void InsertarTarea(long taskId, const std::string& texto) = 0;
+        /** Interface **/
+        virtual void InsertarTarea(long taskId, const std::string& texto) = 0;
 
-		/** Interface **/
-		virtual void EliminarTarea(long taskId) = 0;
+        /** Interface **/
+        virtual void EliminarTarea(long taskId) = 0;
 
-		/** Interface **/
-		virtual void SetProgresoTarea(long taskId, float normalizedProgress, const std::string& texto) = 0;
+        /** Interface **/
+        virtual void SetProgresoTarea(long taskId, float normalizedProgress, const std::string& texto) = 0;
 
-	};
+};
 
-	//-------------------------------------------------------------------------
+//-------------------------------------------------------------------------
 
-	class EXTAPI INotificadorProgreso : public GNC::GCS::ILockable {
+class EXTAPI INotificadorProgreso : public GNC::GCS::ILockable
+{
 
-	public:
+public:
 
-		INotificadorProgreso();
+        INotificadorProgreso();
 
-		virtual ~INotificadorProgreso();
+        virtual ~INotificadorProgreso();
 
-		/** Cuidado! hay que proteger estos accesos con un cerrojo **/
-		float GetProgresoNormalizado();
+        /** Cuidado! hay que proteger estos accesos con un cerrojo **/
+        float GetProgresoNormalizado();
 
-		/** Cuidado! hay que proteger estos accesos con un cerrojo **/
-		std::string GetTextoProgreso();
+        /** Cuidado! hay que proteger estos accesos con un cerrojo **/
+        std::string GetTextoProgreso();
 
-		/** Cuidado! hay que proteger estos accesos con un cerrojo **/
-		void SetProgresoNormalizado(float progresoNormalizado);
+        /** Cuidado! hay que proteger estos accesos con un cerrojo **/
+        void SetProgresoNormalizado(float progresoNormalizado);
 
-		/** Cuidado! hay que proteger estos accesos con un cerrojo **/
-		void SetTextoProgreso(const std::string& texto);
+        /** Cuidado! hay que proteger estos accesos con un cerrojo **/
+        void SetTextoProgreso(const std::string& texto);
 
-		void LockProgreso();
+        void LockProgreso();
 
-		void UnLockProgreso();
+        void UnLockProgreso();
 
-		/** Interface **/
-		virtual bool NotificarProgreso(float progresoNormalizado, const std::string& texto) = 0;
+        /** Interface **/
+        virtual bool NotificarProgreso(float progresoNormalizado, const std::string& texto) = 0;
 
-	protected:
-		std::string m_Texto;
-		float m_ProgresoNormalizado;
-	};
+protected:
+        std::string m_Texto;
+        float m_ProgresoNormalizado;
+};
 }

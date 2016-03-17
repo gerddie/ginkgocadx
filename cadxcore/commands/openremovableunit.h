@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -21,43 +21,46 @@
 #pragma once
 #include <api/icommand.h>
 
-namespace GADAPI {
-	class  OpenRemovableUnitCommandParams: public GNC::GCS::IComandoParams {
-	public:
-		typedef struct TRemovableUnit {
-			std::string displayName;
-			std::string path;
-			bool hasDicomDir;
-		}TRemovableUnit;
+namespace GADAPI
+{
+class  OpenRemovableUnitCommandParams: public GNC::GCS::IComandoParams
+{
+public:
+        typedef struct TRemovableUnit {
+                std::string displayName;
+                std::string path;
+                bool hasDicomDir;
+        } TRemovableUnit;
 
-		OpenRemovableUnitCommandParams(wxWindow* pParent)
-		{
-			m_pParent = pParent;
-		}
-		virtual ~OpenRemovableUnitCommandParams()
-		{
-		}
-	public:
-		typedef std::list<TRemovableUnit> TListOfUnits;
-		TListOfUnits units;		
-		wxWindow* m_pParent;
-	};
+        OpenRemovableUnitCommandParams(wxWindow* pParent)
+        {
+                m_pParent = pParent;
+        }
+        virtual ~OpenRemovableUnitCommandParams()
+        {
+        }
+public:
+        typedef std::list<TRemovableUnit> TListOfUnits;
+        TListOfUnits units;
+        wxWindow* m_pParent;
+};
 
-	
-	class OpenRemovableUnitCommand : public GNC::GCS::IComando {
-	public:
-		OpenRemovableUnitCommand(OpenRemovableUnitCommandParams* pParams);
 
-    protected:
-		virtual void Execute();
-		virtual void Update();
-		bool OpenDicomDir();
-		bool ScanRecursively();
-		void SelectDrive(bool hasDicomDir);
-		void LaunchOpenRecursively(const std::string& path);
-		void LaunchOpenDicomDir(const std::string& path);
-    protected:
+class OpenRemovableUnitCommand : public GNC::GCS::IComando
+{
+public:
+        OpenRemovableUnitCommand(OpenRemovableUnitCommandParams* pParams);
 
-		OpenRemovableUnitCommandParams* m_pOpenParams;
-	};
+protected:
+        virtual void Execute();
+        virtual void Update();
+        bool OpenDicomDir();
+        bool ScanRecursively();
+        void SelectDrive(bool hasDicomDir);
+        void LaunchOpenRecursively(const std::string& path);
+        void LaunchOpenDicomDir(const std::string& path);
+protected:
+
+        OpenRemovableUnitCommandParams* m_pOpenParams;
+};
 }

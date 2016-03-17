@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -22,37 +22,40 @@
 #include <api/ientorno.h>
 #include <api/imodelohl7.h>
 
-namespace GIL {
-	namespace HL7 {
-		class HiloEnviaMensajesHl7;
+namespace GIL
+{
+namespace HL7
+{
+class HiloEnviaMensajesHl7;
 
-		class ControladorHL7 {
-		public:
-			public:
+class ControladorHL7
+{
+public:
+public:
 
-			typedef enum TipoProtocolo {
-				TP_MLLP
-			} TipoProtocolo;
+        typedef enum TipoProtocolo {
+                TP_MLLP
+        } TipoProtocolo;
 
 
-			ControladorHL7(TipoProtocolo protocolo = TP_MLLP);
-			virtual ~ControladorHL7();
+        ControladorHL7(TipoProtocolo protocolo = TP_MLLP);
+        virtual ~ControladorHL7();
 
-			//region "Interfaz generica"
+        //region "Interfaz generica"
 
-			/* Envia el mensaje por el protocolo especificado */
-			virtual void EnviarMensaje(const GIL::HL7::Message& msg, bool procesarACK=true) const;
-			
-			//endregion
+        /* Envia el mensaje por el protocolo especificado */
+        virtual void EnviarMensaje(const GIL::HL7::Message& msg, bool procesarACK=true) const;
 
-			//region "Helpers"
+        //endregion
 
-			//endregion
+        //region "Helpers"
 
-			void InsertarMensajeBBDD(const GIL::HL7::Message& msg, const std::string& url,const bool procesarACK,const int protocolo,const std::string& msgControlId) const;
+        //endregion
 
-		protected:
-			TipoProtocolo      m_Protocolo;
-		};
-	}
+        void InsertarMensajeBBDD(const GIL::HL7::Message& msg, const std::string& url,const bool procesarACK,const int protocolo,const std::string& msgControlId) const;
+
+protected:
+        TipoProtocolo      m_Protocolo;
+};
+}
 }

@@ -63,12 +63,12 @@
 #include "vtkINRIA3DConfigure.h"
 
 #if defined(__WXGTK__)
-  #if defined(wxUSE_GLCANVAS)
-  #    include <wx/window.h>
-  #    include <wx/glcanvas.h>
-  #  else
-  #    error "problem of wxGLCanvas, you need to build wxWidgets with opengl"
-  #endif
+#if defined(wxUSE_GLCANVAS)
+#    include <wx/window.h>
+#    include <wx/glcanvas.h>
+#  else
+#    error "problem of wxGLCanvas, you need to build wxWidgets with opengl"
+#endif
 #endif //__WXGTK__
 
 // Motif version (renamed into wxX11 for wxWindow 2.4 and newer)
@@ -94,143 +94,143 @@ class wxVTKRenderWindowInteractor : public wxGLCanvas, public vtkRenderWindowInt
 class EXTAPI wxVTKRenderWindowInteractor : public wxWindow, public vtkRenderWindowInteractor, public GNC::GCS::IWidgetsRenderer
 #endif //__WXGTK__
 {
-  DECLARE_DYNAMIC_CLASS(wxVTKRenderWindowInteractor)
+        DECLARE_DYNAMIC_CLASS(wxVTKRenderWindowInteractor)
 
-  public:
-    //constructors
-    wxVTKRenderWindowInteractor();
+public:
+        //constructors
+        wxVTKRenderWindowInteractor();
 
-    wxVTKRenderWindowInteractor(wxWindow *parent,
-                                wxWindowID id,
-                                const wxPoint &pos = wxDefaultPosition,
-                                const wxSize &size = wxDefaultSize,
-								long style = wxWANTS_CHARS | wxNO_FULL_REPAINT_ON_RESIZE | wxCLIP_CHILDREN,
-                                const wxString &name = wxPanelNameStr);
-    vtkTypeMacro(wxVTKRenderWindowInteractor,vtkRenderWindowInteractor);
-    static wxVTKRenderWindowInteractor * New();
-    void PrintSelf(ostream& os, vtkIndent indent);
+        wxVTKRenderWindowInteractor(wxWindow *parent,
+                                    wxWindowID id,
+                                    const wxPoint &pos = wxDefaultPosition,
+                                    const wxSize &size = wxDefaultSize,
+                                    long style = wxWANTS_CHARS | wxNO_FULL_REPAINT_ON_RESIZE | wxCLIP_CHILDREN,
+                                    const wxString &name = wxPanelNameStr);
+        vtkTypeMacro(wxVTKRenderWindowInteractor,vtkRenderWindowInteractor);
+        static wxVTKRenderWindowInteractor * New();
+        void PrintSelf(ostream& os, vtkIndent indent);
 
-	  //destructor
-    ~wxVTKRenderWindowInteractor();
+        //destructor
+        ~wxVTKRenderWindowInteractor();
 
-    // vtkRenderWindowInteractor overrides
-    void Initialize();
-    void Enable();
-    bool Enable(bool enable);
-    void Disable();
-    void Start();
-    void UpdateSize(int x, int y);
-    int CreateTimer(int timertype);
-    int DestroyTimer();
-    void TerminateApp() {};
+        // vtkRenderWindowInteractor overrides
+        void Initialize();
+        void Enable();
+        bool Enable(bool enable);
+        void Disable();
+        void Start();
+        void UpdateSize(int x, int y);
+        int CreateTimer(int timertype);
+        int DestroyTimer();
+        void TerminateApp() {};
 
-    virtual bool Reparent( wxWindowBase *newParent );
+        virtual bool Reparent( wxWindowBase *newParent );
 
-    // event handlers
-    virtual void OnPaint(wxPaintEvent &event);
-    virtual void OnEraseBackground (wxEraseEvent& event);
-    virtual void OnMotion(wxMouseEvent &event);
+        // event handlers
+        virtual void OnPaint(wxPaintEvent &event);
+        virtual void OnEraseBackground (wxEraseEvent& event);
+        virtual void OnMotion(wxMouseEvent &event);
 
-    virtual void OnButtonDown(wxMouseEvent &event);
-    virtual void OnButtonUp(wxMouseEvent &event);
-    virtual void OnMouseDoubleClick(wxMouseEvent &event);
+        virtual void OnButtonDown(wxMouseEvent &event);
+        virtual void OnButtonUp(wxMouseEvent &event);
+        virtual void OnMouseDoubleClick(wxMouseEvent &event);
 
 #if !(VTK_MAJOR_VERSION == 3 && VTK_MINOR_VERSION == 1)
-    virtual void OnEnter(wxMouseEvent &event);
-    virtual void OnLeave(wxMouseEvent &event);
-    virtual void OnMouseWheel(wxMouseEvent& event);
-    virtual void OnMouseCaptureLost(wxMouseCaptureLostEvent& event);
-    virtual void OnKeyDown(wxKeyEvent &event);
-    virtual void OnKeyUp(wxKeyEvent &event);
-    virtual void OnChar(wxKeyEvent &event);
+        virtual void OnEnter(wxMouseEvent &event);
+        virtual void OnLeave(wxMouseEvent &event);
+        virtual void OnMouseWheel(wxMouseEvent& event);
+        virtual void OnMouseCaptureLost(wxMouseCaptureLostEvent& event);
+        virtual void OnKeyDown(wxKeyEvent &event);
+        virtual void OnKeyUp(wxKeyEvent &event);
+        virtual void OnChar(wxKeyEvent &event);
 #endif
-    virtual void OnTimer(wxTimerEvent &event);
-    virtual void OnSize(wxSizeEvent &event);
+        virtual void OnTimer(wxTimerEvent &event);
+        virtual void OnSize(wxSizeEvent &event);
 
-    void Render();
-    void SetRenderWhenDisabled(int newValue);
+        void Render();
+        void SetRenderWhenDisabled(int newValue);
 
-    // Description:
-    // Prescribe that the window be created in a stereo-capable mode. This
-    // method must be called before the window is realized. Default if off.
-    vtkGetMacro(Stereo,int);
-    vtkBooleanMacro(Stereo,int);
-    virtual void SetStereo(int capable);
+        // Description:
+        // Prescribe that the window be created in a stereo-capable mode. This
+        // method must be called before the window is realized. Default if off.
+        vtkGetMacro(Stereo,int);
+        vtkBooleanMacro(Stereo,int);
+        virtual void SetStereo(int capable);
 
-    // Description:
-    // As CaptureMouse could be a problem sometimes on a window box
-    // This method allow to set or not the CaptureMouse.
-    // This method actually will works only if WX_USE_X_CAPTURE was set to 1
-    vtkSetMacro(UseCaptureMouse,int);
-    vtkBooleanMacro(UseCaptureMouse,int);
+        // Description:
+        // As CaptureMouse could be a problem sometimes on a window box
+        // This method allow to set or not the CaptureMouse.
+        // This method actually will works only if WX_USE_X_CAPTURE was set to 1
+        vtkSetMacro(UseCaptureMouse,int);
+        vtkBooleanMacro(UseCaptureMouse,int);
 
 #if VTK_MAJOR_VERSION > 5 || (VTK_MAJOR_VERSION == 5 && VTK_MINOR_VERSION >= 2)
-  protected:
-    virtual int InternalCreateTimer(int timerId, int timerType, unsigned long duration);
-    virtual int InternalDestroyTimer(int platformTimerId);
+protected:
+        virtual int InternalCreateTimer(int timerId, int timerType, unsigned long duration);
+        virtual int InternalDestroyTimer(int platformTimerId);
 #endif
 
-  protected:
-    wxTimer timer;
-    int ActiveButton;
-    long GetHandleHack();
-    int Stereo;
+protected:
+        wxTimer timer;
+        int ActiveButton;
+        long GetHandleHack();
+        int Stereo;
 
-  private:
-    long Handle;
-    bool Created;
-    int RenderWhenDisabled;
-    int UseCaptureMouse;
+private:
+        long Handle;
+        bool Created;
+        int RenderWhenDisabled;
+        int UseCaptureMouse;
 
 #if defined(__WXGTK__) && defined(wxUSE_GLCANVAS)
-    wxGLContext *GLContext;
+        wxGLContext *GLContext;
 #endif
 
-	//----------------------------------------------------------------------------------------------------
-	//region Interfaz IWidgetsRenderer
+        //----------------------------------------------------------------------------------------------------
+        //region Interfaz IWidgetsRenderer
 public:
-	virtual void PostRender(bool inmediato = false);
+        virtual void PostRender(bool inmediato = false);
 
-	virtual void WSetCurrent();
+        virtual void WSetCurrent();
 
-	virtual void OnActivar();
-	//endregion
+        virtual void OnActivar();
+        //endregion
 
-	//----------------------------------------------------------------------------------------------------
-	//region "Interfaz de transformacion de coordenadas"
+        //----------------------------------------------------------------------------------------------------
+        //region "Interfaz de transformacion de coordenadas"
 public:
-	virtual void DisplayToWorld(double displayPos[3], double worldPos[4]);
+        virtual void DisplayToWorld(double displayPos[3], double worldPos[4]);
 
-	virtual void WorldToDisplay(double worldPos[4], double displayPos[3]);
+        virtual void WorldToDisplay(double worldPos[4], double displayPos[3]);
 
-	/** Gets camera vectors (camPos, camDir, camUp) **/
-	void GetCamVectors(double camPos[4], double camDir[4], double camUp[4]);
+        /** Gets camera vectors (camPos, camDir, camUp) **/
+        void GetCamVectors(double camPos[4], double camDir[4], double camUp[4]);
 
-	/** shots a ray from unproyected displayPos with camera direction and intersects with image plane **/
-	void RayPick(double displayPos[3], double worldPos[4]);
+        /** shots a ray from unproyected displayPos with camera direction and intersects with image plane **/
+        void RayPick(double displayPos[3], double worldPos[4]);
 
-	/** shots a ray from campPos with camera direction and intersects with image plane **/
-	void RayPick(double worldPos[4]);
+        /** shots a ray from campPos with camera direction and intersects with image plane **/
+        void RayPick(double worldPos[4]);
 
-	//endregion
+        //endregion
 
-	//----------------------------------------------------------------------------------------------------
-	//region "Helpers de contexto de dibujado"
+        //----------------------------------------------------------------------------------------------------
+        //region "Helpers de contexto de dibujado"
 protected:
-	virtual void TransformarEvento(wxMouseEvent &event);
-	virtual void TransformarEvento(wxKeyEvent &event);
-	virtual void CrearContexto3D(int ancho, int alto);
-	virtual void DestruirContexto3D();
+        virtual void TransformarEvento(wxMouseEvent &event);
+        virtual void TransformarEvento(wxKeyEvent &event);
+        virtual void CrearContexto3D(int ancho, int alto);
+        virtual void DestruirContexto3D();
 
-	/* Proyecta worlPos sobre el viewport, crea un rectángulo de lado 1, lo reproyecta al mundo y devuelve las dimensiones del cubo envolvente de esta ultima reproyección.
-	* El resultado obtenido, sirve para calcular la proporción pixels pantalla <-> coordenadas mundo.
-	* Si pos es NULL, se utiliza el centro del viewport como punto generador del rectángulo.
-	* El resultado queda almacenado en el contexto de dibujado (miembro relacionMundoPantalla_{x,y,z})
-	*/
-	virtual void  CalcularRelacionPixelsPantalla(vtkRenderer* pRenderer);
-	//endregion
+        /* Proyecta worlPos sobre el viewport, crea un rectángulo de lado 1, lo reproyecta al mundo y devuelve las dimensiones del cubo envolvente de esta ultima reproyección.
+        * El resultado obtenido, sirve para calcular la proporción pixels pantalla <-> coordenadas mundo.
+        * Si pos es NULL, se utiliza el centro del viewport como punto generador del rectángulo.
+        * El resultado queda almacenado en el contexto de dibujado (miembro relacionMundoPantalla_{x,y,z})
+        */
+        virtual void  CalcularRelacionPixelsPantalla(vtkRenderer* pRenderer);
+        //endregion
 
-    DECLARE_EVENT_TABLE()
+        DECLARE_EVENT_TABLE()
 };
 
 #endif //_wxVTKRenderWindowInteractor_h_

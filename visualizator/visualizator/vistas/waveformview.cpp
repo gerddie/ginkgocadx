@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -69,15 +69,15 @@
 
 GNKVisualizator::WaveFormView::WaveFormView(const GNC::GCS::Ptr<GNKVisualizator::ECGStudy>& estudio) : GNC::GCS::IVista((GNC::GCS::Ptr<GNC::GCS::IStudyContext>)estudio), VisualizatorStudy(estudio)
 {
-	m_Cargada = false;
-	
-	VisualizatorStudy->Window = GVista = new GNKVisualizator::GUI::GWaveformView(this);
+        m_Cargada = false;
+
+        VisualizatorStudy->Window = GVista = new GNKVisualizator::GUI::GWaveformView(this);
 }
 
 
 GNKVisualizator::WaveFormView::~WaveFormView()
 {
-	DetenerPipeline();
+        DetenerPipeline();
 }
 
 //----------------------------------------------------------------------------------------------------
@@ -97,90 +97,88 @@ void GNKVisualizator::WaveFormView::CargarEstudio(GNC::GCS::IComando* /*pCmdInvo
 // Finalizacion de la carga. Metodo sincrono con la interfaz.
 void GNKVisualizator::WaveFormView::OnCargaFinalizada()
 {
-	GVista->OnFinishLoad();
+        GVista->OnFinishLoad();
 }
 
 // Paso 2: Inicializacion del pipeline. Metodo sincrono con la interfaz.
 void GNKVisualizator::WaveFormView::IniciarPipeline()
 {
-	try {
-		GVista->InitPipeline();
-	}
-	catch (const std::bad_alloc&) {
-		DetenerPipeline();
-		m_Cargada = false;
-		throw GNC::GCS::VistaException(_Std("Error: System out of memory. Close some studies to free memory."));
-	}
-	catch (GNC::GCS::VistaException&) {
-		DetenerPipeline();
-		m_Cargada = false;
-		throw;
-	}
+        try {
+                GVista->InitPipeline();
+        } catch (const std::bad_alloc&) {
+                DetenerPipeline();
+                m_Cargada = false;
+                throw GNC::GCS::VistaException(_Std("Error: System out of memory. Close some studies to free memory."));
+        } catch (GNC::GCS::VistaException&) {
+                DetenerPipeline();
+                m_Cargada = false;
+                throw;
+        }
 
-	m_Cargada = true;
+        m_Cargada = true;
 
-	//se conecta el evento Ginkgo
-	GNC::GCS::Events::EventoModificacionFichero evtModificado;
-	evtModificado.SetVista(this);
+        //se conecta el evento Ginkgo
+        GNC::GCS::Events::EventoModificacionFichero evtModificado;
+        evtModificado.SetVista(this);
 
-	VisualizatorStudy->ActiveFileIndex = 0;
-	
-	typedef GNC::GCS::Vector3D Vec;
+        VisualizatorStudy->ActiveFileIndex = 0;
 
-	GVista->ViewImage2D->UpdateImage();
-	
-	vtkSmartPointer<vtkCamera> cam = GVista->ViewImage2D->GetRenderer()->GetActiveCamera();
-	
-	Vec focalPoint;
-	Vec camPos;
-	Vec spacing;
-	Vec dims;
-	Vec winsize;
-	int idims[3];
-	int iwinsize[2];
+        typedef GNC::GCS::Vector3D Vec;
 
-	GVista->ViewInteractor2D->Layout();
-	GVista->ViewInteractor2D->GetParent()->Layout();
+        GVista->ViewImage2D->UpdateImage();
 
-	GVista->ViewImage2D->GetSpacing(spacing.v);
-	GVista->ViewImage2D->GetDimensions(idims);
-	GVista->ViewInteractor2D->GetClientSize(&iwinsize[0], &iwinsize[1]);
-	//((wxWindowBase* )GVista->ViewInteractor2D)->GetSize();
+        vtkSmartPointer<vtkCamera> cam = GVista->ViewImage2D->GetRenderer()->GetActiveCamera();
 
-	dims.x = idims[0];
-	dims.y = idims[1];
-	winsize.x = iwinsize[0];
-	winsize.y = iwinsize[1];
-	
-	Vec worldViewPort = (spacing * (dims + Vec(1.0, 1.0, 0.0))); // + 1.0 cause pixel centers to pixels edges conversion
+        Vec focalPoint;
+        Vec camPos;
+        Vec spacing;
+        Vec dims;
+        Vec winsize;
+        int idims[3];
+        int iwinsize[2];
 
-	double parallelScale = worldViewPort.y / 2.0;
+        GVista->ViewInteractor2D->Layout();
+        GVista->ViewInteractor2D->GetParent()->Layout();
 
-	GVista->ViewImage2D->SetInitialParallelScale( parallelScale );
+        GVista->ViewImage2D->GetSpacing(spacing.v);
+        GVista->ViewImage2D->GetDimensions(idims);
+        GVista->ViewInteractor2D->GetClientSize(&iwinsize[0], &iwinsize[1]);
+        //((wxWindowBase* )GVista->ViewInteractor2D)->GetSize();
 
-	double rel = (winsize.x / winsize.y); // Relación ancho/alto del viewPort
-	
-	focalPoint = Vec( rel * (parallelScale), parallelScale, 0.0);
-	camPos = focalPoint - Vec(0.0, 0.0, 1.0);
+        dims.x = idims[0];
+        dims.y = idims[1];
+        winsize.x = iwinsize[0];
+        winsize.y = iwinsize[1];
 
-	cam->SetPosition( camPos.v );
-	cam->SetFocalPoint( focalPoint.v );	
-	cam->SetViewUp(0.0, -1.0, 0.0);
-	cam->SetClippingRange(-2.0, 2.0);	
+        Vec worldViewPort = (spacing * (dims + Vec(1.0, 1.0, 0.0))); // + 1.0 cause pixel centers to pixels edges conversion
 
-	//lanzo el evento de imagen cargada
-	GNC::GCS::IEntorno::Instance()->GetControladorEventos()->ProcesarEvento(new GNC::GCS::Events::EventoModificacionImagen(this,GNC::GCS::Events::EventoModificacionImagen::ImagenCargada));
-	/*
-	GNC::GCS::IEntorno::Instance()->GetControladorHerramientas()->RefrescarHerramientas();
-	*/
+        double parallelScale = worldViewPort.y / 2.0;
 
-	GenerarTitulo();
+        GVista->ViewImage2D->SetInitialParallelScale( parallelScale );
+
+        double rel = (winsize.x / winsize.y); // Relación ancho/alto del viewPort
+
+        focalPoint = Vec( rel * (parallelScale), parallelScale, 0.0);
+        camPos = focalPoint - Vec(0.0, 0.0, 1.0);
+
+        cam->SetPosition( camPos.v );
+        cam->SetFocalPoint( focalPoint.v );
+        cam->SetViewUp(0.0, -1.0, 0.0);
+        cam->SetClippingRange(-2.0, 2.0);
+
+        //lanzo el evento de imagen cargada
+        GNC::GCS::IEntorno::Instance()->GetControladorEventos()->ProcesarEvento(new GNC::GCS::Events::EventoModificacionImagen(this,GNC::GCS::Events::EventoModificacionImagen::ImagenCargada));
+        /*
+        GNC::GCS::IEntorno::Instance()->GetControladorHerramientas()->RefrescarHerramientas();
+        */
+
+        GenerarTitulo();
 }
 
 // Parada del pipeline. Metodo sincrono con la interfaz Se invoca en el caso de que ocurra un error de carga.
 void GNKVisualizator::WaveFormView::DetenerPipeline()
 {
-	GVista->StopPipeline();
+        GVista->StopPipeline();
 }
 
 //endregion
@@ -188,50 +186,50 @@ void GNKVisualizator::WaveFormView::DetenerPipeline()
 
 bool GNKVisualizator::WaveFormView::SoportaGuardar()
 {
-	return false;
+        return false;
 }
 
 bool GNKVisualizator::WaveFormView::SoportaExportar()
 {
-	return false;
+        return false;
 }
 
 void GNKVisualizator::WaveFormView::Activar()
 {
-	GNC::GCS::IVista::Activar();
-	GVista->SetFocus();
+        GNC::GCS::IVista::Activar();
+        GVista->SetFocus();
 }
 
 
 wxWindow* GNKVisualizator::WaveFormView::GetWindow()
 {
-	return GVista;
+        return GVista;
 }
 
 void GNKVisualizator::WaveFormView::GenerarTitulo()
 {
-	std::ostringstream ostr;
-	std::string valor;
+        std::ostringstream ostr;
+        std::string valor;
 
-	VisualizatorStudy->GetTagActiveImage("0010|0010",valor);
-	for (std::string::iterator it = valor.begin(); it != valor.end(); ++it) {
-		if ( *it == '^') {
-			*it = ' ';
-		}
-	}
-	ostr << valor.c_str() << ", ";
-	VisualizatorStudy->GetTagActiveImage("0008|1030",valor);
-	ostr << valor.c_str();
-	if (!valor.empty()) {
-		ostr << "/";
-	}
-	VisualizatorStudy->GetTagActiveImage("0008|103e",valor);
-	ostr << valor.c_str();
-	m_Titulo = ostr.str();
+        VisualizatorStudy->GetTagActiveImage("0010|0010",valor);
+        for (std::string::iterator it = valor.begin(); it != valor.end(); ++it) {
+                if ( *it == '^') {
+                        *it = ' ';
+                }
+        }
+        ostr << valor.c_str() << ", ";
+        VisualizatorStudy->GetTagActiveImage("0008|1030",valor);
+        ostr << valor.c_str();
+        if (!valor.empty()) {
+                ostr << "/";
+        }
+        VisualizatorStudy->GetTagActiveImage("0008|103e",valor);
+        ostr << valor.c_str();
+        m_Titulo = ostr.str();
 }
 
 GNC::GCS::IVista* GNKVisualizator::WaveFormView::GetView()
 {
-	return this;
+        return this;
 }
 

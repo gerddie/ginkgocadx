@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -31,43 +31,46 @@
 #include "datospersistentesexportacion.h"
 
 
-namespace GNC {
-	namespace GCS {
-		class IWidgetsContract;
-		class IVista;
-		class IEntorno;
-	}
-	namespace GUI {
+namespace GNC
+{
+namespace GCS
+{
+class IWidgetsContract;
+class IVista;
+class IEntorno;
+}
+namespace GUI
+{
 
-		class ParametrosPrincipales: public ParametrosPrincipalesBase,public IPasoWizard
-		{
-			public:
+class ParametrosPrincipales: public ParametrosPrincipalesBase,public IPasoWizard
+{
+public:
 
-				ParametrosPrincipales(wxWindow* pParent,IWizard* pWizard, GNC::GCS::IWidgetsContract* WidgetsContract);
-				~ParametrosPrincipales();
+        ParametrosPrincipales(wxWindow* pParent,IWizard* pWizard, GNC::GCS::IWidgetsContract* WidgetsContract);
+        ~ParametrosPrincipales();
 
-			protected:			
-				GNC::GCS::IWidgetsContract* WidgetsContract;
+protected:
+        GNC::GCS::IWidgetsContract* WidgetsContract;
 
-				void OnChoiceFormatoDestino(wxCommandEvent &event);
+        void OnChoiceFormatoDestino(wxCommandEvent &event);
 
-				void ExportImage(const wxString& path);
+        void ExportImage(const wxString& path);
 
-			public:
-				
-				virtual std::string GetTitle();
+public:
 
-				virtual std::string GetSubTitle();
+        virtual std::string GetTitle();
 
-				virtual bool Siguiente();
+        virtual std::string GetSubTitle();
 
-				virtual bool Anterior();
+        virtual bool Siguiente();
 
-				virtual bool Cancelar();
+        virtual bool Anterior();
 
-				virtual bool Validar();
-			//endregion
+        virtual bool Cancelar();
 
-		};
-	}
+        virtual bool Validar();
+        //endregion
+
+};
+}
 }

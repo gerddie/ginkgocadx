@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -22,30 +22,35 @@
 
 #include <api/api.h>
 
-namespace GNC {
-	namespace GCS {
-		class IModuleController;
-	}
+namespace GNC
+{
+namespace GCS
+{
+class IModuleController;
+}
 }
 
-namespace GNC {
-	namespace GCS {
+namespace GNC
+{
+namespace GCS
+{
 
-		class EXTAPI IExtensionsObserver {
-		public:
+class EXTAPI IExtensionsObserver
+{
+public:
 
-			IExtensionsObserver();
-			virtual ~IExtensionsObserver();
+        IExtensionsObserver();
+        virtual ~IExtensionsObserver();
 
-			/** The module is loaded **/
-			virtual void OnModuleLoaded(GNC::GCS::IModuleController* ) = 0;
-			/** The module is unloaded **/
-			virtual void OnModuleUnloaded(GNC::GCS::IModuleController* ) = 0;
+        /** The module is loaded **/
+        virtual void OnModuleLoaded(GNC::GCS::IModuleController* ) = 0;
+        /** The module is unloaded **/
+        virtual void OnModuleUnloaded(GNC::GCS::IModuleController* ) = 0;
 
-			/** The module is activated **/
-			virtual void OnModuleActivated(GNC::GCS::IModuleController* );
-			/** The module is deactivated **/
-			virtual void OnModuleDeactivated(GNC::GCS::IModuleController* );
-		};
-	}
+        /** The module is activated **/
+        virtual void OnModuleActivated(GNC::GCS::IModuleController* );
+        /** The module is deactivated **/
+        virtual void OnModuleDeactivated(GNC::GCS::IModuleController* );
+};
+}
 }

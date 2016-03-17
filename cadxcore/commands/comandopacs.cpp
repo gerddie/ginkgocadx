@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -54,110 +54,111 @@
 // Singleton de persistencia
 namespace GADAPI
 {
-	ComandoPACSParams::ComandoPACSParams(const GNC::GCS::Ptr<GNC::GCS::StoredQuery>& query) :
-		pQuery(query),
-		m_apResults(new TSearchResultList())
-	{
-		if (pQuery->getPacsId().empty()) {
-			if(!DicomServerList::Instance()->Empty()) {
-				pQuery->setPacsId(DicomServerList::Instance()->GetDefaultServer()->ID);
-				LOG_DEBUG("COMANDOPACS", "Unspecified pacs ID, selecting " << pQuery->getPacsId());
-			} else {
-				throw GIL::DICOM::PACSException(_Std("There is not any Remote PACS configured"));
-			}
-		}
+ComandoPACSParams::ComandoPACSParams(const GNC::GCS::Ptr<GNC::GCS::StoredQuery>& query) :
+        pQuery(query),
+        m_apResults(new TSearchResultList())
+{
+        if (pQuery->getPacsId().empty()) {
+                if(!DicomServerList::Instance()->Empty()) {
+                        pQuery->setPacsId(DicomServerList::Instance()->GetDefaultServer()->ID);
+                        LOG_DEBUG("COMANDOPACS", "Unspecified pacs ID, selecting " << pQuery->getPacsId());
+                } else {
+                        throw GIL::DICOM::PACSException(_Std("There is not any Remote PACS configured"));
+                }
+        }
 
-		m_informar=true;
-		m_error = "";
-	}
+        m_informar=true;
+        m_error = "";
+}
 
-	ComandoPACSParams::~ComandoPACSParams() {
-	}
+ComandoPACSParams::~ComandoPACSParams()
+{
+}
 
 
-	ComandoPACS::ComandoPACS(ComandoPACSParams* pParams) : IComando(pParams)
-	{
-		m_pPACSParams = pParams;
-		
-		SetId(IDC_PACS_BUSCAR);
+ComandoPACS::ComandoPACS(ComandoPACSParams* pParams) : IComando(pParams)
+{
+        m_pPACSParams = pParams;
+
+        SetId(IDC_PACS_BUSCAR);
 #if !defined(PARALLEL)
-		EsperaA(IDC_PACS_BUSCAR);
-		EsperaA(IDC_PACS_DESCARGAR);
-		EsperaA(IDC_PACS_SUBIR);
-#endif				
-	}
+        EsperaA(IDC_PACS_BUSCAR);
+        EsperaA(IDC_PACS_DESCARGAR);
+        EsperaA(IDC_PACS_SUBIR);
+#endif
+}
 
-	void ComandoPACS::Execute()
-	{
-		std::string tarea=_Std("Querying PACS ...");
-		if (!NotificarProgreso(0.0f,tarea)) {
-		    return;
-		}
-		GIL::DICOM::IPACSController* pCI = NULL;
-		try {
+void ComandoPACS::Execute()
+{
+        std::string tarea=_Std("Querying PACS ...");
+        if (!NotificarProgreso(0.0f,tarea)) {
+                return;
+        }
+        GIL::DICOM::IPACSController* pCI = NULL;
+        try {
 
-			pCI = GNC::GCS::IEntorno::Instance()->GetPACSController();
-			if (pCI == NULL) {
-				throw GIL::DICOM::PACSException(_Std("Error accessing the controller subsystem integration: (GIL:: DICOM)."));
-			}
+                pCI = GNC::GCS::IEntorno::Instance()->GetPACSController();
+                if (pCI == NULL) {
+                        throw GIL::DICOM::PACSException(_Std("Error accessing the controller subsystem integration: (GIL:: DICOM)."));
+                }
 
-			pCI->GetConnection(this);
+                pCI->GetConnection(this);
 
-			std::string mensaje = _Std("Starting Search ...");
-			if ( !NotificarProgreso(0.0f, mensaje) ) {
-			    return;
-			}
+                std::string mensaje = _Std("Starting Search ...");
+                if ( !NotificarProgreso(0.0f, mensaje) ) {
+                        return;
+                }
 
-			GIL::DICOM::DicomDataset query;
-			m_pPACSParams->pQuery->buildQuery(query);
-			pCI->Query(this, GKUID_FINDStudyRootQueryRetrieveInformationModel, query, *(m_pPACSParams->m_apResults), m_pPACSParams->pQuery->getPacsId(), this);
-			
-		} catch (GinkgoNoServerFoundException& ) {
-			m_pPACSParams->m_error= _Std("Server ID not found. ID = ") + m_pPACSParams->pQuery->getPacsId();
-		} catch (GIL::DICOM::PACSException& ex) {
-			m_pPACSParams->m_error= _Std("Query error with PACS Id ") + m_pPACSParams->pQuery->getPacsId() + "\n" + (const std::string)ex;
-		} catch (GIL::DICOM::ModelException& ex) {
-			m_pPACSParams->m_error= _Std("Query error with PACS Id ") + m_pPACSParams->pQuery->getPacsId() + "\n" + (const std::string)ex;
-		} catch (std::exception& ex) {
-			m_pPACSParams->m_error= _Std("Query error with PACS Id ") + m_pPACSParams->pQuery->getPacsId() + "\n" + ex.what();
-		} catch ( ... ) {
-			m_pPACSParams->m_error= _Std("Query error with PACS Id ") + m_pPACSParams->pQuery->getPacsId() + "\n" + _Std("Internal error");
-		}
-		if (pCI) {
-			pCI->ReleaseConnection(this);
-		}
-		if (!NotificarProgreso(1.0f,tarea)) {
-		    return;
-		}
-	}
+                GIL::DICOM::DicomDataset query;
+                m_pPACSParams->pQuery->buildQuery(query);
+                pCI->Query(this, GKUID_FINDStudyRootQueryRetrieveInformationModel, query, *(m_pPACSParams->m_apResults), m_pPACSParams->pQuery->getPacsId(), this);
 
-	void ComandoPACS::Update()
-	{
-		if (EstaAbortado()) {
-		    return;
-		}
-				
-		if(!m_pPACSParams->m_error.empty()){
-			LOG_ERROR("C-FIND", "Error searching on PACS:\n"  << m_pPACSParams->m_error);
-			if (m_pPACSParams->m_informar) {
-				GNC::GCS::IEventsController::Instance()->ProcesarEvento(new GNC::GCS::Events::EventoMensajes(NULL, _Std("Failed to perform search: ") + "\n" + m_pPACSParams->m_error, GNC::GCS::Events::EventoMensajes::PopUpMessage,false, GNC::GCS::Events::EventoMensajes::Error));
-			}
-			m_pPACSParams->m_informar = false;
-			
-		}
-	}
+        } catch (GinkgoNoServerFoundException& ) {
+                m_pPACSParams->m_error= _Std("Server ID not found. ID = ") + m_pPACSParams->pQuery->getPacsId();
+        } catch (GIL::DICOM::PACSException& ex) {
+                m_pPACSParams->m_error= _Std("Query error with PACS Id ") + m_pPACSParams->pQuery->getPacsId() + "\n" + (const std::string)ex;
+        } catch (GIL::DICOM::ModelException& ex) {
+                m_pPACSParams->m_error= _Std("Query error with PACS Id ") + m_pPACSParams->pQuery->getPacsId() + "\n" + (const std::string)ex;
+        } catch (std::exception& ex) {
+                m_pPACSParams->m_error= _Std("Query error with PACS Id ") + m_pPACSParams->pQuery->getPacsId() + "\n" + ex.what();
+        } catch ( ... ) {
+                m_pPACSParams->m_error= _Std("Query error with PACS Id ") + m_pPACSParams->pQuery->getPacsId() + "\n" + _Std("Internal error");
+        }
+        if (pCI) {
+                pCI->ReleaseConnection(this);
+        }
+        if (!NotificarProgreso(1.0f,tarea)) {
+                return;
+        }
+}
+
+void ComandoPACS::Update()
+{
+        if (EstaAbortado()) {
+                return;
+        }
+
+        if(!m_pPACSParams->m_error.empty()) {
+                LOG_ERROR("C-FIND", "Error searching on PACS:\n"  << m_pPACSParams->m_error);
+                if (m_pPACSParams->m_informar) {
+                        GNC::GCS::IEventsController::Instance()->ProcesarEvento(new GNC::GCS::Events::EventoMensajes(NULL, _Std("Failed to perform search: ") + "\n" + m_pPACSParams->m_error, GNC::GCS::Events::EventoMensajes::PopUpMessage,false, GNC::GCS::Events::EventoMensajes::Error));
+                }
+                m_pPACSParams->m_informar = false;
+
+        }
+}
 
 
-	bool ComandoPACS::NotificarProgreso(float progresoNormalizado,const std::string &texto) {
-		if (EstaAbortado())
-		{
-			return false;
-		}
-		return IComando::NotificarProgreso(progresoNormalizado, texto);
-	}
+bool ComandoPACS::NotificarProgreso(float progresoNormalizado,const std::string &texto)
+{
+        if (EstaAbortado()) {
+                return false;
+        }
+        return IComando::NotificarProgreso(progresoNormalizado, texto);
+}
 
-	void ComandoPACS::LiberarRecursos()
-	{
-	}
+void ComandoPACS::LiberarRecursos()
+{
+}
 
 }

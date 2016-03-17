@@ -1,6 +1,6 @@
-#error delete file 
+#error delete file
 /*
- *  
+ *
  *  $Id: permisoscore.h $
  *  Ginkgo CADx Project
  *

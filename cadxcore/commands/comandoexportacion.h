@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -25,42 +25,47 @@
 
 #include <main/gui/export/datospersistentesexportacion.h>
 
-namespace GNC {
-	namespace GCS {
-		class IVista;
-	}
+namespace GNC
+{
+namespace GCS
+{
+class IVista;
+}
 }
 
-namespace GADAPI {
-	class ComandoExportacion;
+namespace GADAPI
+{
+class ComandoExportacion;
 
-	class ComandoExportacionParams : public GNC::GCS::IComandoParams {
-	public:
-		ComandoExportacionParams(GNC::GCS::Ptr<GNC::GUI::TipoWizardExportacion>& pDatosPersistentes);
+class ComandoExportacionParams : public GNC::GCS::IComandoParams
+{
+public:
+        ComandoExportacionParams(GNC::GCS::Ptr<GNC::GUI::TipoWizardExportacion>& pDatosPersistentes);
 
-		virtual ~ComandoExportacionParams();
+        virtual ~ComandoExportacionParams();
 
-		GNC::GCS::Ptr<GNC::GUI::TipoWizardExportacion> m_pDatosPersistentes;
-		std::list<std::string> m_outputPaths;
-		std::string m_Error;
-		bool m_hasError;
-		std::string m_tempDir;
-	};
+        GNC::GCS::Ptr<GNC::GUI::TipoWizardExportacion> m_pDatosPersistentes;
+        std::list<std::string> m_outputPaths;
+        std::string m_Error;
+        bool m_hasError;
+        std::string m_tempDir;
+};
 
-	class ComandoExportacion : public GNC::GCS::IComando {
-	public:
+class ComandoExportacion : public GNC::GCS::IComando
+{
+public:
 
-		ComandoExportacion(ComandoExportacionParams* pParams);
+        ComandoExportacion(ComandoExportacionParams* pParams);
 
-    protected:
+protected:
 
-		virtual void Execute();
-		virtual void Update();
+        virtual void Execute();
+        virtual void Update();
 
-	protected:
-		void ExportarDICOM();
-		wxString GetFichero(const wxString& extension);
+protected:
+        void ExportarDICOM();
+        wxString GetFichero(const wxString& extension);
 
-		ComandoExportacionParams* m_pExportacionParams;
-	};
+        ComandoExportacionParams* m_pExportacionParams;
+};
 }

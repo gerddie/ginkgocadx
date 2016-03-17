@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -28,179 +28,181 @@ class wxSizer;
 class wxWindow;
 class wxSizerItem;
 
-namespace GNC {
-	namespace GCS {
-		class IVista;
-		class Matcher;
+namespace GNC
+{
+namespace GCS
+{
+class IVista;
+class Matcher;
 
-		/**
-		* Annotations settings
-		*/
-		class AnnotationSettings 
-		{
-		public:
-			typedef enum TAnnotationPosition {
-				TP_TopLeft = 0,
-				TP_TopRight,
-				TP_BottomLeft,
-				TP_BottomRight,
-				TP_NumPos
-			} TAnnotationPosition;
+/**
+* Annotations settings
+*/
+class AnnotationSettings
+{
+public:
+        typedef enum TAnnotationPosition {
+                TP_TopLeft = 0,
+                TP_TopRight,
+                TP_BottomLeft,
+                TP_BottomRight,
+                TP_NumPos
+        } TAnnotationPosition;
 
-			AnnotationSettings();
-			AnnotationSettings(wxXmlNode* node);
-			AnnotationSettings(const AnnotationSettings& other);
-			~AnnotationSettings();
-			/**
-			serialize to XML
-			*/
-			wxXmlNode* serialize();
+        AnnotationSettings();
+        AnnotationSettings(wxXmlNode* node);
+        AnnotationSettings(const AnnotationSettings& other);
+        ~AnnotationSettings();
+        /**
+        serialize to XML
+        */
+        wxXmlNode* serialize();
 
-			std::string getAnnotation(TAnnotationPosition pos) const;
-			void setAnnotation(TAnnotationPosition pos, const std::string& annotation);
-			
-		protected:
-			std::string annotation[TP_NumPos];
-		};
-		
-		/**
-		* window level setting
-		*/
-		class WindowLevelSetting 
-		{
-		public:
-			WindowLevelSetting();
-			WindowLevelSetting(double window, double level, const std::string& label);
-			WindowLevelSetting(wxXmlNode* node);
-			WindowLevelSetting(const WindowLevelSetting& other);
-			~WindowLevelSetting();
-			/**
-			serialize to XML
-			*/
-			wxXmlNode* serialize();
+        std::string getAnnotation(TAnnotationPosition pos) const;
+        void setAnnotation(TAnnotationPosition pos, const std::string& annotation);
 
-			double getWindow() const;
-			double getLevel() const;
-			const std::string& getLabel() const;
+protected:
+        std::string annotation[TP_NumPos];
+};
 
-			std::string toString() const;
+/**
+* window level setting
+*/
+class WindowLevelSetting
+{
+public:
+        WindowLevelSetting();
+        WindowLevelSetting(double window, double level, const std::string& label);
+        WindowLevelSetting(wxXmlNode* node);
+        WindowLevelSetting(const WindowLevelSetting& other);
+        ~WindowLevelSetting();
+        /**
+        serialize to XML
+        */
+        wxXmlNode* serialize();
 
-			void setWindow(double window);
-			void setLevel(double level);
-			void setLabel(const std::string& label);
-			
-		protected:
-			double window;
-			double level;
-			std::string label;
-		};
+        double getWindow() const;
+        double getLevel() const;
+        const std::string& getLabel() const;
 
-		/**
-		* default modality settings
-		*/
-		class DefaultModalitySettings 
-		{
-		public:
-			typedef enum TInterpolationMode{
-				TIM_NEAREST_NEIGHBOUR,
-				TIM_LINEAR,
-				TIM_CUBIC
-			}TInterpolationMode;
-			typedef std::list<GNC::GCS::Ptr<WindowLevelSetting> > TListOfWLSettings;
-			DefaultModalitySettings();
-			DefaultModalitySettings(wxXmlNode* node);
-			DefaultModalitySettings(const DefaultModalitySettings& other);
-			~DefaultModalitySettings();
-			/**
-			serialize to XML
-			*/
-			wxXmlNode* serialize();
+        std::string toString() const;
 
-			static std::string getDefaultWindowLevelLabel();
-			static std::string getAutocalculateWindowLevelLabel();
+        void setWindow(double window);
+        void setLevel(double level);
+        void setLabel(const std::string& label);
 
-			const TListOfWLSettings& getWLSettings() const;
-			const std::string& getModality() const;
-			const std::string& getInitialWindowLevelLabel() const;
-			TInterpolationMode getInterpolationMode() const;
+protected:
+        double window;
+        double level;
+        std::string label;
+};
 
-			const GNC::GCS::Ptr<AnnotationSettings>& getAnnotationSettings() const;
-			void setAnnotationSettings(const GNC::GCS::Ptr<AnnotationSettings>& pSettings);
+/**
+* default modality settings
+*/
+class DefaultModalitySettings
+{
+public:
+        typedef enum TInterpolationMode {
+                TIM_NEAREST_NEIGHBOUR,
+                TIM_LINEAR,
+                TIM_CUBIC
+        } TInterpolationMode;
+        typedef std::list<GNC::GCS::Ptr<WindowLevelSetting> > TListOfWLSettings;
+        DefaultModalitySettings();
+        DefaultModalitySettings(wxXmlNode* node);
+        DefaultModalitySettings(const DefaultModalitySettings& other);
+        ~DefaultModalitySettings();
+        /**
+        serialize to XML
+        */
+        wxXmlNode* serialize();
 
-			void addWindowLevel(const GNC::GCS::Ptr<WindowLevelSetting>& wlSetting);
-			void clearWindowLevels();
-			void setModality(const std::string& modality);
-			void setInitialWindowLevelLabel(const std::string& label);
-			void setInterpolationMode(TInterpolationMode mode);
-		protected:
-			std::string modality;
-			std::string initialWindowLevelLabel;
-			TInterpolationMode interpolationMode;
-			TListOfWLSettings listOfWLSettings;
-			GNC::GCS::Ptr<AnnotationSettings> annotationSettings;
-		};
+        static std::string getDefaultWindowLevelLabel();
+        static std::string getAutocalculateWindowLevelLabel();
 
-		
-		/**
-		modality settings controller class
-		*/
-		class ModalitySettingsController 
-		{
-		public:
-			/**
-			modality settings map
-			*/
-			typedef std::map<std::string, GNC::GCS::Ptr<DefaultModalitySettings> > TMapOfModalitySettings;
+        const TListOfWLSettings& getWLSettings() const;
+        const std::string& getModality() const;
+        const std::string& getInitialWindowLevelLabel() const;
+        TInterpolationMode getInterpolationMode() const;
 
-			/**
-			Singleton method
-			*/
-			static ModalitySettingsController* Instance();
+        const GNC::GCS::Ptr<AnnotationSettings>& getAnnotationSettings() const;
+        void setAnnotationSettings(const GNC::GCS::Ptr<AnnotationSettings>& pSettings);
 
-			/**
-			Free singleton
-			*/
-			static void FreeInstance();
+        void addWindowLevel(const GNC::GCS::Ptr<WindowLevelSetting>& wlSetting);
+        void clearWindowLevels();
+        void setModality(const std::string& modality);
+        void setInitialWindowLevelLabel(const std::string& label);
+        void setInterpolationMode(TInterpolationMode mode);
+protected:
+        std::string modality;
+        std::string initialWindowLevelLabel;
+        TInterpolationMode interpolationMode;
+        TListOfWLSettings listOfWLSettings;
+        GNC::GCS::Ptr<AnnotationSettings> annotationSettings;
+};
 
-			const TMapOfModalitySettings& getModalitySettingsMap();
 
-			void addModalitySettings(const GNC::GCS::Ptr<DefaultModalitySettings>& settings);
+/**
+modality settings controller class
+*/
+class ModalitySettingsController
+{
+public:
+        /**
+        modality settings map
+        */
+        typedef std::map<std::string, GNC::GCS::Ptr<DefaultModalitySettings> > TMapOfModalitySettings;
 
-			void clearModalitySettings();
+        /**
+        Singleton method
+        */
+        static ModalitySettingsController* Instance();
 
-			GNC::GCS::Ptr<DefaultModalitySettings> getModalitySettings(const std::string& modality);
+        /**
+        Free singleton
+        */
+        static void FreeInstance();
 
-			/**
-			stores modalitySettings list
-			*/
-			void StoreModalitySettingsConfiguration();
-		protected:
-			/**
-			Creation method
-			*/
-			ModalitySettingsController();
+        const TMapOfModalitySettings& getModalitySettingsMap();
 
-			void LoadDefaultModalitySettings();
+        void addModalitySettings(const GNC::GCS::Ptr<DefaultModalitySettings>& settings);
 
-			/**
-			Destruction method
-			*/
-			~ModalitySettingsController();
+        void clearModalitySettings();
 
-			/**
-			Load from configuration
-			*/
-			void LoadFromConfiguration();
+        GNC::GCS::Ptr<DefaultModalitySettings> getModalitySettings(const std::string& modality);
 
-			/**
-			singleton attribute
-			*/
-			static ModalitySettingsController* m_pInstance;
+        /**
+        stores modalitySettings list
+        */
+        void StoreModalitySettingsConfiguration();
+protected:
+        /**
+        Creation method
+        */
+        ModalitySettingsController();
 
-			/**
-			visualization modality settings
-			*/
-			TMapOfModalitySettings modalitySettings;
-		};
-	}
+        void LoadDefaultModalitySettings();
+
+        /**
+        Destruction method
+        */
+        ~ModalitySettingsController();
+
+        /**
+        Load from configuration
+        */
+        void LoadFromConfiguration();
+
+        /**
+        singleton attribute
+        */
+        static ModalitySettingsController* m_pInstance;
+
+        /**
+        visualization modality settings
+        */
+        TMapOfModalitySettings modalitySettings;
+};
+}
 }

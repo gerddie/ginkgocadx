@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -23,19 +23,21 @@
 #include <string>
 #include <api/api.h>
 
-namespace GIL {
-	namespace DICOM {
+namespace GIL
+{
+namespace DICOM
+{
 
-		typedef enum GinkgoUIDType {
-			GUID_StudyRoot,
-			GUID_SeriesRoot,
-			GUID_InstanceRoot,
-			GUID_PrivateGenericFileSOPClass
-		} GinkgoUIDType;
+typedef enum GinkgoUIDType {
+        GUID_StudyRoot,
+        GUID_SeriesRoot,
+        GUID_InstanceRoot,
+        GUID_PrivateGenericFileSOPClass
+} GinkgoUIDType;
 
-		/***
-		* Generates a unique UID on given root. If counter != -1 adds a level with those counter value
-		**/
-		std::string EXTAPI MakeUID(GinkgoUIDType uidType, int counter = -1);
-	}
+/***
+* Generates a unique UID on given root. If counter != -1 adds a level with those counter value
+**/
+std::string EXTAPI MakeUID(GinkgoUIDType uidType, int counter = -1);
+}
 }

@@ -6,8 +6,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -30,83 +30,87 @@
 //region Forward Declarations
 class wxCriticalSection;
 
-namespace GNC {
-	namespace GCS {
-		class ILocker;		
-	}
+namespace GNC
+{
+namespace GCS
+{
+class ILocker;
+}
 }
 //endregion
 
 
-namespace GNC {
-	namespace GCS {
+namespace GNC
+{
+namespace GCS
+{
 
-		//----------------------------------------------------------------------------------------------------
-		//region Interfaz de soporte de cerrojos
-		//----------------------------------------------------------------------------------------------------
-		class EXTAPI ILockable
-		{
-			//----------------------------------------------------------------------------------------------------
-			//region Constructor y destructor
-			public:
+//----------------------------------------------------------------------------------------------------
+//region Interfaz de soporte de cerrojos
+//----------------------------------------------------------------------------------------------------
+class EXTAPI ILockable
+{
+        //----------------------------------------------------------------------------------------------------
+        //region Constructor y destructor
+public:
 
-				ILockable();
-				~ILockable();
-			//endregion
+        ILockable();
+        ~ILockable();
+        //endregion
 
-			//----------------------------------------------------------------------------------------------------
-			//region Interfaz de exclusion mutua
-			public:
+        //----------------------------------------------------------------------------------------------------
+        //region Interfaz de exclusion mutua
+public:
 
-				void Lock();
+        void Lock();
 
-				void UnLock();
+        void UnLock();
 
-				bool IsLocked() const;
-			//enregion
+        bool IsLocked() const;
+        //enregion
 
-			//----------------------------------------------------------------------------------------------------
-			//region Interfaz de subscripcion
-			private:
+        //----------------------------------------------------------------------------------------------------
+        //region Interfaz de subscripcion
+private:
 //				ILocker* m_pLocker; // ILocker que ha bloqueado el cerrojo.
-			//endregion
+        //endregion
 
-			//----------------------------------------------------------------------------------------------------
-			//region Atributos
-			private:
-				wxCriticalSection* m_pCS;             // El cerrojo real.
-				bool               m_IsLocked;
-			//endregion
+        //----------------------------------------------------------------------------------------------------
+        //region Atributos
+private:
+        wxCriticalSection* m_pCS;             // El cerrojo real.
+        bool               m_IsLocked;
+        //endregion
 
-			friend class ILocker;
-		};
-		//endregion
+        friend class ILocker;
+};
+//endregion
 
-		//----------------------------------------------------------------------------------------------------
-		//region Helper de bloqueo automatico
-		//----------------------------------------------------------------------------------------------------
-		class EXTAPI ILocker
-		{
-			//----------------------------------------------------------------------------------------------------
-			//region Construccion y destruccion
-			public:
+//----------------------------------------------------------------------------------------------------
+//region Helper de bloqueo automatico
+//----------------------------------------------------------------------------------------------------
+class EXTAPI ILocker
+{
+        //----------------------------------------------------------------------------------------------------
+        //region Construccion y destruccion
+public:
 
-				ILocker( GNC::GCS::ILockable& pLockable );
-				ILocker( GNC::GCS::ILockable* pLockable );
-				~ILocker();
-			//endregion
+        ILocker( GNC::GCS::ILockable& pLockable );
+        ILocker( GNC::GCS::ILockable* pLockable );
+        ~ILocker();
+        //endregion
 
-			//----------------------------------------------------------------------------------------------------
-			//region Atributos
-			private:
+        //----------------------------------------------------------------------------------------------------
+        //region Atributos
+private:
 
-				ILockable* m_pLockable;
-			//endregion
+        ILockable* m_pLockable;
+        //endregion
 
-			friend class ILockable;
-		};
-		//endregion
-	}
+        friend class ILockable;
+};
+//endregion
+}
 }
 
 #endif

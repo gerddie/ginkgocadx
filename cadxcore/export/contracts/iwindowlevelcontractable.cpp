@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -24,7 +24,7 @@
 
 GNC::GCS::IWindowLevelContractable::IWindowLevelContractable()
 {
-	WindowLevelContract = NULL;
+        WindowLevelContract = NULL;
 }
 
 GNC::GCS::IWindowLevelContractable::~IWindowLevelContractable()
@@ -33,13 +33,13 @@ GNC::GCS::IWindowLevelContractable::~IWindowLevelContractable()
 
 bool GNC::GCS::IWindowLevelContractable::IsValidContract(IContract* contract)
 {
-	GNC::GCS::IWindowLevelContract* pWContract = dynamic_cast<GNC::GCS::IWindowLevelContract*>(contract);
-	return pWContract != NULL;
+        GNC::GCS::IWindowLevelContract* pWContract = dynamic_cast<GNC::GCS::IWindowLevelContract*>(contract);
+        return pWContract != NULL;
 }
 
-			
+
 void GNC::GCS::IWindowLevelContractable::Register(IContract* contract)
 {
-	GNC::GCS::IContractable::Register(contract);
-	WindowLevelContract = static_cast<GNC::GCS::IWindowLevelContract*>(contract);
+        GNC::GCS::IContractable::Register(contract);
+        WindowLevelContract = static_cast<GNC::GCS::IWindowLevelContract*>(contract);
 }

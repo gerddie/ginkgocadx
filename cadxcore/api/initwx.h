@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -24,12 +24,15 @@
 #include <wx/bitmap.h>
 #include <wx/snglinst.h>
 
-namespace GNC {
-	namespace GCS {
-		namespace Events {
-			class IEvento;
-		}
-	}
+namespace GNC
+{
+namespace GCS
+{
+namespace Events
+{
+class IEvento;
+}
+}
 }
 
 class wxSingleInstanceChecker;
@@ -45,28 +48,29 @@ class wxSplashScreen;
 class VentanaPrincipal;
 class GinkgoEventsDelegate;
 
-class EXTAPI Ginkgo : public wxApp {
+class EXTAPI Ginkgo : public wxApp
+{
 public:
-	wxSplashScreen* GetLogoWindow();
+        wxSplashScreen* GetLogoWindow();
 
-	virtual bool OnInit();
-	virtual int OnExit();
+        virtual bool OnInit();
+        virtual int OnExit();
 
 #ifdef __WXMAC__
-	virtual void MacOpenFile(const wxString &fileName);
-	std::string m_OpenFileName;
-	bool m_Inicializado;
+        virtual void MacOpenFile(const wxString &fileName);
+        std::string m_OpenFileName;
+        bool m_Inicializado;
 #endif
 
-	virtual void DoProgress(wxString str);
+        virtual void DoProgress(wxString str);
 
 
-	void OnSplashClose(wxCloseEvent& event);
+        void OnSplashClose(wxCloseEvent& event);
 
-	void WriteHeaderLog();
+        void WriteHeaderLog();
 
 //region "Carga de Extensiones"
-	void LoadPlugins();
+        void LoadPlugins();
 //endregion
 
 
@@ -74,16 +78,16 @@ private:
 
 
 protected:
-	wxSplashScreen*			m_pVentanaLogo;
-	wxBitmap                m_pBitmapOriginal;
-	VentanaPrincipal*       m_pVentanaPrincipal;
-	wxSingleInstanceChecker m_singleInstanceChecker;
-	stServer*               m_pServer;
-	GinkgoEventsDelegate*	m_pEventObserverDelegate;
+        wxSplashScreen*			m_pVentanaLogo;
+        wxBitmap                m_pBitmapOriginal;
+        VentanaPrincipal*       m_pVentanaPrincipal;
+        wxSingleInstanceChecker m_singleInstanceChecker;
+        stServer*               m_pServer;
+        GinkgoEventsDelegate*	m_pEventObserverDelegate;
 
 public:
 
-	wxCriticalSection m_SplashCriticalSection;
+        wxCriticalSection m_SplashCriticalSection;
 };
 
 #if defined(_WIN32)

@@ -30,35 +30,35 @@ class TitledPanel;
 
 namespace GNC
 {
-	namespace GUI
-	{
-		
-		///////////////////////////////////////////////////////////////////////////////
-		/// Class OverwriteDialogBase
-		///////////////////////////////////////////////////////////////////////////////
-		class OverwriteDialogBase : public wxDialog 
-		{
-			private:
-			
-			protected:
-				BodyPanel* m_pBody;
-				wxStaticText* m_staticText1;
-				FooterPanel* m_pFooter;
-				
-				wxButton* m_button1;
-				wxButton* m_button2;
-			
-			public:
-				TitledPanel* m_pPanelOverwrite;
-				wxStaticText* m_pTextMessage;
-				wxListBox* m_pPathList;
-				
-				OverwriteDialogBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Overwrite Paths"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxCAPTION|wxCLOSE_BOX|wxRESIZE_BORDER|wxSYSTEM_MENU );
-				~OverwriteDialogBase();
-			
-		};
-		
-	} // namespace GUI
+namespace GUI
+{
+
+///////////////////////////////////////////////////////////////////////////////
+/// Class OverwriteDialogBase
+///////////////////////////////////////////////////////////////////////////////
+class OverwriteDialogBase : public wxDialog
+{
+private:
+
+protected:
+        BodyPanel* m_pBody;
+        wxStaticText* m_staticText1;
+        FooterPanel* m_pFooter;
+
+        wxButton* m_button1;
+        wxButton* m_button2;
+
+public:
+        TitledPanel* m_pPanelOverwrite;
+        wxStaticText* m_pTextMessage;
+        wxListBox* m_pPathList;
+
+        OverwriteDialogBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Overwrite Paths"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxCAPTION|wxCLOSE_BOX|wxRESIZE_BORDER|wxSYSTEM_MENU );
+        ~OverwriteDialogBase();
+
+};
+
+} // namespace GUI
 } // namespace GNC
 
 #endif //__dialogopathssobreescribirbase__

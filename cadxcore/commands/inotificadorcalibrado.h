@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -20,19 +20,23 @@
 
 #pragma once
 
-namespace GNC{
-	namespace GUI{
-		struct TPuntoCalibrado;
-	}
+namespace GNC
+{
+namespace GUI
+{
+struct TPuntoCalibrado;
+}
 }
 
-namespace GADAPI {
+namespace GADAPI
+{
 
-	class INotificadorCalibrado{
-	public:
-		INotificadorCalibrado(){}
-		virtual ~INotificadorCalibrado(){}
+class INotificadorCalibrado
+{
+public:
+        INotificadorCalibrado() {}
+        virtual ~INotificadorCalibrado() {}
 
-		virtual void SetPuntosCalibrado(std::list<GNC::GUI::TPuntoCalibrado>& puntos) = 0;
-	};
+        virtual void SetPuntosCalibrado(std::list<GNC::GUI::TPuntoCalibrado>& puntos) = 0;
+};
 }

@@ -29,94 +29,93 @@ PURPOSE.  See the above copyright notices for more information.
 class EXTAPI vtkLookupTableManager: public vtkObject
 {
 
- public:
+public:
 
-  //BTX
-  enum LookupTableIds
-  {
-	LUT_LINEAR = 0,
-	LUT_LINEAR_INV,
-	LUT_BARTEN,
-    LUT_BLACKBODY,      //
-    LUT_CARDIAC,        //
-    LUT_VRBONES,        //
-    LUT_VRMUSCLESBONES, //
-    LUT_VRREDVESSELS,   //
-    LUT_GRAYRAINBOW,    //
-    LUT_STERN,          //
-    LUT_SPECTRUM,       //
-    LUT_HOTMETAL,
-    LUT_HOTIRON,        //
-    LUT_HOTGREEN,       //
-    LUT_GECOLORS,
-	LUT_PERFUSION,
-	LUT_PET,
-    LUT_FLOW,
-    LUT_LONI,
-    LUT_LONI2,
-    LUT_ASYMETRY,
-    LUT_PVALUE,
-    LUT_ROI
-  };
-  //ETX
+        //BTX
+        enum LookupTableIds {
+                LUT_LINEAR = 0,
+                LUT_LINEAR_INV,
+                LUT_BARTEN,
+                LUT_BLACKBODY,      //
+                LUT_CARDIAC,        //
+                LUT_VRBONES,        //
+                LUT_VRMUSCLESBONES, //
+                LUT_VRREDVESSELS,   //
+                LUT_GRAYRAINBOW,    //
+                LUT_STERN,          //
+                LUT_SPECTRUM,       //
+                LUT_HOTMETAL,
+                LUT_HOTIRON,        //
+                LUT_HOTGREEN,       //
+                LUT_GECOLORS,
+                LUT_PERFUSION,
+                LUT_PET,
+                LUT_FLOW,
+                LUT_LONI,
+                LUT_LONI2,
+                LUT_ASYMETRY,
+                LUT_PVALUE,
+                LUT_ROI
+        };
+        //ETX
 
-  static vtkLookupTableManager* New();
-  vtkTypeMacro (vtkLookupTableManager, vtkObject);
+        static vtkLookupTableManager* New();
+        vtkTypeMacro (vtkLookupTableManager, vtkObject);
 
-  static vtkLookupTable* GetBartenLookupTable (void);
+        static vtkLookupTable* GetBartenLookupTable (void);
 
-  static vtkLookupTable* GetLinearLookupTable (void);
-  
-  static vtkLookupTable* GetLinearInverseLookupTable (void);
+        static vtkLookupTable* GetLinearLookupTable (void);
 
-  static vtkLookupTable* GetSpectrumLookupTable (void);
+        static vtkLookupTable* GetLinearInverseLookupTable (void);
 
-  static vtkLookupTable* GetHotMetalLookupTable (void);
+        static vtkLookupTable* GetSpectrumLookupTable (void);
 
-  static vtkLookupTable* GetGEColorLookupTable (void);
+        static vtkLookupTable* GetHotMetalLookupTable (void);
 
-  static vtkLookupTable* GetFlowLookupTable (void);
+        static vtkLookupTable* GetGEColorLookupTable (void);
 
-  static vtkLookupTable* GetLONILookupTable (void);
+        static vtkLookupTable* GetFlowLookupTable (void);
 
-  static vtkLookupTable* GetLONI2LookupTable (void);
+        static vtkLookupTable* GetLONILookupTable (void);
 
-  static vtkLookupTable* GetAsymmetryLookupTable (void);
+        static vtkLookupTable* GetLONI2LookupTable (void);
 
-  static vtkLookupTable* GetPValueLookupTable (void);
+        static vtkLookupTable* GetAsymmetryLookupTable (void);
 
-  static std::list<std::string> GetAvailableLookupTables(void);
+        static vtkLookupTable* GetPValueLookupTable (void);
 
-  static vtkLookupTable* GetROILookupTable (void);
+        static std::list<std::string> GetAvailableLookupTables(void);
 
-  static vtkLookupTable* GetOverlayLooupTable (void);
+        static vtkLookupTable* GetROILookupTable (void);
 
-  // Nuevos
+        static vtkLookupTable* GetOverlayLooupTable (void);
 
-  static vtkLookupTable* GetBlackBodyLookupTable(void);
-  static vtkLookupTable* GetCardiacLookupTable(void);
-  static vtkLookupTable* GetVRBonesLookupTable(void);
-  static vtkLookupTable* GetVRMusclesBonesLookupTable(void);
-  static vtkLookupTable* GetVRRedVesselsLookupTable(void);
-  static vtkLookupTable* GetGrayRainbowLookupTable(void);
-  static vtkLookupTable* GetSternLookupTable(void);
-  static vtkLookupTable* GetHotIronLookupTable(void);
-  static vtkLookupTable* GetHotGreenLookupTable(void);
+        // Nuevos
 
-  // PERFUSION
+        static vtkLookupTable* GetBlackBodyLookupTable(void);
+        static vtkLookupTable* GetCardiacLookupTable(void);
+        static vtkLookupTable* GetVRBonesLookupTable(void);
+        static vtkLookupTable* GetVRMusclesBonesLookupTable(void);
+        static vtkLookupTable* GetVRRedVesselsLookupTable(void);
+        static vtkLookupTable* GetGrayRainbowLookupTable(void);
+        static vtkLookupTable* GetSternLookupTable(void);
+        static vtkLookupTable* GetHotIronLookupTable(void);
+        static vtkLookupTable* GetHotGreenLookupTable(void);
 
-  static vtkLookupTable* GetPERFusionLookupTable(void);
+        // PERFUSION
 
-  // PET
-  static vtkLookupTable* GetPETLookupTable(void);  
+        static vtkLookupTable* GetPERFusionLookupTable(void);
 
-  static vtkLookupTable* GetLookupTable(const int&);
+        // PET
+        static vtkLookupTable* GetPETLookupTable(void);
 
- protected:
-  vtkLookupTableManager();
-  ~vtkLookupTableManager();
+        static vtkLookupTable* GetLookupTable(const int&);
 
- private:
+protected:
+        vtkLookupTableManager();
+        ~vtkLookupTableManager();
+
+private:
 };
 
 

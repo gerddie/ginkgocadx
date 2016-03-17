@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -24,150 +24,159 @@
 #include <sstream>
 #include <api/iexception.h>
 
-namespace GNC {
-	namespace GCS {
-		class EXTAPI ControladorPermisosException : public GNC::GCS::IException {
-			public:
-				ControladorPermisosException(const std::string& msg, bool fatal = true) throw();
-		};
+namespace GNC
+{
+namespace GCS
+{
+class EXTAPI ControladorPermisosException : public GNC::GCS::IException
+{
+public:
+        ControladorPermisosException(const std::string& msg, bool fatal = true) throw();
+};
 
-		namespace Permisos {
-			class EstadoPermiso {
+namespace Permisos
+{
+class EstadoPermiso
+{
 
-			public:
+public:
 
-				EstadoPermiso()
-				{
-					m_Activo = m_ActivoPorDefecto = false;
-					m_PermisoValido = false;
-				}
+        EstadoPermiso()
+        {
+                m_Activo = m_ActivoPorDefecto = false;
+                m_PermisoValido = false;
+        }
 
-				EstadoPermiso(const EstadoPermiso* const o)
-				{
-					if (o != NULL) {
-						*this = *o;
-					}
-					else {
-						m_Activo = m_ActivoPorDefecto = true;
-						m_PermisoValido = false;
-					}
-				}
+        EstadoPermiso(const EstadoPermiso* const o)
+        {
+                if (o != NULL) {
+                        *this = *o;
+                } else {
+                        m_Activo = m_ActivoPorDefecto = true;
+                        m_PermisoValido = false;
+                }
+        }
 
-				EstadoPermiso(const EstadoPermiso& o)
-				{
-					*this = o;
-				}
+        EstadoPermiso(const EstadoPermiso& o)
+        {
+                *this = o;
+        }
 
-				EstadoPermiso(const std::string& valorPorDefecto, bool activoPorDefecto) : m_ActivoPorDefecto(activoPorDefecto), m_ValorPorDefecto(valorPorDefecto)
-				{
-					m_PermisoValido = true;
-					Reset();
-				}
+        EstadoPermiso(const std::string& valorPorDefecto, bool activoPorDefecto) : m_ActivoPorDefecto(activoPorDefecto), m_ValorPorDefecto(valorPorDefecto)
+        {
+                m_PermisoValido = true;
+                Reset();
+        }
 
-				EstadoPermiso(const std::string& valorPorDefecto, const std::string& valor, bool activoPorDefecto, bool activo) : m_Activo(activo), m_ActivoPorDefecto(activoPorDefecto), m_Valor(valor), m_ValorPorDefecto(valorPorDefecto)
-				{
-					m_PermisoValido = true;
-				}
+        EstadoPermiso(const std::string& valorPorDefecto, const std::string& valor, bool activoPorDefecto, bool activo) : m_Activo(activo), m_ActivoPorDefecto(activoPorDefecto), m_Valor(valor), m_ValorPorDefecto(valorPorDefecto)
+        {
+                m_PermisoValido = true;
+        }
 
-				void Reset() {
-					m_Activo = m_ActivoPorDefecto;
-					m_Valor  = m_ValorPorDefecto;
-				}
+        void Reset()
+        {
+                m_Activo = m_ActivoPorDefecto;
+                m_Valor  = m_ValorPorDefecto;
+        }
 
-				void Activar(bool activo)
-				{
-					m_Activo = activo;
-				}
+        void Activar(bool activo)
+        {
+                m_Activo = activo;
+        }
 
-				bool Activo() const {
-					return m_Activo;
-				}
+        bool Activo() const
+        {
+                return m_Activo;
+        }
 
-				bool TieneValorPorDefecto() const
-				{
-					return m_Valor == m_ValorPorDefecto && m_Activo == m_ActivoPorDefecto;
-				}
+        bool TieneValorPorDefecto() const
+        {
+                return m_Valor == m_ValorPorDefecto && m_Activo == m_ActivoPorDefecto;
+        }
 
-				const std::string& GetRawValue() const {
-					return m_Valor;
-				}
+        const std::string& GetRawValue() const
+        {
+                return m_Valor;
+        }
 
-				template <class T> T ObtenerValor() const {
-					T v;
-					if (!m_Activo) {
-						std::istringstream is(m_ValorPorDefecto);
-						is >> v;
-					}
-					else {
-						std::istringstream is(m_Valor);
-						is >> v;
-					}
-					
-					return v;
-				}
+        template <class T> T ObtenerValor() const
+        {
+                T v;
+                if (!m_Activo) {
+                        std::istringstream is(m_ValorPorDefecto);
+                        is >> v;
+                } else {
+                        std::istringstream is(m_Valor);
+                        is >> v;
+                }
 
-				template <class T> void AsignarValor(T valor) {
-					std::ostringstream os;
-					os << valor;
-					m_Valor = os.str();
-				}
+                return v;
+        }
 
-				EstadoPermiso& operator = (const EstadoPermiso& o)
-				{
-					this->m_Valor = o.m_Valor;
-					this->m_ValorPorDefecto = o.m_ValorPorDefecto;
-					this->m_Activo = o.m_Activo;
-					this->m_ActivoPorDefecto = o.m_ActivoPorDefecto;
-					this->m_PermisoValido = o.m_PermisoValido;
-					return *this;
-				}
+        template <class T> void AsignarValor(T valor)
+        {
+                std::ostringstream os;
+                os << valor;
+                m_Valor = os.str();
+        }
 
-				bool ValidoYActivo() const
-				{
-					return m_PermisoValido && m_Activo;
-				}
+        EstadoPermiso& operator = (const EstadoPermiso& o)
+        {
+                this->m_Valor = o.m_Valor;
+                this->m_ValorPorDefecto = o.m_ValorPorDefecto;
+                this->m_Activo = o.m_Activo;
+                this->m_ActivoPorDefecto = o.m_ActivoPorDefecto;
+                this->m_PermisoValido = o.m_PermisoValido;
+                return *this;
+        }
 
-				operator bool () const {
-					return ValidoYActivo();
-				}
+        bool ValidoYActivo() const
+        {
+                return m_PermisoValido && m_Activo;
+        }
 
-			private:
-				bool        m_Activo;
-				bool        m_ActivoPorDefecto;
-				std::string m_Valor;
-				std::string m_ValorPorDefecto;
-				bool        m_PermisoValido;
+        operator bool () const
+        {
+                return ValidoYActivo();
+        }
 
-			};
-		}
+private:
+        bool        m_Activo;
+        bool        m_ActivoPorDefecto;
+        std::string m_Valor;
+        std::string m_ValorPorDefecto;
+        bool        m_PermisoValido;
 
-		class EXTAPI IControladorPermisos
-		{
+};
+}
 
-		protected:
-			IControladorPermisos();
-			
-			virtual ~IControladorPermisos();
+class EXTAPI IControladorPermisos
+{
 
-		public:
+protected:
+        IControladorPermisos();
 
-			static IControladorPermisos* Instance();
-			static void FreeInstance();
+        virtual ~IControladorPermisos();
 
-			/** Carga el fichero XML de permisos **/
-			virtual void CargarXMLPermisos(const std::string& xmlPermisos, bool privados = false) = 0;
+public:
 
-			/** Resetea el estado y valor de todos los permisos a sus valores por defecto **/
-			virtual void ResetearValoresPorDefecto() = 0;
+        static IControladorPermisos* Instance();
+        static void FreeInstance();
 
-			/** Metodo recomendado para obtener permisos **/
-			virtual GNC::GCS::Permisos::EstadoPermiso* ObtenerPermiso(const std::string& stdNamespace, const std::string& idSujeto) = 0;
+        /** Carga el fichero XML de permisos **/
+        virtual void CargarXMLPermisos(const std::string& xmlPermisos, bool privados = false) = 0;
 
-			/** Metodo recomendado para comprobar permisos **/
-			virtual GNC::GCS::Permisos::EstadoPermiso Get(const std::string& stdNamespace, const std::string& idSujeto) = 0;
+        /** Resetea el estado y valor de todos los permisos a sus valores por defecto **/
+        virtual void ResetearValoresPorDefecto() = 0;
 
-			/** Anyade una nueva definicion de permiso al conjunto **/
-			virtual void AddDefinicionPermiso(const std::string& espacioNombres, const std::string& descripcionNamespace, const std::string& id, const std::string& descripcion, bool privado, const std::string& valorPorDefecto, bool activoPorDefecto) = 0;
-		};
-	}
+        /** Metodo recomendado para obtener permisos **/
+        virtual GNC::GCS::Permisos::EstadoPermiso* ObtenerPermiso(const std::string& stdNamespace, const std::string& idSujeto) = 0;
+
+        /** Metodo recomendado para comprobar permisos **/
+        virtual GNC::GCS::Permisos::EstadoPermiso Get(const std::string& stdNamespace, const std::string& idSujeto) = 0;
+
+        /** Anyade una nueva definicion de permiso al conjunto **/
+        virtual void AddDefinicionPermiso(const std::string& espacioNombres, const std::string& descripcionNamespace, const std::string& id, const std::string& descripcion, bool privado, const std::string& valorPorDefecto, bool activoPorDefecto) = 0;
+};
+}
 }

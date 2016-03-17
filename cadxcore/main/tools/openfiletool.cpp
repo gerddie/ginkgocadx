@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -32,7 +32,7 @@
 
 //----------------------------------------------------------------------
 
-GNC::OpenFileTool::OpenFileTool(): GNC::GCS::IHistoryTool(ID,GNC::GCS::IHistoryTool::TFamily_Open, _Std("Open File"), _Std("Open File")+ " \tAlt+f", GinkgoResourcesManager::MenuIcons::GetIcoOpenFile()) 
+GNC::OpenFileTool::OpenFileTool(): GNC::GCS::IHistoryTool(ID,GNC::GCS::IHistoryTool::TFamily_Open, _Std("Open File"), _Std("Open File")+ " \tAlt+f", GinkgoResourcesManager::MenuIcons::GetIcoOpenFile())
 {
 }
 
@@ -40,14 +40,14 @@ GNC::OpenFileTool::~OpenFileTool()
 {
 }
 
-bool GNC::OpenFileTool::Enabled() 
+bool GNC::OpenFileTool::Enabled()
 {
-	return GNC::GCS::IControladorPermisos::Instance()->Get("core.restrictions","acquire");
+        return GNC::GCS::IControladorPermisos::Instance()->Get("core.restrictions","acquire");
 }
 
 void GNC::OpenFileTool::Execute()
 {
-	GNC::GUI::Abrir::AbrirFichero(GNC::HistoryToolsController::Instance()->GetHistoryPanel()->GetWxWindow());
+        GNC::GUI::Abrir::AbrirFichero(GNC::HistoryToolsController::Instance()->GetHistoryPanel()->GetWxWindow());
 }
 
 

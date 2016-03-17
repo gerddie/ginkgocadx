@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -144,8 +144,8 @@
 #define RAW_PIM        ((2+IPPROTO_PIM)<<1)    /* Protocol Independent Mcast */
 #define RAW_PGM        ((2+IPPROTO_PGM)<<1)    /* PGM */
 #define RAW_OLD_DIVERT  ((2+IPPROTO_OLD_DIVERT)<<1)/* OLD divert pseudo-proto */
-#define RAW_MAX        ((2+IPPROTO_MAX)<<1)    
-#define RAW_DONE       ((2+IPPROTO_DONE)<<1)   
+#define RAW_MAX        ((2+IPPROTO_MAX)<<1)
+#define RAW_DONE       ((2+IPPROTO_DONE)<<1)
 #define RAW_DIVERT     ((2+IPPROTO_DIVERT)<<1) /* divert pseudo-protocol */
 
 

@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -61,136 +61,178 @@ class Endpoint
 {
 public:
 
-	typedef enum EP_Mode {
-		INPUT,
-		OUTPUT,
-		BOTH
-	} EP_Mode;
+        typedef enum EP_Mode {
+                INPUT,
+                OUTPUT,
+                BOTH
+        } EP_Mode;
 
-    Endpoint();
+        Endpoint();
 
-    // Each of these functions have an int appended to the end of
-    // their constuctors, for determining if we should automatically
-    // connect() or accept().  
-    Endpoint( int type, std::string hostname, int service, int options = DOACCEPT );
+        // Each of these functions have an int appended to the end of
+        // their constuctors, for determining if we should automatically
+        // connect() or accept().
+        Endpoint( int type, std::string hostname, int service, int options = DOACCEPT );
 
-    // type-hostname-service deprecated in favor of type-remote-local
-    //Endpoint(int type, std::string hostname, std::string service = "")
-    //    { Create(type, hostname, service); }
-    Endpoint( int type, std::string remote, std::string local, int options = DOACCEPT );
+        // type-hostname-service deprecated in favor of type-remote-local
+        //Endpoint(int type, std::string hostname, std::string service = "")
+        //    { Create(type, hostname, service); }
+        Endpoint( int type, std::string remote, std::string local, int options = DOACCEPT );
 
-    // This constructor does not need the options parameter because it would
-    // conflict with the above Endpoint( int, std::string, int, int=DOACCEPT )
-    Endpoint( int type, std::string address );
-    
-    Endpoint( int type, std::string remotehost, std::string remoteservice,
-             std::string localhost, std::string localservice, int options = DOACCEPT );
-    Endpoint( int type, const EndpointAddrlist& address, int options = DOACCEPT );
-    Endpoint( int type, const EndpointAddrlist& local, const EndpointAddrlist& remote, int options = DOACCEPT );
-    
+        // This constructor does not need the options parameter because it would
+        // conflict with the above Endpoint( int, std::string, int, int=DOACCEPT )
+        Endpoint( int type, std::string address );
 
-    bool Create( int type, const EndpointAddrlist& address, int options = DOACCEPT );
-    bool Create( int type, const EndpointAddrlist& remote, const EndpointAddrlist& local, int options = DOACCEPT );
-    bool Create( int type, std::string host, std::string service, int options = DOACCEPT );
-    bool Create( int type, std::string remotehost, std::string remoteservice,
-                 std::string localhost, std::string localservice, int options = DOACCEPT );
-
-    virtual ~Endpoint();
-    bool Close();
-	void Shutdown(EP_Mode mode);
-	static void ShutdownSocket(int socketID, EP_Mode mode);
-    bool CloseServer();
-    bool Accept();
-
-    operator bool() { return m_bool; }
-    operator std::string() { return Connection();}
-    std::string Connection() { return m_local.IPPort() + " <--> " + m_remote.IPPort(); }
-    std::string Server() { return m_local_server.IPPort(); }
-
-    int Send(const void *msg, int len, int flags);
-    int Write(std::string);      // Returns number of bytes written
-    int Recv(void *buf, int len, unsigned int flags);
-    int Read(int, std::string&);  // Returns number of bytes read
-	 int Read(int, char* buffer);  // Returns number of bytes read
+        Endpoint( int type, std::string remotehost, std::string remoteservice,
+                  std::string localhost, std::string localservice, int options = DOACCEPT );
+        Endpoint( int type, const EndpointAddrlist& address, int options = DOACCEPT );
+        Endpoint( int type, const EndpointAddrlist& local, const EndpointAddrlist& remote, int options = DOACCEPT );
 
 
-    void SetOptOn(int level, int opt)
-        { char on = 1; setsockopt(m_sockfd, level, opt, &on, sizeof(on)); }
+        bool Create( int type, const EndpointAddrlist& address, int options = DOACCEPT );
+        bool Create( int type, const EndpointAddrlist& remote, const EndpointAddrlist& local, int options = DOACCEPT );
+        bool Create( int type, std::string host, std::string service, int options = DOACCEPT );
+        bool Create( int type, std::string remotehost, std::string remoteservice,
+                     std::string localhost, std::string localservice, int options = DOACCEPT );
 
-    void AddBytesRecv(int n) { m_bytes_recv += n; g_bytes_recv += n; }
-    void AddBytesSent(int n) { m_bytes_sent += n; g_bytes_sent += n; }
-    int GetBytesRecv() { return m_bytes_recv; }
-    int GetBytesSent() { return m_bytes_sent; }
-    int GetAllBytesRecv() { return g_bytes_recv; }
-    int GetAllBytesSent() { return g_bytes_sent; }
+        virtual ~Endpoint();
+        bool Close();
+        void Shutdown(EP_Mode mode);
+        static void ShutdownSocket(int socketID, EP_Mode mode);
+        bool CloseServer();
+        bool Accept();
 
-    std::string Stats() { std::stringstream ss;
-                          ss << GetBytesRecv() << " / " << GetBytesSent()
-                             << std::endl 
-                             << GetAllBytesRecv() << " / "
-                             << GetAllBytesSent() << std::endl;
-						  return ss.str();
-                 }
+        operator bool()
+        {
+                return m_bool;
+        }
+        operator std::string()
+        {
+                return Connection();
+        }
+        std::string Connection()
+        {
+                return m_local.IPPort() + " <--> " + m_remote.IPPort();
+        }
+        std::string Server()
+        {
+                return m_local_server.IPPort();
+        }
 
-    int m_sockfd;
-    int m_servfd;
+        int Send(const void *msg, int len, int flags);
+        int Write(std::string);      // Returns number of bytes written
+        int Recv(void *buf, int len, unsigned int flags);
+        int Read(int, std::string&);  // Returns number of bytes read
+        int Read(int, char* buffer);  // Returns number of bytes read
 
-    bool m_bool;
-    int m_error_cat;
-    int m_error_code;
-    std::string m_error_str;
 
-    int m_type;
-    int m_server;
-    int m_family;
+        void SetOptOn(int level, int opt)
+        {
+                char on = 1;
+                setsockopt(m_sockfd, level, opt, &on, sizeof(on));
+        }
 
-    EndpointAddress m_remote;
-    EndpointAddress m_local;
+        void AddBytesRecv(int n)
+        {
+                m_bytes_recv += n;
+                g_bytes_recv += n;
+        }
+        void AddBytesSent(int n)
+        {
+                m_bytes_sent += n;
+                g_bytes_sent += n;
+        }
+        int GetBytesRecv()
+        {
+                return m_bytes_recv;
+        }
+        int GetBytesSent()
+        {
+                return m_bytes_sent;
+        }
+        int GetAllBytesRecv()
+        {
+                return g_bytes_recv;
+        }
+        int GetAllBytesSent()
+        {
+                return g_bytes_sent;
+        }
 
-    // Only used with TCP | SERVER
-    EndpointAddress m_local_server;
+        std::string Stats()
+        {
+                std::stringstream ss;
+                ss << GetBytesRecv() << " / " << GetBytesSent()
+                   << std::endl
+                   << GetAllBytesRecv() << " / "
+                   << GetAllBytesSent() << std::endl;
+                return ss.str();
+        }
 
-    // Multicast functions
-    // No special function needed to send to an mcast addr, ex. 226.1.1.2:2000
-    //int join(std::string mcastaddr, std::string interface = "0");
-    //int leave(std::string mcastaddr, std::string interface = "0");
-    int mcast_options(std::string outgoing_if, int ttl = 1, int loop = 1);
+        int m_sockfd;
+        int m_servfd;
 
-    static void Initialize();
+        bool m_bool;
+        int m_error_cat;
+        int m_error_code;
+        std::string m_error_str;
 
-    static unsigned short in_cksum(unsigned short *addr, int len);
+        int m_type;
+        int m_server;
+        int m_family;
 
-    static int set_raw_sockfd(int n) { return g_raw_sockfd = n; }
-    static int get_raw_sockfd() { return g_raw_sockfd; }
+        EndpointAddress m_remote;
+        EndpointAddress m_local;
 
-    // Handles creation of one raw socket & dropping of root
-    static void setup_raw(std::string argv0);
+        // Only used with TCP | SERVER
+        EndpointAddress m_local_server;
+
+        // Multicast functions
+        // No special function needed to send to an mcast addr, ex. 226.1.1.2:2000
+        //int join(std::string mcastaddr, std::string interface = "0");
+        //int leave(std::string mcastaddr, std::string interface = "0");
+        int mcast_options(std::string outgoing_if, int ttl = 1, int loop = 1);
+
+        static void Initialize();
+
+        static unsigned short in_cksum(unsigned short *addr, int len);
+
+        static int set_raw_sockfd(int n)
+        {
+                return g_raw_sockfd = n;
+        }
+        static int get_raw_sockfd()
+        {
+                return g_raw_sockfd;
+        }
+
+        // Handles creation of one raw socket & dropping of root
+        static void setup_raw(std::string argv0);
 private:
 
-    int m_bytes_sent;
-    int m_bytes_recv;
+        int m_bytes_sent;
+        int m_bytes_recv;
 
-    // Static data that applies to all instances of this class
-    static int g_bytes_sent;
-    static int g_bytes_recv;
+        // Static data that applies to all instances of this class
+        static int g_bytes_sent;
+        static int g_bytes_recv;
 
-    // If this is non-zero, it will be used instead of a call to 
-    // socket() for raw sockets. The idea is to re-use one raw
-    // socket created when the program started (code to do this in SUMI,
-    // TODO: maybe move it here) so root privs can be dropped.
-    // XXX: Unfortunately, the pipe breaks after multiple sends. 
-    // XXXX: Can't sendto() multiple times?
-    static int g_raw_sockfd;          // Socket descriptor to use for raw sockets
+        // If this is non-zero, it will be used instead of a call to
+        // socket() for raw sockets. The idea is to re-use one raw
+        // socket created when the program started (code to do this in SUMI,
+        // TODO: maybe move it here) so root privs can be dropped.
+        // XXX: Unfortunately, the pipe breaks after multiple sends.
+        // XXXX: Can't sendto() multiple times?
+        static int g_raw_sockfd;          // Socket descriptor to use for raw sockets
 
-    int SetLastError();
+        int SetLastError();
 };
 
-struct Interface
-{
-	bool up, bcast, loopback, p2p, mcast;
-	std::string address;
-	std::string broadcast;
-	std::string netmask;
+struct Interface {
+        bool up, bcast, loopback, p2p, mcast;
+        std::string address;
+        std::string broadcast;
+        std::string netmask;
 };
 bool Network_Interfaces(std::vector<Interface>& is);
 

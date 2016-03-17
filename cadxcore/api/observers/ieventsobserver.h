@@ -6,8 +6,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -26,39 +26,44 @@
 
 #include <api/api.h>
 
-namespace GNC {
-	namespace GCS {
-		namespace Events {
-			class IEvent;
-		}
-		class IEventsController;
-	}
+namespace GNC
+{
+namespace GCS
+{
+namespace Events
+{
+class IEvent;
+}
+class IEventsController;
+}
 }
 
-namespace GNC {
-	namespace GCS {
+namespace GNC
+{
+namespace GCS
+{
 
-		//====================================================================================================
-		//= Interfaz del observador de eventos
-		//====================================================================================================
-		class EXTAPI IEventsObserver
-		{
-		public:
-			IEventsObserver();
+//====================================================================================================
+//= Interfaz del observador de eventos
+//====================================================================================================
+class EXTAPI IEventsObserver
+{
+public:
+        IEventsObserver();
 
-			virtual ~IEventsObserver();
+        virtual ~IEventsObserver();
 
-			//virtual void OnRegistrar (IControladorEventos* pControlador);
+        //virtual void OnRegistrar (IControladorEventos* pControlador);
 
-			virtual void PreProcesarEvento(GNC::GCS::Events::IEvent*, std::list<GNC::GCS::Events::IEvent*>& );
+        virtual void PreProcesarEvento(GNC::GCS::Events::IEvent*, std::list<GNC::GCS::Events::IEvent*>& );
 
-			virtual bool FiltrarEvento(GNC::GCS::Events::IEvent*);
+        virtual bool FiltrarEvento(GNC::GCS::Events::IEvent*);
 
-			virtual void ProcesarEvento(GNC::GCS::Events::IEvent* evt) = 0;
+        virtual void ProcesarEvento(GNC::GCS::Events::IEvent* evt) = 0;
 
-		protected:
-			//IControladorEventos* m_pControlador;
-		};
-	}
+protected:
+        //IControladorEventos* m_pControlador;
+};
+}
 }
 #endif

@@ -1,5 +1,5 @@
 /*
- *  
+ *
  *  $Id: pdf2dsource.h $
  *  Ginkgo CADx Project
  *
@@ -48,44 +48,47 @@ class PDF2DSource: public D2DSource
 
 public:
 
-  /** Constructor
-   */
-	PDF2DSource() : D2DSource()
-	{
-		m_isTemp=false;
-	}
+        /** Constructor
+         */
+        PDF2DSource() : D2DSource()
+        {
+                m_isTemp=false;
+        }
 
-	virtual void setPDFFile(const OFString& file) {m_file = file;}
+        virtual void setPDFFile(const OFString& file)
+        {
+                m_file = file;
+        }
 
-  /** Returns identifier for the image input format the plugin imports.
-   *  @return A short identifier (e. g. "JPEG")
-   */
-  virtual OFString inputFormat() const;
+        /** Returns identifier for the image input format the plugin imports.
+         *  @return A short identifier (e. g. "JPEG")
+         */
+        virtual OFString inputFormat() const;
 
-  /** Reads pixel data and corresponding attributes like rows etc. from image
-	 *  file and inserts them into dataset.
-	 *  @param dset - [out] The dataset to export the pixel data attributes to
-	 *  @param outputTS - [out] The proposed transfex syntax of the dataset
-	 *  @return EC_Normal, if successful, error otherwise
-	 */
-  virtual OFCondition readAndInsertSpecificTags( DcmDataset* dset,
-									   E_TransferSyntax& outputTS);
+        /** Reads pixel data and corresponding attributes like rows etc. from image
+         *  file and inserts them into dataset.
+         *  @param dset - [out] The dataset to export the pixel data attributes to
+         *  @param outputTS - [out] The proposed transfex syntax of the dataset
+         *  @return EC_Normal, if successful, error otherwise
+         */
+        virtual OFCondition readAndInsertSpecificTags( DcmDataset* dset,
+                        E_TransferSyntax& outputTS);
 
-  /** Do some completeness / validity checks. Should be called when
-	 *  dataset is completed and is about to be saved.
-	 *  @param dataset - [in] The dataset to check
-	 *  @return Error string if error occurs, empty string otherwise
-	 */
-	OFString isValid(DcmDataset& dset) const;
+        /** Do some completeness / validity checks. Should be called when
+         *  dataset is completed and is about to be saved.
+         *  @param dataset - [in] The dataset to check
+         *  @return Error string if error occurs, empty string otherwise
+         */
+        OFString isValid(DcmDataset& dset) const;
 
- 
-  /** Virtual Destructor
-   */
-	virtual ~PDF2DSource();
+
+        /** Virtual Destructor
+         */
+        virtual ~PDF2DSource();
 
 protected:
-	OFString m_file;
-	bool m_isTemp;
+        OFString m_file;
+        bool m_isTemp;
 };
 
 /*

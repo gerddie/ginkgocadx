@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -23,81 +23,93 @@
 #include <api/autoptr.h>
 
 class wxWindow;
-namespace GNC {
-	namespace GUI {
-		class IPreviewLeaf;
-		
-		class EXTAPI IPreviewNode {
-		public:
-			typedef std::list<IPreviewNode* > TListNodes;
-			IPreviewNode(){}
-			IPreviewNode(const std::string& label) {
-				this->label = label;
-			}
-			virtual ~IPreviewNode()
-			{
-				for (TListNodes::iterator it = children.begin(); it != children.end(); ++it) 
-				{
-					delete (*it);
-				}
-				children.clear();
-			}
-			std::string GetLabel() {
-				return this->label;
-			}
-			void SetLabel(const std::string& label) {
-				this->label = label;
-			}
+namespace GNC
+{
+namespace GUI
+{
+class IPreviewLeaf;
 
-			void AddChild(IPreviewNode* child) {
-				children.push_back(child);
-			}
+class EXTAPI IPreviewNode
+{
+public:
+        typedef std::list<IPreviewNode* > TListNodes;
+        IPreviewNode() {}
+        IPreviewNode(const std::string& label)
+        {
+                this->label = label;
+        }
+        virtual ~IPreviewNode()
+        {
+                for (TListNodes::iterator it = children.begin(); it != children.end(); ++it) {
+                        delete (*it);
+                }
+                children.clear();
+        }
+        std::string GetLabel()
+        {
+                return this->label;
+        }
+        void SetLabel(const std::string& label)
+        {
+                this->label = label;
+        }
 
-			TListNodes children;
+        void AddChild(IPreviewNode* child)
+        {
+                children.push_back(child);
+        }
 
-			virtual void OnShowMenu(wxWindow* pParent) = 0;
-			virtual void OnPreviewDClick(wxWindow* pParent) = 0;
-			virtual void OnPreviewLDown(wxWindow* pParent) = 0;
-			std::string label;
-		};
+        TListNodes children;
 
-		class EXTAPI IPreviewLeaf: public IPreviewNode 
-		{
-		public:
-			IPreviewLeaf()
-			{
-			}
-                        IPreviewLeaf(const std::string& label, const std::string& l2) :IPreviewNode(label), label2(l2), file_pk(-1)
-			{
-			}
+        virtual void OnShowMenu(wxWindow* pParent) = 0;
+        virtual void OnPreviewDClick(wxWindow* pParent) = 0;
+        virtual void OnPreviewLDown(wxWindow* pParent) = 0;
+        std::string label;
+};
 
-			virtual wxBitmap GetOverlayBitmap()
-			{
-				return wxBitmap();
-			}
+class EXTAPI IPreviewLeaf: public IPreviewNode
+{
+public:
+        IPreviewLeaf()
+        {
+        }
+        IPreviewLeaf(const std::string& label, const std::string& l2) :IPreviewNode(label), label2(l2), file_pk(-1)
+        {
+        }
 
-			std::string GetLabel2() {
-				return this->label2;
-			}
-			void SetLabel2(const std::string& label) {
-				this->label2 = label;
-			}
-			std::string GetLabel3() {
-				return this->label3;
-			}
-			void SetLabel3(const std::string& label) {
-				this->label3 = label;
-			}
-			long GetFilePk() {
-				return this->file_pk;
-			}
-			void SetFilePk(long file_pk) {
-				this->file_pk = file_pk;
-			}
-		protected:
-			std::string label2;
-			std::string label3;
-			long file_pk;
-		};
-	};
+        virtual wxBitmap GetOverlayBitmap()
+        {
+                return wxBitmap();
+        }
+
+        std::string GetLabel2()
+        {
+                return this->label2;
+        }
+        void SetLabel2(const std::string& label)
+        {
+                this->label2 = label;
+        }
+        std::string GetLabel3()
+        {
+                return this->label3;
+        }
+        void SetLabel3(const std::string& label)
+        {
+                this->label3 = label;
+        }
+        long GetFilePk()
+        {
+                return this->file_pk;
+        }
+        void SetFilePk(long file_pk)
+        {
+                this->file_pk = file_pk;
+        }
+protected:
+        std::string label2;
+        std::string label3;
+        long file_pk;
+};
+};
 };

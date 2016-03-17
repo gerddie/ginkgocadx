@@ -1,5 +1,5 @@
 /*
-*  
+*
 *  $Id: i2dimgs.h $
 *  Ginkgo CADx Project
 *
@@ -46,82 +46,82 @@ class I2DImgSource: public D2DSource
 
 public:
 
-	/** Constructor
-	*/
-	I2DImgSource() : D2DSource(){}
+        /** Constructor
+        */
+        I2DImgSource() : D2DSource() {}
 
-	/** Returns identifier for the image input format the plugin imports.
-	*  @return A short identifier (e. g. "JPEG")
-	*/
-	virtual OFString inputFormat() const =0;
+        /** Returns identifier for the image input format the plugin imports.
+        *  @return A short identifier (e. g. "JPEG")
+        */
+        virtual OFString inputFormat() const =0;
 
-	/** true if pixeldata is compressed
-	*/
-	virtual bool IsCompressed() const = 0;
+        /** true if pixeldata is compressed
+        */
+        virtual bool IsCompressed() const = 0;
 
-	/*true if pixeldata has to be compressed*/
-	virtual bool Recompress() const = 0;
+        /*true if pixeldata has to be compressed*/
+        virtual bool Recompress() const = 0;
 
-	/** Reads pixel data and corresponding attributes like rows etc. from image
-	*  file and inserts them into dataset.
-	*  @param dset - [out] The dataset to export the pixel data attributes to
-	*  @param outputTS - [out] The proposed transfex syntax of the dataset
-	*  @return EC_Normal, if successful, error otherwise
-	*/
-	virtual OFCondition readAndInsertSpecificTags( DcmDataset* dset,
-		E_TransferSyntax& outputTS);
+        /** Reads pixel data and corresponding attributes like rows etc. from image
+        *  file and inserts them into dataset.
+        *  @param dset - [out] The dataset to export the pixel data attributes to
+        *  @param outputTS - [out] The proposed transfex syntax of the dataset
+        *  @return EC_Normal, if successful, error otherwise
+        */
+        virtual OFCondition readAndInsertSpecificTags( DcmDataset* dset,
+                        E_TransferSyntax& outputTS);
 
-	/** Do some completeness / validity checks. Should be called when
-	*  dataset is completed and is about to be saved.
-	*  @param dataset - [in] The dataset to check
-	*  @return Error string if error occurs, empty string otherwise
-	*/
-	OFString isValid(DcmDataset& dset) const;
+        /** Do some completeness / validity checks. Should be called when
+        *  dataset is completed and is about to be saved.
+        *  @param dataset - [in] The dataset to check
+        *  @return Error string if error occurs, empty string otherwise
+        */
+        OFString isValid(DcmDataset& dset) const;
 
-	/** Extracts the raw JPEG pixel data stream from a JPEG file and returns some
-	*  image information about this pixel data.
-	*  Raw means here that all APP markers (e.g. JFIF information) are removed from the JPEG stream.
-	*  The pixel data returned is a JPEG stream in JPEG interchange format.
-	*  This function allocates memory for the pixel data returned to the user. The caller of this
-	*  function is responsible for deleting the memory buffer
-	*  @param rows - [out] Rows of image
-	*  @param cols - [out] Columns of image
-	*  @param samplesPerPixel - [out] Number of components per pixel
-	*  @param photoMetrInt - [out] The DICOM color model used for the compressed data
-	*  @param bitsAlloc - [out] Bits Allocated for one sample
-	*  @param bitsStored - [out] Bits Stored, number of bits stored within Bits Allocated
-	*  @param highBit - [out] High Bit, hightest bit position set within Bits Allocated
-	*  @param pixelRepr - [out] Pixel Representation (0=unsigned, 1=signed)
-	*  @param planConf - [out] Planar Configuration
-	*  @param pixAspectH - [out] Horizontal value of pixel aspect ratio
-	*  @param pixAspectV - [out] Vertical value of pixel aspect ratio
-	*  @param pixData - [out] Pointer to the pixel data in JPEG Interchange Format (but without APPx markers).
-	*  @param length - [out] Length of pixel data
-	*  @param ts - [out] The transfer syntax imposed by the imported pixel pixel data.
-	This is necessary for the JPEG importer that needs to report
-	which TS must be used for the imported JPEG data (ie. baseline, progressive, ...).
-	If pixel data is uncompressed, EXS_Unknown is returned
-	*  @return EC_Normal, if successful, error otherwise
-	*/
-	virtual OFCondition readPixelData( Uint16& rows,
-		Uint16& cols,
-		Uint16& samplesPerPixel,
-		OFString& photoMetrInt,
-		Uint16& bitsAlloc,
-		Uint16& bitsStored,
-		Uint16& highBit,
-		Uint16& pixelRepr,
-		Uint16& planConf,
-		Uint16& pixAspectH,
-		Uint16& pixAspectV,
-		char*&  pixData,
-		Uint32& length,
-		E_TransferSyntax& ts) =0;
+        /** Extracts the raw JPEG pixel data stream from a JPEG file and returns some
+        *  image information about this pixel data.
+        *  Raw means here that all APP markers (e.g. JFIF information) are removed from the JPEG stream.
+        *  The pixel data returned is a JPEG stream in JPEG interchange format.
+        *  This function allocates memory for the pixel data returned to the user. The caller of this
+        *  function is responsible for deleting the memory buffer
+        *  @param rows - [out] Rows of image
+        *  @param cols - [out] Columns of image
+        *  @param samplesPerPixel - [out] Number of components per pixel
+        *  @param photoMetrInt - [out] The DICOM color model used for the compressed data
+        *  @param bitsAlloc - [out] Bits Allocated for one sample
+        *  @param bitsStored - [out] Bits Stored, number of bits stored within Bits Allocated
+        *  @param highBit - [out] High Bit, hightest bit position set within Bits Allocated
+        *  @param pixelRepr - [out] Pixel Representation (0=unsigned, 1=signed)
+        *  @param planConf - [out] Planar Configuration
+        *  @param pixAspectH - [out] Horizontal value of pixel aspect ratio
+        *  @param pixAspectV - [out] Vertical value of pixel aspect ratio
+        *  @param pixData - [out] Pointer to the pixel data in JPEG Interchange Format (but without APPx markers).
+        *  @param length - [out] Length of pixel data
+        *  @param ts - [out] The transfer syntax imposed by the imported pixel pixel data.
+        This is necessary for the JPEG importer that needs to report
+        which TS must be used for the imported JPEG data (ie. baseline, progressive, ...).
+        If pixel data is uncompressed, EXS_Unknown is returned
+        *  @return EC_Normal, if successful, error otherwise
+        */
+        virtual OFCondition readPixelData( Uint16& rows,
+                                           Uint16& cols,
+                                           Uint16& samplesPerPixel,
+                                           OFString& photoMetrInt,
+                                           Uint16& bitsAlloc,
+                                           Uint16& bitsStored,
+                                           Uint16& highBit,
+                                           Uint16& pixelRepr,
+                                           Uint16& planConf,
+                                           Uint16& pixAspectH,
+                                           Uint16& pixAspectV,
+                                           char*&  pixData,
+                                           Uint32& length,
+                                           E_TransferSyntax& ts) =0;
 
 
-	/** Virtual Destructor
-	*/
-	virtual ~I2DImgSource() {}
+        /** Virtual Destructor
+        */
+        virtual ~I2DImgSource() {}
 
 protected:
 

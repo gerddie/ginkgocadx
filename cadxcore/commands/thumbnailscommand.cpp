@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -73,8 +73,10 @@
 #define IDC_CARGA       91
 #define SIZE_THUMBNAILS 76
 
-namespace GADAPI {
-class ThumbnailsCommandParams: public GNC::GCS::IComandoParams {
+namespace GADAPI
+{
+class ThumbnailsCommandParams: public GNC::GCS::IComandoParams
+{
 public:
         ThumbnailsCommandParams(long file_pk, ThumbnailsNotifier* pNotificador)
         {
@@ -83,7 +85,8 @@ public:
                 m_pNotificadorThumbnail = pNotificador;
         }
 
-        virtual ~ThumbnailsCommandParams() {
+        virtual ~ThumbnailsCommandParams()
+        {
                 if (m_wxImg != NULL) {
                         delete m_wxImg;
                         m_wxImg = NULL;
@@ -114,9 +117,9 @@ void ThumbnailsCommand::Execute()
         NotificarProgreso(0.05f,_Std("Creating Thumbnail..."));
         m_Error = true;
         GTRACE("Arrancando comando generar thumbnails  " << m_pThumbParams->m_ruta)
-		//std::string tarea_Std("Generando thumbnails...");
-		//pillamos el uid
-		m_pThumbParams->m_fileModel = GNC::GCS::HistoryController::Instance()->GetFileModel(m_pThumbParams->m_file_pk);
+        //std::string tarea_Std("Generando thumbnails...");
+        //pillamos el uid
+        m_pThumbParams->m_fileModel = GNC::GCS::HistoryController::Instance()->GetFileModel(m_pThumbParams->m_file_pk);
         if(m_pThumbParams->m_fileModel.sopiuid.empty()) {
                 wxBitmap bmp = GinkgoResourcesManager::History::GetIcoUnknownFile();
                 m_pThumbParams->m_wxImg = new wxImage();
@@ -143,7 +146,7 @@ void ThumbnailsCommand::Execute()
         } else {
                 //try to make thumbnail with extensions...
                 ::GNC::ControladorExtensiones::ListaModulos listaModulos = ::GNC::ControladorExtensiones::Instance()->Modulos();
-                for(GNC::ControladorExtensiones::IteradorListaModulos it=listaModulos.begin();it!=listaModulos.end();++it){
+                for(GNC::ControladorExtensiones::IteradorListaModulos it=listaModulos.begin(); it!=listaModulos.end(); ++it) {
                         GNC::GCS::IModuleController* modulo = (*it).second;
                         GNC::GCS::Ptr<ImgProxy<UCHAR3> >pImgCapture(new ImgProxy<UCHAR3>());
                         if (modulo->MakeThumbnail(m_pThumbParams->m_fileModel, *pImgCapture)) {
@@ -152,13 +155,12 @@ void ThumbnailsCommand::Execute()
                                         double scaleX = ((double) SIZE_THUMBNAILS)/((double) pImgCapture->anchura);
                                         double scaleY = ((double) SIZE_THUMBNAILS)/((double) pImgCapture->altura);
 
-                                        if (scaleX < 1.0 || scaleY < 1.0)
-						{
-							double scale = wxMin(scaleX, scaleY);
-							int newWidth = (int) (scale * pImgCapture->anchura);
-							int newHeight = (int) (scale * pImgCapture->altura);
-							m_pThumbParams->m_wxImg = new wxImage(pImage->Scale(newWidth, newHeight, wxIMAGE_QUALITY_HIGH));
-						} else {
+                                        if (scaleX < 1.0 || scaleY < 1.0) {
+                                                double scale = wxMin(scaleX, scaleY);
+                                                int newWidth = (int) (scale * pImgCapture->anchura);
+                                                int newHeight = (int) (scale * pImgCapture->altura);
+                                                m_pThumbParams->m_wxImg = new wxImage(pImage->Scale(newWidth, newHeight, wxIMAGE_QUALITY_HIGH));
+                                        } else {
                                                 m_pThumbParams->m_wxImg = new wxImage(*pImage);
                                         }
                                         delete pImage;
@@ -170,23 +172,21 @@ void ThumbnailsCommand::Execute()
                         }
                 }
 
-                if (m_pThumbParams->m_fileModel.tsuid== GKUID_MPEG2MainProfileAtMainLevelTransferSyntax || m_pThumbParams->m_fileModel.tsuid == GKUID_MPEG2MainProfileAtHighLevelTransferSyntax) 
-			{
-				wxBitmap bmp = GinkgoResourcesManager::History::GetMoviePreview();
-				m_pThumbParams->m_wxImg = new wxImage();
-				(*m_pThumbParams->m_wxImg) = bmp.ConvertToImage();
-				GuardarImagen();
-				m_Error = false;
-				return;
-			}
-                if (m_pThumbParams->m_fileModel.sopcuid == GKUID_EncapsulatedPDFStorage) 
-			{
-				wxBitmap bmp = GinkgoResourcesManager::History::GetPDFPreview();
-				m_pThumbParams->m_wxImg = new wxImage();
-				(*m_pThumbParams->m_wxImg) = bmp.ConvertToImage();
-				m_Error = false;
-				return;
-			}
+                if (m_pThumbParams->m_fileModel.tsuid== GKUID_MPEG2MainProfileAtMainLevelTransferSyntax || m_pThumbParams->m_fileModel.tsuid == GKUID_MPEG2MainProfileAtHighLevelTransferSyntax) {
+                        wxBitmap bmp = GinkgoResourcesManager::History::GetMoviePreview();
+                        m_pThumbParams->m_wxImg = new wxImage();
+                        (*m_pThumbParams->m_wxImg) = bmp.ConvertToImage();
+                        GuardarImagen();
+                        m_Error = false;
+                        return;
+                }
+                if (m_pThumbParams->m_fileModel.sopcuid == GKUID_EncapsulatedPDFStorage) {
+                        wxBitmap bmp = GinkgoResourcesManager::History::GetPDFPreview();
+                        m_pThumbParams->m_wxImg = new wxImage();
+                        (*m_pThumbParams->m_wxImg) = bmp.ConvertToImage();
+                        m_Error = false;
+                        return;
+                }
 
                 double size[2]   = {0.0, 0.0};
                 int dimensions[3] = {0, 0, 0};
@@ -239,7 +239,7 @@ void ThumbnailsCommand::Execute()
 
                         vtkSmartPointer<vtkMatrix4x4> resliceAxes = vtkSmartPointer<vtkMatrix4x4>::New();
 
-                        
+
                         if ( dimensions[0] == 0 || dimensions[1] == 0 || spacing[0] == 0 || spacing[1] == 0) {
                                 if ( !loader.IsSignalFile()) {
                                         m_Error = true;
@@ -258,29 +258,27 @@ void ThumbnailsCommand::Execute()
                                 const double resy = (double) 0.25 * outputSize[1];
                                 const double sy = (double) 0.5 * outputSize[1];
 
-                                for (ix = 0; ix < outputSize[0]; ++ix)
-					{
+                                for (ix = 0; ix < outputSize[0]; ++ix) {
 
-						x = ((double) ix);
-						y = resy * std::sin(x * resx);
-						y += sy;
-						iy = std::max<int>(0, std::min<int>(outputSize[0] - 1, (int) std::floor(y + 0.5)) );
+                                        x = ((double) ix);
+                                        y = resy * std::sin(x * resx);
+                                        y += sy;
+                                        iy = std::max<int>(0, std::min<int>(outputSize[0] - 1, (int) std::floor(y + 0.5)) );
 
-						unsigned char* pixel = data + (3 * (iy * outputSize[0] + ix));
-						pixel[0] = 0;
-						pixel[1] = 255;
-						pixel[2] = 128;
-					}
+                                        unsigned char* pixel = data + (3 * (iy * outputSize[0] + ix));
+                                        pixel[0] = 0;
+                                        pixel[1] = 255;
+                                        pixel[2] = 128;
+                                }
 
-                        }
-                        else {
+                        } else {
 
 
                                 pReslice->SetInputConnection(loader.GetOutputPort());
                                 pReslice->SetOutputDimensionality(2);
                                 pReslice->SetResliceAxesDirectionCosines(1, 0, 0,
-                                                                         0, 1, 0,
-                                                                         0, 0, 1);
+                                                0, 1, 0,
+                                                0, 0, 1);
                                 outputSize[0] = size[0];
                                 outputSize[1] = size[1];
 
@@ -313,9 +311,9 @@ void ThumbnailsCommand::Execute()
                                 pReslice->SetOutputOrigin(origin);
 
                                 pReslice->SetInterpolationModeToCubic();
-                                        
+
                                 pReslice->Update();
-                                        
+
                                 vtkImageData *timg = pReslice->GetOutput();
 
                                 if(timg->GetNumberOfScalarComponents() > 1) {
@@ -329,20 +327,19 @@ void ThumbnailsCommand::Execute()
                                                 double diff = range[1]-range[0];
                                                 if (diff > std::numeric_limits<double>::epsilon()) {
                                                         normalizeFilter->SetShift(-range[0]);
-							normalizeFilter->SetScale(255.0/(range[1]-range[0]));
+                                                        normalizeFilter->SetScale(255.0/(range[1]-range[0]));
                                                 }
                                         }
-                                        normalizeFilter->Update(); 
+                                        normalizeFilter->Update();
                                         VTK2ITKfiltro->SetInput(normalizeFilter->GetOutput());
 
-                                }
-                                else {
+                                } else {
                                         vtkSmartPointer<vtkImageMapToColors> pImageMap = vtkSmartPointer<vtkImageMapToColors>::New();
 
                                         pImageMap->SetInputConnection(pReslice->GetOutputPort());
 
                                         vtkSmartPointer<vtkLookupTable> pLookupTable = vtkLookupTableManager::GetLinearLookupTable();
-                                        
+
                                         pImageMap->SetLookupTable(pLookupTable);
                                         pImageMap->SetOutputFormatToRGB();
 
@@ -351,7 +348,7 @@ void ThumbnailsCommand::Execute()
                                                 double window, level;
                                                 if (loader.GetDefaultWindowLevel(window,level) && window != 0.0) {
                                                         double v_min = (level) - 0.5 * window;
-                                                        double v_max = level + 0.5 * window;	
+                                                        double v_max = level + 0.5 * window;
                                                         pLookupTable->SetRange(v_min, v_max);
                                                 } else {
                                                         double range[2];
@@ -364,18 +361,18 @@ void ThumbnailsCommand::Execute()
 
                                                         if (diff > std::numeric_limits<double>::epsilon()) {
                                                                 double v_min = (level) - 0.5 * window;
-                                                                double v_max = level + 0.5 * window;	
+                                                                double v_max = level + 0.5 * window;
                                                                 pLookupTable->SetRange(v_min, v_max);
                                                         }
                                                 }
                                         }
                                         pImageMap->SetLookupTable(pLookupTable);
 
-                                        pImageMap->Update(); 
+                                        pImageMap->Update();
                                         VTK2ITKfiltro->SetInput( pImageMap->GetOutput());
                                 }
                                 NotificarProgreso(0.6f,_Std("Creating Thumbnail..."));
-	
+
                                 VTK2ITKfiltro->GetImporter()->UpdateLargestPossibleRegion();
 
                                 const ImageType* img = VTK2ITKfiltro->GetOutput();
@@ -386,11 +383,11 @@ void ThumbnailsCommand::Execute()
                                 ImageIteratorType it (img, region);
 
                                 std::cout << "imgsize = " << imgsize << std::endl;
-                                
+
                                 std::cout << "region = ";
                                 region.Print(std::cout);
                                 std::cout << std::endl;
-                                
+
                                 unsigned long off = 0;
                                 for (it.GoToBegin(); !it.IsAtEnd() && off < imgsize; ++it) {
                                         const ImageType::PixelType& pixel = it.Value();
@@ -399,15 +396,14 @@ void ThumbnailsCommand::Execute()
                                         data[off++] = pixel.GetBlue();
                                 }
                         }
-                        
+
                         m_pThumbParams->m_wxImg = new wxImage(outputSize[0], outputSize[1], data, false);
                         GuardarImagen();
                         NotificarProgreso(1.0f,_Std("Generating thumbnail ..."));
 
                         m_Error = false;
 
-                }
-                catch (GNC::GCS::ControladorCargaException &ex1){
+                } catch (GNC::GCS::ControladorCargaException &ex1) {
                         LOG_ERROR("GenerarThumnails", "Unable to create thumbnail for file [" << m_pThumbParams->m_file_pk << "]: " << ex1.str());
                         if (data != NULL) {
                                 delete[] data;
@@ -415,8 +411,7 @@ void ThumbnailsCommand::Execute()
                         }
                         //si se cancela el comando
                         return;
-                }
-                catch(itk::ExceptionObject& ex2) {
+                } catch(itk::ExceptionObject& ex2) {
                         LOG_ERROR("GenerarThumnails", "Unable to create thumbnail for file [" << m_pThumbParams->m_file_pk << "]: " << ex2.GetDescription());
                         //std::string descr = ex2.GetDescription();
                         if (data != NULL) {
@@ -424,8 +419,7 @@ void ThumbnailsCommand::Execute()
                                 data = NULL;
                         }
                         return;
-                }
-                catch(std::exception &ex3){
+                } catch(std::exception &ex3) {
                         LOG_ERROR("GenerarThumnails", "Unable to create thumbnail for file [" << m_pThumbParams->m_file_pk << "]: " << ex3.what());
                         //std::string descr = ex3.what();
                         //si se cancela el comando
@@ -434,8 +428,7 @@ void ThumbnailsCommand::Execute()
                                 data = NULL;
                         }
                         return;
-                }
-                catch(...){
+                } catch(...) {
                         LOG_ERROR("GenerarThumnails", "Unable to create thumbnail for file [" << m_pThumbParams->m_file_pk << "]: Internal error" );
                         //si se cancela el comando
                         if (data != NULL) {
@@ -447,12 +440,12 @@ void ThumbnailsCommand::Execute()
         }
 }
 
-void ThumbnailsCommand::Update() {
+void ThumbnailsCommand::Update()
+{
         if (!m_Error) {
                 if (m_pThumbParams == NULL || m_pThumbParams->m_wxImg == NULL || !m_pThumbParams->m_wxImg->IsOk()) {
                         LOG_ERROR("GenerarThumbnails", "No se pudo establecer la previsualizacion: La imagen es invalida o no fue generada correctamente");
-                }
-                else {
+                } else {
                         m_pThumbParams->m_pNotificadorThumbnail->SetImage(m_pThumbParams->m_file_pk, m_pThumbParams->m_wxImg);
                 }
         } else {
@@ -489,11 +482,11 @@ unsigned char ClampToByte(int a)
         else
                 return a;
 }
-	
+
 unsigned char ClampUpToByte(int a)
 {
         if (a > 255)
-                return 255;		
+                return 255;
         else
                 return a;
 }
@@ -502,7 +495,7 @@ unsigned char ClampUpToByte(int a)
 void ThumbnailsCommand::GuardarImagen()
 {
         if (!m_pThumbParams->m_wxImg->IsOk())
-                return;			
+                return;
 
         unsigned char *pixelData = m_pThumbParams->m_wxImg->GetData();
 
@@ -512,21 +505,19 @@ void ThumbnailsCommand::GuardarImagen()
         const int med_h = h/2;
 
         // Aplicamos desde el origen hasta la mitad en altura (255, 255, 255, 100) -> (255, 255, 255, 0)
-        for (int y = 0, pos = 0, alpha = 70; (y < med_h) && (alpha > 0); ++y, alpha-=2)
-		{			
-			for (int x = 0; x < w; ++x, pos+=3)
-                                {
-                                        pixelData[pos+0] = ClampUpToByte((int) pixelData[pos+0] + alpha);
-                                        pixelData[pos+1] = ClampUpToByte((int) pixelData[pos+1] + alpha);
-                                        pixelData[pos+2] = ClampUpToByte((int) pixelData[pos+2] + alpha);
-                                }
+        for (int y = 0, pos = 0, alpha = 70; (y < med_h) && (alpha > 0); ++y, alpha-=2) {
+                for (int x = 0; x < w; ++x, pos+=3) {
+                        pixelData[pos+0] = ClampUpToByte((int) pixelData[pos+0] + alpha);
+                        pixelData[pos+1] = ClampUpToByte((int) pixelData[pos+1] + alpha);
+                        pixelData[pos+2] = ClampUpToByte((int) pixelData[pos+2] + alpha);
+                }
 
-		} // for y		
+        } // for y
 
         GNC::GCS::HistoryController::Instance()->SetThumbnail(m_pThumbParams->m_file_pk,
-                                                              m_pThumbParams->m_wxImg->GetWidth(),
-                                                              m_pThumbParams->m_wxImg->GetHeight(),
-                                                              m_pThumbParams->m_wxImg->GetData());
+                        m_pThumbParams->m_wxImg->GetWidth(),
+                        m_pThumbParams->m_wxImg->GetHeight(),
+                        m_pThumbParams->m_wxImg->GetData());
 
 }
 

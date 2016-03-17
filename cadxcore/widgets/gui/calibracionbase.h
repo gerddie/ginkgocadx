@@ -33,38 +33,53 @@ class TitledPanel;
 ///////////////////////////////////////////////////////////////////////////////
 /// Class CalibracionBase
 ///////////////////////////////////////////////////////////////////////////////
-class CalibracionBase : public wxDialog 
+class CalibracionBase : public wxDialog
 {
-	private:
-	
-	protected:
-		BodyPanel* m_pBody;
-		wxPanel* m_pPanelEspera;
-		
-		wxStaticText* m_pLabelMensaje;
-		
-		TitledPanel* m_panelMedida;
-		wxStaticText* m_staticText1;
-		wxTextCtrl* m_ControlDistancia;
-		wxChoice* m_unidades;
-		FooterPanel* m_pFooter;
-		
-		wxButton* m_pBotonAceptar;
-		wxButton* m_pBotonCancelar;
-		
-		// Virtual event handlers, overide them in your derived class
-		virtual void OnActivate( wxActivateEvent& event ) { event.Skip(); }
-		virtual void OnDialogoKeyDown( wxKeyEvent& event ) { event.Skip(); }
-		virtual void OnControlDistanciaKeyDown( wxKeyEvent& event ) { event.Skip(); }
-		virtual void OnBotonAceptarClick( wxCommandEvent& event ) { event.Skip(); }
-		virtual void OnBotonCancelarClick( wxCommandEvent& event ) { event.Skip(); }
-		
-	
-	public:
-		
-		CalibracionBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Calibration"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxCAPTION|wxCLOSE_BOX|wxRESIZE_BORDER|wxSYSTEM_MENU );
-		~CalibracionBase();
-	
+private:
+
+protected:
+        BodyPanel* m_pBody;
+        wxPanel* m_pPanelEspera;
+
+        wxStaticText* m_pLabelMensaje;
+
+        TitledPanel* m_panelMedida;
+        wxStaticText* m_staticText1;
+        wxTextCtrl* m_ControlDistancia;
+        wxChoice* m_unidades;
+        FooterPanel* m_pFooter;
+
+        wxButton* m_pBotonAceptar;
+        wxButton* m_pBotonCancelar;
+
+        // Virtual event handlers, overide them in your derived class
+        virtual void OnActivate( wxActivateEvent& event )
+        {
+                event.Skip();
+        }
+        virtual void OnDialogoKeyDown( wxKeyEvent& event )
+        {
+                event.Skip();
+        }
+        virtual void OnControlDistanciaKeyDown( wxKeyEvent& event )
+        {
+                event.Skip();
+        }
+        virtual void OnBotonAceptarClick( wxCommandEvent& event )
+        {
+                event.Skip();
+        }
+        virtual void OnBotonCancelarClick( wxCommandEvent& event )
+        {
+                event.Skip();
+        }
+
+
+public:
+
+        CalibracionBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Calibration"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( -1,-1 ), long style = wxCAPTION|wxCLOSE_BOX|wxRESIZE_BORDER|wxSYSTEM_MENU );
+        ~CalibracionBase();
+
 };
 
 #endif //__calibracionbase__

@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -30,16 +30,16 @@
 
 GNC::GCS::ILockable::ILockable()
 {
-	m_IsLocked = false;
-	m_pCS = new wxCriticalSection();
+        m_IsLocked = false;
+        m_pCS = new wxCriticalSection();
 }
 
 GNC::GCS::ILockable::~ILockable()
 {
-	if (m_pCS != NULL) {
-		delete m_pCS;
-	}
-	m_pCS = NULL;
+        if (m_pCS != NULL) {
+                delete m_pCS;
+        }
+        m_pCS = NULL;
 }
 
 //endregion
@@ -49,29 +49,29 @@ GNC::GCS::ILockable::~ILockable()
 
 void GNC::GCS::ILockable::Lock()
 {
-	//----------------------------------------------------------------------------------------------------
-	// Entrada a la seccion Critica
-	//----------------------------------------------------------------------------------------------------
-	m_pCS->Enter();
-	m_IsLocked = true;
-	//----------------------------------------------------------------------------------------------------
-	//----------------------------------------------------------------------------------------------------
+        //----------------------------------------------------------------------------------------------------
+        // Entrada a la seccion Critica
+        //----------------------------------------------------------------------------------------------------
+        m_pCS->Enter();
+        m_IsLocked = true;
+        //----------------------------------------------------------------------------------------------------
+        //----------------------------------------------------------------------------------------------------
 }
 
 void GNC::GCS::ILockable::UnLock()
 {
-	//----------------------------------------------------------------------------------------------------
-	// Salida de la seccion Critica
-	//----------------------------------------------------------------------------------------------------
-	m_IsLocked = false;
-	m_pCS->Leave();
-	//----------------------------------------------------------------------------------------------------
-	//----------------------------------------------------------------------------------------------------
+        //----------------------------------------------------------------------------------------------------
+        // Salida de la seccion Critica
+        //----------------------------------------------------------------------------------------------------
+        m_IsLocked = false;
+        m_pCS->Leave();
+        //----------------------------------------------------------------------------------------------------
+        //----------------------------------------------------------------------------------------------------
 }
 
 bool GNC::GCS::ILockable::IsLocked() const
 {
-	return m_IsLocked;
+        return m_IsLocked;
 }
 
 //endregion
@@ -82,24 +82,24 @@ bool GNC::GCS::ILockable::IsLocked() const
 
 GNC::GCS::ILocker::ILocker(GNC::GCS::ILockable& pLockable)
 {
-	m_pLockable = &pLockable;
-	m_pLockable->Lock();
+        m_pLockable = &pLockable;
+        m_pLockable->Lock();
 
 }
 
 GNC::GCS::ILocker::ILocker(GNC::GCS::ILockable* pLockable)
 {
-	m_pLockable = pLockable;
-	m_pLockable->Lock();
+        m_pLockable = pLockable;
+        m_pLockable->Lock();
 
 }
 
 GNC::GCS::ILocker::~ILocker()
 {
-	if (m_pLockable != NULL) {
-		m_pLockable->UnLock();
-		m_pLockable = NULL;
-	}
+        if (m_pLockable != NULL) {
+                m_pLockable->UnLock();
+                m_pLockable = NULL;
+        }
 }
 
 //endregion

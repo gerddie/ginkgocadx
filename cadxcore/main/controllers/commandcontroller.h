@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -37,137 +37,141 @@
 
 //----------------------------------------------------------------------------------------------------
 //region forward declarations
-namespace GNC {
-	class CommandController;
-	class ThreadPool;	
+namespace GNC
+{
+class CommandController;
+class ThreadPool;
 }
 
 class wxWindow;
 //endregion
 
-namespace GNC {
+namespace GNC
+{
 
-	//----------------------------------------------------------------------------------------------------
-	//----------------------------------------------------------------------------------------------------
-	class EXTAPI CommandLauncher : public wxThread, public GNC::GCS::WaitQueueTask, public GNC::INotificadorProgreso {
-	public:
-		//id Ginkgo
-		unsigned long m_idThreadGinkgo;
+//----------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------
+class EXTAPI CommandLauncher : public wxThread, public GNC::GCS::WaitQueueTask, public GNC::INotificadorProgreso
+{
+public:
+        //id Ginkgo
+        unsigned long m_idThreadGinkgo;
 
-		GNC::GCS::IComando* GetCommand();
+        GNC::GCS::IComando* GetCommand();
 
-		void SetCommand(GNC::GCS::IComando* pCmd);
+        void SetCommand(GNC::GCS::IComando* pCmd);
 
-		virtual void* Entry();
+        virtual void* Entry();
 
-		virtual void OnExit();
+        virtual void OnExit();
 
-		bool RecalcularDependencias();
+        bool RecalcularDependencias();
 
-		void IniciarUnlocker();
+        void IniciarUnlocker();
 
-		void Park();
+        void Park();
 
-	private:
-		void UnPark();
+private:
+        void UnPark();
 
-	protected:
+protected:
 
-		virtual void DoTerminar();
+        virtual void DoTerminar();
 
-	private:
+private:
 
-		CommandLauncher(GNC::ThreadPool* pool);
+        CommandLauncher(GNC::ThreadPool* pool);
 
-		~CommandLauncher();
+        ~CommandLauncher();
 
-		virtual bool NotificarProgreso(float progresoNormalizado, const std::string& texto);
+        virtual bool NotificarProgreso(float progresoNormalizado, const std::string& texto);
 
-	private:
+private:
 
-		GNC::GCS::IComando*    m_pComando;
+        GNC::GCS::IComando*    m_pComando;
 
-		GNC::GCS::WaitQueue    m_Dependencias;
+        GNC::GCS::WaitQueue    m_Dependencias;
 
-		// this varable should be an atomic or guarded by a mutex
-		std::atomic<bool>      m_Abortar;
-		
-		bool                   m_Shutdown;
+        // this varable should be an atomic or guarded by a mutex
+        std::atomic<bool>      m_Abortar;
 
-		wxSemaphore*           m_pParker;
+        bool                   m_Shutdown;
 
-		GNC::ThreadPool*       m_pPool;
+        wxSemaphore*           m_pParker;
 
-		#if defined(_WINDOWS)
-		//HANDLE              m_hEventoCancelacion;
-		#else
+        GNC::ThreadPool*       m_pPool;
 
-		#endif
+#if defined(_WINDOWS)
+        //HANDLE              m_hEventoCancelacion;
+#else
 
-		friend class GNC::ThreadPool;
-		friend class GNC::CommandController;
-	};
+#endif
+
+        friend class GNC::ThreadPool;
+        friend class GNC::CommandController;
+};
 
 
 
-	//----------------------------------------------------------------------------------------------------
-	//----------------------------------------------------------------------------------------------------
-	class EXTAPI CommandController : public GNC::GCS::ICommandController, public GNC::GCS::ILockable {
-	public:
+//----------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------
+class EXTAPI CommandController : public GNC::GCS::ICommandController, public GNC::GCS::ILockable
+{
+public:
 
-		typedef std::map<long, CommandLauncher*> MapaComandos;
-		typedef std::map<long, GNC::GCS::IComando*> MapaComandosTerminados;
-		typedef std::list<long> ListaHilos;
-		typedef std::map<void*, ListaHilos > MapaOwners;
-		typedef std::list<std::string> ListaNombreComandos;
+        typedef std::map<long, CommandLauncher*> MapaComandos;
+        typedef std::map<long, GNC::GCS::IComando*> MapaComandosTerminados;
+        typedef std::list<long> ListaHilos;
+        typedef std::map<void*, ListaHilos > MapaOwners;
+        typedef std::list<std::string> ListaNombreComandos;
 
-		static CommandController *Instance();
-		static void FreeInstance();
+        static CommandController *Instance();
+        static void FreeInstance();
 
-		virtual ~CommandController();
-		virtual void ProcessSync(GNC::GCS::IComando* cmd, bool autodelete, bool update = true, GNC::INotificadorProgreso* pNotifier = NULL);
-		virtual void ProcessAsync(const std::string& str, GNC::GCS::IComando* cmd, void* owner);
-		virtual void AbortarComando(GNC::GCS::IComando* pComando, bool sincrono = true);
-		virtual void AbortarComando(long threadId, bool sincrono = true);
-		virtual void AbortarComandosDeOwner(void* owner);
-		virtual void AbortarComandosDeOwnerAsincrono(void* owner);
-		virtual void WaitToOwnerCommands(void* owner);
+        virtual ~CommandController();
+        virtual void ProcessSync(GNC::GCS::IComando* cmd, bool autodelete, bool update = true, GNC::INotificadorProgreso* pNotifier = NULL);
+        virtual void ProcessAsync(const std::string& str, GNC::GCS::IComando* cmd, void* owner);
+        virtual void AbortarComando(GNC::GCS::IComando* pComando, bool sincrono = true);
+        virtual void AbortarComando(long threadId, bool sincrono = true);
+        virtual void AbortarComandosDeOwner(void* owner);
+        virtual void AbortarComandosDeOwnerAsincrono(void* owner);
+        virtual void WaitToOwnerCommands(void* owner);
 
-		virtual unsigned int GetNumActiveCommands();
+        virtual unsigned int GetNumActiveCommands();
 
-		void RegistrarProgreso(GNC::IControladorProgreso* pProgreso)
-		{
-			m_pProgreso = pProgreso;
-		}
+        void RegistrarProgreso(GNC::IControladorProgreso* pProgreso)
+        {
+                m_pProgreso = pProgreso;
+        }
 
-		GNC::IControladorProgreso* GetProgresoRegistrado()
-		{
-			return m_pProgreso;
-		}
+        GNC::IControladorProgreso* GetProgresoRegistrado()
+        {
+                return m_pProgreso;
+        }
 
-		void OnComandoLanzado(long threadId);
-		void OnComandoProgreso(long threadId);
-		void OnComandoFinalizado(long threadId, bool lock=true);
+        void OnComandoLanzado(long threadId);
+        void OnComandoProgreso(long threadId);
+        void OnComandoFinalizado(long threadId, bool lock=true);
 
-		ListaNombreComandos GetComandosActivos();
+        ListaNombreComandos GetComandosActivos();
 
-	protected:
+protected:
 
-		CommandController();
+        CommandController();
 
-		static CommandController* m_psInstancia;
-		bool m_Destroying;
+        static CommandController* m_psInstancia;
+        bool m_Destroying;
 
-		MapaComandos m_ComandosLanzados;
-		MapaComandosTerminados m_ComandosTerminados;
-		MapaOwners m_MapaOwners;
-		bool m_EsperarComandos;
+        MapaComandos m_ComandosLanzados;
+        MapaComandosTerminados m_ComandosTerminados;
+        MapaOwners m_MapaOwners;
+        bool m_EsperarComandos;
 
-		GNC::IControladorProgreso* m_pProgreso;
+        GNC::IControladorProgreso* m_pProgreso;
 
-		unsigned long m_idThreads;
+        unsigned long m_idThreads;
 
-		friend class GNC::CommandLauncher;
-	};
+        friend class GNC::CommandLauncher;
+};
 
 }

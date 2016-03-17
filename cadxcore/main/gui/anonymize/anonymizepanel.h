@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -26,36 +26,38 @@
 #include <api/internationalization/internationalization.h>
 
 
-namespace GNC {
-	namespace GUI {
-		class AnonymizePanel: public AnonymizePanelBase
-		{
-		public:
-			AnonymizePanel(wxWindow* pParent);
-			AnonymizePanel(wxWindow* pParent, const std::list<long>& seriesPk);
-			~AnonymizePanel();
-			
-			void GetTagsAnonymized(GIL::DICOM::DicomDataset & base);
-			bool AnonymizePrivateTags();
-		protected:
-			void InitSeries(long pkSeries);
-			void SetTags(GIL::DICOM::DicomDataset & base,wxPGProperty* idPadre,GIL::DICOM::IDICOMManager*	pDICOMManager);
-			virtual void OnCheckNombreApellidos( wxCommandEvent& event );
-			virtual void OnCheckIdPaciente( wxCommandEvent& event );
-			virtual void OnCheckInstituciones( wxCommandEvent& event );
-			virtual void OnCheckPhysician( wxCommandEvent& event );
-			virtual void OnCheckComentarios( wxCommandEvent& event );
-			virtual void OnAddNewTag( wxCommandEvent &evt);
+namespace GNC
+{
+namespace GUI
+{
+class AnonymizePanel: public AnonymizePanelBase
+{
+public:
+        AnonymizePanel(wxWindow* pParent);
+        AnonymizePanel(wxWindow* pParent, const std::list<long>& seriesPk);
+        ~AnonymizePanel();
 
-			void Anonymize(const std::string& clave, bool anonimizar);
-			void Anonymize(const std::string& clave, bool anonimizar, const std::string& value, bool anonymizeIfNotExists = true);
-			void RemoveFromTable(const std::string& clave);
+        void GetTagsAnonymized(GIL::DICOM::DicomDataset & base);
+        bool AnonymizePrivateTags();
+protected:
+        void InitSeries(long pkSeries);
+        void SetTags(GIL::DICOM::DicomDataset & base,wxPGProperty* idPadre,GIL::DICOM::IDICOMManager*	pDICOMManager);
+        virtual void OnCheckNombreApellidos( wxCommandEvent& event );
+        virtual void OnCheckIdPaciente( wxCommandEvent& event );
+        virtual void OnCheckInstituciones( wxCommandEvent& event );
+        virtual void OnCheckPhysician( wxCommandEvent& event );
+        virtual void OnCheckComentarios( wxCommandEvent& event );
+        virtual void OnAddNewTag( wxCommandEvent &evt);
 
-			void OnPropertyChanged(wxPropertyGridEvent& event);
-			void OnPropertyDobleClick(wxPropertyGridEvent& event);
+        void Anonymize(const std::string& clave, bool anonimizar);
+        void Anonymize(const std::string& clave, bool anonimizar, const std::string& value, bool anonymizeIfNotExists = true);
+        void RemoveFromTable(const std::string& clave);
 
-			GIL::DICOM::DicomDataset m_base;
-			std::map <std::string, wxCheckBox*> MapOfCheck;
-		};
-	}
+        void OnPropertyChanged(wxPropertyGridEvent& event);
+        void OnPropertyDobleClick(wxPropertyGridEvent& event);
+
+        GIL::DICOM::DicomDataset m_base;
+        std::map <std::string, wxCheckBox*> MapOfCheck;
+};
+}
 }

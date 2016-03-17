@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -26,48 +26,50 @@
 #include <api/autoptr.h>
 #include <wx/wxsqlite3/wxsqlite3.h>
 
-namespace GNC {
-	namespace GUI {
+namespace GNC
+{
+namespace GUI
+{
 
-		class PanelConfiguracionSeguridad: public PanelConfiguracionSeguridadBase, public IPasoConfiguracion
-		{
-			public:
-				PanelConfiguracionSeguridad(wxWindow* pParent,IDialogoConfiguracion* pDialogo);
-				~PanelConfiguracionSeguridad();
+class PanelConfiguracionSeguridad: public PanelConfiguracionSeguridadBase, public IPasoConfiguracion
+{
+public:
+        PanelConfiguracionSeguridad(wxWindow* pParent,IDialogoConfiguracion* pDialogo);
+        ~PanelConfiguracionSeguridad();
 
-				void Recargar();
+        void Recargar();
 
-				//region "Metodos de IPasoConfiguracion"
-				wxWindow* GetPanel();
+        //region "Metodos de IPasoConfiguracion"
+        wxWindow* GetPanel();
 
-				std::string GetTitle();
+        std::string GetTitle();
 
-				std::string GetCabecera();
+        std::string GetCabecera();
 
-				bool Validar();
+        bool Validar();
 
-				bool Guardar();
-				//endregion
+        bool Guardar();
+        //endregion
 
 
-			protected:
-				virtual void OnSecTypeChoice(wxCommandEvent &event);
+protected:
+        virtual void OnSecTypeChoice(wxCommandEvent &event);
 
-				virtual void OnListaUsuariosItemSelected(wxListEvent &event);
+        virtual void OnListaUsuariosItemSelected(wxListEvent &event);
 
-				virtual void OnListaUsuariosItemDeSelected(wxListEvent &event);
-				
-				virtual void OnNuevoClick(wxCommandEvent &event);
+        virtual void OnListaUsuariosItemDeSelected(wxListEvent &event);
 
-				virtual void OnCambiarPasswordClick(wxCommandEvent &event);
+        virtual void OnNuevoClick(wxCommandEvent &event);
 
-				virtual void OnEliminarClick(wxCommandEvent & event);
+        virtual void OnCambiarPasswordClick(wxCommandEvent &event);
 
-				virtual void OnSetMainPassword(wxCommandEvent &event);
-			
-				wxImageList* m_pImageList;
-				GNC::GCS::Ptr<wxSQLite3Database> m_pSesionControlador;
+        virtual void OnEliminarClick(wxCommandEvent & event);
 
-		};
-	}
+        virtual void OnSetMainPassword(wxCommandEvent &event);
+
+        wxImageList* m_pImageList;
+        GNC::GCS::Ptr<wxSQLite3Database> m_pSesionControlador;
+
+};
+}
 }

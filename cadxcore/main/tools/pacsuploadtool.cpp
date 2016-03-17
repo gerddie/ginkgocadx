@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -36,7 +36,7 @@
 
 GNC::GCS::ITool* GNC::PACSUploadTool::NewTool()
 {
-	return new GNC::PACSUploadTool();
+        return new GNC::PACSUploadTool();
 }
 
 GNC::PACSUploadTool::PACSUploadTool()
@@ -45,31 +45,31 @@ GNC::PACSUploadTool::PACSUploadTool()
 GNC::PACSUploadTool::~PACSUploadTool()
 {
 }
-		
+
 bool GNC::PACSUploadTool::ExecuteAction()
-{	
-	std::list<long> viewSeries;
-	viewSeries.insert(viewSeries.begin(), ViewContract->GetView()->GetEstudio()->OpenedSeries.begin(), ViewContract->GetView()->GetEstudio()->OpenedSeries.end());
+{
+        std::list<long> viewSeries;
+        viewSeries.insert(viewSeries.begin(), ViewContract->GetView()->GetEstudio()->OpenedSeries.begin(), ViewContract->GetView()->GetEstudio()->OpenedSeries.end());
 
-	GNC::GUI::PACSUploadDialog dlg(ViewContract->GetView()->GetWindow(), viewSeries);
+        GNC::GUI::PACSUploadDialog dlg(ViewContract->GetView()->GetWindow(), viewSeries);
 
-	if (dlg.ShowModal() == wxID_OK) {
-		std::list<long> listOfSeries;
-		listOfSeries = dlg.GetSelectedSeries();
-		if (!listOfSeries.empty()) {
-			GADAPI::SendPACSCommand* pCmd = new GADAPI::SendPACSCommand(dlg.GetSelectedServer(), "", listOfSeries);
-			GNC::GCS::ICommandController::Instance()->ProcessAsync(_Std("Send to PACS..."),pCmd, NULL);
-		}
-	}
+        if (dlg.ShowModal() == wxID_OK) {
+                std::list<long> listOfSeries;
+                listOfSeries = dlg.GetSelectedSeries();
+                if (!listOfSeries.empty()) {
+                        GADAPI::SendPACSCommand* pCmd = new GADAPI::SendPACSCommand(dlg.GetSelectedServer(), "", listOfSeries);
+                        GNC::GCS::ICommandController::Instance()->ProcessAsync(_Std("Send to PACS..."),pCmd, NULL);
+                }
+        }
 
-	return true;
+        return true;
 }
 
 void GNC::PACSUploadTool::AppendToolIn(wxEvtHandler* pParent, wxMenu* pMenu)
 {
-	if (AppendsInMenu()) {
-		GNC::GUI::wxDefaultEvtHandlerTool* evtHandler = new GNC::GUI::wxDefaultEvtHandlerTool(pParent, this);
-		pMenu->Append(new GNC::GUI::wxMenuItemTool(pMenu, ID, wxString::FromUTF8(Name.c_str()),Icon, evtHandler));
-	}
+        if (AppendsInMenu()) {
+                GNC::GUI::wxDefaultEvtHandlerTool* evtHandler = new GNC::GUI::wxDefaultEvtHandlerTool(pParent, this);
+                pMenu->Append(new GNC::GUI::wxMenuItemTool(pMenu, ID, wxString::FromUTF8(Name.c_str()),Icon, evtHandler));
+        }
 }
 

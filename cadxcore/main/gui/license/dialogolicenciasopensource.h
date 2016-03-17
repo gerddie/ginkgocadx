@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -26,35 +26,35 @@
 class DialogoLicenciasOpenSource : public DialogoLicenciasOpenSourceBase
 {
 public:
-	DialogoLicenciasOpenSource(wxWindow* pPadre);
-	~DialogoLicenciasOpenSource();
+        DialogoLicenciasOpenSource(wxWindow* pPadre);
+        ~DialogoLicenciasOpenSource();
 
-	virtual void OnListaLicencias(wxCommandEvent &event);
+        virtual void OnListaLicencias(wxCommandEvent &event);
 
-	void EscribeTitulo(wxString titulo);
-	void EscribeLicencia(wxString& licencia);
+        void EscribeTitulo(wxString titulo);
+        void EscribeLicencia(wxString& licencia);
 
-	void EscribeLicenciaGinkgo();
-	void EscribeLicenciaCairo();
-	void EscribeLicenciaDCMTK();
-	void EscribeLicenciaFamFam();
-	void EscribeLicenciaFugue();
-	void EscribeLicenciaITK();
-	void EscribeLicencialibjpeg();
-	void EscribeLicencialibpng();
-	void EscribeLicenciaOpenssl();
-	void EscribeLicenciaVTK();
-	void EscribeLicenciawxWidgets();
-	void EscribeLicenciazlib();
-	void EscribeLicenciaSQLLite();
-	void EscribeLicenciaCharLS();
-	void WriteDarkGlassLicense();
-	void WriteLibcurl();
-	void WriteLibJsonCpp();
-	void WriteLibAIRS();
+        void EscribeLicenciaGinkgo();
+        void EscribeLicenciaCairo();
+        void EscribeLicenciaDCMTK();
+        void EscribeLicenciaFamFam();
+        void EscribeLicenciaFugue();
+        void EscribeLicenciaITK();
+        void EscribeLicencialibjpeg();
+        void EscribeLicencialibpng();
+        void EscribeLicenciaOpenssl();
+        void EscribeLicenciaVTK();
+        void EscribeLicenciawxWidgets();
+        void EscribeLicenciazlib();
+        void EscribeLicenciaSQLLite();
+        void EscribeLicenciaCharLS();
+        void WriteDarkGlassLicense();
+        void WriteLibcurl();
+        void WriteLibJsonCpp();
+        void WriteLibAIRS();
 
 
-	GNC::GCS::IModuleController::TExtraLicensesMap ExtraMap;
+        GNC::GCS::IModuleController::TExtraLicensesMap ExtraMap;
 //endregion
 
 };

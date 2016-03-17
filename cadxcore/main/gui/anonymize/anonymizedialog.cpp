@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -32,43 +32,43 @@
 
 GNC::GUI::AnonymizeDialog::AnonymizeDialog(wxWindow* pParent, const std::list<long>& seriesPk): GNC::GUI::AnonymizeDialogBase(pParent)
 {
-	m_pDatosPersistentes = new TipoWizardExportacion();
-	m_pDatosPersistentes->ListOfSeriesPks = seriesPk;
+        m_pDatosPersistentes = new TipoWizardExportacion();
+        m_pDatosPersistentes->ListOfSeriesPks = seriesPk;
 
-	m_pAnonymizePanel = new AnonymizePanel(m_pBody, seriesPk);
-	m_pBodySizer->Add(m_pAnonymizePanel, 1, wxEXPAND);
-	m_pBody->Layout();
-	Layout();
+        m_pAnonymizePanel = new AnonymizePanel(m_pBody, seriesPk);
+        m_pBodySizer->Add(m_pAnonymizePanel, 1, wxEXPAND);
+        m_pBody->Layout();
+        Layout();
 }
 
 GNC::GUI::AnonymizeDialog::~AnonymizeDialog()
 {
-	
+
 }
 
 void GNC::GUI::AnonymizeDialog::OnOverwriteClick(wxCommandEvent &)
 {
-	LaunchCommand(true);
+        LaunchCommand(true);
 }
 
 void GNC::GUI::AnonymizeDialog::OnCreateNewClick(wxCommandEvent &)
 {
-	LaunchCommand(false);
+        LaunchCommand(false);
 }
 
 void GNC::GUI::AnonymizeDialog::LaunchCommand(bool overwrite)
 {
-	if (overwrite) {
-		m_pDatosPersistentes->m_target = GNC::GUI::TipoWizardExportacion::OVERWRITE;
-	} else {
-		m_pDatosPersistentes->m_target = GNC::GUI::TipoWizardExportacion::NEW_STUDY;
-	}
-	m_pAnonymizePanel->GetTagsAnonymized(m_pDatosPersistentes->m_base);
-	m_pDatosPersistentes->m_incluirTagsGinkgo = !m_pAnonymizePanel->AnonymizePrivateTags();
-	
-	GADAPI::ComandoExportacionParams* pParams = new GADAPI::ComandoExportacionParams(m_pDatosPersistentes);
-	GADAPI::ComandoExportacion* pCmd = new GADAPI::ComandoExportacion(pParams);
-	GNC::GCS::ICommandController::Instance()->ProcessAsync(_Std("Exporting images ..."), pCmd, NULL);
-	this->Close();
+        if (overwrite) {
+                m_pDatosPersistentes->m_target = GNC::GUI::TipoWizardExportacion::OVERWRITE;
+        } else {
+                m_pDatosPersistentes->m_target = GNC::GUI::TipoWizardExportacion::NEW_STUDY;
+        }
+        m_pAnonymizePanel->GetTagsAnonymized(m_pDatosPersistentes->m_base);
+        m_pDatosPersistentes->m_incluirTagsGinkgo = !m_pAnonymizePanel->AnonymizePrivateTags();
+
+        GADAPI::ComandoExportacionParams* pParams = new GADAPI::ComandoExportacionParams(m_pDatosPersistentes);
+        GADAPI::ComandoExportacion* pCmd = new GADAPI::ComandoExportacion(pParams);
+        GNC::GCS::ICommandController::Instance()->ProcessAsync(_Std("Exporting images ..."), pCmd, NULL);
+        this->Close();
 }
 

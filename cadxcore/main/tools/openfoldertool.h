@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -26,17 +26,19 @@
 #include <main/controllers/historytoolscontroller.h>
 #include <export/tools/iherramientascore.h>
 
-namespace GNC {
+namespace GNC
+{
 
-	class OpenFolderTool : public GNC::GCS::IHistoryTool {
-	public:
-		static const GNC::GCS::IHistoryTool::UID ID =  HCore_OpenFolder;
-		OpenFolderTool();
-		virtual ~OpenFolderTool();
-		virtual bool Enabled();
+class OpenFolderTool : public GNC::GCS::IHistoryTool
+{
+public:
+        static const GNC::GCS::IHistoryTool::UID ID =  HCore_OpenFolder;
+        OpenFolderTool();
+        virtual ~OpenFolderTool();
+        virtual bool Enabled();
 
-		virtual void Execute();
-	};
+        virtual void Execute();
+};
 }
 #endif
 #endif

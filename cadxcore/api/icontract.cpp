@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -26,8 +26,8 @@ GNC::GCS::ContractException::ContractException(const std::string& msg) throw() :
 
 GNC::GCS::IContract::IContract(ContractType type, int prio)
 {
-	m_Type = type;
-	m_Priority = prio;
+        m_Type = type;
+        m_Priority = prio;
 }
 
 GNC::GCS::IContract::~IContract()
@@ -38,33 +38,35 @@ void GNC::GCS::IContract::Ping()
 {
 }
 
-bool GNC::GCS::IContract::operator<(const GNC::GCS::IContract& other) const {
-	if (m_Priority < other.m_Priority) {
-		return true;
-	}
-	return false;
+bool GNC::GCS::IContract::operator<(const GNC::GCS::IContract& other) const
+{
+        if (m_Priority < other.m_Priority) {
+                return true;
+        }
+        return false;
 }
 
-bool GNC::GCS::IContract::operator<(const GNC::GCS::IContract* other) const {
-	if (m_Priority < other->m_Priority) {
-		return true;
-	}
-	return false;
+bool GNC::GCS::IContract::operator<(const GNC::GCS::IContract* other) const
+{
+        if (m_Priority < other->m_Priority) {
+                return true;
+        }
+        return false;
 }
 //------------------------------------------------------------------------
 GNC::GCS::IContractable::IContractable()
 {
-	m_pContract = NULL;
+        m_pContract = NULL;
 }
 
 GNC::GCS::IContractable::~IContractable()
 {
-	m_pContract = NULL;
+        m_pContract = NULL;
 }
 
 void GNC::GCS::IContractable::Register(IContract* contract)
 {
-	if (IsValidContract(contract)) {
-		m_pContract = contract;
-	}
+        if (IsValidContract(contract)) {
+                m_pContract = contract;
+        }
 }

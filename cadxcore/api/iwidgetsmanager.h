@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -27,229 +27,235 @@
 
 // Forward declarations
 
-namespace GNC {
-	namespace GCS {
-		class IEventsController;
-		class IWidgetsRenderer;
-		class IContexto;
-		class IAnnotator;
-		class IImpresorOverlay;
+namespace GNC
+{
+namespace GCS
+{
+class IEventsController;
+class IWidgetsRenderer;
+class IContexto;
+class IAnnotator;
+class IImpresorOverlay;
 
-		namespace Widgets {
-			class IWidget;
-			class IPublicadorEventos;
-			class IObservadorWidget;
-			class IWidgetBuilder;
-		}
-	}
+namespace Widgets
+{
+class IWidget;
+class IPublicadorEventos;
+class IObservadorWidget;
+class IWidgetBuilder;
+}
+}
 }
 
 // Forward declarations
 
-namespace GNC {
-	namespace GCS {
+namespace GNC
+{
+namespace GCS
+{
 
-		class EXTAPI ListaWidgets : public std::list< GNC::GCS::Widgets::IWidget*, std::allocator<GNC::GCS::Widgets::IWidget*> >{};
-		class EXTAPI ListaBuilders : public std::list< GNC::GCS::Widgets::IWidgetBuilder*, std::allocator<GNC::GCS::Widgets::IWidgetBuilder*> >{};
-		class EXTAPI ListaObservadores : public std::list<GNC::GCS::Widgets::IObservadorWidget* , std::allocator<GNC::GCS::Widgets::IObservadorWidget*> > {};
-		class EXTAPI ListaRenderers : public std::list<GNC::GCS::IWidgetsRenderer*, std::allocator<GNC::GCS::IWidgetsRenderer*> > {};
+class EXTAPI ListaWidgets : public std::list< GNC::GCS::Widgets::IWidget*, std::allocator<GNC::GCS::Widgets::IWidget*> > {};
+class EXTAPI ListaBuilders : public std::list< GNC::GCS::Widgets::IWidgetBuilder*, std::allocator<GNC::GCS::Widgets::IWidgetBuilder*> > {};
+class EXTAPI ListaObservadores : public std::list<GNC::GCS::Widgets::IObservadorWidget* , std::allocator<GNC::GCS::Widgets::IObservadorWidget*> > {};
+class EXTAPI ListaRenderers : public std::list<GNC::GCS::IWidgetsRenderer*, std::allocator<GNC::GCS::IWidgetsRenderer*> > {};
 
 
-		class EXTAPI IWidgetsManager : public GNC::GCS::Events::ISubscriptorEventos {
+class EXTAPI IWidgetsManager : public GNC::GCS::Events::ISubscriptorEventos
+{
 
-		public:
+public:
 
-			IWidgetsManager(GNC::GCS::IVista* pVista);
+        IWidgetsManager(GNC::GCS::IVista* pVista);
 
-			virtual ~IWidgetsManager();
-			
-			GNC::GCS::IVista* GetVista();
+        virtual ~IWidgetsManager();
 
-			void MarcarModificado(bool modificado);
+        GNC::GCS::IVista* GetVista();
 
-			bool EstaModificado();
+        void MarcarModificado(bool modificado);
 
-			void SetDefaultEventListenerDelegate(GNC::GCS::Events::ISubscriptorEventos* pDelegate);
+        bool EstaModificado();
 
-		//----------------------------------------------------------------------------------------------------
-		//region "Interfaz de registro de IWidgetBuilder's"
+        void SetDefaultEventListenerDelegate(GNC::GCS::Events::ISubscriptorEventos* pDelegate);
 
-		protected:
-			ListaBuilders m_pBuilders;
-			GNC::GCS::Events::ISubscriptorEventos* m_pDefaultEventListenerDelegate;
+        //----------------------------------------------------------------------------------------------------
+        //region "Interfaz de registro de IWidgetBuilder's"
 
-		public:
-			void RegisterBuilder(GNC::GCS::Widgets::IWidgetBuilder* pBuilder);
+protected:
+        ListaBuilders m_pBuilders;
+        GNC::GCS::Events::ISubscriptorEventos* m_pDefaultEventListenerDelegate;
 
-			void UnRegisterBuilder(GNC::GCS::Widgets::IWidgetBuilder* pBuilder);
+public:
+        void RegisterBuilder(GNC::GCS::Widgets::IWidgetBuilder* pBuilder);
 
-		//endregion
+        void UnRegisterBuilder(GNC::GCS::Widgets::IWidgetBuilder* pBuilder);
 
-		//----------------------------------------------------------------------------------------------------
-		//region "Interfaz de registro de IWidget's"
+        //endregion
 
-		public:			
-			typedef ListaWidgets::iterator IteradorListaWidgets;
+        //----------------------------------------------------------------------------------------------------
+        //region "Interfaz de registro de IWidget's"
 
-		protected:
-			ListaWidgets m_Widgets;
+public:
+        typedef ListaWidgets::iterator IteradorListaWidgets;
 
-		public:
+protected:
+        ListaWidgets m_Widgets;
 
-			virtual void Enable(bool enabled);
-			virtual bool IsEnabled();
+public:
 
-			virtual void InsertarWidget(GNC::GCS::Widgets::IWidget* pWidget, bool propagarEvento=true) = 0;
+        virtual void Enable(bool enabled);
+        virtual bool IsEnabled();
 
-			/** Removes a widget. Note: Frees the pWidget pointing! **/
-			virtual void EliminarWidget(const GNC::GCS::Widgets::IWidget* pWidget, bool propagarEvento=true) = 0;
+        virtual void InsertarWidget(GNC::GCS::Widgets::IWidget* pWidget, bool propagarEvento=true) = 0;
 
-			/** Removes a widget. Note: Frees the pWidget pointing! **/
-			virtual void EliminarWidget(GNC::GCS::IWidgetsManager::IteradorListaWidgets& it, bool propagarEvento=true) = 0;
+        /** Removes a widget. Note: Frees the pWidget pointing! **/
+        virtual void EliminarWidget(const GNC::GCS::Widgets::IWidget* pWidget, bool propagarEvento=true) = 0;
 
-			/** Removes all widgets. Note: Frees the pWidget pointers! **/
-			virtual void EliminarTodosLosWidgets(bool propagarEventos=true) = 0;
+        /** Removes a widget. Note: Frees the pWidget pointing! **/
+        virtual void EliminarWidget(GNC::GCS::IWidgetsManager::IteradorListaWidgets& it, bool propagarEvento=true) = 0;
 
-			/** Remove all widgets except anyone with this tid **/
-			virtual void RemoveAllWidgetsExceptTID(long tid, bool propagateEvents=true) = 0;		
-			
-			virtual void RemoveUserAnnotationWidgets(bool propagateEvents=true) = 0;
+        /** Removes all widgets. Note: Frees the pWidget pointers! **/
+        virtual void EliminarTodosLosWidgets(bool propagarEventos=true) = 0;
 
-			virtual void OcultarTodosLosWidgets(bool ocultar, long GID) = 0;
+        /** Remove all widgets except anyone with this tid **/
+        virtual void RemoveAllWidgetsExceptTID(long tid, bool propagateEvents=true) = 0;
 
-			/** Set visible on all widgets matching TID **/
-			virtual void SetVisibleByTID(bool visible, long tid) = 0;
+        virtual void RemoveUserAnnotationWidgets(bool propagateEvents=true) = 0;
 
-			/** Removes all widgets. Note: Frees the pWidget pointers! **/
-			virtual void EliminarTodosLosWidgets(long GID) = 0;
+        virtual void OcultarTodosLosWidgets(bool ocultar, long GID) = 0;
 
-			virtual void OcultarWidgetsDeSubVista(bool ocultar, long vid) = 0;
+        /** Set visible on all widgets matching TID **/
+        virtual void SetVisibleByTID(bool visible, long tid) = 0;
 
-			virtual GNC::GCS::ListaWidgets& GetListaWidgets() = 0;
+        /** Removes all widgets. Note: Frees the pWidget pointers! **/
+        virtual void EliminarTodosLosWidgets(long GID) = 0;
 
-			virtual void GetListaWidgetsSubVista(long vid, GNC::GCS::ListaWidgets& lista) = 0;
+        virtual void OcultarWidgetsDeSubVista(bool ocultar, long vid) = 0;
 
-		//endregion
+        virtual GNC::GCS::ListaWidgets& GetListaWidgets() = 0;
 
-		//----------------------------------------------------------------------------------------------------
-		//region "Interfaz de registro del IWidgetsRenderer"
+        virtual void GetListaWidgetsSubVista(long vid, GNC::GCS::ListaWidgets& lista) = 0;
 
-		public:
+        //endregion
 
-			virtual void SetRendererActivo(GNC::GCS::IWidgetsRenderer* pRenderer) = 0;
-			
-			inline GNC::GCS::IWidgetsRenderer* GetRendererActivo()
-			{
-				return m_pRendererActivo;
-			}
+        //----------------------------------------------------------------------------------------------------
+        //region "Interfaz de registro del IWidgetsRenderer"
 
-			virtual void InsertarRenderer(GNC::GCS::IWidgetsRenderer* pRenderer) = 0;
+public:
 
-			virtual void EliminarRenderer(GNC::GCS::IWidgetsRenderer* pRenderer) = 0;
+        virtual void SetRendererActivo(GNC::GCS::IWidgetsRenderer* pRenderer) = 0;
 
-			virtual void LiberarRecursos(GNC::GCS::IWidgetsRenderer* pRenderer) = 0;
+        inline GNC::GCS::IWidgetsRenderer* GetRendererActivo()
+        {
+                return m_pRendererActivo;
+        }
 
-		protected:
-			GNC::GCS::IWidgetsRenderer* m_pRendererActivo;			
+        virtual void InsertarRenderer(GNC::GCS::IWidgetsRenderer* pRenderer) = 0;
 
-			ListaRenderers m_Renderers;
+        virtual void EliminarRenderer(GNC::GCS::IWidgetsRenderer* pRenderer) = 0;
 
-		//endregion
+        virtual void LiberarRecursos(GNC::GCS::IWidgetsRenderer* pRenderer) = 0;
 
-		//----------------------------------------------------------------------------------------------------
-		//region "Interfaz de Observadores"
+protected:
+        GNC::GCS::IWidgetsRenderer* m_pRendererActivo;
 
-		public:			
-			typedef ListaObservadores::iterator IteradorListaObservadores;
+        ListaRenderers m_Renderers;
 
-		protected:
-			ListaObservadores m_Observadores;
+        //endregion
 
-		public:
-			
-			void InsertarObservador(GNC::GCS::Widgets::IObservadorWidget* observador);
+        //----------------------------------------------------------------------------------------------------
+        //region "Interfaz de Observadores"
 
-			void EliminarObservador(GNC::GCS::Widgets::IObservadorWidget* observador);
-			
-			virtual void NotificarCreacion(GNC::GCS::Widgets::IWidget* pWidget) = 0;
+public:
+        typedef ListaObservadores::iterator IteradorListaObservadores;
 
-			virtual void NotificarDestruccion(GNC::GCS::Widgets::IWidget* pWidget) = 0;
+protected:
+        ListaObservadores m_Observadores;
 
-			virtual void NotificarModificacion(GNC::GCS::Widgets::IWidget* pWidget) = 0;
+public:
 
-		//endregion
+        void InsertarObservador(GNC::GCS::Widgets::IObservadorWidget* observador);
 
-		//----------------------------------------------------------------------------------------------------
-		//region "Interfaz general"
-			virtual void SetAnnotator(const GNC::GCS::Ptr<GNC::GCS::IAnnotator>& pAnnotador) = 0;
-			virtual const GNC::GCS::Ptr<GNC::GCS::IAnnotator>& GetAnnotator() = 0;
-			virtual void ShowAnnotations(bool show) = 0;
-			virtual bool IsShownAnnotations() = 0;
-		//endregion
+        void EliminarObservador(GNC::GCS::Widgets::IObservadorWidget* observador);
 
-		//----------------------------------------------------------------------------------------------------
-		//region "Interfaz general"
+        virtual void NotificarCreacion(GNC::GCS::Widgets::IWidget* pWidget) = 0;
 
-		public:
+        virtual void NotificarDestruccion(GNC::GCS::Widgets::IWidget* pWidget) = 0;
 
-			virtual void Render() = 0;
-			
-			virtual void TickAnimation(double freq) = 0;
+        virtual void NotificarModificacion(GNC::GCS::Widgets::IWidget* pWidget) = 0;
 
-			virtual void EnableAnimation() = 0;
+        //endregion
 
-			virtual void DisableAnimation() = 0;
+        //----------------------------------------------------------------------------------------------------
+        //region "Interfaz general"
+        virtual void SetAnnotator(const GNC::GCS::Ptr<GNC::GCS::IAnnotator>& pAnnotador) = 0;
+        virtual const GNC::GCS::Ptr<GNC::GCS::IAnnotator>& GetAnnotator() = 0;
+        virtual void ShowAnnotations(bool show) = 0;
+        virtual bool IsShownAnnotations() = 0;
+        //endregion
 
-			/* Este metodo solo debe ser invocado por IWidgetsRenderer */
-			virtual void RenderPrivate(Contexto3D* c) = 0;
+        //----------------------------------------------------------------------------------------------------
+        //region "Interfaz general"
 
-			/*imprime los widgets sobre la imagen que recibe, definida por anchura y altura*/
-			virtual void OffScreenRender(GNC::GCS::Contexto3D* c) = 0;
+public:
 
-			/* Metodo que indica al manager que es preciso hacer un render() */
-			virtual void Modificado() = 0;
+        virtual void Render() = 0;
 
-			virtual void ModificadoPorWidget(GNC::GCS::Widgets::IWidget* w) = 0;
+        virtual void TickAnimation(double freq) = 0;
 
-			virtual void DefaultMouseEventProcess(GNC::GCS::Events::EventoRaton& evento) = 0;
+        virtual void EnableAnimation() = 0;
 
-			virtual void DefaultKeyEventProcess(GNC::GCS::Events::EventoTeclado& event) = 0;
+        virtual void DisableAnimation() = 0;
 
-			// Propaga a todos los widgets no ocultos un hit test de seleccion. Los widgets se seleccionan si validan un hittest con el bounding box especificado.
-			virtual void PropagarHitTestSeleccion(GNC::GCS::Vector* vertices, int numVertices) = 0;
+        /* Este metodo solo debe ser invocado por IWidgetsRenderer */
+        virtual void RenderPrivate(Contexto3D* c) = 0;
 
-		protected:
-			bool          m_Modified;
-			GNC::GCS::IVista*		  m_pView;
+        /*imprime los widgets sobre la imagen que recibe, definida por anchura y altura*/
+        virtual void OffScreenRender(GNC::GCS::Contexto3D* c) = 0;
 
-		//endregion
+        /* Metodo que indica al manager que es preciso hacer un render() */
+        virtual void Modificado() = 0;
 
-		//----------------------------------------------------------------------------------------------------
-		//region "Interfaz de selecciones"
+        virtual void ModificadoPorWidget(GNC::GCS::Widgets::IWidget* w) = 0;
 
-		protected:
-			float m_BoundingBoxSeleccion[4];
-			ListaWidgets m_WidgetsSeleccionados;
-			bool m_Enabled;
+        virtual void DefaultMouseEventProcess(GNC::GCS::Events::EventoRaton& evento) = 0;
 
-		//endregion
+        virtual void DefaultKeyEventProcess(GNC::GCS::Events::EventoTeclado& event) = 0;
 
-		//----------------------------------------------------------------------------------------------------
-		//region "Interfaz de acceso al sistema de eventos ginkgo"
+        // Propaga a todos los widgets no ocultos un hit test de seleccion. Los widgets se seleccionan si validan un hittest con el bounding box especificado.
+        virtual void PropagarHitTestSeleccion(GNC::GCS::Vector* vertices, int numVertices) = 0;
 
-		public:
+protected:
+        bool          m_Modified;
+        GNC::GCS::IVista*		  m_pView;
 
-			virtual void LanzarEventoCreacion(GNC::GCS::Widgets::IWidget* w) = 0;
-			virtual void LanzarEventoModificacion(GNC::GCS::Widgets::IWidget* w) = 0;
-			virtual void LanzarEventoDestruccion(GNC::GCS::Widgets::IWidget* w) = 0;
+        //endregion
 
-		//endregion
+        //----------------------------------------------------------------------------------------------------
+        //region "Interfaz de selecciones"
 
-		//----------------------------------------------------------------------------------------------------
-			virtual void SetCursor(GNC::GCS::Widgets::TipoCursor cursor) = 0;
-			GNC::GCS::Widgets::TipoCursor m_cursor;
-		//endregion
+protected:
+        float m_BoundingBoxSeleccion[4];
+        ListaWidgets m_WidgetsSeleccionados;
+        bool m_Enabled;
 
-		};
-	}
+        //endregion
+
+        //----------------------------------------------------------------------------------------------------
+        //region "Interfaz de acceso al sistema de eventos ginkgo"
+
+public:
+
+        virtual void LanzarEventoCreacion(GNC::GCS::Widgets::IWidget* w) = 0;
+        virtual void LanzarEventoModificacion(GNC::GCS::Widgets::IWidget* w) = 0;
+        virtual void LanzarEventoDestruccion(GNC::GCS::Widgets::IWidget* w) = 0;
+
+        //endregion
+
+        //----------------------------------------------------------------------------------------------------
+        virtual void SetCursor(GNC::GCS::Widgets::TipoCursor cursor) = 0;
+        GNC::GCS::Widgets::TipoCursor m_cursor;
+        //endregion
+
+};
+}
 }

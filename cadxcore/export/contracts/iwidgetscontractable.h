@@ -6,8 +6,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -22,21 +22,23 @@
 
 #include <api/icontract.h>
 
-namespace GNC {
-	namespace GCS {
-		class IWidgetsContract;
-		class EXTAPI IWidgetsContractable: public GNC::GCS::IContractable
-		{
-		public:
-			IWidgetsContractable();
-			virtual ~IWidgetsContractable();
+namespace GNC
+{
+namespace GCS
+{
+class IWidgetsContract;
+class EXTAPI IWidgetsContractable: public GNC::GCS::IContractable
+{
+public:
+        IWidgetsContractable();
+        virtual ~IWidgetsContractable();
 
-			virtual bool IsValidContract(IContract* contract);
+        virtual bool IsValidContract(IContract* contract);
 
-			
-			virtual void Register(IContract* contract);
-		protected:
-			GNC::GCS::IWidgetsContract* WidgetsContract;
-		};
-	}
+
+        virtual void Register(IContract* contract);
+protected:
+        GNC::GCS::IWidgetsContract* WidgetsContract;
+};
+}
 }

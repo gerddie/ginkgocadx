@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -28,11 +28,11 @@
 
 GNC::GUI::OpenGinkgoCloudDialog::OpenGinkgoCloudDialog(wxWindow* pParent): GNC::GUI::OpenGinkgoCloudDialogBase(pParent)
 {
-	wxIcon icono;
-	icono.CopyFromBitmap(GinkgoResourcesManager::Logos::GetLogoGinkgo32x32());
-	this->SetIcon(icono);
+        wxIcon icono;
+        icono.CopyFromBitmap(GinkgoResourcesManager::Logos::GetLogoGinkgo32x32());
+        this->SetIcon(icono);
 
-	m_pFileLink->SetFocus();
+        m_pFileLink->SetFocus();
 }
 
 GNC::GUI::OpenGinkgoCloudDialog::~OpenGinkgoCloudDialog()
@@ -41,33 +41,33 @@ GNC::GUI::OpenGinkgoCloudDialog::~OpenGinkgoCloudDialog()
 
 void GNC::GUI::OpenGinkgoCloudDialog::OnAccept(wxCommandEvent &)
 {
-	wxString link = m_pFileLink->GetValue().Trim(true).Trim(false);
-	if (!link.StartsWith(wxT("ginkgocadx://cloud:"))) {
-		wxMessageBox(_("Invalid link"), wxT("Ginkgo Cloud"), wxICON_WARNING|wxOK);
-		return;
-	} else {
-		std::string stdLink(link.SubString(19, link.size()-1).ToUTF8());
-		//call to command
-		GNC::GCS::CloudGetCommandParams* pParams = new GNC::GCS::CloudGetCommandParams(stdLink, true);
-		GNC::GCS::CloudCommand* pCmd = new GNC::GCS::CloudCommand(pParams);
-		GNC::CommandController::Instance()->ProcessAsync("Downloading...", pCmd, NULL);
-		//
-		Close();
-	}
+        wxString link = m_pFileLink->GetValue().Trim(true).Trim(false);
+        if (!link.StartsWith(wxT("ginkgocadx://cloud:"))) {
+                wxMessageBox(_("Invalid link"), wxT("Ginkgo Cloud"), wxICON_WARNING|wxOK);
+                return;
+        } else {
+                std::string stdLink(link.SubString(19, link.size()-1).ToUTF8());
+                //call to command
+                GNC::GCS::CloudGetCommandParams* pParams = new GNC::GCS::CloudGetCommandParams(stdLink, true);
+                GNC::GCS::CloudCommand* pCmd = new GNC::GCS::CloudCommand(pParams);
+                GNC::CommandController::Instance()->ProcessAsync("Downloading...", pCmd, NULL);
+                //
+                Close();
+        }
 }
 
 void GNC::GUI::OpenGinkgoCloudDialog::OnCancel(wxCommandEvent& )
 {
-	Close();
+        Close();
 }
 
 void GNC::GUI::OpenGinkgoCloudDialog::OnKeyUp(wxKeyEvent &evt)
 {
-	if (evt.GetKeyCode() == WXK_ESCAPE) {
-		Close();
-	} else if (evt.GetKeyCode() == WXK_NUMPAD_ENTER || evt.GetKeyCode() == WXK_RETURN) {
-		wxCommandEvent evt;
-		OnAccept(evt);
-	}
-	evt.Skip();
+        if (evt.GetKeyCode() == WXK_ESCAPE) {
+                Close();
+        } else if (evt.GetKeyCode() == WXK_NUMPAD_ENTER || evt.GetKeyCode() == WXK_RETURN) {
+                wxCommandEvent evt;
+                OnAccept(evt);
+        }
+        evt.Skip();
 }

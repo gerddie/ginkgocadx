@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -24,28 +24,29 @@
 #include "dicomfindassociation.h"
 #include "istorecallback.h"
 
-class MoveAssociation : public FindAssociation {
+class MoveAssociation : public FindAssociation
+{
 public:
 
-	MoveAssociation(const std::string& ambitolog, IModeloDicom* pModelo=NULL);
-	virtual ~MoveAssociation();
+        MoveAssociation(const std::string& ambitolog, IModeloDicom* pModelo=NULL);
+        virtual ~MoveAssociation();
 
-	void SetModelo(IModeloDicom* pModelo);
+        void SetModelo(IModeloDicom* pModelo);
 
-	void Create(const std::string& title, const std::string& peer, int port, const std::string& ouraet, /*int ourPort,*/ const char *abstractSyntax = UID_MOVEStudyRootQueryRetrieveInformationModel);
+        void Create(const std::string& title, const std::string& peer, int port, const std::string& ouraet, /*int ourPort,*/ const char *abstractSyntax = UID_MOVEStudyRootQueryRetrieveInformationModel);
 
-	OFCondition SendObject(DcmDataset *dataset);
+        OFCondition SendObject(DcmDataset *dataset);
 
 
 protected:
 
-	void OnAddPresentationContext(T_ASC_Parameters *params);
+        void OnAddPresentationContext(T_ASC_Parameters *params);
 
 private:
 
-	OFCondition moveSCU(DcmDataset *pdset);
+        OFCondition moveSCU(DcmDataset *pdset);
 
-	int m_maxReceivePDULength;
-	IModeloDicom* m_pModelo;
-	std::string m_errorMessage;
+        int m_maxReceivePDULength;
+        IModeloDicom* m_pModelo;
+        std::string m_errorMessage;
 };

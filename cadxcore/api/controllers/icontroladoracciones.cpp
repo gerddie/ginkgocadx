@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -33,17 +33,17 @@ GNC::GCS::Accion::~Accion()
 
 const std::string& GNC::GCS::Accion::GetNombre()
 {
-	return m_nombre;
+        return m_nombre;
 }
 
 bool GNC::GCS::Accion::PuedeRehacer()
 {
-	return m_puedeRehacerse;
+        return m_puedeRehacerse;
 }
 
 void GNC::GCS::Accion::SetPuedeRehacerse(bool puedeRehacerse)
 {
-	m_puedeRehacerse = puedeRehacerse;
+        m_puedeRehacerse = puedeRehacerse;
 }
 
 void GNC::GCS::Accion::Hacer()
@@ -60,10 +60,10 @@ GNC::GCS::IControladorAcciones::~IControladorAcciones()
 
 GNC::GCS::IControladorAcciones* GNC::GCS::IControladorAcciones::Instance()
 {
-	return GNC::GCS::ControladorAcciones::Instance();
+        return GNC::GCS::ControladorAcciones::Instance();
 }
 
 void GNC::GCS::IControladorAcciones::FreeInstance()
 {
-	GNC::GCS::ControladorAcciones::FreeInstance();
+        GNC::GCS::ControladorAcciones::FreeInstance();
 }

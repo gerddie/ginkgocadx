@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -24,7 +24,7 @@
 
 GNC::GCS::IWindowLayoutContractable::IWindowLayoutContractable()
 {
-	WindowLayoutContract = NULL;
+        WindowLayoutContract = NULL;
 }
 GNC::GCS::IWindowLayoutContractable::~IWindowLayoutContractable()
 {
@@ -32,12 +32,12 @@ GNC::GCS::IWindowLayoutContractable::~IWindowLayoutContractable()
 
 bool GNC::GCS::IWindowLayoutContractable::IsValidContract(IContract* contract)
 {
-	GNC::GCS::IWindowLayoutContract* pWContract = dynamic_cast<GNC::GCS::IWindowLayoutContract*>(contract);
-	return pWContract != NULL;
+        GNC::GCS::IWindowLayoutContract* pWContract = dynamic_cast<GNC::GCS::IWindowLayoutContract*>(contract);
+        return pWContract != NULL;
 }
 
 void GNC::GCS::IWindowLayoutContractable::Register(IContract* contract)
 {
-	GNC::GCS::IContractable::Register(contract);
-	WindowLayoutContract = static_cast<GNC::GCS::IWindowLayoutContract*>(contract);
+        GNC::GCS::IContractable::Register(contract);
+        WindowLayoutContract = static_cast<GNC::GCS::IWindowLayoutContract*>(contract);
 }

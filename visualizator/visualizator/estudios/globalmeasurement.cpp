@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -21,47 +21,48 @@
 #include "globalmeasurements.h"
 #include <cmath>
 
-namespace GNKVisualizator {
+namespace GNKVisualizator
+{
 
 
-	GlobalMeasurement::GlobalMeasurement()
-	{
-		Ponset    = MeasurementNoValue;
-		Poffset   = MeasurementNoValue;
-		QRSonset  = MeasurementNoValue;
-		QRSoffset = MeasurementNoValue;
-		Toffset   = MeasurementNoValue;
-		Paxis     = MeasurementNoAxisValue;
-		QRSaxis   = MeasurementNoAxisValue;
-		Taxis     = MeasurementNoAxisValue;
-	}
-	unsigned short GlobalMeasurement::calcQTc(unsigned short AvgRR, unsigned short HR, TQTcCalcType calcType)
-	{
+GlobalMeasurement::GlobalMeasurement()
+{
+        Ponset    = MeasurementNoValue;
+        Poffset   = MeasurementNoValue;
+        QRSonset  = MeasurementNoValue;
+        QRSoffset = MeasurementNoValue;
+        Toffset   = MeasurementNoValue;
+        Paxis     = MeasurementNoAxisValue;
+        QRSaxis   = MeasurementNoAxisValue;
+        Taxis     = MeasurementNoAxisValue;
+}
+unsigned short GlobalMeasurement::calcQTc(unsigned short AvgRR, unsigned short HR, TQTcCalcType calcType)
+{
 
-		if ((AvgRR == 0)
-		||	(AvgRR == MeasurementNoValue)
-		||	(QTdur() == MeasurementNoValue))
-			return MeasurementNoValue;
+        if ((AvgRR == 0)
+            ||	(AvgRR == MeasurementNoValue)
+            ||	(QTdur() == MeasurementNoValue))
+                return MeasurementNoValue;
 
-		unsigned short ret = MeasurementNoValue;
+        unsigned short ret = MeasurementNoValue;
 
-		switch (calcType)
-		{
-			case Bazett:
-				ret = (unsigned short) (QTdur() / std::sqrt(AvgRR * 0.001));
-				break;
-			case Fridericia:
-				ret = (unsigned short) (QTdur() / std::pow(AvgRR * 0.001, 1.0/3.0));
-				break;
-			case Framingham:
-				ret = (unsigned short) (QTdur() + (154 * (1 - (AvgRR * 0.001))));
-				break;
-			case Hodges:
-				ret = (unsigned short) (QTdur() + (1.75 * (HR - 60)));
-				break;
-			default:break;
-		}
+        switch (calcType) {
+        case Bazett:
+                ret = (unsigned short) (QTdur() / std::sqrt(AvgRR * 0.001));
+                break;
+        case Fridericia:
+                ret = (unsigned short) (QTdur() / std::pow(AvgRR * 0.001, 1.0/3.0));
+                break;
+        case Framingham:
+                ret = (unsigned short) (QTdur() + (154 * (1 - (AvgRR * 0.001))));
+                break;
+        case Hodges:
+                ret = (unsigned short) (QTdur() + (1.75 * (HR - 60)));
+                break;
+        default:
+                break;
+        }
 
-		return ret;
-	}
+        return ret;
+}
 }

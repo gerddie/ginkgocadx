@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -39,170 +39,177 @@ class IWizard;
 class IPasoWizard;
 class wxWindow;
 
-namespace GNC {
-	namespace GCS {
-		class IEntorno;
-		class IVista;
-	}
+namespace GNC
+{
+namespace GCS
+{
+class IEntorno;
+class IVista;
+}
 }
 
 class IPACSController;
 
 #define GINKGO_PARAMS_SEPARATOR "="
 
-namespace GNC {
-	namespace GCS {
-		class HangingProtocol;
+namespace GNC
+{
+namespace GCS
+{
+class HangingProtocol;
 
-		/* Appender / formatter para reordenar y/o añadir tags DICOM necesarios por el controlador o vista en la importacion */
-		class EXTAPI TagsDICOM {
-		public:
-			typedef std::list<std::string> ListaArbolesPersonalizados;
-			typedef std::map<std::string, int> MapaTags;
+/* Appender / formatter para reordenar y/o añadir tags DICOM necesarios por el controlador o vista en la importacion */
+class EXTAPI TagsDICOM
+{
+public:
+        typedef std::list<std::string> ListaArbolesPersonalizados;
+        typedef std::map<std::string, int> MapaTags;
 
-			// Vector de nombres de raices de tags DICOM que el modo necesita
-			ListaArbolesPersonalizados ArbolesPersonalizados;
-			// Mapa de tags a insertar/sobreescribir con sus id de raices asociadas (donde se insertaran)
-			MapaTags TagsAInsertar;
+        // Vector de nombres de raices de tags DICOM que el modo necesita
+        ListaArbolesPersonalizados ArbolesPersonalizados;
+        // Mapa de tags a insertar/sobreescribir con sus id de raices asociadas (donde se insertaran)
+        MapaTags TagsAInsertar;
 
-		};
+};
 
-		class EXTAPI ModoControlador {
-			public:
-				typedef std::list<std::string> TipoListaModalidades;
-				typedef std::list<std::string> TipoListaUIDsImportacion;
-				typedef enum {
-					THSL_FULL,
-					THSL_ONLY_REGULAR,
-					THSL_ONLY_1x1
-				} T_HangingProtocolSupportLevel;
+class EXTAPI ModoControlador
+{
+public:
+        typedef std::list<std::string> TipoListaModalidades;
+        typedef std::list<std::string> TipoListaUIDsImportacion;
+        typedef enum {
+                THSL_FULL,
+                THSL_ONLY_REGULAR,
+                THSL_ONLY_1x1
+        } T_HangingProtocolSupportLevel;
 
-				ModoControlador(int id, const std::string& descripcion, const TipoListaModalidades& listaModalidades, const TipoListaUIDsImportacion& listaImportacion, wxBitmap * bitmap = NULL, T_HangingProtocolSupportLevel supportLevel = THSL_ONLY_1x1);
+        ModoControlador(int id, const std::string& descripcion, const TipoListaModalidades& listaModalidades, const TipoListaUIDsImportacion& listaImportacion, wxBitmap * bitmap = NULL, T_HangingProtocolSupportLevel supportLevel = THSL_ONLY_1x1);
 
-			virtual ~ModoControlador();
+        virtual ~ModoControlador();
 
-			const TipoListaModalidades GetModalidades();
+        const TipoListaModalidades GetModalidades();
 
-			const std::string& GetDescripcion();
+        const std::string& GetDescripcion();
 
-			wxBitmap* GetBitmap();
+        wxBitmap* GetBitmap();
 
-			int GetId() const;
+        int GetId() const;
 
-			T_HangingProtocolSupportLevel GetHangingSupportLevel() const;
+        T_HangingProtocolSupportLevel GetHangingSupportLevel() const;
 
-			virtual bool SupportsModalityFile(const std::string &modalidad, const std::string& transferSyntax) const;
+        virtual bool SupportsModalityFile(const std::string &modalidad, const std::string& transferSyntax) const;
 
-			virtual bool SupportsImportationUID(const std::string &importationUID) const;
+        virtual bool SupportsImportationUID(const std::string &importationUID) const;
 
-		protected:
-			int id;
-			std::string descripcion;
-			TipoListaModalidades  m_listaModalidades;
-			T_HangingProtocolSupportLevel m_hangingSupportLevel;
-			
-			TipoListaUIDsImportacion m_listImportationUIDs;
-			wxBitmap* bitmap;
-		};
+protected:
+        int id;
+        std::string descripcion;
+        TipoListaModalidades  m_listaModalidades;
+        T_HangingProtocolSupportLevel m_hangingSupportLevel;
 
-		class EXTAPI IdHL7 {
-		public:
-			std::string etiqueta;        // Etiqueta que usa Ginkgo para localizar el codigo
-			std::string codigo;          // Codigo formal para la etiqueta
-			std::string namespaceid;     // NamespaceID de la entidad asignatoria
-			std::string descripcion;     // Descripcion del codigo
-			std::string tipoobservacion; // Tipo de observacion. Solo se usa para Ids transportados en OBX
-			std::string tipodatos;
-			std::string version;			  //version of the id
+        TipoListaUIDsImportacion m_listImportationUIDs;
+        wxBitmap* bitmap;
+};
 
-			IdHL7();
+class EXTAPI IdHL7
+{
+public:
+        std::string etiqueta;        // Etiqueta que usa Ginkgo para localizar el codigo
+        std::string codigo;          // Codigo formal para la etiqueta
+        std::string namespaceid;     // NamespaceID de la entidad asignatoria
+        std::string descripcion;     // Descripcion del codigo
+        std::string tipoobservacion; // Tipo de observacion. Solo se usa para Ids transportados en OBX
+        std::string tipodatos;
+        std::string version;			  //version of the id
 
-			IdHL7(const IdHL7& o);
+        IdHL7();
 
-			IdHL7(const std::string& e, const std::string& c, const std::string& d, const std::string& n, const std::string& t, const std::string& td, const std::string& v = "");
+        IdHL7(const IdHL7& o);
 
-			IdHL7& operator = (const IdHL7& o);
+        IdHL7(const std::string& e, const std::string& c, const std::string& d, const std::string& n, const std::string& t, const std::string& td, const std::string& v = "");
 
-			// return value should be const, but clang++ 3.7 doesn't like it
-			operator std::string () const;
-		};
+        IdHL7& operator = (const IdHL7& o);
 
-		/** Module controller. Responsable de proveer una factoría de controladores de estudios y registrarlos mediante el controlador de vistas. **/
-		class EXTAPI IModuleController {
-		public:
-			typedef struct TPrivateTagReemplazable
-			{
-				typedef enum {STD, XML} TType;
-				unsigned char id;
-				TType type;
-				TPrivateTagReemplazable (unsigned char _id, TType _type) : id(_id), type(_type)
-				{
-				}
-			} TPrivateTagReemplazable;
-			typedef std::list<TPrivateTagReemplazable> TListaIdsTagsPrivados;
-			//first element uid provider, second list of tags
-			typedef std::map<std::string, TListaIdsTagsPrivados> TMapaTagsPrivados;
+        // return value should be const, but clang++ 3.7 doesn't like it
+        operator std::string () const;
+};
 
-			typedef std::list<IdHL7> TipoListaIdsHL7;
-			typedef std::map<std::string,IdHL7> TipoMapaIdsHL7;
-			typedef std::map<std::string, std::string> TExtraLicensesMap;
+/** Module controller. Responsable de proveer una factoría de controladores de estudios y registrarlos mediante el controlador de vistas. **/
+class EXTAPI IModuleController
+{
+public:
+        typedef struct TPrivateTagReemplazable {
+                typedef enum {STD, XML} TType;
+                unsigned char id;
+                TType type;
+                TPrivateTagReemplazable (unsigned char _id, TType _type) : id(_id), type(_type)
+                {
+                }
+        } TPrivateTagReemplazable;
+        typedef std::list<TPrivateTagReemplazable> TListaIdsTagsPrivados;
+        //first element uid provider, second list of tags
+        typedef std::map<std::string, TListaIdsTagsPrivados> TMapaTagsPrivados;
 
-			/* Constructor */
-			IModuleController(GNC::GCS::IEntorno* pEntorno, const std::string& uid, int priority);
+        typedef std::list<IdHL7> TipoListaIdsHL7;
+        typedef std::map<std::string,IdHL7> TipoMapaIdsHL7;
+        typedef std::map<std::string, std::string> TExtraLicensesMap;
 
-			/* Destructor */
-			virtual ~IModuleController();
+        /* Constructor */
+        IModuleController(GNC::GCS::IEntorno* pEntorno, const std::string& uid, int priority);
 
-			/* Obtiene el UID único del módulo */
-			const std::string& GetUID() const;
+        /* Destructor */
+        virtual ~IModuleController();
 
-			virtual bool SoportaImportacion() const;
+        /* Obtiene el UID único del módulo */
+        const std::string& GetUID() const;
 
-			//si importa series true, si importa estudios false
-			virtual bool ImportaSeries() const;
+        virtual bool SoportaImportacion() const;
 
-			const std::string& GetImporterDescription() const;
-			virtual wxBitmap GetImporterIcon() const;
+        //si importa series true, si importa estudios false
+        virtual bool ImportaSeries() const;
 
-
-			virtual void GetPasosImportacion(IWizard* , std::list<IPasoWizard*> &, wxWindow* , std::string &, GNC::GCS::Ptr<GIL::IModeloIntegracion> );
-			virtual void GetPasosConfiguracion( std::list<IPasoConfiguracion*> &, wxWindow* , IDialogoConfiguracion* ) const;
-
-			// Metodos de inicializacion de configuracion del modulo
-			void RegistrarConfiguracion();
-
-			//registra las vistas
-			virtual void RegistrarVistas() = 0;
-
-			const IdHL7 GetIdInforme(const std::string& key) const;
-
-			/* Abre un estudio de manera no interactiva desde un directorio y devuelve su controlador específico */
-			virtual GNC::GCS::IVista* OpenView(int modo, GNC::GCS::IHistoryController::SeriesModelList& series, GNC::GCS::Ptr<GNC::GCS::HangingProtocol> hangingProtocol) = 0;
+        const std::string& GetImporterDescription() const;
+        virtual wxBitmap GetImporterIcon() const;
 
 
-			typedef std::vector<ModoControlador*> ListaModos;
-			typedef std::vector<ModoControlador*>::iterator IteradorListaModos;
+        virtual void GetPasosImportacion(IWizard* , std::list<IPasoWizard*> &, wxWindow* , std::string &, GNC::GCS::Ptr<GIL::IModeloIntegracion> );
+        virtual void GetPasosConfiguracion( std::list<IPasoConfiguracion*> &, wxWindow* , IDialogoConfiguracion* ) const;
 
-			virtual ModoControlador* GetModo(int id);
+        // Metodos de inicializacion de configuracion del modulo
+        void RegistrarConfiguracion();
 
-			virtual ListaModos& GetListaModos();
+        //registra las vistas
+        virtual void RegistrarVistas() = 0;
 
-			virtual int GetPriority();
+        const IdHL7 GetIdInforme(const std::string& key) const;
 
-			virtual void GetTagsPrivadosReplace(GNC::GCS::IModuleController::TMapaTagsPrivados& mapaTags);
-			virtual bool SupportsImportationUID(const std::string &importationUID);
-			virtual bool MakeThumbnail(const GNC::GCS::IHistoryController::FileModel& model, ImgProxy<UCHAR3>& thumbnail);
-			virtual TExtraLicensesMap GetExtraLicenses();
+        /* Abre un estudio de manera no interactiva desde un directorio y devuelve su controlador específico */
+        virtual GNC::GCS::IVista* OpenView(int modo, GNC::GCS::IHistoryController::SeriesModelList& series, GNC::GCS::Ptr<GNC::GCS::HangingProtocol> hangingProtocol) = 0;
 
-		protected:
-			GNC::GCS::IEntorno*  m_pEntorno;
-			ListaModos           m_ListaModos;
 
-			TipoListaIdsHL7      m_ListaInformes;
+        typedef std::vector<ModoControlador*> ListaModos;
+        typedef std::vector<ModoControlador*>::iterator IteradorListaModos;
 
-			std::string          m_UID;
-			std::string          m_ImporterDescription;
-			int		             m_priority;
-		};
-	}
+        virtual ModoControlador* GetModo(int id);
+
+        virtual ListaModos& GetListaModos();
+
+        virtual int GetPriority();
+
+        virtual void GetTagsPrivadosReplace(GNC::GCS::IModuleController::TMapaTagsPrivados& mapaTags);
+        virtual bool SupportsImportationUID(const std::string &importationUID);
+        virtual bool MakeThumbnail(const GNC::GCS::IHistoryController::FileModel& model, ImgProxy<UCHAR3>& thumbnail);
+        virtual TExtraLicensesMap GetExtraLicenses();
+
+protected:
+        GNC::GCS::IEntorno*  m_pEntorno;
+        ListaModos           m_ListaModos;
+
+        TipoListaIdsHL7      m_ListaInformes;
+
+        std::string          m_UID;
+        std::string          m_ImporterDescription;
+        int		             m_priority;
+};
+}
 }

@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -25,78 +25,82 @@
 #include <api/ilock.h>
 #include "dicomassociation.h"
 
-namespace GIL {
-	namespace DICOM {
+namespace GIL
+{
+namespace DICOM
+{
 
-		namespace DCMTK {
+namespace DCMTK
+{
 
-			class Network {
+class Network
+{
 
-			protected:
-				typedef std::map<void*, Network*> IntanceMapType;
+protected:
+        typedef std::map<void*, Network*> IntanceMapType;
 
-			public:
-				/** Keyed Singleton **/
-				static Network* Instance(void* key);
-				static void FreeInstance(void* key);
+public:
+        /** Keyed Singleton **/
+        static Network* Instance(void* key);
+        static void FreeInstance(void* key);
 
-				bool Initiallized();
+        bool Initiallized();
 
-				/**
-				Initialize the dicom network
-				*/
+        /**
+        Initialize the dicom network
+        */
 
-				OFCondition InitializeNetwork(int timeout,  Association::RoleType role = Association::RT_Requestor, int port = 0);
+        OFCondition InitializeNetwork(int timeout,  Association::RoleType role = Association::RT_Requestor, int port = 0);
 
-				/**
-				Drop the dicom network
-				*/
-				OFCondition DropNetwork();
+        /**
+        Drop the dicom network
+        */
+        OFCondition DropNetwork();
 
-				/**
-				Connect an association to the specified host
-				*/
-				OFCondition ConnectAssociation(Association* assoc, int pdu = ASC_DEFAULTMAXPDU);
+        /**
+        Connect an association to the specified host
+        */
+        OFCondition ConnectAssociation(Association* assoc, int pdu = ASC_DEFAULTMAXPDU);
 
-				/**
-				Send C-Echo request to dicom node
-				*/
-				OFCondition SendEchoRequest(const std::string& title, const std::string& peer, int port, const std::string& ouraet, int pdu);
+        /**
+        Send C-Echo request to dicom node
+        */
+        OFCondition SendEchoRequest(const std::string& title, const std::string& peer, int port, const std::string& ouraet, int pdu);
 
-				/**
-				Get the pointer to the internal dcmtk network variable (sorry)
-				*/
-				T_ASC_Network* GetDcmtkNet();
+        /**
+        Get the pointer to the internal dcmtk network variable (sorry)
+        */
+        T_ASC_Network* GetDcmtkNet();
 
-				void SetDcmtkNet(T_ASC_Network* n);
+        void SetDcmtkNet(T_ASC_Network* n);
 
-			protected:
+protected:
 
-				/**
-				Connect to a host and try to establish an association
-				*/
-				OFCondition ASC_ConnectAssociation(Association* assoc, const std::string& peerTitle, const std::string& peer, int port, const std::string& ouraet, int pdu = ASC_DEFAULTMAXPDU);
+        /**
+        Connect to a host and try to establish an association
+        */
+        OFCondition ASC_ConnectAssociation(Association* assoc, const std::string& peerTitle, const std::string& peer, int port, const std::string& ouraet, int pdu = ASC_DEFAULTMAXPDU);
 
-				/**
-				THE dicom network
-				*/
-				T_ASC_Network* m_pDCMTKNetwork;
+        /**
+        THE dicom network
+        */
+        T_ASC_Network* m_pDCMTKNetwork;
 
-				/**
-				constructor
-				*/
-				Network();
+        /**
+        constructor
+        */
+        Network();
 
-				virtual ~Network();
+        virtual ~Network();
 
-			protected:
-				bool m_Initiallized;
-				/** Attributes **/
-				static IntanceMapType m_pInstancesMap;
-				static GNC::GCS::ILockable m_sLock;
+protected:
+        bool m_Initiallized;
+        /** Attributes **/
+        static IntanceMapType m_pInstancesMap;
+        static GNC::GCS::ILockable m_sLock;
 
-				friend class Association;
-			};
-		}
-	}
+        friend class Association;
+};
+}
+}
 }

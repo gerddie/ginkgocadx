@@ -6,8 +6,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -29,41 +29,46 @@
 
 class vtkGinkgoImageViewer;
 
-namespace GNC {
-	namespace GCS {
-		class IVista;
-		class IWidgetsManager;
-	}
+namespace GNC
+{
+namespace GCS
+{
+class IVista;
+class IWidgetsManager;
+}
 }
 
-namespace GNC {
-	namespace GCS {
-		class Contexto3D;
+namespace GNC
+{
+namespace GCS
+{
+class Contexto3D;
 
-		class EXTAPI IWidgetsContract : public IContract {
-		public:
+class EXTAPI IWidgetsContract : public IContract
+{
+public:
 
-			typedef std::list<vtkGinkgoImageViewer*> TViewerList;
+        typedef std::list<vtkGinkgoImageViewer*> TViewerList;
 
-			IWidgetsContract();
+        IWidgetsContract();
 
-			~IWidgetsContract();
+        ~IWidgetsContract();
 
-			virtual GNC::GCS::IWidgetsManager* GetManager() = 0;
+        virtual GNC::GCS::IWidgetsManager* GetManager() = 0;
 
-			virtual void GetAllViewers(TViewerList& viewerList);
+        virtual void GetAllViewers(TViewerList& viewerList);
 
-			bool Inicializado();
+        bool Inicializado();
 
-			//Anotation section
-			//this method processes special keys like: ${VOLUME.IDX} ${SLICE.WIDTH}...
-			virtual std::string GetAnnotationValue(GNC::GCS::Contexto3D* c, const std::string& key);
+        //Anotation section
+        //this method processes special keys like: ${VOLUME.IDX} ${SLICE.WIDTH}...
+        virtual std::string GetAnnotationValue(GNC::GCS::Contexto3D* c, const std::string& key);
 
-			//return dicom tag value from key
-			virtual std::string GetTagValue(GNC::GCS::Contexto3D* c, const std::string& key);
+        //return dicom tag value from key
+        virtual std::string GetTagValue(GNC::GCS::Contexto3D* c, const std::string& key);
 
-			vtkGinkgoImageViewer* GetViewerActivo();
-		};
-	}
+        vtkGinkgoImageViewer* GetViewerActivo();
+};
+}
 }
 #endif

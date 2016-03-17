@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -25,42 +25,46 @@
 #include "../exportacion/ireconstructiontool.h"
 
 #include <map>
-namespace GNC {
-	namespace GCS {
-		class IControladorPermisos;
-	}
+namespace GNC
+{
+namespace GCS
+{
+class IControladorPermisos;
+}
 }
 
-namespace GNKVisualizator {
+namespace GNKVisualizator
+{
 
-	class ReconstructionTool : public GNKVisualizator::IReconstructionTool {
+class ReconstructionTool : public GNKVisualizator::IReconstructionTool
+{
 
-	protected:
+protected:
 
-	public:
-		ReconstructionTool(GNC::GCS::IControladorPermisos* pControladorPermisos);
-		~ReconstructionTool();
-		//menu del mapa de color
-		virtual bool AppendInMenu(wxWindow* pParent, wxMenu* pMenuParent);
+public:
+        ReconstructionTool(GNC::GCS::IControladorPermisos* pControladorPermisos);
+        ~ReconstructionTool();
+        //menu del mapa de color
+        virtual bool AppendInMenu(wxWindow* pParent, wxMenu* pMenuParent);
 
-		//region "Realización de la interfaz IHerramienta"
+        //region "Realización de la interfaz IHerramienta"
 
-		// Setup de paneles
-		virtual void CrearPaneles( wxPanel* panel );
-		
-		//endregion
+        // Setup de paneles
+        virtual void CrearPaneles( wxPanel* panel );
 
-		virtual bool SupportsReconstructionMode(int mode);
-		virtual void SelectReconstructionMode(int mode);
-		virtual void SolicitarActivacion();
+        //endregion
 
-		virtual void ConectarContratoFalso(bool activar);
-		virtual void SetVistaActiva(GNC::GCS::IVista* pVista);
-		virtual void ConectarContratos(bool activar);
+        virtual bool SupportsReconstructionMode(int mode);
+        virtual void SelectReconstructionMode(int mode);
+        virtual void SolicitarActivacion();
 
-	protected:
-		GNC::GCS::IControladorPermisos* m_pControladorPermisos;
+        virtual void ConectarContratoFalso(bool activar);
+        virtual void SetVistaActiva(GNC::GCS::IVista* pVista);
+        virtual void ConectarContratos(bool activar);
 
-	};
+protected:
+        GNC::GCS::IControladorPermisos* m_pControladorPermisos;
+
+};
 }
 #endif

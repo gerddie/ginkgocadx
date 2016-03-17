@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -30,68 +30,72 @@
 
 //endregion
 
-namespace GNC {
-	namespace GCS {
-		class IVista;
-	}
+namespace GNC
+{
+namespace GCS
+{
+class IVista;
 }
-		
-namespace GNC {
+}
 
-	namespace GCS {
-		
-		//====================================================================================================
-		//= Controlador de eventos
-		//====================================================================================================
-		class ControladorEventos: public IEventsController
-		{
+namespace GNC
+{
 
-		public:
-			//lista de punteros a eventos
-			typedef std::list<GNC::GCS::Events::IEvent*> TipoListaPunterosEventos;
+namespace GCS
+{
 
-		protected:
-			typedef std::list<IEventsObserver* > TipoListaObservadores;
-			//codigo de evento,observador
-			typedef std::map<long , TipoListaObservadores > TipoMapaCodigos;
-			//codigo de ambito, lista de observadores
-			typedef std::map<long , TipoMapaCodigos> TipoMapaAmbito;
-			//vista, ambitos
-			typedef std::map<GNC::GCS::IVista* , TipoMapaAmbito > TipoMapaVistas;
-			//lista de eventos
-			typedef std::list<GNC::GCS::Events::IEvent> TipoListaEventos;
-			//observadores,Evtentos para desregistrarse
-			typedef std::map<IEventsObserver*, TipoListaEventos> TipoMapaEventos;
+//====================================================================================================
+//= Controlador de eventos
+//====================================================================================================
+class ControladorEventos: public IEventsController
+{
 
-		public:
+public:
+        //lista de punteros a eventos
+        typedef std::list<GNC::GCS::Events::IEvent*> TipoListaPunterosEventos;
 
-			//se apunta a escuchar un evento
-			void Registrar ( IEventsObserver* pObservador, const GNC::GCS::Events::IEvent& evento);
-			//se desapunta de escuchar un evento
-			void DesRegistrar (IEventsObserver* pObservador, const GNC::GCS::Events::IEvent& evento);
-			//se desapunta de todos los eventos a los que escucha
-			void DesRegistrar (IEventsObserver* pObservador);
-			//avisa a los observadores registrados a este evento
-			void ProcesarEvento(GNC::GCS::Events::IEvent *evt);
+protected:
+        typedef std::list<IEventsObserver* > TipoListaObservadores;
+        //codigo de evento,observador
+        typedef std::map<long , TipoListaObservadores > TipoMapaCodigos;
+        //codigo de ambito, lista de observadores
+        typedef std::map<long , TipoMapaCodigos> TipoMapaAmbito;
+        //vista, ambitos
+        typedef std::map<GNC::GCS::IVista* , TipoMapaAmbito > TipoMapaVistas;
+        //lista de eventos
+        typedef std::list<GNC::GCS::Events::IEvent> TipoListaEventos;
+        //observadores,Evtentos para desregistrarse
+        typedef std::map<IEventsObserver*, TipoListaEventos> TipoMapaEventos;
 
-			static ControladorEventos *Instance();
-			static void FreeInstance();
+public:
 
-			static ControladorEventos* m_psInstancia;
+        //se apunta a escuchar un evento
+        void Registrar ( IEventsObserver* pObservador, const GNC::GCS::Events::IEvent& evento);
+        //se desapunta de escuchar un evento
+        void DesRegistrar (IEventsObserver* pObservador, const GNC::GCS::Events::IEvent& evento);
+        //se desapunta de todos los eventos a los que escucha
+        void DesRegistrar (IEventsObserver* pObservador);
+        //avisa a los observadores registrados a este evento
+        void ProcesarEvento(GNC::GCS::Events::IEvent *evt);
 
-		protected:
+        static ControladorEventos *Instance();
+        static void FreeInstance();
 
-			ControladorEventos();
-			~ControladorEventos();
+        static ControladorEventos* m_psInstancia;
 
-			void NotificarEvento(GNC::GCS::Events::IEvent *evt, TipoListaObservadores & listaObservadores);
+protected:
 
-			//semaforo para controlar las secciones criticas
-			wxCriticalSection m_eventosCriticalSection;
+        ControladorEventos();
+        ~ControladorEventos();
 
-			//atributos donde se lleva la cuenta de observadores/eventos
-			TipoMapaVistas m_mapaVistas;
-			TipoMapaEventos m_mapaEventos;
-		};
-	}
+        void NotificarEvento(GNC::GCS::Events::IEvent *evt, TipoListaObservadores & listaObservadores);
+
+        //semaforo para controlar las secciones criticas
+        wxCriticalSection m_eventosCriticalSection;
+
+        //atributos donde se lleva la cuenta de observadores/eventos
+        TipoMapaVistas m_mapaVistas;
+        TipoMapaEventos m_mapaEventos;
+};
+}
 }

@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -25,205 +25,209 @@
 #include <api/dicom/idicom.h>
 
 class wxXmlNode;
-namespace GNC {
-	namespace GCS {
-		class StoredQuery;
-		/**
-		Defines a specific layout, is recursive to allow splitted cells
-		*/
-		class Condition {
-		public:
-			Condition();
-			Condition(const std::string& tag, const std::string& value, bool eval);
-			/**
-			deserialize from xml
-			*/
-			Condition(wxXmlNode* layoutRoot);
-			Condition(const Condition& other);
-			~Condition();
-			
-			wxXmlNode* serialize();
+namespace GNC
+{
+namespace GCS
+{
+class StoredQuery;
+/**
+Defines a specific layout, is recursive to allow splitted cells
+*/
+class Condition
+{
+public:
+        Condition();
+        Condition(const std::string& tag, const std::string& value, bool eval);
+        /**
+        deserialize from xml
+        */
+        Condition(wxXmlNode* layoutRoot);
+        Condition(const Condition& other);
+        ~Condition();
 
-		public:
-			/**
-			getters and setters
-			*/
-			std::string getTag();
-			void setTag(std::string tag);
-			std::string getValue();
-			void setValue(std::string value);
-			bool hasToEval();
-			void setEval(bool eval);
+        wxXmlNode* serialize();
 
-			//evaluate condition and insert in query
-			void addConditionToQuery(GIL::DICOM::DicomDataset& query);
+public:
+        /**
+        getters and setters
+        */
+        std::string getTag();
+        void setTag(std::string tag);
+        std::string getValue();
+        void setValue(std::string value);
+        bool hasToEval();
+        void setEval(bool eval);
 
-		protected:
-			//tag of condition
-			std::string tag;
-			//value of condition
-			std::string value;
-			//has to eval condition, i.e. "TODAY"
-			bool eval;
-		};
+        //evaluate condition and insert in query
+        void addConditionToQuery(GIL::DICOM::DicomDataset& query);
 
-		/**
-		HangingProtocol class, defines a hanging protocol
-		*/
-		class StoredQuery {
-		public:
-			typedef enum {
-				TSC_TODAY_MORNING,
-				TSC_TODAY_AFTERNOON,
-				TSC_TODAY,
-				TSC_YESTERDAY,
-				TSC_LAST_7_DAYS,
-				TSC_LAST_30_DAYS,
-				TSC_LAST_3_MONTHS
-			} TSpecialConditions;
+protected:
+        //tag of condition
+        std::string tag;
+        //value of condition
+        std::string value;
+        //has to eval condition, i.e. "TODAY"
+        bool eval;
+};
 
-			typedef std::map<std::string, GNC::GCS::Ptr<Condition> > TMapOfConditions;
-			StoredQuery();
-			/**
-			deserialize from xml
-			*/
-			StoredQuery(wxXmlNode* node);
-			StoredQuery(const StoredQuery& other);
-			~StoredQuery();
-			/**
-			serialize to XML
-			*/
-			wxXmlNode* serialize();
-			/**
-			inserts conditions into query
-			*/
-			void buildQuery(GIL::DICOM::DicomDataset& query);
+/**
+HangingProtocol class, defines a hanging protocol
+*/
+class StoredQuery
+{
+public:
+        typedef enum {
+                TSC_TODAY_MORNING,
+                TSC_TODAY_AFTERNOON,
+                TSC_TODAY,
+                TSC_YESTERDAY,
+                TSC_LAST_7_DAYS,
+                TSC_LAST_30_DAYS,
+                TSC_LAST_3_MONTHS
+        } TSpecialConditions;
 
-			/**
-			Getters and setters
-			*/
-			const std::string& getName();
-			void setName(const std::string& name);
-			const std::string& getPacsId();
-			void setPacsId(const std::string& pacsId);
-			bool isActive();
-			void setActive(bool active);
+        typedef std::map<std::string, GNC::GCS::Ptr<Condition> > TMapOfConditions;
+        StoredQuery();
+        /**
+        deserialize from xml
+        */
+        StoredQuery(wxXmlNode* node);
+        StoredQuery(const StoredQuery& other);
+        ~StoredQuery();
+        /**
+        serialize to XML
+        */
+        wxXmlNode* serialize();
+        /**
+        inserts conditions into query
+        */
+        void buildQuery(GIL::DICOM::DicomDataset& query);
 
-			void addCondition(const GNC::GCS::Ptr<Condition>& condition);
-			GNC::GCS::Ptr<Condition> getCondition(const std::string& tagValue);
-			bool hasCondition(const std::string& tagValue);
-			void clearConditions();
+        /**
+        Getters and setters
+        */
+        const std::string& getName();
+        void setName(const std::string& name);
+        const std::string& getPacsId();
+        void setPacsId(const std::string& pacsId);
+        bool isActive();
+        void setActive(bool active);
 
-			void addCondition(const std::string& tag, const std::string& value = "");
-			void addConditionIfNotExists(const std::string& tag, const std::string& value = "");
-			void addSpecialCondition(TSpecialConditions condition);
-			bool containsSpecialCondition(TSpecialConditions condition);
+        void addCondition(const GNC::GCS::Ptr<Condition>& condition);
+        GNC::GCS::Ptr<Condition> getCondition(const std::string& tagValue);
+        bool hasCondition(const std::string& tagValue);
+        void clearConditions();
 
-			//if there isn't any condition
-			bool isEmpty();
+        void addCondition(const std::string& tag, const std::string& value = "");
+        void addConditionIfNotExists(const std::string& tag, const std::string& value = "");
+        void addSpecialCondition(TSpecialConditions condition);
+        bool containsSpecialCondition(TSpecialConditions condition);
 
-		protected:
+        //if there isn't any condition
+        bool isEmpty();
 
-			/**
-			Query name
-			*/
-			std::string name;
-			/**
-			PACS id
-			*/
-			std::string pacsId;
-			/**
-			conditions of the stored query
-			*/
-			TMapOfConditions conditions;
-			/*
-			if it's active
-			*/
-			bool active;
-		};
+protected:
 
-		/**
-		Hanging protocol controller class
-		*/
-		class StoredQueryController: GNC::GCS::ILockable
-		{
-		public:
-			typedef std::list<GNC::GCS::Ptr<StoredQuery> > TStoredQueriesList;
-			/**
-			Singleton method
-			*/
-			static StoredQueryController* Instance();
+        /**
+        Query name
+        */
+        std::string name;
+        /**
+        PACS id
+        */
+        std::string pacsId;
+        /**
+        conditions of the stored query
+        */
+        TMapOfConditions conditions;
+        /*
+        if it's active
+        */
+        bool active;
+};
 
-			/**
-			Free singleton
-			*/
-			static void FreeInstance();
+/**
+Hanging protocol controller class
+*/
+class StoredQueryController: GNC::GCS::ILockable
+{
+public:
+        typedef std::list<GNC::GCS::Ptr<StoredQuery> > TStoredQueriesList;
+        /**
+        Singleton method
+        */
+        static StoredQueryController* Instance();
 
-			/**
-			stores hanging protocol list
-			*/
-			void StoreStoredQueriesConfiguration();
-			/**
-			gets a copy of storedQueries
-			*/
-			TStoredQueriesList getStoredQueries();
+        /**
+        Free singleton
+        */
+        static void FreeInstance();
 
-			/**
-			get a copy of active queries
-			*/
-			TStoredQueriesList getActiveQueries();
+        /**
+        stores hanging protocol list
+        */
+        void StoreStoredQueriesConfiguration();
+        /**
+        gets a copy of storedQueries
+        */
+        TStoredQueriesList getStoredQueries();
 
-			/**
-			get a copy of the query by id
-			*/
-			GNC::GCS::Ptr<StoredQuery> getQuery(const std::string& queryId);
+        /**
+        get a copy of active queries
+        */
+        TStoredQueriesList getActiveQueries();
 
-			/**
-			removes a query from configuration
-			*/
-			void removeQuery(const std::string& queryId);
+        /**
+        get a copy of the query by id
+        */
+        GNC::GCS::Ptr<StoredQuery> getQuery(const std::string& queryId);
 
-			/**
-			store query (overwrite existing)..
-			*/
-			void storeQuery(const GNC::GCS::Ptr<StoredQuery>& pQuery);
+        /**
+        removes a query from configuration
+        */
+        void removeQuery(const std::string& queryId);
 
-			/**
-			store query (overwrite existing)..
-			*/
-			void storeQueries(const TStoredQueriesList& queries);
-			/**
-			clear stored queries
-			*/
-			void clearQueries();
-		protected:
-			void getActiveQueries(TStoredQueriesList& list, bool onlyActive);
+        /**
+        store query (overwrite existing)..
+        */
+        void storeQuery(const GNC::GCS::Ptr<StoredQuery>& pQuery);
 
-			/**
-			Creation method
-			*/
-			StoredQueryController();
+        /**
+        store query (overwrite existing)..
+        */
+        void storeQueries(const TStoredQueriesList& queries);
+        /**
+        clear stored queries
+        */
+        void clearQueries();
+protected:
+        void getActiveQueries(TStoredQueriesList& list, bool onlyActive);
 
-			/**
-			Destruction method
-			*/
-			~StoredQueryController();
+        /**
+        Creation method
+        */
+        StoredQueryController();
 
-			/**
-			Load from configuration
-			*/
-			void LoadFromConfiguration();
+        /**
+        Destruction method
+        */
+        ~StoredQueryController();
 
-			/**
-			singleton attribute
-			*/
-			static StoredQueryController* m_pInstance;
+        /**
+        Load from configuration
+        */
+        void LoadFromConfiguration();
 
-			/**
-			protocol list
-			*/
-			typedef std::map<std::string, GNC::GCS::Ptr<StoredQuery> > TStoredQueriesMap;
-			TStoredQueriesMap mapOfQueries;
-		};
-	}
+        /**
+        singleton attribute
+        */
+        static StoredQueryController* m_pInstance;
+
+        /**
+        protocol list
+        */
+        typedef std::map<std::string, GNC::GCS::Ptr<StoredQuery> > TStoredQueriesMap;
+        TStoredQueriesMap mapOfQueries;
+};
+}
 }

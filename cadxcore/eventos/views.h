@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -23,49 +23,54 @@
 #include <api/ievento.h>
 #include "eventosginkgo.h"
 
-namespace GNC {
-	namespace GCS {
-		class IVista;
-		namespace Events {
+namespace GNC
+{
+namespace GCS
+{
+class IVista;
+namespace Events
+{
 
-			class EXTAPI EventView : public GNC::GCS::Events::IEvent
-			{		
+class EXTAPI EventView : public GNC::GCS::Events::IEvent
+{
 
-			public:
-				typedef enum {
-					Creation,
-					Initialized,
-					Destruction
-				} EventViewType;
+public:
+        typedef enum {
+                Creation,
+                Initialized,
+                Destruction
+        } EventViewType;
 
-				EventView(GNC::GCS::IVista* pView = NULL, EventViewType type = Creation) : GNC::GCS::Events::IEvent(ginkgoEVT_Core_Views, 0, 100, NULL)
-				{
-					m_Nombre = "EventView";	
-					m_pView = pView;
-					m_type = type;
-				}
+        EventView(GNC::GCS::IVista* pView = NULL, EventViewType type = Creation) : GNC::GCS::Events::IEvent(ginkgoEVT_Core_Views, 0, 100, NULL)
+        {
+                m_Nombre = "EventView";
+                m_pView = pView;
+                m_type = type;
+        }
 
-				~EventView()
-				{
-				}
+        ~EventView()
+        {
+        }
 
-				EventViewType GetType() {
-					return m_type;
-				}
+        EventViewType GetType()
+        {
+                return m_type;
+        }
 
-				GNC::GCS::IVista* GetView()
-				{
-					return m_pView;
-				}				
+        GNC::GCS::IVista* GetView()
+        {
+                return m_pView;
+        }
 
-				virtual void pushInfo(std::ostream& /*out*/) const {
-				}
+        virtual void pushInfo(std::ostream& /*out*/) const
+        {
+        }
 
-				private:
-					GNC::GCS::IVista* m_pView;
-					EventViewType m_type;
+private:
+        GNC::GCS::IVista* m_pView;
+        EventViewType m_type;
 
-			};
-		}
-	}
+};
+}
+}
 }

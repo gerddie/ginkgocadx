@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -29,22 +29,22 @@
 
 AboutDialog::AboutDialog(wxWindow* pPadre):AboutDialogBase(pPadre)
 {
-	wxString title = _("About");
-	title += wxT(" ");
-	title += wxString::FromUTF8(GNC::GCS::IEntorno::Instance()->GetApplicationName().c_str()) + wxT("...");
-	SetTitle( title);
-	m_pHeader->SetTitle(wxString::FromUTF8(GNC::GCS::IEntorno::Instance()->GetApplicationName().c_str()));
-	m_pHeader->SetSubtitle(wxString::FromUTF8(GNC::GCS::IEntorno::Instance()->GetApplicationSubTitle().c_str()));
+        wxString title = _("About");
+        title += wxT(" ");
+        title += wxString::FromUTF8(GNC::GCS::IEntorno::Instance()->GetApplicationName().c_str()) + wxT("...");
+        SetTitle( title);
+        m_pHeader->SetTitle(wxString::FromUTF8(GNC::GCS::IEntorno::Instance()->GetApplicationName().c_str()));
+        m_pHeader->SetSubtitle(wxString::FromUTF8(GNC::GCS::IEntorno::Instance()->GetApplicationSubTitle().c_str()));
 
-	std::ostringstream ostr;
-	ostr << "<html><body><h1>";
-	ostr << GNC::GCS::IEntorno::Instance()->GetApplicationName() << " " << GNC::GCS::IEntorno::Instance()->GetGinkgoVersionString() << "</h1>";
-	ostr << GNC::GCS::IEntorno::Instance()->GetApplicationCredits();
-	ostr << "</body></html>";
-	
-	m_pCredits->SetPage(wxString::FromUTF8(ostr.str().c_str()));
+        std::ostringstream ostr;
+        ostr << "<html><body><h1>";
+        ostr << GNC::GCS::IEntorno::Instance()->GetApplicationName() << " " << GNC::GCS::IEntorno::Instance()->GetGinkgoVersionString() << "</h1>";
+        ostr << GNC::GCS::IEntorno::Instance()->GetApplicationCredits();
+        ostr << "</body></html>";
 
-	Layout();
+        m_pCredits->SetPage(wxString::FromUTF8(ostr.str().c_str()));
+
+        Layout();
 }
 
 AboutDialog::~AboutDialog()
@@ -54,18 +54,18 @@ AboutDialog::~AboutDialog()
 
 void AboutDialog::OnLicenciasOpenSource(wxCommandEvent &)
 {
-	DialogoLicenciasOpenSource dlg (this);
-	dlg.ShowModal();
+        DialogoLicenciasOpenSource dlg (this);
+        dlg.ShowModal();
 }
 
 void AboutDialog::OnSize(wxSizeEvent &event)
 {
-	Layout();
-	event.Skip(true);
+        Layout();
+        event.Skip(true);
 }
 
 void AboutDialog::OnTextURL(wxHtmlLinkEvent &event)
 {
-	wxLaunchDefaultBrowser(event.GetLinkInfo().GetHref());
+        wxLaunchDefaultBrowser(event.GetLinkInfo().GetHref());
 }
 

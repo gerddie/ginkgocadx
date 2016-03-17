@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -24,122 +24,136 @@
 #include "eventosginkgo.h"
 
 class wxBitmap;
-namespace GNC {
-	namespace GCS {
-		class ITool;
-		class IToolController;
-		namespace Events {
-			class EXTAPI ToolConnectedEvent : public GNC::GCS::Events::IEvent
-			{
-			private:
-				bool connected;
-				GNC::GCS::ITool* pTool;
-				GNC::GCS::IToolController* pToolBar;
-			public:
-				ToolConnectedEvent() : GNC::GCS::Events::IEvent(ginkgoEVT_Core_ToolConnected, 0, 100, NULL)
-				{
-					connected = false;
-					pTool = NULL;
-					pToolBar = NULL;
-				}
+namespace GNC
+{
+namespace GCS
+{
+class ITool;
+class IToolController;
+namespace Events
+{
+class EXTAPI ToolConnectedEvent : public GNC::GCS::Events::IEvent
+{
+private:
+        bool connected;
+        GNC::GCS::ITool* pTool;
+        GNC::GCS::IToolController* pToolBar;
+public:
+        ToolConnectedEvent() : GNC::GCS::Events::IEvent(ginkgoEVT_Core_ToolConnected, 0, 100, NULL)
+        {
+                connected = false;
+                pTool = NULL;
+                pToolBar = NULL;
+        }
 
-				ToolConnectedEvent(bool connected, GNC::GCS::ITool* pTool, GNC::GCS::IToolController* pToolBar): GNC::GCS::Events::IEvent(ginkgoEVT_Core_ToolConnected, 0, 100, NULL){
-					this->connected = connected;
-					this->pTool = pTool;
-					this->pToolBar = pToolBar;
-				}
+        ToolConnectedEvent(bool connected, GNC::GCS::ITool* pTool, GNC::GCS::IToolController* pToolBar): GNC::GCS::Events::IEvent(ginkgoEVT_Core_ToolConnected, 0, 100, NULL)
+        {
+                this->connected = connected;
+                this->pTool = pTool;
+                this->pToolBar = pToolBar;
+        }
 
-				~ToolConnectedEvent()
-				{
-				}
-				
-				bool IsConnected() {
-					return connected;
-				}
+        ~ToolConnectedEvent()
+        {
+        }
 
-				GNC::GCS::ITool* GetTool() {
-					return pTool;
-				}
+        bool IsConnected()
+        {
+                return connected;
+        }
 
-				GNC::GCS::IToolController* GetToolBar() {
-					return pToolBar;
-				}
-			};
+        GNC::GCS::ITool* GetTool()
+        {
+                return pTool;
+        }
 
-			class EXTAPI ToolEnabledEvent : public GNC::GCS::Events::IEvent
-			{
-			private:
-				bool enabled;
-				GNC::GCS::ITool* pTool;
-				GNC::GCS::IToolController* pToolBar;
-			public:
-				ToolEnabledEvent() : GNC::GCS::Events::IEvent(ginkgoEVT_Core_ToolEnabled, 0, 100, NULL)
-				{
-					enabled = false;
-					pTool = NULL;
-					pToolBar = NULL;
-				}
+        GNC::GCS::IToolController* GetToolBar()
+        {
+                return pToolBar;
+        }
+};
 
-				ToolEnabledEvent(bool enabled, GNC::GCS::ITool* pTool, GNC::GCS::IToolController* pToolBar): GNC::GCS::Events::IEvent(ginkgoEVT_Core_ToolEnabled, 0, 100, NULL){
-					this->enabled = enabled;
-					this->pTool = pTool;
-					this->pToolBar = pToolBar;
-				}
+class EXTAPI ToolEnabledEvent : public GNC::GCS::Events::IEvent
+{
+private:
+        bool enabled;
+        GNC::GCS::ITool* pTool;
+        GNC::GCS::IToolController* pToolBar;
+public:
+        ToolEnabledEvent() : GNC::GCS::Events::IEvent(ginkgoEVT_Core_ToolEnabled, 0, 100, NULL)
+        {
+                enabled = false;
+                pTool = NULL;
+                pToolBar = NULL;
+        }
 
-				~ToolEnabledEvent()
-				{
-				}
-				
-				bool IsEnabled() {
-					return enabled;
-				}
+        ToolEnabledEvent(bool enabled, GNC::GCS::ITool* pTool, GNC::GCS::IToolController* pToolBar): GNC::GCS::Events::IEvent(ginkgoEVT_Core_ToolEnabled, 0, 100, NULL)
+        {
+                this->enabled = enabled;
+                this->pTool = pTool;
+                this->pToolBar = pToolBar;
+        }
 
-				GNC::GCS::ITool* GetTool() {
-					return pTool;
-				}
+        ~ToolEnabledEvent()
+        {
+        }
 
-				GNC::GCS::IToolController* GetToolBar() {
-					return pToolBar;
-				}
-			};
+        bool IsEnabled()
+        {
+                return enabled;
+        }
 
-			class EXTAPI ChangeToolIconEvent : public GNC::GCS::Events::IEvent
-			{
-			private:
-				const wxBitmap* pBitmap;
-				GNC::GCS::ITool* pTool;
-				GNC::GCS::IToolController* pToolBar;
-			public:
-				ChangeToolIconEvent() : GNC::GCS::Events::IEvent(ginkgoEVT_Core_ToolIconChanged, 0, 100, NULL)
-				{
-					pBitmap = NULL;
-					pTool = NULL;
-					pToolBar = NULL;
-				}
+        GNC::GCS::ITool* GetTool()
+        {
+                return pTool;
+        }
 
-				ChangeToolIconEvent(const wxBitmap* bmp, GNC::GCS::ITool* pTool, GNC::GCS::IToolController* pToolBar): GNC::GCS::Events::IEvent(ginkgoEVT_Core_ToolIconChanged, 0, 100, NULL),pBitmap(bmp)
-				{
-					this->pTool = pTool;
-					this->pToolBar = pToolBar;
-				}
+        GNC::GCS::IToolController* GetToolBar()
+        {
+                return pToolBar;
+        }
+};
 
-				~ChangeToolIconEvent()
-				{
-				}
-				
-				const wxBitmap* GetBitmap() {
-					return pBitmap;
-				}
+class EXTAPI ChangeToolIconEvent : public GNC::GCS::Events::IEvent
+{
+private:
+        const wxBitmap* pBitmap;
+        GNC::GCS::ITool* pTool;
+        GNC::GCS::IToolController* pToolBar;
+public:
+        ChangeToolIconEvent() : GNC::GCS::Events::IEvent(ginkgoEVT_Core_ToolIconChanged, 0, 100, NULL)
+        {
+                pBitmap = NULL;
+                pTool = NULL;
+                pToolBar = NULL;
+        }
 
-				GNC::GCS::ITool* GetTool() {
-					return pTool;
-				}
+        ChangeToolIconEvent(const wxBitmap* bmp, GNC::GCS::ITool* pTool, GNC::GCS::IToolController* pToolBar): GNC::GCS::Events::IEvent(ginkgoEVT_Core_ToolIconChanged, 0, 100, NULL),pBitmap(bmp)
+        {
+                this->pTool = pTool;
+                this->pToolBar = pToolBar;
+        }
 
-				GNC::GCS::IToolController* GetToolBar() {
-					return pToolBar;
-				}
-			};
+        ~ChangeToolIconEvent()
+        {
+        }
 
-		}
-	}
+        const wxBitmap* GetBitmap()
+        {
+                return pBitmap;
+        }
+
+        GNC::GCS::ITool* GetTool()
+        {
+                return pTool;
+        }
+
+        GNC::GCS::IToolController* GetToolBar()
+        {
+                return pToolBar;
+        }
+};
+
+}
+}
 }

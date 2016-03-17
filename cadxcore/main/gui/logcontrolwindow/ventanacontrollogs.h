@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -26,46 +26,54 @@
 #include "ventanacontrollogsbase.h"
 
 
-namespace GNC {
-	namespace GUI {
+namespace GNC
+{
+namespace GUI
+{
 
-		class VentanaControlLogs : public VentanaControlLogsBase, public GNC::GCS::Logging::ILogger
-		{
-		public:
-			//singleton
-			static VentanaControlLogs* Instance();
-			static void CerrarSiAbierta();
-			void Refrescar();
+class VentanaControlLogs : public VentanaControlLogsBase, public GNC::GCS::Logging::ILogger
+{
+public:
+        //singleton
+        static VentanaControlLogs* Instance();
+        static void CerrarSiAbierta();
+        void Refrescar();
 
-			//region Interfaz ILogger
-			virtual void Append(const GNC::GCS::Logging::LogEvent& le);
+        //region Interfaz ILogger
+        virtual void Append(const GNC::GCS::Logging::LogEvent& le);
 
-			//endregion
+        //endregion
 
-		protected:
-			static VentanaControlLogs*  m_pInstance;
-			GNC::GCS::IControladorLog::MapaLogLevels m_MapaLogLevels;
-			bool m_needRefresh;
+protected:
+        static VentanaControlLogs*  m_pInstance;
+        GNC::GCS::IControladorLog::MapaLogLevels m_MapaLogLevels;
+        bool m_needRefresh;
 
-			VentanaControlLogs();
-			~VentanaControlLogs();
+        VentanaControlLogs();
+        ~VentanaControlLogs();
 
-			virtual void OnClose(wxCloseEvent& event);
+        virtual void OnClose(wxCloseEvent& event);
 
-			virtual void OnInternalIdle();
+        virtual void OnInternalIdle();
 
-			virtual void OnLimpiarClick( wxCommandEvent& /*event*/ ) { LimpiarRegistros(); }
-			virtual void OnLimpiarRegistros( wxCommandEvent& /*event*/ ) { LimpiarRegistros(); }
+        virtual void OnLimpiarClick( wxCommandEvent& /*event*/ )
+        {
+                LimpiarRegistros();
+        }
+        virtual void OnLimpiarRegistros( wxCommandEvent& /*event*/ )
+        {
+                LimpiarRegistros();
+        }
 
-			virtual void OnGuardarRegistros( wxCommandEvent& event );
-			virtual void OnNivelChoice( wxCommandEvent& event );
+        virtual void OnGuardarRegistros( wxCommandEvent& event );
+        virtual void OnNivelChoice( wxCommandEvent& event );
 
-			virtual void OnSalirClick( wxCommandEvent& event );
-			virtual void OnKeyDown( wxKeyEvent& event );
-			void LimpiarRegistros();
+        virtual void OnSalirClick( wxCommandEvent& event );
+        virtual void OnKeyDown( wxKeyEvent& event );
+        void LimpiarRegistros();
 
-			wxArrayString pendingLines;
+        wxArrayString pendingLines;
 
-		};
-	}
+};
+}
 }

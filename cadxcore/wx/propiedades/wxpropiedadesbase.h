@@ -31,40 +31,46 @@
 
 namespace GNC
 {
-	namespace GUI
-	{
-		
-		///////////////////////////////////////////////////////////////////////////////
-		/// Class wxPropiedadesBase
-		///////////////////////////////////////////////////////////////////////////////
-		class wxPropiedadesBase : public wxDialog 
-		{
-			private:
-			
-			protected:
-				wxNotebook* m_pNotebook;
-				wxScrolledWindow* m_pGeneral;
-				wxBoxSizer* m_pSizerGeneral;
-				wxStaticBitmap* m_pIcono;
-				wxStaticText* m_pNombreWidget;
-				wxPanel* m_pPanelBotones;
-				
-				
-				wxButton* m_pBCerrar;
-				
-				// Virtual event handlers, overide them in your derived class
-				virtual void OnClose( wxCloseEvent& event ) { event.Skip(); }
-				virtual void OnSize( wxSizeEvent& event ) { event.Skip(); }
-				
-			
-			public:
-				
-				wxPropiedadesBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Properties of ..."), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 385,441 ), long style = wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER );
-				~wxPropiedadesBase();
-			
-		};
-		
-	} // namespace GUI
+namespace GUI
+{
+
+///////////////////////////////////////////////////////////////////////////////
+/// Class wxPropiedadesBase
+///////////////////////////////////////////////////////////////////////////////
+class wxPropiedadesBase : public wxDialog
+{
+private:
+
+protected:
+        wxNotebook* m_pNotebook;
+        wxScrolledWindow* m_pGeneral;
+        wxBoxSizer* m_pSizerGeneral;
+        wxStaticBitmap* m_pIcono;
+        wxStaticText* m_pNombreWidget;
+        wxPanel* m_pPanelBotones;
+
+
+        wxButton* m_pBCerrar;
+
+        // Virtual event handlers, overide them in your derived class
+        virtual void OnClose( wxCloseEvent& event )
+        {
+                event.Skip();
+        }
+        virtual void OnSize( wxSizeEvent& event )
+        {
+                event.Skip();
+        }
+
+
+public:
+
+        wxPropiedadesBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Properties of ..."), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 385,441 ), long style = wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER );
+        ~wxPropiedadesBase();
+
+};
+
+} // namespace GUI
 } // namespace GNC
 
 #endif //__wxpropiedadesbase__

@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -29,22 +29,20 @@ static char THIS_FILE[] = __FILE__;
 
 int main()
 {
-    Endpoint ep(TCP | CLIENT, "[127.0.0.1]:6667");
-    string str;
+        Endpoint ep(TCP | CLIENT, "[127.0.0.1]:6667");
+        string str;
 
-    ep.Write("NICK jeff2\015\012");
-    ep.Write("USER blah blah blah :blahs\015\012");
+        ep.Write("NICK jeff2\015\012");
+        ep.Write("USER blah blah blah :blahs\015\012");
 
-    while(ep.Read(-200, str)) 
-    {
-        std::cout << str;
-        if (str.find("376") != string::npos)    // End of /MOTD
-        {
-            ep.Write("MODE jeff2 +ix\015\012");
-            ep.Write("PRIVMSG jeff :hello world\015\012");
+        while(ep.Read(-200, str)) {
+                std::cout << str;
+                if (str.find("376") != string::npos) {  // End of /MOTD
+                        ep.Write("MODE jeff2 +ix\015\012");
+                        ep.Write("PRIVMSG jeff :hello world\015\012");
+                }
+                str = "";
         }
-        str = "";
-    }
 
-    return 0;
+        return 0;
 }

@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -36,7 +36,7 @@
 
 GNC::GCS::ITool* GNC::StartDicomizationTool::NewTool()
 {
-	return new GNC::StartDicomizationTool();
+        return new GNC::StartDicomizationTool();
 }
 
 GNC::StartDicomizationTool::StartDicomizationTool()
@@ -45,30 +45,29 @@ GNC::StartDicomizationTool::StartDicomizationTool()
 GNC::StartDicomizationTool::~StartDicomizationTool()
 {
 }
-		
-bool GNC::StartDicomizationTool::ExecuteAction()
-{	
-	try{
-		GNC::GUI::wxWizardImportacionGinkgo ib(GNC::HistoryToolsController::Instance()->GetHistoryPanel()->GetWxWindow(),NULL);
 
-		ib.ShowModal();
-	}
-	catch(GIL::DICOM::I2DException& i){
-		LOG_ERROR("DicomizeTool", "Error in dicomization: " << i.GetCause())
-	}
-	
-	return true;
+bool GNC::StartDicomizationTool::ExecuteAction()
+{
+        try {
+                GNC::GUI::wxWizardImportacionGinkgo ib(GNC::HistoryToolsController::Instance()->GetHistoryPanel()->GetWxWindow(),NULL);
+
+                ib.ShowModal();
+        } catch(GIL::DICOM::I2DException& i) {
+                LOG_ERROR("DicomizeTool", "Error in dicomization: " << i.GetCause())
+        }
+
+        return true;
 }
 
 void GNC::StartDicomizationTool::AppendToolIn(wxEvtHandler* pParent, wxMenu* pMenu)
 {
-	if (AppendsInMenu()) {
-		GNC::GUI::wxDefaultEvtHandlerTool* evtHandler = new GNC::GUI::wxDefaultEvtHandlerTool(pParent, this);
-		pMenu->Append(new GNC::GUI::wxMenuItemTool(pMenu, ID, wxString::FromUTF8(Name.c_str()),Icon, evtHandler));
-	}
+        if (AppendsInMenu()) {
+                GNC::GUI::wxDefaultEvtHandlerTool* evtHandler = new GNC::GUI::wxDefaultEvtHandlerTool(pParent, this);
+                pMenu->Append(new GNC::GUI::wxMenuItemTool(pMenu, ID, wxString::FromUTF8(Name.c_str()),Icon, evtHandler));
+        }
 }
 
 bool GNC::StartDicomizationTool::IsShown()
 {
-	return GNC::GUI::HistoryPanel3::Instance()->IsShown();
+        return GNC::GUI::HistoryPanel3::Instance()->IsShown();
 }

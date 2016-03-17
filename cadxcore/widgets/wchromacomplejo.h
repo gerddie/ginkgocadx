@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -26,119 +26,126 @@
 
 class vtkImageData;
 
-namespace GNC {
-	namespace GCS {
-		namespace Widgets {
+namespace GNC
+{
+namespace GCS
+{
+namespace Widgets
+{
 
-			//---------------------------------------------------------------------
-			class EXTAPI WChromaComplejoBuilder : public GNC::GCS::Widgets::IWidgetBuilder, public GNC::GCS::Widgets::Notificadores::INotificadorChromaComplejo {
-			public:
-				typedef std::list<GNC::GCS::Nodo> TListaNodos;
-				WChromaComplejoBuilder(GNC::GCS::IWidgetsManager* pManager, const GNC::GCS::TriggerButton& buttonMask, long gid, int numeroPuntos, GNC::GCS::Widgets::Observadores::IObservadorChromaComplejo* pObservador = NULL);
+//---------------------------------------------------------------------
+class EXTAPI WChromaComplejoBuilder : public GNC::GCS::Widgets::IWidgetBuilder, public GNC::GCS::Widgets::Notificadores::INotificadorChromaComplejo
+{
+public:
+        typedef std::list<GNC::GCS::Nodo> TListaNodos;
+        WChromaComplejoBuilder(GNC::GCS::IWidgetsManager* pManager, const GNC::GCS::TriggerButton& buttonMask, long gid, int numeroPuntos, GNC::GCS::Widgets::Observadores::IObservadorChromaComplejo* pObservador = NULL);
 
-				~WChromaComplejoBuilder();
+        ~WChromaComplejoBuilder();
 
-				void SetNumeroPuntos(int numeroPuntos);
+        void SetNumeroPuntos(int numeroPuntos);
 
-				virtual void OnMouseEvents(GNC::GCS::Events::EventoRaton&);
+        virtual void OnMouseEvents(GNC::GCS::Events::EventoRaton&);
 
-				virtual void OnKeyEvents(GNC::GCS::Events::EventoTeclado&);
+        virtual void OnKeyEvents(GNC::GCS::Events::EventoTeclado&);
 
-				void DibujarVarita(GNC::GCS::Contexto3D* c);
+        void DibujarVarita(GNC::GCS::Contexto3D* c);
 
-				virtual void Render(GNC::GCS::Contexto3D* c);
+        virtual void Render(GNC::GCS::Contexto3D* c);
 
-				virtual GNC::GCS::Widgets::TipoCursor GetCursor();
-
-
-			protected:
-				int                         m_NumMaxSemillas;
-				GNC::GCS::Vector m_VerticesSeleccion[2];
-				TListaNodos   m_ListaNodos;
-				GNC::GCS::Vector m_PosCursor;
-				bool                      m_MouseDown;
-				Estado                   m_Estado;
-				int m_numeroPuntos;
-			};
-
-			//---------------------------------------------------------------------
-
-			class EXTAPI WChromaComplejo : public GNC::GCS::Widgets::IWidget {
+        virtual GNC::GCS::Widgets::TipoCursor GetCursor();
 
 
-			//region "Constructor y destructor"
+protected:
+        int                         m_NumMaxSemillas;
+        GNC::GCS::Vector m_VerticesSeleccion[2];
+        TListaNodos   m_ListaNodos;
+        GNC::GCS::Vector m_PosCursor;
+        bool                      m_MouseDown;
+        Estado                   m_Estado;
+        int m_numeroPuntos;
+};
 
-			public:
-				typedef std::list<GNC::GCS::Nodo> TListaNodos;
-				WChromaComplejo(IWidgetsManager* pManager, long vid, TListaNodos listaNodos, int numeroPuntos, bool isAgregar, const char* nombre, long gid, bool oculto = false);
+//---------------------------------------------------------------------
 
-				~WChromaComplejo();
+class EXTAPI WChromaComplejo : public GNC::GCS::Widgets::IWidget
+{
 
-				//endregion
 
-				//region "Interfaz especifica"
+        //region "Constructor y destructor"
 
-				virtual void OnMouseEvents(GNC::GCS::Events::EventoRaton&);
+public:
+        typedef std::list<GNC::GCS::Nodo> TListaNodos;
+        WChromaComplejo(IWidgetsManager* pManager, long vid, TListaNodos listaNodos, int numeroPuntos, bool isAgregar, const char* nombre, long gid, bool oculto = false);
 
-				virtual void OnKeyEvents(GNC::GCS::Events::EventoTeclado&);
+        ~WChromaComplejo();
 
-				virtual bool HitTest(float x, float y, const GNC::GCS::Vector& umbral);
+        //endregion
 
-				virtual bool HitTest(GNC::GCS::Vector* vertices, int numVertices);
+        //region "Interfaz especifica"
 
-				virtual void Render(GNC::GCS::Contexto3D* c);
+        virtual void OnMouseEvents(GNC::GCS::Events::EventoRaton&);
 
-				virtual bool SoportaAutoBorrado() const {
-					return false;
-				}
+        virtual void OnKeyEvents(GNC::GCS::Events::EventoTeclado&);
 
-				virtual bool EsMarcador() const
-				{
-					return false;
-				}
+        virtual bool HitTest(float x, float y, const GNC::GCS::Vector& umbral);
 
-				virtual bool DelimitaArea() const
-				{
-					return false;
-				}
-				//endregion
+        virtual bool HitTest(GNC::GCS::Vector* vertices, int numVertices);
 
-				virtual TListaNodos GetListaNodos();
+        virtual void Render(GNC::GCS::Contexto3D* c);
 
-				void SetNumeroPuntos(int numeroPuntos);
+        virtual bool SoportaAutoBorrado() const
+        {
+                return false;
+        }
 
-				bool EsAgregar()
-				{
-					return m_isAgregar;
-				}
+        virtual bool EsMarcador() const
+        {
+                return false;
+        }
 
-				//region "Estado interno"
-			private:
-				bool            m_MouseDown;
-				//endregion
+        virtual bool DelimitaArea() const
+        {
+                return false;
+        }
+        //endregion
 
-				//region "Propiedades geometricas"
-			private:
-				TListaNodos m_ListaNodos;
-				int m_numeroPuntos;
-				bool m_isAgregar;
+        virtual TListaNodos GetListaNodos();
 
-			public:
-				friend std::ostream& operator<<(std::ostream& out, const WChromaComplejo& w) {
-					out << ", GID=" << w.m_GID << ", TID=" << w.m_TID << " UID=" << w.m_UID << " ]";
-					return out;
-				}
+        void SetNumeroPuntos(int numeroPuntos);
 
-				friend std::ostream& operator<<(std::ostream& out, const WChromaComplejo* w) {
-					if (w == NULL) {
-						out << "[ NULL ]";
-					}
-					else {
-						out << *w;
-					}
-					return out;
-				}
-			};
-		}
-	}
+        bool EsAgregar()
+        {
+                return m_isAgregar;
+        }
+
+        //region "Estado interno"
+private:
+        bool            m_MouseDown;
+        //endregion
+
+        //region "Propiedades geometricas"
+private:
+        TListaNodos m_ListaNodos;
+        int m_numeroPuntos;
+        bool m_isAgregar;
+
+public:
+        friend std::ostream& operator<<(std::ostream& out, const WChromaComplejo& w)
+        {
+                out << ", GID=" << w.m_GID << ", TID=" << w.m_TID << " UID=" << w.m_UID << " ]";
+                return out;
+        }
+
+        friend std::ostream& operator<<(std::ostream& out, const WChromaComplejo* w)
+        {
+                if (w == NULL) {
+                        out << "[ NULL ]";
+                } else {
+                        out << *w;
+                }
+                return out;
+        }
+};
+}
+}
 }

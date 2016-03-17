@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -21,24 +21,27 @@
 #pragma once
 #include <wx/control.h>
 #include <wx/sizer.h>
-namespace GNKVisualizator{
-	namespace GUI{
-		class ContenedorHerramientas : public wxControl { // public wxScrolledWindow {
-		public:
-			ContenedorHerramientas(wxWindow* pPadre);
-			virtual ~ContenedorHerramientas();
-			
-			void InsertarPanel(wxWindow* child);
-			void EliminarPanel(wxWindow* child);
-			void ActualizarVirtualSize();
-			
-		protected:
-			
-		private:
+namespace GNKVisualizator
+{
+namespace GUI
+{
+class ContenedorHerramientas : public wxControl   // public wxScrolledWindow {
+{
+public:
+        ContenedorHerramientas(wxWindow* pPadre);
+        virtual ~ContenedorHerramientas();
 
-			void OnSize(wxSizeEvent& event);
+        void InsertarPanel(wxWindow* child);
+        void EliminarPanel(wxWindow* child);
+        void ActualizarVirtualSize();
 
-			wxBoxSizer* m_pSizer;
-		};
-	}
+protected:
+
+private:
+
+        void OnSize(wxSizeEvent& event);
+
+        wxBoxSizer* m_pSizer;
+};
+}
 }

@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -24,20 +24,22 @@
 #include <map>
 
 
-namespace GNC {
+namespace GNC
+{
 
-	class EXTAPI PACSUploadTool : public GNC::GCS::IPACSUploadTool {
+class EXTAPI PACSUploadTool : public GNC::GCS::IPACSUploadTool
+{
 
-	protected:
+protected:
 
-	public:
-		virtual GNC::GCS::ITool* NewTool();
-		PACSUploadTool();
-		~PACSUploadTool();
-		virtual bool ExecuteAction();
-		virtual void AppendToolIn(wxEvtHandler* pParent, wxMenu* pMenu);
+public:
+        virtual GNC::GCS::ITool* NewTool();
+        PACSUploadTool();
+        ~PACSUploadTool();
+        virtual bool ExecuteAction();
+        virtual void AppendToolIn(wxEvtHandler* pParent, wxMenu* pMenu);
 
-	protected:
+protected:
 
-	};
+};
 }

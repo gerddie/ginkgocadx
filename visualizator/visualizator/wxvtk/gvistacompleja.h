@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -39,15 +39,18 @@
 
 #include <vtkCommand.h>
 
-namespace GNKVisualizator{
-	class VisualizatorStudy;
-	class Vista2D;
-	class SimpleViewExportDelegate;
+namespace GNKVisualizator
+{
+class VisualizatorStudy;
+class Vista2D;
+class SimpleViewExportDelegate;
 }
-namespace GNC {
-	namespace GCS {
-		class Layout;
-	}
+namespace GNC
+{
+namespace GCS
+{
+class Layout;
+}
 }
 
 class GVistaSimple;
@@ -64,112 +67,117 @@ class GVistaComplejaPixelsBluringDelegate;
 class GVistaComplejaAnnotatorDelegate;
 
 namespace GNKVisualizator
-{	
-	class SimpleViewExportDelegate;
-	namespace GUI {
-		class PreviewPanelVisualizator;
-		class wxDropTargetPreviewPanelVisualizator;
-	}	
+{
+class SimpleViewExportDelegate;
+namespace GUI
+{
+class PreviewPanelVisualizator;
+class wxDropTargetPreviewPanelVisualizator;
+}
 }
 
-class GVistaCompleja: public VistaComplejaBase, public GNC::GCS::IEventsObserver {
-	friend class GVistaComplejaDelegate;
-	friend class GVistaComplejaOverlaysDelegate;
-	friend class GVistaComplejaWindowLayoutDelegate;
-	friend class GNKVisualizator::GUI::wxDropTargetPreviewPanelVisualizator;
-	friend class GVistaComplejaPixelsBluringDelegate;
-	friend class GVistaComplejaAnnotatorDelegate;
+class GVistaCompleja: public VistaComplejaBase, public GNC::GCS::IEventsObserver
+{
+        friend class GVistaComplejaDelegate;
+        friend class GVistaComplejaOverlaysDelegate;
+        friend class GVistaComplejaWindowLayoutDelegate;
+        friend class GNKVisualizator::GUI::wxDropTargetPreviewPanelVisualizator;
+        friend class GVistaComplejaPixelsBluringDelegate;
+        friend class GVistaComplejaAnnotatorDelegate;
 public:
 
-   /* Constructor */
-	GVistaCompleja( GNKVisualizator::Vista2D* pIVista);
-   /* Destructor */
-	~GVistaCompleja();
+        /* Constructor */
+        GVistaCompleja( GNKVisualizator::Vista2D* pIVista);
+        /* Destructor */
+        ~GVistaCompleja();
 
-	virtual void OnEraseBackground( wxEraseEvent& event ) { event.Skip(false); }
+        virtual void OnEraseBackground( wxEraseEvent& event )
+        {
+                event.Skip(false);
+        }
 
-	void AddVistaSimple();
+        void AddVistaSimple();
 
-	void LoadSeries(long seriesPk);
+        void LoadSeries(long seriesPk);
 
-	void IniciarPipeline(const GNC::GCS::Ptr<GNC::GCS::Layout>& layout = NULL);
+        void IniciarPipeline(const GNC::GCS::Ptr<GNC::GCS::Layout>& layout = NULL);
 
-	void DetenerPipeline();
+        void DetenerPipeline();
 
-	virtual void OnCargaFinalizada();
+        virtual void OnCargaFinalizada();
 
-	void SetOverlays(GNC::GCS::Ptr<GNKVisualizator::TListaOverlays>& pListaOverlays);
+        void SetOverlays(GNC::GCS::Ptr<GNKVisualizator::TListaOverlays>& pListaOverlays);
 
-	bool GetManipulacionEnabled()
-	{
-		return m_pPanelManipulacion->IsEnabled();
-	}
+        bool GetManipulacionEnabled()
+        {
+                return m_pPanelManipulacion->IsEnabled();
+        }
 
-   //region "Eventos"
-	virtual void OnPaint(wxPaintEvent& evt);
+        //region "Eventos"
+        virtual void OnPaint(wxPaintEvent& evt);
 
-	void OnMenuVerClick(wxCommandEvent& event);
-	void OnInvertColorMap(wxCommandEvent &event);
+        void OnMenuVerClick(wxCommandEvent& event);
+        void OnInvertColorMap(wxCommandEvent &event);
 
-	void ActualizarMaxMinSlider();
+        void ActualizarMaxMinSlider();
 
-	void OnFocus(wxChildFocusEvent &event);
-	
-	void OnSize(wxSizeEvent &event);
+        void OnFocus(wxChildFocusEvent &event);
 
-	void OnZSliderScroll (wxScrollEvent& event);
+        void OnSize(wxSizeEvent &event);
 
-	void OnChar( wxKeyEvent& event );
+        void OnZSliderScroll (wxScrollEvent& event);
 
-	void OnMouseWheel( wxMouseEvent& event );
+        void OnChar( wxKeyEvent& event );
 
-	void OnSincronizarClick(wxCommandEvent &event);
+        void OnMouseWheel( wxMouseEvent& event );
 
-	void Sincronizar(bool sincronizar);
+        void OnSincronizarClick(wxCommandEvent &event);
 
-	void GoToSlice(int posicion, bool relativa =  true, bool propagar = true, bool render= true);
-	int GetCurrentSlice() const;
+        void Sincronizar(bool sincronizar);
 
-	virtual void PreProcesarEvento(GNC::GCS::Events::IEvent*, std::list<GNC::GCS::Events::IEvent*>& );
+        void GoToSlice(int posicion, bool relativa =  true, bool propagar = true, bool render= true);
+        int GetCurrentSlice() const;
 
-	void ProcesarEvento(GNC::GCS::Events::IEvent *evt) ;
+        virtual void PreProcesarEvento(GNC::GCS::Events::IEvent*, std::list<GNC::GCS::Events::IEvent*>& );
 
-	typedef std::vector<GNKVisualizator::Vista2D*> TipoListaVista2D;
-	void Sincronizar(const TipoListaVista2D& lista);
-	void DesSincronizar();
-	bool EsSincronizable();
+        void ProcesarEvento(GNC::GCS::Events::IEvent *evt) ;
 
-	//endregion
+        typedef std::vector<GNKVisualizator::Vista2D*> TipoListaVista2D;
+        void Sincronizar(const TipoListaVista2D& lista);
+        void DesSincronizar();
+        bool EsSincronizable();
 
-	
-	// Asigna los valores de los apuntadores a la la imagen y el slice actual
-	void AsignarConexionesDeFiltrado(vtkImageData** pImagen, int* slice, vtkImageData** pChroma);
-	void ActualizarImagen();
+        //endregion
 
-	GNC::GCS::IVista* GetView();
+
+        // Asigna los valores de los apuntadores a la la imagen y el slice actual
+        void AsignarConexionesDeFiltrado(vtkImageData** pImagen, int* slice, vtkImageData** pChroma);
+        void ActualizarImagen();
+
+        GNC::GCS::IVista* GetView();
 protected:
-	GNKVisualizator::Vista2D*            IVista;
-	BarraHerramientasBotones*            m_pBarraIzquierda;
-	BarraHerramientasBotones*            m_pBarraDerecha;
+        GNKVisualizator::Vista2D*            IVista;
+        BarraHerramientasBotones*            m_pBarraIzquierda;
+        BarraHerramientasBotones*            m_pBarraDerecha;
 
-	int                                  m_orientacion;
-	TipoListaVista2D                     m_ListaSincronizacion;
-	int m_posicion;
-	typedef std::vector<GVistaSimple*>   TListaGVistasSimples;
-	TListaGVistasSimples                 m_VistasSimples;
-	///widgets
-	//TipoFicherosGNKVisualizator*              m_pFicherosAprimaria;
-	
+        int                                  m_orientacion;
+        TipoListaVista2D                     m_ListaSincronizacion;
+        int m_posicion;
+        typedef std::vector<GVistaSimple*>   TListaGVistasSimples;
+        TListaGVistasSimples                 m_VistasSimples;
+        ///widgets
+        //TipoFicherosGNKVisualizator*              m_pFicherosAprimaria;
 
-	//si se ha pintado
-	bool                                 m_hasBeenRendered;
-	GNC::GCS::IWidgetsManager*				 m_pManager;
-	GNC::GCS::Ptr<GVistaComplejaDelegate> Delegate;
-	GNC::GCS::Ptr<GVistaComplejaOverlaysDelegate> OverlaysDelegate;
-	GNC::GCS::Ptr<GVistaComplejaWindowLayoutDelegate> WindowLayoutDelegate;
-	GNC::GCS::Ptr<GVistaComplejaPixelsBluringDelegate> PixelsBluringDelegate;
-	GNC::GCS::Ptr<GVistaComplejaAnnotatorDelegate> AnnotatorDelegate;
-	GNKVisualizator::GUI::PreviewPanelVisualizator*   m_pPanelPreview;
 
-	friend class GNKVisualizator::Vista2D;
+        //si se ha pintado
+        bool                                 m_hasBeenRendered;
+        GNC::GCS::IWidgetsManager*				 m_pManager;
+        GNC::GCS::Ptr<GVistaComplejaDelegate> Delegate;
+        GNC::GCS::Ptr<GVistaComplejaOverlaysDelegate> OverlaysDelegate;
+        GNC::GCS::Ptr<GVistaComplejaWindowLayoutDelegate> WindowLayoutDelegate;
+        GNC::GCS::Ptr<GVistaComplejaPixelsBluringDelegate> PixelsBluringDelegate;
+        GNC::GCS::Ptr<GVistaComplejaAnnotatorDelegate> AnnotatorDelegate;
+        GNKVisualizator::GUI::PreviewPanelVisualizator*   m_pPanelPreview;
+
+        friend class GNKVisualizator::Vista2D;
 };

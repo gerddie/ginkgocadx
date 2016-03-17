@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -28,227 +28,237 @@
 //----------------------------------------------------------------------------------------------------
 //region "Forward Declarations"
 class vtkImageData;
-namespace GNC {
-	namespace GCS {
-		namespace Widgets {
-			
-			typedef std::list<GNC::GCS::Nodo> VerticesPoligono;
-			
-			class WMarcadoArea;
-		}
-	}
+namespace GNC
+{
+namespace GCS
+{
+namespace Widgets
+{
+
+typedef std::list<GNC::GCS::Nodo> VerticesPoligono;
+
+class WMarcadoArea;
+}
+}
 }
 //endregion
 
 
-namespace GNC {
-	namespace GCS {
-		namespace Widgets {
+namespace GNC
+{
+namespace GCS
+{
+namespace Widgets
+{
 
-			//====================================================================================================
-			//= Builder de marcado
-			//====================================================================================================
+//====================================================================================================
+//= Builder de marcado
+//====================================================================================================
 
-			class EXTAPI WMarcadoAreaBuilder : public GNC::GCS::Widgets::IWidgetBuilder, public GNC::GCS::Widgets::Notificadores::INotificadorMarcadoArea {
-			
-			public:
-				typedef enum ModoMarcado {
-					MP_Lazo,      // Poligono volatil. Existencia maxima: 1.
-					MP_Normal   // Poligono persistente. Existencia maxima: Inf.
-				} ModoMarcado;
+class EXTAPI WMarcadoAreaBuilder : public GNC::GCS::Widgets::IWidgetBuilder, public GNC::GCS::Widgets::Notificadores::INotificadorMarcadoArea
+{
 
-				WMarcadoAreaBuilder(ModoMarcado modo, vtkImageData* pImageData, GNC::GCS::IWidgetsManager* pManager, const GNC::GCS::TriggerButton& buttonMask, long gid, GNC::GCS::Widgets::Observadores::IObservadorMarcadoArea* pObservador = NULL);
+public:
+        typedef enum ModoMarcado {
+                MP_Lazo,      // Poligono volatil. Existencia maxima: 1.
+                MP_Normal   // Poligono persistente. Existencia maxima: Inf.
+        } ModoMarcado;
 
-				~WMarcadoAreaBuilder();
+        WMarcadoAreaBuilder(ModoMarcado modo, vtkImageData* pImageData, GNC::GCS::IWidgetsManager* pManager, const GNC::GCS::TriggerButton& buttonMask, long gid, GNC::GCS::Widgets::Observadores::IObservadorMarcadoArea* pObservador = NULL);
 
-				void EliminarWidget(bool notificar = false);
+        ~WMarcadoAreaBuilder();
 
-				void SetRadioNodo(float radio)
-				{
-					m_RadioNodo = radio;
-					m_DistanciaMinimaCuadrado = radio * 2;
-					m_DistanciaMinimaCuadrado *= m_DistanciaMinimaCuadrado;
+        void EliminarWidget(bool notificar = false);
 
-				}
+        void SetRadioNodo(float radio)
+        {
+                m_RadioNodo = radio;
+                m_DistanciaMinimaCuadrado = radio * 2;
+                m_DistanciaMinimaCuadrado *= m_DistanciaMinimaCuadrado;
 
-				virtual void OnMouseEvents(GNC::GCS::Events::EventoRaton&);
+        }
 
-				virtual void OnKeyEvents(GNC::GCS::Events::EventoTeclado&);
+        virtual void OnMouseEvents(GNC::GCS::Events::EventoRaton&);
 
-				virtual void Render(GNC::GCS::Contexto3D* c);
+        virtual void OnKeyEvents(GNC::GCS::Events::EventoTeclado&);
 
-				virtual GNC::GCS::Widgets::TipoCursor GetCursor();
+        virtual void Render(GNC::GCS::Contexto3D* c);
 
-			protected:
+        virtual GNC::GCS::Widgets::TipoCursor GetCursor();
 
-				GNC::GCS::Vector                          m_PosCursor;
-				VerticesPoligono                          m_Vertices;
-				GNC::GCS::Widgets::IWidgetBuilder::Estado m_Estado;
+protected:
 
-				int                                       m_NumNodos;
-				bool                                      m_MouseDown;
-				float                                     m_RadioNodo;
-				float                                     m_DistanciaMinimaCuadrado;
-				GNC::GCS::Widgets::WMarcadoArea*          m_pPoligonoCreado;
-				vtkImageData*                             m_pImageData;
-				ModoMarcado                               m_Modo;
+        GNC::GCS::Vector                          m_PosCursor;
+        VerticesPoligono                          m_Vertices;
+        GNC::GCS::Widgets::IWidgetBuilder::Estado m_Estado;
 
-			};
-			
-			//====================================================================================================
-			//= Widget de marcado
-			//====================================================================================================
-			class EXTAPI WMarcadoArea : public GNC::GCS::Widgets::IWidget, public GNC::GCS::Widgets::Notificadores::INotificadorMarcadoArea {
+        int                                       m_NumNodos;
+        bool                                      m_MouseDown;
+        float                                     m_RadioNodo;
+        float                                     m_DistanciaMinimaCuadrado;
+        GNC::GCS::Widgets::WMarcadoArea*          m_pPoligonoCreado;
+        vtkImageData*                             m_pImageData;
+        ModoMarcado                               m_Modo;
 
-			//----------------------------------------------------------------------------------------------------
-			//region "Constructor y destructor"
-			public:
-				WMarcadoArea(WMarcadoAreaBuilder::ModoMarcado modo, IWidgetsManager* pManager, unsigned int vid, VerticesPoligono& vertices, long gid, GNC::GCS::Widgets::Observadores::IObservadorMarcadoArea* pObservador = NULL, const char* nombre = "");
+};
 
-				~WMarcadoArea();
+//====================================================================================================
+//= Widget de marcado
+//====================================================================================================
+class EXTAPI WMarcadoArea : public GNC::GCS::Widgets::IWidget, public GNC::GCS::Widgets::Notificadores::INotificadorMarcadoArea
+{
 
-			//endregion
+        //----------------------------------------------------------------------------------------------------
+        //region "Constructor y destructor"
+public:
+        WMarcadoArea(WMarcadoAreaBuilder::ModoMarcado modo, IWidgetsManager* pManager, unsigned int vid, VerticesPoligono& vertices, long gid, GNC::GCS::Widgets::Observadores::IObservadorMarcadoArea* pObservador = NULL, const char* nombre = "");
 
-				virtual bool EsMarcador() const
-				{
-					return m_Modo == WMarcadoAreaBuilder::MP_Normal;
-				}
+        ~WMarcadoArea();
 
-				virtual bool DelimitaArea() const
-				{
-					return true;
-				}
+        //endregion
 
-				virtual bool ContieneFast(const GNC::GCS::Vector& punto) const
-				{
-					return punto.DentroDePoligono2(m_Vertices);
-				}
+        virtual bool EsMarcador() const
+        {
+                return m_Modo == WMarcadoAreaBuilder::MP_Normal;
+        }
 
-				virtual void GetBoundingBox(GNC::GCS::Vector& bb0, GNC::GCS::Vector& bb1) const
-				{
-					if (m_Vertices.size() > 0) {
+        virtual bool DelimitaArea() const
+        {
+                return true;
+        }
 
-						VerticesPoligono::const_iterator it = m_Vertices.begin();
-						(*it).IniciarBoundingBox(bb0, bb1);
-						for (; it != m_Vertices.end(); ++it) {
-							(*it).ExtenderBoundingBox(bb0, bb1);
-						}
-					}
-				}
+        virtual bool ContieneFast(const GNC::GCS::Vector& punto) const
+        {
+                return punto.DentroDePoligono2(m_Vertices);
+        }
 
-				virtual void GetPosicion(GNC::GCS::Vector& posicion) const
-				{
-					posicion = m_Centro;
-				}
+        virtual void GetBoundingBox(GNC::GCS::Vector& bb0, GNC::GCS::Vector& bb1) const
+        {
+                if (m_Vertices.size() > 0) {
 
-				virtual void GetPuntoAnclaje(GNC::GCS::Vector& punto, const GNC::GCS::Vector& escala) const
-				{
-					punto = m_PosCursor + (GNC::GCS::Vector(10.0f, -10.0f) * escala);
-				}
+                        VerticesPoligono::const_iterator it = m_Vertices.begin();
+                        (*it).IniciarBoundingBox(bb0, bb1);
+                        for (; it != m_Vertices.end(); ++it) {
+                                (*it).ExtenderBoundingBox(bb0, bb1);
+                        }
+                }
+        }
 
-				virtual void GetCentro(GNC::GCS::Vector& centro) const
-				{
-					centro = m_Centro;
-				}
+        virtual void GetPosicion(GNC::GCS::Vector& posicion) const
+        {
+                posicion = m_Centro;
+        }
 
-				virtual float GetAreaMetrica() const
-				{
-					return m_AreaMetrica;
-				}
+        virtual void GetPuntoAnclaje(GNC::GCS::Vector& punto, const GNC::GCS::Vector& escala) const
+        {
+                punto = m_PosCursor + (GNC::GCS::Vector(10.0f, -10.0f) * escala);
+        }
 
-				virtual float GetPerimetro() const
-				{
-					return m_Perimetro;
-				}
+        virtual void GetCentro(GNC::GCS::Vector& centro) const
+        {
+                centro = m_Centro;
+        }
 
-				virtual bool SoportaAutoBorrado() const {
-					if (m_Modo == WMarcadoAreaBuilder::MP_Normal) {
-						return true;
-					}
-					else {
-						return false;
-					}
-				}
+        virtual float GetAreaMetrica() const
+        {
+                return m_AreaMetrica;
+        }
 
-			//----------------------------------------------------------------------------------------------------
-			//region "Interfaz especifica"
+        virtual float GetPerimetro() const
+        {
+                return m_Perimetro;
+        }
 
-				virtual void OnMouseEvents(GNC::GCS::Events::EventoRaton&);
+        virtual bool SoportaAutoBorrado() const
+        {
+                if (m_Modo == WMarcadoAreaBuilder::MP_Normal) {
+                        return true;
+                } else {
+                        return false;
+                }
+        }
 
-				virtual void OnKeyEvents(GNC::GCS::Events::EventoTeclado&);
+        //----------------------------------------------------------------------------------------------------
+        //region "Interfaz especifica"
 
-				virtual bool HitTest(float x, float y, const GNC::GCS::Vector& umbral);
+        virtual void OnMouseEvents(GNC::GCS::Events::EventoRaton&);
 
-				virtual bool HitTest(GNC::GCS::Vector* vertices, int numVertices);
+        virtual void OnKeyEvents(GNC::GCS::Events::EventoTeclado&);
 
-				virtual void Render(GNC::GCS::Contexto3D* c);
+        virtual bool HitTest(float x, float y, const GNC::GCS::Vector& umbral);
 
-				virtual void Seleccionar(bool seleccionado);
+        virtual bool HitTest(GNC::GCS::Vector* vertices, int numVertices);
 
-				virtual void Iluminar(bool iluminado);
+        virtual void Render(GNC::GCS::Contexto3D* c);
 
-				virtual void Ocultar(bool oculto);
-	
-			//endregion
-	
-			//----------------------------------------------------------------------------------------------------
-			//region "Estado interno"
-			private:
-				bool              m_MouseDown;
-				GNC::GCS::Vector  m_PosCursor;
-			//endregion
+        virtual void Seleccionar(bool seleccionado);
 
-			//----------------------------------------------------------------------------------------------------
-			//region "Propiedades geometricas"
-			private:
+        virtual void Iluminar(bool iluminado);
 
-				VerticesPoligono  m_Vertices;
-				float                    m_RadioNodo;
+        virtual void Ocultar(bool oculto);
 
-				GNC::GCS::Vector m_Centro;
-				float                    m_AreaMetrica;
-				float                    m_Perimetro;
+        //endregion
+
+        //----------------------------------------------------------------------------------------------------
+        //region "Estado interno"
+private:
+        bool              m_MouseDown;
+        GNC::GCS::Vector  m_PosCursor;
+        //endregion
+
+        //----------------------------------------------------------------------------------------------------
+        //region "Propiedades geometricas"
+private:
+
+        VerticesPoligono  m_Vertices;
+        float                    m_RadioNodo;
+
+        GNC::GCS::Vector m_Centro;
+        float                    m_AreaMetrica;
+        float                    m_Perimetro;
 
 
-				friend std::ostream & operator<<(std::ostream& out, const WMarcadoArea& /*w*/)
-				{
-					return out;
-				}
+        friend std::ostream & operator<<(std::ostream& out, const WMarcadoArea& /*w*/)
+        {
+                return out;
+        }
 
-			public:
-				virtual void GetVertices(std::list<GNC::GCS::Vector>& vertices) const {
-					for (VerticesPoligono::const_iterator it = m_Vertices.begin(); it != m_Vertices.end(); ++it) {
-						vertices.push_back(*it);
-					}
-				}
+public:
+        virtual void GetVertices(std::list<GNC::GCS::Vector>& vertices) const
+        {
+                for (VerticesPoligono::const_iterator it = m_Vertices.begin(); it != m_Vertices.end(); ++it) {
+                        vertices.push_back(*it);
+                }
+        }
 
-				void GetNodos(std::list<GNC::GCS::Nodo>& vertices) {
-					for (VerticesPoligono::const_iterator it = m_Vertices.begin(); it != m_Vertices.end(); ++it) {
-						vertices.push_back(*it);
-					}
-				}
-				
-				const VerticesPoligono& Vertices() const
-				{
-					return m_Vertices;
-				}
+        void GetNodos(std::list<GNC::GCS::Nodo>& vertices)
+        {
+                for (VerticesPoligono::const_iterator it = m_Vertices.begin(); it != m_Vertices.end(); ++it) {
+                        vertices.push_back(*it);
+                }
+        }
 
-			//endregion
+        const VerticesPoligono& Vertices() const
+        {
+                return m_Vertices;
+        }
 
-			private:
-				WMarcadoAreaBuilder::ModoMarcado m_Modo;
-			
-			
-				
-				
-			//----------------------------------------------------------------------------------------------------
-			//region "Helpers"
-			public:
-				
-				virtual void Recalcular();
-				
-			//endregion
-			};
-		}
-	}
+        //endregion
+
+private:
+        WMarcadoAreaBuilder::ModoMarcado m_Modo;
+
+
+
+
+        //----------------------------------------------------------------------------------------------------
+        //region "Helpers"
+public:
+
+        virtual void Recalcular();
+
+        //endregion
+};
+}
+}
 }

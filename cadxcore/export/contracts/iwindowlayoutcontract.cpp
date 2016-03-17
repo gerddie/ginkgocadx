@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -23,8 +23,8 @@
 
 GNC::GCS::IWindowLayoutContract::IWindowLayoutContract()
 {
-	m_MinSlice = 0;
-	m_MaxSlice = 0;
+        m_MinSlice = 0;
+        m_MaxSlice = 0;
 }
 
 GNC::GCS::IWindowLayoutContract::~IWindowLayoutContract()
@@ -33,36 +33,36 @@ GNC::GCS::IWindowLayoutContract::~IWindowLayoutContract()
 
 void GNC::GCS::IWindowLayoutContract::Setup(int minSlice, int maxSlice)
 {
-	m_MinSlice = minSlice;
-	m_MaxSlice = maxSlice;
+        m_MinSlice = minSlice;
+        m_MaxSlice = maxSlice;
 }
 
 void GNC::GCS::IWindowLayoutContract::AddRow()
 {
-	int filas = GetRows()+1;
-	int columnas = GetColumns();
-	SetWindowLayout(filas,columnas);
+        int filas = GetRows()+1;
+        int columnas = GetColumns();
+        SetWindowLayout(filas,columnas);
 }
 
 void GNC::GCS::IWindowLayoutContract::AddColumn()
 {
-	int filas = GetRows();
-	int columnas = GetColumns()+1;
-	SetWindowLayout(filas,columnas);
+        int filas = GetRows();
+        int columnas = GetColumns()+1;
+        SetWindowLayout(filas,columnas);
 }
 
 void GNC::GCS::IWindowLayoutContract::DelRow()
 {
-	int filas = GetRows()-1;
-	int columnas = GetColumns();
-	SetWindowLayout(filas,columnas);
+        int filas = GetRows()-1;
+        int columnas = GetColumns();
+        SetWindowLayout(filas,columnas);
 }
 
 void GNC::GCS::IWindowLayoutContract::DelColumn()
 {
-	int filas = GetRows();
-	int columnas = GetColumns()-1;
-	SetWindowLayout(filas,columnas);
+        int filas = GetRows();
+        int columnas = GetColumns()-1;
+        SetWindowLayout(filas,columnas);
 }
 
 void GNC::GCS::IWindowLayoutContract::SplitActive(bool )
@@ -71,6 +71,6 @@ void GNC::GCS::IWindowLayoutContract::SplitActive(bool )
 
 bool GNC::GCS::IWindowLayoutContract::SupportsSplit()
 {
-	return false;
+        return false;
 }
 

@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -24,7 +24,7 @@
 
 GNC::GCS::IPixelsBluringContractable::IPixelsBluringContractable()
 {
-	PixelsBluringContract = NULL;
+        PixelsBluringContract = NULL;
 }
 
 GNC::GCS::IPixelsBluringContractable::~IPixelsBluringContractable()
@@ -33,13 +33,13 @@ GNC::GCS::IPixelsBluringContractable::~IPixelsBluringContractable()
 
 bool GNC::GCS::IPixelsBluringContractable::IsValidContract(IContract* contract)
 {
-	GNC::GCS::IPixelsBluringContract* pWContract = dynamic_cast<GNC::GCS::IPixelsBluringContract*>(contract);
-	return pWContract != NULL;
+        GNC::GCS::IPixelsBluringContract* pWContract = dynamic_cast<GNC::GCS::IPixelsBluringContract*>(contract);
+        return pWContract != NULL;
 }
 
-			
+
 void GNC::GCS::IPixelsBluringContractable::Register(IContract* contract)
 {
-	GNC::GCS::IContractable::Register(contract);
-	PixelsBluringContract = static_cast<GNC::GCS::IPixelsBluringContract*>(contract);
+        GNC::GCS::IContractable::Register(contract);
+        PixelsBluringContract = static_cast<GNC::GCS::IPixelsBluringContract*>(contract);
 }

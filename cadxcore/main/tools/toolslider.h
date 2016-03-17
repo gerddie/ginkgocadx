@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -27,27 +27,29 @@
 #include <widgets/wslider.h>
 #include <api/api.h>
 
-namespace GNC {
-	class wxToolSliderKeyHandler;
+namespace GNC
+{
+class wxToolSliderKeyHandler;
 
-	class EXTAPI ToolSlider : public GNC::GCS::IToolSlider {
-	public:
-		typedef GNC::GCS::Widgets::WSliderBuilder      TBuilder;
-		ToolSlider();
-		~ToolSlider();
+class EXTAPI ToolSlider : public GNC::GCS::IToolSlider
+{
+public:
+        typedef GNC::GCS::Widgets::WSliderBuilder      TBuilder;
+        ToolSlider();
+        ~ToolSlider();
 
-		virtual GNC::GCS::ITool* NewTool();
-		virtual void Connect();
-		virtual void Disconnect();
+        virtual GNC::GCS::ITool* NewTool();
+        virtual void Connect();
+        virtual void Disconnect();
 
-		virtual void ConnectKeyEvents(wxWindow* pWindow);
+        virtual void ConnectKeyEvents(wxWindow* pWindow);
 
-	protected:
-		friend class wxToolSliderKeyHandler;
+protected:
+        friend class wxToolSliderKeyHandler;
 
-		TBuilder*            m_pBuilder;
-		wxToolSliderKeyHandler* m_pHandler;
-	};
+        TBuilder*            m_pBuilder;
+        wxToolSliderKeyHandler* m_pHandler;
+};
 }
 #endif
 #endif

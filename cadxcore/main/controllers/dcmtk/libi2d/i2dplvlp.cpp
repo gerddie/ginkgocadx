@@ -1,5 +1,5 @@
 /*
- *  
+ *
  *  $Id: i2dplvlp.cpp $
  *  Ginkgo CADx Project
  *
@@ -51,63 +51,63 @@
 
 I2DOutputPlugVLP::I2DOutputPlugVLP()
 {
-  if (m_debug)
-    printMessage(m_logStream, "I2DOutputPlugVLP: Output plugin for VLP initialized");
+        if (m_debug)
+                printMessage(m_logStream, "I2DOutputPlugVLP: Output plugin for VLP initialized");
 }
 
 OFString I2DOutputPlugVLP::ident()
 {
-  return "Visible Light Photographic Image SOP Class";
+        return "Visible Light Photographic Image SOP Class";
 }
 
 void I2DOutputPlugVLP::supportedSOPClassUIDs(OFList<OFString> suppSOPs)
 {
-	OFString str = GNC::GCS::IControladorPermisos::Instance()->Get("core.importacion", "storage_sop_class").ObtenerValor<std::string>().c_str();
-	suppSOPs.push_back(str);
+        OFString str = GNC::GCS::IControladorPermisos::Instance()->Get("core.importacion", "storage_sop_class").ObtenerValor<std::string>().c_str();
+        suppSOPs.push_back(str);
 }
 
 
 OFCondition I2DOutputPlugVLP::convert(DcmDataset &dataset) const
 {
-  if (m_debug) {
-    printMessage(m_logStream, "I2DOutputPlugVLP: Inserting VLP specific attributes");
-  }
-  OFCondition cond;
-  OFString str = GNC::GCS::IControladorPermisos::Instance()->Get("core.importacion", "storage_sop_class").ObtenerValor<std::string>().c_str();
-  cond = dataset.putAndInsertOFStringArray(DCM_SOPClassUID, str);
-  if (cond.bad())
-    return makeOFCondition(OFM_dcmdata, 18, OF_error, "Unable to insert SOP class into dataset");
+        if (m_debug) {
+                printMessage(m_logStream, "I2DOutputPlugVLP: Inserting VLP specific attributes");
+        }
+        OFCondition cond;
+        OFString str = GNC::GCS::IControladorPermisos::Instance()->Get("core.importacion", "storage_sop_class").ObtenerValor<std::string>().c_str();
+        cond = dataset.putAndInsertOFStringArray(DCM_SOPClassUID, str);
+        if (cond.bad())
+                return makeOFCondition(OFM_dcmdata, 18, OF_error, "Unable to insert SOP class into dataset");
 
-  if (!dataset.tagExists(DCM_Modality)) {
-	  cond = dataset.putAndInsertOFStringArray(DCM_Modality, "XC");
-	  if (cond.bad())
-		 return makeOFCondition(OFM_dcmdata, 18, OF_error, "Unable to insert Modality (XC) into dataset");
-  }
+        if (!dataset.tagExists(DCM_Modality)) {
+                cond = dataset.putAndInsertOFStringArray(DCM_Modality, "XC");
+                if (cond.bad())
+                        return makeOFCondition(OFM_dcmdata, 18, OF_error, "Unable to insert Modality (XC) into dataset");
+        }
 
-  return EC_Normal;
+        return EC_Normal;
 }
 
 
 OFString I2DOutputPlugVLP::isValid(DcmDataset& dataset) const
 {
-  OFString err;
-  // Just return if checking was disabled
-  if (!m_doAttribChecking)
-    return err;
+        OFString err;
+        // Just return if checking was disabled
+        if (!m_doAttribChecking)
+                return err;
 
-  if (m_debug)
-    printMessage(m_logStream, "I2DOutputPlugVLP: Checking VLP specific attributes for validity");
-  // Acquisition Context Module
-  checkAndInventType2Attrib(DCM_AcquisitionContextSequence, &dataset);
+        if (m_debug)
+                printMessage(m_logStream, "I2DOutputPlugVLP: Checking VLP specific attributes for validity");
+        // Acquisition Context Module
+        checkAndInventType2Attrib(DCM_AcquisitionContextSequence, &dataset);
 
-  // General Equipment Module
-  checkAndInventType2Attrib(DCM_Manufacturer, &dataset);
+        // General Equipment Module
+        checkAndInventType2Attrib(DCM_Manufacturer, &dataset);
 
-  // VL Image Module
-  checkAndInventType1Attrib(DCM_ImageType, &dataset, "DERIVED\\SECONDARY");
-  checkAndInventType2Attrib(DCM_LossyImageCompression, &dataset);
+        // VL Image Module
+        checkAndInventType1Attrib(DCM_ImageType, &dataset, "DERIVED\\SECONDARY");
+        checkAndInventType2Attrib(DCM_LossyImageCompression, &dataset);
 
-  return err;
+        return err;
 }
 
 

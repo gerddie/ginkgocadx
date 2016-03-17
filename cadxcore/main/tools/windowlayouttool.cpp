@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -45,216 +45,218 @@
 #define SPLIT_V	1612
 
 //layouts por defecto...
-namespace GNC {
-	namespace GUI {
-		class wxEventHandlerWindowLayout: public wxEvtHandler
-		{
-		public:
-			wxEventHandlerWindowLayout(wxEvtHandler* pParent, GNC::WindowLayoutTool* pHerramienta): wxEvtHandler()
-			{
-				m_pParent = pParent;
-				m_pHerramienta=pHerramienta;
+namespace GNC
+{
+namespace GUI
+{
+class wxEventHandlerWindowLayout: public wxEvtHandler
+{
+public:
+        wxEventHandlerWindowLayout(wxEvtHandler* pParent, GNC::WindowLayoutTool* pHerramienta): wxEvtHandler()
+        {
+                m_pParent = pParent;
+                m_pHerramienta=pHerramienta;
 
-				m_pParent->Connect(ADD_COL,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnAddColumn),NULL,this);
-				m_pParent->Connect(ADD_FILA,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnAddRow),NULL,this);
-				m_pParent->Connect(DEL_COL,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnDelColumn),NULL,this);
-				m_pParent->Connect(DEL_FILA,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnDelRow),NULL,this);
+                m_pParent->Connect(ADD_COL,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnAddColumn),NULL,this);
+                m_pParent->Connect(ADD_FILA,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnAddRow),NULL,this);
+                m_pParent->Connect(DEL_COL,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnDelColumn),NULL,this);
+                m_pParent->Connect(DEL_FILA,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnDelRow),NULL,this);
 
-				m_pParent->Connect(LAY_1_1,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnLay1x1),NULL,this);
-				m_pParent->Connect(LAY_1_2,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnLay1x2),NULL,this);
-				m_pParent->Connect(LAY_2_1,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnLay2x1),NULL,this);
-				m_pParent->Connect(LAY_2_2,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnLay2x2),NULL,this);
-				m_pParent->Connect(LAY_3_3,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnLay3x3),NULL,this);
-				m_pParent->Connect(LAY_4_4,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnLay4x4),NULL,this);
+                m_pParent->Connect(LAY_1_1,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnLay1x1),NULL,this);
+                m_pParent->Connect(LAY_1_2,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnLay1x2),NULL,this);
+                m_pParent->Connect(LAY_2_1,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnLay2x1),NULL,this);
+                m_pParent->Connect(LAY_2_2,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnLay2x2),NULL,this);
+                m_pParent->Connect(LAY_3_3,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnLay3x3),NULL,this);
+                m_pParent->Connect(LAY_4_4,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnLay4x4),NULL,this);
 
-				m_pParent->Connect(SPLIT_V,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnSplitV),NULL,this);
-				m_pParent->Connect(SPLIT_H,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnSplitH),NULL,this);
+                m_pParent->Connect(SPLIT_V,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnSplitV),NULL,this);
+                m_pParent->Connect(SPLIT_H,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnSplitH),NULL,this);
 
-				m_pParent->Connect(ADD_COL, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnAddColumnUpdate),NULL,this);
-				m_pParent->Connect(ADD_FILA, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnAddRowUpdate),NULL,this);
-				m_pParent->Connect(DEL_COL, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnDelColumnUpdate),NULL,this);
-				m_pParent->Connect(DEL_FILA, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnDelRowUpdate),NULL,this);
+                m_pParent->Connect(ADD_COL, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnAddColumnUpdate),NULL,this);
+                m_pParent->Connect(ADD_FILA, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnAddRowUpdate),NULL,this);
+                m_pParent->Connect(DEL_COL, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnDelColumnUpdate),NULL,this);
+                m_pParent->Connect(DEL_FILA, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnDelRowUpdate),NULL,this);
 
-				m_pParent->Connect(LAY_1_1, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnLay1x1Update),NULL,this);
-				m_pParent->Connect(LAY_1_2, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnLay1x2Update),NULL,this);
-				m_pParent->Connect(LAY_2_1, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnLay2x1Update),NULL,this);
-				m_pParent->Connect(LAY_2_2, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnLay2x2Update),NULL,this);
-				m_pParent->Connect(LAY_3_3, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnLay3x3Update),NULL,this);
-				m_pParent->Connect(LAY_4_4, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnLay4x4Update),NULL,this);
+                m_pParent->Connect(LAY_1_1, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnLay1x1Update),NULL,this);
+                m_pParent->Connect(LAY_1_2, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnLay1x2Update),NULL,this);
+                m_pParent->Connect(LAY_2_1, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnLay2x1Update),NULL,this);
+                m_pParent->Connect(LAY_2_2, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnLay2x2Update),NULL,this);
+                m_pParent->Connect(LAY_3_3, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnLay3x3Update),NULL,this);
+                m_pParent->Connect(LAY_4_4, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnLay4x4Update),NULL,this);
 
-				m_pParent->Connect(SPLIT_V, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnSplitUpdate),NULL,this);
-				m_pParent->Connect(SPLIT_H, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnSplitUpdate),NULL,this);
+                m_pParent->Connect(SPLIT_V, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnSplitUpdate),NULL,this);
+                m_pParent->Connect(SPLIT_H, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnSplitUpdate),NULL,this);
 
-				m_pParent->Connect(m_pHerramienta->ID, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnUpdateMenuLayout),NULL,this);
-			}
+                m_pParent->Connect(m_pHerramienta->ID, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnUpdateMenuLayout),NULL,this);
+        }
 
-			~wxEventHandlerWindowLayout()
-			{
-				m_pParent->Disconnect(ADD_COL,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnAddColumn),NULL,this);
-				m_pParent->Disconnect(ADD_FILA,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnAddRow),NULL,this);
-				m_pParent->Disconnect(DEL_COL,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnDelColumn),NULL,this);
-				m_pParent->Disconnect(DEL_FILA,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnDelRow),NULL,this);
+        ~wxEventHandlerWindowLayout()
+        {
+                m_pParent->Disconnect(ADD_COL,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnAddColumn),NULL,this);
+                m_pParent->Disconnect(ADD_FILA,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnAddRow),NULL,this);
+                m_pParent->Disconnect(DEL_COL,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnDelColumn),NULL,this);
+                m_pParent->Disconnect(DEL_FILA,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnDelRow),NULL,this);
 
-				m_pParent->Disconnect(LAY_1_1,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnLay1x1),NULL,this);
-				m_pParent->Disconnect(LAY_1_2,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnLay1x2),NULL,this);
-				m_pParent->Disconnect(LAY_2_1,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnLay2x1),NULL,this);
-				m_pParent->Disconnect(LAY_2_2,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnLay2x2),NULL,this);
-				m_pParent->Disconnect(LAY_3_3,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnLay3x3),NULL,this);
-				m_pParent->Disconnect(LAY_4_4,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnLay4x4),NULL,this);
-				
-				m_pParent->Disconnect(SPLIT_V,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnSplitV),NULL,this);
-				m_pParent->Disconnect(SPLIT_H,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnSplitH),NULL,this);
+                m_pParent->Disconnect(LAY_1_1,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnLay1x1),NULL,this);
+                m_pParent->Disconnect(LAY_1_2,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnLay1x2),NULL,this);
+                m_pParent->Disconnect(LAY_2_1,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnLay2x1),NULL,this);
+                m_pParent->Disconnect(LAY_2_2,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnLay2x2),NULL,this);
+                m_pParent->Disconnect(LAY_3_3,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnLay3x3),NULL,this);
+                m_pParent->Disconnect(LAY_4_4,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnLay4x4),NULL,this);
 
-				m_pParent->Disconnect(ADD_COL, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnAddColumnUpdate),NULL,this);
-				m_pParent->Disconnect(ADD_FILA, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnAddRowUpdate),NULL,this);
-				m_pParent->Disconnect(DEL_COL, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnDelColumnUpdate),NULL,this);
-				m_pParent->Disconnect(DEL_FILA, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnDelRowUpdate),NULL,this);
+                m_pParent->Disconnect(SPLIT_V,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnSplitV),NULL,this);
+                m_pParent->Disconnect(SPLIT_H,wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( wxEventHandlerWindowLayout::OnSplitH),NULL,this);
 
-				m_pParent->Disconnect(LAY_1_1, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnLay1x1Update),NULL,this);
-				m_pParent->Disconnect(LAY_1_2, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnLay1x2Update),NULL,this);
-				m_pParent->Disconnect(LAY_2_1, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnLay2x1Update),NULL,this);
-				m_pParent->Disconnect(LAY_2_2, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnLay2x2Update),NULL,this);
-				m_pParent->Disconnect(LAY_3_3, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnLay3x3Update),NULL,this);
-				m_pParent->Disconnect(LAY_4_4, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnLay4x4Update),NULL,this);
-				
-				m_pParent->Disconnect(SPLIT_V, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnSplitUpdate),NULL,this);
-				m_pParent->Disconnect(SPLIT_H, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnSplitUpdate),NULL,this);
+                m_pParent->Disconnect(ADD_COL, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnAddColumnUpdate),NULL,this);
+                m_pParent->Disconnect(ADD_FILA, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnAddRowUpdate),NULL,this);
+                m_pParent->Disconnect(DEL_COL, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnDelColumnUpdate),NULL,this);
+                m_pParent->Disconnect(DEL_FILA, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnDelRowUpdate),NULL,this);
 
-				m_pParent->Disconnect(m_pHerramienta->ID, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnUpdateMenuLayout),NULL,this);
-			}
+                m_pParent->Disconnect(LAY_1_1, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnLay1x1Update),NULL,this);
+                m_pParent->Disconnect(LAY_1_2, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnLay1x2Update),NULL,this);
+                m_pParent->Disconnect(LAY_2_1, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnLay2x1Update),NULL,this);
+                m_pParent->Disconnect(LAY_2_2, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnLay2x2Update),NULL,this);
+                m_pParent->Disconnect(LAY_3_3, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnLay3x3Update),NULL,this);
+                m_pParent->Disconnect(LAY_4_4, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnLay4x4Update),NULL,this);
 
-			void OnAddRow(wxCommandEvent& )
-			{
-				m_pHerramienta->AddRow();
-			}
+                m_pParent->Disconnect(SPLIT_V, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnSplitUpdate),NULL,this);
+                m_pParent->Disconnect(SPLIT_H, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnSplitUpdate),NULL,this);
 
-			void OnAddColumn(wxCommandEvent& )
-			{
-				m_pHerramienta->AddColumn();
-			}
+                m_pParent->Disconnect(m_pHerramienta->ID, wxEVT_UPDATE_UI, wxUpdateUIEventHandler(wxEventHandlerWindowLayout::OnUpdateMenuLayout),NULL,this);
+        }
 
-			void OnDelRow(wxCommandEvent& )
-			{
-				m_pHerramienta->DelRow();
-			}
+        void OnAddRow(wxCommandEvent& )
+        {
+                m_pHerramienta->AddRow();
+        }
 
-			void OnDelColumn(wxCommandEvent& )
-			{
-				m_pHerramienta->DelColumn();
-			}
-			
-			void OnLay1x1(wxCommandEvent& )
-			{
-				m_pHerramienta->SetWindowLayout(1,1);
-			}
+        void OnAddColumn(wxCommandEvent& )
+        {
+                m_pHerramienta->AddColumn();
+        }
 
-			void OnLay1x2(wxCommandEvent& )
-			{
-				m_pHerramienta->SetWindowLayout(1,2);
-			}
+        void OnDelRow(wxCommandEvent& )
+        {
+                m_pHerramienta->DelRow();
+        }
 
-			void OnLay2x1(wxCommandEvent& )
-			{
-				m_pHerramienta->SetWindowLayout(2,1);
-			}
+        void OnDelColumn(wxCommandEvent& )
+        {
+                m_pHerramienta->DelColumn();
+        }
 
-			void OnLay2x2(wxCommandEvent& )
-			{
-				m_pHerramienta->SetWindowLayout(2,2);
-			}
+        void OnLay1x1(wxCommandEvent& )
+        {
+                m_pHerramienta->SetWindowLayout(1,1);
+        }
 
-			void OnLay3x3(wxCommandEvent& )
-			{
-				m_pHerramienta->SetWindowLayout(3,3);
-			}
+        void OnLay1x2(wxCommandEvent& )
+        {
+                m_pHerramienta->SetWindowLayout(1,2);
+        }
 
-			void OnLay4x4(wxCommandEvent& )
-			{
-				m_pHerramienta->SetWindowLayout(4,4);
-			}
+        void OnLay2x1(wxCommandEvent& )
+        {
+                m_pHerramienta->SetWindowLayout(2,1);
+        }
 
-			void OnSplitV(wxCommandEvent &)
-			{
-				m_pHerramienta->SplitActive(true);
-			}
+        void OnLay2x2(wxCommandEvent& )
+        {
+                m_pHerramienta->SetWindowLayout(2,2);
+        }
 
-			void OnSplitH(wxCommandEvent &)
-			{
-				m_pHerramienta->SplitActive(false);
-			}
+        void OnLay3x3(wxCommandEvent& )
+        {
+                m_pHerramienta->SetWindowLayout(3,3);
+        }
 
-			void OnAddColumnUpdate(wxUpdateUIEvent& event) 
-			{
-				event.Enable(m_pHerramienta->AddAllowed());
-			}
+        void OnLay4x4(wxCommandEvent& )
+        {
+                m_pHerramienta->SetWindowLayout(4,4);
+        }
 
-			void OnAddRowUpdate(wxUpdateUIEvent& event) 
-			{
-				
-				event.Enable(m_pHerramienta->AddAllowed());
-			}
+        void OnSplitV(wxCommandEvent &)
+        {
+                m_pHerramienta->SplitActive(true);
+        }
 
-			void OnDelColumnUpdate(wxUpdateUIEvent& event) 
-			{
-				
-				event.Enable(m_pHerramienta->DeleteColumnAllowed());
-			}
+        void OnSplitH(wxCommandEvent &)
+        {
+                m_pHerramienta->SplitActive(false);
+        }
 
-			void OnDelRowUpdate(wxUpdateUIEvent& event) 
-			{
-				
-				event.Enable(m_pHerramienta->DeleteRowAllowed());
-			}
+        void OnAddColumnUpdate(wxUpdateUIEvent& event)
+        {
+                event.Enable(m_pHerramienta->AddAllowed());
+        }
 
-			void OnLay1x1Update(wxUpdateUIEvent& event) 
-			{	
-				event.Enable(m_pHerramienta->Supports(1,1));
-			}
+        void OnAddRowUpdate(wxUpdateUIEvent& event)
+        {
 
-			void OnLay1x2Update(wxUpdateUIEvent& event) 
-			{	
-				event.Enable(m_pHerramienta->Supports(1,2));
-			}
+                event.Enable(m_pHerramienta->AddAllowed());
+        }
 
-			void OnLay2x1Update(wxUpdateUIEvent& event) 
-			{	
-				event.Enable(m_pHerramienta->Supports(2,1));
-			}
+        void OnDelColumnUpdate(wxUpdateUIEvent& event)
+        {
 
-			void OnLay2x2Update(wxUpdateUIEvent& event) 
-			{	
-				event.Enable(m_pHerramienta->Supports(2,2));
-			}
+                event.Enable(m_pHerramienta->DeleteColumnAllowed());
+        }
 
-			void OnLay3x3Update(wxUpdateUIEvent& event) 
-			{	
-				event.Enable(m_pHerramienta->Supports(3,3));
-			}
+        void OnDelRowUpdate(wxUpdateUIEvent& event)
+        {
 
-			void OnLay4x4Update(wxUpdateUIEvent& event) 
-			{	
-				event.Enable(m_pHerramienta->Supports(4,4));
-			}
+                event.Enable(m_pHerramienta->DeleteRowAllowed());
+        }
 
-			void OnUpdateMenuLayout(wxUpdateUIEvent& /*event*/) 
-			{
-			}
+        void OnLay1x1Update(wxUpdateUIEvent& event)
+        {
+                event.Enable(m_pHerramienta->Supports(1,1));
+        }
 
-			void OnSplitUpdate(wxUpdateUIEvent& event) 
-			{
-				event.Enable(m_pHerramienta->SupportsSplit());
-			}
+        void OnLay1x2Update(wxUpdateUIEvent& event)
+        {
+                event.Enable(m_pHerramienta->Supports(1,2));
+        }
 
-			GNC::WindowLayoutTool* m_pHerramienta;
-			wxEvtHandler* m_pParent;
-		};
-	}
+        void OnLay2x1Update(wxUpdateUIEvent& event)
+        {
+                event.Enable(m_pHerramienta->Supports(2,1));
+        }
+
+        void OnLay2x2Update(wxUpdateUIEvent& event)
+        {
+                event.Enable(m_pHerramienta->Supports(2,2));
+        }
+
+        void OnLay3x3Update(wxUpdateUIEvent& event)
+        {
+                event.Enable(m_pHerramienta->Supports(3,3));
+        }
+
+        void OnLay4x4Update(wxUpdateUIEvent& event)
+        {
+                event.Enable(m_pHerramienta->Supports(4,4));
+        }
+
+        void OnUpdateMenuLayout(wxUpdateUIEvent& /*event*/)
+        {
+        }
+
+        void OnSplitUpdate(wxUpdateUIEvent& event)
+        {
+                event.Enable(m_pHerramienta->SupportsSplit());
+        }
+
+        GNC::WindowLayoutTool* m_pHerramienta;
+        wxEvtHandler* m_pParent;
+};
+}
 }
 
 
 GNC::GCS::ITool* GNC::WindowLayoutTool::NewTool()
 {
-	return new GNC::WindowLayoutTool();
+        return new GNC::WindowLayoutTool();
 }
 
 GNC::WindowLayoutTool::WindowLayoutTool()
@@ -266,113 +268,109 @@ GNC::WindowLayoutTool::~WindowLayoutTool()
 
 bool GNC::WindowLayoutTool::HasDropDownMenu()
 {
-	return true;
+        return true;
 }
 
 void GNC::WindowLayoutTool::AppendDropDownMenu(wxEvtHandler* pParent, wxMenu* pMenu)
 {
-	pMenu->Append(new GNC::GUI::wxMenuItemTool(pMenu, ADD_COL,_("Add column"), GinkgoResourcesManager::LayoutBar::GetIcoAddColumn(), new GNC::GUI::wxEventHandlerWindowLayout(pParent, this)));
-	pMenu->Append(new GNC::GUI::wxMenuItemTool(pMenu, ADD_FILA,_("Add row"), GinkgoResourcesManager::LayoutBar::GetIcoAddRow(), new GNC::GUI::wxEventHandlerWindowLayout(pParent, this)));
-	pMenu->AppendSeparator();
-	pMenu->Append(new GNC::GUI::wxMenuItemTool(pMenu, DEL_COL,_("Remove column"), GinkgoResourcesManager::LayoutBar::GetIcoDelColumn(), new GNC::GUI::wxEventHandlerWindowLayout(pParent, this)));
-	pMenu->Append(new GNC::GUI::wxMenuItemTool(pMenu, DEL_FILA,_("Remove row"), GinkgoResourcesManager::LayoutBar::GetIcoDelRow(), new GNC::GUI::wxEventHandlerWindowLayout(pParent, this)));
-	pMenu->AppendSeparator();
-	pMenu->Append(new GNC::GUI::wxMenuItemTool(pMenu, SPLIT_H,_("Split active horizontally"), GinkgoResourcesManager::LayoutBar::GetIcoLayout2x1(), new GNC::GUI::wxEventHandlerWindowLayout(pParent, this)));
-	pMenu->Append(new GNC::GUI::wxMenuItemTool(pMenu, SPLIT_V,_("Split active vertically"), GinkgoResourcesManager::LayoutBar::GetIcoLayout1x2(), new GNC::GUI::wxEventHandlerWindowLayout(pParent, this)));
-	pMenu->AppendSeparator();
-	pMenu->Append(new GNC::GUI::wxMenuItemTool(pMenu, LAY_1_1,_("1x1 Layout"), GinkgoResourcesManager::LayoutBar::GetIcoLayout1x1(), new GNC::GUI::wxEventHandlerWindowLayout(pParent, this)));
-	pMenu->Append(new GNC::GUI::wxMenuItemTool(pMenu, LAY_1_2,_("1x2 Layout"), GinkgoResourcesManager::LayoutBar::GetIcoLayout1x2(), new GNC::GUI::wxEventHandlerWindowLayout(pParent, this)));
-	pMenu->Append(new GNC::GUI::wxMenuItemTool(pMenu, LAY_2_1,_("2x1 Layout"), GinkgoResourcesManager::LayoutBar::GetIcoLayout2x1(), new GNC::GUI::wxEventHandlerWindowLayout(pParent, this)));
-	pMenu->Append(new GNC::GUI::wxMenuItemTool(pMenu, LAY_2_2,_("2x2 Layout"), GinkgoResourcesManager::LayoutBar::GetIcoLayout2x2(), new GNC::GUI::wxEventHandlerWindowLayout(pParent, this)));
-	pMenu->Append(new GNC::GUI::wxMenuItemTool(pMenu, LAY_3_3,_("3x3 Layout"), GinkgoResourcesManager::LayoutBar::GetIcoLayout3x3(), new GNC::GUI::wxEventHandlerWindowLayout(pParent, this)));
-	pMenu->Append(new GNC::GUI::wxMenuItemTool(pMenu, LAY_4_4,_("4x4 Layout"), GinkgoResourcesManager::LayoutBar::GetIcoLayout4x4(), new GNC::GUI::wxEventHandlerWindowLayout(pParent, this)));
+        pMenu->Append(new GNC::GUI::wxMenuItemTool(pMenu, ADD_COL,_("Add column"), GinkgoResourcesManager::LayoutBar::GetIcoAddColumn(), new GNC::GUI::wxEventHandlerWindowLayout(pParent, this)));
+        pMenu->Append(new GNC::GUI::wxMenuItemTool(pMenu, ADD_FILA,_("Add row"), GinkgoResourcesManager::LayoutBar::GetIcoAddRow(), new GNC::GUI::wxEventHandlerWindowLayout(pParent, this)));
+        pMenu->AppendSeparator();
+        pMenu->Append(new GNC::GUI::wxMenuItemTool(pMenu, DEL_COL,_("Remove column"), GinkgoResourcesManager::LayoutBar::GetIcoDelColumn(), new GNC::GUI::wxEventHandlerWindowLayout(pParent, this)));
+        pMenu->Append(new GNC::GUI::wxMenuItemTool(pMenu, DEL_FILA,_("Remove row"), GinkgoResourcesManager::LayoutBar::GetIcoDelRow(), new GNC::GUI::wxEventHandlerWindowLayout(pParent, this)));
+        pMenu->AppendSeparator();
+        pMenu->Append(new GNC::GUI::wxMenuItemTool(pMenu, SPLIT_H,_("Split active horizontally"), GinkgoResourcesManager::LayoutBar::GetIcoLayout2x1(), new GNC::GUI::wxEventHandlerWindowLayout(pParent, this)));
+        pMenu->Append(new GNC::GUI::wxMenuItemTool(pMenu, SPLIT_V,_("Split active vertically"), GinkgoResourcesManager::LayoutBar::GetIcoLayout1x2(), new GNC::GUI::wxEventHandlerWindowLayout(pParent, this)));
+        pMenu->AppendSeparator();
+        pMenu->Append(new GNC::GUI::wxMenuItemTool(pMenu, LAY_1_1,_("1x1 Layout"), GinkgoResourcesManager::LayoutBar::GetIcoLayout1x1(), new GNC::GUI::wxEventHandlerWindowLayout(pParent, this)));
+        pMenu->Append(new GNC::GUI::wxMenuItemTool(pMenu, LAY_1_2,_("1x2 Layout"), GinkgoResourcesManager::LayoutBar::GetIcoLayout1x2(), new GNC::GUI::wxEventHandlerWindowLayout(pParent, this)));
+        pMenu->Append(new GNC::GUI::wxMenuItemTool(pMenu, LAY_2_1,_("2x1 Layout"), GinkgoResourcesManager::LayoutBar::GetIcoLayout2x1(), new GNC::GUI::wxEventHandlerWindowLayout(pParent, this)));
+        pMenu->Append(new GNC::GUI::wxMenuItemTool(pMenu, LAY_2_2,_("2x2 Layout"), GinkgoResourcesManager::LayoutBar::GetIcoLayout2x2(), new GNC::GUI::wxEventHandlerWindowLayout(pParent, this)));
+        pMenu->Append(new GNC::GUI::wxMenuItemTool(pMenu, LAY_3_3,_("3x3 Layout"), GinkgoResourcesManager::LayoutBar::GetIcoLayout3x3(), new GNC::GUI::wxEventHandlerWindowLayout(pParent, this)));
+        pMenu->Append(new GNC::GUI::wxMenuItemTool(pMenu, LAY_4_4,_("4x4 Layout"), GinkgoResourcesManager::LayoutBar::GetIcoLayout4x4(), new GNC::GUI::wxEventHandlerWindowLayout(pParent, this)));
 }
-		
+
 bool GNC::WindowLayoutTool::ExecuteAction()
-{	
-	return false;
+{
+        return false;
 }
 
 void GNC::WindowLayoutTool::AppendToolIn(wxEvtHandler* pParent, wxMenu* pMenu)
 {
-	if (AppendsInMenu()) {
-		wxMenu* pLayoutMenu = new wxMenu();
-		AppendDropDownMenu(pParent, pLayoutMenu);
-		pMenu->Append(ID,wxString::FromUTF8(Name.c_str()),pLayoutMenu);		
-	}
+        if (AppendsInMenu()) {
+                wxMenu* pLayoutMenu = new wxMenu();
+                AppendDropDownMenu(pParent, pLayoutMenu);
+                pMenu->Append(ID,wxString::FromUTF8(Name.c_str()),pLayoutMenu);
+        }
 }
 
 void GNC::WindowLayoutTool::SetWindowLayout(int filas, int columnas)
 {
-	WindowLayoutContract->SetWindowLayout(filas,columnas);
+        WindowLayoutContract->SetWindowLayout(filas,columnas);
 }
 
 void GNC::WindowLayoutTool::AddRow()
 {
-	WindowLayoutContract->AddRow();
+        WindowLayoutContract->AddRow();
 }
 
 void GNC::WindowLayoutTool::AddColumn()
 {
-	WindowLayoutContract->AddColumn();
+        WindowLayoutContract->AddColumn();
 }
 
 void GNC::WindowLayoutTool::DelRow()
 {
-	WindowLayoutContract->DelRow();
+        WindowLayoutContract->DelRow();
 }
 
 void GNC::WindowLayoutTool::DelColumn()
 {
-	WindowLayoutContract->DelColumn();
+        WindowLayoutContract->DelColumn();
 }
 
 bool GNC::WindowLayoutTool::AddAllowed()
 {
-	if( WindowLayoutContract->GetRows() * WindowLayoutContract->GetColumns() >= (WindowLayoutContract->m_MaxSlice-WindowLayoutContract->m_MinSlice +1))
-	{
-		return false;
-	}		
-	return true;	
+        if( WindowLayoutContract->GetRows() * WindowLayoutContract->GetColumns() >= (WindowLayoutContract->m_MaxSlice-WindowLayoutContract->m_MinSlice +1)) {
+                return false;
+        }
+        return true;
 }
 
 bool GNC::WindowLayoutTool::Supports(int filas, int columnas)
 {
-	int zocalos = filas * columnas;
-	int slices = WindowLayoutContract->m_MaxSlice - WindowLayoutContract->m_MinSlice +1;
-	
-	if(zocalos-slices  >= std::min(filas,columnas))
-	{
-		return false;
-	}
-	return true;
+        int zocalos = filas * columnas;
+        int slices = WindowLayoutContract->m_MaxSlice - WindowLayoutContract->m_MinSlice +1;
+
+        if(zocalos-slices  >= std::min(filas,columnas)) {
+                return false;
+        }
+        return true;
 }
 
 bool GNC::WindowLayoutTool::DeleteRowAllowed()
 {
-	if( WindowLayoutContract->GetRows() <=1)
-	{
-		return false;
-	}
-	return true;
+        if( WindowLayoutContract->GetRows() <=1) {
+                return false;
+        }
+        return true;
 }
 bool GNC::WindowLayoutTool::DeleteColumnAllowed()
 {
-	if( WindowLayoutContract->GetColumns() <=1)
-	{
-		return false;
-	}
-	return true;
+        if( WindowLayoutContract->GetColumns() <=1) {
+                return false;
+        }
+        return true;
 }
 
 bool GNC::WindowLayoutTool::SupportsSplit()
 {
-	return WindowLayoutContract->SupportsSplit();
+        return WindowLayoutContract->SupportsSplit();
 }
 
 void GNC::WindowLayoutTool::SplitActive(bool vertically)
 {
-	return WindowLayoutContract->SplitActive(vertically);
+        return WindowLayoutContract->SplitActive(vertically);
 }
 
 

@@ -32,34 +32,34 @@ class TitledPanel;
 
 namespace GNC
 {
-	namespace GUI
-	{
-		
-		///////////////////////////////////////////////////////////////////////////////
-		/// Class PACSUploadDialogBase
-		///////////////////////////////////////////////////////////////////////////////
-		class PACSUploadDialogBase : public wxDialog 
-		{
-			private:
-			
-			protected:
-				BodyPanel* m_pBody;
-				TitledPanel* m_pPanelMessage;
-				wxStaticText* m_pLabel;
-				wxChoice* m_pServer;
-				wxCheckListBox* m_pSeriesList;
-				FooterPanel* m_pFooter;
-				wxButton* m_pOkButton;
-				wxButton* m_button5;
-			
-			public:
-				
-				PACSUploadDialogBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Upload study"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 712,495 ), long style = wxCAPTION|wxCLOSE_BOX|wxMAXIMIZE_BOX|wxRESIZE_BORDER|wxSYSTEM_MENU ); 
-				~PACSUploadDialogBase();
-			
-		};
-		
-	} // namespace GUI
+namespace GUI
+{
+
+///////////////////////////////////////////////////////////////////////////////
+/// Class PACSUploadDialogBase
+///////////////////////////////////////////////////////////////////////////////
+class PACSUploadDialogBase : public wxDialog
+{
+private:
+
+protected:
+        BodyPanel* m_pBody;
+        TitledPanel* m_pPanelMessage;
+        wxStaticText* m_pLabel;
+        wxChoice* m_pServer;
+        wxCheckListBox* m_pSeriesList;
+        FooterPanel* m_pFooter;
+        wxButton* m_pOkButton;
+        wxButton* m_button5;
+
+public:
+
+        PACSUploadDialogBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Upload study"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 712,495 ), long style = wxCAPTION|wxCLOSE_BOX|wxMAXIMIZE_BOX|wxRESIZE_BORDER|wxSYSTEM_MENU );
+        ~PACSUploadDialogBase();
+
+};
+
+} // namespace GUI
 } // namespace GNC
 
 #endif //__PACSUPLOADDIALOGBASE_H__

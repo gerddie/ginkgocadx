@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -35,95 +35,102 @@
 class vtkImageData;
 class vtkImageChangeInformation;
 
-namespace GNC {
-	namespace GCS {
-		class IComando;
-	}
+namespace GNC
+{
+namespace GCS
+{
+class IComando;
+}
 }
 //endregion
 
-namespace GNC {
+namespace GNC
+{
 
-	class EXTAPI StreamingLoader : public GNC::GCS::IStreamingLoader {
-	public:
-		typedef itk::GDCMImageIO         ImageIO;
-		typedef ImageIO::IOComponentType ImageComponentType;
-		typedef ImageIO::IOPixelType     ImagePixelType;
+class EXTAPI StreamingLoader : public GNC::GCS::IStreamingLoader
+{
+public:
+        typedef itk::GDCMImageIO         ImageIO;
+        typedef ImageIO::IOComponentType ImageComponentType;
+        typedef ImageIO::IOPixelType     ImagePixelType;
 
-		//region Constructor
-		StreamingLoader();
-		virtual ~StreamingLoader();
+        //region Constructor
+        StreamingLoader();
+        virtual ~StreamingLoader();
 
-		virtual bool IsSignalFile() { return m_SignalFile; }
-		virtual void SetInput(const std::string& fichero);
+        virtual bool IsSignalFile()
+        {
+                return m_SignalFile;
+        }
+        virtual void SetInput(const std::string& fichero);
 
-		//------------------------------------------------------------------------------------------------
-		//region IPipelineProperties realization
+        //------------------------------------------------------------------------------------------------
+        //region IPipelineProperties realization
 
-		/** Updates **/
-		virtual void Update();
+        /** Updates **/
+        virtual void Update();
 
-		/** Updates output information **/
-		virtual void UpdateInformation();
+        /** Updates output information **/
+        virtual void UpdateInformation();
 
-		/* Gets original (3D Volume) direction cosines */
-		virtual const GNC::GCS::Ptr<GNC::GCS::IGinkgoMatrix4x4> GetDirection();
+        /* Gets original (3D Volume) direction cosines */
+        virtual const GNC::GCS::Ptr<GNC::GCS::IGinkgoMatrix4x4> GetDirection();
 
-		/** Gets the original (3D Volume) origin **/
-		virtual void GetOrigin(double origin[3]);
+        /** Gets the original (3D Volume) origin **/
+        virtual void GetOrigin(double origin[3]);
 
-		/** Gets the original (3D Volume) spacing **/
-		virtual void GetSpacing(double spacing[3]);
+        /** Gets the original (3D Volume) spacing **/
+        virtual void GetSpacing(double spacing[3]);
 
-		/** Gets the original (3D Volume) dimensions **/
-		virtual void GetDimensions(int dims[3]);
+        /** Gets the original (3D Volume) dimensions **/
+        virtual void GetDimensions(int dims[3]);
 
-		/** Gets the slice direction cosines **/
-		virtual const GNC::GCS::Ptr<GNC::GCS::IGinkgoMatrix4x4> GetOutputDirection();
+        /** Gets the slice direction cosines **/
+        virtual const GNC::GCS::Ptr<GNC::GCS::IGinkgoMatrix4x4> GetOutputDirection();
 
-		/** Gets the slice output origin **/
-		virtual void GetOutputOrigin(double origin[3]);
+        /** Gets the slice output origin **/
+        virtual void GetOutputOrigin(double origin[3]);
 
-		/** Gets the slice output spacing **/
-		virtual void GetOutputSpacing(double spacing[3]);
+        /** Gets the slice output spacing **/
+        virtual void GetOutputSpacing(double spacing[3]);
 
-		/** Gets the slice output dimensions **/
-		virtual void GetOutputDimensions(int currentDimensions[3]);
+        /** Gets the slice output dimensions **/
+        virtual void GetOutputDimensions(int currentDimensions[3]);
 
-		//endregion
+        //endregion
 
-		/** Sets the output spacing **/
-		virtual void SetOutputSpacing(double spacing[3]);
+        /** Sets the output spacing **/
+        virtual void SetOutputSpacing(double spacing[3]);
 
-		/** Sets the output origin **/
-		virtual void SetOutputOrigin(double origin[3]);
+        /** Sets the output origin **/
+        virtual void SetOutputOrigin(double origin[3]);
 
-		virtual std::string GetPatientPosition();
+        virtual std::string GetPatientPosition();
 
-		virtual vtkSmartPointer<vtkAlgorithmOutput> GetOutputPort(); // Devuelve el puerto de salida
-		virtual void GetOutputCopy(vtkSmartPointer<vtkImageData>& output);    // Devuelve por parametro una copia de la imagen
-		virtual bool GetDefaultWindowLevel(double &window, double &level);
+        virtual vtkSmartPointer<vtkAlgorithmOutput> GetOutputPort(); // Devuelve el puerto de salida
+        virtual void GetOutputCopy(vtkSmartPointer<vtkImageData>& output);    // Devuelve por parametro una copia de la imagen
+        virtual bool GetDefaultWindowLevel(double &window, double &level);
 
-	protected:
-		void CargarITK(GNC::GCS::IComando* cmd, int* orientacion, double* spacing = NULL);
+protected:
+        void CargarITK(GNC::GCS::IComando* cmd, int* orientacion, double* spacing = NULL);
 
-		itk::ProcessObject::Pointer                m_pReader;
-		itk::ProcessObject::Pointer                m_pPipelineJoiner;
-		vtkSmartPointer<vtkImageChangeInformation> m_pOutput;
-		GNC::GCS::Ptr<GNC::GCS::IGinkgoMatrix4x4>  DirectionCosines;
-		double                                     m_Origin[3];
-		double                                     m_Spacing[3];
+        itk::ProcessObject::Pointer                m_pReader;
+        itk::ProcessObject::Pointer                m_pPipelineJoiner;
+        vtkSmartPointer<vtkImageChangeInformation> m_pOutput;
+        GNC::GCS::Ptr<GNC::GCS::IGinkgoMatrix4x4>  DirectionCosines;
+        double                                     m_Origin[3];
+        double                                     m_Spacing[3];
 
 
-	private:
-		ImageIO::Pointer    m_IO;
-		unsigned int        m_CurrentNumberOfComponents;
-		ImageComponentType  m_CurrentComponentType;
-		ImagePixelType      m_CurrentPixelType;
-		unsigned int        m_CurrentDimensions[3];
-		std::string         m_CurrentFile;
-		bool                m_SignalFile;
+private:
+        ImageIO::Pointer    m_IO;
+        unsigned int        m_CurrentNumberOfComponents;
+        ImageComponentType  m_CurrentComponentType;
+        ImagePixelType      m_CurrentPixelType;
+        unsigned int        m_CurrentDimensions[3];
+        std::string         m_CurrentFile;
+        bool                m_SignalFile;
 
-		void RecomponerPipeline();
-	};
+        void RecomponerPipeline();
+};
 }

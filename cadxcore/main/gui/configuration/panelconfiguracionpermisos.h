@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -24,52 +24,54 @@
 #include <string>
 #include <vector>
 
-namespace GNC {
-	namespace GUI {
+namespace GNC
+{
+namespace GUI
+{
 
-		class PanelConfiguracionPermisos: public PanelConfiguracionPermisosBase, public IPasoConfiguracion
-		{
-			public:
-				PanelConfiguracionPermisos(wxWindow* pParent,IDialogoConfiguracion* pDialogo);
-				~PanelConfiguracionPermisos();
+class PanelConfiguracionPermisos: public PanelConfiguracionPermisosBase, public IPasoConfiguracion
+{
+public:
+        PanelConfiguracionPermisos(wxWindow* pParent,IDialogoConfiguracion* pDialogo);
+        ~PanelConfiguracionPermisos();
 
-				void Recargar();
+        void Recargar();
 
-				//region "Metodos de IPasoConfiguracion"
-				wxWindow* GetPanel();
+        //region "Metodos de IPasoConfiguracion"
+        wxWindow* GetPanel();
 
-				std::string GetTitle();
+        std::string GetTitle();
 
-				std::string GetCabecera();
+        std::string GetCabecera();
 
-				bool Validar();
+        bool Validar();
 
-				bool Guardar();
-				//endregion
+        bool Guardar();
+        //endregion
 
 
-			protected:
-				virtual void OnListaPermisosDClick(wxDataViewEvent& event);
-				virtual void OnListaPermisosChangeSelection(wxDataViewEvent& event);
+protected:
+        virtual void OnListaPermisosDClick(wxDataViewEvent& event);
+        virtual void OnListaPermisosChangeSelection(wxDataViewEvent& event);
 
-				virtual void OnSetActive(wxCommandEvent &event);
+        virtual void OnSetActive(wxCommandEvent &event);
 
-				virtual void OnNuevoClick(wxCommandEvent &event);
+        virtual void OnNuevoClick(wxCommandEvent &event);
 
-				virtual void OnEditarClick(wxCommandEvent &event);
+        virtual void OnEditarClick(wxCommandEvent &event);
 
-				virtual void OnEliminarClick(wxCommandEvent &event);
+        virtual void OnEliminarClick(wxCommandEvent &event);
 
-				virtual void OnTextoCambiado(wxCommandEvent &event );
+        virtual void OnTextoCambiado(wxCommandEvent &event );
 
-				virtual void OnPropiedadCambiada();
+        virtual void OnPropiedadCambiada();
 
-				void OnSize(wxSizeEvent &);
-				
-				wxObjectDataPtr<wxDataViewListStore> m_pModel;
-				
-				bool m_permisosCambiados;
+        void OnSize(wxSizeEvent &);
 
-		};
-	}
+        wxObjectDataPtr<wxDataViewListStore> m_pModel;
+
+        bool m_permisosCambiados;
+
+};
+}
 }

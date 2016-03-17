@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -31,69 +31,72 @@
 class wxCriticalSectionLocker;
 class wxSemaphore;
 
-namespace GADAPI {
-	class EXTAPI DicomizeCommandParams : public GNC::GCS::IComandoParams {
-	public:
-		DicomizeCommandParams(const GNC::GCS::Ptr<GNC::GUI::ImportationData>& pDatosPersistentes, const std::string& dirTemporal = "") ;
+namespace GADAPI
+{
+class EXTAPI DicomizeCommandParams : public GNC::GCS::IComandoParams
+{
+public:
+        DicomizeCommandParams(const GNC::GCS::Ptr<GNC::GUI::ImportationData>& pDatosPersistentes, const std::string& dirTemporal = "") ;
 
-		DicomizeCommandParams( const DicomizeCommandParams& o);
-		DicomizeCommandParams& operator = (const DicomizeCommandParams& o);
+        DicomizeCommandParams( const DicomizeCommandParams& o);
+        DicomizeCommandParams& operator = (const DicomizeCommandParams& o);
 
-		virtual ~DicomizeCommandParams() ;
+        virtual ~DicomizeCommandParams() ;
 
-	public:
-		GNC::GCS::Ptr<GNC::GUI::ImportationData> m_pImportData;
-		std::string m_dirTemporal;
-		std::list<std::string> m_listOfFiles;
-		std::list<long> m_InsertedSeries;
-		bool m_openAfterDicomize;
+public:
+        GNC::GCS::Ptr<GNC::GUI::ImportationData> m_pImportData;
+        std::string m_dirTemporal;
+        std::list<std::string> m_listOfFiles;
+        std::list<long> m_InsertedSeries;
+        bool m_openAfterDicomize;
 
-		std::string m_mensajeError;
-		bool m_importacionCorrecta;
-		bool m_copiadoCorrecto;
-		wxSemaphore* m_pSemaforoEsperarComando;
-		
-		GNC::GCS::IComando*	m_pComandoEspera;
-		GNC::GCS::IComandoParams*	m_pParamsEspera;
-	};
+        std::string m_mensajeError;
+        bool m_importacionCorrecta;
+        bool m_copiadoCorrecto;
+        wxSemaphore* m_pSemaforoEsperarComando;
+
+        GNC::GCS::IComando*	m_pComandoEspera;
+        GNC::GCS::IComandoParams*	m_pParamsEspera;
+};
 
 
-	class EXTAPI DicomizeCommand : public GNC::GCS::IComando, public GNC::GCS::IEventsObserver {
-	public:
-		DicomizeCommand(DicomizeCommandParams* pParams);
+class EXTAPI DicomizeCommand : public GNC::GCS::IComando, public GNC::GCS::IEventsObserver
+{
+public:
+        DicomizeCommand(DicomizeCommandParams* pParams);
 
-		typedef struct {
-					wxString campoLista;
-					wxString loincCodigoCampo;
-					wxString loincDescCampo;
-					wxString valor;
-		} tValoracion;
+        typedef struct {
+                wxString campoLista;
+                wxString loincCodigoCampo;
+                wxString loincDescCampo;
+                wxString valor;
+        } tValoracion;
 
-		typedef std::list<tValoracion> listaValoraciones;
+        typedef std::list<tValoracion> listaValoraciones;
 
-	 protected:
-		virtual void Execute();
-		virtual void Update();
+protected:
+        virtual void Execute();
+        virtual void Update();
 
-		  virtual void OnAbort();
+        virtual void OnAbort();
 
-		void LiberarRecursos();
-	 public:
-		virtual bool ImportarFicherosOriginales();
-		
-	 protected:
-		virtual GIL::ISeriesModel ImportOriginalFiles(bool pdfFiles);
+        void LiberarRecursos();
+public:
+        virtual bool ImportarFicherosOriginales();
 
-		virtual bool CopiarDicom();
+protected:
+        virtual GIL::ISeriesModel ImportOriginalFiles(bool pdfFiles);
 
-		virtual bool SubirPACS();
+        virtual bool CopiarDicom();
 
-		virtual void LanzarYEsperar(GNC::GCS::IComando* pCmd, GNC::GCS::IComandoParams* pCmdParams);
+        virtual bool SubirPACS();
 
-		virtual bool  BorrarArchivosTemporales(wxString dirPath);
+        virtual void LanzarYEsperar(GNC::GCS::IComando* pCmd, GNC::GCS::IComandoParams* pCmdParams);
 
-		virtual void ProcesarEvento(GNC::GCS::Events::IEvent *evt) ;
+        virtual bool  BorrarArchivosTemporales(wxString dirPath);
 
-		DicomizeCommandParams* m_pIntegracionParams;
-	};
+        virtual void ProcesarEvento(GNC::GCS::Events::IEvent *evt) ;
+
+        DicomizeCommandParams* m_pIntegracionParams;
+};
 }

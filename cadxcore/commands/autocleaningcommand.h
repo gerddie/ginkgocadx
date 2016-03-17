@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -23,34 +23,36 @@
 #include <api/icommand.h>
 #include <api/controllers/ihistorycontroller.h>
 
-namespace GADAPI {
-	class AutoCleaningCommandParameters : public GNC::GCS::IComandoParams 
-	{
-	public:
-		//download only specifying 
-		AutoCleaningCommandParameters(int olderThan, int hdSpace, int dicomDirSize);
-		virtual ~AutoCleaningCommandParameters();
+namespace GADAPI
+{
+class AutoCleaningCommandParameters : public GNC::GCS::IComandoParams
+{
+public:
+        //download only specifying
+        AutoCleaningCommandParameters(int olderThan, int hdSpace, int dicomDirSize);
+        virtual ~AutoCleaningCommandParameters();
 
-	public:
-		int OlderThan;
-		int HdSpace;
-		int DicomDirSize;
-		GNC::GCS::IHistoryController::SeriesModelList seriesToDelete;
-	};
-
-
-
-	class AutoCleaningCommand: public GNC::GCS::IComando {
-	public:
-		AutoCleaningCommand(AutoCleaningCommandParameters* pParams);
-
-    protected:
-		virtual void Execute();
-		virtual void Update();
-
-    public:
+public:
+        int OlderThan;
+        int HdSpace;
+        int DicomDirSize;
+        GNC::GCS::IHistoryController::SeriesModelList seriesToDelete;
+};
 
 
-		AutoCleaningCommandParameters* m_pAutoCleaningParameters;
-	};
+
+class AutoCleaningCommand: public GNC::GCS::IComando
+{
+public:
+        AutoCleaningCommand(AutoCleaningCommandParameters* pParams);
+
+protected:
+        virtual void Execute();
+        virtual void Update();
+
+public:
+
+
+        AutoCleaningCommandParameters* m_pAutoCleaningParameters;
+};
 }

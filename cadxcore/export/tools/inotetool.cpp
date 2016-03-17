@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -26,5 +26,5 @@ GNC::GCS::ITool::UID GNC::GCS::INoteTool::ID = HCore_Nota;
 
 GNC::GCS::INoteTool::INoteTool() : IWidgetTool(ID, TFamiliaAnotacion, _Std("Text Note \tCtrl+N"), GinkgoResourcesManager::ToolIcons::GetIcoAnotacion())
 {
-	KeyCode = Name[Name.size() - 1];
+        KeyCode = Name[Name.size() - 1];
 }

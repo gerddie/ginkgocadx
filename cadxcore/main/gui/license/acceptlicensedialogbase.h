@@ -31,42 +31,51 @@ class HeaderPanel;
 
 namespace GNC
 {
-	namespace GUI
-	{
-		
-		///////////////////////////////////////////////////////////////////////////////
-		/// Class AcceptLicenseDialogBase
-		///////////////////////////////////////////////////////////////////////////////
-		class AcceptLicenseDialogBase : public wxDialog 
-		{
-			private:
-			
-			protected:
-				HeaderPanel* m_pHeader;
-				BodyPanel* m_pBody;
-				wxTextCtrl* m_pTextoLicencia;
-				FooterPanel* m_pFooter;
-				wxStaticText* m_staticText1;
-				wxCheckBox* m_pCheckForUpdates;
-				wxCheckBox* m_pCheckAnonUsageStats;
-				
-				wxButton* m_buttonAceptar;
-				wxButton* m_buttonCancelar;
-				
-				// Virtual event handlers, overide them in your derived class
-				virtual void OnAnyKeyDown( wxKeyEvent& event ) { event.Skip(); }
-				virtual void OnSize( wxSizeEvent& event ) { event.Skip(); }
-				virtual void OnAceptarClick( wxCommandEvent& event ) { event.Skip(); }
-				
-			
-			public:
-				
-				AcceptLicenseDialogBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("License agreement"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 800,600 ), long style = wxCLOSE_BOX|wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER );
-				~AcceptLicenseDialogBase();
-			
-		};
-		
-	} // namespace GUI
+namespace GUI
+{
+
+///////////////////////////////////////////////////////////////////////////////
+/// Class AcceptLicenseDialogBase
+///////////////////////////////////////////////////////////////////////////////
+class AcceptLicenseDialogBase : public wxDialog
+{
+private:
+
+protected:
+        HeaderPanel* m_pHeader;
+        BodyPanel* m_pBody;
+        wxTextCtrl* m_pTextoLicencia;
+        FooterPanel* m_pFooter;
+        wxStaticText* m_staticText1;
+        wxCheckBox* m_pCheckForUpdates;
+        wxCheckBox* m_pCheckAnonUsageStats;
+
+        wxButton* m_buttonAceptar;
+        wxButton* m_buttonCancelar;
+
+        // Virtual event handlers, overide them in your derived class
+        virtual void OnAnyKeyDown( wxKeyEvent& event )
+        {
+                event.Skip();
+        }
+        virtual void OnSize( wxSizeEvent& event )
+        {
+                event.Skip();
+        }
+        virtual void OnAceptarClick( wxCommandEvent& event )
+        {
+                event.Skip();
+        }
+
+
+public:
+
+        AcceptLicenseDialogBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("License agreement"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 800,600 ), long style = wxCLOSE_BOX|wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER );
+        ~AcceptLicenseDialogBase();
+
+};
+
+} // namespace GUI
 } // namespace GNC
 
 #endif //__acceptlicensedialogbase__

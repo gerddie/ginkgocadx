@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -23,29 +23,33 @@
 #include <api/ievento.h>
 #include "eventosginkgo.h"
 
-namespace GNC {
-	namespace GCS {
-		namespace Events {
+namespace GNC
+{
+namespace GCS
+{
+namespace Events
+{
 
-			class EXTAPI EventHideSplashWindow : public GNC::GCS::Events::IEvent
-			{
-			public:
+class EXTAPI EventHideSplashWindow : public GNC::GCS::Events::IEvent
+{
+public:
 
-				EventHideSplashWindow(GNC::GCS::IVista* pVista = NULL) : GNC::GCS::Events::IEvent(ginkgoEVT_Core_HideSplashWindow, 0, 100, pVista)
-				{
-					m_Nombre = "EventHideSplashWindow";
-				}
+        EventHideSplashWindow(GNC::GCS::IVista* pVista = NULL) : GNC::GCS::Events::IEvent(ginkgoEVT_Core_HideSplashWindow, 0, 100, pVista)
+        {
+                m_Nombre = "EventHideSplashWindow";
+        }
 
-				~EventHideSplashWindow()
-				{
-				}
+        ~EventHideSplashWindow()
+        {
+        }
 
-				virtual void pushInfo(std::ostream& /*out*/) const {
-				}
+        virtual void pushInfo(std::ostream& /*out*/) const
+        {
+        }
 
-			protected:
-			};
+protected:
+};
 
-		}
-	}
+}
+}
 }

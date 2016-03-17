@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -27,27 +27,29 @@
 #include <api/api.h>
 #include <api/observers/ieventsobserver.h>
 
-namespace GNC {
-	namespace GUI {
-		class PanelTags;
-	}
+namespace GNC
+{
+namespace GUI
+{
+class PanelTags;
+}
 
-	class EXTAPI ShowTagsTool : public GNC::GCS::IShowTagsTool, public GNC::GCS::IEventsObserver 
-	{
-	protected:
+class EXTAPI ShowTagsTool : public GNC::GCS::IShowTagsTool, public GNC::GCS::IEventsObserver
+{
+protected:
 
-	public:
-		virtual GNC::GCS::ITool* NewTool();
-		ShowTagsTool();
-		~ShowTagsTool();
-		virtual bool ExecuteAction();
-		virtual void AppendToolIn(wxEvtHandler* pParent, wxMenu* pMenu);
-		
-		virtual void ProcesarEvento(GNC::GCS::Events::IEvent *evt);
-		bool IsVisible();
-	protected:
-		GNC::GUI::PanelTags*								m_pPanelTags;
-	};
+public:
+        virtual GNC::GCS::ITool* NewTool();
+        ShowTagsTool();
+        ~ShowTagsTool();
+        virtual bool ExecuteAction();
+        virtual void AppendToolIn(wxEvtHandler* pParent, wxMenu* pMenu);
+
+        virtual void ProcesarEvento(GNC::GCS::Events::IEvent *evt);
+        bool IsVisible();
+protected:
+        GNC::GUI::PanelTags*								m_pPanelTags;
+};
 }
 #endif
 #endif

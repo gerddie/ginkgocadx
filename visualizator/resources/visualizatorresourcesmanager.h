@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -21,36 +21,42 @@
 #pragma once
 #include <wx/bitmap.h>
 
-namespace GNKVisualizator {
-	 class ResourcesManager {
+namespace GNKVisualizator
+{
+class ResourcesManager
+{
 
- 		public:
- 		class ToolIcons {
-		public:
-			static wxBitmap GetIcoCapas();
-			static wxBitmap GetIcoReset();
-			static wxBitmap GetIcoMenuImagen();
-			static wxBitmap GetIcoECGMetadata();
- 		};
-		
-		class T3DBar {
-		public:
-			static wxBitmap GetIco3DArrow();		
-			static wxBitmap GetIcoStereo();	
-			static wxBitmap GetIcoPin();	
-			static wxBitmap GetIcoDemo();
-		};
+public:
+        class ToolIcons
+        {
+        public:
+                static wxBitmap GetIcoCapas();
+                static wxBitmap GetIcoReset();
+                static wxBitmap GetIcoMenuImagen();
+                static wxBitmap GetIcoECGMetadata();
+        };
 
-		class SynchronizationBar {
-		public:
-			static wxBitmap GetIcoDessincronizar();
-		};
+        class T3DBar
+        {
+        public:
+                static wxBitmap GetIco3DArrow();
+                static wxBitmap GetIcoStereo();
+                static wxBitmap GetIcoPin();
+                static wxBitmap GetIcoDemo();
+        };
 
-		class Logos {
-		public:
-			static wxBitmap GetIcoVisualizator();
-		};
+        class SynchronizationBar
+        {
+        public:
+                static wxBitmap GetIcoDessincronizar();
+        };
+
+        class Logos
+        {
+        public:
+                static wxBitmap GetIcoVisualizator();
+        };
 
 
-	 };
+};
 }

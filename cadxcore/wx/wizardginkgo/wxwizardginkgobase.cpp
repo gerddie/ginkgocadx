@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -23,39 +23,43 @@
 #include <main/controllers/inactivitycontroller.h>
 
 wxWizardGinkgoBase::wxWizardGinkgoBase( wxWindow* parent):
-wxWizardGinkgoBaseWx(parent)
+        wxWizardGinkgoBaseWx(parent)
 {
-	//stops inactivity monitor
-	GNC::GCS::InactivityController::Instance()->StopsMonitoring();
-	//
+        //stops inactivity monitor
+        GNC::GCS::InactivityController::Instance()->StopsMonitoring();
+        //
 }
 
 wxWizardGinkgoBase::~wxWizardGinkgoBase()
 {
-	//starts inactivity monitor
-	GNC::GCS::InactivityController::Instance()->RestartMonitoring();
-	//
+        //starts inactivity monitor
+        GNC::GCS::InactivityController::Instance()->RestartMonitoring();
+        //
 }
 
-void wxWizardGinkgoBase::SiguientePaso(){
-	wxCommandEvent evt;
-	OnSiguienteClick(evt);
+void wxWizardGinkgoBase::SiguientePaso()
+{
+        wxCommandEvent evt;
+        OnSiguienteClick(evt);
 }
 
-void wxWizardGinkgoBase::EnableSiguiente(bool enable){
-	m_pBSiguiente->Enable(enable);
+void wxWizardGinkgoBase::EnableSiguiente(bool enable)
+{
+        m_pBSiguiente->Enable(enable);
 }
 
-void wxWizardGinkgoBase::EnableAnterior(bool enable) {
-	m_pBAnterior->Enable(enable);
+void wxWizardGinkgoBase::EnableAnterior(bool enable)
+{
+        m_pBAnterior->Enable(enable);
 }
 
-void wxWizardGinkgoBase::EnableCancelar(bool enable) {
-	m_pBCerrar->Enable(enable);
+void wxWizardGinkgoBase::EnableCancelar(bool enable)
+{
+        m_pBCerrar->Enable(enable);
 }
 
 void wxWizardGinkgoBase::OnSize(wxSizeEvent& event)
 {
-	event.Skip(true);
+        event.Skip(true);
 }
 

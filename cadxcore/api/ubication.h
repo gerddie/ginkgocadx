@@ -6,8 +6,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -25,29 +25,30 @@
 
 #include <api/api.h>
 
-namespace GIL {
-	class EXTAPI Ubicacion
-	{
-	public:
+namespace GIL
+{
+class EXTAPI Ubicacion
+{
+public:
 
-		std::string       Titulo;						
-		std::string       Ruta;
-		std::string       Descripcion;
-		bool              Monitorize;
-		bool              CleanBefore;
-		bool              CleanAfter;
+        std::string       Titulo;
+        std::string       Ruta;
+        std::string       Descripcion;
+        bool              Monitorize;
+        bool              CleanBefore;
+        bool              CleanAfter;
 
-		Ubicacion();
+        Ubicacion();
 
-		Ubicacion(const std::string& titulo, const std::string& ruta, const std::string& descripcion, bool monitorize, bool cleanbefore, bool cleanafter);
+        Ubicacion(const std::string& titulo, const std::string& ruta, const std::string& descripcion, bool monitorize, bool cleanbefore, bool cleanafter);
 
-		Ubicacion(const Ubicacion& otro);
+        Ubicacion(const Ubicacion& otro);
 
-		~Ubicacion();
+        ~Ubicacion();
 
-		void Update(const std::string& ruta, const std::string& desc, bool monitorize, bool cleanbefore, bool cleanafter);
+        void Update(const std::string& ruta, const std::string& desc, bool monitorize, bool cleanbefore, bool cleanafter);
 
-		Ubicacion& operator=(const Ubicacion& otro);
-	};
+        Ubicacion& operator=(const Ubicacion& otro);
+};
 }
 #endif

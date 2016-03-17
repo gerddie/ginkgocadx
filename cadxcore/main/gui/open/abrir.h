@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -24,19 +24,21 @@
 
 #include <main/controllers/pacscontroller.h>
 
-namespace GNC {
-	namespace GUI {
-		class Abrir
-		{
+namespace GNC
+{
+namespace GUI
+{
+class Abrir
+{
 
-		public:
-			Abrir();
-			~Abrir();
+public:
+        Abrir();
+        ~Abrir();
 
-			static void AbrirFichero(wxWindow* pParent, const std::list<std::string>* directLoads = NULL);
-			static void AbrirDirectorio(wxWindow* pParent);
+        static void AbrirFichero(wxWindow* pParent, const std::list<std::string>* directLoads = NULL);
+        static void AbrirDirectorio(wxWindow* pParent);
 
-		protected:
-		};
-	}
+protected:
+};
+}
 }

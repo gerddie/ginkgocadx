@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -54,113 +54,113 @@
 #define POD_COL_ACTIVE_IDX   1
 #define POD_COL_ACTIVE_WIDTH 80
 
-namespace GNC {
-	namespace GUI {
-		////////////////-------------------------------------------------------------------------------------/////////////////////////////
+namespace GNC
+{
+namespace GUI
+{
+////////////////-------------------------------------------------------------------------------------/////////////////////////////
 
-		SmartRetrieveConfigurationPanel::SmartRetrieveConfigurationPanel(wxWindow* pParent,IDialogoConfiguracion* pDialogo): SmartRetrieveConfigurationPanelBase(pParent), IPasoConfiguracion(pDialogo)
-		{
-			m_pModel = new wxDataViewListStore();
-			m_pListQueries->AssociateModel(m_pModel.get());
+SmartRetrieveConfigurationPanel::SmartRetrieveConfigurationPanel(wxWindow* pParent,IDialogoConfiguracion* pDialogo): SmartRetrieveConfigurationPanelBase(pParent), IPasoConfiguracion(pDialogo)
+{
+        m_pModel = new wxDataViewListStore();
+        m_pListQueries->AssociateModel(m_pModel.get());
 
-			m_pListQueries->AppendTextColumn(_("Name"), wxDATAVIEW_CELL_INERT, POD_COL_NAME_WIDTH, wxALIGN_LEFT,wxDATAVIEW_COL_SORTABLE | wxDATAVIEW_COL_RESIZABLE );
-			m_pListQueries->AppendToggleColumn(_("Active"),wxDATAVIEW_CELL_ACTIVATABLE, POD_COL_ACTIVE_WIDTH, wxALIGN_LEFT,wxDATAVIEW_COL_SORTABLE | wxDATAVIEW_COL_RESIZABLE );
+        m_pListQueries->AppendTextColumn(_("Name"), wxDATAVIEW_CELL_INERT, POD_COL_NAME_WIDTH, wxALIGN_LEFT,wxDATAVIEW_COL_SORTABLE | wxDATAVIEW_COL_RESIZABLE );
+        m_pListQueries->AppendToggleColumn(_("Active"),wxDATAVIEW_CELL_ACTIVATABLE, POD_COL_ACTIVE_WIDTH, wxALIGN_LEFT,wxDATAVIEW_COL_SORTABLE | wxDATAVIEW_COL_RESIZABLE );
 
-			Recargar();
+        Recargar();
 
-			m_pListQueries->Connect(wxEVT_DATAVIEW_ITEM_EDITING_DONE, wxDataViewEventHandler( SmartRetrieveConfigurationPanel::OnItemEdited), NULL, this );
-			m_pListQueries->Connect(wxEVT_DATAVIEW_ITEM_ACTIVATED, wxDataViewEventHandler( SmartRetrieveConfigurationPanel::OnListItemActivated ), NULL, this);
-		}
+        m_pListQueries->Connect(wxEVT_DATAVIEW_ITEM_EDITING_DONE, wxDataViewEventHandler( SmartRetrieveConfigurationPanel::OnItemEdited), NULL, this );
+        m_pListQueries->Connect(wxEVT_DATAVIEW_ITEM_ACTIVATED, wxDataViewEventHandler( SmartRetrieveConfigurationPanel::OnListItemActivated ), NULL, this);
+}
 
-		SmartRetrieveConfigurationPanel::~SmartRetrieveConfigurationPanel()
-		{
-		}
+SmartRetrieveConfigurationPanel::~SmartRetrieveConfigurationPanel()
+{
+}
 
-		void SmartRetrieveConfigurationPanel::Recargar()
-		{
-			m_pCheckEnable->SetValue(GNC::GCS::SmartRetrieveController::Instance()->isEnabled());
-			
-			GNC::GCS::StoredQueryController::TStoredQueriesList listOfQueries = GNC::GCS::StoredQueryController::Instance()->getStoredQueries();
-			for (GNC::GCS::StoredQueryController::TStoredQueriesList::iterator it = listOfQueries.begin(); it != listOfQueries.end(); ++it)
-			{
-				wxVector<wxVariant> data;
-				data.push_back(wxString::FromUTF8((*it)->getName().c_str()));
-				data.push_back((*it)->isActive());
-				m_pListQueries->AppendItem(data);
-				
-			}
+void SmartRetrieveConfigurationPanel::Recargar()
+{
+        m_pCheckEnable->SetValue(GNC::GCS::SmartRetrieveController::Instance()->isEnabled());
 
-			//refresh status
-			Refresh();
-		}
+        GNC::GCS::StoredQueryController::TStoredQueriesList listOfQueries = GNC::GCS::StoredQueryController::Instance()->getStoredQueries();
+        for (GNC::GCS::StoredQueryController::TStoredQueriesList::iterator it = listOfQueries.begin(); it != listOfQueries.end(); ++it) {
+                wxVector<wxVariant> data;
+                data.push_back(wxString::FromUTF8((*it)->getName().c_str()));
+                data.push_back((*it)->isActive());
+                m_pListQueries->AppendItem(data);
 
-		//region "Metodos de IPasoConfiguracion"
-		wxWindow* SmartRetrieveConfigurationPanel::GetPanel()
-		{
-			return this;
-		}
+        }
 
-		std::string SmartRetrieveConfigurationPanel::GetTitle()
-		{
-			return _Std("Smart retrieve");
-		}
+        //refresh status
+        Refresh();
+}
 
-		std::string SmartRetrieveConfigurationPanel::GetCabecera()
-		{
-			return _Std("Smart retrieve settings");
-		}
+//region "Metodos de IPasoConfiguracion"
+wxWindow* SmartRetrieveConfigurationPanel::GetPanel()
+{
+        return this;
+}
 
-		bool SmartRetrieveConfigurationPanel::Validar()
-		{
-			bool ok = true;
-			return ok;
-		}
+std::string SmartRetrieveConfigurationPanel::GetTitle()
+{
+        return _Std("Smart retrieve");
+}
 
-		bool SmartRetrieveConfigurationPanel::Guardar()
-		{
+std::string SmartRetrieveConfigurationPanel::GetCabecera()
+{
+        return _Std("Smart retrieve settings");
+}
 
-			GNC::GCS::SmartRetrieveController::Instance()->enable(m_pCheckEnable->GetValue());
-			//todo set status of queries...
-			GNC::GCS::StoredQueryController::TStoredQueriesList queries = GNC::GCS::StoredQueryController::Instance()->getStoredQueries();
-			for (unsigned  i = 0; i < m_pModel->GetCount(); ++i) {
-				wxVariant value;
-				m_pModel->GetValueByRow(value, i, POD_COL_ACTIVE_IDX);
-				bool active = value.GetBool();
-				m_pModel->GetValueByRow(value, i, POD_COL_NAME_IDX);
-				std::string name(value.GetString().ToUTF8());
+bool SmartRetrieveConfigurationPanel::Validar()
+{
+        bool ok = true;
+        return ok;
+}
 
-				for (GNC::GCS::StoredQueryController::TStoredQueriesList::iterator it = queries.begin(); it != queries.end(); ++it)
-				{
-					if ((*it)->getName() == name) {
-						(*it)->setActive(active);
-						break;
-					}
-				} 
-			}
-			GNC::GCS::StoredQueryController::Instance()->clearQueries();
-			GNC::GCS::StoredQueryController::Instance()->storeQueries(queries);
-			GNC::GCS::SmartRetrieveController::Instance()->resetStatus();
-			return true;
-		}
-		//endregion
-		
-		void SmartRetrieveConfigurationPanel::OnItemEdited(wxDataViewEvent& /*event*/)
-		{
-			OnPropiedadCambiada();
-		}
+bool SmartRetrieveConfigurationPanel::Guardar()
+{
 
-		void SmartRetrieveConfigurationPanel::OnCheckEnableBackgroundQueries(wxCommandEvent &/*evt*/)
-		{
-			OnPropiedadCambiada();
-		}
+        GNC::GCS::SmartRetrieveController::Instance()->enable(m_pCheckEnable->GetValue());
+        //todo set status of queries...
+        GNC::GCS::StoredQueryController::TStoredQueriesList queries = GNC::GCS::StoredQueryController::Instance()->getStoredQueries();
+        for (unsigned  i = 0; i < m_pModel->GetCount(); ++i) {
+                wxVariant value;
+                m_pModel->GetValueByRow(value, i, POD_COL_ACTIVE_IDX);
+                bool active = value.GetBool();
+                m_pModel->GetValueByRow(value, i, POD_COL_NAME_IDX);
+                std::string name(value.GetString().ToUTF8());
 
-		void SmartRetrieveConfigurationPanel::OnListItemActivated(wxDataViewEvent& event)
-		{
-			if (event.GetItem().IsOk()) {
-				 int row = m_pModel->GetRow(event.GetItem());
-				 m_pListQueries->SetToggleValue(!m_pListQueries->GetToggleValue(row, POD_COL_ACTIVE_IDX), row, POD_COL_ACTIVE_IDX);
-			}
-			OnPropiedadCambiada();
-		}
-	}
+                for (GNC::GCS::StoredQueryController::TStoredQueriesList::iterator it = queries.begin(); it != queries.end(); ++it) {
+                        if ((*it)->getName() == name) {
+                                (*it)->setActive(active);
+                                break;
+                        }
+                }
+        }
+        GNC::GCS::StoredQueryController::Instance()->clearQueries();
+        GNC::GCS::StoredQueryController::Instance()->storeQueries(queries);
+        GNC::GCS::SmartRetrieveController::Instance()->resetStatus();
+        return true;
+}
+//endregion
+
+void SmartRetrieveConfigurationPanel::OnItemEdited(wxDataViewEvent& /*event*/)
+{
+        OnPropiedadCambiada();
+}
+
+void SmartRetrieveConfigurationPanel::OnCheckEnableBackgroundQueries(wxCommandEvent &/*evt*/)
+{
+        OnPropiedadCambiada();
+}
+
+void SmartRetrieveConfigurationPanel::OnListItemActivated(wxDataViewEvent& event)
+{
+        if (event.GetItem().IsOk()) {
+                int row = m_pModel->GetRow(event.GetItem());
+                m_pListQueries->SetToggleValue(!m_pListQueries->GetToggleValue(row, POD_COL_ACTIVE_IDX), row, POD_COL_ACTIVE_IDX);
+        }
+        OnPropiedadCambiada();
+}
+}
 }

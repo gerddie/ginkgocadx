@@ -1,7 +1,7 @@
-#error delete this file 
+#error delete this file
 #pragma once
 /*
- *  
+ *
  *  $Id: instantiations.h $
  *  Ginkgo CADx Project
  *

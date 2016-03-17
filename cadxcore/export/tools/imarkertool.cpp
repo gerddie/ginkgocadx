@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -27,5 +27,5 @@ GNC::GCS::ITool::UID GNC::GCS::IMarkerTool::ID = HCore_Marcado;
 
 GNC::GCS::IMarkerTool::IMarkerTool() : IWidgetTool(ID, TFamiliaAnotacion, _Std("Marking Tools \tCtrl+M"), GinkgoResourcesManager::MarkingBar::GetIcoPunto())
 {
-	KeyCode = Name[Name.size() - 1];
+        KeyCode = Name[Name.size() - 1];
 }

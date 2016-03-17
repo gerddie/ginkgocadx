@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -29,50 +29,55 @@
 
 #include <wx/string.h>
 
-namespace GNC {
-	namespace GCS {
-		class IVista;
-	}
+namespace GNC
+{
+namespace GCS
+{
+class IVista;
+}
 }
 
-namespace GADAPI {
-	//lee un directorio en profundidad y lo incluye en el dicomdir
-	namespace ComandoIncluirHistorial
-		{
-		class ComandoIncluirHistorial;
-		class EXTAPI ComandoIncluirHistorialParams : public GNC::GCS::IComandoParams {
-		public:
-			ComandoIncluirHistorialParams(const std::string& path, bool recursivo = false, GNC::GCS::IHistoryController::TAddAction addAction = GNC::GCS::IHistoryController::TAA_COPY);
-			ComandoIncluirHistorialParams(const std::list<std::string>& listaPaths, bool abrirDespuesDeCargar = false, GNC::GCS::IHistoryController::TAddAction addAction  = GNC::GCS::IHistoryController::TAA_COPY);
-			virtual ~ComandoIncluirHistorialParams();
+namespace GADAPI
+{
+//lee un directorio en profundidad y lo incluye en el dicomdir
+namespace ComandoIncluirHistorial
+{
+class ComandoIncluirHistorial;
+class EXTAPI ComandoIncluirHistorialParams : public GNC::GCS::IComandoParams
+{
+public:
+        ComandoIncluirHistorialParams(const std::string& path, bool recursivo = false, GNC::GCS::IHistoryController::TAddAction addAction = GNC::GCS::IHistoryController::TAA_COPY);
+        ComandoIncluirHistorialParams(const std::list<std::string>& listaPaths, bool abrirDespuesDeCargar = false, GNC::GCS::IHistoryController::TAddAction addAction  = GNC::GCS::IHistoryController::TAA_COPY);
+        virtual ~ComandoIncluirHistorialParams();
 
-			int m_numberOfFiles;
-			std::string m_path;
-			std::list<std::string> m_listaPaths;
-			bool m_recursivo;
-			GNC::GCS::IHistoryController::TAddErrorList m_ErrorList;
-			std::list<long>                             m_InsertedSeries;
-			bool m_abrirDespuesDeCargar;
-			bool m_informar;
-			GNC::GCS::IHistoryController::TAddAction m_addAction;
-		};
+        int m_numberOfFiles;
+        std::string m_path;
+        std::list<std::string> m_listaPaths;
+        bool m_recursivo;
+        GNC::GCS::IHistoryController::TAddErrorList m_ErrorList;
+        std::list<long>                             m_InsertedSeries;
+        bool m_abrirDespuesDeCargar;
+        bool m_informar;
+        GNC::GCS::IHistoryController::TAddAction m_addAction;
+};
 
-		class EXTAPI ComandoIncluirHistorial : public GNC::GCS::IComando {
-		public:
-			typedef std::list<std::string> TListaPaths;
-			typedef std::list<TListaPaths> TListaListas;
+class EXTAPI ComandoIncluirHistorial : public GNC::GCS::IComando
+{
+public:
+        typedef std::list<std::string> TListaPaths;
+        typedef std::list<TListaPaths> TListaListas;
 
-			ComandoIncluirHistorial(ComandoIncluirHistorialParams* pParams);
+        ComandoIncluirHistorial(ComandoIncluirHistorialParams* pParams);
 
-        protected:
-			virtual void Execute();
-			virtual void Update();
+protected:
+        virtual void Execute();
+        virtual void Update();
 
-        private:
-			void LeerDirectorioRecursivo(wxString& path, TListaListas& listaListasPaths, const int profundidadMaxima = 10, const int profundidadActual=0);
-		protected:
+private:
+        void LeerDirectorioRecursivo(wxString& path, TListaListas& listaListasPaths, const int profundidadMaxima = 10, const int profundidadActual=0);
+protected:
 
-			ComandoIncluirHistorialParams* m_pIncluirParams;
-		};
-	}
+        ComandoIncluirHistorialParams* m_pIncluirParams;
+};
+}
 }

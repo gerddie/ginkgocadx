@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -26,39 +26,42 @@
 
 class PanelCustomPASI;
 
-namespace GNC {
-	namespace GUI {
+namespace GNC
+{
+namespace GUI
+{
 
-		class PanelTags : public PanelTagsBase {
-		public:
-			PanelTags(wxWindow* pPadre, bool hideOnClose = true);
-			virtual ~PanelTags();
+class PanelTags : public PanelTagsBase
+{
+public:
+        PanelTags(wxWindow* pPadre, bool hideOnClose = true);
+        virtual ~PanelTags();
 
-			virtual bool IsVisiblePanelTags();
-			virtual void MostrarOcultarPanelTags();
-			virtual void SetView(GNC::GCS::IVista* pView);
-			virtual bool SetSeriesPk(long pk);
+        virtual bool IsVisiblePanelTags();
+        virtual void MostrarOcultarPanelTags();
+        virtual void SetView(GNC::GCS::IVista* pView);
+        virtual bool SetSeriesPk(long pk);
 
-		private:
-			virtual void OnClose(wxCloseEvent &event);
-			virtual void OnKeyDown(wxKeyEvent &event);
+private:
+        virtual void OnClose(wxCloseEvent &event);
+        virtual void OnKeyDown(wxKeyEvent &event);
 
-			void CreateCategories();
-			wxPGProperty* CreatePropertyGroup(const wxString& label);
-			void InsertTagInGroup(wxPGProperty* prop, const std::string& key, wxPGPropArg idPadre);
-			void SetInfoTags(GIL::DICOM::TipoMetaInfo& info, GIL::DICOM::IDICOMManager*	pDICOMManager);
-			void SetTags(GIL::DICOM::DicomDataset& base, wxPGPropArg idPadre, GIL::DICOM::IDICOMManager*	pDICOMManager);
+        void CreateCategories();
+        wxPGProperty* CreatePropertyGroup(const wxString& label);
+        void InsertTagInGroup(wxPGProperty* prop, const std::string& key, wxPGPropArg idPadre);
+        void SetInfoTags(GIL::DICOM::TipoMetaInfo& info, GIL::DICOM::IDICOMManager*	pDICOMManager);
+        void SetTags(GIL::DICOM::DicomDataset& base, wxPGPropArg idPadre, GIL::DICOM::IDICOMManager*	pDICOMManager);
 
-			wxPGProperty* metadataGroup;
-			wxPGProperty* identificationGroup;
-			wxPGProperty* patientGroup;
-			wxPGProperty* acquisitionGroup;
-			wxPGProperty* relationshipGroup;
-			wxPGProperty* imagePresentationGroup;
-			wxPGProperty* textGroup;
-			wxPGProperty* otherGroup;
-			std::string m_currentPath;
-			bool m_hideOnClose;
-		};
-	}
+        wxPGProperty* metadataGroup;
+        wxPGProperty* identificationGroup;
+        wxPGProperty* patientGroup;
+        wxPGProperty* acquisitionGroup;
+        wxPGProperty* relationshipGroup;
+        wxPGProperty* imagePresentationGroup;
+        wxPGProperty* textGroup;
+        wxPGProperty* otherGroup;
+        std::string m_currentPath;
+        bool m_hideOnClose;
+};
+}
 }

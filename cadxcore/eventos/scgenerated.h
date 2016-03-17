@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -23,42 +23,47 @@
 #include <api/ievento.h>
 #include "eventosginkgo.h"
 
-namespace GNC {
-	namespace GCS {
-		class IVista;
-		namespace Events {
+namespace GNC
+{
+namespace GCS
+{
+class IVista;
+namespace Events
+{
 
-			class EXTAPI SCGeneratedEvent : public GNC::GCS::Events::IEvent
-			{		
+class EXTAPI SCGeneratedEvent : public GNC::GCS::Events::IEvent
+{
 
-			public:
-				SCGeneratedEvent(GNC::GCS::IVista* pView = NULL, const std::list<long>& newSeriesId = std::list<long>()) : GNC::GCS::Events::IEvent(ginkgoEVT_Core_SCGenerated, 0, 100, NULL),
-					m_pView(pView),
-					m_seriesId(newSeriesId)
-				{
-					m_Nombre = "SCGeneratedEvent";	
-				}
+public:
+        SCGeneratedEvent(GNC::GCS::IVista* pView = NULL, const std::list<long>& newSeriesId = std::list<long>()) : GNC::GCS::Events::IEvent(ginkgoEVT_Core_SCGenerated, 0, 100, NULL),
+                m_pView(pView),
+                m_seriesId(newSeriesId)
+        {
+                m_Nombre = "SCGeneratedEvent";
+        }
 
-				~SCGeneratedEvent()
-				{
-				}
+        ~SCGeneratedEvent()
+        {
+        }
 
-				const std::list<long>& GetSeriesId() {
-					return m_seriesId;
-				}
+        const std::list<long>& GetSeriesId()
+        {
+                return m_seriesId;
+        }
 
-				GNC::GCS::IVista* GetView()
-				{
-					return m_pView;
-				}				
+        GNC::GCS::IVista* GetView()
+        {
+                return m_pView;
+        }
 
-				virtual void pushInfo(std::ostream& /*out*/) const {
-				}
+        virtual void pushInfo(std::ostream& /*out*/) const
+        {
+        }
 
-				private:
-					GNC::GCS::IVista* m_pView;
-					std::list<long> m_seriesId;
-			};
-		}
-	}
+private:
+        GNC::GCS::IVista* m_pView;
+        std::list<long> m_seriesId;
+};
+}
+}
 }

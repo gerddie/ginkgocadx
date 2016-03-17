@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -38,32 +38,32 @@
 
 inline int AbrirConexionBBDDSeguridad(wxSQLite3Database& dataBase,const std::string& DBFileName)
 {
-	if(dataBase.IsOpen()) {
-		return (0);
-	}
+        if(dataBase.IsOpen()) {
+                return (0);
+        }
 
-	dataBase.Open(FROMPATH(DBFileName),wxEmptyString, WXSQLITE_OPEN_READWRITE|WXSQLITE_OPEN_CREATE);
+        dataBase.Open(FROMPATH(DBFileName),wxEmptyString, WXSQLITE_OPEN_READWRITE|WXSQLITE_OPEN_CREATE);
 
-	dataBase.EnableForeignKeySupport(false);
+        dataBase.EnableForeignKeySupport(false);
 
-	 return 1;
+        return 1;
 }
 
 inline int CreateSeguridadDB(wxSQLite3Database& dataBase,const std::string& DBFileName)
 {
-	if (!AbrirConexionBBDDSeguridad(dataBase, DBFileName)) {
-		return (0);
-	}
-    /** Create Tables del Seguridad: **/
+        if (!AbrirConexionBBDDSeguridad(dataBase, DBFileName)) {
+                return (0);
+        }
+        /** Create Tables del Seguridad: **/
 
-    /** 1. Tabla de usuario/password **/
-	wxString sentencia(wxT(""));
-	sentencia << wxT("CREATE TABLE UserPass (");
-	sentencia << wxT("User VARCHAR(20) PRIMARY KEY,");
-   sentencia << wxT("Password VARCHAR(64));");
-	dataBase.ExecuteUpdate(sentencia);
+        /** 1. Tabla de usuario/password **/
+        wxString sentencia(wxT(""));
+        sentencia << wxT("CREATE TABLE UserPass (");
+        sentencia << wxT("User VARCHAR(20) PRIMARY KEY,");
+        sentencia << wxT("Password VARCHAR(64));");
+        dataBase.ExecuteUpdate(sentencia);
 
-	return(1);
+        return(1);
 }
 
 

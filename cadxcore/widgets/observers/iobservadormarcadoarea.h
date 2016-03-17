@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -22,76 +22,89 @@
 #pragma once
 #include <stddef.h>
 #include <api/ievento.h>
-namespace GNC {
-	namespace GCS {
-		namespace Widgets {
-			class WMarcadoArea;
+namespace GNC
+{
+namespace GCS
+{
+namespace Widgets
+{
+class WMarcadoArea;
 
-			namespace Observadores {
+namespace Observadores
+{
 
-				/* Observador especifico de la herramienta lazo */
-				class IObservadorMarcadoArea {
-				public:
+/* Observador especifico de la herramienta lazo */
+class IObservadorMarcadoArea
+{
+public:
 
-					virtual ~IObservadorMarcadoArea(){}
+        virtual ~IObservadorMarcadoArea() {}
 
-					virtual void OnPoligonoCreado(GNC::GCS::Widgets::WMarcadoArea* pPoligono) = 0;
-					virtual void OnPoligonoModificado(GNC::GCS::Widgets::WMarcadoArea* pPoligono) = 0;
-					virtual void OnPoligonoDestruido(GNC::GCS::Widgets::WMarcadoArea* pPoligono) = 0;
-					virtual void OnKeyEvent(GNC::GCS::Events::EventoTeclado & evt) = 0;
-				};
-			}
+        virtual void OnPoligonoCreado(GNC::GCS::Widgets::WMarcadoArea* pPoligono) = 0;
+        virtual void OnPoligonoModificado(GNC::GCS::Widgets::WMarcadoArea* pPoligono) = 0;
+        virtual void OnPoligonoDestruido(GNC::GCS::Widgets::WMarcadoArea* pPoligono) = 0;
+        virtual void OnKeyEvent(GNC::GCS::Events::EventoTeclado & evt) = 0;
+};
+}
 
-			namespace Notificadores {
-				class INotificadorMarcadoArea {
+namespace Notificadores
+{
+class INotificadorMarcadoArea
+{
 
-				protected:
-					GNC::GCS::Widgets::Observadores::IObservadorMarcadoArea* m_pObservadorMarcado;
+protected:
+        GNC::GCS::Widgets::Observadores::IObservadorMarcadoArea* m_pObservadorMarcado;
 
-				public:
+public:
 
 
-					INotificadorMarcadoArea() {
-						m_pObservadorMarcado = NULL;
-					}
+        INotificadorMarcadoArea()
+        {
+                m_pObservadorMarcado = NULL;
+        }
 
-					INotificadorMarcadoArea(GNC::GCS::Widgets::Observadores::IObservadorMarcadoArea* pObservador) {
-						m_pObservadorMarcado = pObservador;
-					}
+        INotificadorMarcadoArea(GNC::GCS::Widgets::Observadores::IObservadorMarcadoArea* pObservador)
+        {
+                m_pObservadorMarcado = pObservador;
+        }
 
-					virtual ~INotificadorMarcadoArea(){}
+        virtual ~INotificadorMarcadoArea() {}
 
-				public:
-					void SetObservador(GNC::GCS::Widgets::Observadores::IObservadorMarcadoArea* pObservador)
-					{
-						m_pObservadorMarcado = pObservador;
-					}
+public:
+        void SetObservador(GNC::GCS::Widgets::Observadores::IObservadorMarcadoArea* pObservador)
+        {
+                m_pObservadorMarcado = pObservador;
+        }
 
-					virtual void NotificarCreacion(WMarcadoArea* pWidget) {
-						if (m_pObservadorMarcado != NULL) {
-							m_pObservadorMarcado->OnPoligonoCreado(pWidget);
-						}
-					}
+        virtual void NotificarCreacion(WMarcadoArea* pWidget)
+        {
+                if (m_pObservadorMarcado != NULL) {
+                        m_pObservadorMarcado->OnPoligonoCreado(pWidget);
+                }
+        }
 
-					virtual void NotificarModificacion(WMarcadoArea* pWidget) {
-						if (m_pObservadorMarcado != NULL) {
-							m_pObservadorMarcado->OnPoligonoModificado(pWidget);
-						}
-					}
+        virtual void NotificarModificacion(WMarcadoArea* pWidget)
+        {
+                if (m_pObservadorMarcado != NULL) {
+                        m_pObservadorMarcado->OnPoligonoModificado(pWidget);
+                }
+        }
 
-					virtual void NotificarDestruccion(WMarcadoArea* pWidget) {
-						if (m_pObservadorMarcado != NULL) {
-							m_pObservadorMarcado->OnPoligonoDestruido(pWidget);
-						}
-					}
+        virtual void NotificarDestruccion(WMarcadoArea* pWidget)
+        {
+                if (m_pObservadorMarcado != NULL) {
+                        m_pObservadorMarcado->OnPoligonoDestruido(pWidget);
+                }
+        }
 
-					virtual void NotificarKeyEvent(GNC::GCS::Events::EventoTeclado& evt) {
-						if (m_pObservadorMarcado != NULL) {
-							m_pObservadorMarcado->OnKeyEvent(evt);
-						}
-					}
-				};
-			}
-		}
-	}
+        virtual void NotificarKeyEvent(GNC::GCS::Events::EventoTeclado& evt)
+        {
+                if (m_pObservadorMarcado != NULL) {
+                        m_pObservadorMarcado->OnKeyEvent(evt);
+                }
+        }
+};
+}
+}
+}
 }

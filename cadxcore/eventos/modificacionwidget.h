@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -23,65 +23,70 @@
 #include <api/ievento.h>
 #include "eventosginkgo.h"
 
-namespace GNC {
-	namespace GCS {
+namespace GNC
+{
+namespace GCS
+{
 
-		namespace Widgets {
-			class IWidget;
-		}
+namespace Widgets
+{
+class IWidget;
+}
 
-		namespace Events {
+namespace Events
+{
 
-			class EXTAPI EventoModificacionWidget : public GNC::GCS::Events::IEvent
-			{
-			public:
+class EXTAPI EventoModificacionWidget : public GNC::GCS::Events::IEvent
+{
+public:
 
-				typedef enum {
-					WidgetCreado,
-					WidgetModificado,
-					WidgetDestruido
-				} TipoModificacion;
+        typedef enum {
+                WidgetCreado,
+                WidgetModificado,
+                WidgetDestruido
+        } TipoModificacion;
 
-				EventoModificacionWidget(GNC::GCS::IVista* pVista = NULL, TipoModificacion tipo = WidgetModificado, GNC::GCS::Widgets::IWidget* w = NULL) : GNC::GCS::Events::IEvent(ginkgoEVT_Core_ModificacionWidget,0,100,pVista)
-				{
-					m_Nombre = "ModificacionWidget";
-					m_pWidget = w;
-					m_Tipo = tipo;
-				}
+        EventoModificacionWidget(GNC::GCS::IVista* pVista = NULL, TipoModificacion tipo = WidgetModificado, GNC::GCS::Widgets::IWidget* w = NULL) : GNC::GCS::Events::IEvent(ginkgoEVT_Core_ModificacionWidget,0,100,pVista)
+        {
+                m_Nombre = "ModificacionWidget";
+                m_pWidget = w;
+                m_Tipo = tipo;
+        }
 
-				~EventoModificacionWidget()
-				{
-				}
+        ~EventoModificacionWidget()
+        {
+        }
 
-				virtual void pushInfo(std::ostream& out) const {
-					out << "Tipo = ";
-					switch (m_Tipo) {
-						case WidgetCreado:
-							out << "WidgetCreado";
-							break;
-						case WidgetModificado:
-							out << "WidgetModificado";
-							break;
-						case WidgetDestruido:
-							out << "WidgetDestruido";
-							break;
-					}
-				}
+        virtual void pushInfo(std::ostream& out) const
+        {
+                out << "Tipo = ";
+                switch (m_Tipo) {
+                case WidgetCreado:
+                        out << "WidgetCreado";
+                        break;
+                case WidgetModificado:
+                        out << "WidgetModificado";
+                        break;
+                case WidgetDestruido:
+                        out << "WidgetDestruido";
+                        break;
+                }
+        }
 
-				GNC::GCS::Widgets::IWidget* GetWidget()
-				{
-					return m_pWidget;
-				}
+        GNC::GCS::Widgets::IWidget* GetWidget()
+        {
+                return m_pWidget;
+        }
 
-				TipoModificacion GetTipo()
-				{
-					return m_Tipo;
-				}
+        TipoModificacion GetTipo()
+        {
+                return m_Tipo;
+        }
 
-			protected:
-				TipoModificacion            m_Tipo;
-				GNC::GCS::Widgets::IWidget* m_pWidget;
-			};
-		}
-	}
+protected:
+        TipoModificacion            m_Tipo;
+        GNC::GCS::Widgets::IWidget* m_pWidget;
+};
+}
+}
 }

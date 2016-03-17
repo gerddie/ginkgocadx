@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -29,40 +29,45 @@
 #include <api/dicom/imodelodicom.h>
 #include <wx/string.h>
 
-namespace GNC {
-	namespace GCS {
-		class IVista;
-	}
+namespace GNC
+{
+namespace GCS
+{
+class IVista;
+}
 }
 
-namespace GADAPI {
-	//lee un directorio en profundidad y lo incluye en el dicomdir
-	namespace LinkHistoryCommand
-		{
-		class LinkHistoryCommand;
-		class EXTAPI LinkHistoryCommandParams : public GNC::GCS::IComandoParams {
-		public:
-			LinkHistoryCommandParams(const GNC::GCS::Ptr<IModeloDicom>& pModelo);
-			virtual ~LinkHistoryCommandParams();
+namespace GADAPI
+{
+//lee un directorio en profundidad y lo incluye en el dicomdir
+namespace LinkHistoryCommand
+{
+class LinkHistoryCommand;
+class EXTAPI LinkHistoryCommandParams : public GNC::GCS::IComandoParams
+{
+public:
+        LinkHistoryCommandParams(const GNC::GCS::Ptr<IModeloDicom>& pModelo);
+        virtual ~LinkHistoryCommandParams();
 
-			GNC::GCS::Ptr<IModeloDicom> m_pModelo;
-			GNC::GCS::IHistoryController::TAddErrorList m_ErrorList;
-			std::list<long>                             m_InsertedSeries;
-			bool m_abrirDespuesDeCargar;
-			bool m_informar;
-		};
+        GNC::GCS::Ptr<IModeloDicom> m_pModelo;
+        GNC::GCS::IHistoryController::TAddErrorList m_ErrorList;
+        std::list<long>                             m_InsertedSeries;
+        bool m_abrirDespuesDeCargar;
+        bool m_informar;
+};
 
-		class EXTAPI LinkHistoryCommand : public GNC::GCS::IComando {
-		public:
+class EXTAPI LinkHistoryCommand : public GNC::GCS::IComando
+{
+public:
 
-			LinkHistoryCommand(LinkHistoryCommandParams* pParams);
+        LinkHistoryCommand(LinkHistoryCommandParams* pParams);
 
-        protected:
-			virtual void Execute();
-			virtual void Update();
+protected:
+        virtual void Execute();
+        virtual void Update();
 
-        private:
-			LinkHistoryCommandParams* m_pLinkParams;
-		};
-	}
+private:
+        LinkHistoryCommandParams* m_pLinkParams;
+};
+}
 }

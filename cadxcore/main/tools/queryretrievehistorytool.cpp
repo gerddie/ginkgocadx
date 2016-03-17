@@ -5,8 +5,8 @@
  * Copyright (c) 2008-2014 MetaEmotion S.L. All rights reserved.
  *
  * Ginkgo CADx is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as 
- * published by the Free Software Foundation; version 3. 
+ * it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; version 3.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -29,7 +29,7 @@
 
 //----------------------------------------------------------------------
 
-GNC::QueryRetrieveHistoryTool::QueryRetrieveHistoryTool(): GNC::GCS::IHistoryTool(ID,GNC::GCS::IHistoryTool::TFamily_Q_R, _Std("PACS Q/R"), _Std("Acquire a DICOM study from PACS")+ " \tAlt+a", GinkgoResourcesManager::Acquisition::GetIcoAdquirePACS(), GinkgoResourcesManager::BigIcons::GetIcoBigQR()) 
+GNC::QueryRetrieveHistoryTool::QueryRetrieveHistoryTool(): GNC::GCS::IHistoryTool(ID,GNC::GCS::IHistoryTool::TFamily_Q_R, _Std("PACS Q/R"), _Std("Acquire a DICOM study from PACS")+ " \tAlt+a", GinkgoResourcesManager::Acquisition::GetIcoAdquirePACS(), GinkgoResourcesManager::BigIcons::GetIcoBigQR())
 {
 }
 
@@ -37,15 +37,15 @@ GNC::QueryRetrieveHistoryTool::~QueryRetrieveHistoryTool()
 {
 }
 
-bool GNC::QueryRetrieveHistoryTool::Enabled() 
+bool GNC::QueryRetrieveHistoryTool::Enabled()
 {
-	return GNC::GCS::IControladorPermisos::Instance()->Get("core.restrictions","acquire") && 
-		GNC::GCS::IControladorPermisos::Instance()->Get("core.pacs.limits","pacs_acquisition");
+        return GNC::GCS::IControladorPermisos::Instance()->Get("core.restrictions","acquire") &&
+               GNC::GCS::IControladorPermisos::Instance()->Get("core.pacs.limits","pacs_acquisition");
 }
 
 void GNC::QueryRetrieveHistoryTool::Execute()
 {
-	GNC::GUI::DialogoAdquisicion::Instance()->Show();
+        GNC::GUI::DialogoAdquisicion::Instance()->Show();
 }
 
 

@@ -32,29 +32,32 @@ class TitledPanelSeparatorV;
 ///////////////////////////////////////////////////////////////////////////////
 /// Class ParametrosPrincipalesBase
 ///////////////////////////////////////////////////////////////////////////////
-class ParametrosPrincipalesBase : public wxPanel 
+class ParametrosPrincipalesBase : public wxPanel
 {
-	private:
-	
-	protected:
-		TitledPanel* m_pPanelProfile;
-		wxStaticText* m_staticText15;
-		wxChoice* m_pFormat;
-		wxCheckBox* m_pAllFiles;
-		TitledPanelSeparatorV* m_pSep;
-		TitledPanel* m_pPanelJpeg;
-		wxStaticText* m_staticText6;
-		wxSlider* m_pSliderCalidad;
-		
-		// Virtual event handlers, overide them in your derived class
-		virtual void OnChoiceFormatoDestino( wxCommandEvent& event ) { event.Skip(); }
-		
-	
-	public:
-		
-		ParametrosPrincipalesBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 765,350 ), long style = wxTAB_TRAVERSAL ); 
-		~ParametrosPrincipalesBase();
-	
+private:
+
+protected:
+        TitledPanel* m_pPanelProfile;
+        wxStaticText* m_staticText15;
+        wxChoice* m_pFormat;
+        wxCheckBox* m_pAllFiles;
+        TitledPanelSeparatorV* m_pSep;
+        TitledPanel* m_pPanelJpeg;
+        wxStaticText* m_staticText6;
+        wxSlider* m_pSliderCalidad;
+
+        // Virtual event handlers, overide them in your derived class
+        virtual void OnChoiceFormatoDestino( wxCommandEvent& event )
+        {
+                event.Skip();
+        }
+
+
+public:
+
+        ParametrosPrincipalesBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 765,350 ), long style = wxTAB_TRAVERSAL );
+        ~ParametrosPrincipalesBase();
+
 };
 
 #endif //__PASOSEXPORTACIONBASE_H__
