@@ -19,6 +19,7 @@
  */
 
 #pragma once
+#include <vector>
 #include <api/globals.h>
 #include <api/api.h>
 #include <api/dicom/idicommanager.h>
@@ -80,6 +81,8 @@ public:
         virtual bool ExtractTagToFile(unsigned int group, unsigned int element, const std::string& outputFile, GNC::IProxyNotificadorProgreso* pNotificador = NULL);
 
         virtual bool FindTag(unsigned int group,unsigned int element, TagPrivadoUndefined& tagBinario);
+
+        virtual bool FindTag(unsigned int group, unsigned int element, std::vector<TagPrivadoUndefined>& binaryTags);
 
         /* returns the oid name or empty string if not found */
         virtual std::string GetOIDName(const std::string &oid);

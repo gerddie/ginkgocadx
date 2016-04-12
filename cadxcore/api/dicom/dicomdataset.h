@@ -56,10 +56,10 @@ public:
 
         ~DicomDataset() ;
 
-        //añade referencias a las imagenes a las que hace referencia
+        //aï¿½ade referencias a las imagenes a las que hace referencia
         void AddReference(const std::string& sopClassUID, const std::string& sopInstanceUID);
 
-        //añade referencias a las imagenes originales
+        //aï¿½ade referencias a las imagenes originales
         void AddReferenceSource(const std::string& sopClassUID, const std::string& sopInstanceUID);
 
         void clear();
@@ -68,7 +68,7 @@ public:
 
         DicomDataset* buscar_secuencia(const std::string & tag);
 
-        /* Obtiene un tag y lo asigna en el parámetro de salida valor.
+        /* Obtiene un tag y lo asigna en el parï¿½metro de salida valor.
         Devuelve true si el tag existe y false si el tag no existe */
         bool getTag(const std::string& tag, std::string & valor) const;
 

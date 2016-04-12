@@ -20,6 +20,8 @@
 
 #pragma once
 #include <stddef.h>
+#include <vector>
+
 
 namespace GIL
 {
@@ -89,6 +91,7 @@ public:
         virtual bool GetTag(unsigned int grupo,unsigned int elemento, GIL::DICOM::DicomDataset& secuencia) = 0;
 
         virtual bool FindTag(unsigned int grupo,unsigned int elemento, TagPrivadoUndefined& tagBinario)=0;
+        virtual bool FindTag(unsigned int grupo, unsigned int elemento, std::vector<TagPrivadoUndefined>& binaryTags) = 0;
 
         /* returns the oid name or empty string if not found */
         virtual std::string GetOIDName(const std::string &oid) = 0;

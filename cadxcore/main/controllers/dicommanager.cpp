@@ -612,6 +612,57 @@ bool DICOMManager::FindTag(unsigned int grupo,unsigned int elemento, TagPrivadoU
         }
 }
 
+bool DICOMManager::FindTag(unsigned int grupo, unsigned int elemento, std::vector<TagPrivadoUndefined>& binaryTags)
+{
+        DcmDataset* ds = getSourceDataSet();
+        if (ds == NULL) {
+                return false;
+        }
+
+        if( (grupo == 0x7fe0 && elemento == 0x0010) || (grupo == 0x5400 && elemento == 0x1010) ) {
+                //es necesario para pillar el pixeldata en explicit little endian
+                OFCondition cond = ds->chooseRepresentation(EXS_DeflatedLittleEndianExplicit,NULL);
+                if(cond.bad()) {
+                        return false;
+                }
+        }
+
+        DcmTagKey key(grupo,elemento);
+        DcmStack elementStack;
+        ds->findAndGetElements(key, elementStack);
+        while (!elementStack.empty()) {
+                DcmElement *pElement  = dynamic_cast<DcmElement *>(elementStack.top());
+                if (!pElement)
+                        return false;
+
+                elementStack.pop();
+                auto cond = pElement->loadAllDataIntoMemory();
+
+                if(cond.good()) {
+                        Uint8 * ptr;
+                        cond = pElement->getUint8Array(ptr);
+                        TagPrivadoUndefined  tagBinario;
+                        if(cond.good()) {
+                                tagBinario.Copiar(ptr,pElement->getLength());
+                                LOG_INFO("Dicommanager", "Read " << pElement->getLength() << " waveform sample bytes");
+                        } else {
+                                Uint16 * ptr2;
+                                cond = pElement->getUint16Array(ptr2);
+                                if(cond.good()) {
+                                        tagBinario.Copiar(ptr2, pElement->getLength());
+                                        LOG_INFO("Dicommanager", "Read " << pElement->getLength() << " waveform sample bytes");
+                                } else {
+                                        return false;
+                                }
+                        }
+                        binaryTags.insert(binaryTags.begin(), tagBinario);
+                } else {
+                        return false;
+                }
+        }
+        return !binaryTags.empty();
+}
+
 /* returns the oid name or empty string if not found */
 std::string DICOMManager::GetOIDName(const std::string &oid)
 {

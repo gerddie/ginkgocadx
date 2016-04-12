@@ -107,14 +107,14 @@ GIL::DICOM::TagPrivadoUndefined::TagPrivadoUndefined(const GIL::DICOM::TagPrivad
 {
         this->Size = otro.Size;
         this->Valor = new unsigned char[Size];
-        memcpy(otro.Valor,this->Valor,Size*sizeof(unsigned char));
+        memcpy(this->Valor, otro.Valor,Size*sizeof(unsigned char));
 }
 
 GIL::DICOM::TagPrivadoUndefined& GIL::DICOM::TagPrivadoUndefined::operator = (const GIL::DICOM::TagPrivadoUndefined& otro)
 {
         this->Size = otro.Size;
         this->Valor = new unsigned char[Size];
-        memcpy(otro.Valor,this->Valor,Size*sizeof(unsigned char));
+        memcpy(this->Valor,otro.Valor,Size*sizeof(unsigned char));
         return *this;
 }
 

@@ -546,7 +546,7 @@ void GNKVisualizator::ECGStudy::LoadChannels()
 
                 std::string sopClassUID = metaInfo.getTag(TAGS::MediaStorageSOPClassUID);
 
-                GIL::DICOM::TagPrivadoUndefined tag;
+                std::vector<GIL::DICOM::TagPrivadoUndefined> tag;
 
                 if (sopClassUID == UIDS::GeneralECGWaveformStorage ||
                     sopClassUID == UIDS::HemodynamicWaveformStorage ||
@@ -583,7 +583,8 @@ void GNKVisualizator::ECGStudy::LoadChannels()
                 int bitsAllocated;
                 std::string waveFormSampleInterpretation("unknown");
 
-                for (auto itSequences = waveformSeq->items.rbegin(); itSequences != waveformSeq->items.rend(); ++itSequences) {
+                int waveform = 0;
+                for (auto itSequences = waveformSeq->items.rbegin(); itSequences != waveformSeq->items.rend(); ++itSequences, ++waveform) {
                         //multiplex group
                         GIL::DICOM::DicomDataset& wf = (*itSequences);
                         ecgFile->Groups.push_back(TMultiplexGroup());
@@ -618,7 +619,7 @@ void GNKVisualizator::ECGStudy::LoadChannels()
                                 group.Label = groupLabel;
                         }
 
-                        //std::cout << wf;
+                        //LOG_INFO("ECGStudy::LoadChannels","waveform=" << wf);
 
                         GIL::DICOM::DicomDataset* channel_def_seq = wf.buscar_secuencia(TAGS::ChannelDefinitionSequence);
 
@@ -653,10 +654,13 @@ void GNKVisualizator::ECGStudy::LoadChannels()
                                         //  > (003A|021A, US, 0x0010)  # 0x2 - Bits per sample  OK
                                         //  > (003A|0220, DS, ".05")  # 0x4 - Filter low frequency  OK
                                         //  > (003A|0221, DS, "100")  # 0x4 - filter high frequency  OK
-
                                         GIL::DICOM::DicomDataset* channel_sen_seq = channel_def.buscar_secuencia("003a|0211");
 
-                                        if ( channel_src_seq != NULL && channel_src_seq->items.size() > 0 && channel_sen_seq != NULL && channel_sen_seq->items.size() > 0) {
+
+
+
+                                        if ( channel_src_seq != NULL && channel_src_seq->items.size() > 0 &&
+                                             channel_sen_seq != NULL && channel_sen_seq->items.size() > 0) {
                                                 GIL::DICOM::DicomDataset& channel_src = channel_src_seq->items.front();
                                                 GIL::DICOM::DicomDataset& channel_sen = channel_sen_seq->items.front();
 
@@ -679,32 +683,38 @@ void GNKVisualizator::ECGStudy::LoadChannels()
                                                 channelInfo.SetBitsPerSample               (channel_def.getTagAs<unsigned int>("003a|021a", 16));
                                                 channelInfo.SetFilterLowFrequency          (channel_def.getTagAs<double>      ("003a|0220", 0.0));
                                                 channelInfo.SetFilterHighFrequency         (channel_def.getTagAs<double>      ("003a|0221", 0.0));
-                                        }else{
 
+
+
+                                        }else{
+                                                LOG_ERROR("ECGStudy::LoadChannels", "waveform not found");
                                         }
                                 }
+
+                                GIL::DICOM::TagPrivadoUndefined& samples = tag[waveform];
+                                auto nSamples = samples.GetSize() / 2;
+                                LOG_INFO("ECGStudy::LoadChannels", "Get " << nSamples << "from waveform "  << waveform
+                                         << " need " << numSamples * group.Channels.size());
+
+                                if (nSamples >=  numSamples * group.Channels.size()) {
+                                        short* data = (short*)samples.GetValor();
+                                        unsigned int samplepos = 0;
+                                        for (int i = 0; i < numSamples; i++) {
+                                                for (TListChannelInfo::iterator it = group.Channels.begin(); it != group.Channels.end(); ++it, ++samplepos) {
+                                                        it->Samples.push_back(*data++);
+                                                }
+                                        }
+                                        LOG_INFO("ECGStudy::LoadChannels", "copied " << samplepos << " samples");
+                                }else{
+                                        LOG_ERROR("ECGStudy::LoadChannels", "Didn't get waveform samples as expected: expect "
+                                                  << numSamples * group.Channels.size()<< " bytes, got " <<  nSamples );
+                                }
+
+
                         }else {
                                 LOG_INFO("ECGStudy::LoadChannels", "Not reading data!");
                         }
 
-                        {
-                                auto nSamples = tag.GetSize() / 2; // size is given in byte
-                                short* data = (short*)tag.GetValor();
-                                unsigned int samplepos = 0;
-                                for (int i = 0; i < numSamples && samplepos < nSamples; i++) {
-                                        for (TListChannelInfo::iterator it = group.Channels.begin(); it != group.Channels.end(); ++it, ++samplepos) {
-                                                GNKVisualizator::ChannelInfo& c = *it;
-                                                c.Samples.push_back(*data++);
-                                        }
-                                }
-
-#if defined(_DEBUG)
-                                GNKVisualizator::ChannelInfo& c = group.Channels.front();
-                                for (int i = 0; i < 100; i ++) {
-                                        c.Samples[i] = (short) 10.0/(c.Multiplier * c.Sensitivity * c.SensitivityCorrectionFactor);
-                                }
-#endif
-                        }
                 }//for secuencias waveforms
                 //annotation
                 {
