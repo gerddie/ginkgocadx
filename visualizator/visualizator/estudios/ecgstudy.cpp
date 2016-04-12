@@ -533,6 +533,7 @@ std::string GNKVisualizator::ECGStudy::getMeasureText(bool isVertical, float mea
 void GNKVisualizator::ECGStudy::LoadChannels()
 {
         if (!ECGFiles[ActiveFileIndex].IsValid()) {
+
                 GNC::GCS::Ptr<TECGFile> ecgFile(new TECGFile);
                 ECGFiles[ActiveFileIndex] = ecgFile;
 
@@ -562,10 +563,16 @@ void GNKVisualizator::ECGStudy::LoadChannels()
 
                 } else {
                         GNC::GCS::IEntorno::Instance()->GetPACSController()->LiberarInstanciaDeDICOMManager(pDICOMManager);
+                        LOG_INFO("ECGStudy::LoadChannels", "No waveform found");
                         return;
                 }
 
                 GIL::DICOM::DicomDataset* waveformSeq = base->buscar_secuencia(TAGS::WaveFormSequence);
+
+                if (!waveformSeq) {
+                        LOG_INFO("ECGStudy::LoadChannels", "No waveform sequence in base");
+                        return;
+                }
 
                 int numChannels = 0;
                 int numSamples = 0;
@@ -576,26 +583,34 @@ void GNKVisualizator::ECGStudy::LoadChannels()
                 int bitsAllocated;
                 std::string waveFormSampleInterpretation("unknown");
 
-                for (GIL::DICOM::DicomDataset::DatasetList::reverse_iterator itSequences = waveformSeq->items.rbegin(); itSequences != waveformSeq->items.rend(); ++itSequences) {
+                for (auto itSequences = waveformSeq->items.rbegin(); itSequences != waveformSeq->items.rend(); ++itSequences) {
                         //multiplex group
                         GIL::DICOM::DicomDataset& wf = (*itSequences);
                         ecgFile->Groups.push_back(TMultiplexGroup());
                         TMultiplexGroup& group = ecgFile->Groups.back();
 
                         Get(wf.getTag(TAGS::NumberOfWaveformChannels), numChannels);
+                        LOG_INFO("ECGStudy::LoadChannels", "numChannels=" << numChannels);
+
                         Get(wf.getTag(TAGS::NumberOfWaveformSamples), numSamples);
+                        LOG_INFO("ECGStudy::LoadChannels", "numSamples=" << numSamples);
+
                         Get(wf.getTag(TAGS::SamplingFrequency), samplingFreq);
+                        LOG_INFO("ECGStudy::LoadChannels", "samplingFreq=" << samplingFreq);
+
                         //FIXME mal no pilla bien el padding value porque es de tipo ox
                         Get(wf.getTag(TAGS::WaveformPaddingValue), paddingValue);
+                        LOG_INFO("ECGStudy::LoadChannels", "paddingValue=" << paddingValue);
+
                         if (!wf.getTag(TAGS::WaveformOriginality, orig))
-                                LOG_DEBUG("ECGStudy", "Tag " << TAGS::WaveformOriginality << "not found");
+                                LOG_INFO("ECGStudy", "Tag " << TAGS::WaveformOriginality << "not found");
                         if (!wf.getTag(TAGS::MultiplexGroupLabel, groupLabel))
-                                LOG_DEBUG("ECGStudy", "Tag " << TAGS::MultiplexGroupLabel << "not found");
+                                LOG_INFO("ECGStudy", "Tag " << TAGS::MultiplexGroupLabel << "not found");
                         Get(wf.getTag(TAGS::WaveformBitsAllocated), bitsAllocated);
                         if (!wf.getTag(TAGS::WaveformSampleInterpretation, waveFormSampleInterpretation))
-                                LOG_DEBUG("ECGStudy", "Tag " << TAGS::WaveformSampleInterpretation << "not found");
+                                LOG_INFO("ECGStudy", "Tag " << TAGS::WaveformSampleInterpretation << "not found");
                         if (bitsAllocated != 16 || waveFormSampleInterpretation != "SS") {
-                                LOG_ERROR("ECGStudy", "We are unnable to interpret bitsAllocated=" << bitsAllocated << " waveFormSampleInterpretation=" << waveFormSampleInterpretation);
+                                LOG_INFO("ECGStudy", "We are unnable to interpret bitsAllocated=" << bitsAllocated << " waveFormSampleInterpretation=" << waveFormSampleInterpretation);
                                 throw GNC::GCS::ControladorCargaException(_Std("ECG format not supported"), "ECGStudy");
                         }
 
@@ -607,10 +622,17 @@ void GNKVisualizator::ECGStudy::LoadChannels()
 
                         GIL::DICOM::DicomDataset* channel_def_seq = wf.buscar_secuencia(TAGS::ChannelDefinitionSequence);
 
+                        if (!channel_def_seq) {
+                                LOG_INFO("ECGStudy::LoadChannels", "wf.buscar_secuencia(TAGS::ChannelDefinitionSequence) returned NULL");
+                        }
+
                         if (channel_def_seq->items.size() == (unsigned int) numChannels) {
 
                                 int i = 0;
-                                for (GIL::DICOM::DicomDataset::DatasetList::reverse_iterator it = channel_def_seq->items.rbegin(); it != channel_def_seq->items.rend(); ++it, i++) {
+                                for (auto  it = channel_def_seq->items.rbegin(); it != channel_def_seq->items.rend(); ++it, i++) {
+                                        LOG_INFO("ECGStudy::LoadChannels", "Read channel_def_seq=" << i);
+
+
                                         group.Channels.push_back(GNKVisualizator::ChannelInfo());
 
                                         GIL::DICOM::DicomDataset& channel_def = (*it);
@@ -657,12 +679,15 @@ void GNKVisualizator::ECGStudy::LoadChannels()
                                                 channelInfo.SetBitsPerSample               (channel_def.getTagAs<unsigned int>("003a|021a", 16));
                                                 channelInfo.SetFilterLowFrequency          (channel_def.getTagAs<double>      ("003a|0220", 0.0));
                                                 channelInfo.SetFilterHighFrequency         (channel_def.getTagAs<double>      ("003a|0221", 0.0));
+                                        }else{
+
                                         }
                                 }
-                        }//for channels
+                        }else {
+                                LOG_INFO("ECGStudy::LoadChannels", "Not reading data!");
+                        }
 
                         {
-
                                 auto nSamples = tag.GetSize() / 2; // size is given in byte
                                 short* data = (short*)tag.GetValor();
                                 unsigned int samplepos = 0;
@@ -835,6 +860,8 @@ void GNKVisualizator::ECGStudy::LoadChannels()
 
                         }//annotation_seq != NULL
                 }//annotation
+        }else{
+                LOG_DEBUG("ECGStudy::LoadChannels", "ECGFiles[ActiveFileIndex].IsValid() = true");
         }
 }
 

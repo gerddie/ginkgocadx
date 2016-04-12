@@ -919,7 +919,7 @@ int DICOMManager::CargarJerarquia(DicomDataset& base, unsigned int maximaLongitu
                 pilaPadres.pop();
 
                 if (e->ident() == EVR_item) {
-                        //GTRACE("Procesando item: " << e->getTag().toString())
+                        LOG_TRACE("DICOMManager::CargarJerarquia", "Processing item: " << e->getTag().toString());
                         GIL::DICOM::DicomDataset newbase;
 
                         cbase->items.push_front(newbase);
@@ -933,7 +933,8 @@ int DICOMManager::CargarJerarquia(DicomDataset& base, unsigned int maximaLongitu
                         }
 
                 } else if (e->ident() == EVR_SQ) {
-                        //GTRACE("Procesando secuencia: " << e->getTag().toString())
+                        LOG_TRACE("DICOMManager::CargarJerarquia", "Processing sequence: " << e->getTag().toString());
+
                         std::ostringstream os;
                         os << std::hex << std::setw(4) << std::setfill('0') << e->getGTag() << "|" << std::hex << std::setw(4) << std::setfill('0') << e->getETag();
                         std::string tag = os.str();
@@ -951,7 +952,7 @@ int DICOMManager::CargarJerarquia(DicomDataset& base, unsigned int maximaLongitu
                                 pilaPadres.push( &(cbase->secuencias.front()) );
                         }
                 } else {
-                        GTRACE("Procesando objeto: " << e->getTag().toString())
+                        LOG_TRACE("DICOMManager::CargarJerarquia","Procesando objeto: " << e->getTag().toString());
                         std::ostringstream os;
                         os << std::hex << std::setw(4) << std::setfill('0') << e->getGTag() << "|" << std::hex << std::setw(4) << std::setfill('0') << e->getETag();
                         std::string tag = os.str();
