@@ -1,8 +1,14 @@
-Version 3.8.0 (2015-04-16)
+Version 3.8.2 (2015-04-12)
 -------------------------
 
-* Correct display of ECG series loaded from files with more then 
-  one data set. Closes #17 
+* Correct shaders for image coloring. Closes: #18 
+
+
+Version 3.8.1 (2015-04-12)
+-------------------------
+
+* Correct display of ECG series loaded from files with more then
+  one data set. Closes #17
 
 Version 3.8.0 (2015-03-16)
 -------------------------
