@@ -624,7 +624,8 @@ void GNKVisualizator::ECGStudy::LoadChannels()
                         GIL::DICOM::DicomDataset* channel_def_seq = wf.buscar_secuencia(TAGS::ChannelDefinitionSequence);
 
                         if (!channel_def_seq) {
-                                LOG_INFO("ECGStudy::LoadChannels", "wf.buscar_secuencia(TAGS::ChannelDefinitionSequence) returned NULL");
+                                LOG_ERROR("ECGStudy::LoadChannels", "wf.buscar_secuencia(TAGS::ChannelDefinitionSequence) returned NULL");
+                                return;  
                         }
 
                         if (channel_def_seq->items.size() == (unsigned int) numChannels) {
@@ -693,8 +694,6 @@ void GNKVisualizator::ECGStudy::LoadChannels()
 
                                 GIL::DICOM::TagPrivadoUndefined& samples = tag[waveform];
                                 auto nSamples = samples.GetSize() / 2;
-                                LOG_INFO("ECGStudy::LoadChannels", "Get " << nSamples << "from waveform "  << waveform
-                                         << " need " << numSamples * group.Channels.size());
 
                                 if (nSamples >=  numSamples * group.Channels.size()) {
                                         short* data = (short*)samples.GetValor();
