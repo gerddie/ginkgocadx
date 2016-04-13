@@ -1,4 +1,12 @@
+[![Build Status](https://travis-ci.org/gerddie/ginkgocadx.svg?branch=master)](https://travis-ci.org/gerddie/ginkgocadx)
+[![Coverity Status](https://scan.coverity.com/projects/8214/badge.svg)](https://scan.coverity.com/projects/ginkgocadx)
+
 # Ginkgo CADx #
+
+## Preface ##
+
+* Currently the project is maintained on a voluntary basis. 
+* There is no PRO version.
 
 ## Introduction ##
 
