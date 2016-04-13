@@ -229,6 +229,52 @@ void vtkGinkgoOpenGLTexture::ReleaseGraphicsResources(vtkWindow *renWin)
         this->Modified();
 }
 
+
+#if defined(ADAPTATIVE_BRIGHNESS_CONTRAST) // "The OpenGL Shading Language" C.19.
+
+const char *FragmenProgramCode_rgb[] =   {
+        "uniform sampler2D imagetexture;",
+        "uniform float brightness;",
+        "uniform float contrast;",
+        "vec4 averageLuminance = vec4(0.5, 0.5, 0.5, 1.0);",
+        "void main(void)",
+        "{",
+        "vec4 color = texture2D(imagetexture, gl_TexCoord[0].xy);",
+        "gl_FragColor = mix(color * brightness, mix(averageLuminance, color, contrast), 0.5);",
+        "}"
+};
+#else
+const char *FragmenProgramCode_rgb[] =   {
+        "uniform sampler2D imagetexture;",
+        "uniform float brightness;",
+        "uniform float contrast;",
+        "void main(void)",
+        "{",
+        "vec4 color = texture2D(imagetexture, gl_TexCoord[0].xy);",
+        "float pa = color.a;",
+        "color = ((color - 0.5) * max(contrast, 0.0)) + 0.5 + brightness;",
+        "color.a = pa;",
+        "gl_FragColor = color;", 
+        "}"
+};
+#endif
+const char *FragmenProgramCode_gray[] = {
+        "uniform sampler2D imagetexture;",
+        "uniform sampler1D lookuptable;",
+        "uniform float lutShift;",
+        "uniform float lutScale;",
+        "void main(void)",
+        "{",
+        "vec4 color = texture2D(imagetexture, gl_TexCoord[0].xy);",
+        "float lutColor = (color.r + lutShift) * lutScale;",
+        "lutColor = clamp(lutColor, 0, 1);",
+        "vec4 cr = texture1D(lookuptable, lutColor);",
+        //"cr.a = 1.0;",
+        "gl_FragColor = cr;",
+        "}"
+};
+
+
 // ----------------------------------------------------------------------------
 // Implement base class method.
 void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
@@ -965,52 +1011,13 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
                                         this->FragmentProgram = vtkgl::CreateShader(vtkgl::FRAGMENT_SHADER);
                                         terror = glGetError();
 
-                                        std::string FragmenProgramCode;
 
                                         if (this->RGBImage) { // RGB Frament shader program.
-#if defined(ADAPTATIVE_BRIGHNESS_CONTRAST) // "The OpenGL Shading Language" C.19.
-                                                FragmenProgramCode =
-                                                        "uniform sampler2D imagetexture;"
-                                                        "uniform float brightness;"
-                                                        "uniform float contrast;"
-                                                        "vec4 averageLuminance = vec4(0.5, 0.5, 0.5, 1.0);"
-                                                        "void main(void)"
-                                                        "{"
-                                                        "vec4 color = texture2D(imagetexture, gl_TexCoord[0].xy);"
-                                                        "gl_FragColor = mix(color * brightness, mix(averageLuminance, color, contrast), 0.5);"
-                                                        "}";
-#else
-                                                FragmenProgramCode =
-                                                        "uniform sampler2D imagetexture;"
-                                                        "uniform float brightness;"
-                                                        "uniform float contrast;"
-                                                        "void main(void)"
-                                                        "{"
-                                                        "vec4 color = texture2D(imagetexture, gl_TexCoord[0].xy);"
-                                                        "float pa = color.a;"
-                                                        "color = ((color - 0.5) * max(contrast, 0.0)) + 0.5 + brightness;"
-                                                        "color.a = pa;"
-                                                        "gl_FragColor = color;"
-                                                        "}";
-#endif
+                                                vtkgl::ShaderSource(this->FragmentProgram, sizeof(FragmenProgramCode_rgb) / sizeof (char*), FragmenProgramCode_rgb, 0);
                                         } else { // GrayLevel Frament shader program
-                                                FragmenProgramCode =
-                                                        "uniform sampler2D imagetexture;"
-                                                        "uniform sampler1D lookuptable;"
-                                                        "uniform float lutShift;"
-                                                        "uniform float lutScale;"
-                                                        "void main(void)"
-                                                        "{"
-                                                        "vec4 color = texture2D(imagetexture, gl_TexCoord[0].xy);"
-                                                        "float lutColor = (color.r + lutShift) * lutScale;"
-                                                        "lutColor = clamp(lutColor, 0, 1);"
-                                                        "vec4 cr = texture1D(lookuptable, lutColor);"
-                                                        //"cr.a = 1.0;"
-                                                        "gl_FragColor = cr;"
-                                                        "}";
+                                                vtkgl::ShaderSource(this->FragmentProgram, sizeof(FragmenProgramCode_gray) / sizeof (char*), FragmenProgramCode_gray, 0);
                                         }
-                                        const char* ptr2 = (const char*)FragmenProgramCode.c_str();
-                                        vtkgl::ShaderSource(this->FragmentProgram, 1, &ptr2, 0);
+                                        
                                         terror = glGetError();
                                         vtkgl::CompileShader(this->FragmentProgram);
                                         //terror = glGetError();
