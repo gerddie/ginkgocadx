@@ -564,7 +564,6 @@ void wxVTKRenderWindowInteractor::OnSize(wxSizeEvent& /*event*/)
                 Window wid = GDK_WINDOW_XWINDOW( widget->window );
                 RenderWindow->SetWindowId(reinterpret_cast<void *>(wid));
 
-
                 SetCurrent(*GLContext);
                 UpdateSize(w, h);
                 return;

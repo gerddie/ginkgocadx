@@ -27,6 +27,8 @@ SET(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/CM
 INCLUDE(SysDefs)
 
 #############################################################################################
+include(FindPkgConfig)
+
 
 IF(UNIX)
   include(CheckCXXCompilerFlag)
@@ -51,14 +53,6 @@ ENDIF(UNIX)
 #FIND_PACKAGE(LIBCURL REQUIRED)
 #ENDIF()
 SET_CUSTOM_libcurl_PACKAGE()
-
-IF(LINUX)
-FIND_PACKAGE(GTK2 REQUIRED)
-ENDIF()
-
-#IF(USE_PATCHED_LIBS)
-#MESSAGE("Using patched libs")
-#ENDIF()
 
 IF(NOT USE_CUSTOM_WX)
 FIND_PACKAGE(wxWidgets 3.0.2 COMPONENTS core base html gl net xml aui adv richtext xrc propgrid REQUIRED)
@@ -95,6 +89,29 @@ MESSAGE(STATUS "Using system SQLite")
 #FIND_PACKAGE(sqlite REQUIRED)
 
 ENDIF()
+
+
+# require cairo includes
+PKG_CHECK_MODULES(CAIRO REQUIRED cairo)
+INCLUDE_DIRECTORIES(${CAIRO_INCLUDE_DIRS})
+LINK_DIRECTORIES(${CAIRO_LIBRARY_DIRS})
+
+IF(LINUX)
+  PKG_CHECK_MODULES(GTK REQUIRED gtk+-2.0)
+  INCLUDE_DIRECTORIES(${GTK_INCLUDE_DIRS})
+  LINK_DIRECTORIES(${GTK_LIBRARY_DIRS})
+
+  PKG_CHECK_MODULES(LIBCURL REQUIRED libcurl)
+  INCLUDE_DIRECTORIES(${LIBCURL_INCLUDE_DIRS})
+  LINK_DIRECTORIES(${LIBCURL_LIBRARY_DIRS})
+
+ENDIF()
+
+
+
+
+
+
 
 #############################################################################################
 
