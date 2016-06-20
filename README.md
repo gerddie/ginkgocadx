@@ -48,9 +48,31 @@ tool chain. Hence incompatibilities may creep in and bug reports with fixes
 for other platforms are very welcome. 
 
 
+### Debian/Ubuntu specific build instructions ###
+
+The following packages must be installed in order to compile it:
 
 
+    chrpath
+    cmake
+    libcairo2-dev
+    libcurl4-gnutls-dev
+    libdcmtk-dev
+    libfftw3-dev
+    libfreetype6-dev
+    libgtk2.0-dev
+    libinsighttoolkit4-dev
+    libjsoncpp-dev
+    libmysqlclient-dev
+    libsqlite3-dev
+    libssl-dev
+    libvtk6-dev
+    libwrap0-dev
+    libwxgtk3.0-dev
+    libxml2-dev
+    libgdcm-tools
 
+On Debian *Stretch* and *Sid* these packages can be installed by simply running
 
+    apt build-dep ginkgocadx
 
-  
