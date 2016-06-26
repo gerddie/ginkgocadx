@@ -64,7 +64,7 @@ AUX_SOURCE_DIRECTORY(main/controllers/dcmtk SRCS)
 AUX_SOURCE_DIRECTORY(main/controllers/dcmtk/libi2d SRCS)
 AUX_SOURCE_DIRECTORY(main/controllers/dcmtk/ofstd SRCS)
 AUX_SOURCE_DIRECTORY(main/controllers/dcmtk/tls SRCS)
-AUX_SOURCE_DIRECTORY(main/controllers/dcmtk/tls/win-only SRCS)
+#AUX_SOURCE_DIRECTORY(main/controllers/dcmtk/tls/win-only SRCS)
 AUX_SOURCE_DIRECTORY(main/controllers/log4cplus SRCS)
 AUX_SOURCE_DIRECTORY(main/controllers/streaming SRCS)
 

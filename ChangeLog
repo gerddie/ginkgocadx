@@ -1,3 +1,10 @@
+Version 3.8.3 (2015-04-12)
+-------------------------
+
+* Remove some un-used code that fails  to compile with the
+  upcoming openssl-1.1.0
+
+
 Version 3.8.2 (2015-04-12)
 -------------------------
 
