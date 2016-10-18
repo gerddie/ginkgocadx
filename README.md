@@ -76,3 +76,10 @@ On Debian *Stretch* and *Sid* these packages can be installed by simply running
 
     apt build-dep ginkgocadx
 
+On Ubuntu Xenial (16.04 )the package can be installed from the Xenial ports PPA: 
+
+   https://launchpad.net/~gert-die/+archive/ubuntu/xenial-mia
+
+For Yantal the package available from the usual Ubuntu repositories. 
+
+
