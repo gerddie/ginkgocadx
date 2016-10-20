@@ -7,6 +7,7 @@
 
 * Currently the project is maintained on a voluntary basis. 
 * There is no PRO version.
+* I can't help you with compiling this on MS Windows or Mac OS X 
 
 ## Introduction ##
 
