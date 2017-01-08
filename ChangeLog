@@ -1,3 +1,10 @@
+Version 3.8.4 (2016-01-08)
+-------------------------
+
+ * Correct shaders again, because the llvm based shader
+   compiler is really restrictive with the clamp function.
+
+
 Version 3.8.3 (2015-04-12)
 -------------------------
 

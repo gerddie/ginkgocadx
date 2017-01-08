@@ -267,7 +267,7 @@ const char *FragmenProgramCode_gray[] = {
         "{",
         "vec4 color = texture2D(imagetexture, gl_TexCoord[0].xy);",
         "float lutColor = (color.r + lutShift) * lutScale;",
-        "lutColor = clamp(lutColor, 0, 1);",
+        "lutColor = clamp(lutColor, 0.0f, 1.0f);",
         "vec4 cr = texture1D(lookuptable, lutColor);",
         //"cr.a = 1.0;",
         "gl_FragColor = cr;",
