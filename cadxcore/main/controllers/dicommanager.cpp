@@ -50,6 +50,9 @@
 #include <api/controllers/icontroladorlog.h>
 #include <main/controllers/dcmtk/ginkgouid.h>
 
+#ifdef DCMTK_POST_20170228
+#include <api/dicom/dicom_legacy.h>
+#endif 
 
 
 

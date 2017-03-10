@@ -20,6 +20,11 @@
 
 
 #include "d2dcommon.h"
+
+#ifdef DCMTK_POST_20170228
+#include <api/dicom/dicom_legacy.h>
+#endif 
+
 /** Check whether given type 1 attribute is present and has a length > 0.
 *  @param  key - [in] The attribute tag check
 *  @param  targetDset - [out] targetDset

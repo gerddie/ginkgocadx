@@ -50,6 +50,10 @@
 #include "exporttodicomdircommand.h"
 
 
+#ifdef DCMTK_POST_20170228
+#include <api/dicom/dicom_legacy.h>
+#endif 
+
 #define IDC_EXPORT_TO_DICOMDIR           118
 
 GADAPI::ExportToDicomDirCommandParams::ExportToDicomDirCommandParams(const TListOfPks& seriesList, const std::string& destinationPath, const GIL::DICOM::DicomDataset& anonymized, bool includeGinkgo)

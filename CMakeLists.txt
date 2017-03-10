@@ -82,6 +82,27 @@ MESSAGE(STATUS "Using custom DCMTK")
 SET_CUSTOM_DCMTK_PACKAGE()
 ENDIF()
 
+SET(CMAKE_REQUIRED_INCLUDES ${DCMTK_INCLUDES})
+SET(CMAKE_REQUIRED_LIBRARIES ${DCMTK_LIBRARIES})
+
+CHECK_CXX_SOURCE_COMPILES(
+"#include <dcmtk/dcmdata/dcitem.h>
+#include <dcmtk/dcmdata/dcdeftag.h>
+
+int main(int argc, char *args[]) 
+{
+     DcmTagKey tag(DCM_StudyDate); 
+     DcmElement *test = DcmItem::newDicomElement(tag); 
+     return test == 0;
+}
+" DCMTK_newDicomElement_IS_STATIC_MEMBER_OF_DcmItem)
+
+IF(DCMTK_newDicomElement_IS_STATIC_MEMBER_OF_DcmItem) 
+  ADD_DEFINITIONS(-DDCMTK_POST_20170228)
+ENDIF()  
+
+
+
 IF(NOT USE_SYSTEM_SQLITE)
 MESSAGE(STATUS "Using builtin SQLite")
 ELSE()

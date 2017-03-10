@@ -24,6 +24,10 @@
 #include <dcmtk/dcmdata/dctk.h>
 #include "dcmtk/dcmimgle/dcmimage.h"
 
+#ifdef DCMTK_POST_20170228
+#include "dicom_legacy.h"
+#endif 
+
 GIL::DICOM::TipoTagPrivado::TipoTagPrivado()
 {
 }
@@ -58,6 +62,7 @@ DcmElement* GIL::DICOM::TagPrivadoString::ToElement(unsigned int group, unsigned
                 return NULL;
         }
 
+        
         DcmElement* pElement = newDicomElement(tag);
 
         if(pElement==NULL) {

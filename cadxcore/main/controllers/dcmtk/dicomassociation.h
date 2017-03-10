@@ -38,6 +38,12 @@
 #define verify MACRO_QUE_ESTORBA
 #endif
 
+#ifdef DCMTK_POST_20170228
+#include <api/dicom/dicom_legacy.h>
+#endif 
+
+
+
 #include <api/dicom/idicomconformance.h>
 
 

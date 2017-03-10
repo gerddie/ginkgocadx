@@ -59,6 +59,11 @@
 
 #include <wx/image.h>
 //en este grupo se almacenaran los atributos privados de ginkgo
+
+#ifdef DCMTK_POST_20170228
+#include <api/dicom/dicom_legacy.h>
+#endif 
+
 #define GINKGO_GROUP 0x0011
 
 class DcmElement;

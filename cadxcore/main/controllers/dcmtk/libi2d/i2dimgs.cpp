@@ -59,6 +59,10 @@
 #include "i2dimgs.h"
 #include <main/controllers/controladorpermisos.h>
 
+#ifdef DCMTK_POST_20170228
+#include <api/dicom/dicom_legacy.h>
+#endif 
+
 
 /** Reads pixel data and corresponding attributes like rows etc. from image
 *  file and inserts them into dataset.
