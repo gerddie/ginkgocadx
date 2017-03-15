@@ -48,6 +48,7 @@
 #include "sqlite/sqlite3.h"
 #endif
 // Dynamic loading of the SQLite library
+#include <api/controllers/icontroladorlog.h>
 
 #if wxUSE_DYNAMIC_SQLITE3_LOAD
 
@@ -3301,7 +3302,11 @@ wxSQLite3Transaction::wxSQLite3Transaction(wxSQLite3Database* db, wxSQLite3Trans
 wxSQLite3Transaction::~wxSQLite3Transaction()
 {
         if (m_database != NULL) {
-                m_database->Rollback();
+                try  {
+                        m_database->Rollback();
+                }catch (wxSQLite3Exception& x) {
+                        LOG_ERROR("wxSQLite3", "Cleaning up wxSQLite3Transaction failed: " << x.GetMessage());
+                }
         }
 }
 
