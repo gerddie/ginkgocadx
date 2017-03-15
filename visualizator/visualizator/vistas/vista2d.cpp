@@ -27,6 +27,7 @@
 #include <wx/xml/xml.h>
 #include <wx/utils.h>
 
+#include <api/controllers/icontroladorlog.h>
 #include <api/globals.h>
 #include <api/toolsystem/itoolsregistry.h>
 #include <api/controllers/icontroladorvistas.h>
@@ -36,7 +37,7 @@
 #include <api/dicom/dcmdictionary.h>
 #include <api/controllers/icontroladorpermisos.h>
 #include <eventos/modificacionimagen.h>
-
+#include <main/controllers/integrationcontroller.h>
 #include <api/imodelointegracion.h>
 #include <api/controllers/imodulecontroller.h>
 #include <api/controllers/icontroladorpermisos.h>
@@ -81,7 +82,11 @@ GNKVisualizator::Vista2D::~Vista2D()
 {
 //	GNC::GCS::IEntorno::Instance()->GetControladorCarga()->FreeLoader(&m_pLoader);
         m_IgnorarModificaciones = true;
-        DetenerPipeline();
+        try {
+                DetenerPipeline();
+        } catch (GIL::IntegrationException& x) {
+                LOG_ERROR("Vista2D", x.str());
+        }
 }
 
 //----------------------------------------------------------------------------------------------------
