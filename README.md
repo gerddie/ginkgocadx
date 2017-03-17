@@ -30,7 +30,11 @@ Licence 3.
 To build Ginkgo CADx the following software packages are required:
 
 * ITK (>= 4.8)
-* VTK (>= 6.2)
+* VTK (>= 6.2), Please note that the code does currently not compile with the
+  VTK OpenGL2 rendering backend (see #21 and #34). VTK >= 7.0 defaults to
+  this newer backend when configured without parameters, and currently
+  you will have to set VTK_RENDERING_BACKEND=OpenGL when building VTK to
+  sucessfully compile ginkgocadx. 
 * wxWidgets (>= 3.0.1)
 * DCMTK (>= 3.6.1-20150924)
 * A C++ compiler that supports the *C++11* standard
