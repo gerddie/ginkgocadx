@@ -48,12 +48,15 @@ PURPOSE.  See the above copyright notice for more information.
 #include <vtkOpenGLRenderer.h>
 #include <vtkPointData.h>
 #include <vtkRenderWindow.h>
-#include <vtkOpenGLExtensionManager.h>
+
+#include <vtk/gl.h>
+
 #include <vtkOpenGLRenderWindow.h>
 #include <vtkTransform.h>
 #include <vtkPixelBufferObject.h>
 #include <vtkOpenGL.h>
-#include <vtkgl.h> // vtkgl namespace
+
+
 
 #include <main/controllers/controladorlog.h>
 #include <main/controllers/controladorpermisos.h>
@@ -300,43 +303,43 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
                 // like the graphics context.
                 vtkOpenGLRenderWindow* renWin = static_cast<vtkOpenGLRenderWindow*>(ren->GetRenderWindow());
 
-                if(this->BlendingMode != VTK_TEXTURE_BLENDING_MODE_NONE && vtkgl::ActiveTexture) {
-                        glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, vtkgl::COMBINE);
+                if(this->BlendingMode != VTK_TEXTURE_BLENDING_MODE_NONE) {
+                        glTexEnvf (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
 
                         switch(this->BlendingMode) {
                         case VTK_TEXTURE_BLENDING_MODE_REPLACE: {
-                                glTexEnvf (GL_TEXTURE_ENV, vtkgl::COMBINE_RGB, GL_REPLACE);
-                                glTexEnvf (GL_TEXTURE_ENV, vtkgl::COMBINE_ALPHA, GL_REPLACE);
+                                glTexEnvf (GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_REPLACE);
+                                glTexEnvf (GL_TEXTURE_ENV, GL_COMBINE_ALPHA, GL_REPLACE);
                                 break;
                         }
                         case VTK_TEXTURE_BLENDING_MODE_MODULATE: {
-                                glTexEnvf (GL_TEXTURE_ENV, vtkgl::COMBINE_RGB, GL_MODULATE);
-                                glTexEnvf (GL_TEXTURE_ENV, vtkgl::COMBINE_ALPHA, GL_MODULATE);
+                                glTexEnvf (GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_MODULATE);
+                                glTexEnvf (GL_TEXTURE_ENV, GL_COMBINE_ALPHA, GL_MODULATE);
                                 break;
                         }
                         case VTK_TEXTURE_BLENDING_MODE_ADD: {
-                                glTexEnvf (GL_TEXTURE_ENV, vtkgl::COMBINE_RGB, GL_ADD);
-                                glTexEnvf (GL_TEXTURE_ENV, vtkgl::COMBINE_ALPHA, GL_ADD);
+                                glTexEnvf (GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_ADD);
+                                glTexEnvf (GL_TEXTURE_ENV, GL_COMBINE_ALPHA, GL_ADD);
                                 break;
                         }
                         case VTK_TEXTURE_BLENDING_MODE_ADD_SIGNED: {
-                                glTexEnvf (GL_TEXTURE_ENV, vtkgl::COMBINE_RGB, vtkgl::ADD_SIGNED);
-                                glTexEnvf (GL_TEXTURE_ENV, vtkgl::COMBINE_ALPHA, vtkgl::ADD_SIGNED);
+                                glTexEnvf (GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_ADD_SIGNED);
+                                glTexEnvf (GL_TEXTURE_ENV, GL_COMBINE_ALPHA, GL_ADD_SIGNED);
                                 break;
                         }
                         case VTK_TEXTURE_BLENDING_MODE_INTERPOLATE: {
-                                glTexEnvf (GL_TEXTURE_ENV, vtkgl::COMBINE_RGB, vtkgl::INTERPOLATE);
-                                glTexEnvf (GL_TEXTURE_ENV, vtkgl::COMBINE_ALPHA, vtkgl::INTERPOLATE);
+                                glTexEnvf (GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_INTERPOLATE);
+                                glTexEnvf (GL_TEXTURE_ENV, GL_COMBINE_ALPHA, GL_INTERPOLATE);
                                 break;
                         }
                         case VTK_TEXTURE_BLENDING_MODE_SUBTRACT: {
-                                glTexEnvf (GL_TEXTURE_ENV, vtkgl::COMBINE_RGB, vtkgl::SUBTRACT);
-                                glTexEnvf (GL_TEXTURE_ENV, vtkgl::COMBINE_ALPHA, vtkgl::SUBTRACT);
+                                glTexEnvf (GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_SUBTRACT);
+                                glTexEnvf (GL_TEXTURE_ENV, GL_COMBINE_ALPHA, GL_SUBTRACT);
                                 break;
                         }
                         default: {
-                                glTexEnvf (GL_TEXTURE_ENV, vtkgl::COMBINE_RGB, GL_ADD);
-                                glTexEnvf (GL_TEXTURE_ENV, vtkgl::COMBINE_ALPHA, GL_ADD);
+                                glTexEnvf (GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_ADD);
+                                glTexEnvf (GL_TEXTURE_ENV, GL_COMBINE_ALPHA, GL_ADD);
                         }
                         }
                 }
@@ -401,20 +404,27 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
                         }
                         ///CHECK HARDWARE SUPPORT
                         if(!this->CheckedHardwareSupport) {
+#ifdef VTK_RENDERING_OPENGL2
+                                if (this->InternalEnableShaders && GNC::GCS::IControladorPermisos::Instance()->Get("core.opengl", "enable_shaders").Activo()) {                                        this->UseShader = true;
+                                }
+                                this->CheckedHardwareSupport = true;
+                                this->SupportsNonPowerOfTwoTextures = true;
+                                this->SupportsPBO=vtkPixelBufferObject::IsSupported(renWin);
+#else                         
                                 vtkOpenGLExtensionManager *m = renWin->GetExtensionManager();
                                 this->CheckedHardwareSupport = true;
-                                this->SupportsNonPowerOfTwoTextures = m->ExtensionSupported("GL_VERSION_2_0") || m->ExtensionSupported("GL_ARB_texture_non_power_of_two");
+                                this->SupportsNonPowerOfTwoTextures = m->ExtensionSupported("GL_VERSION_2_0") ||
+                                        m->ExtensionSupported("GL_ARB_texture_non_power_of_two");
                                 this->SupportsPBO=vtkPixelBufferObject::IsSupported(renWin);
-
                                 int supports_GL_VERSION_2_0=m->ExtensionSupported("GL_VERSION_2_0");
                                 if(supports_GL_VERSION_2_0) {
                                         m->LoadExtension("GL_ARB_multitexture");
                                         m->LoadExtension("GL_VERSION_2_0");
                                         //ENABLE/DISABLE SHADER!
-                                        if (this->InternalEnableShaders && GNC::GCS::IControladorPermisos::Instance()->Get("core.opengl", "enable_shaders").Activo()) {
-                                                this->UseShader = true;
+                                        if (this->InternalEnableShaders && GNC::GCS::IControladorPermisos::Instance()->Get("core.opengl", "enable_shaders").Activo()) {                                        this->UseShader = true;
                                         }
                                 }
+#endif                               
                         }
 
                         if (!UseShader) {
@@ -949,17 +959,11 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
                                 glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S,     GL_REPEAT );
                                 glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T,     GL_REPEAT );
                         } else {
-                                vtkOpenGLExtensionManager* manager = renWin->GetExtensionManager();
-                                if (this->EdgeClamp &&
-                                    (manager->ExtensionSupported("GL_VERSION_1_2") ||
-                                     manager->ExtensionSupported("GL_EXT_texture_edge_clamp"))) {
+                                if (this->EdgeClamp) {
                                         glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S,
-                                                         vtkgl::CLAMP_TO_EDGE );
+                                                         GL_CLAMP_TO_EDGE );
                                         glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T,
-                                                         vtkgl::CLAMP_TO_EDGE );
-                                } else {
-                                        glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S,     GL_CLAMP );
-                                        glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T,     GL_CLAMP );
+                                                         GL_CLAMP_TO_EDGE );
                                 }
                         }
 
@@ -970,12 +974,12 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
 
                                 //code of the shader
                                 if (this->ProgramObject == 0) {
-                                        glEnable(vtkgl::FRAGMENT_PROGRAM_ARB);
+                                        glEnable(GL_FRAGMENT_PROGRAM_ARB);
                                         //upload vertex program code...
-                                        this->ProgramObject = vtkgl::CreateProgram();
+                                        this->ProgramObject = glCreateProgram();
                                         terror = glGetError();
 
-                                        this->VertexProgram = vtkgl::CreateShader(vtkgl::VERTEX_SHADER);
+                                        this->VertexProgram = glCreateShader(GL_VERTEX_SHADER);
                                         terror = glGetError();
 
                                         std::string VertexProgramCode =
@@ -985,22 +989,22 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
                                                 "gl_Position = ftransform();\n"
                                                 "}\n";
                                         const char* ptr1 = (const char*)VertexProgramCode.c_str();
-                                        vtkgl::ShaderSource(this->VertexProgram, 1, &ptr1, NULL);
+                                        glShaderSource(this->VertexProgram, 1, &ptr1, NULL);
                                         terror = glGetError();
-                                        vtkgl::CompileShader(this->VertexProgram);
+                                        glCompileShader(this->VertexProgram);
                                         terror = glGetError();
 
-                                        vtkgl::GetShaderiv(this->VertexProgram, vtkgl::COMPILE_STATUS, &params);
+                                        glGetShaderiv(this->VertexProgram, GL_COMPILE_STATUS, &params);
 
                                         if(params==GL_TRUE) {
                                                 //std::cout <<"vertex shader source compiled successfully" << std::endl;
                                         } else {
                                                 LOG_ERROR("Visualization", "vertex shader source compile error");
                                                 // include null terminator
-                                                vtkgl::GetShaderiv(this->VertexProgram, vtkgl::INFO_LOG_LENGTH, &params);
+                                                glGetShaderiv(this->VertexProgram, GL_INFO_LOG_LENGTH, &params);
                                                 if(params>0) {
                                                         char *buffer=new char[params];
-                                                        vtkgl::GetShaderInfoLog(this->VertexProgram, params, 0, buffer);
+                                                        glGetShaderInfoLog(this->VertexProgram, params, 0, buffer);
                                                         LOG_ERROR("Visualization", buffer);
                                                         delete[] buffer;
                                                 } else {
@@ -1008,31 +1012,31 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
                                                 }
                                         }
 
-                                        this->FragmentProgram = vtkgl::CreateShader(vtkgl::FRAGMENT_SHADER);
+                                        this->FragmentProgram = glCreateShader(GL_FRAGMENT_SHADER);
                                         terror = glGetError();
 
 
                                         if (this->RGBImage) { // RGB Frament shader program.
-                                                vtkgl::ShaderSource(this->FragmentProgram, sizeof(FragmenProgramCode_rgb) / sizeof (char*), FragmenProgramCode_rgb, 0);
+                                                glShaderSource(this->FragmentProgram, sizeof(FragmenProgramCode_rgb) / sizeof (char*), FragmenProgramCode_rgb, 0);
                                         } else { // GrayLevel Frament shader program
-                                                vtkgl::ShaderSource(this->FragmentProgram, sizeof(FragmenProgramCode_gray) / sizeof (char*), FragmenProgramCode_gray, 0);
+                                                glShaderSource(this->FragmentProgram, sizeof(FragmenProgramCode_gray) / sizeof (char*), FragmenProgramCode_gray, 0);
                                         }
                                         
                                         terror = glGetError();
-                                        vtkgl::CompileShader(this->FragmentProgram);
+                                        glCompileShader(this->FragmentProgram);
                                         //terror = glGetError();
 
-                                        vtkgl::GetShaderiv(this->FragmentProgram, vtkgl::COMPILE_STATUS, &params);
+                                        glGetShaderiv(this->FragmentProgram, GL_COMPILE_STATUS, &params);
 
                                         if(params==GL_TRUE) {
                                                 //std::cout <<"fragment shader source compiled successfully" << std::endl;
                                         } else {
                                                 LOG_ERROR("Visualization", "Fragment shader source compile error");
                                                 // include null terminator
-                                                vtkgl::GetShaderiv(this->FragmentProgram, vtkgl::INFO_LOG_LENGTH, &params);
+                                                glGetShaderiv(this->FragmentProgram, GL_INFO_LOG_LENGTH, &params);
                                                 if(params>0) {
                                                         char *buffer=new char[params];
-                                                        vtkgl::GetShaderInfoLog(this->FragmentProgram, params, 0, buffer);
+                                                        glGetShaderInfoLog(this->FragmentProgram, params, 0, buffer);
                                                         LOG_ERROR("Visualization", buffer);
                                                         delete[] buffer;
                                                 } else {
@@ -1040,20 +1044,20 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
                                                 }
                                         }
 
-                                        vtkgl::AttachShader(this->ProgramObject, this->VertexProgram);
+                                        glAttachShader(this->ProgramObject, this->VertexProgram);
                                         terror = glGetError();
-                                        vtkgl::AttachShader(this->ProgramObject, this->FragmentProgram);
+                                        glAttachShader(this->ProgramObject, this->FragmentProgram);
                                         terror = glGetError();
 
-                                        vtkgl::LinkProgram(this->ProgramObject);
+                                        glLinkProgram(this->ProgramObject);
                                         terror = glGetError();
 
                                         GLint linked;
-                                        vtkgl::GetProgramiv(this->ProgramObject, vtkgl::LINK_STATUS, &linked);
+                                        glGetProgramiv(this->ProgramObject, GL_LINK_STATUS, &linked);
                                         if (linked) {
                                                 //std::cout << "GPU Program enlazado" << std::endl;
                                         }
-                                        glDisable(vtkgl::FRAGMENT_PROGRAM_ARB);
+                                        glDisable(GL_FRAGMENT_PROGRAM_ARB);
                                 }
 
                         }//END PROGRAM SHADER
@@ -1128,9 +1132,9 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
 
                                 //glEnable(GL_TEXTURE_1D);
 #if defined(_WINDOWS) || defined(__WXGTK__)
-                                vtkgl::ActiveTextureARB(vtkgl::TEXTURE1_ARB);
+                                glActiveTextureARB(GL_TEXTURE1_ARB);
 #else
-                                glActiveTexture(vtkgl::TEXTURE1_ARB);
+                                glActiveTexture(GL_TEXTURE1_ARB);
 #endif
                                 glGenTextures(1, &this->LUTIndex);
                                 glBindTexture(GL_TEXTURE_1D, this->LUTIndex);
@@ -1143,9 +1147,9 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
                                               lutNvals, 0, GL_RGBA,
                                               GL_UNSIGNED_BYTE, lutData);
 #if defined(_WINDOWS) || defined(__WXGTK__)
-                                vtkgl::ActiveTextureARB(vtkgl::TEXTURE0_ARB);
+                                glActiveTextureARB(GL_TEXTURE0_ARB);
 #else
-                                glActiveTexture(vtkgl::TEXTURE0_ARB);
+                                glActiveTexture(GL_TEXTURE0_ARB);
 #endif
                         }
                 }
@@ -1219,18 +1223,18 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
                 GLenum error = 0;
                 GLint loc = 0;
 
-                glEnable(vtkgl::FRAGMENT_PROGRAM_ARB);
+                glEnable(GL_FRAGMENT_PROGRAM_ARB);
                 error = glGetError();
 
-                vtkgl::UseProgram(this->ProgramObject);
+                glUseProgram(this->ProgramObject);
                 error = glGetError();
 
                 // Common parameters for shaders
 
                 // === imageTexture ===
-                loc = vtkgl::GetUniformLocation(this->ProgramObject,"imagetexture");
+                loc = glGetUniformLocation(this->ProgramObject,"imagetexture");
                 if(loc != -1) {
-                        vtkgl::Uniform1i(loc, 0);
+                        glUniform1i(loc, 0);
                 } else {
                         LOG_ERROR("OpenGLComponent", "error: imagetexture is not a uniform");
                 }
@@ -1238,17 +1242,17 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
                 if (this->RGBImage) { // Parameters for RGB shader
 
                         // === brightness ===
-                        loc = vtkgl::GetUniformLocation(this->ProgramObject, "brightness");
+                        loc = glGetUniformLocation(this->ProgramObject, "brightness");
                         if(loc != -1) {
-                                vtkgl::Uniform1f(loc, Brightness);
+                                glUniform1f(loc, Brightness);
                         } else {
                                 LOG_ERROR("OpenGLComponent", "error: brightness is not a uniform");
                         }
 
                         // === contrast ===
-                        loc = vtkgl::GetUniformLocation(this->ProgramObject, "contrast");
+                        loc = glGetUniformLocation(this->ProgramObject, "contrast");
                         if(loc != -1) {
-                                vtkgl::Uniform1f(loc, Contrast);
+                                glUniform1f(loc, Contrast);
                         } else {
                                 LOG_ERROR("OpenGLComponent", "error: contrast is not a uniform");
                         }
@@ -1257,9 +1261,9 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
                         // Parameters for LUT shader
 
                         // === lookupTable ===
-                        loc = vtkgl::GetUniformLocation(this->ProgramObject,"lookuptable");
+                        loc = glGetUniformLocation(this->ProgramObject,"lookuptable");
                         if(loc != -1) {
-                                vtkgl::Uniform1i(loc, 1);
+                                glUniform1i(loc, 1);
                         } else {
                                 LOG_ERROR("OpenGLComponent", "error: lut is not a uniform");
                         }
@@ -1275,24 +1279,24 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
 
                         // === shift ===
                         float shift = -range[0];
-                        loc = vtkgl::GetUniformLocation(this->ProgramObject,"lutShift");
+                        loc = glGetUniformLocation(this->ProgramObject,"lutShift");
                         if(loc != -1) {
-                                vtkgl::Uniform1f(loc, shift);
+                                glUniform1f(loc, shift);
                         } else {
                                 LOG_ERROR("OpenGLComponent", "error: shift is not a uniform");
                         }
 
                         // === scale ===
                         float scale = (1.0f)/(range[1] - range[0]);
-                        loc = vtkgl::GetUniformLocation(this->ProgramObject,"lutScale");
+                        loc = glGetUniformLocation(this->ProgramObject,"lutScale");
                         if(loc != -1) {
-                                vtkgl::Uniform1f(loc, scale);
+                                glUniform1f(loc, scale);
                         } else {
                                 LOG_ERROR("OpenGLComponent", "error: scale is not a uniform");
                         }
                 }
 
-                glDisable(vtkgl::FRAGMENT_PROGRAM_ARB);
+                glDisable(GL_FRAGMENT_PROGRAM_ARB);
         }
 }
 
@@ -1301,7 +1305,7 @@ void vtkGinkgoOpenGLTexture::PostRender(vtkRenderer *vtkNotUsed(ren))
 {
 
         if (this->UseShader) {
-                vtkgl::UseProgram(0);
+                glUseProgram(0);
                 /*
 
                 #if defined(_WINDOWS) || defined(__WXGTK__)

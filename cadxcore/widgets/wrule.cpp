@@ -34,7 +34,7 @@
 #include "wtextbox.h"
 
 #include <main/managers/widgetsmanager.h>
-#include <vtkgl.h>
+#include <vtk/gl.h>
 #include <cmath>
 #include <sstream>
 #include <cairo/cairo.h>

@@ -26,7 +26,7 @@
 #include <main/managers/widgetsmanager.h>
 #include <api/westilo.h>
 
-#include <vtkgl.h>
+#include <vtk/gl.h>
 
 
 //region "Implementacion de WWindowLevelBuilder"

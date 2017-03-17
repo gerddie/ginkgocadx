@@ -23,7 +23,7 @@
 #include <main/managers/widgetsmanager.h>
 #include <api/icontexto.h>
 #include <api/math/geometry3d.h>
-#include <vtkgl.h>
+#include <vtk/gl.h>
 #include <cmath>
 
 //region "Implementacion de WSeleccionBuilder"

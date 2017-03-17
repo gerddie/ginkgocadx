@@ -28,7 +28,7 @@
 #include <api/ioverlay.h>
 #include <api/iwidgetsrenderer.h>
 #include "main/managers/widgetsmanager.h"
-#include <vtkgl.h>
+#include <vtk/gl.h>
 #include <api/westilo.h>
 #include <cmath>
 

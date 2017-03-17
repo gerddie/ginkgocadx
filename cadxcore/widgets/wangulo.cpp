@@ -32,7 +32,7 @@
 #include <api/iwidgetsrenderer.h>
 #include <eventos/modificacionimagen.h>
 #include "main/managers/widgetsmanager.h"
-#include <vtkgl.h>
+#include <vtk/gl.h>
 #include <cairo/cairo.h>
 #include "openglhelper.h"
 #include <wx/xml/xml.h>

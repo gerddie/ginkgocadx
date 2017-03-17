@@ -54,7 +54,9 @@
 #include <vtkImageData.h>
 #include <vtkOpenGL.h>
 #include <api/iwidgets.h>
-#include <vtkgl.h>
+
+#include <vtk/gl.h>
+
 #include <vtkDebugLeaks.h>
 #include <vtk/vtkginkgoimageviewer.h>
 #include <api/controllers/icontroladorcarga.h>

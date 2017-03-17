@@ -42,7 +42,7 @@
 
 #include "wstaticrule.h"
 
-#include <vtkgl.h>
+#include <vtk/gl.h>
 #include <vtkImageData.h>
 #include <vtkImageActor.h>
 #include <vtkPointData.h>

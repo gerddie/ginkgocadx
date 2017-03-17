@@ -25,7 +25,7 @@
 #include <api/iwidgetsmanager.h>
 #include <api/icontexto.h>
 #include "main/managers/widgetsmanager.h"
-#include <vtkgl.h>
+#include <vtk/gl.h>
 #include <api/westilo.h>
 #include <cmath>
 #include <wx/xml/xml.h>

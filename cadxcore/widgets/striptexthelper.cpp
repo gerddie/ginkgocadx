@@ -24,7 +24,7 @@
 #ifdef __DEPRECATED
 #undef __DEPRECATED
 #endif
-#include <vtkgl.h>
+#include <vtk/gl.h>
 #include <cairo/cairo.h>
 
 GNC::GCS::Widgets::StripDescription::StripDescription(GNC::GCS::Vector position, GNC::GCS::Vector size):

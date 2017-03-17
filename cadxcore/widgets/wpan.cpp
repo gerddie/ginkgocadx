@@ -24,7 +24,7 @@
 
 #include <api/iwidgetsrenderer.h>
 #include <api/westilo.h>
-#include <vtkgl.h>
+#include <vtk/gl.h>
 #include <vtkSmartPointer.h>
 
 #include <cmath>

@@ -22,7 +22,7 @@
 #undef __DEPRECATED
 #endif
 #include <list>
-#include <vtkgl.h>
+#include <vtk/gl.h>
 #include <cmath>
 #include <cairo/cairo.h>
 

@@ -28,7 +28,6 @@
 #ifdef __DEPRECATED
 #undef __DEPRECATED
 #endif
-#include <vtkgl.h>
 #include <cairo/cairo.h>
 
 //--------------------------------------------------------------------------------------------

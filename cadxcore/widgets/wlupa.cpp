@@ -34,7 +34,7 @@
 #include "wlupa.h"
 
 
-#include <vtkgl.h>
+#include <vtk/gl.h>
 #include <vtkImageData.h>
 #include <vtkImageActor.h>
 #include <vtkPointData.h>
@@ -583,8 +583,8 @@ void GNC::GCS::Widgets::WLupa::Render(GNC::GCS::Contexto3D* c)
                 glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
                 glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
 
-                glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, vtkgl::CLAMP_TO_BORDER );
-                glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, vtkgl::CLAMP_TO_BORDER );
+                glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER );
+                glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER );
 
                 // Dibujado de la lente
 
