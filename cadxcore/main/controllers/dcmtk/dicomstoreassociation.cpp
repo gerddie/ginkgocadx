@@ -1343,7 +1343,7 @@ void DicomStoreAssociation::FreeMemory(bool fail_is_fatal)
                         DimseCondition::dump(cond);
                         std::stringstream strStream;
                         strStream << "DICOM Network Failure (storescu) Protocol Error: ASC_destroyAssociation; Modulo: "<< cond.module() << "; Code:"<< cond.code() << "; " << cond.text();
-                        errmsg(strStream.str(),true);
+                        errmsg(strStream.str(), fail_is_fatal);
                         LOG_ERROR("C-STORE", strStream.str().c_str());
                 }
         }
