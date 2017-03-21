@@ -45,7 +45,7 @@ public:
         ~DicomStoreAssociation();
         typedef std::list<std::string> ListaRutas;
         void Store(ListaRutas listaFicheros, const GNC::GCS::Ptr<DicomServer>& server, std::string nombreAETLocal,GNC::IProxyNotificadorProgreso* pNotificador, GIL::DICOM::TipoTransferSyntaxEnvio transferSyntax);
-        void FreeMemory();
+        void FreeMemory(bool fail_is_fatal);
         static void progressCallback(void * /*callbackData*/,T_DIMSE_StoreProgress *progress,T_DIMSE_C_StoreRQ * /*req*/);
 
         void SetTLS(const std::string& CliCert, const std::string& CliKey, bool validate)

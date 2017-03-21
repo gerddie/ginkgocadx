@@ -847,7 +847,7 @@ DicomStoreAssociation::DicomStoreAssociation() :
 DicomStoreAssociation::~DicomStoreAssociation()
 {
         //no limpiamos no sea que los haya registrado otro que no seamos nosotros!!!
-        FreeMemory();
+        FreeMemory(false);
 }
 
 void DicomStoreAssociation::Store(ListaRutas listaFicheros, const GNC::GCS::Ptr<DicomServer>& server, std::string nombreAETLocal,GNC::IProxyNotificadorProgreso* pNotificador, GIL::DICOM::TipoTransferSyntaxEnvio transferSyntax)
@@ -1333,7 +1333,7 @@ void DicomStoreAssociation::Store(ListaRutas listaFicheros, const GNC::GCS::Ptr<
         }
 }
 
-void DicomStoreAssociation::FreeMemory()
+void DicomStoreAssociation::FreeMemory(bool fail_is_fatal)
 {
         /* destroy the association, i.e. free memory of T_ASC_Association* structure. This */
         /* call is the counterpart of ASC_requestAssociation(...) which was called above. */
@@ -1356,7 +1356,7 @@ void DicomStoreAssociation::FreeMemory()
                         DimseCondition::dump(cond);
                         std::stringstream strStream;
                         strStream << "DICOM Network Failure (storescu) Protocol Error: ASC_dropNetwork; Modulo: "<< cond.module() << "; Code:"<< cond.code() << "; " << cond.text();
-                        errmsg(strStream.str(),true);
+                        errmsg(strStream.str(), fail_is_fatal);
                         LOG_ERROR("C-STORE", strStream.str().c_str());
                 }
         }
