@@ -24,6 +24,7 @@
 #include <wx/checkbox.h>
 #include <wx/statbmp.h>
 #include <wx/bmpbuttn.h>
+#include <wx/msgdlg.h>
 #include <wx/uri.h>
 
 #include "integrationcontroller.h"
@@ -101,8 +102,16 @@ void GIL::IntegrationController::FreeInstance()
 
 void GIL::IntegrationController::RegisterParser(const std::string& xmlKey, const GNC::GCS::Ptr<IXMLIntegrationParser>& pParser)
 {
+#ifndef NDEBUG
         // we only allow one controller per key, everything else is a bug in the code
         assert(m_mapParsers.find(xmlKey) == m_mapParsers.end());
+#else
+        if (m_mapParsers.find(xmlKey) != m_mapParsers.end()) {
+                wxString msg = wxT("Ignoring duplicate parser key: ") + xmlKey;
+                wxMessageBox(msg, "Error");
+                return;
+        }
+#endif
         m_mapParsers[xmlKey] = pParser;
 }
 
