@@ -101,9 +101,8 @@ void GIL::IntegrationController::FreeInstance()
 
 void GIL::IntegrationController::RegisterParser(const std::string& xmlKey, const GNC::GCS::Ptr<IXMLIntegrationParser>& pParser)
 {
-        if (m_mapParsers.find(xmlKey) != m_mapParsers.end()) {
-                throw IntegrationException(_Std("Fatal error! you can't register two parsers with same  key").c_str());
-        }
+        // we only allow one controller per key, everything else is a bug in the code
+        assert(m_mapParsers.find(xmlKey) == m_mapParsers.end());
         m_mapParsers[xmlKey] = pParser;
 }
 
