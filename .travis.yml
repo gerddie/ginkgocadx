@@ -29,7 +29,7 @@ addons:
   coverity_scan:
     project:
       name: gerddie/ginkgocadx
-      version: 3.7.5+
+      version: 3.8.5+
       description: 
     notification_email: gw.fossdev@gmail.com
     build_command: make -j2
