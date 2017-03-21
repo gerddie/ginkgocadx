@@ -111,6 +111,9 @@ public:
                                 long id = -1;
                                 is >> t_name >> id;
 
+                                // coverity complains that the scalar is tained, but it is checked here,
+                                // sanitized. and it is used only as an id.
+                                // coverity[TAINTED_SCALAR]
                                 if (!is.fail() && t_name == profile_template && id > 0) {
                                         idNombreAutomatico = std::max<long>(id, idNombreAutomatico);
                                 }
