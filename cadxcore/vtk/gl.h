@@ -24,7 +24,32 @@ using namespace vtkgl;
 #define glUniform1i(A,B)  vtkgl::Uniform1i(A,B)
 #define glUniform1f(A,B)  vtkgl::Uniform1f(A,B)
 
+// for some reason these are not defined in older VTK or <GL/gl.h>
+#ifndef GL_FRAGMENT_PROGRAM_ARB
+#define GL_FRAGMENT_PROGRAM_ARB  vtkgl::FRAGMENT_PROGRAM_ARB
 #endif
+
+#ifndef GL_VERTEX_SHADER
+#define GL_VERTEX_SHADER vtkgl::VERTEX_SHADER
+#endif
+
+#ifndef GL_COMPILE_STATUS
+#define GL_COMPILE_STATUS vtkgl::COMPILE_STATUS
+#endif
+
+#ifndef GL_INFO_LOG_LENGTH
+#define GL_INFO_LOG_LENGTH vtkgl::INFO_LOG_LENGTH
+#endif
+
+#ifndef GL_FRAGMENT_SHADER
+#define GL_FRAGMENT_SHADER vtkgl::FRAGMENT_SHADER
+#endif
+
+#ifndef GL_LINK_STATUS
+#define GL_LINK_STATUS vtkgl::LINK_STATUS
+#endif
+
+#endif //VTK_RENDERING_OPENGL2
 
 #endif 
 
