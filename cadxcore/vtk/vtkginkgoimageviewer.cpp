@@ -68,6 +68,7 @@
 #include <vtkPlaneSource.h>
 #include <vtkPlane.h>
 #include <vtkPolyDataMapper.h>
+#include <vtkTextureObject.h>
 
 #include <VTKInria3D/vtkVISUManagement/vtkLookupTableManager.h>
 
@@ -91,6 +92,10 @@
 #define VTK_GINKGO_ZOOM_MIN 0.25f
 #define VTK_GINKGO_ZOOM_MAX 200
 
+#if 1
+#define vtkGinkgoTexture vtkOpenGLTexture
+#else 
+
 class vtkGinkgoTexture : public vtkOpenGLTexture
 {
 protected:
@@ -103,20 +108,20 @@ public:
 
         vtkTypeMacro(vtkGinkgoTexture,vtkOpenGLTexture);
 
-        long GetTextureId() const
+        long GetTextureId() const 
         {
-                return Index;
+                return this->Index;
         }
 
         //indica si la textura tiene id (se ha intentado cargar)
         bool TextureDefined() const
         {
-                return Index != 0;
+                return GetTextureId() != 0;
         }
 
         operator long () const
         {
-                return Index;
+                return GetTextureId();
         }
 
 protected:
@@ -126,6 +131,8 @@ protected:
 };
 
 vtkStandardNewMacro(vtkGinkgoTexture);
+#endif
+
 
 #if defined(DEBUG_PIPELINE)
 static vtkIdType pts[6][4]= {{0,1,2,3}, {4,5,6,7}, {0,1,5,4}, {1,2,6,5}, {2,3,7,6}, {3,0,4,7}};
@@ -162,6 +169,7 @@ public:
         vtkSmartPointer<vtkProperty>                    PlaneProperty;
         vtkSmartPointer<vtkPlane>                       Plane;
         vtkSmartPointer<vtkGinkgoOpenGLTexture>         Textura;
+        
         vtkSmartPointer<vtkPolyDataMapper>              MapperPlano;
         vtkSmartPointer<vtkGinkgoTexture>               TexturaOverlay;
         vtkSmartPointer<vtkPolyDataMapper>              MapperPlanoOverlay;

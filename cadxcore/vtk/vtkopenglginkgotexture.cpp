@@ -56,7 +56,7 @@ PURPOSE.  See the above copyright notice for more information.
 #include <vtkPixelBufferObject.h>
 #include <vtkOpenGL.h>
 
-
+#include <iostream>
 
 #include <main/controllers/controladorlog.h>
 #include <main/controllers/controladorpermisos.h>
@@ -405,8 +405,14 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
                         ///CHECK HARDWARE SUPPORT
                         if(!this->CheckedHardwareSupport) {
 #ifdef VTK_RENDERING_OPENGL2
-                                if (this->InternalEnableShaders && GNC::GCS::IControladorPermisos::Instance()->Get("core.opengl", "enable_shaders").Activo()) {                                        this->UseShader = true;
+
+                                if (this->InternalEnableShaders && GNC::GCS::IControladorPermisos::Instance()->Get("core.opengl", "enable_shaders").Activo()) {
+                                        this->UseShader = true;
                                 }
+
+                                auto capabilities = renWin->ReportCapabilities();
+                                std::cout  << "capabilities:" << capabilities  << "\n";
+
                                 this->CheckedHardwareSupport = true;
                                 this->SupportsNonPowerOfTwoTextures = true;
                                 this->SupportsPBO=vtkPixelBufferObject::IsSupported(renWin);
@@ -421,7 +427,8 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
                                         m->LoadExtension("GL_ARB_multitexture");
                                         m->LoadExtension("GL_VERSION_2_0");
                                         //ENABLE/DISABLE SHADER!
-                                        if (this->InternalEnableShaders && GNC::GCS::IControladorPermisos::Instance()->Get("core.opengl", "enable_shaders").Activo()) {                                        this->UseShader = true;
+                                        if (this->InternalEnableShaders && GNC::GCS::IControladorPermisos::Instance()->Get("core.opengl", "enable_shaders").Activo()) {
+                                                this->UseShader = true;
                                         }
                                 }
 #endif                               
@@ -937,13 +944,17 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
                         glDeleteLists (static_cast<GLuint>(this->Index), static_cast<GLsizei>(0));
                         glNewList (static_cast<GLuint>(this->Index), GL_COMPILE);
 #endif
+                        
+
+#ifndef VTK_RENDERING_OPENGL2
                         //seg fault protection for those wackos that don't use an
                         //opengl render window
                         if(this->RenderWindow->IsA("vtkOpenGLRenderWindow")) {
-                                static_cast<vtkOpenGLRenderWindow *>(ren->GetRenderWindow())->
-                                RegisterTextureResource( this->Index );
-                        }
-
+                                vtkOpenGLRenderWindow *renWin =
+                                static_cast<vtkOpenGLRenderWindow *>(ren->GetRenderWindow());
+                                renWin->RegisterTextureResource( this->Index );
+                        }                         
+#endif
                         //pixel interpolate
                         if (this->Interpolate) {
                                 glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
