@@ -55,6 +55,7 @@ PURPOSE.  See the above copyright notice for more information.
 #include <vtkTransform.h>
 #include <vtkPixelBufferObject.h>
 #include <vtkOpenGL.h>
+#include <vtkTextureObject.h>
 
 #include <iostream>
 
@@ -205,6 +206,7 @@ void vtkGinkgoOpenGLTexture::ReleaseGraphicsResources(vtkWindow *renWin)
 {
         if (this->Index && renWin && renWin->GetMapped()) {
                 static_cast<vtkRenderWindow *>(renWin)->MakeCurrent();
+#ifndef VTK_RENDERING_OPENGL2
 #ifdef GL_VERSION_1_1
                 // free any textures
                 if (glIsTexture(static_cast<GLuint>(this->Index))) {
@@ -218,6 +220,7 @@ void vtkGinkgoOpenGLTexture::ReleaseGraphicsResources(vtkWindow *renWin)
                 if (glIsList(this->Index)) {
                         glDeleteLists(this->Index,1);
                 }
+#endif
 #endif
         }
         this->Index = 0;
@@ -405,13 +408,11 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
                         ///CHECK HARDWARE SUPPORT
                         if(!this->CheckedHardwareSupport) {
 #ifdef VTK_RENDERING_OPENGL2
-
-                                if (this->InternalEnableShaders && GNC::GCS::IControladorPermisos::Instance()->Get("core.opengl", "enable_shaders").Activo()) {
-                                        this->UseShader = true;
-                                }
+                                // currently shaders in OpenGL doesn't get the second
+                                // texture, probably needs to be a vtkTexture too
+                                this->UseShader = false;
 
                                 auto capabilities = renWin->ReportCapabilities();
-                                std::cout  << "capabilities:" << capabilities  << "\n";
 
                                 this->CheckedHardwareSupport = true;
                                 this->SupportsNonPowerOfTwoTextures = true;
@@ -935,18 +936,17 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
                         // define a display list for this texture
                         // get a unique display list id
 
-#ifdef GL_VERSION_1_1
+#ifndef GL_VERSION_1_1
+#error OpenGL >= 1.1 required
+#endif
+
+#ifdef VTK_RENDERING_OPENGL2
+                        vtkTextureObject *obj = vtkTextureObject::New();
+                        obj->SetContext(renWin);
+#else
                         glGenTextures(1, &tempIndex);
                         this->Index = static_cast<long>(tempIndex);
                         glBindTexture(GL_TEXTURE_2D, this->Index);
-#else
-                        this->Index = glGenLists(1);
-                        glDeleteLists (static_cast<GLuint>(this->Index), static_cast<GLsizei>(0));
-                        glNewList (static_cast<GLuint>(this->Index), GL_COMPILE);
-#endif
-                        
-
-#ifndef VTK_RENDERING_OPENGL2
                         //seg fault protection for those wackos that don't use an
                         //opengl render window
                         if(this->RenderWindow->IsA("vtkOpenGLRenderWindow")) {
@@ -1073,6 +1073,18 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
 
                         }//END PROGRAM SHADER
 
+#ifdef VTK_RENDERING_OPENGL2
+                        if (RGBImage) {
+                                obj->Create2DFromRaw(xsize, ysize, bytesPerPixel, VTK_UNSIGNED_CHAR, resultData);
+                        } else {
+                                if (UseShader) {
+                                        obj->Create2DFromRaw(xsize, ysize, scalars->GetNumberOfComponents(), scalars->GetDataType(), resultData);
+                                } else {
+                                        obj->Create2DFromRaw(xsize, ysize, bytesPerPixel, VTK_UNSIGNED_CHAR, resultData);
+                                }
+                        }
+                        SetTextureObject(obj);
+#else
                         //UPLOAD TEXTURE...
                         if(this->SupportsPBO) {
                                 if(this->PBO==0) {
@@ -1099,6 +1111,7 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
                                 // non-blocking call
                                 this->PBO->Bind(vtkPixelBufferObject::UNPACKED_BUFFER);
                                 glTexImage2D( GL_TEXTURE_2D, 0 , TexInternalFormat, xsize, ysize, 0, TexFormat, TexType, 0);
+
                                 this->PBO->UnBind();
                                 //std::cout << "<< UpdatePBO" << std::endl;
                         } else {
@@ -1108,6 +1121,7 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
                                 //std::cout << "<< UpdateText(slow)" << std::endl;
 
                         }
+#endif
 #ifndef GL_VERSION_1_1
                         glEndList ();
 #endif
@@ -1141,7 +1155,24 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
                                         LOG_ERROR("OpenGLComponent", "LUT Not found. Bad initiallization");
                                 }
 
-                                //glEnable(GL_TEXTURE_1D);
+                                //
+#ifdef VTK_RENDERING_OPENGL2
+
+                                LOG_DEBUG("OpenGLComponent", "Initialize LUT");
+                                glActiveTexture(GL_TEXTURE1);
+                                glGenTextures(1, &this->LUTIndex);
+                                glBindTexture(GL_TEXTURE_1D, this->LUTIndex);
+                                glTexParameterf( GL_TEXTURE_1D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+                                glTexParameterf( GL_TEXTURE_1D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
+                                glTexParameterf( GL_TEXTURE_1D, GL_TEXTURE_WRAP_S,     GL_CLAMP );
+                                glTexParameterf( GL_TEXTURE_1D, GL_TEXTURE_WRAP_T,     GL_CLAMP );
+
+                                glTexImage1D( GL_TEXTURE_1D, 0 , GL_RGBA,
+                                              lutNvals, 0, GL_RGBA,
+                                              GL_UNSIGNED_BYTE, lutData);
+                                glEnable(GL_TEXTURE_1D);
+                                glActiveTexture(GL_TEXTURE0);
+#else
 #if defined(_WINDOWS) || defined(__WXGTK__)
                                 glActiveTextureARB(GL_TEXTURE1_ARB);
 #else
@@ -1162,16 +1193,21 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
 #else
                                 glActiveTexture(GL_TEXTURE0_ARB);
 #endif
+#endif
                         }
                 }
                 LookupTableChanged = false;
         }
 
         // execute the display list that uses creates the texture
+#ifdef VTK_RENDERING_OPENGL2
+        this->GetTextureObject()->Bind();
+#else
 #ifdef GL_VERSION_1_1
         glBindTexture(GL_TEXTURE_2D, this->Index);
 #else
         glCallList(this->Index);
+#endif
 #endif
 
         // don't accept fragments if they have zero opacity. this will stop the
