@@ -48,10 +48,12 @@ PURPOSE.  See the above copyright notice for more information.
 #include <vtkOpenGLRenderer.h>
 #include <vtkPointData.h>
 #include <vtkRenderWindow.h>
+
+#ifdef VTK_RENDERING_OPENGL2        
 #include <vtkShader.h>
-#include <vtkProperty.h>
-#include <vtkOpenGLProperty.h>
 #include <vtkShaderProgram.h>
+#include <vtkOpenGLHelper.h>
+#endif
 
 #include <vtk/gl.h>
 
@@ -61,7 +63,6 @@ PURPOSE.  See the above copyright notice for more information.
 #include <vtkPixelBufferObject.h>
 #include <vtkOpenGL.h>
 #include <vtkTextureObject.h>
-#include <vtkOpenGLHelper.h>
 
 #include <vtkActor.h>
 
@@ -119,9 +120,9 @@ inline float clamp(float min, float max, float val)
 
 // ----------------------------------------------------------------------------
 // Initializes an instance, generates a unique index.
-vtkGinkgoOpenGLTexture::vtkGinkgoOpenGLTexture():
+vtkGinkgoOpenGLTexture::vtkGinkgoOpenGLTexture()
 #ifdef VTK_RENDERING_OPENGL2        
-        m_this_texture_unit(-1),
+        :m_this_texture_unit(-1),
         m_lut_texture_unit(-1),
         m_lut_size(1.0)
 #endif 
@@ -243,6 +244,7 @@ void vtkGinkgoOpenGLTexture::ReleaseGraphicsResources(vtkWindow *renWin)
 }
 
 
+#ifdef VTK_RENDERING_OPENGL2
 const char * g_FragmenProgramCode_rgb =
         "uniform sampler2D imagetexture;\n"
         "uniform float brightness;\n"
@@ -278,6 +280,36 @@ const char *g_VertexProgramCode =
                 "tex2dcoord = gl_MultiTexCoord0;\n"
                 "gl_Position = ftransform();\n"
                 "}\n";
+#else
+const char *FragmenProgramCode_rgb[] =   {
+        "uniform sampler2D imagetexture;",
+        "uniform float brightness;",
+        "uniform float contrast;",
+        "void main(void)",
+        "{",
+        "vec4 color = texture2D(imagetexture, gl_TexCoord[0].xy);",
+        "float pa = color.a;",
+        "color = ((color - 0.5) * max(contrast, 0.0)) + 0.5 + brightness;",
+        "color.a = pa;",
+        "gl_FragColor = color;", 
+        "}"
+};
+const char *FragmenProgramCode_gray[] = {
+        "uniform sampler2D imagetexture;",
+        "uniform sampler1D lookuptable;",
+        "uniform float lutShift;",
+        "uniform float lutScale;",
+        "void main(void)",
+        "{",
+        "vec4 color = texture2D(imagetexture, gl_TexCoord[0].xy);",
+        "float lutColor = (color.r + lutShift) * lutScale;",
+        "lutColor = clamp(lutColor, 0.0f, 1.0f);",
+        "vec4 cr = texture1D(lookuptable, lutColor);",
+        //"cr.a = 1.0;",
+        "gl_FragColor = cr;",
+        "}"
+};
+#endif 
 
 void vtkGinkgoOpenGLTexture::SetupTexturing(vtkRenderer *ren)
 {
@@ -557,10 +589,6 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
         GLenum TexInternalFormat = GL_LUMINANCE;
         GLenum TexType           = GL_UNSIGNED_BYTE;
 
-#ifdef VTK_RENDERING_OPENGL2
-        int scalar_data_type = VTK_UNSIGNED_CHAR;
-#endif
-
         this->Initialize(ren);
 
         // Need to reload the texture.
@@ -615,8 +643,8 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
         bool ImageDataChanged =
                         ( this->GetMTime() > this->LoadTime.GetMTime() )
                         || ( input->GetMTime() > this->LoadTime.GetMTime() )
-                        || ( !UseShader && this->GetLookupTable() && (this->GetLookupTable()->GetMTime () > this->LoadTime.GetMTime()) )
-                        || ( !UseShader && LookupTableChanged )
+                        || ( !m_use_shader && this->GetLookupTable() && (this->GetLookupTable()->GetMTime () > this->LoadTime.GetMTime()) )
+                        || ( !m_use_shader && m_lut_changed )
                         || ( renWin != this->RenderWindow.GetPointer() )
                         || ( renWin->GetContextCreationTime() > this->LoadTime );
 
@@ -672,17 +700,6 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
                 }
                 ///CHECK HARDWARE SUPPORT
                 if(!this->CheckedHardwareSupport) {
-#ifdef VTK_RENDERING_OPENGL2
-                        // currently shaders in OpenGL doesn't get the second
-                        // texture, probably needs to be a vtkTexture too
-                        this->UseShader = false;
-
-                        auto capabilities = renWin->ReportCapabilities();
-
-                        this->CheckedHardwareSupport = true;
-                        this->SupportsNonPowerOfTwoTextures = true;
-                        this->SupportsPBO=vtkPixelBufferObject::IsSupported(renWin);
-#else                         
                         vtkOpenGLExtensionManager *m = renWin->GetExtensionManager();
                         this->CheckedHardwareSupport = true;
                         this->SupportsNonPowerOfTwoTextures = m->ExtensionSupported("GL_VERSION_2_0") ||
@@ -694,14 +711,13 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
                                 m->LoadExtension("GL_VERSION_2_0");
                                 //ENABLE/DISABLE SHADER!
                                 if (this->InternalEnableShaders && GNC::GCS::IControladorPermisos::Instance()->Get("core.opengl", "enable_shaders").Activo()) {
-                                        this->UseShader = true;
+                                        this->m_use_shader = true;
                                 }
                         }
-#endif                               
                 }
 
-                if (!UseShader) {
-                        LookupTableChanged = false; // Reset LUT changed state
+                if (!m_use_shader) {
+                        m_lut_changed = false; // Reset LUT changed state
                 }
 
                 TIndex = std::max<int>(0, std::min<int>(TIndex, zsize - 1));
@@ -722,7 +738,7 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
                         //IF THERE IS ONLY ONE COMPONENT COULD USE SHADERS...
                         if (numComponents == 1) {
 
-                                if (UseShader) {
+                                if (m_use_shader) {
                                         double range[2] = {0.0, 1.0};
                                         scalars->GetRange(range);
 
@@ -833,11 +849,11 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
                                                 vptr = pResampledPixelData;
                                         } else {
                                                 LOG_DEBUG("OpenGLComponent", "Shaders don't support this component type: Wrong size: " << scalars->GetDataTypeAsString());
-                                                this->UseShader = false;
+                                                this->m_use_shader = false;
                                         }
                                 }
                                 //if support shaders but scalar type isn't short or char, vtk makes the mapping
-                                if (!this->UseShader) {
+                                if (!this->m_use_shader) {
                                         //optimization, if we call mapscalars to colors with all scalars multiframe performance will be very bad
                                         if (zsize > 1) {
                                                 vtkDataArray* myScalars = vtkDataArray::CreateDataArray(scalars->GetDataType());
@@ -859,7 +875,7 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
                         }//end 1 component
                         else {
                                 //lookup table with more than one component... extrange
-                                this->UseShader = false;
+                                this->m_use_shader = false;
                                 pResampledPixelData = new unsigned char[wdh * 4];
                                 const unsigned int psize = wdh;
                                 double range[2] = {0.0, 1.0};
@@ -1051,7 +1067,7 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
                                 this->RGBImage = true;
                         } else {
                                 this->RGBImage = false;
-                                this->UseShader = false;
+                                this->m_use_shader = false;
                         }
 
                         //RGB IMAGES
@@ -1064,7 +1080,7 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
 
                                 for (int i = 0; i < bsize; i++) {
                                         const float colorIn = (float) ( *(src++) ) / 255.0f;
-                                        const float clampedResult = clamp(0.0f, 1.0f, mixNormalized( colorIn * Brightness, mixNormalized(0.5f, colorIn, Contrast), 0.5f ));
+                                        const float clampedResult = clamp(0.0f, 1.0f, mixNormalized( colorIn * m_brightness, mixNormalized(0.5f, colorIn, m_contrast), 0.5f ));
                                         const char colorOut = (char) ( clamp(0.0f, 255.0f, 255.0f * clampedResult) );
                                         *(dst++) = colorOut;
                                 }
@@ -1075,7 +1091,7 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
                 }
 
                 //if no use pixel shader...
-                if (!this->UseShader || RGBImage) {
+                if (!this->m_use_shader || RGBImage) {
                         TexInternalFormat = bytesPerPixel;
                         TexType = GL_UNSIGNED_BYTE;
                         switch (bytesPerPixel) {
@@ -1183,10 +1199,6 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
                 // get a unique display list id
 
 
-#ifdef VTK_RENDERING_OPENGL2
-                vtkTextureObject *obj = vtkTextureObject::New();
-                obj->SetContext(renWin);
-#else
                 glGenTextures(1, &tempIndex);
                 this->Index = static_cast<long>(tempIndex);
                 glBindTexture(GL_TEXTURE_2D, this->Index);
@@ -1197,7 +1209,6 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
                                         static_cast<vtkOpenGLRenderWindow *>(ren->GetRenderWindow());
                         renWin->RegisterTextureResource( this->Index );
                 }
-#endif
                 //pixel interpolate
                 if (this->Interpolate) {
                         glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
@@ -1223,7 +1234,7 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
                 }
 
                 // =======================================UPLOAD SHADER ========
-                if( this->UseShader) {
+                if( this->m_use_shader) {
                         GLenum terror = 0;
                         GLint params = 0;
 
@@ -1317,18 +1328,6 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
 
                 }//END PROGRAM SHADER
 
-#ifdef VTK_RENDERING_OPENGL2
-                if (RGBImage) {
-                        obj->Create2DFromRaw(xsize, ysize, bytesPerPixel, VTK_UNSIGNED_CHAR, resultData);
-                } else {
-                        if (UseShader) {
-                                obj->Create2DFromRaw(xsize, ysize, scalars->GetNumberOfComponents(), scalars->GetDataType(), resultData);
-                        } else {
-                                obj->Create2DFromRaw(xsize, ysize, bytesPerPixel, VTK_UNSIGNED_CHAR, resultData);
-                        }
-                }
-                SetTextureObject(obj);
-#else
                 //UPLOAD TEXTURE...
                 if(this->SupportsPBO) {
                         if(this->PBO==0) {
@@ -1346,7 +1345,7 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
                         if (RGBImage) {
                                 this->PBO->Upload2D(VTK_UNSIGNED_CHAR, resultData, dims, bytesPerPixel, increments);
                         } else {
-                                if (UseShader) {
+                                if (m_use_shader) {
                                         this->PBO->Upload2D(scalars->GetDataType(), resultData, dims, scalars->GetNumberOfComponents(), increments);
                                 } else {
                                         this->PBO->Upload2D(VTK_UNSIGNED_CHAR, resultData, dims, bytesPerPixel, increments);
@@ -1365,7 +1364,6 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
                         //std::cout << "<< UpdateText(slow)" << std::endl;
 
                 }
-#endif
                 // modify the load time to the current time
                 this->LoadTime.Modified();
 
@@ -1381,7 +1379,7 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
         //UPLOAD LOOKUP TABLE IF NEEDED
         bool LUT_NeedsToBeInitialized = !RGBImage && this->LUTIndex == 0;
 
-        if (this->UseShader && ( LUT_NeedsToBeInitialized || LookupTableChanged)) {
+        if (this->m_use_shader && ( LUT_NeedsToBeInitialized || m_lut_changed)) {
                 if (RGBImage) {
                 } else if (LookupTable != NULL) {
 
@@ -1397,23 +1395,6 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
                         }
 
                         //
-#ifdef VTK_RENDERING_OPENGL2
-
-                        LOG_DEBUG("OpenGLComponent", "Initialize LUT");
-                        glActiveTexture(GL_TEXTURE1);
-                        glGenTextures(1, &this->LUTIndex);
-                        glBindTexture(GL_TEXTURE_1D, this->LUTIndex);
-                        glTexParameterf( GL_TEXTURE_1D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-                        glTexParameterf( GL_TEXTURE_1D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
-                        glTexParameterf( GL_TEXTURE_1D, GL_TEXTURE_WRAP_S,     GL_CLAMP );
-                        glTexParameterf( GL_TEXTURE_1D, GL_TEXTURE_WRAP_T,     GL_CLAMP );
-
-                        glTexImage1D( GL_TEXTURE_1D, 0 , GL_RGBA,
-                                      lutNvals, 0, GL_RGBA,
-                                      GL_UNSIGNED_BYTE, lutData);
-                        glEnable(GL_TEXTURE_1D);
-                        glActiveTexture(GL_TEXTURE0);
-#else
 #if defined(_WINDOWS) || defined(__WXGTK__)
                         glActiveTextureARB(GL_TEXTURE1_ARB);
 #else
@@ -1434,18 +1415,13 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
 #else
                         glActiveTexture(GL_TEXTURE0_ARB);
 #endif
-#endif
                 }
         }
-        LookupTableChanged = false;
+        m_lut_changed = false;
 
 
         // execute the display list that uses creates the texture
-#ifdef VTK_RENDERING_OPENGL2
-        this->GetTextureObject()->Bind();
-#else
         glBindTexture(GL_TEXTURE_2D, this->Index);
-#endif
 
         // don't accept fragments if they have zero opacity. this will stop the
         // zbuffer from be blocked by totally transparent texture fragments.
@@ -1461,7 +1437,7 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
         }
 
         // now bind it
-        if (this->UseShader) {
+        if (this->m_use_shader) {
                 if (!this->RGBImage) {
                         glEnable(GL_TEXTURE_1D);
                 }
@@ -1503,7 +1479,7 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
                 //std::cout << "DepthPeeling" << std::endl;
         }
 
-        if (this->UseShader) {
+        if (this->m_use_shader) {
                 GLenum error = 0;
                 GLint loc = 0;
 
@@ -1528,7 +1504,7 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
                         // === brightness ===
                         loc = glGetUniformLocation(this->ProgramObject, "brightness");
                         if(loc != -1) {
-                                glUniform1f(loc, Brightness);
+                                glUniform1f(loc, m_brightness);
                         } else {
                                 LOG_ERROR("OpenGLComponent", "error: brightness is not a uniform");
                         }
@@ -1536,7 +1512,7 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
                         // === contrast ===
                         loc = glGetUniformLocation(this->ProgramObject, "contrast");
                         if(loc != -1) {
-                                glUniform1f(loc, Contrast);
+                                glUniform1f(loc, m_contrast);
                         } else {
                                 LOG_ERROR("OpenGLComponent", "error: contrast is not a uniform");
                         }
@@ -1588,20 +1564,12 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
 // ----------------------------------------------------------------------------
 void vtkGinkgoOpenGLTexture::PostRender(vtkRenderer *vtkNotUsed(ren))
 {
-#ifdef VTK_RENDERING_OPENGL2
-        GetTextureObject()->Deactivate();
-        m_lut->Deactivate();
-#else
         if (this->m_use_shader) {
                 glUseProgram(0);
         }
         if (this->GetInput() && this->PremultipliedAlpha) {
                 glPopAttrib();
         }
-#endif
-
-
-
 }
 
 // ----------------------------------------------------------------------------

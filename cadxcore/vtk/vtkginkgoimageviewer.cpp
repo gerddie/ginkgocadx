@@ -253,7 +253,11 @@ Pipeline::Pipeline(): ModelMatrix(GNC::GCS::IGinkgoMatrix4x4::New()),
         Textura->SetPremultipliedAlpha(1.0);
         Textura->SetInterpolate(1);
         Textura->RepeatOff();
+
+#ifdef VTK_RENDERER_OPENGL2
         Textura->SetMapper(MapperPlano);
+#endif 
+
         TexturaOverlay->SetInterpolate(1);
         TexturaOverlay->RepeatOff();
         TexturaOverlay->MapColorScalarsThroughLookupTableOn();
