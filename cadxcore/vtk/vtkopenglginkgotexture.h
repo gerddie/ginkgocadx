@@ -30,12 +30,21 @@
 #include <vtkOpenGLTexture.h>
 //BTX
 #include <vtkWeakPointer.h> // needed for vtkWeakPointer.
+#include <vtkSmartPointer.h>
+#include <vtkPolyDataMapper.h>
 //ETX
+
+
+#include <vtkCommand.h>
 
 class vtkWindow;
 class vtkOpenGLRenderer;
 class vtkRenderWindow;
 class vtkPixelBufferObject;
+class vtkOpenGLRenderWindow;
+class vtkActor;
+
+
 
 class vtkGinkgoOpenGLTexture : public vtkOpenGLTexture, public GNC::GCS::ILockable
 {
@@ -111,6 +120,38 @@ public:
 
         void ForceEnableShaders(bool force);
 
+#ifdef VTK_RENDERING_OPENGL2
+        class vtkShaderCallback : public vtkCommand {
+        public:
+                vtkShaderCallback();
+
+                static vtkShaderCallback *New() { return new vtkShaderCallback; }
+
+                void SetGrayParameters(int tex_unit, int lut_unit, double shift, double scale);
+                void SetRgbParameters(double brightness, double contrast);
+                virtual void Execute(vtkObject *, unsigned long, void*cbo);
+        private:
+                enum EActiveShader {
+                        as_gray,
+                        as_rgb,
+                        as_none
+                };
+
+                EActiveShader m_active_shader;
+                int m_tex_unit;
+                int m_lut_unit;
+                double m_shift;
+                double m_scale;
+
+                double m_brightness;
+                double m_contrast;
+
+        };
+
+        void SetMapper(vtkSmartPointer<vtkPolyDataMapper>& mapper);
+        vtkSmartPointer<vtkShaderCallback> m_shader_callback;
+#endif
+
         //BTX
 protected:
         vtkGinkgoOpenGLTexture();
@@ -121,28 +162,39 @@ protected:
 
         vtkTimeStamp   LoadTime;
         unsigned int Index; // actually GLuint
-        vtkWeakPointer<vtkRenderWindow> RenderWindow;   // RenderWindow used for previous render
+        vtkWeakPointer<vtkRenderWindow> m_render_window;   // RenderWindow used for previous render
         bool CheckedHardwareSupport;
         bool SupportsNonPowerOfTwoTextures;
         bool SupportsPBO;
         bool SupportsVertexShaders;
         bool SupportsFragmentShaders;
         bool SupportsMultiTexture;
+        unsigned int LUTIndex;
+        bool m_use_shader;
+        int zsize;
+        int TIndex;
+        bool TIndexChanged;
+        bool m_lut_changed;
+        bool InternalEnableShaders;
+        bool RGBImage;
+
+        float m_brightness; // Only for RGB Images
+        float m_contrast;   // Only for RGB Images
+
+#ifdef VTK_RENDERING_OPENGL2
+        //std::unique_ptr<vtkTextureObject> m_lut;
+        vtkTextureObject *m_lut;
+        int m_this_texture_unit;
+        int m_lut_texture_unit;
+        int LoadLUT(vtkOpenGLRenderWindow *ren);
+        int m_lut_size;
+        vtkSmartPointer<vtkPolyDataMapper>  m_mapper;
+#else
         vtkPixelBufferObject *PBO;
         long VertexProgram;
         long FragmentProgram;
         long ProgramObject;
-        unsigned int LUTIndex;
-        bool UseShader;
-        int zsize;
-        int TIndex;
-        bool TIndexChanged;
-        bool LookupTableChanged;
-        bool InternalEnableShaders;
-        bool RGBImage;
-
-        float Brightness; // Only for RGB Images
-        float Contrast;   // Only for RGB Images
+#endif
 public:
         void SetLookupTable(vtkScalarsToColors* table);
 
@@ -154,5 +206,9 @@ private:
         // Handle loading in extension support
         virtual void Initialize(vtkRenderer * ren);
 
+        void SetupTexturing(vtkRenderer *ren);
         //ETX
+
+
+
 };

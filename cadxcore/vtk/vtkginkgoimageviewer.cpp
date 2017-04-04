@@ -253,6 +253,7 @@ Pipeline::Pipeline(): ModelMatrix(GNC::GCS::IGinkgoMatrix4x4::New()),
         Textura->SetPremultipliedAlpha(1.0);
         Textura->SetInterpolate(1);
         Textura->RepeatOff();
+        Textura->SetMapper(MapperPlano);
         TexturaOverlay->SetInterpolate(1);
         TexturaOverlay->RepeatOff();
         TexturaOverlay->MapColorScalarsThroughLookupTableOn();
@@ -992,7 +993,7 @@ void vtkGinkgoImageViewer::SetupPipeline(bool forceReload)
                 const GNC::GCS::Vector3D pt[8] = {
                         GNC::GCS::Vector3D(0.0, 0.0, 0.0), GNC::GCS::Vector3D(1.0, 0.0, 0.0), GNC::GCS::Vector3D(1.0, 1.0, 0.0), GNC::GCS::Vector3D(0.0, 1.0, 0.0),
                         GNC::GCS::Vector3D(0.0, 0.0, 1.0), GNC::GCS::Vector3D(1.0, 0.0, 1.0), GNC::GCS::Vector3D(1.0, 1.0, 1.0), GNC::GCS::Vector3D(0.0, 1.0, 1.0)
-                };
+                };)
 
                 GNC::GCS::Vector3D pp;
                 for (int i = 0; i < 8; ++i) {
