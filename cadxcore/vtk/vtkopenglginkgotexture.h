@@ -182,8 +182,7 @@ protected:
         float m_contrast;   // Only for RGB Images
 
 #ifdef VTK_RENDERING_OPENGL2
-        //std::unique_ptr<vtkTextureObject> m_lut;
-        vtkTextureObject *m_lut;
+        vtkSmartPointer<vtkTextureObject> m_lut;
         int m_this_texture_unit;
         int m_lut_texture_unit;
         int LoadLUT(vtkOpenGLRenderWindow *ren);

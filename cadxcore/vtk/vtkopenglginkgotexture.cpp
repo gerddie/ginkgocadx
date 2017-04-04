@@ -120,9 +120,11 @@ inline float clamp(float min, float max, float val)
 // ----------------------------------------------------------------------------
 // Initializes an instance, generates a unique index.
 vtkGinkgoOpenGLTexture::vtkGinkgoOpenGLTexture():
+#ifdef VTK_RENDERING_OPENGL2        
         m_this_texture_unit(-1),
         m_lut_texture_unit(-1),
         m_lut_size(1.0)
+#endif 
 {
         this->Index = 0;
         this->m_render_window = 0;
@@ -522,7 +524,7 @@ int  vtkGinkgoOpenGLTexture::LoadLUT(vtkOpenGLRenderWindow *renWin)
 {
         int ncolors = 255;
         if (!m_lut) {
-                m_lut = vtkTextureObject::New();
+                m_lut = vtkSmartPointer<vtkTextureObject>::New();
                 m_lut->SetContext(renWin);
         }else{
                 m_lut->Deactivate();

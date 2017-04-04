@@ -67,7 +67,11 @@ vtkGinkgoImageViewer* GNC::GCS::IWidgetsContract::GetViewerActivo()
 {
         GNC::GCS::IWidgetsManager* pManager = GetManager();
         if (pManager != NULL) {
-                return pManager->GetRendererActivo()->m_pImageViewer;
+                auto active_renderer = pManager->GetRendererActivo();
+                if (active_renderer)
+                        return active_renderer->m_pImageViewer;
+                else
+                        return NULL; 
         } else {
                 return NULL;
         }
