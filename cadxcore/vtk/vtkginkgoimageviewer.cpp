@@ -254,7 +254,7 @@ Pipeline::Pipeline(): ModelMatrix(GNC::GCS::IGinkgoMatrix4x4::New()),
         Textura->SetInterpolate(1);
         Textura->RepeatOff();
 
-#ifdef VTK_RENDERER_OPENGL2
+#ifdef VTK_RENDERING_OPENGL2
         Textura->SetMapper(MapperPlano);
 #endif 
 
