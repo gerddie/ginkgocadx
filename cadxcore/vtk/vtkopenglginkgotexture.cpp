@@ -424,6 +424,45 @@ void vtkGinkgoOpenGLTexture::vtkShaderCallback::Execute(vtkObject *, unsigned lo
         }
 }
 
+template <typename T, bool is_integral>
+struct __correct_range {
+        static void apply(double range[]) {
+                range[0] = 0.0;
+                range[1] = 1.0;
+        }
+};
+
+template <typename T>
+struct __correct_range<T, true> {
+        static void apply(double range[]) {
+                range[0] = static_cast<double>(std::numeric_limits<T>::min());
+                range[1] = static_cast<double>(std::numeric_limits<T>::max());
+        }
+};
+
+template <typename T>
+static std::vector<float> normalize_and_convert(vtkDataArray *scalars, size_t length)
+{
+        const T *data = reinterpret_cast<const T*>(scalars->GetVoidPointer(0));
+        double range[2] = {0.0,1.0};
+        scalars->GetRange(range);
+        double delta = range[1] - range[0];
+        if (delta < std::numeric_limits<double>::epsilon()) {
+                __correct_range<T, std::is_integral<T>::value>::apply(range);
+                delta = range[1] - range[0];
+        }
+        double scale = 1.0 / delta;
+        double shift = - range[0];
+
+        std::vector<float> output(length);
+        std::transform(data, data + length, output.begin(),
+                       [scale, shift](T x){ return (x +shift) * scale; });
+        return output;
+}
+
+
+
+
 // ----------------------------------------------------------------------------
 // Implement base class method.
 void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
@@ -474,32 +513,48 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
 
                 vtkTextureObject *obj = vtkTextureObject::New();
                 obj->SetContext(renWin);
+
+                size_t length = scalars->GetNumberOfComponents() * size[0] * size[1];
+                std::vector<float> buffer;
                 // this is probably wrong
-                if (scalars->GetDataType() == VTK_DOUBLE) {
-                        // buffer the data
-                        const double *data = reinterpret_cast<const double*>(scalars->GetVoidPointer(0));
-                        size_t s = scalars->GetNumberOfComponents() * size[0] * size[1];
-                        std::vector<float> buffer(data, data + s);
-                        if (!obj->Create2DFromRaw(size[0], size[1], scalars->GetNumberOfComponents(),
-                                                  VTK_FLOAT, &buffer[0]))
-                                LOG_ERROR("OpenGLComponent","Unable to create texture for VTK format VTK_FLOAT with "
-                                          << scalars->GetNumberOfComponents() << " components");
-                } else {
-                        if (!obj->Create2DFromRaw(size[0], size[1], scalars->GetNumberOfComponents(),
-                                                  scalars->GetDataType(), scalars->GetVoidPointer(0)))
-                                LOG_ERROR("OpenGLComponent","Unable to create texture for VTK format " << scalars->GetDataType()
-                                          << " with " << scalars->GetNumberOfComponents() << " components");
+                switch (scalars->GetDataType()) {
+                case VTK_SIGNED_CHAR: buffer = normalize_and_convert<signed char>(scalars, length);
+                        break;
+                case VTK_UNSIGNED_CHAR: buffer = normalize_and_convert<unsigned char>(scalars, length);
+                        break;
+                case VTK_SHORT: buffer = normalize_and_convert<signed short>(scalars, length);
+                        break;
+                case VTK_UNSIGNED_SHORT: buffer = normalize_and_convert<unsigned short>(scalars, length);
+                        break;
+                case VTK_INT: buffer = normalize_and_convert<signed int>(scalars, length);
+                        break;
+                case VTK_UNSIGNED_INT: buffer = normalize_and_convert<unsigned int>(scalars, length);
+                        break;
+                case VTK_FLOAT: buffer = normalize_and_convert<unsigned int>(scalars, length);
+                        break;
+                case VTK_DOUBLE: buffer = normalize_and_convert<unsigned int>(scalars, length);
+                        break;
+                default:
+                        LOG_ERROR("OpenGLComponent", "Don't know what to do woth VTK-TYPE data " << scalars->GetDataType())
                 }
+
+                if (buffer.empty())
+                        return;
+                if (!obj->Create2DFromRaw(size[0], size[1], scalars->GetNumberOfComponents(),
+                                          VTK_FLOAT, &buffer[0]))
+                        LOG_ERROR("OpenGLComponent","Unable to create texture for VTK format VTK_FLOAT with "
+                                  << scalars->GetNumberOfComponents() << " components");
 
                 SetTextureObject(obj);
 
                 if (m_lut_changed)
                         m_lut_size = LoadLUT(renWin);
 
-                GetTextureObject()->Activate();
-                m_this_texture_unit = GetTextureObject()->GetTextureUnit();
+
         }
 
+        GetTextureObject()->Activate();
+        m_this_texture_unit = GetTextureObject()->GetTextureUnit();
         m_lut->Activate();
         m_lut_texture_unit = m_lut->GetTextureUnit();
 
@@ -512,6 +567,7 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
                 double imgRange[2] = {0,1};
                 scalars->GetRange(imgRange);
 
+                // we want that the values from the LUT map
                 LOG_DEBUG("OpenGLComponent", "Lut-Range = " << lutRange[0] << ", " << lutRange[1]);
                 LOG_DEBUG("OpenGLComponent", "Img-Range = " << imgRange[0] << ", " << imgRange[1]);
 
@@ -536,17 +592,17 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
                 m_shader_callback->SetRgbParameters(m_brightness, m_contrast);
         }
 
-        if (this->PremultipliedAlpha)
-          {
-          // save off current state of src / dst blend functions
-          glGetIntegerv(GL_BLEND_SRC_RGB, &this->PrevBlendParams[0]);
-          glGetIntegerv(GL_BLEND_DST_RGB, &this->PrevBlendParams[1]);
-          glGetIntegerv(GL_BLEND_SRC_ALPHA, &this->PrevBlendParams[2]);
-          glGetIntegerv(GL_BLEND_DST_ALPHA, &this->PrevBlendParams[3]);
+        if (this->PremultipliedAlpha)  {
+                glPushAttrib(GL_COLOR_BUFFER_BIT);
+                // save off current state of src / dst blend functions
+                glGetIntegerv(GL_BLEND_SRC_RGB, &this->PrevBlendParams[0]);
+                glGetIntegerv(GL_BLEND_DST_RGB, &this->PrevBlendParams[1]);
+                glGetIntegerv(GL_BLEND_SRC_ALPHA, &this->PrevBlendParams[2]);
+                glGetIntegerv(GL_BLEND_DST_ALPHA, &this->PrevBlendParams[3]);
 
-          // make the blend function correct for textures premultiplied by alpha.
-          glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-          }
+                // make the blend function correct for textures premultiplied by alpha.
+                glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+        }
 
 
 }
@@ -570,6 +626,10 @@ int  vtkGinkgoOpenGLTexture::LoadLUT(vtkOpenGLRenderWindow *renWin)
 
                 m_lut->Create1DFromRaw(ncolors, 4, VTK_UNSIGNED_CHAR, data);
                 m_lut_changed = false;
+
+                glTexParameterf( GL_TEXTURE_1D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+                glTexParameterf( GL_TEXTURE_1D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
+                glTexParameterf( GL_TEXTURE_1D, GL_TEXTURE_WRAP_S,     GL_CLAMP_TO_EDGE );
 
                 LOG_DEBUG("OpenGLComponent", "Set new LUT with " << ncolors << " entries.");
         }
@@ -1569,6 +1629,8 @@ void vtkGinkgoOpenGLTexture::PostRender(vtkRenderer *vtkNotUsed(ren))
         if (this->GetInput() && this->PremultipliedAlpha) {
                 glPopAttrib();
         }
+        GetTextureObject()->Deactivate();
+        m_lut->Deactivate();
 }
 
 // ----------------------------------------------------------------------------
