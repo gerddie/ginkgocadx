@@ -1596,6 +1596,9 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
                                            static_cast<float>((drange[1]-normRange[0]) / (normRange[1]-normRange[0]))
                                          };
 
+                        LOG_DEBUG("OpenGLComponent", "scalars range:" << normRange[0] << ", " << normRange[1]);
+                        LOG_DEBUG("OpenGLComponent", "lut range:" << drange[0] << ", " << drange[1]);
+
                         // === shift ===
                         float shift = -range[0];
                         loc = glGetUniformLocation(this->ProgramObject,"lutShift");
@@ -1613,6 +1616,7 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
                         } else {
                                 LOG_ERROR("OpenGLComponent", "error: scale is not a uniform");
                         }
+                        LOG_DEBUG("OpenGLComponent", "Used scale:" << scale << " shift:" << shift);
                 }
 
                 glDisable(GL_FRAGMENT_PROGRAM_ARB);
