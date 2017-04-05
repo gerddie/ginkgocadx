@@ -1629,8 +1629,10 @@ void vtkGinkgoOpenGLTexture::PostRender(vtkRenderer *vtkNotUsed(ren))
         if (this->GetInput() && this->PremultipliedAlpha) {
                 glPopAttrib();
         }
+#ifdef VTK_RENDERING_OPENGL2
         GetTextureObject()->Deactivate();
         m_lut->Deactivate();
+#endif
 }
 
 // ----------------------------------------------------------------------------
