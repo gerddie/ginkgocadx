@@ -35,6 +35,10 @@
 
 #define LOGGER_DEFECTO "default"
 
+#if PACKAGE_VERSION_NUMBER >= 362
+#define OFauto_ptr OFunique_ptr
+#endif
+
 namespace GNC
 {
 using namespace dcmtk;
