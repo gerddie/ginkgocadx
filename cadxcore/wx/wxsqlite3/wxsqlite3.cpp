@@ -2761,6 +2761,7 @@ void wxSQLite3Database::SetCollation(const wxString& collationName, wxSQLite3Col
         } else {
                 rc = sqlite3_create_collation((sqlite3*) m_db, localCollationName, SQLITE_UTF8, NULL, (int(*)(void*,int,const void*,int,const void*)) NULL);
         }
+        LOG_DEBUG("sqlite3_create_collation rc=%d", rc);
 }
 
 void wxSQLite3Database::SetCollationNeededCallback()
