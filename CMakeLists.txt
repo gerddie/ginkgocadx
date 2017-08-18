@@ -56,16 +56,6 @@ ELSE()
     ENDIF(HAS_GNU_CXX0X_FLAG)
   ENDIF(HAS_GNU_CXX11_FLAG)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}  ${CXX_11_FLAG}")
-  INCLUDE (${CMAKE_CURRENT_SOURCE_DIR}/cmake/checkCpp0xAuto.cmake)
-  INCLUDE (${CMAKE_CURRENT_SOURCE_DIR}/cmake/checkCpp0xLambda.cmake)
-  IF(NOT "${CXX_HAS_CXX_0X_AUTO}" OR NOT CXX_HAS_CXX_0X_LAMBDA)
-    MESSAGE(FATAL_ERROR
-      "This source code requires the C++0x auto type and lambda features. "
-      "If your compiler is supposed to support this feature, "
-      "please enable the appropriate flags and delete the CMakeCache.txt file before "
-      "re-running cmake.\n"
-      "For g++ >= 4.8 this is '-std=c++0x' ")
-  ENDIF(NOT "${CXX_HAS_CXX_0X_AUTO}" OR NOT CXX_HAS_CXX_0X_LAMBDA)
 ENDIF()
 
 #doesn't work... using custom build
