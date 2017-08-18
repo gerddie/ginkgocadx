@@ -254,7 +254,7 @@ const char *FragmenProgramCode_rgb[] =   {
         "float pa = color.a;",
         "color = ((color - 0.5) * max(contrast, 0.0)) + 0.5 + brightness;",
         "color.a = pa;",
-        "gl_FragColor = color;", 
+        "gl_FragColor = color;",
         "}"
 };
 #endif
@@ -965,18 +965,14 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
 
                         // =======================================UPLOAD SHADER ========
                         if( this->UseShader) {
-                                GLenum terror = 0;
-                                GLint params = 0;
+                           GLint params = 0;
 
                                 //code of the shader
                                 if (this->ProgramObject == 0) {
                                         glEnable(vtkgl::FRAGMENT_PROGRAM_ARB);
                                         //upload vertex program code...
                                         this->ProgramObject = vtkgl::CreateProgram();
-                                        terror = glGetError();
-
                                         this->VertexProgram = vtkgl::CreateShader(vtkgl::VERTEX_SHADER);
-                                        terror = glGetError();
 
                                         std::string VertexProgramCode =
                                                 "void main (void)\n"
@@ -986,10 +982,7 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
                                                 "}\n";
                                         const char* ptr1 = (const char*)VertexProgramCode.c_str();
                                         vtkgl::ShaderSource(this->VertexProgram, 1, &ptr1, NULL);
-                                        terror = glGetError();
                                         vtkgl::CompileShader(this->VertexProgram);
-                                        terror = glGetError();
-
                                         vtkgl::GetShaderiv(this->VertexProgram, vtkgl::COMPILE_STATUS, &params);
 
                                         if(params==GL_TRUE) {
@@ -1009,7 +1002,6 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
                                         }
 
                                         this->FragmentProgram = vtkgl::CreateShader(vtkgl::FRAGMENT_SHADER);
-                                        terror = glGetError();
 
 
                                         if (this->RGBImage) { // RGB Frament shader program.
@@ -1017,11 +1009,8 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
                                         } else { // GrayLevel Frament shader program
                                                 vtkgl::ShaderSource(this->FragmentProgram, sizeof(FragmenProgramCode_gray) / sizeof (char*), FragmenProgramCode_gray, 0);
                                         }
-                                        
-                                        terror = glGetError();
-                                        vtkgl::CompileShader(this->FragmentProgram);
-                                        //terror = glGetError();
 
+                                        vtkgl::CompileShader(this->FragmentProgram);
                                         vtkgl::GetShaderiv(this->FragmentProgram, vtkgl::COMPILE_STATUS, &params);
 
                                         if(params==GL_TRUE) {
@@ -1041,12 +1030,8 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
                                         }
 
                                         vtkgl::AttachShader(this->ProgramObject, this->VertexProgram);
-                                        terror = glGetError();
                                         vtkgl::AttachShader(this->ProgramObject, this->FragmentProgram);
-                                        terror = glGetError();
-
                                         vtkgl::LinkProgram(this->ProgramObject);
-                                        terror = glGetError();
 
                                         GLint linked;
                                         vtkgl::GetProgramiv(this->ProgramObject, vtkgl::LINK_STATUS, &linked);
@@ -1216,14 +1201,10 @@ void vtkGinkgoOpenGLTexture::Load(vtkRenderer *ren)
         }
 
         if (this->UseShader) {
-                GLenum error = 0;
                 GLint loc = 0;
 
                 glEnable(vtkgl::FRAGMENT_PROGRAM_ARB);
-                error = glGetError();
-
                 vtkgl::UseProgram(this->ProgramObject);
-                error = glGetError();
 
                 // Common parameters for shaders
 
