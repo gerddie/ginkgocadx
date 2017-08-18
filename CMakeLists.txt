@@ -2,7 +2,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
 PROJECT(BUILD_ALL)
 
-SET( GINKGO_VERSION 3.8.4)
+SET( GINKGO_VERSION 3.8.6)
 
 SET( USE_PATCHED_LIBS        FALSE CACHE BOOL "Use patched libraries")
 SET( BUILD_VISUALIZATION_EXT TRUE CACHE BOOL "Build Visualization extention")
@@ -29,9 +29,21 @@ INCLUDE(SysDefs)
 #############################################################################################
 include(FindPkgConfig)
 
+include(CheckCXXCompilerFlag)
 
-IF(UNIX)
-  include(CheckCXXCompilerFlag)
+IF (((${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU") AND
+      (CMAKE_CXX_COMPILER_VERSION VERSION_GREATER 5.3.0)) OR
+    ((${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang") AND
+      (CMAKE_CXX_COMPILER_VERSION VERSION_GREATER 3.3.0)))
+  MESSAGE(STATUS "Compiler has full c++11 support")
+
+  # g++ >= 6.0 sets std=c++14 by default
+  IF ((${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU") AND
+      (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 6.0.0))
+    SET(CXX_11_FLAG "-std=c++11")
+  ENDIF()
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}  ${CXX_11_FLAG}")
+ELSE()
   CHECK_CXX_COMPILER_FLAG("-std=c++11" HAS_GNU_CXX11_FLAG)
   IF(HAS_GNU_CXX11_FLAG)
     SET(CXX_11_FLAG "-std=c++11")
@@ -43,10 +55,18 @@ IF(UNIX)
       MESSAGE(WARNING "Don't know how to enable C++11, if you are lucky, they are enabled by default")
     ENDIF(HAS_GNU_CXX0X_FLAG)
   ENDIF(HAS_GNU_CXX11_FLAG)
-  
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}  ${CXX_11_FLAG}")
-  MESSAGE(STATUS "CXX_FLAGS = ${CMAKE_CXX_FLAGS}")
-ENDIF(UNIX)
+  INCLUDE (${CMAKE_CURRENT_SOURCE_DIR}/cmake/checkCpp0xAuto.cmake)
+  INCLUDE (${CMAKE_CURRENT_SOURCE_DIR}/cmake/checkCpp0xLambda.cmake)
+  IF(NOT "${CXX_HAS_CXX_0X_AUTO}" OR NOT CXX_HAS_CXX_0X_LAMBDA)
+    MESSAGE(FATAL_ERROR
+      "This source code requires the C++0x auto type and lambda features. "
+      "If your compiler is supposed to support this feature, "
+      "please enable the appropriate flags and delete the CMakeCache.txt file before "
+      "re-running cmake.\n"
+      "For g++ >= 4.8 this is '-std=c++0x' ")
+  ENDIF(NOT "${CXX_HAS_CXX_0X_AUTO}" OR NOT CXX_HAS_CXX_0X_LAMBDA)
+ENDIF()
 
 #doesn't work... using custom build
 #IF(LINUX)
@@ -92,17 +112,17 @@ CHECK_CXX_SOURCE_COMPILES(
 "#include <dcmtk/dcmdata/dcitem.h>
 #include <dcmtk/dcmdata/dcdeftag.h>
 
-int main(int argc, char *args[]) 
+int main(int argc, char *args[])
 {
-     DcmTagKey tag(DCM_StudyDate); 
-     DcmElement *test = DcmItem::newDicomElement(tag); 
+     DcmTagKey tag(DCM_StudyDate);
+     DcmElement *test = DcmItem::newDicomElement(tag);
      return test == 0;
 }
 " DCMTK_newDicomElement_IS_STATIC_MEMBER_OF_DcmItem)
 
-IF(DCMTK_newDicomElement_IS_STATIC_MEMBER_OF_DcmItem) 
+IF(DCMTK_newDicomElement_IS_STATIC_MEMBER_OF_DcmItem)
   ADD_DEFINITIONS(-DDCMTK_POST_20170228)
-ENDIF()  
+ENDIF()
 
 
 
