@@ -37,6 +37,10 @@
 
 #if PACKAGE_VERSION_NUMBER >= 362
 #define OFauto_ptr OFunique_ptr
+#ifndef HAVE_CXX11
+#error DCMTK must be compiled with CXX11 support
+#endif
+
 #endif
 
 namespace GNC
