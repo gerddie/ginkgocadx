@@ -29,7 +29,7 @@ static char rcsid[] = "$Id: inet_ntop.c,v $";
 #ifdef _WIN32
 #include <winsock2.h>
 #if !defined EAFNOSUPPORT
-	#define EAFNOSUPPORT 97
+   #define EAFNOSUPPORT 97
 #endif
 //#define ENOSPC 98
 #else
@@ -65,16 +65,16 @@ static const char *myinet_ntop6(const u_char *src, char *dst, size_t size);
 const char *
 myinet_ntop(int af, const void* src, char* dst, size_t size)
 {
-	switch (af) {
-	case AF_INET:
-		return (myinet_ntop4(src, dst, size));
-	case AF_INET6:
-		return (myinet_ntop6(src, dst, size));
-	default:
-		errno = EAFNOSUPPORT;
-		return (NULL);
-	}
-	/* NOTREACHED */
+   switch (af) {
+   case AF_INET:
+      return (myinet_ntop4(src, dst, size));
+   case AF_INET6:
+      return (myinet_ntop6(src, dst, size));
+   default:
+      errno = EAFNOSUPPORT;
+      return (NULL);
+   }
+   /* NOTREACHED */
 }
 
 /* const char *
@@ -91,24 +91,24 @@ myinet_ntop(int af, const void* src, char* dst, size_t size)
 static const char *
 myinet_ntop4(const u_char* src, char* dst, size_t size)
 {
-	static const char fmt[] = "%u.%u.%u.%u";
-	size_t maxlen = sizeof "255.255.255.255";
-	char tmp[sizeof "255.255.255.255"];
-	#if defined(_WINDOWS)
-	sprintf_s(tmp, maxlen, fmt, src[0], src[1], src[2], src[3]);
-	#else
-	snprintf(tmp, maxlen, fmt, src[0], src[1], src[2], src[3]);
-	#endif
-	if (strlen(tmp) > size) {
-		errno = ENOSPC;
-		return (NULL);
-	}
-	#if defined(_WINDOWS)
-	strcpy_s(dst, maxlen, tmp);
-	#else
-	strncpy(dst, tmp, maxlen);
-	#endif
-	return (dst);
+   static const char fmt[] = "%u.%u.%u.%u";
+   size_t maxlen = sizeof "255.255.255.255";
+   char tmp[sizeof "255.255.255.255"];
+   #if defined(_WINDOWS)
+   sprintf_s(tmp, maxlen, fmt, src[0], src[1], src[2], src[3]);
+   #else
+   snprintf(tmp, maxlen, fmt, src[0], src[1], src[2], src[3]);
+   #endif
+   if (strlen(tmp) > size) {
+      errno = ENOSPC;
+      return (NULL);
+   }
+   #if defined(_WINDOWS)
+   strcpy_s(dst, maxlen, tmp);
+   #else
+   strncpy(dst, tmp, maxlen);
+   #endif
+   return (dst);
 }
 
 /* const char *
@@ -120,97 +120,98 @@ myinet_ntop4(const u_char* src, char* dst, size_t size)
 static const char *
 myinet_ntop6(const u_char* src, char* dst, size_t size)
 {
-	/*
-	 * Note that int32_t and int16_t need only be "at least" large enough
-	 * to contain a value of the specified size.  On some systems, like
-	 * Crays, there is no such thing as an integer variable with 16 bits.
-	 * Keep this in mind if you think this function should have been coded
-	 * to use pointer overlays.  All the world's not a VAX.
-	 */
-	const size_t maxlen = sizeof "ffff:ffff:ffff:ffff:ffff:ffff:255.255.255.255";
-	char tmp[sizeof "ffff:ffff:ffff:ffff:ffff:ffff:255.255.255.255"], *tp;
-	struct { int base, len; } best, cur;
-	u_int words[IN6ADDRSZ / INT16SZ];
-	int i;
+   /*
+    * Note that int32_t and int16_t need only be "at least" large enough
+    * to contain a value of the specified size.  On some systems, like
+    * Crays, there is no such thing as an integer variable with 16 bits.
+    * Keep this in mind if you think this function should have been coded
+    * to use pointer overlays.  All the world's not a VAX.
+    */
+   const size_t maxlen = sizeof "ffff:ffff:ffff:ffff:ffff:ffff:255.255.255.255";
+   char tmp[sizeof "ffff:ffff:ffff:ffff:ffff:ffff:255.255.255.255"], *tp;
+   struct { int base, len; } best, cur;
+   u_int words[IN6ADDRSZ / INT16SZ];
+   int i;
+   best.len = 0;
 
-	/*
-	 * Preprocess:
-	 *	Copy the input (bytewise) array into a wordwise array.
-	 *	Find the longest run of 0x00's in src[] for :: shorthanding.
-	 */
-	memset(words, 0, sizeof words);
-	for (i = 0; i < IN6ADDRSZ; i++)
-		words[i / 2] |= (src[i] << ((1 - (i % 2)) << 3));
-	best.base = -1;
-	cur.base = -1;
-	for (i = 0; i < (IN6ADDRSZ / INT16SZ); i++) {
-		if (words[i] == 0) {
-			if (cur.base == -1)
-				cur.base = i, cur.len = 1;
-			else
-				cur.len++;
-		} else {
-			if (cur.base != -1) {
-				if (best.base == -1 || cur.len > best.len)
-					best = cur;
-				cur.base = -1;
-			}
-		}
-	}
-	if (cur.base != -1) {
-		if (best.base == -1 || cur.len > best.len)
-			best = cur;
-	}
-	if (best.base != -1 && best.len < 2)
-		best.base = -1;
+   /*
+    * Preprocess:
+    *	Copy the input (bytewise) array into a wordwise array.
+    *	Find the longest run of 0x00's in src[] for :: shorthanding.
+    */
+   memset(words, 0, sizeof words);
+   for (i = 0; i < IN6ADDRSZ; i++)
+      words[i / 2] |= (src[i] << ((1 - (i % 2)) << 3));
+   best.base = -1;
+   cur.base = -1;
+   for (i = 0; i < (IN6ADDRSZ / INT16SZ); i++) {
+      if (words[i] == 0) {
+         if (cur.base == -1)
+            cur.base = i, cur.len = 1;
+         else
+            cur.len++;
+      } else {
+         if (cur.base != -1) {
+            if (best.base == -1 || cur.len > best.len)
+               best = cur;
+            cur.base = -1;
+         }
+      }
+   }
+   if (cur.base != -1) {
+      if (best.base == -1 || cur.len > best.len)
+         best = cur;
+   }
+   if (best.base != -1 && best.len < 2)
+      best.base = -1;
 
-	/*
-	 * Format the result.
-	 */
-	tp = tmp;
-	for (i = 0; i < (IN6ADDRSZ / INT16SZ); i++) {
-		/* Are we inside the best run of 0x00's? */
-		if (best.base != -1 && i >= best.base &&
-		    i < (best.base + best.len)) {
-			if (i == best.base)
-				*tp++ = ':';
-			continue;
-		}
-		/* Are we following an initial run of 0x00s or any real hex? */
-		if (i != 0)
-			*tp++ = ':';
-		/* Is this address an encapsulated IPv4? */
-		if (i == 6 && best.base == 0 &&
-		    (best.len == 6 || (best.len == 5 && words[5] == 0xffff))) {
-			if (!myinet_ntop4(src+12, tp, sizeof tmp - (tp - tmp)))
-				return (NULL);
-			tp += strlen(tp);
-			break;
-		}
-		#if defined(_WINDOWS)
-		sprintf_s(tp, 5, "%x", words[i]);
-		#else
-		snprintf(tp, 5, "%x", words[i]);
-		#endif
-		tp += strlen(tp);
-	}
-	/* Was it a trailing run of 0x00's? */
-	if (best.base != -1 && (best.base + best.len) == (IN6ADDRSZ / INT16SZ))
-		*tp++ = ':';
-	*tp++ = '\0';
+   /*
+    * Format the result.
+    */
+   tp = tmp;
+   for (i = 0; i < (IN6ADDRSZ / INT16SZ); i++) {
+      /* Are we inside the best run of 0x00's? */
+      if (best.base != -1 && i >= best.base &&
+          i < (best.base + best.len)) {
+         if (i == best.base)
+            *tp++ = ':';
+         continue;
+      }
+      /* Are we following an initial run of 0x00s or any real hex? */
+      if (i != 0)
+         *tp++ = ':';
+      /* Is this address an encapsulated IPv4? */
+      if (i == 6 && best.base == 0 &&
+          (best.len == 6 || (best.len == 5 && words[5] == 0xffff))) {
+         if (!myinet_ntop4(src+12, tp, sizeof tmp - (tp - tmp)))
+            return (NULL);
+         tp += strlen(tp);
+         break;
+      }
+      #if defined(_WINDOWS)
+      sprintf_s(tp, 5, "%x", words[i]);
+      #else
+      snprintf(tp, 5, "%x", words[i]);
+      #endif
+      tp += strlen(tp);
+   }
+   /* Was it a trailing run of 0x00's? */
+   if (best.base != -1 && (best.base + best.len) == (IN6ADDRSZ / INT16SZ))
+      *tp++ = ':';
+   *tp++ = '\0';
 
-	/*
-	 * Check for overflow, copy, and we're done.
-	 */
-	if ((tp - tmp) > (signed int) size) {
-		errno = ENOSPC;
-		return (NULL);
-	}
-	#if defined(_WINDOWS)
-	strcpy_s(dst, maxlen, tmp);
-	#else
-	strncpy(dst, tmp, maxlen);
-	#endif
+   /*
+    * Check for overflow, copy, and we're done.
+    */
+   if ((tp - tmp) > (signed int) size) {
+      errno = ENOSPC;
+      return (NULL);
+   }
+   #if defined(_WINDOWS)
+   strcpy_s(dst, maxlen, tmp);
+   #else
+   strncpy(dst, tmp, maxlen);
+   #endif
 
-	return (dst);
+   return (dst);
 }
