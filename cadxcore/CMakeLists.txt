@@ -208,27 +208,6 @@ IF (MACOS)
 	LINK_DIRECTORIES(${XmlRpc++_DIR})
 ENDIF()
 
-IF (LINUX)
-	IF (GTK2_FOUND)
-	  INCLUDE_DIRECTORIES(${GTK2_INCLUDE_DIRS})
-	ELSE ()
-	  MESSAGE("-----------------GTK2 NOT FOUND--------------------")
-	  INCLUDE_DIRECTORIES(/usr/include/gtk-2.0
-	      /usr/include/atk-1.0
-	      /usr/include/pango-1.0
-	      /usr/include/gio-unix-2.0/
-	      /usr/include/glib-2.0
-	      /usr/lib/i386-linux-gnu/glib-2.0/include
-	      /usr/include/freetype2
-	      /usr/include/libpng12
-	      /usr/lib/gtk-2.0/include
-	      /usr/include/cairo
-	      /usr/include/gdk-pixbuf-2.0
-	      /usr/include/pixman-1
-	  )  
-	ENDIF ()
-ENDIF()
-
 
 ################ TARGET ################
 
