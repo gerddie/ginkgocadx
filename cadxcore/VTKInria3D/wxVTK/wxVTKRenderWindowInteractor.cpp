@@ -555,13 +555,14 @@ void wxVTKRenderWindowInteractor::OnSize(wxSizeEvent& /*event*/)
                 GtkWidget* parent_widget = GetParent()->GetHandle();
                 if (parent_widget != NULL) {
                         gtk_widget_realize(parent_widget);
-                        Window parent_wid = GDK_WINDOW_XWINDOW( parent_widget->window );
+                        GdkWindow *window = gtk_widget_get_window(parent_widget);
+                        Window parent_wid = GDK_WINDOW_XID(window);
                         RenderWindow->SetParentId(reinterpret_cast<void *>(parent_wid));
                 } else {
                         RenderWindow->SetParentId(NULL);
                 }
                 gtk_widget_realize(widget);
-                Window wid = GDK_WINDOW_XWINDOW( widget->window );
+                Window wid = GDK_WINDOW_XID( gtk_widget_get_window(widget) );
                 RenderWindow->SetWindowId(reinterpret_cast<void *>(wid));
 
                 SetCurrent(*GLContext);
