@@ -44,6 +44,13 @@ With these prerequisites available run *cmake* on the Ginkgo CADx
 source tree and then use the selected build system to build the software.
 After the software was sucessfully compiled run the install target.
 
+'''bash
+mkdir build
+cd build
+cmake ..
+make
+'''
+
 
 The original Ginkgo CADx implementation was done with cross-platform
 compatibility in mind, i.e. the software should compile on MS Windows,
