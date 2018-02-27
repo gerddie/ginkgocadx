@@ -17,7 +17,7 @@ also be used to convert png, jpeg, bmp, pdf, tiff to DICOM files.
 The version developed here is a continuation of the now abandoned
 free version developed by MetaEmotion:
 
-    http://ginkgo-cadx.com/en/
+(http://ginkgo-cadx.com/en/)[http://ginkgo-cadx.com/en/]
 
 
 ## License ##
@@ -42,12 +42,17 @@ To build Ginkgo CADx the following software packages are required:
 
 With these prerequisites available run *cmake* on the Ginkgo CADx
 source tree and then use the selected build system to build the software.
-After the software was sucessfully compiled run the install target.
-
+After the software was sucessfully compiled run the install target:
+```bash
+mkdir build
+cd build/
+cmake ..
+make
+```
 
 The original Ginkgo CADx implementation was done with cross-platform
 compatibility in mind, i.e. the software should compile on MS Windows,
-Mac OS X, and flavours of Linux. However, currently the main development
+macOS, and flavours of Linux. However, currently the main development
 platforms are Debian GNU/Linux and Gentoo Linux using the GNU gcc compiler
 tool chain. Hence incompatibilities may creep in and bug reports with fixes
 for other platforms are very welcome. 
@@ -56,7 +61,6 @@ for other platforms are very welcome.
 ### Debian/Ubuntu specific build instructions ###
 
 The following packages must be installed in order to compile it:
-
 
     chrpath
     cmake
@@ -77,9 +81,16 @@ The following packages must be installed in order to compile it:
     libxml2-dev
     libgdcm-tools
 
-On Debian *Stretch* and *Sid* these packages can be installed by simply running
+On Debian *Stretch* and *Sid* these packages can be installed by simply running:
+```bash
+apt build-dep ginkgocadx
+```
 
-    apt build-dep ginkgocadx
+Alternatively, if you don't have the src in your `sources.list`, the following
+should enable you to install all the dependencies:
+```bash
+apt install chrpath cmake libcairo2-dev libcurl4-gnutls-dev libdcmtk-dev libfftw3-dev libfreetype6-dev libgtk2.0-dev libinsighttoolkit4-dev libjsoncpp-dev libmysqlclient-dev libsqlite3-dev libssl-dev libvtk6-dev libwrap0-dev libwxgtk3.0-dev libxml2-dev libgdcm-tools
+```
 
 On Ubuntu Xenial (16.04 )the package can be installed from the Xenial ports PPA: 
 
