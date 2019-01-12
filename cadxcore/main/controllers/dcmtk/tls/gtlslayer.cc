@@ -22,7 +22,9 @@ BEGIN_EXTERN_C
 #endif
 #include <openssl/rand.h>
 #include <openssl/err.h>
+#include <openssl/x509_vfy.h>
 END_EXTERN_C
+
 
 #include "dcmtk/dcmtls/tlstrans.h"
 #include "dcmtk/dcmnet/dicom.h"
