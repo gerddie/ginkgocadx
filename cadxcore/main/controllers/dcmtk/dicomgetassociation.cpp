@@ -639,7 +639,7 @@ void GetAssociation::storeSCPCallback(void *callbackData, T_DIMSE_StoreProgress 
                 */
                 if (rsp->DimseStatus == STATUS_Success) {
                         /* which SOP class and SOP instance ? */
-                        if (!DU_findSOPClassAndInstanceInDataSet(imageDataSet, sopClass, sopInstance)) {
+                        if (!DU_findSOPClassAndInstanceInDataSet(imageDataSet, sopClass, sizeof(sopClass), sopInstance, sizeof(sopInstance))) {
                                 rsp->DimseStatus = STATUS_STORE_Error_DataSetDoesNotMatchSOPClass;
                                 LOG_ERROR(caller->ambitolog, "No se pudo encontrar SOPClass o SOPInstanceUID en el dataset");
                         } else if (strcmp(sopClass, req->AffectedSOPClassUID) != 0) {
