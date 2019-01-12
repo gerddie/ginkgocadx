@@ -634,7 +634,8 @@ static OFCondition storeSCU(T_ASC_Association * assoc, const char *fname)
 
         /* figure out which SOP class and SOP instance is encapsulated in the file */
         if (!DU_findSOPClassAndInstanceInDataSet(dcmff.getDataset(),
-                        sopClass, sopInstance, opt_correctUIDPadding)) {
+                        sopClass, sizeof(sopClass), sopInstance, sizeof(sopInstance),
+                                                 opt_correctUIDPadding)) {
                 LOG_DEBUG(LOGGER, "No SOP Class & Instance UIDs in file " << fname);
                 return DIMSE_BADDATA;
         }
@@ -695,7 +696,7 @@ static OFCondition storeSCU(T_ASC_Association * assoc, const char *fname)
 
                 /* figure out which SOP class and SOP instance is encapsulated in the file */
                 if (!DU_findSOPClassAndInstanceInDataSet(dcmff.getDataset(),
-                                sopClass, sopInstance, opt_correctUIDPadding)) {
+                                sopClass, sizeof(sopClass), sopInstance, sizeof(sopInstance), opt_correctUIDPadding)) {
                         LOG_DEBUG(LOGGER, "No SOP Class & Instance UIDs in file " << outfname);
                         return DIMSE_BADDATA;
                 }
@@ -1028,7 +1029,8 @@ void DicomStoreAssociation::Store(ListaRutas listaFicheros, const GNC::GCS::Ptr<
                         errmsg(strStream.str(), opt_haltOnUnsuccessfulStore);
                         LOG_ERROR("C-STORE", strStream.str().c_str());
                 } else {
-                        if (!DU_findSOPClassAndInstanceInFile(currentFilename, sopClassUID, sopInstanceUID)) {
+                        if (!DU_findSOPClassAndInstanceInFile(currentFilename, sopClassUID, sizeof(sopClassUID),
+                                                              sopInstanceUID, sizeof(sopInstanceUID))) {
                                 ignoreName = OFTrue;
                                 std::stringstream strStream;
                                 strStream << "SOP class (o instance) no establecido en fichero: " << currentFilename;

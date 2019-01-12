@@ -235,7 +235,7 @@ OFCondition GIL::DICOM::Service::acceptAssociation()
                 ASC_setAPTitles(assoc->params, NULL, NULL, m_localAET.c_str());
 
                 // acknowledge or reject this association
-                cond = ASC_getApplicationContextName(assoc->params, buf);
+                cond = ASC_getApplicationContextName(assoc->params, buf, sizeof(buf));
                 if ((cond.bad()) || strcmp(buf, UID_StandardApplicationContext) != 0) {
                         // reject: the application context name is not supported
                         T_ASC_RejectParameters rej = {
