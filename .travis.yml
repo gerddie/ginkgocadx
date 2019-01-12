@@ -1,7 +1,6 @@
 sudo: required
-dist: trusty
+dist: xenial
 language: generic
-
 env:
   matrix: 
   - BUILD_TYPE=Release
