@@ -37,7 +37,8 @@ public:
         *    the choice of the secure transport layer code.
         *  @param randFile path to file used to feed the random generator
         */
-        GTLSTransportLayer(int networkRole, const char *randFile) : DcmTLSTransportLayer(networkRole, randFile) {}
+        GTLSTransportLayer(int networkRole, const char *randFile) :
+           DcmTLSTransportLayer(static_cast<T_ASC_NetworkRole>(networkRole), randFile, OFTrue) {}
 
         /// destructor
         virtual ~GTLSTransportLayer();
