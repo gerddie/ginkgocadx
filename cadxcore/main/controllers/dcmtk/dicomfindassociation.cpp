@@ -92,7 +92,9 @@ OFCondition FindAssociation::findSCU(T_ASC_Association *assoc, DcmDataset *query
         callbackData.pCaller = this;
         callbackData.assoc = assoc;
 
+        int response_count = 0;
         cond = DIMSE_findUser(assoc, presId, &req, query,
+                              response_count,
                               findCallback, (void*) &callbackData,
                               (m_timeout == 0) ? DIMSE_BLOCKING : DIMSE_NONBLOCKING,
                               m_timeout,
