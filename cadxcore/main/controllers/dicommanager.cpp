@@ -691,7 +691,7 @@ std::string DICOMManager::GetDescription(const std::string &clave) const
                 DcmTagKey key(g,e);
                 const DcmDataDictionary& globalDataDict = dcmDataDict.rdlock();
                 const DcmDictEntry *dicent = globalDataDict.findEntry(key,NULL);
-                dcmDataDict.unlock();
+                dcmDataDict.rdunlock();
                 if (dicent != NULL) {
                         return std::string(dicent->getTagName());
                 }
@@ -753,7 +753,7 @@ DcmElement* DICOMManager::CrearElementoConValor(const char* s)
                 DcmTagKey key(0xffff, 0xffff);
                 const DcmDataDictionary& globalDataDict = dcmDataDict.rdlock();
                 const DcmDictEntry *dicent = globalDataDict.findEntry(dicName.c_str());
-                dcmDataDict.unlock();
+                dcmDataDict.rdunlock();
                 if (dicent != NULL) {
                         // found dictionary name, copy group and element number
                         key = dicent->getKey();
