@@ -1590,7 +1590,7 @@ void PACSController::DumpFileElements(const std::string& rutaFichero, IInspectCa
                                 callback->Inspect(keyStr, descStr, valStr);
                         }
                 }
-                dcmDataDict.unlock();
+                dcmDataDict.wrunlock();
         }
 }
 

@@ -54,7 +54,7 @@ public:
                         DcmDictEntry entry(*(*it));
                         listOfStrings.push_back(wxString::FromUTF8(entry.getTagName()));
                 }
-                dcmDataDict.unlock();
+                dcmDataDict.wrunlock();
 
                 listOfStrings.Sort();
                 m_pTag->Append(listOfStrings);
@@ -69,7 +69,7 @@ public:
                         wxString tagName = m_pTag->GetStringSelection();
                         const DcmDataDictionary& globalDataDict = dcmDataDict.rdlock();
                         const DcmDictEntry* entry = globalDataDict.findEntry(tagName.ToUTF8());
-                        dcmDataDict.unlock();
+                        dcmDataDict.rdunlock();
                         if (entry != NULL) {
                                 m_pTextGroup->SetValue(wxString::Format(wxT("%04x"),entry->getGroup()));
                                 m_pTextElement->SetValue(wxString::Format(wxT("%04x"),entry->getElement()));
