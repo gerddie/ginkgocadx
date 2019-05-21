@@ -5,9 +5,9 @@
 
 ## Preface ##
 
-* Currently the project is maintained on a voluntary basis. 
+* Currently the project is maintained on a voluntary basis.
 * There is no PRO version.
-* I can't help you with compiling this on MS Windows or Mac OS X 
+* I can't help you with compiling this on MS Windows or Mac OS X
 
 ## Introduction ##
 
@@ -17,7 +17,7 @@ also be used to convert png, jpeg, bmp, pdf, tiff to DICOM files.
 The version developed here is a continuation of the now abandoned
 free version developed by MetaEmotion:
 
-(http://ginkgo-cadx.com/en/)[http://ginkgo-cadx.com/en/]
+http://ginkgo-cadx.com/en/
 
 
 ## License ##
@@ -34,7 +34,7 @@ To build Ginkgo CADx the following software packages are required:
   VTK OpenGL2 rendering backend (see #21 and #34). VTK >= 7.0 defaults to
   this newer backend when configured without parameters, and currently
   you will have to set VTK_RENDERING_BACKEND=OpenGL when building VTK to
-  sucessfully compile ginkgocadx. 
+  sucessfully compile ginkgocadx.
 * wxWidgets (>= 3.0.1)
 * DCMTK (>= 3.6.1-20150924)
 * A C++ compiler that supports the *C++11* standard
@@ -55,7 +55,7 @@ compatibility in mind, i.e. the software should compile on MS Windows,
 macOS, and flavours of Linux. However, currently the main development
 platforms are Debian GNU/Linux and Gentoo Linux using the GNU gcc compiler
 tool chain. Hence incompatibilities may creep in and bug reports with fixes
-for other platforms are very welcome. 
+for other platforms are very welcome.
 
 
 ### Debian/Ubuntu specific build instructions ###
@@ -92,10 +92,10 @@ should enable you to install all the dependencies:
 apt install chrpath cmake libcairo2-dev libcurl4-gnutls-dev libdcmtk-dev libfftw3-dev libfreetype6-dev libgtk2.0-dev libinsighttoolkit4-dev libjsoncpp-dev libmysqlclient-dev libsqlite3-dev libssl-dev libvtk6-dev libwrap0-dev libwxgtk3.0-dev libxml2-dev libgdcm-tools
 ```
 
-On Ubuntu Xenial (16.04 )the package can be installed from the Xenial ports PPA: 
+On Ubuntu Xenial (16.04 )the package can be installed from the Xenial ports PPA:
 
    https://launchpad.net/~gert-die/+archive/ubuntu/xenial-mia
 
-For Yantal the package available from the usual Ubuntu repositories. 
+For Yantal the package available from the usual Ubuntu repositories.
 
 
