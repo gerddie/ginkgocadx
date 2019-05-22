@@ -11,10 +11,10 @@ env:
 
 install:
 - sudo apt-get update -qq
-- sudo apt-get install -y libvtk6.2 libvtk6-dev libinsighttoolkit4-dev libdcmtk-dev libcairo2-dev
+- sudo apt-get install -y libvtk6-dev libinsighttoolkit4-dev libdcmtk-dev libcairo2-dev
   libcurl4-gnutls-dev libfftw3-dev libfreetype6-dev libgtk2.0-dev libjsoncpp-dev libmysqlclient-dev
   libsqlite3-dev libssl-dev libwrap0 libwrap0-dev libwxgtk3.0-dev libxml2-dev libgdcm-tools
-  libhdf5-dev
+  libhdf5-dev python-vtk
 before_script:
 - mkdir build
 - cd build
@@ -31,4 +31,3 @@ addons:
     notification_email: gw.fossdev@gmail.com
     build_command: make -j2
     branch_pattern: coverity_scan
-
