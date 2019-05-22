@@ -27,7 +27,7 @@ install:
 before_script:
 - mkdir build
 - cd build
-- cmake -DCMAKE_BUILD_TYPE=${BUILD_TYPE}  ..
+- cmake -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -DVTK_RENDERING_BACKEND=OpenGL ..
 script:
 - make -j2
 
