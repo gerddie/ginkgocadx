@@ -1,13 +1,22 @@
 language: cpp
 sudo: required
-dist: xenial
-env:
-  matrix:
-  - BUILD_TYPE=Release
-  - BUILD_TYPE=Debug
+matrix:
+  include:
+    - os: linux
+      dist: xenial
+      compiler: gcc
+      env: BUILD_TYPE=Release
+    - os: linux
+      dist: xenial
+      compiler: gcc
+      env: BUILD_TYPE=Debug
+    - os: linux
+      dist: xenial
+      compiler: clang
+      env: BUILD_TYPE=Release
 
-  global:
-  - secure: ZUaYb2lsUb31Oz54glD1ol8Skjw0N/lqI1C7cYmjaiU8HDRAomlbVAW8Mw8IKZr6cNAI1DaD41P45YGG8zu40VFLySdfHblBGed01VkH8G9bHelRTmWS86Si64TwBrFYk5YCKhw8CEQrOmItSqbSmIg9y1Jm37NJR4OroqObzyA7lHHkFxRADoP69dS1esSMgPIS5mkMrvuVd9YpsnEC2Nxja0CtUAlzSj1LTh4H1t5RCOZzgq1+zPZZE64BRFfrWzwfudyJ4Tzrx0mJ1063yAhhbLbkLjheYNK/f0yOCB6bUUGay618Ify9DmAwZk8iQzCFc23H5+3U17vhTP9ohmvdRYb8NfxZ3bDCmCBeJYHg+ImrLABIqZtfCbv2Fwd5gf2ApF7/iYcrTccTJLG/hfDLe8GfQrZ29Led2JDYsjvYNQvsP8fvI0Ag3ldZBo4MZ9NNZeXdxxxg0oU5fvtj8zsFf+r13osdMlwxwZ8U/AyTc1byCX2FSEUBYTXBG8o4MliDB5QIJOKCJ0O8NEcojoe8fYepDxg1KawTUD5mcwTvNrYIbOqEzx8HLFCfdtqyFo2QDQwoPdeNBeVpvAu8amgip5wNJTd7KOSzQGpainDYSdOKu96OQ6h0nEhnFcdUHrqwuuOLKRdP108O1DsGW+KB5eh/qs+nAWOE5rFhk0Q=
+global:
+- secure: ZUaYb2lsUb31Oz54glD1ol8Skjw0N/lqI1C7cYmjaiU8HDRAomlbVAW8Mw8IKZr6cNAI1DaD41P45YGG8zu40VFLySdfHblBGed01VkH8G9bHelRTmWS86Si64TwBrFYk5YCKhw8CEQrOmItSqbSmIg9y1Jm37NJR4OroqObzyA7lHHkFxRADoP69dS1esSMgPIS5mkMrvuVd9YpsnEC2Nxja0CtUAlzSj1LTh4H1t5RCOZzgq1+zPZZE64BRFfrWzwfudyJ4Tzrx0mJ1063yAhhbLbkLjheYNK/f0yOCB6bUUGay618Ify9DmAwZk8iQzCFc23H5+3U17vhTP9ohmvdRYb8NfxZ3bDCmCBeJYHg+ImrLABIqZtfCbv2Fwd5gf2ApF7/iYcrTccTJLG/hfDLe8GfQrZ29Led2JDYsjvYNQvsP8fvI0Ag3ldZBo4MZ9NNZeXdxxxg0oU5fvtj8zsFf+r13osdMlwxwZ8U/AyTc1byCX2FSEUBYTXBG8o4MliDB5QIJOKCJ0O8NEcojoe8fYepDxg1KawTUD5mcwTvNrYIbOqEzx8HLFCfdtqyFo2QDQwoPdeNBeVpvAu8amgip5wNJTd7KOSzQGpainDYSdOKu96OQ6h0nEhnFcdUHrqwuuOLKRdP108O1DsGW+KB5eh/qs+nAWOE5rFhk0Q=
 
 install:
 - sudo apt-get update -qq
