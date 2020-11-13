@@ -23,6 +23,7 @@
 
 
 #include <dcmtk/dcmdata/dctk.h>
+#include <dcmtk/ofstd/ofconsol.h>
 class D2DCommon
 {
 public:
