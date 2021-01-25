@@ -61,13 +61,13 @@ bool GADAPI::SecondaryCaptureDicomizeCommand::ImportarFicherosOriginales()
         manager.CargarFichero(m_pSecondaryParams->m_originalImagePath, base);
 
         GNC::GCS::Ptr<GNC::GUI::ImportationData>& ImportData = m_pSecondaryParams->m_pImportData;
-        //patient module atributes
+        //patient module attributes
         ImportData->baseImages.tags[GKDCM_PatientName] = base.getTag(GKDCM_PatientName);
         ImportData->baseImages.tags[GKDCM_PatientID] = base.getTag(GKDCM_PatientID);
         ImportData->baseImages.tags[GKDCM_PatientBirthDate] = base.getTag(GKDCM_PatientBirthDate);
         ImportData->baseImages.tags[GKDCM_PatientSex] = base.getTag(GKDCM_PatientSex);
         ImportData->baseImages.tags[GKDCM_IssuerOfPatientID] = base.getTag(GKDCM_IssuerOfPatientID);
-        //study module atributes
+        //study module attributes
         ImportData->baseImages.tags[GKDCM_StudyInstanceUID] = base.getTag(GKDCM_StudyInstanceUID);
         ImportData->baseImages.tags[GKDCM_StudyDate] = base.getTag(GKDCM_StudyDate);
         ImportData->baseImages.tags[GKDCM_StudyTime] = base.getTag(GKDCM_StudyTime);

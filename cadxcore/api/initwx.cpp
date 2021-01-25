@@ -206,7 +206,7 @@ public:
 
         virtual int FilterEvent(wxEvent &event)
         {
-                // Automaticlly logout when the user is Away From Keyboard (AFK) for too long
+                // Automatically logout when the user is Away From Keyboard (AFK) for too long
                 if (wxEVT_MOTION == event.GetEventType() || wxEVT_CHAR == event.GetEventType()) {
                         // User has done something, so stop the AFK timer
                         GNC::GCS::InactivityController::Instance()->ResetsInactivity();

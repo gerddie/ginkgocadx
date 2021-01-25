@@ -122,7 +122,7 @@ void GNC::GCS::Widgets::WCameraRotation::OnMouseEvents(GNC::GCS::Events::EventoR
                         camera->OrthogonalizeViewUp();
 
                         rwi->Render();
-                        //acumulate rotation...
+                        //accumulate rotation...
                         evento.c->pRenderer->m_pImageViewer->RotateCamera(newAngle - oldAngle);
                         is->PropagateCameraFocalAndPosition();
                 }

@@ -42,7 +42,7 @@ const std::string& IMapOfVarsModel::GetValue(const std::string& key) const
 {
         const_iterator it = find(key);
         if (it == end()) {
-                LOG_WARN("IMapOfVarsModel", "you are trying to get a variable " << key << " that doesn't esists");
+                LOG_WARN("IMapOfVarsModel", "you are trying to get a variable " << key << " that doesn't exists");
                 return empty;
         } else {
                 return (*it).second.GetValue();
@@ -53,7 +53,7 @@ const std::string& IMapOfVarsModel::GetDescription(const std::string& key) const
 {
         const_iterator it = find(key);
         if (it == end()) {
-                LOG_WARN("IMapOfVarsModel", "you are trying to get a variable " << key << " that doesn't esists");
+                LOG_WARN("IMapOfVarsModel", "you are trying to get a variable " << key << " that doesn't exists");
                 return empty;
         } else {
                 return (*it).second.GetDescription();
