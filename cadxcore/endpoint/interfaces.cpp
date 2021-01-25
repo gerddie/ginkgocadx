@@ -26,7 +26,7 @@
 #include "endpoint.h"
 
 #ifndef _WIN32
-# error "UNIX network interface retrieval is currently unimplemented - please read UNP and implemenet it"
+# error "UNIX network interface retrieval is currently unimplemented - please read UNP and implement it"
 #else
 
 // derived from code from tangentsoft.com WinSock example
