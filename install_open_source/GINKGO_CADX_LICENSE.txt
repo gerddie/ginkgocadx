@@ -1,6 +1,6 @@
-This is a open source Ginkgo CADx Framework build. MetaEmotion S.L does not provide support so eximes from all responsabilities derived from its usage.
+This is a open source Ginkgo CADx Framework build. MetaEmotion S.L does not provide support so eximes from all responsibilities derived from its usage.
  
-WARANTY DISCLAIMER
+WARRANTY DISCLAIMER
 ------------------
  
 The software, procedures, information and data made available by MetaEmotion S.L. under current conditions are provided "AS IS", without warranties of any kind except for contracted services, in which cases the specific contract conditions will be applied.
