@@ -3,11 +3,11 @@
 
 # Ginkgo CADx #
 
+
+
 ## Preface ##
 
-* Currently the project is maintained on a voluntary basis.
-* There is no PRO version.
-* I can't help you with compiling this on MS Windows or Mac OS X
+* The project had been abandoned by the original authors. Since the programs requires an OpenGL compatibility profile porting it to use current VTK versions would require porting it also to wxWindgets >= 3.1, which has not yet a stable API. Since my personal interest in this projecr is now zero, I archive this project.
 
 ## Introduction ##
 
